@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="计算几何学习笔记——Voronoi 图 todo  基础概念Voronoi 图的概念只考虑二维的情况，设想平面上有一系列的点，这些点被称作 site。在平面上任取一个点，这个点到所有 site 的距离中必然有一个最近的，对这个点来说这个 site 是离它最近的 site。对于每个 site，它周围总会有一小块区域，使得对这个区域中的每个点，这个 site 都是离这个点最近的 site，这样的区域称">
+<meta name="keywords" content="计算几何">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算几何学习笔记 4">
+<meta property="og:url" content="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="计算几何学习笔记——Voronoi 图 todo  基础概念Voronoi 图的概念只考虑二维的情况，设想平面上有一系列的点，这些点被称作 site。在平面上任取一个点，这个点到所有 site 的距离中必然有一个最近的，对这个点来说这个 site 是离它最近的 site。对于每个 site，它周围总会有一小块区域，使得对这个区域中的每个点，这个 site 都是离这个点最近的 site，这样的区域称">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-03T16:59:52.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算几何学习笔记 4">
+<meta name="twitter:description" content="计算几何学习笔记——Voronoi 图 todo  基础概念Voronoi 图的概念只考虑二维的情况，设想平面上有一系列的点，这些点被称作 site。在平面上任取一个点，这个点到所有 site 的距离中必然有一个最近的，对这个点来说这个 site 是离它最近的 site。对于每个 site，它周围总会有一小块区域，使得对这个区域中的每个点，这个 site 都是离这个点最近的 site，这样的区域称">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>计算几何学习笔记 4 | My Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算几何学习笔记 4
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-03 16:10:09" itemprop="dateCreated datePublished" datetime="2018-09-03T16:10:09+08:00">2018-09-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-04 00:59:52" itemprop="dateModified" datetime="2018-10-04T00:59:52+08:00">2018-10-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/03/计算几何学习笔记-4/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/09/03/计算几何学习笔记-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="计算几何学习笔记——Voronoi-图"><a href="#计算几何学习笔记——Voronoi-图" class="headerlink" title="计算几何学习笔记——Voronoi 图"></a>计算几何学习笔记——Voronoi 图</h1><blockquote>
+<p>todo</p>
+</blockquote>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h3 id="Voronoi-图的概念"><a href="#Voronoi-图的概念" class="headerlink" title="Voronoi 图的概念"></a>Voronoi 图的概念</h3><p>只考虑二维的情况，设想平面上有一系列的点，这些点被称作 site。在平面上任取一个点，这个点到所有 site 的距离中必然有一个最近的，对这个点来说这个 site 是离它最近的 site。对于每个 site，它周围总会有一小块区域，使得对这个区域中的每个点，这个 site 都是离这个点最近的 site，这样的区域称作是这个 site 的 cell。</p>
+<p>总的来看，给定了一些 site 之后，它们对应得到的 cell 就会平铺满整个平面，这样的到的图称作是 Voronoi 图。cell 的边称作是 Voronoi 边，Voronoi 边的交点称作是 Voronoi 点。</p>
+<h3 id="Voronoi-图的一些性质"><a href="#Voronoi-图的一些性质" class="headerlink" title="Voronoi 图的一些性质"></a>Voronoi 图的一些性质</h3><p>考虑平面上只有两个点的情况，这个时候整个 Voronoi 图就只有一条直线，将整个平面分成两个半平面。</p>
+<p>如果给定了若干个 site，数学上可以通过以下方法来求得其中某个 site $S$ 对应的 cell。只要遍历除了 $S$ 之外的所有 site，求出属于 $S$ 的那个半平面，然后将这些半平面取交集即可。由于半平面是凸的，交运算保持凸性，所以 Voronoi 图中所有的 cell 都是凸的。</p>
+<p>Voronoi 边上的点，到与它相邻的 cell 对应的 site 的距离相等。在 Voronoi 点上的点有类似的性质。</p>
+<p>Voronoi 边可能是线段、射线或者直线。</p>
+<p>其它的一些性质：</p>
+<ul>
+<li><strong>非空性</strong>：任何一个 site 一定具有非空的 cell。</li>
+<li><strong>空圆性</strong>：对于 cell 内部的点，以它为圆形，以这个点到对应 site 的距离作为半径作圆，那么这个圆内部是空的（不包含其它所有的 site）；对于在 Voronoi 边而不在 Voronoi 点上的点，按这种方法作出的圆内部是空的，但是圆上会有两个点；对于在 Voronoi 点上点，按这个方法作出的圆内部是空的，圆上有至少三个点。</li>
+</ul>
+<h3 id="Voronoi-图的空间复杂度"><a href="#Voronoi-图的空间复杂度" class="headerlink" title="Voronoi 图的空间复杂度"></a>Voronoi 图的空间复杂度</h3><p>对于 $n$ 个 site 构成的 Voronoi 图，其空间复杂度可以这样推导：</p>
+<p>首先要将 Voronoi 图转换成一张平面图，为此引入位于无穷远处的点，并将所有延伸至无穷远处的线都连接到这个点上。这样 Voronoi 图会被转换成平面图，且只有一个强连通分量。平面图中每一个面都至少有三条边（我发现这个好像只在 Voronoi 点的度数为三的情况下成立，不过实际情况中一般也就是这样），由此可以得到这个平面图中边数和面数的关系（一个不等式），再带入欧拉公式。</p>
+<p>最后的结论是 Voronoi 图的边数和面数都是 $O(n)$ 的。</p>
+<h2 id="Voronoi-图的表示与存储"><a href="#Voronoi-图的表示与存储" class="headerlink" title="Voronoi 图的表示与存储"></a>Voronoi 图的表示与存储</h2><h3 id="平面剖分"><a href="#平面剖分" class="headerlink" title="平面剖分"></a>平面剖分</h3><p>Voronoi 图实际上是平面剖分的一种特殊情况。如果将平面图嵌入到一张平面上，即对于平面图的每一个点都在平面上为其安排一个位置，这样所有的点都是对应的，并且平面上与平面图中的边对应的边是不相交的，这样就得到了平面的一个剖分。Voronoi 图是平面剖分的一种特例。</p>
+<p>Fáry’s theorem 指出，如果一个平面图在完成嵌入后，某些边是弯的才能完成这个嵌入，那么一定存在一种嵌入方式，使得所有的边都是直的。这个定理在引入了无穷原点（正如上面做的那样）的时候很有用。</p>
+<p>存储 Voronoi 图时（以及其它平面剖分的情况）需要使用一种叫 DCEL 的数据结构（Doubly Connected Edge List），它的好处是能在常数时间（严格说来应该是线性的，不过一个顶点关联的边和一个面关联的边一般不是很多）内找到一个顶点关联的所有边以及一个面周围的所有边。</p>
+<h3 id="DCEL-数据结构"><a href="#DCEL-数据结构" class="headerlink" title="DCEL 数据结构"></a>DCEL 数据结构</h3><p>DCEL 可以用来存一个平面图在平面上的嵌入情况。它的思路是将一条边分解成两条半边，每条半边都具有自己的方向并且方向相反。对于一个面片来说，围绕它的所有的边在它那一侧的所有的半边应该是按照某个约定的方向旋转的（不妨设置为逆时针）。DCEL 需要维护三张表：边表、点表和面表。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">HalfEdge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Identifier      Id;                 <span class="comment">// 这条半边的编号</span></span><br><span class="line">    HalfEdge*       TwinHalfEdge;       <span class="comment">// 这条半边的孪生半边，即和它方向相反的那一条</span></span><br><span class="line">    Vertex*         OriginVertex;       <span class="comment">// 这条半边的起始顶点</span></span><br><span class="line">    Face*           IncidentFace;       <span class="comment">// 这条半边对应的面片，约定为左边那一个</span></span><br><span class="line">    HalfEdge*       PrevHalfEdge;       <span class="comment">// 对应面片中，这条半边的前驱</span></span><br><span class="line">    HalfEdge*       NextHalfEdge;       <span class="comment">// 对应面片中，这条半边的后继</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vertex</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Identifier      Id;                 <span class="comment">// 顶点编号</span></span><br><span class="line">    <span class="keyword">double</span>          X;                  <span class="comment">// 顶点坐标</span></span><br><span class="line">    <span class="keyword">double</span>          Y;                  <span class="comment">// 顶点坐标</span></span><br><span class="line">    HalfEdge*       IncidentHalfEdge;   <span class="comment">// 与它关联的一条半边，约定为从这个顶点出发的半边中的任意一条</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Face</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    Identifier      Id;                 <span class="comment">// 面片编号</span></span><br><span class="line">    HalfEdge*       IncidentHalfEdge;   <span class="comment">// 与它关联的一条半边，约定为环绕这个面片的半边中的任意一条</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>一些操作举例：</p>
+<ul>
+<li><strong>给定一个面片，得到与它关联的所有边</strong>：找到它的 <code>IncidentHalfEdge</code>，从这个边开始不断访问 <code>NextHalfEdge</code> 即可（形成了环形链表）。</li>
+<li><strong>给定一个顶点，得到与它关联的所有边</strong>：找到它的 <code>IncidentHalfEdge</code>，访问之，访问它的孪生后继，孪生后继的孪生后继，依次类推。</li>
+</ul>
+<h2 id="Voronoi-图的求解"><a href="#Voronoi-图的求解" class="headerlink" title="Voronoi 图的求解"></a>Voronoi 图的求解</h2><h3 id="复杂度下界估计"><a href="#复杂度下界估计" class="headerlink" title="复杂度下界估计"></a>复杂度下界估计</h3><p>为了得到一个能够实际发挥作用的 Voronoi 图，除了要得到这个图本身之外，应该还需要得到它的相应的结构，例如得到它的 DCEL 结构，否则不认为求解出了 Voronoi 图。</p>
+<p>排序问题可以规约到一维 Voronoi 图问题，或者二维 Voronoi 图问题。由此知道 Voronoi 图的求解不会比 $O(n\log n)$ 更快。</p>
+<p>如果输入的点的序列按照某个方向排序了，也不会有比 $O(n\log n)$ 更快的算法。与凸包算法不同，凸包是一个所谓的 <em>组合结构</em> 而 Voronoi 图则是一个 <em>几何结构</em>。凸包在仿射变换下依然是凸包，但是一个点集经过仿射变换后的 Voronoi 图和原来的 Voronoi 图具有本质的差别，这是为什么给定了按某方向排序的点列后无法加速算法的原因。</p>
+<p>下面可以对这个问题进行更加严谨的分析。</p>
+<h4 id="epsilon-closeness-问题"><a href="#epsilon-closeness-问题" class="headerlink" title="$\epsilon$ closeness 问题"></a>$\epsilon$ closeness 问题</h4><p>给定 $n$ 个未经排序的数和一个 $\epsilon$，询问这 $n$ 个数中间隔最小的那两个数的间隔是否小于 $\epsilon$。这个问题是最小间隔问题的决策版本，但是即便如此，这个问题的复杂度的下界依然是 $O(n\log n)$。</p>
+<h4 id="将-epsilon-closeness-问题转换成从某方向排序好的点构造-Voronoi-图的问题"><a href="#将-epsilon-closeness-问题转换成从某方向排序好的点构造-Voronoi-图的问题" class="headerlink" title="将 $\epsilon$ closeness 问题转换成从某方向排序好的点构造 Voronoi 图的问题"></a>将 $\epsilon$ closeness 问题转换成从某方向排序好的点构造 Voronoi 图的问题</h4><p>对于给定的若干个数（未经排序）放在横轴上，按照给定这些数的顺序将其抬升一个高度。如果这个数是第 $i$ 个给出的，就提高为 $\displaystyle{\frac{i\epsilon}{n}}$。这样我们就得到了 $n$ 个平面上的点，它们按照纵轴方向有序。如果使用某种算法构造出了 Voronoi 图，则我们可以在线性时间（存疑）内得到所有与横轴相交的那些 cell，并且它们是按照横轴方向排序的。</p>
+<p>现在，将这些平面点再次变换回横轴上，有两种情况：</p>
+<ul>
+<li>所有的点都位于自己的 cell 中，这个时候我们实际上完成了对这些横轴点的排序；</li>
+<li>有些点不位于自己的 cell 中，假设这个点在横轴上是 $A$ 点，它所在的那个 cell 的 site 在横轴上的点为 $B$ 点，则有 $AB &lt; \epsilon$。</li>
+</ul>
+<p>不管是哪种情况，我们都在线性时间内将 $\epsilon$ closeness 问题转换成从某方向排序好的点构造 Voronoi 图的问题。于是 Voronoi 图即使在给定的点按照某个方向排序的情况下，复杂度也不会低于 $O(n\log n)$。</p>
+<h4 id="对偶的问题"><a href="#对偶的问题" class="headerlink" title="对偶的问题"></a>对偶的问题</h4><p>给定了平面点集的 Voronoi 图，要求这个 Voronoi 图对应的 site 在某个方向上的投影的排序，复杂度不会比 $O(n\log n)$ 更低。</p>
+<h3 id="Naive-算法"><a href="#Naive-算法" class="headerlink" title="Naive 算法"></a>Naive 算法</h3><p>Naive 算法的复杂度是 $O(n^3)$ 的，并且无法给出 DCEL 结构。它的思路是逐点构造 cell。对于每一个点，它的初始 cell 为整个平面，然后对于除了它以外的所有点，都会将它的 cell 削减掉一部分。每考虑外部的一个点，它和当前 cell 的求交需要 $O(n)$ 才能完成，而要考虑的外部点是 $O(n)$ 个的，所以求出一个真正的 cell 需要 $O(n^2)$ 的时间，这还只得到了一个点的 cell，我们一共有 $O(n)$ 个点，所以需要的总时间是 $O(n^3)$ 的。</p>
+<h3 id="增量构造算法"><a href="#增量构造算法" class="headerlink" title="增量构造算法"></a>增量构造算法</h3><p>如果已经知道了 $n$ 个点的 Voronoi 图，则可以方便地在添加了一个点的情况下知道这 $n + 1$ 个点的 Voronoi 图。增加了一个点后，你可以在线性时间内（起码我能想到的最快是这么多）找到这个点位于哪个面片中，因此也就找到了这个面片对应的 site。然后连一条新增点与找到的 site 的垂直平分线。有些算法在给定了 DCEL 结构后能够在 $O(\log n)$ 的时间内得到一条直线与一个凸多边形的相交情况，使用这种算法，找到一个垂直平分线与那个 site 对应的 cell 的边界的交点，然后这个交点位于 Voronoi 边上，所以可以得到另一边（考虑孪生半边，或者直接考虑这两个相邻的 cell）的那个 site，再次作这个新 site 与新增的点的垂直平分线，用 $O(\log n)$ 的时间找到下一个交点，依次推进下去，可以构造出一个封闭的图形出来。构造出来的这个封闭图形就是新增点的 cell。这个构造将在 $O(n\log n)$ 的时间内完成，不幸的是真的有些情况会达到这个最坏情况。每新增一个点，就要用 $O(n\log n)$ 的时间，于是一共要用 $O(n^2\log n)$ 的时间得到 $n$ 个点的 Voronoi 图。</p>
+<blockquote>
+<p>todo</p>
+</blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算几何/" rel="tag"># 计算几何</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/03/计算几何学习笔记-3/" rel="next" title="计算几何学习笔记 3">
+                <i class="fa fa-chevron-left"></i> 计算几何学习笔记 3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/06/从零开始搞懂异步/" rel="prev" title="从零开始搞懂异步">
+                从零开始搞懂异步 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#计算几何学习笔记——Voronoi-图"><span class="nav-number">1.</span> <span class="nav-text">计算几何学习笔记——Voronoi 图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">1.1.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Voronoi-图的概念"><span class="nav-number">1.1.1.</span> <span class="nav-text">Voronoi 图的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Voronoi-图的一些性质"><span class="nav-number">1.1.2.</span> <span class="nav-text">Voronoi 图的一些性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Voronoi-图的空间复杂度"><span class="nav-number">1.1.3.</span> <span class="nav-text">Voronoi 图的空间复杂度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Voronoi-图的表示与存储"><span class="nav-number">1.2.</span> <span class="nav-text">Voronoi 图的表示与存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#平面剖分"><span class="nav-number">1.2.1.</span> <span class="nav-text">平面剖分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCEL-数据结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">DCEL 数据结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Voronoi-图的求解"><span class="nav-number">1.3.</span> <span class="nav-text">Voronoi 图的求解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度下界估计"><span class="nav-number">1.3.1.</span> <span class="nav-text">复杂度下界估计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#epsilon-closeness-问题"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">$\epsilon$ closeness 问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将-epsilon-closeness-问题转换成从某方向排序好的点构造-Voronoi-图的问题"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">将 $\epsilon$ closeness 问题转换成从某方向排序好的点构造 Voronoi 图的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对偶的问题"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">对偶的问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Naive-算法"><span class="nav-number">1.3.2.</span> <span class="nav-text">Naive 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增量构造算法"><span class="nav-number">1.3.3.</span> <span class="nav-text">增量构造算法</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/';
+        this.page.identifier = '2018/09/03/计算几何学习笔记-4/';
+        this.page.title = '计算几何学习笔记 4';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dimlight1998.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
