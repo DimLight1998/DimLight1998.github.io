@@ -277,6 +277,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/06/手写汇编器-1/" itemprop="url">
+                  汇编课程大作业博客——PE 格式
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-06 13:26:23 / 修改时间：21:20:53" itemprop="dateCreated datePublished" datetime="2018-10-06T13:26:23+08:00">2018-10-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/06/手写汇编器-1/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/06/手写汇编器-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          汇编课程大作业博客——熟悉 PE 格式汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。
+Windows 下能直接运行的文件格式为 exe，exe 又能细分为几种：
+
+EXE 是在 OS/2、MS-DOS 和 Windows 系统中通用的可执行文件的扩展名，包括以下几种主要的文件格式：
+
+DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Windows 中运行。它通过在文件头添加 ASCII 字符串 “MZ”（16 进制中表示为 4D5A）来
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/10/06/手写汇编器-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/02/软件工程课程项目博客-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -297,7 +460,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/10/02/软件工程课程项目博客-1/" itemprop="url">
-                  软件工程课程项目博客-1
+                  软件工程课程大作业博客——后端技术的选取
                 </a>
               
             
@@ -340,7 +503,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-10-04 00:59:33" itemprop="dateModified" datetime="2018-10-04T00:59:33+08:00">2018-10-04</time>
+                <time title="修改时间：2018-10-06 17:37:48" itemprop="dateModified" datetime="2018-10-06T17:37:48+08:00">2018-10-06</time>
               
             
           </span>
@@ -387,13 +550,13 @@
       
         
           
-          软件工程课程项目博客——后端技术的选取
+          软件工程课程大作业博客——后端技术的选取
 todo
 
 一些考虑考虑到后端的生态丰富程度和开发速度，只能从 Python 和 NodeJS 中选择。为了有更强的类型系统决定使用 TypeScript。
 Web 框架打算使用 Koa，但是 Koa 本身还是比较底层，Egg.js 是对 Koa 的进一步封装，主要是引入了对 Koa 的自定义扩展的功能以及引入了一个更加强大的插件功能，暂时计划就用这个框架。
 Egg.js 的一些概念主要是对这个框架的一个 overview。
-ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有一个。它可以用来发出某些事件的信号，作为
+ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有一个。它可以用来发出某些事件的信号，作
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1811,180 +1974,13 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/20/动手实现简单-TensorFlow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="My Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/20/动手实现简单-TensorFlow/" itemprop="url">
-                  动手实现简单 TensorFlow
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-20 13:56:18" itemprop="dateCreated datePublished" datetime="2018-08-20T13:56:18+08:00">2018-08-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2018-08-30 17:51:56" itemprop="dateModified" datetime="2018-08-30T17:51:56+08:00">2018-08-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/20/动手实现简单-TensorFlow/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/20/动手实现简单-TensorFlow/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          动手实现简单 TensorFlow这篇文章是对 Deep Learning From Scratch: Theory and Implementation 的学习和整理，原作者使用纯 Python 实现了一个和 TensorFlow 接口类似的框架用来解释深度学习的基本原理以及 TensorFlow 这类框架是如何工作的。此处是看完原博客后的一些总结。（顺便测试一下这个博客系统）
-计算图计算图是一张有向无环图，它可以将一个复杂的函数分解成各种基本的运算，方便后续对各自变量求导。比如一个 $\displaystyle{\vec{y} = \mathbf{A}\vec{x} + \vec{b}}$
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/20/动手实现简单-TensorFlow/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
 
 
           </div>
@@ -2025,7 +2021,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
