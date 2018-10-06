@@ -110,15 +110,15 @@
 
   <meta name="description" content="汇编课程大作业博客——熟悉 PE 格式汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。 Windows 下能直接运行的文件格式为 exe，exe 又能细分为几种：  EXE 是在 OS/2、MS-DOS 和 Windows 系统中通用的可执行文件的扩展名，包">
 <meta property="og:type" content="article">
-<meta property="og:title" content="汇编课程大作业博客——PE 格式">
+<meta property="og:title" content="汇编课程大作业博客——熟悉 PE 格式">
 <meta property="og:url" content="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/index.html">
 <meta property="og:site_name" content="My Blog">
 <meta property="og:description" content="汇编课程大作业博客——熟悉 PE 格式汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。 Windows 下能直接运行的文件格式为 exe，exe 又能细分为几种：  EXE 是在 OS/2、MS-DOS 和 Windows 系统中通用的可执行文件的扩展名，包">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://dimlight1998.github.io/2018/10/06/手写汇编器-1/snipaste_20181006_205748.png">
-<meta property="og:updated_time" content="2018-10-06T13:20:53.195Z">
+<meta property="og:updated_time" content="2018-10-06T16:54:09.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="汇编课程大作业博客——PE 格式">
+<meta name="twitter:title" content="汇编课程大作业博客——熟悉 PE 格式">
 <meta name="twitter:description" content="汇编课程大作业博客——熟悉 PE 格式汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。 Windows 下能直接运行的文件格式为 exe，exe 又能细分为几种：  EXE 是在 OS/2、MS-DOS 和 Windows 系统中通用的可执行文件的扩展名，包">
 <meta name="twitter:image" content="http://dimlight1998.github.io/2018/10/06/手写汇编器-1/snipaste_20181006_205748.png">
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>汇编课程大作业博客——PE 格式 | My Blog</title>
+  <title>汇编课程大作业博客——熟悉 PE 格式 | My Blog</title>
   
 
 
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">汇编课程大作业博客——PE 格式
+          <h1 class="post-title" itemprop="name headline">汇编课程大作业博客——熟悉 PE 格式
               
             
           </h1>
@@ -324,12 +324,24 @@
                 
               
 
-              <time title="创建时间：2018-10-06 13:26:23 / 修改时间：21:20:53" itemprop="dateCreated datePublished" datetime="2018-10-06T13:26:23+08:00">2018-10-06</time>
+              <time title="创建时间：2018-10-06 13:26:23" itemprop="dateCreated datePublished" datetime="2018-10-06T13:26:23+08:00">2018-10-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-07 00:54:09" itemprop="dateModified" datetime="2018-10-07T00:54:09+08:00">2018-10-07</time>
               
             
           </span>
@@ -514,21 +526,47 @@
 <img src="/2018/10/06/手写汇编器-1/snipaste_20181006_205748.png">
 <p>可以看到基本上就是我们写的源码。既然要做一个汇编器，一部分内容就是要从源码变成 .text 这样的格式。我估计只要做一下转换就可以了，如果语法不是很复杂的话。</p>
 <h4 id="rdata-段"><a href="#rdata-段" class="headerlink" title=".rdata 段"></a>.rdata 段</h4><p>这个段涉及到导入的函数的表，所以比较复杂。详细的解释可以在 <a href="https://docs.microsoft.com/en-us/windows/desktop/debug/pe-format#the-idata-section" target="_blank" rel="noopener">这里</a> 找到，此处简单写一下，整体分析思路来自于 <a href="https://bbs.pediy.com/thread-48590.htm" target="_blank" rel="noopener">这篇博客</a>。</p>
-<p>大体的结构是这样的：首先导入的时候会用到多个 dll，我们有一个数组叫 Import Directory Table 来记录这些 dll，例子中我们使用了 2 个 dll 分别是 kernel32.dll 和 mscvrt.dll，那么 Import Directory Table 应该有三项，其中最后一项内容全部为 0，标记结尾。Import Directory Table 中的每一项占用 20 字节，每一项称为 Import Directory Entry，具有 5 个域，每个域有 4 个字节。</p>
-<p>对于每个 dll，我们还有一个表来存从这个 dll 中导入了哪些函数，这个表称为 Import Lookup Table，如果从某个 dll 中导入了 3 个函数，那么对应的 Import Lookup Table 有四个元素，最后一个元素全为 0 标记结尾。Import Lookup Table 中每个元素为一个 DWORD。</p>
-<p>最后，还需要一个 Name Table 来存导入的 dll 的名字和函数的名字。</p>
+<p>大体的结构是这样的：</p>
 <ul>
-<li>Import Lookup Table RVA</li>
-<li>Time/Date Stamp</li>
-<li>Forwarder Chain</li>
-<li>Name RVA</li>
-<li>Import Address Table RVA (Thunk Table) </li>
+<li>首先导入的时候会用到多个 dll，我们有一个数组叫 Import Directory Table 来记录这些 dll，例子中我们使用了 2 个 dll 分别是 kernel32.dll 和 mscvrt.dll，那么 Import Directory Table 应该有三项，其中最后一项内容全部为 0，标记结尾。Import Directory Table 中的每一项占用 20 字节，每一项称为 Import Directory Entry，具有 5 个域，每个域有 4 个字节。</li>
+<li>对于每个 dll，我们还有一个表来存从这个 dll 中导入了哪些函数，这个表称为 Import Lookup Table，如果从某个 dll 中导入了 3 个函数，那么对应的 Import Lookup Table 有四个元素，最后一个元素全为 0 标记结尾。Import Lookup Table 中每个元素为一个 DWORD。</li>
+<li>最后，还需要一个 Name Table 来存导入的 dll 的名字和函数的名字。</li>
 </ul>
+<p>结构上，.rdata 段开始后马上是 Import Address Table（后面会写），然后马上是 Import Directory Table，然后是所有的 Import Lookup Table，然后是 Name Table。</p>
+<p>现在让我们构造一个 .rdata 段出来。在 .rdata 段中，最开始是一个 Import Address Table，这个表中的内容应该与 Import Lookup Table 中的内容完全一致。我们待会会看到 Import Lookup Table 的内容，因此这里先空着。具体空多少呢？Import Lookup Table 中的每一项对应一个函数，我们导入了两个函数，来自两个不同的 dll。每个 dll 的 Import Lookup Table 有两项（其中一个是全零），因此所有的 Import Lookup Table 有 4 项，需要先空出 4 个 DWORD 也就是 16 字节。</p>
+<p>然后紧接着就是 Import Directory Table，它的每一项是 Import Directory Entry。Import Directory Entry 的结构如下：</p>
+<ul>
+<li>Import Lookup Table RVA：这个 dll 对应的 Import Lookup Table 的 RVA。</li>
+<li>Time/Date Stamp：一个时间戳，可以设置为零。</li>
+<li>Forwarder Chain：不了解，但是可以设置为零。</li>
+<li>Name RVA：这个 dll 对应的字符串的 RVA。后面会将这个 dll 的字符串放在 .rdata 中。</li>
+<li>Import Address Table RVA (Thunk Table)：这个 dll 对应的 Import Address Table 的 RVA，也就是之前留空的部分。</li>
+</ul>
+<p>研究我们的例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">           00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F</span><br><span class="line"></span><br><span class="line">00000600   5C 20 00 00 00 00 00 00 78 20 00 00 00 00 00 00  \ ......x ......</span><br><span class="line">00000610   4C 20 00 00 00 00 00 00 00 00 00 00 6A 20 00 00  L ..........j ..</span><br><span class="line">00000620   00 20 00 00 54 20 00 00 00 00 00 00 00 00 00 00  . ..T ..........</span><br><span class="line">00000630   82 20 00 00 08 20 00 00 00 00 00 00 00 00 00 00   ... ..........</span><br><span class="line">00000640   00 00 00 00 00 00 00 00 00 00 00 00 5C 20 00 00  ............\ ..</span><br><span class="line">00000650   00 00 00 00 78 20 00 00 00 00 00 00 9B 00 45 78  ....x ......x</span><br><span class="line">00000660   69 74 50 72 6F 63 65 73 73 00 6B 65 72 6E 65 6C  itProcess.kernel</span><br><span class="line">00000670   33 32 2E 64 6C 6C 00 00 81 02 70 72 69 6E 74 66  32.dll...printf</span><br><span class="line">00000680   00 00 6D 73 76 63 72 74 2E 64 6C 6C 00 00 00 00  ..msvcrt.dll....</span><br><span class="line">00000690   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br></pre></td></tr></table></figure>
+<p>(0x660 那一行结尾应该有 Ex 字符，不知道是不是因为前面有奇怪的字符导致没有显示出来。)</p>
+<ol>
+<li>0x600 到 0x610 是 Import Address Table，目前我们应该只知道 0x600 到 0x608 属于第一个 dll，0x608 到 0x610 属于第二个 dll。</li>
+<li>随后，因为有 2 个 dll，故 Import Directory Table 有三项，从 0x610 到 0x64c。其中 0x638 到 0x64c 是全零的那一项。研究 0x610 到 0x624 这一项，第一个 DWORD 是 0x204c 是一个 RVA，在文件中对应的是 0x64c 指向的是第一个 dll 对应的 Import Lookup Table。随后的两个 DWORD 都是 0，第四个 DWORD 是 0x206a 是一个 RVA，在文件中对应的是 0x66a 指向 kernel32.dll 这个字符串；最后一个 DWORD 是 0x2000 是一个 RVA，对应文件中的 0x600，指向的是这个 dll 对应的 Import Address Table。可以验证一下，从 0x600 和 0x64c 开始的 8 个字节是一样的。具体是什么见下一段。</li>
+</ol>
+<p>Import Directory Table 搞清楚了，下面就是 Import Lookup Table。每个 Import Lookup Table 对应一个 dll，因此这里一共有两个。每个 Import Lookup Table 的每一项是一个 32 位的数，<a href="https://docs.microsoft.com/en-us/windows/desktop/debug/pe-format#import-lookup-table" target="_blank" rel="noopener">这里</a> 有它的解释，在我们的任务中，只需要让最高位为 0，同时低 31 位是这一项对应的那个函数对应在 Name Table 中的项的 RVA 就可以了。看第一个，它的范围是 0x64c 到 0x654，其中 0x650 到 0x654 是全零标记结尾，因此这个 dll 中的那个函数对应的项是位于 0x64c 到 0x650 的数据 0x205c，这是一个 RVA，换成文件位置是 0x65c，这个地方的数据是 Name Table 中的一项，我们马上会看到。</p>
+<p>到此为止我们构造出了 Import Lookup Table，也就可以填上 Import Address Table 的坑了。最后只剩下 Name Table 了。Name Table 的构造方式看起来是这样的：对于每个 dll 都可以构造出来一项，这项长度不定；将所有 dll 构造出来的项直接连接起来即可。对于每个 dll，这一项的构造是这样的：将 dll 的名字放在最后，然后之前对于每个要导入的函数，都按照以下格式构造一个二进制串：</p>
+<ul>
+<li>两个字节的 index，用来从 dll 中找到这个函数。我们可以将这个值设置为 0 强行让它进行按名字的在 dll 导出列表的二分查找。</li>
+<li>函数的名称，注意要以空字符结尾。</li>
+<li>如果结尾不是偶数，则补一个零字节将其对齐到偶数边界。</li>
+</ul>
+<p>如此，.rdata 中的内容就被构造出来了。</p>
+<p>但是我们在 <a href="#可选头">可选头的最后</a> 挖的坑还没有填上，这里差一个 RVA 和一个大小。当时这里要填的是导入表的 RVA，即 Import Directory Table，显然是要填 0x2010；至于大小，这个表中有三项，每项 20 字节，一共 60 字节即 0x3c。</p>
 <h4 id="data-段"><a href="#data-段" class="headerlink" title=".data 段"></a>.data 段</h4><p>这个段里面存静态的数据（全局变量等）。没有其它的信息，要使用的时候都是通过指针得到这些变量。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">00000800   25 64 20 2B 20 25 64 20 3D 20 25 64 00 00 00 00  %d + %d = %d....</span><br><span class="line">00000810   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br><span class="line">00000820   00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................</span><br></pre></td></tr></table></figure>
+<hr>
+<p>到此为止我们就解析完了整个 PE 文件。</p>
 <h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
 <li><a href="https://zh.wikipedia.org/wiki/EXE%E6%A0%BC%E5%BC%8F" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/EXE%E6%A0%BC%E5%BC%8F</a></li>
 <li><a href="https://docs.microsoft.com/en-us/windows/desktop/debug/pe-format" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/windows/desktop/debug/pe-format</a></li>
+<li><a href="https://bbs.pediy.com/thread-48590.htm" target="_blank" rel="noopener">https://bbs.pediy.com/thread-48590.htm</a></li>
+<li><a href="http://www.cnblogs.com/li0803/archive/2010/11/15/1877951.html" target="_blank" rel="noopener">http://www.cnblogs.com/li0803/archive/2010/11/15/1877951.html</a></li>
 </ul>
 
       
@@ -861,7 +899,7 @@
       var disqus_config = function () {
         this.page.url = 'http://DimLight1998.github.io/2018/10/06/手写汇编器-1/';
         this.page.identifier = '2018/10/06/手写汇编器-1/';
-        this.page.title = '汇编课程大作业博客——PE 格式';
+        this.page.title = '汇编课程大作业博客——熟悉 PE 格式';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
