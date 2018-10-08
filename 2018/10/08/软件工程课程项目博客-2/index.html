@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。 目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程课程大作业博客——数据传输方式的选取">
+<meta property="og:url" content="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。 目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-08T04:25:58.355Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件工程课程大作业博客——数据传输方式的选取">
+<meta name="twitter:description" content="软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。 目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>软件工程课程大作业博客——数据传输方式的选取 | My Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件工程课程大作业博客——数据传输方式的选取
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-08 10:01:49 / 修改时间：12:25:58" itemprop="dateCreated datePublished" datetime="2018-10-08T10:01:49+08:00">2018-10-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/08/软件工程课程项目博客-2/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/08/软件工程课程项目博客-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="软件工程课程大作业博客——数据传输方式的选取"><a href="#软件工程课程大作业博客——数据传输方式的选取" class="headerlink" title="软件工程课程大作业博客——数据传输方式的选取"></a>软件工程课程大作业博客——数据传输方式的选取</h1><p><strong>一些考虑</strong>：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。</p>
+<p>目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。</p>
+<p>比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html，但是上面没有任何数据，这个文件中的 js 会根据当前的 url 发起第二次请求，url 可能为 /api/contests/2/comments/4，这次请求会返回实际数据。</p>
+<p>数据传输的方式可以采用某种应用层上的协议来简化开发。目前备选的方案有 REST、GraphQL 和 RPC。</p>
+<h2 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h2><h3 id="REST-描述"><a href="#REST-描述" class="headerlink" title="REST 描述"></a>REST 描述</h3><h4 id="REST-介绍与约定"><a href="#REST-介绍与约定" class="headerlink" title="REST 介绍与约定"></a>REST 介绍与约定</h4><blockquote>
+<p><strong>表现层状态转换</strong>（REST，英文：<strong>Representational State Transfer</strong>）是 <a href="https://zh.wikipedia.org/w/index.php?title=Roy_Thomas_Fielding&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Roy Thomas Fielding</a>博士于 2000 年在他的博士论文 <a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2#cite_note-Fielding-Ch5-1" target="_blank" rel="noopener">[1]</a> 中提出来的一种<a href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91" target="_blank" rel="noopener">万维网</a><a href="https://zh.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84" target="_blank" rel="noopener">软件架构</a>风格，目的是便于不同软件 / 程序在网络（例如互联网）中互相传递信息。表现层状态转换是根基于<a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">超文本传输协议 (HTTP)</a> 之上而确定的一组约束和属性，是一种设计提供万维网络服务的<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E4%BB%B6%E6%9E%B6%E6%A7%8B" target="_blank" rel="noopener">软件构建风格</a>。匹配或兼容于这种架构风格 (简称为 REST 或 RESTful) 的网络服务，允许客户端发出以<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E6%A0%87%E5%BF%97%E7%AC%A6" target="_blank" rel="noopener">统一资源标识符</a>访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。因此表现层状态转换提供了在互联网络的计算系统之间，彼此资源可交互使用的协作性质 (interoperability)。相对于其它种类的网络服务，例如 SOAP 服务则是以本身所定义的操作集，来访问网络上的资源。</p>
+<p>目前在三种主流的 <a href="https://zh.wikipedia.org/wiki/Web%E6%9C%8D%E5%8A%A1" target="_blank" rel="noopener">Web 服务</a>实现方案中，因为 REST 模式与复杂的 <a href="https://zh.wikipedia.org/wiki/SOAP" target="_blank" rel="noopener">SOAP</a> 和 <a href="https://zh.wikipedia.org/wiki/XML-RPC" target="_blank" rel="noopener">XML-RPC</a> 相比更加简洁，越来越多的 web 服务开始采用 REST 风格设计和实现。例如，<a href="https://zh.wikipedia.org/wiki/Amazon.com" target="_blank" rel="noopener">Amazon.com</a> 提供接近 REST 风格的 Web 服务运行图书查询；<a href="https://zh.wikipedia.org/wiki/%E9%9B%85%E8%99%8E" target="_blank" rel="noopener">雅虎</a>提供的 Web 服务也是 REST 风格的。</p>
+</blockquote>
+<p>REST 英文为 Representational State Transfer，是一种风格而不是框架。REST 提出者对这种风格的约定：</p>
+<ul>
+<li><p><strong>Uniform Interface</strong>：这个约定定义了服务端和客户端之间的统一接口，使得两端解耦，可以独立进行开发，它具体有四个约定。</p>
+<ul>
+<li><strong>Resource-Based</strong>：资源可以总是可以使用 URI 访问到；<strong>资源本身</strong> 和服务器向客户端发送的 <strong>表现信息</strong>（representation）概念上分离。表现信息的格式可能是 HTML、XML 或 JSON。</li>
+<li><strong>Manipulation of Resources Through Representations</strong>：客户端在拿到了表现信息后，如果有足够的权限，应该具有 <strong>足够的信息来修改或删除</strong> 服务器上资源的状态。</li>
+<li><strong>Self-descriptive Messages</strong>：返回的信息应该能够自解释地指出该如何处理本信息。例如来自服务器的信息应该告诉客户端自己能否被缓存。</li>
+<li><strong>Hypermedia as the Engine of Application State (HATEOAS)</strong>：客户端通过 Request Body、Query String 参数、 Request Header 和请求的 URI 来传递状态；服务端通过 Response Body、Response Code 和 Response Header 来传递状态。此外，如果必要，服务端的响应中应该包含一些指向其它 API 的链接，让用户能在不查阅资料的情况下知道下一步能够做什么。</li>
+</ul>
+</li>
+<li><p><strong>Stateless</strong>：REST API 的设计应该是无状态的。与此形成对比的是 Session 的概念，Session 可以让我们在多个不同的请求中保持某种状态，服务器知道这些请求实际上是同一次会话，服务器要知道这件事情是有代价的，它需要维护一个状态。但是 REST API 的设计应该做到服务端不维护状态，客户端要自行维护状态，客户端的每次请求应该包含足够多的信息，让服务端能在不保存状态的情况下处理这个请求。为了做到这一点客户端要向服务端传递某种信息来标记当前的状态（或者状态转换的信息）。当服务端处理了这个请求后，它应该将当前的状态返回给客户端。服务端的这种特性类似于函数式编程中的纯函数。当服务端采用了 Stateless 的原则后可以很好地提高可扩展性，同时方便负载均衡。</p>
+<p>这里有个概念是 <strong>资源的状态</strong> 和 <strong>客户端的状态</strong>，不要搞混。另外有些情况下服务端将不得不保存某种状态，例如用户认证和 API 调用限制，这是对 Stateless 约定的违约。</p>
+</li>
+<li><p><strong>Cacheable</strong>：服务端传给客户端的信息应该总是指出这个信息是否可缓存，不论是显性的还是隐性的。</p>
+</li>
+<li><p><strong>Client-Server</strong>：客户端的代码应该和服务端的代码分离，做到在接口不变的情况下任意替换客户端和服务端都可以正常工作。这样客户端不用关心数据在服务端上的存储，服务端不用关心客户端的状态。</p>
+</li>
+<li><p><strong>Layered System</strong>：客户端应该无法分辨出它连接的是一个服务端的终端还是某个中介。这样的设计让中介能够提供负载均衡和分层缓存的功能，此外也能提供一些安全性的功能。</p>
+</li>
+<li><p><strong>Code on Demand</strong>：这是一个可选的约定。服务端应该可以向客户端发送一些可执行的代码来扩展客户端功能，例如 JavaScript 脚本。</p>
+</li>
+</ul>
+<h4 id="REST-API-设计中的一些推荐实践"><a href="#REST-API-设计中的一些推荐实践" class="headerlink" title="REST API 设计中的一些推荐实践"></a>REST API 设计中的一些推荐实践</h4><h5 id="使用-HTTP-Verb-来让请求更有意义"><a href="#使用-HTTP-Verb-来让请求更有意义" class="headerlink" title="使用 HTTP Verb 来让请求更有意义"></a>使用 HTTP Verb 来让请求更有意义</h5><ul>
+<li>使用 GET 读取资源</li>
+<li>使用 PUT 更新资源（替换式的更新）</li>
+<li>使用 PATCH 更新资源（增量式的更新）</li>
+<li>使用 DELETE 移除资源</li>
+<li>使用 POST 创建资源</li>
+</ul>
+<p>注意使用 GET 时严禁资源发生改变。</p>
+<p>注意，一般将 GET、PUT、DELETE 设计成幂等的操作（实际上 DELETE 某种意义上不幂等，第二次调用和第一次调用的响应码不一样），而将 PATCH 和 POST 设计成不幂等的操作。</p>
+<h5 id="提供合理的资源名"><a href="#提供合理的资源名" class="headerlink" title="提供合理的资源名"></a>提供合理的资源名</h5><p>资源名基本上就是 URL，URL 的设计应该具有好的可理解性，能够让访问者看到 URL 就知道自己在干什么。一些建议的命名规则：</p>
+<ul>
+<li>在获取资源时，使用 URL 而不是 query string。Query string 设计出来是为了 filter 而不是查找的。</li>
+<li>善用 URL 的层次性来表现资源本身的结构。</li>
+<li>设计 URL 时优先考虑客户端的体验而不是对存储数据的友好型。</li>
+<li>URL 应该由名词构成，资源仅由名词标记，使用 HTTP Verb 来指明行为。名词统一使用复数形式。不要出现结构性的描述，一个例子是 customers 要优于 customer_list。</li>
+<li>URL 全小写，使用下划线或减号连接单词。</li>
+<li>URL 越短越好，分节越少越好。</li>
+</ul>
+<h5 id="使用-HTTP-响应码指明状态"><a href="#使用-HTTP-响应码指明状态" class="headerlink" title="使用 HTTP 响应码指明状态"></a>使用 HTTP 响应码指明状态</h5><p>服务端发送给客户端的响应应该使用状态码指明这次请求的状态。例如资源创建成功时应该返回 201 而不是传统的 200。推荐的返回码：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>HTTP Verb</th>
+<th>CRUD</th>
+<th>对集合的操作</th>
+<th>对集合中某一项的操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td>创建</td>
+<td>201</td>
+<td>404，409</td>
+</tr>
+<tr>
+<td>GET</td>
+<td>读取</td>
+<td>200</td>
+<td>200，404</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>更新（全部替换）</td>
+<td>405（不能对集合进行更新，除非故意）</td>
+<td>200，204，404</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>更新（增量替换）</td>
+<td>405（不能对集合进行更新，除非故意）</td>
+<td>200，204，404</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>删除</td>
+<td>405（不能对集合进行删除，除非故意）</td>
+<td>200，404</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在上面的表中，对集合的操作相应的 url 类似 /customers，对集合中某一项的操作的 url 类似 /customers/123。另外，创建一个记录应该使用集合所在的 url。创建的例子是 POST  <a href="http://www.example.com/customers" target="_blank" rel="noopener">http://www.example.com/customers</a>，不带参数，服务端会选择一个参数（例子中是 customer 的 id），创建后将新纪录的 url 返回给客户端。</p>
+<p>不过，我在 <a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014735944539193ab2edd2740f44a79efb438a05e83727000" target="_blank" rel="noopener">其他地方</a> 看到了不同的内容，这种观点认为 REST 是比 HTTP 更加高级的协议，不应该使用 HTTP 的状态码，滥用会导致客户端软件无法区分操作的结果和响应的结果。除了 200 表示正常和 400 表示异常之外其它的所有状态码应该由 web 框架处理。</p>
+<h5 id="设计的时候的粒度顺序"><a href="#设计的时候的粒度顺序" class="headerlink" title="设计的时候的粒度顺序"></a>设计的时候的粒度顺序</h5><p>先设计针对细粒度资源的 API，后设计针对粗粒度资源的 API。从前者到后者更加容易，反过来就很蛋疼。</p>
+<h5 id="考虑连通性"><a href="#考虑连通性" class="headerlink" title="考虑连通性"></a>考虑连通性</h5><p>服务器返回给客户端的内容应该包含了指向其它 API 的连接。这是对 HATEOAS 约定的体现。例如对于进行了分页的服务，返回的数据中应该包含第一页、最后一页、前一页和后一页的连接。</p>
+<h3 id="REST-实践"><a href="#REST-实践" class="headerlink" title="REST 实践"></a>REST 实践</h3><p><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001473590199114b8523ba038dd4359a16ad0bbd3c8a1f2000" target="_blank" rel="noopener">这篇文章</a> 举了一个 REST API 编写的例子。</p>
+<h2 id="GraphQL"><a href="#GraphQL" class="headerlink" title="GraphQL"></a>GraphQL</h2><blockquote>
+<p>TBD</p>
+</blockquote>
+<h3 id="GraphQL-描述"><a href="#GraphQL-描述" class="headerlink" title="GraphQL 描述"></a>GraphQL 描述</h3><h3 id="GraphQL-实践"><a href="#GraphQL-实践" class="headerlink" title="GraphQL 实践"></a>GraphQL 实践</h3><h2 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h2><h3 id="RPC-描述"><a href="#RPC-描述" class="headerlink" title="RPC 描述"></a>RPC 描述</h3><h3 id="PRC-实践"><a href="#PRC-实践" class="headerlink" title="PRC 实践"></a>PRC 实践</h3><h2 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h2><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://www.restapitutorial.com/" target="_blank" rel="noopener">https://www.restapitutorial.com/</a></li>
+<li><a href="https://www.graphql.com/" target="_blank" rel="noopener">https://www.graphql.com/</a></li>
+<li><a href="https://grpc.io/" target="_blank" rel="noopener">https://grpc.io/</a></li>
+<li><a href="https://jozdoo.github.io/rest/2016/09/22/REST-HATEOAS.html" target="_blank" rel="noopener">https://jozdoo.github.io/rest/2016/09/22/REST-HATEOAS.html</a></li>
+<li><a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/06/手写汇编器-1/" rel="next" title="汇编课程大作业博客——熟悉 PE 格式">
+                <i class="fa fa-chevron-left"></i> 汇编课程大作业博客——熟悉 PE 格式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#软件工程课程大作业博客——数据传输方式的选取"><span class="nav-number">1.</span> <span class="nav-text">软件工程课程大作业博客——数据传输方式的选取</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#REST"><span class="nav-number">1.1.</span> <span class="nav-text">REST</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REST-描述"><span class="nav-number">1.1.1.</span> <span class="nav-text">REST 描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#REST-介绍与约定"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">REST 介绍与约定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#REST-API-设计中的一些推荐实践"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">REST API 设计中的一些推荐实践</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-HTTP-Verb-来让请求更有意义"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">使用 HTTP Verb 来让请求更有意义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#提供合理的资源名"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">提供合理的资源名</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用-HTTP-响应码指明状态"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">使用 HTTP 响应码指明状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设计的时候的粒度顺序"><span class="nav-number">1.1.1.2.4.</span> <span class="nav-text">设计的时候的粒度顺序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#考虑连通性"><span class="nav-number">1.1.1.2.5.</span> <span class="nav-text">考虑连通性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#REST-实践"><span class="nav-number">1.1.2.</span> <span class="nav-text">REST 实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GraphQL"><span class="nav-number">1.2.</span> <span class="nav-text">GraphQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-描述"><span class="nav-number">1.2.1.</span> <span class="nav-text">GraphQL 描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GraphQL-实践"><span class="nav-number">1.2.2.</span> <span class="nav-text">GraphQL 实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RPC"><span class="nav-number">1.3.</span> <span class="nav-text">RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RPC-描述"><span class="nav-number">1.3.1.</span> <span class="nav-text">RPC 描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PRC-实践"><span class="nav-number">1.3.2.</span> <span class="nav-text">PRC 实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#比较"><span class="nav-number">1.4.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.5.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/';
+        this.page.identifier = '2018/10/08/软件工程课程项目博客-2/';
+        this.page.title = '软件工程课程大作业博客——数据传输方式的选取';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dimlight1998.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
