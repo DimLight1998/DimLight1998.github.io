@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="汇编课程大作业博客——编码 x86 指令在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。 Encoding Real x86 Instructions 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。 x86 机器码的整体结构一条 x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="汇编课程大作业博客——编码 x86 指令">
+<meta property="og:url" content="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="汇编课程大作业博客——编码 x86 指令在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。 Encoding Real x86 Instructions 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。 x86 机器码的整体结构一条 x">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-10-10T13:51:39.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="汇编课程大作业博客——编码 x86 指令">
+<meta name="twitter:description" content="汇编课程大作业博客——编码 x86 指令在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。 Encoding Real x86 Instructions 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。 x86 机器码的整体结构一条 x">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>汇编课程大作业博客——编码 x86 指令 | My Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">汇编课程大作业博客——编码 x86 指令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-09 10:50:13" itemprop="dateCreated datePublished" datetime="2018-10-09T10:50:13+08:00">2018-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-10-10 21:51:39" itemprop="dateModified" datetime="2018-10-10T21:51:39+08:00">2018-10-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/10/09/手写汇编器-2/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/10/09/手写汇编器-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="汇编课程大作业博客——编码-x86-指令"><a href="#汇编课程大作业博客——编码-x86-指令" class="headerlink" title="汇编课程大作业博客——编码 x86 指令"></a>汇编课程大作业博客——编码 x86 指令</h1><p>在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。</p>
+<p><a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">Encoding Real x86 Instructions</a> 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。</p>
+<h2 id="x86-机器码的整体结构"><a href="#x86-机器码的整体结构" class="headerlink" title="x86 机器码的整体结构"></a>x86 机器码的整体结构</h2><p>一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。</p>
+<p>回到将所有可选部分写到一起那一步，这十六个字节的结构如下：</p>
+<ul>
+<li><strong>最高四个字节</strong>：Prefix Bytes，实际可能有零到四个字节，这些前缀会影响操作的结果。</li>
+<li><strong>次高四个字节</strong>：这四个字节编码了指令以及指令的工作方式（opcode + Mod-Reg-R/M + SIB，后面会写）。</li>
+<li><strong>次低四个字节</strong>：这四个字节编码了 displacement [<a href="https://stackoverflow.com/questions/13329611/x86-x64-add-displacement-addressing" target="_blank" rel="noopener">1</a>]，displacement 用于寻址。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+<li><strong>最低四个字节</strong>：这四个字节编码了 immediate data。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+</ul>
+<p>对于次高四个字节，还可以进一步细分：</p>
+<ul>
+<li>最高的两个字节，编码 opcode，可能会使用其中的一个或两个字节。</li>
+<li>接下来的一个字节称为 <em>Mod-Reg-R/M</em> 字节，这个字节指明了寻址模式和操作数的大小。只有指令需要寄存器或者内存的操作数的时候才会使用这个字节。</li>
+<li>接下来的一个字节称为 SIB（Scaled Indexed Byte）。如果指令使用了 scaled indexed memory addressing，就会用到这个字节。具体是什么后面会写。</li>
+</ul>
+<p>不是所有的字节都会被用到（实际上大部分字节都不会被用到）。我们会先了解次高四个字节。</p>
+<h2 id="opcode-的编码"><a href="#opcode-的编码" class="headerlink" title="opcode 的编码"></a>opcode 的编码</h2><p>opcode 可能占用一个或两个字节，它的编码方式如下：</p>
+<ul>
+<li>对于使用了一个字节的指令，这个字节就编码了指令的类型。</li>
+<li>对于使用了两个字节的指令，第一个字节总是 0x0F，这个字节称为 <em>opcode expansion prefix byte</em>。第二个字节则会实际编码指令的类型。</li>
+</ul>
+<p>这样的编码方式保证了有 512 条指令可以使用。不过 x86 没有使用完。<a href="http://www.c-jump.com/CIS77/reference/Instructions_by_Opcode.html" target="_blank" rel="noopener">这个页面</a> 可以从 opcode 检索对应的指令，[这个页面] 可以从指令检索对应的 opcode。</p>
+<h2 id="Mod-Reg-R-M-字节与-SIB-的编码"><a href="#Mod-Reg-R-M-字节与-SIB-的编码" class="headerlink" title="Mod-Reg-R/M 字节与 SIB 的编码"></a>Mod-Reg-R/M 字节与 SIB 的编码</h2><p>在这一节前需要先知道 x86 寻址的一些东西。当数据不是常数时，CPU 要在某个地方取出数据，而数据要么在寄存器中，要么在内存中。寄存器只要知道名字就能访问，而内存还需要知道具体的地址，这个地址又存在哪里呢？最一般的格式是 <code>base + scale * index + displacement</code> 的形式，可以假想我们需要取出某个结构体数组中的某一个元素的某个域，这样四个量都会起作用，其中 <code>base</code> 表示基地址（可以假想成首元素的地址），这个基地址存在于寄存器中；<code>scale</code> 可以想象成每个结构体的大小，不过，x86 规定它的取值只能是 1、2、4、8 中的一个；<code>index</code> 表示下标，存在于寄存器中；<code>displacement</code> 表示偏移量，可以想象成需要取出的那个域在整个结构体中的位置，这个量就是机器码中的“次低四个字节”。</p>
+<p>以上谈的是从地址中获取数据，另外数据还可能直接存在于寄存器中，这两种情况我们可以统一看待。那么，Mod-Reg-R/M 字节和 SIB 的编码就决定了，对于一个指令它将会从哪里，以怎样的方式获取数据。</p>
+<p>当然，不是每次获取数据都要要上面那么麻烦，很多时候我们只希望：</p>
+<ul>
+<li>直接以一个寄存器中的值作为地址</li>
+<li>以一个寄存器中的值作为地址，加上一个已知的偏移</li>
+<li>直接从寄存器中读取值</li>
+<li>直接用一个已知的值作为地址</li>
+</ul>
+<p>这几种情况下，我们不会使用 scaled indexed memory addressing，因此可以省去 SIB 这个字节。但是如果需要使用之前说的复杂的寻址方式的话就必须用上。</p>
+<h3 id="Mod-Reg-R-M-字节编码"><a href="#Mod-Reg-R-M-字节编码" class="headerlink" title="Mod-Reg-R/M 字节编码"></a>Mod-Reg-R/M 字节编码</h3><p>Mod-Reg-R/M 占一个字节：</p>
+<ul>
+<li>最高两位（7、6）为 MOD，指定了寻址方式。</li>
+<li>次高三位（5、4、3）为 REG，指定了一个通用寄存器，这个寄存器既不存 <code>base</code> 也不存 <code>index</code>，而是作为指令的 source 或者 destination（具体是 source 还是 destination 看对应的指令）。</li>
+<li>最低三位（2、1、0）为 R/M，指定了寻址时使用的存放 <code>base</code> 的寄存器。</li>
+</ul>
+<p>以上说的只是一般规律，存在例外。</p>
+<p>先看 REG，它一共有八个值，对应不同的寄存器。随着指令的数据大小不同也对应着不同的寄存器：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>REG 值</strong></th>
+<th style="text-align:center"><strong>寄存器</strong>（数据大小为 8 位）</th>
+<th style="text-align:center"><strong>寄存器</strong>（数据大小为 16 位）</th>
+<th style="text-align:center"><strong>寄存器</strong>（数据大小为 32 位）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">000</td>
+<td style="text-align:center">AL</td>
+<td style="text-align:center">AX</td>
+<td style="text-align:center">EAX</td>
+</tr>
+<tr>
+<td style="text-align:center">001</td>
+<td style="text-align:center">CL</td>
+<td style="text-align:center">CX</td>
+<td style="text-align:center">ECX</td>
+</tr>
+<tr>
+<td style="text-align:center">010</td>
+<td style="text-align:center">DL</td>
+<td style="text-align:center">DX</td>
+<td style="text-align:center">EDX</td>
+</tr>
+<tr>
+<td style="text-align:center">011</td>
+<td style="text-align:center">BL</td>
+<td style="text-align:center">BX</td>
+<td style="text-align:center">EBX</td>
+</tr>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">AH</td>
+<td style="text-align:center">SP</td>
+<td style="text-align:center">ESP</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:center">CH</td>
+<td style="text-align:center">BP</td>
+<td style="text-align:center">EBP</td>
+</tr>
+<tr>
+<td style="text-align:center">110</td>
+<td style="text-align:center">DH</td>
+<td style="text-align:center">SI</td>
+<td style="text-align:center">ESI</td>
+</tr>
+<tr>
+<td style="text-align:center">111</td>
+<td style="text-align:center">BH</td>
+<td style="text-align:center">DI</td>
+<td style="text-align:center">EDI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>注意 REG 指定的寄存器和数据有关，与寻址没有关系。</p>
+<p>前面已经说过，在不使用 scaled indexed memory addressing 的情况下可以仅使用 Mod-Reg-R/M 字节进行寻址。我们已经看过了 REG，它与寻址没有关系。</p>
+<p>对于 MOD：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">MOD 值</th>
+<th style="text-align:center">寻址方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">大部分情况下是将 R/M 指定的寄存器中的值作为地址进行寻址</td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">启用一字节长度的 displacement，基址为 R/M 指定的寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">启用四字节长度的 displacement，基址为 R/M 指定的寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">直接将 R/M 指定的寄存器中的值作为值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>从上面可以看到 R/M 是用来指定寄存器的，它具有三位，编码寄存器的方式与 REG 编码寄存器的方式相同。另外可以看到使用 Mod-Reg-R/M 时存在一些例外情况，这是因为需要能够启用 scaled indexed memory addressing 的模式，以及开启 displacement-only 的模式（没有基址，直接以寄存器中的值作为地址进行寻址）。</p>
+<p>为了标记出这些例外，可以将 MOD 和 R/M 所有的 32 种组合枚举出来。例外情况使用黑体标出：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>MOD 值</strong></th>
+<th style="text-align:center"><strong>R/M 值</strong></th>
+<th style="text-align:center"><strong>寻址方式</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">000</td>
+<td style="text-align:center"><code>[eax]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">000</td>
+<td style="text-align:center"><code>[eax + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">000</td>
+<td style="text-align:center"><code>[eax + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">000</td>
+<td style="text-align:center">直接从 AL / AX / EAX 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">001</td>
+<td style="text-align:center"><code>[ecx]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">001</td>
+<td style="text-align:center"><code>[ecx + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">001</td>
+<td style="text-align:center"><code>[ecx + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">001</td>
+<td style="text-align:center">直接从 CL / CX / ECX 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">010</td>
+<td style="text-align:center"><code>[edx]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">010</td>
+<td style="text-align:center"><code>[edx + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">010</td>
+<td style="text-align:center"><code>[edx + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">010</td>
+<td style="text-align:center">直接从 DL / DX / EDX 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">011</td>
+<td style="text-align:center"><code>[ebx]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">011</td>
+<td style="text-align:center"><code>[ebx + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">011</td>
+<td style="text-align:center"><code>[ebx + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">011</td>
+<td style="text-align:center">直接从 BL / BX / EBX 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center"><strong>scaled indexed memory addressing 模式，无 displacement 或 32 位 displacement-only</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center"><strong>scaled indexed memory addressing 模式，8 位 displacement</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center"><strong>scaled indexed memory addressing 模式，32 位 displacement</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">100</td>
+<td style="text-align:center">直接从 AH / SP / ESP 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center"><strong>displacement-only 模式</strong></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center"><code>[ebp + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center"><code>[ebp + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">101</td>
+<td style="text-align:center">直接从 CH / BP / EBP 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center"><code>[esi]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center"><code>[esi + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center"><code>[esi + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">110</td>
+<td style="text-align:center">直接从 DH / SI / ESI 中获得值</td>
+</tr>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center"><code>[edi]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center"><code>[edi + displacement_8]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center"><code>[edi + displacement_32]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">111</td>
+<td style="text-align:center">直接从 BH / DI / EDI 中获得值</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>对上表的一些注解：</p>
+<ul>
+<li><code>displacement_8</code> 指的是 8 位 displacement，32 位类似。</li>
+<li>使用 8 位 displacement 只用一个 displacement 字节，更加短小。</li>
+<li>对于 MOD = 11，R/M = 000 这种情况，具体使用哪个寄存器依赖于指令的不同。一般来说一组中指令中会有一个位来标记使用 8 位寄存器还是 32 位寄存器，如果需要用到 16 位寄存器则要启用 Prefix Bytes（最高四个字节）。</li>
+<li>MOD = 00，R/M = 101 这个情况下，如果确实希望使用 <code>[ebp]</code> 方式寻址，可以考虑使用 <code>[epb + displacement_8]</code> 并将 displacement 设置为 0。</li>
+</ul>
+<p>下面来看 scaled indexed memory addressing 模式。</p>
+<h3 id="SIB-编码"><a href="#SIB-编码" class="headerlink" title="SIB 编码"></a>SIB 编码</h3><p>SIB 用来使用 <code>base + scale * index + displacement</code> 这种复杂的寻址方式。</p>
+<p>SIB 是紧随着 Mod-Reg-R/M 后的一个字节（只有需要的时候才会出现）：</p>
+<ul>
+<li>最高两位（7、6）编码了 <code>scale</code>，<code>scale</code> 只能在四个可选值中选择。</li>
+<li>次高三位（5、4、3）通过指定寄存器的方式编码了 <code>index</code>。</li>
+<li>最低三位（2、1、0）通过指定寄存器的方式编码了 <code>base</code>。</li>
+</ul>
+<p>具体地：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>最高两位编码 <code>scale</code></strong></th>
+<th style="text-align:center"><strong><code>scale</code> 的值</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">01</td>
+<td style="text-align:center">2</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">11</td>
+<td style="text-align:center">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">次高三位编码 <code>index</code></th>
+<th style="text-align:center"><code>index</code> 的寄存器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">000</td>
+<td style="text-align:center">EAX</td>
+</tr>
+<tr>
+<td style="text-align:center">001</td>
+<td style="text-align:center">ECX</td>
+</tr>
+<tr>
+<td style="text-align:center">010</td>
+<td style="text-align:center">EDX</td>
+</tr>
+<tr>
+<td style="text-align:center">011</td>
+<td style="text-align:center">EBX</td>
+</tr>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center"><strong>不合法</strong> （可能是为了方便以后扩展）</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:center">EBP</td>
+</tr>
+<tr>
+<td style="text-align:center">110</td>
+<td style="text-align:center">ESI</td>
+</tr>
+<tr>
+<td style="text-align:center">111</td>
+<td style="text-align:center">EDI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">最低三位编码 <code>base</code></th>
+<th style="text-align:center"><code>base</code> 的寄存器</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">000</td>
+<td style="text-align:center">EAX</td>
+</tr>
+<tr>
+<td style="text-align:center">001</td>
+<td style="text-align:center">ECX</td>
+</tr>
+<tr>
+<td style="text-align:center">010</td>
+<td style="text-align:center">EDX</td>
+</tr>
+<tr>
+<td style="text-align:center">011</td>
+<td style="text-align:center">EBX</td>
+</tr>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">ESP</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:center">EBP（<strong>例外见注解</strong>）</td>
+</tr>
+<tr>
+<td style="text-align:center">110</td>
+<td style="text-align:center">ESI</td>
+</tr>
+<tr>
+<td style="text-align:center">111</td>
+<td style="text-align:center">EDI</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>注解</strong>：在最低位为 101 时，存放了 <code>base</code> 的寄存器一般是 EBP。但是为了支持在 scaled indexed memory addressing 中的 displacement-only 格式，如果这个时候 MOD 的值是 00，那么将没有存放基址的寄存器（认为基址为 0）。如果此时 MOD 的值是 01 或者 10，则正常使用 EBP。</p>
+<p>Mod-Reg-R/M 与 SIB 结合的几个例子：</p>
+<ul>
+<li>MOD = 00，EAX 作为 <code>base</code>，EBX 作为 <code>index</code>，<code>scale</code> 为 8：<ul>
+<li>SIB = 11 011 000</li>
+<li>地址为 <code>eax + ebx * 8</code>（MOD = 00 指定了没有 <code>displacement</code>）</li>
+</ul>
+</li>
+<li>MOD = 10，EAX 作为 <code>base</code>，EBX 作为 <code>index</code>，<code>scale</code> 为 8：<ul>
+<li>SIB = 11 011 000</li>
+<li>地址为 <code>eax + ebx * 8 + displacement</code>，其中 <code>displacement</code> 有 32 位。</li>
+</ul>
+</li>
+<li>MOD = 00，启用 scaled indexed memory addressing 下的 displacement-only 格式，EBX 作为 <code>index</code>，scale 设为 8：<ul>
+<li>SIB = 11 011 101</li>
+<li>地址为 <code>ebx * 8 + displacement</code>，其中 <code>displacement</code> 有 32 位。</li>
+</ul>
+</li>
+</ul>
+<h2 id="加法指令编码的例子"><a href="#加法指令编码的例子" class="headerlink" title="加法指令编码的例子"></a>加法指令编码的例子</h2><p>从 <a href="http://www.c-jump.com/CIS77/reference/Instructions_by_Mnemonic.html" target="_blank" rel="noopener">这张表</a> 中可以看到 add 指令对应的 opcode 有很多，主要是为了支持不同的操作数大小和类型，它们有没有规律？</p>
+<p>如果不涉及到常量（immediate value）的话，实际上只有四个 add 指令，opcode 对应的是 0、1、2、3。</p>
+<p>很多指令都像 add 这样对于不同的操作数和类型有多种 opcode，一般来说它们的 opcode 会有相同的前缀，然后有第 1 位指定方向（寄存器是 source 还是 destination），第 0 位指定大小（8 位还是 32 位，对于 16 位要开启 Prefix Bytes）。</p>
+<p>下面几个例子会用到之前学到的编码方式的知识，这些例子暂时不涉及到 immediate value。在以下的这些例子中，形如 <code>mem8</code> 的表示的不一定就是地址，也可能是一个寄存器。</p>
+<h3 id="ADD-CL-AL"><a href="#ADD-CL-AL" class="headerlink" title="ADD CL, AL"></a><code>ADD CL, AL</code></h3><p>查表知这是 <code>add reg8, reg8</code> 形式，opcode 为 02；不涉及到寻址，所以 MOD 取 11；由于 opcode 为 02 指定了大小，所以 REG 和 R/M 会各自指定一个寄存器。但是哪个对应哪个呢？</p>
+<p>一般来说，指令的第 1 位指定方向（对于向 ADD 这样的指令），如果这一位是 1，就说明 REG 指定的寄存器是 destination，如果这一位是 0，则为 source。</p>
+<p>我们使用的 opcode 是 02，这一位是 1，故 REG 是 destination，例子中的 destination 是 CL，所以 REG 应该取 001；source 是 AL 由 R/M 指定，R/M 取 000。</p>
+<p>综上只要使用两个字节，指令对应的机器码为 0x02, 0b11001000 即 0x02C8。</p>
+<p>不过，它也可以认为是 <code>add mem8, reg8</code> 形式，这个 opcode 是 00；REG 是 source。这个情况下 MOD 取 11，REG 取 000，R/M 取 001，对应的机器码是 0x00，0b11000001 即 0x00C1。这和上面的机器码都是合法的，实际上所有的两个操作数都是寄存器的指令都有这种情况。</p>
+<h3 id="ADD-ECX-EAX"><a href="#ADD-ECX-EAX" class="headerlink" title="ADD ECX, EAX"></a><code>ADD ECX, EAX</code></h3><ul>
+<li>看成 <code>add mem32, reg32</code>：opcode 为 01，REG 是 source。MOD 取 11，REG 取 000，R/M 取 001，机器码为 0x01C1。</li>
+<li>看成 <code>add reg32, reg32</code>：opcode 为 03，REG 是 destination。MOD 取 11，REG 取 001，R/M 取 000，机器码为 0x03C8。</li>
+<li>看成 <code>add reg32, mem32</code>：opcode 为 03，REG 是 destination。MOD 取 11，REG 取 001，R/M 取 000，机器码为 0x03C8。</li>
+</ul>
+<h3 id="ADD-EDX-lt-addr32-gt"><a href="#ADD-EDX-lt-addr32-gt" class="headerlink" title="ADD EDX, &lt;addr32&gt;"></a><code>ADD EDX, &lt;addr32&gt;</code></h3><p>这里的 <code>&lt;addr32&gt;</code> 指的是一个 32 位常数地址。</p>
+<p>看成 <code>add reg32, mem32</code>，opcode 为 03，REG 是 destination。现在要使用 displacement-only，因此 MOD 取 00，R/M 取 101；destination 为 EDX，故 REG 取 010。机器码为 0x0315<code>&lt;addr32&gt;</code>。需要注意的是这个 <code>addr32</code> 应该使用小端序进行编码。</p>
+<h3 id="ADD-EDI-EBX"><a href="#ADD-EDI-EBX" class="headerlink" title="ADD EDI, [EBX]"></a><code>ADD EDI, [EBX]</code></h3><p>这个是将寄存器中的内容作为地址寻址。</p>
+<p>看成 <code>add reg32, mem32</code>，opcode 为 03，REG 是 destination。MOD 取 00，R/M 取 EBX 对应的即 011，REG 取 EDI 对应的即 111，故机器码为 0x033B。</p>
+<h3 id="ADD-EAX-ESI-displacement-8"><a href="#ADD-EAX-ESI-displacement-8" class="headerlink" title="ADD EAX, [ESI + displacement_8]"></a><code>ADD EAX, [ESI + displacement_8]</code></h3><p>这是简单的寻址，不涉及 SIB，使用 8 位 displacement，假设 displacement 是 0x55。</p>
+<p>看成 <code>add reg32, mem32</code>，opcode 为 03，REG 是 destination。MOD 取 01，R/M 取 ESI 对应的即 110，REG 取 EAX 对应的即 000，故机器码为 0x034655。</p>
+<h3 id="ADD-EBX-EBP-displacement-32"><a href="#ADD-EBX-EBP-displacement-32" class="headerlink" title="ADD EBX, [EBP + displacement_32]"></a><code>ADD EBX, [EBP + displacement_32]</code></h3><p>这是简单的寻址，不涉及 SIB，使用 32 位 displacement，假设 displacement 是 0x12345678。</p>
+<p>看成 <code>add reg32, mem32</code>，opcode 为 03，REG 是 destination。MOD 取 10，R/M 取 EBP 对应的即 101，REG 取 EBX 对应的即 011，故机器码为 0x039D78563412。（注意小端序。）</p>
+<h3 id="ADD-EBP-displacement-32-EAX-1"><a href="#ADD-EBP-displacement-32-EAX-1" class="headerlink" title="ADD EBP, [displacement_32 + EAX * 1]"></a><code>ADD EBP, [displacement_32 + EAX * 1]</code></h3><p>这个寻址会涉及到 SIB，使用 32 位 displacement，假设 displacement 为 0x12345678。</p>
+<p>看成 <code>add reg32, mem32</code>，opcode 为 03，REG 是 destination。MOD 取 00，R/M 取 100 以打开 scaled indexed memory addressing，REG 取 EBP 对应的即 101；对于 SIB，<code>scale</code> 取 1，<code>index</code> 取 EAX，<code>base</code> 取 101 以打开 displacement-only。这样的话机器码应该是 0x03, 0b00101100, 0b00000101, 0x78563412 即 0x032C0578563412。</p>
+<h3 id="ADD-ECX-EBX-EDI-4"><a href="#ADD-ECX-EBX-EDI-4" class="headerlink" title="ADD ECX, [EBX + EDI * 4]"></a><code>ADD ECX, [EBX + EDI * 4]</code></h3><p>这个寻址会涉及到 SIB，不使用 displacement。</p>
+<p>看成 <code>add reg32, mem32</code>，opcode 为 03，REG 是 destination。MOD 取 00，R/M 取 100 以打开 scaled indexed memory addressing，REG 取 ECX 对应的即 001；对于 SIB，<code>scale</code> 取 4，<code>index</code> 取 EDI，<code>base</code> 取 EBX。这样的话机器码应该是 0x03, 0b00001100, 0b10111011 即 0x030CBB。</p>
+<h2 id="含有常量的指令的加法指令编码"><a href="#含有常量的指令的加法指令编码" class="headerlink" title="含有常量的指令的加法指令编码"></a>含有常量的指令的加法指令编码</h2><p>以上的例子都没有涉及到常量，如果要编码 <code>mov eax, 0</code> 这样的代码怎么做呢？</p>
+<p>含有 immediate 的加法指令的 opcode 是 04、05、80、81 或 83。其中 04、05 比较特殊。因为 <code>mov eax, const</code> 这种语句使用频率较高，所以 x86 为它们提供了捷径，这样编码可以少使用一个字节。抛开这两个捷径不谈，对于 80、81 和 83，在编码时有几条规则：</p>
+<ul>
+<li>如果这是一个加法指令并且 opcode 最高位为 1，则这是一个含有 immediate 的加法指令。</li>
+<li>因为 immediate 不可能是 destination，所以没有必要设置方向位；destination 总由 R/M 决定，而 REG 的值应该固定为 000（其它一些指令可能会使用这个作为扩展）。</li>
+<li>现在空出来的方向位成为 sign extension bit。对于操作 8 位数据的指令，这个位会被忽略；对于操作 16 位或 32 位数据的指令，这个位决定了 immediate 的大小：如果该位是 0 则表示 immediate 和操作数据大小相同，否则 immediate 将只有 8 位（一个字节）表示 8 位带符号整数。（将一个较小的数加到 32 位数上实际上很常用。）</li>
+</ul>
+<h2 id="Prefix-Bytes"><a href="#Prefix-Bytes" class="headerlink" title="Prefix Bytes"></a>Prefix Bytes</h2><p>Prefix Bytes 可以改变指令的行为。一个指令最多可以含有四个 Prefix，每个 Prefix 都为一个字节。可用的 Prefix 以及它们的含义：</p>
+<ul>
+<li><strong>0xF0</strong>：保证该指令对于共享内存有独享权，直到指令执行完成。</li>
+<li><strong>0xF3</strong>：重复指令，执行 ECX 指定的次数次。或者在 EFLAGS 的 ZF 位为零的时候停止执行。</li>
+<li><strong>0xF2</strong>：在 EFLAGS 的 ZF 位不为零的时候停止执行。</li>
+<li><strong>0x2E</strong>：不使用指令默认的段寻址，使用 CS 段。</li>
+<li><strong>0x36</strong>：不使用指令默认的段寻址，使用 SS 段。</li>
+<li><strong>0x3E</strong>：不使用指令默认的段寻址，使用 DS 段。</li>
+<li><strong>0x26</strong>：不使用指令默认的段寻址，使用 ES 段。</li>
+<li><strong>0x64</strong>：不使用指令默认的段寻址，使用 FS 段。</li>
+<li><strong>0x65</strong>：不使用指令默认的段寻址，使用 GS 段。</li>
+<li><strong>0x66</strong>：改变使用的数据长度，从 32 位切换到 16 位。</li>
+<li><strong>0x67</strong>：改变使用的地址长度，从 32 位切换到 16 位。</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li>如何编码 x86 指令：<a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">http://www.c-jump.com/CIS77/CPU/x86/lecture.html</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/08/软件工程课程项目博客-2/" rel="next" title="软件工程课程大作业博客——数据传输方式的选取">
+                <i class="fa fa-chevron-left"></i> 软件工程课程大作业博客——数据传输方式的选取
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#汇编课程大作业博客——编码-x86-指令"><span class="nav-number">1.</span> <span class="nav-text">汇编课程大作业博客——编码 x86 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#x86-机器码的整体结构"><span class="nav-number">1.1.</span> <span class="nav-text">x86 机器码的整体结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#opcode-的编码"><span class="nav-number">1.2.</span> <span class="nav-text">opcode 的编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mod-Reg-R-M-字节与-SIB-的编码"><span class="nav-number">1.3.</span> <span class="nav-text">Mod-Reg-R/M 字节与 SIB 的编码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mod-Reg-R-M-字节编码"><span class="nav-number">1.3.1.</span> <span class="nav-text">Mod-Reg-R/M 字节编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SIB-编码"><span class="nav-number">1.3.2.</span> <span class="nav-text">SIB 编码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加法指令编码的例子"><span class="nav-number">1.4.</span> <span class="nav-text">加法指令编码的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-CL-AL"><span class="nav-number">1.4.1.</span> <span class="nav-text">ADD CL, AL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-ECX-EAX"><span class="nav-number">1.4.2.</span> <span class="nav-text">ADD ECX, EAX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-EDX-lt-addr32-gt"><span class="nav-number">1.4.3.</span> <span class="nav-text">ADD EDX, &lt;addr32&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-EDI-EBX"><span class="nav-number">1.4.4.</span> <span class="nav-text">ADD EDI, [EBX]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-EAX-ESI-displacement-8"><span class="nav-number">1.4.5.</span> <span class="nav-text">ADD EAX, [ESI + displacement_8]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-EBX-EBP-displacement-32"><span class="nav-number">1.4.6.</span> <span class="nav-text">ADD EBX, [EBP + displacement_32]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-EBP-displacement-32-EAX-1"><span class="nav-number">1.4.7.</span> <span class="nav-text">ADD EBP, [displacement_32 + EAX * 1]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ADD-ECX-EBX-EDI-4"><span class="nav-number">1.4.8.</span> <span class="nav-text">ADD ECX, [EBX + EDI * 4]</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#含有常量的指令的加法指令编码"><span class="nav-number">1.5.</span> <span class="nav-text">含有常量的指令的加法指令编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Prefix-Bytes"><span class="nav-number">1.6.</span> <span class="nav-text">Prefix Bytes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.7.</span> <span class="nav-text">参考链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://DimLight1998.github.io/2018/10/09/手写汇编器-2/';
+        this.page.identifier = '2018/10/09/手写汇编器-2/';
+        this.page.title = '汇编课程大作业博客——编码 x86 指令';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dimlight1998.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
