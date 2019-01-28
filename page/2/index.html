@@ -278,7 +278,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/28/CS184-1X-计算机图形学学习笔记-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -297,8 +297,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/" itemprop="url">
-                  CS184.1X 计算机图形学学习笔记 (3)
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-10/" itemprop="url">
+                  编译原理慕课笔记 10
                 </a>
               
             
@@ -324,7 +324,7 @@
                 
               
 
-              <time title="创建时间：2018-08-28 13:17:41" itemprop="dateCreated datePublished" datetime="2018-08-28T13:17:41+08:00">2018-08-28</time>
+              <time title="创建时间：2018-11-23 16:19:54" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:54+08:00">2018-11-23</time>
             
 
             
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-31 17:39:11" itemprop="dateModified" datetime="2018-08-31T17:39:11+08:00">2018-08-31</time>
+                <time title="修改时间：2018-12-08 23:28:17" itemprop="dateModified" datetime="2018-12-08T23:28:17+08:00">2018-12-08</time>
               
             
           </span>
@@ -355,10 +355,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/23/编译原理慕课笔记-10/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/28/CS184-1X-计算机图形学学习笔记-3/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-10/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -388,13 +388,16 @@
       
         
           
-          CS184.1X 计算机图形学学习笔记 (3)光线追踪及其实现。
-光线追踪算法如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。
-另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显示的像素，利用光路可逆的性质从摄像机向这个像素发出一条光线，这条光线打到物体上后根据物体的相关物理性质决定出光线的颜色，如有必要，对反射光线继续进行追踪，最后叠加它们的颜色。光线追踪算法易于实现，能够
+          语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。
+在递归的预测分析过程中进行翻译在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：
+
+对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合属性。在之前的笔记中已经指出继承属性在非终结符分析前得出，综合属性在非终结符分析后得出，这么做是合理的。
+
+在每个非终结符对应的过程内部，会以局部变量的形式维护要用到的所有属性（不管是不是自己的）。例
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#more" rel="contents">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-10/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -450,7 +453,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/22/CS184-1X-计算机图形学学习笔记-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -469,8 +472,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/" itemprop="url">
-                  CS184.1X 计算机图形学学习笔记 (2)
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-9/" itemprop="url">
+                  编译原理慕课笔记 9
                 </a>
               
             
@@ -496,7 +499,7 @@
                 
               
 
-              <time title="创建时间：2018-08-22 13:49:23" itemprop="dateCreated datePublished" datetime="2018-08-22T13:49:23+08:00">2018-08-22</time>
+              <time title="创建时间：2018-11-23 16:19:52" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:52+08:00">2018-11-23</time>
             
 
             
@@ -513,7 +516,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-30 17:51:45" itemprop="dateModified" datetime="2018-08-30T17:51:45+08:00">2018-08-30</time>
+                <time title="修改时间：2018-12-08 23:25:31" itemprop="dateModified" datetime="2018-12-08T23:25:31+08:00">2018-12-08</time>
               
             
           </span>
@@ -527,10 +530,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/23/编译原理慕课笔记-9/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/22/CS184-1X-计算机图形学学习笔记-2/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -560,14 +563,18 @@
       
         
           
-          CS184.1X 计算机图形学学习笔记 (2)主要是 OpenGL 的一些概念。学习资料主要来自 LearnOpenGL CN。
-各种矩阵
-模型（model）矩阵：比如一个模型是存放在文件中的，要描述这个模型，每个顶点的坐标应该是一个相对于某个中心的相对坐标。例如一个人体模型中，头的坐标可能是以相对于人体重心的形式给出的。当要将这个人体加载到世界中时需要使用一个矩阵左乘所有模型中的坐标得到世界坐标，这个矩阵就是模型矩阵。
-观察（view）矩阵：世界空间中，所有的点都是相对于世界的原点给出坐标的；摄像机空间中所有的点都是相对摄像机给出坐标的，即摄像机是原点。OpenGL 中我们希望能通过移动世界
+          语法制导翻译-2语法制导翻译方案 SDT语法制导翻译方案是在产生式右部嵌入了程序片段（语义动作）的 CFG。
+S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
+
+文法可以使用 LR 分析技术，SDD 是 S 属性的
+文法可以使用 LL 分析技术，SDD 是 L 属性的
+
+使用 SDT 实现 S-SDDS-SDD 使用的属性都是综合属性，对于每个产生式计算属性都是在计算产生式左部的符号的属性，只要将计算过程嵌入到整个产生式最右部即可。
+例如对产生式 $T\rightarrow T_1\ast F$ 以及对应的语义规则 $T.val = T_1.val \times F.
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#more" rel="contents">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-9/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -623,7 +630,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/21/CS184-1X-计算机图形学学习笔记-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -642,8 +649,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/" itemprop="url">
-                  CS184.1X 计算机图形学学习笔记 (1)
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-8/" itemprop="url">
+                  编译原理慕课笔记 8
                 </a>
               
             
@@ -669,7 +676,7 @@
                 
               
 
-              <time title="创建时间：2018-08-21 00:07:12" itemprop="dateCreated datePublished" datetime="2018-08-21T00:07:12+08:00">2018-08-21</time>
+              <time title="创建时间：2018-11-23 16:19:50" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:50+08:00">2018-11-23</time>
             
 
             
@@ -686,7 +693,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-30 17:51:38" itemprop="dateModified" datetime="2018-08-30T17:51:38+08:00">2018-08-30</time>
+                <time title="修改时间：2018-12-06 14:38:36" itemprop="dateModified" datetime="2018-12-06T14:38:36+08:00">2018-12-06</time>
               
             
           </span>
@@ -700,10 +707,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/23/编译原理慕课笔记-8/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/21/CS184-1X-计算机图形学学习笔记-1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -733,12 +740,12 @@
       
         
           
-          CS184.1X 计算机图形学学习笔记 (1)变换——数学基础基本变换缩放二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp; 0 \\ 0 &amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp; 0 \\ 0 &amp; s_y^{-1} \end{array}\right]}$，其中 $s_x, s_y$ 表示不同轴方向上的缩放系数。
-三维缩放变换矩阵为 $\displaystyle{\left[\begi
+          语法制导翻译-1语法制导翻译概述语法制导翻译思路编译过程中经过词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成这些步骤。语义分析完成后需要某种中间表示作为中间代码生成的输入，如果这种中间表示就是中间代码的话，这两步可以合成一步叫做 语义翻译；语法分析的结果需要写成某种中间表示作为语义翻译的输入，如果这两步合成一起的话就叫做 语法制导翻译。
+其实最关键的问题在于如何表示语义。语法制导翻译使用 CFG 引导对语言的翻译。CFG 中的每个文法符号（终结符和非终结符）都会有自己的 语义属性，这个属性实际上就是一种对语义的表示。语义属性的计算需要用到 语义规则，语义规则往往和产生式（这
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#more" rel="contents">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -794,7 +801,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/20/动手实现简单-TensorFlow/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -813,8 +820,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/20/动手实现简单-TensorFlow/" itemprop="url">
-                  动手实现简单 TensorFlow
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-7/" itemprop="url">
+                  编译原理慕课笔记 7
                 </a>
               
             
@@ -840,7 +847,7 @@
                 
               
 
-              <time title="创建时间：2018-08-20 13:56:18" itemprop="dateCreated datePublished" datetime="2018-08-20T13:56:18+08:00">2018-08-20</time>
+              <time title="创建时间：2018-11-23 16:19:48" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:48+08:00">2018-11-23</time>
             
 
             
@@ -857,7 +864,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-08-30 17:51:56" itemprop="dateModified" datetime="2018-08-30T17:51:56+08:00">2018-08-30</time>
+                <time title="修改时间：2018-12-08 23:25:31" itemprop="dateModified" datetime="2018-12-08T23:25:31+08:00">2018-12-08</time>
               
             
           </span>
@@ -871,10 +878,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/20/动手实现简单-TensorFlow/#comments" itemprop="discussionUrl">
+                <a href="/2018/11/23/编译原理慕课笔记-7/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/20/动手实现简单-TensorFlow/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -904,12 +911,1045 @@
       
         
           
-          动手实现简单 TensorFlow这篇文章是对 Deep Learning From Scratch: Theory and Implementation 的学习和整理，原作者使用纯 Python 实现了一个和 TensorFlow 接口类似的框架用来解释深度学习的基本原理以及 TensorFlow 这类框架是如何工作的。此处是看完原博客后的一些总结。（顺便测试一下这个博客系统）
-计算图计算图是一张有向无环图，它可以将一个复杂的函数分解成各种基本的运算，方便后续对各自变量求导。比如一个 $\displaystyle{\vec{y} = \mathbf{A}\vec{x} + \vec{b}}$
+          语法分析-4$SLR$ 分析$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲突。但是 $LR(0)$ 分析并没有往前看符号，如果这个文法中， $a$ 不在 $E$ 的 Follow 集中，那么显然使用第一个产生式是没有意义的（因为归约后的 $E$ 后面不可能是 $a$），$S
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/08/20/动手实现简单-TensorFlow/#more" rel="contents">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-7/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-6/" itemprop="url">
+                  编译原理慕课笔记 6
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:46" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:46+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-06 12:20:06" itemprop="dateModified" datetime="2018-12-06T12:20:06+08:00">2018-12-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-6/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          语法分析-3自底向上分析概述自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。
+自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 移入-归约 分析。它的工作方式如下：
+
+首先对于要解析的词法单元流，维护了一个栈。
+从左至右扫描输入串，将扫描到的元素逐个压入栈中。
+如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹出，替换为产生式的左部，然后重新压回栈中。然后重新运行这个检查，直到无法归约为止。这一步中被归约的符号串称作 句柄。句柄实际上是句型中的最左直接短语。
+如果串扫描完成后，栈中恰好剩下初始符号，则归约完
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-6/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-5/" itemprop="url">
+                  编译原理慕课笔记 5
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:18:40" itemprop="dateCreated datePublished" datetime="2018-11-23T16:18:40+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-08 22:02:09" itemprop="dateModified" datetime="2018-12-08T22:02:09+08:00">2018-12-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-5/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          语法分析-2First 集和 Follow 集的计算First 集的计算计算一个文法中各个非终结符的 First 集的方法是，不断应用以下规则，直到每个符号的 First 集稳定：
+
+如果 $X$ 是终结符，则 $\mbox{First}(X) = \{X\}$。（引入这个的目的是方便后面的递归计算。）
+
+如果 $X\rightarrow\epsilon$ 是 $X$ 的一个产生式，则 $\epsilon\in\mbox{First}(X)$。（为了计算的方便，这里是 $\rightarrow$ 而不是 $\Rightarrow$，也就是可以直接从生成式开始计算。）
+
+如果 $X\righta
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-5/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-4/" itemprop="url">
+                  编译原理慕课笔记 4
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:28" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:28+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-08 23:25:31" itemprop="dateModified" datetime="2018-12-08T23:25:31+08:00">2018-12-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-4/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          语法分析-1自顶向下分析概述语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 推导 出这个词法单元串，另一个是找到这个词法单元串如何 归约 到初始符号，这两种做法分别叫做 自顶向下分析 和 自底向上分析。
+使用自顶向下分析时，每一步中都要做两个选择，一个是 替换当前句型中的哪个非终结符，另一个是 将这个非终结符替换为哪个候选式（一个非终结符的多个产生式称为它的 候选式）。
+最左推导与最右推导如果推导过程中总是将句型中最左边的非终结符替换为它的候选式，这样的推导过程称作是 最左推导，它的逆过程称为 最右归约（注意最右归约总是将最右边可以
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-3/" itemprop="url">
+                  编译原理慕课笔记 3
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:23 / 修改时间：16:17:45" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:23+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-3/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          词法分析正则表达式正则表达式是正则文法的更加紧凑的一个定义。
+对于每个正则文法都能写出对应的正则表达式，反之亦然。
+该节具体内容已熟悉，此处略去。
+正则定义所谓的正则定义是对一个正则表达式命名，方便后续的使用。
+例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出
+
+digit\rightarrow0|1|2|3|\cdots|8|9 \\
+letter\_\rightarrow a|b|c|\cdots|z|A|B|\cdots|Z|\_ \\
+symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更加简明了。
+有穷自动机该
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-2/" itemprop="url">
+                  编译原理慕课笔记 2
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:18" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:18+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-08 23:25:31" itemprop="dateModified" datetime="2018-12-08T23:25:31+08:00">2018-12-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-2/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          程序设计语言及其文法基本概念字母表字母表 是一个有穷符号集合。例如 ASCII 字符集就是一个合法的字母表。
+字母表的运算
+乘积：两个字母表的乘积相当于这两个字母表作笛卡儿积。不过写成二元组的形式可能比较麻烦，一般直接连接起来当成串。
+幂：字母表的幂相当于自己和自己多次乘积。特别地，0 次幂得到的结果是只含空串的集合 $\{\epsilon\}$。
+正闭包：字母表的正闭包是使用字母表中元素构造出的长度大于 0 的字符串的集合。
+克林闭包：字母表的正闭包是使用字母表中元素构造出的长度大于等于 0 的字符串的集合，它比正闭包多了一个空串。
+
+串一个字母表的克林闭包中的元素称为这个字母表的串。
+串有
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-1/" itemprop="url">
+                  编译原理慕课笔记 1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:15:29 / 修改时间：16:17:14" itemprop="dateCreated datePublished" datetime="2018-11-23T16:15:29+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-1/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          绪论什么是编译计算机语言分成 高级语言、汇编语言 和 机器语言。计算机只能执行机器语言。从汇编语言到机器语言的过程叫 汇编，从高级语言到汇编语言或直接到机器语言的过程叫 编译。
+将高级语言写的源程序转换成可以运行的进程要经历 语言处理系统，编译器只是这个系统中的一环。语言处理系统的典型工作流程为
+
+预处理器 将不同文件中源文件聚合到一起，并对宏进行操作；
+编译器 将处理后的源文件编译为汇编语言程序；
+汇编器 从汇编语言程序生成可重定位的机器代码（可重定位指在内存中的位置不固定）；
+链接器 会将多个可重定位程序和库连接起来，并处理外部地址（跨文件的引用）；
+加载器 会处理可重定位的地址，变成真实
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/11/23/编译原理慕课笔记-1/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -954,7 +1994,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -997,7 +2037,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1058,7 +2098,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1218,6 +2258,18 @@
 
   
   
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
     
       
     

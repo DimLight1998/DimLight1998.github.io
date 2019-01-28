@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="My Blog">
 <meta property="og:description" content="计算几何学习笔记——平面凸包问题基本来自学堂在线上的 计算几何慕课。这一篇的内容是平面凸包问题。 基础算法和理论判定平面上一个点在有向直线的左边还是右边（ToLeftTest）使用矢量叉乘，如果有向直线的向量为 $\overrightarrow{AB}$，要判定的点是 $C$，则可以通过 $\overrightarrow{AB}\times\overrightarrow{AC}$ 的竖坐标符号来确">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-09-03T02:53:49.625Z">
+<meta property="og:updated_time" content="2018-12-08T15:25:31.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算几何学习笔记 1">
 <meta name="twitter:description" content="计算几何学习笔记——平面凸包问题基本来自学堂在线上的 计算几何慕课。这一篇的内容是平面凸包问题。 基础算法和理论判定平面上一个点在有向直线的左边还是右边（ToLeftTest）使用矢量叉乘，如果有向直线的向量为 $\overrightarrow{AB}$，要判定的点是 $C$，则可以通过 $\overrightarrow{AB}\times\overrightarrow{AC}$ 的竖坐标符号来确">
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-09-03 10:53:49" itemprop="dateModified" datetime="2018-09-03T10:53:49+08:00">2018-09-03</time>
+                <time title="修改时间：2018-12-08 23:25:31" itemprop="dateModified" datetime="2018-12-08T23:25:31+08:00">2018-12-08</time>
               
             
           </span>
@@ -429,7 +429,7 @@
 <p>第一件事是要找到一个极点，实际上将这些点投影到一条直线上后，位于最外端的点总是极点。如果投影后有重合，则将这些某方向上投影重合的点投影到正交的方向上，此时位于外端的点必然是极点了。依据这种搞法，可以找到初始的极点。</p>
 <p>第二件事是已知一个极点，要找到下一个极点。为此，遍历除了自己（记作 $P$）之外的所有点，我们希望找到一个“右转角度最大”的点（注意此时在逆时针寻找），设当前的候选点是 $Q$，如果找到一个点发现它在 $PQ$ 右边，则用它取代 $Q$，一直做下去，知道所有点都遍历完，此时的 $Q$ 就是下一个极点。如果这个点和最开始找到的初始极点相同，这产生闭环，算法结束。</p>
 <p>每扩展一条极边，复杂度为 $O(n)$，设最后的凸包一共有 $m$ 条极边，这总的复杂度是 $O(mn)$。这个复杂度具有输出敏感性，因此大多数情况下会比 $O(n^2)$ 性能要好。</p>
-<h2 id="Graham-Scan-算法"><a href="#Graham-Scan-算法" class="headerlink" title="Graham Scan 算法"></a>Graham Scan 算法</h2><p>平面凸包的问题复杂度存在下界。排序问题可以规约到平面凸包的问题上，因此平面图包问题的复杂度最好只能做到 $O(n\log n)$。Graham Scan 就是这样的复杂度的算法。</p>
+<h2 id="Graham-Scan-算法"><a href="#Graham-Scan-算法" class="headerlink" title="Graham Scan 算法"></a>Graham Scan 算法</h2><p>平面凸包的问题复杂度存在下界。排序问题可以归约到平面凸包的问题上，因此平面图包问题的复杂度最好只能做到 $O(n\log n)$。Graham Scan 就是这样的复杂度的算法。</p>
 <p>Graham 算法的过程如下：首先选择一个极点（选取方式同前），然后选取一个极轴，并保证这个极轴是一条极边，这一步需要线性的时间。然后对于所有的点，按照对这个极点的极角从小到大进行排序，这一步需要 $O(n\log n)$ 的时间，由于极轴的选取，所有的极角应该都是小于 $\pi$ 的。</p>
 <p>现在已经获得了一个顶点的顺序，然后维护一个潜在的极点序列（按照逆时针方向排布的），初始情况下这个序列中只有两个元素：初始的极点和极角最小的那个点。然后：</p>
 <ol>
@@ -578,7 +578,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -655,7 +655,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

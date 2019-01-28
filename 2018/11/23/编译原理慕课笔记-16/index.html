@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="代码优化-1代码优化就是使程序运行更快、效率更高的对程序的等价变换。 流图基本块基本块是一段连续的三地址指令序列，满足 控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机。 将一段程序划分为基本块的算法需要先确定 首指令，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。 流图流图是一张有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理慕课笔记 16">
+<meta property="og:url" content="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/index.html">
+<meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="代码优化-1代码优化就是使程序运行更快、效率更高的对程序的等价变换。 流图基本块基本块是一段连续的三地址指令序列，满足 控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机。 将一段程序划分为基本块的算法需要先确定 首指令，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。 流图流图是一张有">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-28T15:56:36.838Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="编译原理慕课笔记 16">
+<meta name="twitter:description" content="代码优化-1代码优化就是使程序运行更快、效率更高的对程序的等价变换。 流图基本块基本块是一段连续的三地址指令序列，满足 控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机。 将一段程序划分为基本块的算法需要先确定 首指令，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。 流图流图是一张有">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>编译原理慕课笔记 16 | My Blog</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">My Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="My Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">编译原理慕课笔记 16
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:20:06" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:06+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-01-28 23:56:36" itemprop="dateModified" datetime="2019-01-28T23:56:36+08:00">2019-01-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/11/23/编译原理慕课笔记-16/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-16/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="代码优化-1"><a href="#代码优化-1" class="headerlink" title="代码优化-1"></a>代码优化-1</h1><p>代码优化就是使程序运行更快、效率更高的对程序的等价变换。</p>
+<h2 id="流图"><a href="#流图" class="headerlink" title="流图"></a>流图</h2><h3 id="基本块"><a href="#基本块" class="headerlink" title="基本块"></a>基本块</h3><p>基本块是一段连续的三地址指令序列，满足 <strong>控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机</strong>。</p>
+<p>将一段程序划分为基本块的算法需要先确定 <strong>首指令</strong>，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。</p>
+<h3 id="流图-1"><a href="#流图-1" class="headerlink" title="流图"></a>流图</h3><p>流图是一张有向图，反映了控制流的转移。其结点对应着基本块，两个结点之间存在一条边当且仅当这两个结点对应的基本块存在可能的控制流转移。结点 M 指向结点 N 有可能是 M 在某种情况下会跳转向 N，也可能是 M 执行完了后不会跳转，但是会顺着进入 N。</p>
+<h2 id="常用的代码优化方法（一）"><a href="#常用的代码优化方法（一）" class="headerlink" title="常用的代码优化方法（一）"></a>常用的代码优化方法（一）</h2><h3 id="优化分类"><a href="#优化分类" class="headerlink" title="优化分类"></a>优化分类</h3><p>按照优化的目标可以分为针对中间表示的 <strong>机器无关优化 </strong>和针对目标代码的 <strong>机器相关优化</strong>。</p>
+<p>按照优化的范围可以分为针对单个基本块的 <strong>局部代码优化</strong> 和针对多个基本块的 <strong>全局代码优化</strong>。</p>
+<h3 id="删除公共子表达式"><a href="#删除公共子表达式" class="headerlink" title="删除公共子表达式"></a>删除公共子表达式</h3><p>如果一个表达式中的子表达式之前计算过，下次遇到时表达式中的元素的值未改变，则称为公共子表达式，可以删去。</p>
+<p>如果子表达式的上次计算是在同一个基本块中完成的，称为 <strong>局部公共子表达式</strong>，否则应该是在不同基本块中完成的，称为 <strong>全局公共子表达式</strong>。</p>
+<p>一个重要的问题是如何识别公共子表达式。</p>
+<h2 id="常用的代码优化方法（二）"><a href="#常用的代码优化方法（二）" class="headerlink" title="常用的代码优化方法（二）"></a>常用的代码优化方法（二）</h2><h3 id="删除无用代码"><a href="#删除无用代码" class="headerlink" title="删除无用代码"></a>删除无用代码</h3><p>有些代码是无用的，例如执行了公共子表达式删除后会引入一些复制语句如 <code>x = y</code>，复制传播就是尽可能使用 <code>y</code> 代替 <code>x</code>。</p>
+<p>使用了复制传播后又有可能产生死代码，这种代码的执行结果永远不会被用到，可以直接删除。</p>
+<h3 id="常量合并"><a href="#常量合并" class="headerlink" title="常量合并"></a>常量合并</h3><p>在编译时就识别出常量的表达式，并计算出结果替代这些表达式。</p>
+<h3 id="代码移动"><a href="#代码移动" class="headerlink" title="代码移动"></a>代码移动</h3><p>对于循环，可以找到循环中有哪些量是在各循环间不会变动的，提到循环外面。</p>
+<h3 id="强度削弱"><a href="#强度削弱" class="headerlink" title="强度削弱"></a>强度削弱</h3><p>使用执行更快的指令替代更慢的指令，例如使用 <code>lea</code> 和各种位移替代乘法。</p>
+<h3 id="删除归纳变量"><a href="#删除归纳变量" class="headerlink" title="删除归纳变量"></a>删除归纳变量</h3><p>归纳变量指的是循环中的一些变量，在循环的过程中每轮循环后的改变量总是固定的。如果一个循环中有多个这样的变量并且变化步调一致，则可以删除到只剩一个。</p>
+<h2 id="基本块的优化"><a href="#基本块的优化" class="headerlink" title="基本块的优化"></a>基本块的优化</h2><p>为了执行局部优化常常将基本块转化为一个有向无环图。这个图中每个结点会对应一个运算并且关联一个变量的列表，结点 M 指向结点 N 表示在某条语句中，M 关联的变量的计算依赖于 N 变量的值。</p>
+<p>这个图是随着基本块的一条条语句逐渐建立起来的。每分析到一条语句（以 <code>x = y + z</code> 为例），首先在图中找到关联了 <code>x</code> 的结点，如果找到将 <code>x</code> 移出这个列表；然后在图中找到关联了 <code>y</code> 和 <code>z</code> 的结点，如果没有的话就创建关联了 <code>y_0</code> 或 <code>z_0</code> 的空结点表示初始值。然后看一下有没有某个结点已经表示了 <code>y</code> 和 <code>z</code> 的相加，如果有的话直接将 <code>x</code> 加入到对应的列表中， 否则创建新结点。可以注意到这样的性质：每个结点关联的列表是不相交的。这个列表称为 <strong>定值变量表</strong>。</p>
+<p>有些变量在一个基本块后面还会被用到，称为 <strong>活跃变量</strong>。对于由基本块得到的图，如果某个结点的定制变量表中所有的变量都是非活跃的，并且这个结点不被依赖，则可将其删除；重复这个过程就可以删除一部分的无用代码。</p>
+<p>这个图中有些结点会处于特殊的 <strong>杀死</strong> 状态，这种状态的产生可能是出现了形如 <code>x[y] = z</code> 的数组赋值，随后所有对 <code>x[w]</code> 的使用，即时之前已经计算过 <code>x[w]</code> 的值也不能视作是公共子表达式。当处理 <code>x[y] = z</code> 后需要杀死所有依赖于 <code>x</code> 的结点，这些结点无法使用定制变量表进行优化。</p>
+<h3 id="图的信息和使用"><a href="#图的信息和使用" class="headerlink" title="图的信息和使用"></a>图的信息和使用</h3><p>从图中可以得到一些基本块的信息，例如哪些变量在赋值前被引用过；哪些计算结果可以在基本块外使用等。</p>
+<p>使用这张图可以对基本块进行重组。由于每个结点关联了若干变量，但是它们的值是相同的，所以可以只计算出其中一个变量的值来。这个变量的选取依据是 <strong>尽量选取活跃的变量</strong>，其它的变量的值可以不求，直接使用这个变量代替；如果有多个活跃变量，应该使用赋值语句让其它变量和这个变量的值相同。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/23/编译原理慕课笔记-15/" rel="next" title="编译原理慕课笔记 15">
+                <i class="fa fa-chevron-left"></i> 编译原理慕课笔记 15
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/23/编译原理慕课笔记-17/" rel="prev" title="编译原理慕课笔记 17">
+                编译原理慕课笔记 17 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">35</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代码优化-1"><span class="nav-number">1.</span> <span class="nav-text">代码优化-1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#流图"><span class="nav-number">1.1.</span> <span class="nav-text">流图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本块"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流图-1"><span class="nav-number">1.1.2.</span> <span class="nav-text">流图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的代码优化方法（一）"><span class="nav-number">1.2.</span> <span class="nav-text">常用的代码优化方法（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化分类"><span class="nav-number">1.2.1.</span> <span class="nav-text">优化分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除公共子表达式"><span class="nav-number">1.2.2.</span> <span class="nav-text">删除公共子表达式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用的代码优化方法（二）"><span class="nav-number">1.3.</span> <span class="nav-text">常用的代码优化方法（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除无用代码"><span class="nav-number">1.3.1.</span> <span class="nav-text">删除无用代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量合并"><span class="nav-number">1.3.2.</span> <span class="nav-text">常量合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码移动"><span class="nav-number">1.3.3.</span> <span class="nav-text">代码移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强度削弱"><span class="nav-number">1.3.4.</span> <span class="nav-text">强度削弱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除归纳变量"><span class="nav-number">1.3.5.</span> <span class="nav-text">删除归纳变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本块的优化"><span class="nav-number">1.4.</span> <span class="nav-text">基本块的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#图的信息和使用"><span class="nav-number">1.4.1.</span> <span class="nav-text">图的信息和使用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/';
+        this.page.identifier = '2018/11/23/编译原理慕课笔记-16/';
+        this.page.title = '编译原理慕课笔记 16';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dimlight1998.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
