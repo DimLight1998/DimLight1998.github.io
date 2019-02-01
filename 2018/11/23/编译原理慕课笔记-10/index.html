@@ -110,13 +110,14 @@
 
 
   <meta name="description" content="语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。 在递归的预测分析过程中进行翻译在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：  对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合">
+<meta name="keywords" content="编译原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编译原理慕课笔记 10">
 <meta property="og:url" content="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-10/index.html">
 <meta property="og:site_name" content="My Blog">
 <meta property="og:description" content="语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。 在递归的预测分析过程中进行翻译在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：  对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-12-08T15:28:17.286Z">
+<meta property="og:updated_time" content="2019-02-01T12:51:42.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理慕课笔记 10">
 <meta name="twitter:description" content="语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。 在递归的预测分析过程中进行翻译在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：  对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合">
@@ -340,7 +341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-12-08 23:28:17" itemprop="dateModified" datetime="2018-12-08T23:28:17+08:00">2018-12-08</time>
+                <time title="修改时间：2019-02-01 20:51:42" itemprop="dateModified" datetime="2019-02-01T20:51:42+08:00">2019-02-01</time>
               
             
           </span>
@@ -421,6 +422,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编译原理/" rel="tag"># 编译原理</a>
+          
+        </div>
       
 
       
@@ -544,7 +551,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">3</span>
+                      
+                    
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
