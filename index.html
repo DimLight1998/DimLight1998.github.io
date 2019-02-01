@@ -328,6 +328,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-01 20:45:12" itemprop="dateModified" datetime="2019-02-01T20:45:12+08:00">2019-02-01</time>
+              
+            
           </span>
 
           
@@ -372,8 +388,25 @@
       
         
           
-          
-          
+          代码生成代码生成器的主要任务代码生成器将中间表示转换到汇编语句。
+三个主要任务：
+
+选择适当的目标机指令表示中间表示
+对寄存器的分配和指派
+确定指令的执行顺序
+
+一个简单的目标机模型为了后续方便引入一个简单的汇编语言，它的指令有：
+
+LD x, y：读入 y 至 x
+ST x, y：将 x 写入 y
+OP x, y, z：计算 y OP z 后存入 x
+BR l：无条件跳转到 l
+Bcond c, l：在满足条件 c 时跳转到 l
+
+以及各种寻址方式。
+指令选择这一节主要是几个例子，表示对于给定的中间表示如何生成出对应的指令。显然没有什么好记录的。
+寄存器的选择寄存器分配当要为 x = y o
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/11/23/编译原理慕课笔记-20/#more" rel="contents">
