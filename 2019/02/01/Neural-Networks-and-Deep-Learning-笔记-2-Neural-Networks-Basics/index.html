@@ -109,25 +109,25 @@
 
 
 
-  <meta name="description" content="词法分析正则表达式正则表达式是正则文法的更加紧凑的一个定义。 对于每个正则文法都能写出对应的正则表达式，反之亦然。 该节具体内容已熟悉，此处略去。 正则定义所谓的正则定义是对一个正则表达式命名，方便后续的使用。 例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出  digit\rightarrow0|1|2|3|\cdots|8|9 \\ letter\_\rightarrow a|b|">
-<meta name="keywords" content="编译原理">
+  <meta name="description" content="Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：  $m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。 $n$ 表示每个样本的特征向量的维数。  $X$ 表示整个训练集，每一列表示一个样本，相当于样本按照列进行堆">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译原理慕课笔记 3">
-<meta property="og:url" content="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/index.html">
+<meta property="og:title" content="Neural Networks and Deep Learning 笔记 2 Neural Networks Basics">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/index.html">
 <meta property="og:site_name" content="My Blog">
-<meta property="og:description" content="词法分析正则表达式正则表达式是正则文法的更加紧凑的一个定义。 对于每个正则文法都能写出对应的正则表达式，反之亦然。 该节具体内容已熟悉，此处略去。 正则定义所谓的正则定义是对一个正则表达式命名，方便后续的使用。 例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出  digit\rightarrow0|1|2|3|\cdots|8|9 \\ letter\_\rightarrow a|b|">
+<meta property="og:description" content="Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：  $m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。 $n$ 表示每个样本的特征向量的维数。  $X$ 表示整个训练集，每一列表示一个样本，相当于样本按照列进行堆">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-01T12:51:21.381Z">
+<meta property="og:updated_time" content="2019-02-02T15:55:28.377Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编译原理慕课笔记 3">
-<meta name="twitter:description" content="词法分析正则表达式正则表达式是正则文法的更加紧凑的一个定义。 对于每个正则文法都能写出对应的正则表达式，反之亦然。 该节具体内容已熟悉，此处略去。 正则定义所谓的正则定义是对一个正则表达式命名，方便后续的使用。 例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出  digit\rightarrow0|1|2|3|\cdots|8|9 \\ letter\_\rightarrow a|b|">
+<meta name="twitter:title" content="Neural Networks and Deep Learning 笔记 2 Neural Networks Basics">
+<meta name="twitter:description" content="Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：  $m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。 $n$ 表示每个样本的特征向量的维数。  $X$ 表示整个训练集，每一列表示一个样本，相当于样本按照列进行堆">
 
 
 
 
 
 
-  <link rel="canonical" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/"/>
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/"/>
 
 
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>编译原理慕课笔记 3 | My Blog</title>
+  <title>Neural Networks and Deep Learning 笔记 2 Neural Networks Basics | My Blog</title>
   
 
 
@@ -282,7 +282,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -299,7 +299,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">编译原理慕课笔记 3
+          <h1 class="post-title" itemprop="name headline">Neural Networks and Deep Learning 笔记 2 Neural Networks Basics
               
             
           </h1>
@@ -324,7 +324,7 @@
                 
               
 
-              <time title="创建时间：2018-11-23 16:16:23" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:23+08:00">2018-11-23</time>
+              <time title="创建时间：2019-02-01 21:49:49" itemprop="dateCreated datePublished" datetime="2019-02-01T21:49:49+08:00">2019-02-01</time>
             
 
             
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-01 20:51:21" itemprop="dateModified" datetime="2019-02-01T20:51:21+08:00">2019-02-01</time>
+                <time title="修改时间：2019-02-02 23:55:28" itemprop="dateModified" datetime="2019-02-02T23:55:28+08:00">2019-02-02</time>
               
             
           </span>
@@ -355,10 +355,10 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/11/23/编译原理慕课笔记-3/#comments" itemprop="discussionUrl">
+                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/#comments" itemprop="discussionUrl">
                 
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-3/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -386,25 +386,19 @@
       
 
       
-        <h1 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h1><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式是正则文法的更加紧凑的一个定义。</p>
-<p>对于每个正则文法都能写出对应的正则表达式，反之亦然。</p>
-<p>该节具体内容已熟悉，此处略去。</p>
-<h2 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h2><p>所谓的正则定义是对一个正则表达式命名，方便后续的使用。</p>
-<p>例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出</p>
-<script type="math/tex; mode=display">
-digit\rightarrow0|1|2|3|\cdots|8|9 \\
-letter\_\rightarrow a|b|c|\cdots|z|A|B|\cdots|Z|\_ \\
-symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则定义后更加简明了。</p>
-<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>该节具体内容已熟悉，此处略去。</p>
-<h2 id="有穷自动机的分类"><a href="#有穷自动机的分类" class="headerlink" title="有穷自动机的分类"></a>有穷自动机的分类</h2><p>有穷自动机分为确定有穷自动机和非确定有穷自动机，其中非确定有穷自动机分为能够带有 $\epsilon$ 转移的和不能带有 $\epsilon$ 转移两种，但是表达能力相同。</p>
-<p>不论是哪种有穷自动机，它能够描述的语言总是正则语言。正则表达式、正则文法和有穷自动机的表达能力相同。</p>
-<p>有穷自动机的具体内容已熟悉，此处略去。</p>
-<h2 id="从正则表达式到有穷自动机"><a href="#从正则表达式到有穷自动机" class="headerlink" title="从正则表达式到有穷自动机"></a>从正则表达式到有穷自动机</h2><p>为了能够使用正则表达式，需要将它转化为确定有穷自动机（DFA），这个过程比较复杂，可以考虑先转化为非确定有穷自动机（NFA）。</p>
-<p>正则表达式转化为 NFA 的过程已熟悉，此处略去。</p>
-<h2 id="从-NFA-到-DFA-的转换"><a href="#从-NFA-到-DFA-的转换" class="headerlink" title="从 NFA 到 DFA 的转换"></a>从 NFA 到 DFA 的转换</h2><p>该节具体内容已熟悉，此处略去。转化方法可是使用 NFA 中集合的幂集的子集作为 DFA 的状态集合，这个方法叫做 <strong>子集构造法</strong>。</p>
-<h2 id="识别单词的-DFA"><a href="#识别单词的-DFA" class="headerlink" title="识别单词的 DFA"></a>识别单词的 DFA</h2><p>这一节主要是 DFA 的例子。</p>
-<p>在词法分析阶段使用到的工具可以就是 DFA。它可以进行错误检测。工作方式：让字符流通过这个 DFA，直到发生错误（慕课中的 DFA 不是每个状态都有所有的转移，和我学的 DFA 略有不同；一般来说 DFA 会有一个陷阱状态，发生错误指的就是进入了这个状态）。当发生了这个错误之后只能说明 DFA 解析出错，<strong>并不能说明程序本身有错</strong>。此时将读取字符的指针向前移动，一直定位到最后一个位于终止状态的字符，将这个字符以及它前面的所有字符判定为一个单词。不过，也有找不到这样的单词的情况，如果这发生了，就表明程序真的发生的错误，此时要进行 <strong>错误恢复</strong>。错误恢复的一个策略叫做 <strong>恐慌模式</strong>，这种模式将首先定位到上一个成功解析的单词的结尾，然后尝试不断跳过无法解析的字符，直到找到一个可以解析的字符为止，从此处开始解析。</p>
-
+        <h1 id="Neural-Networks-Basics"><a href="#Neural-Networks-Basics" class="headerlink" title="Neural Networks Basics"></a>Neural Networks Basics</h1><h2 id="Logistic-Regression-as-a-Neural-Network"><a href="#Logistic-Regression-as-a-Neural-Network" class="headerlink" title="Logistic Regression as a Neural Network"></a>Logistic Regression as a Neural Network</h2><h3 id="Binary-Classification"><a href="#Binary-Classification" class="headerlink" title="Binary Classification"></a>Binary Classification</h3><p>课程中使用的符号：</p>
+<ul>
+<li>$m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。</li>
+<li><p>$n$ 表示每个样本的特征向量的维数。</p>
+</li>
+<li><p>$X$ 表示整个训练集，<strong>每一列表示一个样本</strong>，相当于样本按照列进行堆叠，因此 $X$ 的规模是 $n\times m$ 的，据说这样表示更简单。</p>
+</li>
+<li>$Y$ 表示所有的标签，每一列表示一个样本，因此 $Y$ 的规模是 $1 \times m$ 的。</li>
+</ul>
+<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><p>对于一个样本特征，逻辑回归用于得到这个样本对应的输出，不过这个输出被限制在了 0 到 1 的范围内，因此可以用来做一些类似二分类的事情。比如现在要对某个特征向量 $\vec x$ 进行二分类，希望得到一个输出 $\hat y$ 表示在当前特征为 $\vec x$ 的情况下真实输出为 1 的概率（二分类时这个输出是离散的，只有 0 和 1 两种情况，但是概率是连续的），可以选择 $\hat y = \vec w^T\vec x + b$ 这个模型（这时是线性回归），但是这样得到的值不一定在 0 到 1 之间，因此可以套上一个 sigmoid 函数 $\displaystyle{\sigma(x) = \frac{1}{1 + e^{-x}}}$，选择模型 $\hat y = \sigma(\vec w^T\vec x + b)$，此时为逻辑回归。</p>
+<h3 id="Logistic-Regression-Cost-Function"><a href="#Logistic-Regression-Cost-Function" class="headerlink" title="Logistic Regression Cost Function"></a>Logistic Regression Cost Function</h3><p>为了找到逻辑回归中最好的 $\vec w$ 和 $b$，需要一个度量回归质量好坏的标准。</p>
+<p>逻辑回归可以看成一个小的神经网络。</p>
+<h2 id="Python-and-Vectorization"><a href="#Python-and-Vectorization" class="headerlink" title="Python and Vectorization"></a>Python and Vectorization</h2>
       
     </div>
 
@@ -424,7 +418,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
       
         <div class="post-tags">
           
-            <a href="/tags/编译原理/" rel="tag"># 编译原理</a>
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
         </div>
       
@@ -437,8 +431,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/23/编译原理慕课笔记-2/" rel="next" title="编译原理慕课笔记 2">
-                <i class="fa fa-chevron-left"></i> 编译原理慕课笔记 2
+              <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/" rel="next" title="Neural Networks and Deep Learning 笔记 1 Introduction to Deep Learning">
+                <i class="fa fa-chevron-left"></i> Neural Networks and Deep Learning 笔记 1 Introduction to Deep Learning
               </a>
             
           </div>
@@ -447,8 +441,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/23/编译原理慕课笔记-4/" rel="prev" title="编译原理慕课笔记 4">
-                编译原理慕课笔记 4 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/" rel="prev" title="Neural Networks and Deep Learning 笔记 3 Shallow Neural Networks">
+                Neural Networks and Deep Learning 笔记 3 Shallow Neural Networks <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -588,7 +582,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#词法分析"><span class="nav-number">1.</span> <span class="nav-text">词法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">1.1.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则定义"><span class="nav-number">1.2.</span> <span class="nav-text">正则定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有穷自动机"><span class="nav-number">1.3.</span> <span class="nav-text">有穷自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有穷自动机的分类"><span class="nav-number">1.4.</span> <span class="nav-text">有穷自动机的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从正则表达式到有穷自动机"><span class="nav-number">1.5.</span> <span class="nav-text">从正则表达式到有穷自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从-NFA-到-DFA-的转换"><span class="nav-number">1.6.</span> <span class="nav-text">从 NFA 到 DFA 的转换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#识别单词的-DFA"><span class="nav-number">1.7.</span> <span class="nav-text">识别单词的 DFA</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Neural-Networks-Basics"><span class="nav-number">1.</span> <span class="nav-text">Neural Networks Basics</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Logistic-Regression-as-a-Neural-Network"><span class="nav-number">1.1.</span> <span class="nav-text">Logistic Regression as a Neural Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Classification"><span class="nav-number">1.1.1.</span> <span class="nav-text">Binary Classification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression"><span class="nav-number">1.1.2.</span> <span class="nav-text">Logistic Regression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Logistic-Regression-Cost-Function"><span class="nav-number">1.1.3.</span> <span class="nav-text">Logistic Regression Cost Function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-and-Vectorization"><span class="nav-number">1.2.</span> <span class="nav-text">Python and Vectorization</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -745,9 +739,9 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
   
     <script type="text/javascript">
       var disqus_config = function () {
-        this.page.url = 'http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/';
-        this.page.identifier = '2018/11/23/编译原理慕课笔记-3/';
-        this.page.title = '编译原理慕课笔记 3';
+        this.page.url = 'http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/';
+        this.page.identifier = '2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/';
+        this.page.title = 'Neural Networks and Deep Learning 笔记 2 Neural Networks Basics';
         };
       function loadComments () {
         var d = document, s = d.createElement('script');
