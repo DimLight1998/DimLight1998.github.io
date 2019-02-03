@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-%E7%AC%94%E8%AE%B0-3-Shallow-Neural-Networks/</loc>
+    <lastmod>2019-02-03T12:50:52.290Z</lastmod>
+  </url>  <url>
     <loc>http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-%E7%AC%94%E8%AE%B0-2-Neural-Networks-Basics/</loc>
-    <lastmod>2019-02-03T06:27:48.296Z</lastmod>
+    <lastmod>2019-02-03T10:27:31.573Z</lastmod>
+  </url>  <url>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-1/</loc>
+    <lastmod>2019-02-03T08:07:50.167Z</lastmod>
   </url>  <url>
     <loc>http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-%E7%AC%94%E8%AE%B0-1-Introduction-to-Deep-Learning/</loc>
     <lastmod>2019-02-02T02:53:16.382Z</lastmod>
   </url>  <url>
     <loc>http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-%E7%AC%94%E8%AE%B0-4-Deep-Neural-Networks/</loc>
     <lastmod>2019-02-01T13:50:06.705Z</lastmod>
-  </url>  <url>
-    <loc>http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-%E7%AC%94%E8%AE%B0-3-Shallow-Neural-Networks/</loc>
-    <lastmod>2019-02-01T13:49:57.354Z</lastmod>
   </url>  <url>
     <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-20/</loc>
     <lastmod>2019-02-01T12:52:16.301Z</lastmod>
@@ -69,9 +72,6 @@
   </url>  <url>
     <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-2/</loc>
     <lastmod>2019-02-01T12:51:17.127Z</lastmod>
-  </url>  <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-1/</loc>
-    <lastmod>2019-02-01T12:51:04.720Z</lastmod>
   </url>  <url>
     <loc>http://DimLight1998.github.io/2018/09/03/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-4/</loc>
     <lastmod>2018-12-08T15:25:31.388Z</lastmod>
