@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="My Blog">
 <meta property="og:description" content="Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：  $m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。 $n$ 表示每个样本的特征向量的维数。  $X$ 表示整个训练集，每一列表示一个样本，相当于样本按照列进行堆">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-03T04:10:48.192Z">
+<meta property="og:updated_time" content="2019-02-03T06:27:48.296Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Neural Networks and Deep Learning 笔记 2 Neural Networks Basics">
 <meta name="twitter:description" content="Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：  $m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。 $n$ 表示每个样本的特征向量的维数。  $X$ 表示整个训练集，每一列表示一个样本，相当于样本按照列进行堆">
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-03 12:10:48" itemprop="dateModified" datetime="2019-02-03T12:10:48+08:00">2019-02-03</time>
+                <time title="修改时间：2019-02-03 14:27:48" itemprop="dateModified" datetime="2019-02-03T14:27:48+08:00">2019-02-03</time>
               
             
           </span>
@@ -460,7 +460,34 @@ b&:=b -\alpha\frac{\partial J(\vec w, b)}{\partial b}
 <li>一个 $m\times n$ 的矩阵和 $1\times n$ 的矩阵做二元运算时，$1 \times n$ 矩阵会按行重复 $m$ 次，形成 $m\times n$ 矩阵。</li>
 <li>一个列向量或者行向量和实数做二元运算时，实数会自动重复到和向量的规模一致。</li>
 </ul>
-<h3 id="A-note-on-python-numpy-vectors"><a href="#A-note-on-python-numpy-vectors" class="headerlink" title="A note on python/numpy vectors"></a>A note on python/numpy vectors</h3><h3 id="Quick-tour-of-Jupyter-iPython-Notebooks"><a href="#Quick-tour-of-Jupyter-iPython-Notebooks" class="headerlink" title="Quick tour of Jupyter/iPython Notebooks"></a>Quick tour of Jupyter/iPython Notebooks</h3><h3 id="Explanation-of-logistic-regression-cost-function"><a href="#Explanation-of-logistic-regression-cost-function" class="headerlink" title="Explanation of logistic regression cost function"></a>Explanation of logistic regression cost function</h3>
+<h3 id="A-note-on-python-numpy-vectors"><a href="#A-note-on-python-numpy-vectors" class="headerlink" title="A note on python/numpy vectors"></a>A note on python/numpy vectors</h3><p>这一节主要是对使用 numpy 时的一些建议。</p>
+<p>建议不要使用 rank 为 1 的数组，这些数组既不是列向量也不是行向量，应该避免使用。总是显式地使用 $1\times n$ 或者 $n\times 1$ 的矩阵当做数学中的向量。</p>
+<p>代码中可以考虑多写一些关于 shape 的断言语句。</p>
+<h3 id="Quick-tour-of-Jupyter-iPython-Notebooks"><a href="#Quick-tour-of-Jupyter-iPython-Notebooks" class="headerlink" title="Quick tour of Jupyter/iPython Notebooks"></a>Quick tour of Jupyter/iPython Notebooks</h3><p><em>本节没有问题。</em></p>
+<h3 id="Explanation-of-logistic-regression-cost-function"><a href="#Explanation-of-logistic-regression-cost-function" class="headerlink" title="Explanation of logistic regression cost function"></a>Explanation of logistic regression cost function</h3><p>为什么逻辑回归的损失函数和代价函数的形式是那个样子的？损失函数 $\hat y$ 实际上是给定了 $\vec x$ 的情况下 $y = 1$ 的概率，即 $\hat y = P(y = 1 | \vec x)$，此外 $1 - \hat y = P(y = 0 | \vec x)$。这可以写成：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+y = 1 &\Rightarrow P(y|\vec x) = \hat y \\
+y = 0 &\Rightarrow P(y|\vec x) = 1 - \hat y
+\end{aligned}</script><p>两种情况下，要最大化的都是 $P(y |\vec x)$，而它可以写成如下形式以统一 $y$：</p>
+<script type="math/tex; mode=display">
+P(y | \vec x) = \hat y^{y}(1 - \hat y)^{1 - y}</script><p>这是要最大化的目标，给它套一个对数函数，要最大化的目标就变成了</p>
+<script type="math/tex; mode=display">
+\log P(y|\hat x) = y\log \hat y + (1 - y)\log (1 - \hat y)</script><p>损失函数是这个函数取反，最大化这个目标就是最小化损失函数。</p>
+<p>以上是损失函数的情况，对于多个样本的代价函数，在样本独立同分布的情况下，最大化的目标是</p>
+<script type="math/tex; mode=display">
+P(y_1|\vec x_1)\cdots P(y_m|\vec x_m)</script><p>即</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+ & \log\left(P(y_1|\vec x_1)\cdots P(y_m|\vec x_m)\right) \\
+=& \log\prod\limits_{i = 1}^mP(y_i|\vec x_i) \\
+=& \sum\limits_{i = 1}^m\log P(y_i|\vec x_i) \\
+=& \sum\limits_{i = 1}^m\left(y_i\log\hat y_i + (1 - y_i)\log(1 - \hat y_i)\right) \\
+=& -\sum\limits_{i = 1}^mL(\hat y_i, y_i) \\
+=& -mJ(\vec w, b)
+\end{aligned}</script><p>最大化目标概率就是最小化代价函数 $J(\vec w, b)$。这是一个最大似然估计的过程，要选择最佳的 $\vec w$ 和 $b$ 使概率最大。</p>
+<p>​    </p>
+
       
     </div>
 
