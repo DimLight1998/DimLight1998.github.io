@@ -109,15 +109,18 @@
 
 
 
-  <meta name="keywords" content="编程语言理论">
+  <meta name="description" content="Section 1ML Variable Bindings and Expressions一些语法123456(* this is a comment *)val x = 1;                          (* variable binding *)val y = if x &amp;gt; 0 then x else 0 - x; (* condition expression *">
+<meta name="keywords" content="编程语言理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Programming Languages (Part A) 笔记 2 Section 1">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/index.html">
 <meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="Section 1ML Variable Bindings and Expressions一些语法123456(* this is a comment *)val x = 1;                          (* variable binding *)val y = if x &amp;gt; 0 then x else 0 - x; (* condition expression *">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-05T16:06:06.056Z">
+<meta property="og:updated_time" content="2019-02-07T06:43:55.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Programming Languages (Part A) 笔记 2 Section 1">
+<meta name="twitter:description" content="Section 1ML Variable Bindings and Expressions一些语法123456(* this is a comment *)val x = 1;                          (* variable binding *)val y = if x &amp;gt; 0 then x else 0 - x; (* condition expression *">
 
 
 
@@ -321,12 +324,24 @@
                 
               
 
-              <time title="创建时间：2019-02-06 00:01:58 / 修改时间：00:06:06" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:58+08:00">2019-02-06</time>
+              <time title="创建时间：2019-02-06 00:01:58" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:58+08:00">2019-02-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-07 14:43:55" itemprop="dateModified" datetime="2019-02-07T14:43:55+08:00">2019-02-07</time>
               
             
           </span>
@@ -371,7 +386,98 @@
       
 
       
-        
+        <h1 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h1><h2 id="ML-Variable-Bindings-and-Expressions"><a href="#ML-Variable-Bindings-and-Expressions" class="headerlink" title="ML Variable Bindings and Expressions"></a>ML Variable Bindings and Expressions</h2><h3 id="一些语法"><a href="#一些语法" class="headerlink" title="一些语法"></a>一些语法</h3><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(* this is a comment *)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x = <span class="number">1</span>;                          <span class="comment">(* variable binding *)</span></span><br><span class="line"><span class="keyword">val</span> y = <span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">then</span> x <span class="keyword">else</span> <span class="number">0</span> - x; <span class="comment">(* condition expression *)</span></span><br><span class="line"><span class="keyword">val</span> z = abs y;                      <span class="comment">(* function call *)</span></span><br><span class="line"><span class="keyword">val</span> w = abs(z);                     <span class="comment">(* another style of function call *)</span></span><br></pre></td></tr></table></figure>
+<p>注释和 variable binding 的语法如上。</p>
+<h3 id="关于语言的知识"><a href="#关于语言的知识" class="headerlink" title="关于语言的知识"></a>关于语言的知识</h3><p>ML 中的每句 variable binding 都维护了一个 <strong>静态环境</strong>（不用运行）和一个 <strong>动态环境</strong>（需要运行）。</p>
+<p>静态环境中有各个变量和表达式的类型的信息，动态环境中有它们的值的信息。静态环境的内容可以通过类型检查在运行前就得到，但是动态环境需要运行。</p>
+<hr>
+<p>语法（Syntax）是关于如何写出可解析程序的规则。ML 中的语义（Semantics）包括类型检查和执行两部分。每种不同的语句和表达式都有自己的语法和语义，语义一般包括类型检查语义和执行语义。对于 variable binding 而言，语义是</p>
+<ul>
+<li>检查类型，扩展静态环境；</li>
+<li>运行，扩展动态环境。</li>
+</ul>
+<h2 id="Rules-for-Expressions"><a href="#Rules-for-Expressions" class="headerlink" title="Rules for Expressions"></a>Rules for Expressions</h2><h3 id="表达式与语句的三个要素"><a href="#表达式与语句的三个要素" class="headerlink" title="表达式与语句的三个要素"></a>表达式与语句的三个要素</h3><p>对于 ML 中的每个表达式、语句，下面这三个问题很重要：</p>
+<ul>
+<li><strong>Syntax</strong>：它的语法是什么？</li>
+<li><strong>Type-Check Semantics</strong>：它如何执行类型检查？类型检查不一定是 <strong>检查</strong>，也包括求得表达式的“输出”类型。</li>
+<li><strong>Evaluation Semantics</strong>：它如何执行、求值？</li>
+</ul>
+<p>ML 中，只有经过了 Type-Check 才能进行 Evaluation。</p>
+<h3 id="一些表达式的例子"><a href="#一些表达式的例子" class="headerlink" title="一些表达式的例子"></a>一些表达式的例子</h3><p>表达式可以相互嵌套。套用上面的三个问题可以研究一些表达式。以下是一些例子。</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>变量是很简单的表达式。</p>
+<ul>
+<li>Syntax：字母、数字、下划线组成。不以数字开头。</li>
+<li>Type-Check Semantics：检查静态环境中是否存在该变量，若存在则类型已知，否则报错。（因为是将变量作为表达式在使用，所以若正确必然存在。）</li>
+<li>Evaluation Semantics：从动态环境中取出值。</li>
+</ul>
+<h4 id="条件表达式"><a href="#条件表达式" class="headerlink" title="条件表达式"></a>条件表达式</h4><ul>
+<li>Syntax：$\texttt{if }e_1\texttt{ then }e_2\texttt{ else }e_3​$，其中 $e_1,e_2,e_3​$ 是表达式。</li>
+<li>Type-Check Semantics：$e_1​$ 必须是 <code>bool</code>，$e_2​$ 和 $e_3​$ 和最后的返回值类型必须一致。</li>
+<li>Evaluation Semantics：先计算 $e_1​$，若为真返回计算 $e_2​$ 的结果，否则返回计算 $e_3​$ 的结果。</li>
+</ul>
+<h3 id="unit-类型"><a href="#unit-类型" class="headerlink" title="unit 类型"></a><code>unit</code> 类型</h3><p>ML 中有一个特殊的 <code>unit</code> 类型，唯一的取值是 <code>()</code>，例如在加载一个文件的时候返回值就是这个。</p>
+<h2 id="The-REPL-and-Errors"><a href="#The-REPL-and-Errors" class="headerlink" title="The REPL and Errors"></a>The REPL and Errors</h2><h3 id="REPL"><a href="#REPL" class="headerlink" title="REPL"></a>REPL</h3><p>REPL 的意思是 Read-Eval-Print-Loop，这是一种对语言的解释器。</p>
+<h3 id="Errors"><a href="#Errors" class="headerlink" title="Errors"></a>Errors</h3><p>之前提到的三个要素中，每个地方都可能出错。对应不同种类的错误：</p>
+<ul>
+<li><strong>Syntax</strong>：语法错误会导致无法通过语法解析。</li>
+<li><strong>Type-Check Semantics</strong>：类型检查错误会导致无法通过类型检查，故无法通过编译，但是可以完成语法解析。</li>
+<li><strong>Evaluation Semantics</strong>：执行错误会导致运行时抛出异常，但是这种程序可以通过编译。</li>
+<li><strong>逻辑错误</strong>：即使通过编译且运行正确，程序也不一定是对的。</li>
+</ul>
+<h2 id="Shadowing"><a href="#Shadowing" class="headerlink" title="Shadowing"></a>Shadowing</h2><p>Shadowing 指的是后面的变量绑定会覆盖掉前面的。ML 中没有赋值的说法，如果先 <code>val a = 10</code> 然后 <code>val a = 20</code>，实际上是存在两个变量的，但是第一个被覆盖掉了无法访问，而不是重新被赋值。</p>
+<p>如果希望同一个名称访问出的变量是不同的变量需要用到这个特性。</p>
+<h2 id="Functions-Informally"><a href="#Functions-Informally" class="headerlink" title="Functions Informally"></a>Functions Informally</h2><p>定义函数与使用：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> pow(x: <span class="built_in">int</span>, y: <span class="built_in">int</span>) = <span class="keyword">if</span> y = <span class="number">0</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> x * pow(x, y - <span class="number">1</span>);</span><br><span class="line"><span class="keyword">fun</span> cube(x: <span class="built_in">int</span>) = pow(x, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> a = pow(<span class="number">2</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<p>函数体就是一个表达式。参数需要注明类型，但是返回值不需要。</p>
+<p><code>pow</code> 使用了递归。所有需要用到循环的地方都可以使用递归加以解决。</p>
+<h2 id="Functions-Formally"><a href="#Functions-Formally" class="headerlink" title="Functions Formally"></a>Functions Formally</h2><h3 id="函数定义"><a href="#函数定义" class="headerlink" title="函数定义"></a>函数定义</h3><p>Syntax：<code>fun x0(x1: t1, x2: t2, ... , xn: tn) = e</code>。</p>
+<p>Type-check semantics：对于函数 <code>fun x0(x1: t1, x2: t2, ... , xn: tn) = e</code>，首先将 <code>x1</code> 设为 <code>t1</code> …… <code>xn</code> 设为 <code>tn</code> 以及 <code>x0</code> 设为 <code>t1 * t2 * ... * tn -&gt; t</code>，代入 $e​$ 检查是否相容。之所以也要将 <code>x0</code> 代入是因为可能发生递归调用。其中 <code>t</code> 将会由类型推断得到。检查完成后，<code>x0</code> 会被加入静态环境中。</p>
+<p>Evaluation semantics：对于每个函数，完成声明后相当于一个值 <code>x0</code>，这个值对应的表达式还没有计算。当有其它表达式调用它的时候从动态环境中找到 <code>x0</code> 完成计算。</p>
+<h3 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h3><p>Syntax：<code>e0(e1, e2, ... , en)</code>。</p>
+<p><em>一个语法糖是，当只有一个参数的时候可以不加括号。其它时候都要加。</em></p>
+<p>Type-check semantics：检查 <code>e0</code> 的类型是 <code>t1 * t2 * ... * tn -&gt; t</code>，<code>e1</code> 到 <code>en</code> 的类型分别是 <code>t1</code> 到 <code>tn</code>。整个调用语句的返回类型是 <code>t</code>。</p>
+<p>Evaluation semantics：在发生调用的时候有一个 <strong>当前的</strong> 环境，在当前环境中计算出 <code>e1</code> 到 <code>en</code>，将结果记为 <code>v1</code> 到 <code>vn</code>。由于经过了类型检查，<code>e0</code> 必然是函数，此时从 <strong>函数被定义时的环境</strong> 中扩展出一个新的环境，添加的内容为将 <code>x1</code> 到 <code>xn</code> 映射为 <code>v1</code> 到 <code>vn</code>，完成计算，然后返回 <strong>当前的环境</strong>。扩展环境这一步不能从当前环境扩展，而要从函数被定义时的环境进行扩展。至于这是为什么，以下是我的一些猜测：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="number">1</span></span><br><span class="line"><span class="keyword">fun</span> get_x<span class="literal">()</span> = x</span><br><span class="line"><span class="keyword">val</span> x1 = get_x<span class="literal">()</span></span><br><span class="line"><span class="keyword">val</span> x = <span class="number">2</span></span><br><span class="line"><span class="keyword">val</span> x2 = get_x<span class="literal">()</span></span><br></pre></td></tr></table></figure>
+<p>如果从当前环境进行扩展，<code>x2</code> 的值将会是 2，这是很让人困惑的。</p>
+<h2 id="Pairs-and-Other-Tuples"><a href="#Pairs-and-Other-Tuples" class="headerlink" title="Pairs and Other Tuples"></a>Pairs and Other Tuples</h2><p>Tuple 即为元组。二元组为 Pair。以下讨论仅针对 Pair。</p>
+<p>Syntax：<code>(e1, e2)</code>。</p>
+<p>Type-check semantics：若 <code>e1</code> 类型为 <code>t1</code>，<code>e2</code> 类型为 <code>t2</code>，则 <code>(e1, e2)</code> 类型为 <code>t1 * t2</code>。</p>
+<p>Evaluation semantics：若 <code>e1</code> 值为 <code>v1</code>，<code>e2</code> 值为 <code>v2</code>，则 <code>(e1, e2)</code> 值为 <code>(v1, v2)</code>，这个结果本身也是一种值。</p>
+<p>如果想要从 Tuple 中取出某个分量可以这样做：<code>#2 (3, 4)</code> 将会取出第二个分量也就是 <code>4</code>，从 1 开始计数。</p>
+<p>例如可以写出交换两个分量的函数：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> swap_1(pr: <span class="built_in">int</span> * <span class="built_in">bool</span>) = (#<span class="number">2</span> pr, #<span class="number">1</span> pr)</span><br><span class="line"><span class="keyword">fun</span> swap_2(i: <span class="built_in">int</span>, b: <span class="built_in">bool</span>) = (b, i)</span><br><span class="line"><span class="keyword">val</span> res_1 = swap_1((<span class="number">3</span>, <span class="literal">true</span>))</span><br><span class="line"><span class="keyword">val</span> res_2 = swap_1(<span class="number">3</span>, <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">val</span> res_3 = swap_2((<span class="number">3</span>, <span class="literal">true</span>))</span><br><span class="line"><span class="keyword">val</span> res_4 = swap_2(<span class="number">3</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<p><code>res_1</code> 和 <code>res_4</code> 是容易理解的。<code>res_2</code> 可以看作是省略了括号的调用，<code>res_3</code> 则完全不清楚为何可行。这四种调用方式看起来居然是一样的，后面会解释。</p>
+<p>Tuple 可以有任意多的元素（编译时），并且可以进行嵌套。</p>
+<h2 id="Introducing-Lists"><a href="#Introducing-Lists" class="headerlink" title="Introducing Lists"></a>Introducing Lists</h2><p>列表包含任意多同类型元素（运行时）。</p>
+<p>使用 <code>::</code> 可以 append 元素：<code>3 :: [4, 5]</code> 的结果是 <code>[3, 4, 5]</code>。</p>
+<p>使用 <code>null</code> 对列表进行判空，使用 <code>hd</code> 和 <code>tl</code> 取出列表的头和尾。</p>
+<p>列表的类型和元素有关。如果元素是 <code>int</code>，列表的类型将会是 <code>int list</code>。空列表的类型是 <code>&#39;a list</code>，其中 <code>&#39;a</code> 是 $\alpha$。这个是某种通配的类型，例如 <code>null</code> 的类型就是 <code>&#39;a list -&gt; bool</code>，它可以接受任何类型的列表。</p>
+<h2 id="List-Functions"><a href="#List-Functions" class="headerlink" title="List Functions"></a>List Functions</h2><p>列表可以作为函数的参数或者返回值。在这些情况下，如果函数需要访问或生成列表中的每个元素，唯一的办法就是使用递归。</p>
+<h2 id="Let-Expressions"><a href="#Let-Expressions" class="headerlink" title="Let Expressions"></a>Let Expressions</h2><p>使用 <code>let</code> 表达式可以在一个表达式中引入新的 scope，这个 scope 中可以进行仅对表达式可见的绑定，除非被更小的 scope 覆盖掉。这个表达式的三个要素略去。</p>
+<p>例如 <code>let val x = 3 in x * 2 end</code> 的值是 6（不要掉了 <code>let</code> 中的 <code>val</code>）。</p>
+<h2 id="Nested-Functions"><a href="#Nested-Functions" class="headerlink" title="Nested Functions"></a>Nested Functions</h2><p><code>let</code> 表达式中可以存在任意的绑定，函数定义是一种绑定，所以结合起来就可以在函数 $f$ 中定义只对 $f$ 可见的函数。内层的函数依然可以访问外部的一些信息，例如 $f$ 的参数等。</p>
+<h2 id="Let-and-Efficiency"><a href="#Let-and-Efficiency" class="headerlink" title="Let and Efficiency"></a>Let and Efficiency</h2><p>使用 <code>let</code> 表达式可以将某些需要递归计算的结果缓存下来，达到加速的目的。考虑下面两种求列表最大值的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">fun range(left: int, right: int, step: int) = </span><br><span class="line">    if left = right then [] else left :: range(left + step, right, step)</span><br><span class="line"></span><br><span class="line">fun slow_max(xs: int list) = </span><br><span class="line">    if null xs then 0 else</span><br><span class="line">    if null (tl xs) then hd xs else</span><br><span class="line">    if hd xs &gt; slow_max(tl xs) then hd xs else slow_max(tl xs)</span><br><span class="line"></span><br><span class="line">fun fast_max(xs: int list) = </span><br><span class="line">    if null xs then 0 else</span><br><span class="line">    if null (tl xs) then hd xs else</span><br><span class="line">    let val mtl = fast_max(tl xs) in if hd xs &gt; mtl then hd xs else mtl end</span><br><span class="line">    </span><br><span class="line">(* for testing *)</span><br><span class="line">slow_max(range(0, 28, 1))</span><br><span class="line">fast_max(range(0, 28, 1))</span><br></pre></td></tr></table></figure>
+<p>第二种情况会快上很多。实际上第一种情况是指数级别的复杂度。</p>
+<h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><p>Options 允许一个值为空。</p>
+<p>比如可空的 <code>int</code> 具有类型 <code>int option</code>。通过 <code>NONE</code> 构造空值（类型为 <code>&#39;a option</code>），通过 <code>SOME i</code> 构造一个具有值的 <code>int option</code>。使用 <code>isSome</code> 判断是否为空，使用 <code>valOf</code> 取出非空 Options 的值。</p>
+<h2 id="Booleans-and-Comparison-Operations"><a href="#Booleans-and-Comparison-Operations" class="headerlink" title="Booleans and Comparison Operations"></a>Booleans and Comparison Operations</h2><h3 id="布尔运算"><a href="#布尔运算" class="headerlink" title="布尔运算"></a>布尔运算</h3><p>使用 <code>andalso</code> 计算布尔值的且，使用 <code>orelse</code> 计算布尔值的或，使用 <code>not</code> 计算布尔值的非。且和或具有短路特性，因此 <code>andalso</code> 和 <code>orelse</code> 不是函数；<code>not</code> 是一个函数。</p>
+<p>值得一提的是，所有能够将 <code>if ... then ... else</code> 作为语句的语言都不需要且、或、非这三个运算，它们的短路特性可以被那个表达式模拟出来。</p>
+<h3 id="数值比较"><a href="#数值比较" class="headerlink" title="数值比较"></a>数值比较</h3><p>使用 <code>=</code>，<code>&lt;&gt;</code>，<code>&lt;</code>，<code>&gt;</code>，<code>&lt;=</code>，<code>&gt;=</code> 对整数进行比较。浮点数不能使用等号或者不等号进行比较，这么做是语言强制保证数值正确性。</p>
+<h2 id="Benefits-of-No-Mutation"><a href="#Benefits-of-No-Mutation" class="headerlink" title="Benefits of No Mutation"></a>Benefits of No Mutation</h2><p>ML 中的值都是不可变的。这么做的一个好处是，使用代码的人无法修改。如果可以修改就会出现需要区分两个变量到底是同一个引用还是具有相同值的不同引用的问题。因为现在无法修改，所以不管它们是同一个引用还是不同引用都无所谓了。</p>
+<p>例如连接两个列表，如果使用某种快速的实现将 <code>x</code> 和 <code>y</code> 连接起来得到 <code>z</code>，假如可以修改，用户在使用 <code>z</code> 时就必须弄清楚这个修改是否会影响到 <code>x</code> 和 <code>y</code>。但是如果无法修改，用户就不会考虑这个问题。</p>
+<h2 id="Java-Mutation"><a href="#Java-Mutation" class="headerlink" title="Java Mutation"></a>Java Mutation</h2><p><em>本节没有问题。</em></p>
+<h2 id="Pieces-of-a-Language"><a href="#Pieces-of-a-Language" class="headerlink" title="Pieces of a Language"></a>Pieces of a Language</h2><p>对语言的学习可以分成五个部分：</p>
+<ul>
+<li>Syntax：语言的语法。</li>
+<li>Semantics：语言的语义。</li>
+<li>Idioms：一些惯用的模式和习惯。</li>
+<li>Libraries：常用的库和包。</li>
+<li>Tools：常用的工具，例如解释器、调试器、代码格式化工具等。</li>
+</ul>
+<p>作者建议学习语言的时候要把这五个部分在概念上分开，不要搅在一起学习。</p>
+<p>作者的观点：其中 Syntax 只是一些 facts，比较无趣。Library 和 Tools 都是在要用的时候才用去学的。因此最重要的是 Semantics 和 Idiom，它们是掌握语言共性的途径。</p>
+
       
     </div>
 
@@ -471,8 +577,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -538,6 +653,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Section-1"><span class="nav-number">1.</span> <span class="nav-text">Section 1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ML-Variable-Bindings-and-Expressions"><span class="nav-number">1.1.</span> <span class="nav-text">ML Variable Bindings and Expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一些语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">一些语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于语言的知识"><span class="nav-number">1.1.2.</span> <span class="nav-text">关于语言的知识</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rules-for-Expressions"><span class="nav-number">1.2.</span> <span class="nav-text">Rules for Expressions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式与语句的三个要素"><span class="nav-number">1.2.1.</span> <span class="nav-text">表达式与语句的三个要素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些表达式的例子"><span class="nav-number">1.2.2.</span> <span class="nav-text">一些表达式的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#变量"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件表达式"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">条件表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unit-类型"><span class="nav-number">1.2.3.</span> <span class="nav-text">unit 类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-REPL-and-Errors"><span class="nav-number">1.3.</span> <span class="nav-text">The REPL and Errors</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#REPL"><span class="nav-number">1.3.1.</span> <span class="nav-text">REPL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Errors"><span class="nav-number">1.3.2.</span> <span class="nav-text">Errors</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shadowing"><span class="nav-number">1.4.</span> <span class="nav-text">Shadowing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-Informally"><span class="nav-number">1.5.</span> <span class="nav-text">Functions Informally</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-Formally"><span class="nav-number">1.6.</span> <span class="nav-text">Functions Formally</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数定义"><span class="nav-number">1.6.1.</span> <span class="nav-text">函数定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数调用"><span class="nav-number">1.6.2.</span> <span class="nav-text">函数调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pairs-and-Other-Tuples"><span class="nav-number">1.7.</span> <span class="nav-text">Pairs and Other Tuples</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introducing-Lists"><span class="nav-number">1.8.</span> <span class="nav-text">Introducing Lists</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List-Functions"><span class="nav-number">1.9.</span> <span class="nav-text">List Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let-Expressions"><span class="nav-number">1.10.</span> <span class="nav-text">Let Expressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nested-Functions"><span class="nav-number">1.11.</span> <span class="nav-text">Nested Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Let-and-Efficiency"><span class="nav-number">1.12.</span> <span class="nav-text">Let and Efficiency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Options"><span class="nav-number">1.13.</span> <span class="nav-text">Options</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Booleans-and-Comparison-Operations"><span class="nav-number">1.14.</span> <span class="nav-text">Booleans and Comparison Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔运算"><span class="nav-number">1.14.1.</span> <span class="nav-text">布尔运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数值比较"><span class="nav-number">1.14.2.</span> <span class="nav-text">数值比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Benefits-of-No-Mutation"><span class="nav-number">1.15.</span> <span class="nav-text">Benefits of No Mutation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Mutation"><span class="nav-number">1.16.</span> <span class="nav-text">Java Mutation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pieces-of-a-Language"><span class="nav-number">1.17.</span> <span class="nav-text">Pieces of a Language</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
