@@ -109,15 +109,18 @@
 
 
 
-  <meta name="keywords" content="编程语言理论">
+  <meta name="description" content="Section 3Introduction to First-Class Functions函数式编程与函数式语言函数式编程是一种编程范式。具有如下特点：  不使用可变数据类型。 函数可以作为值。  大部分语言都可以进行函数式编程，但是有些语言更加便利，设计出来就是为了方便函数式编程的，这种语言的标准库可能也是用函数式编程的方法写出来的。这种语言为函数式语言。 函数作为值与高阶函数ML 中函数可以">
+<meta name="keywords" content="编程语言理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Programming Languages (Part A) 笔记 4 Section 3">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/index.html">
 <meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="Section 3Introduction to First-Class Functions函数式编程与函数式语言函数式编程是一种编程范式。具有如下特点：  不使用可变数据类型。 函数可以作为值。  大部分语言都可以进行函数式编程，但是有些语言更加便利，设计出来就是为了方便函数式编程的，这种语言的标准库可能也是用函数式编程的方法写出来的。这种语言为函数式语言。 函数作为值与高阶函数ML 中函数可以">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-05T16:06:13.795Z">
+<meta property="og:updated_time" content="2019-02-11T13:26:50.178Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Programming Languages (Part A) 笔记 4 Section 3">
+<meta name="twitter:description" content="Section 3Introduction to First-Class Functions函数式编程与函数式语言函数式编程是一种编程范式。具有如下特点：  不使用可变数据类型。 函数可以作为值。  大部分语言都可以进行函数式编程，但是有些语言更加便利，设计出来就是为了方便函数式编程的，这种语言的标准库可能也是用函数式编程的方法写出来的。这种语言为函数式语言。 函数作为值与高阶函数ML 中函数可以">
 
 
 
@@ -321,12 +324,24 @@
                 
               
 
-              <time title="创建时间：2019-02-06 00:02:12 / 修改时间：00:06:13" itemprop="dateCreated datePublished" datetime="2019-02-06T00:02:12+08:00">2019-02-06</time>
+              <time title="创建时间：2019-02-06 00:02:12" itemprop="dateCreated datePublished" datetime="2019-02-06T00:02:12+08:00">2019-02-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-11 21:26:50" itemprop="dateModified" datetime="2019-02-11T21:26:50+08:00">2019-02-11</time>
               
             
           </span>
@@ -371,7 +386,134 @@
       
 
       
-        
+        <h1 id="Section-3"><a href="#Section-3" class="headerlink" title="Section 3"></a>Section 3</h1><h2 id="Introduction-to-First-Class-Functions"><a href="#Introduction-to-First-Class-Functions" class="headerlink" title="Introduction to First-Class Functions"></a>Introduction to First-Class Functions</h2><h3 id="函数式编程与函数式语言"><a href="#函数式编程与函数式语言" class="headerlink" title="函数式编程与函数式语言"></a>函数式编程与函数式语言</h3><p>函数式编程是一种编程范式。具有如下特点：</p>
+<ul>
+<li>不使用可变数据类型。</li>
+<li>函数可以作为值。</li>
+</ul>
+<p>大部分语言都可以进行函数式编程，但是有些语言更加便利，设计出来就是为了方便函数式编程的，这种语言的标准库可能也是用函数式编程的方法写出来的。这种语言为函数式语言。</p>
+<h3 id="函数作为值与高阶函数"><a href="#函数作为值与高阶函数" class="headerlink" title="函数作为值与高阶函数"></a>函数作为值与高阶函数</h3><p>ML 中函数可以作为值，也就是说函数本身可以像值一样传来传去。</p>
+<p>高阶函数指的是接受函数作为参数或者返回函数的函数。</p>
+<h3 id="函数闭包"><a href="#函数闭包" class="headerlink" title="函数闭包"></a>函数闭包</h3><p>一个函数可以引用它外部环境中的变量，这种特性使得该函数成为了一个闭包。详细的后面会写。</p>
+<h2 id="Functions-as-Arguments"><a href="#Functions-as-Arguments" class="headerlink" title="Functions as Arguments"></a>Functions as Arguments</h2><p>函数可以作为参数传递，作者实现了一个 <code>n_times</code> 函数作为示例。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> n_times(f, n, x) = <span class="keyword">if</span> n = <span class="number">0</span> <span class="keyword">then</span> x <span class="keyword">else</span> f(n_times(f, n - <span class="number">1</span>, x))</span><br></pre></td></tr></table></figure>
+<p>这个函数是一个高阶函数，它会将传入的函数 <code>f</code> 在 <code>x</code> 上应用 <code>n</code> 次。等价于 $f(f(f(\dots f(x)\dots)))​$。</p>
+<h2 id="Polymorphic-Types-and-Functions-as-Arguments"><a href="#Polymorphic-Types-and-Functions-as-Arguments" class="headerlink" title="Polymorphic Types and Functions as Arguments"></a>Polymorphic Types and Functions as Arguments</h2><p>很多高阶函数都是 polymorphic 的，但是有些高阶函数不是 polymorphic 的，也存在是 polymorphic 的非高阶的函数。</p>
+<h2 id="Anonymous-Functions"><a href="#Anonymous-Functions" class="headerlink" title="Anonymous Functions"></a>Anonymous Functions</h2><p>当使用高阶函数的时候使用匿名函数很有用。</p>
+<p><code>fn</code> 定义一个匿名函数，匿名函数是一个表达式：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> zz = n_times(<span class="keyword">fn</span> x =&gt; x * <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>匿名函数无法自己递归。如果函数没有递归的需求，那么 fun 绑定实际上是匿名函数的语法糖，以下两行等价：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> double x = <span class="number">2</span> * x</span><br><span class="line"><span class="keyword">val</span> double = <span class="keyword">fn</span> x =&gt; <span class="number">2</span> * x</span><br></pre></td></tr></table></figure>
+<h2 id="Unnecessary-Function-Wrapping"><a href="#Unnecessary-Function-Wrapping" class="headerlink" title="Unnecessary Function Wrapping"></a>Unnecessary Function Wrapping</h2><p>下面这两段代码使用了不必要的函数包装：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> zz = n_times(<span class="keyword">fn</span> x =&gt; double x, <span class="number">3</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> yy = <span class="type">List</span>.rev yy</span><br></pre></td></tr></table></figure>
+<p>替换成下面的形式会更简洁：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> zz = n_times(double, <span class="number">3</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> yy = <span class="type">List</span>.rev</span><br></pre></td></tr></table></figure>
+<h2 id="Map-and-Filter"><a href="#Map-and-Filter" class="headerlink" title="Map and Filter"></a>Map and Filter</h2><p><code>map</code> 和 <code>filter</code> 是两个很常用的高阶函数：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> map(f, <span class="literal">[]</span>) = <span class="literal">[]</span></span><br><span class="line">  | map(f, x :: xs) = (f x) :: xs</span><br><span class="line"></span><br><span class="line"><span class="keyword">fun</span> filter(f, <span class="literal">[]</span>) = <span class="literal">[]</span></span><br><span class="line">  | filter(f, x :: xs) = <span class="keyword">if</span> f x <span class="keyword">then</span> x :: filter(f, xs) <span class="keyword">else</span> filter(f, xs)</span><br></pre></td></tr></table></figure>
+<h2 id="Generalizing-Prior-Topics"><a href="#Generalizing-Prior-Topics" class="headerlink" title="Generalizing Prior Topics"></a>Generalizing Prior Topics</h2><p>函数可以作为参数和返回值。当要返回一个函数的时候可以采用匿名函数的写法。</p>
+<p>ML 中高阶函数的类型表示里面的 <code>-&gt;</code> 是右结合的，<code>a -&gt; b -&gt; c -&gt; d</code> 相当于 <code>a -&gt; (b -&gt; (c -&gt; d))</code>。</p>
+<p>高阶函数适合在任意形式的递归结构上使用。</p>
+<h2 id="Lexical-Scope"><a href="#Lexical-Scope" class="headerlink" title="Lexical Scope"></a>Lexical Scope</h2><p>Lexical scope 是一个作用域（词法作用域），这个作用域是静态的，在编译时就确定的。一个函数可以在函数体中使用外部环境的变量，当被调用时，该变量的取值从 <strong>函数被定义时的环境</strong> 中得到（即词法作用域）而不是从调用的环境中得到。例如：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="number">1</span></span><br><span class="line"><span class="keyword">fun</span> f y = x + y</span><br><span class="line"><span class="keyword">val</span> x = <span class="number">2</span></span><br><span class="line"><span class="keyword">val</span> z = f(x + <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>将会得到 <code>z = 4</code>。第四行进行调用的时候，参数中的子表达式 <code>x</code> 的取值从调用的环境中得到，为 2；函数体中的 <code>x</code> 从词法作用域中得到，为 1。</p>
+<p>与 lexical scope 相对的是 dynamic scope。</p>
+<hr>
+<p>Lexical scope 是一个抽象概念，closure 是一种对词法作用域的实现方式。每个函数一旦定义，ML 实际上创建了两个部分：函数的代码，以及函数定义时的环境。这两个部分合称为函数的闭包。函数在执行的时候，所有的外部变量都从闭包中的定义时环境中获取，而不是从当前环境获取。</p>
+<h2 id="Lexical-Scope-and-Higher-Order-Functions"><a href="#Lexical-Scope-and-Higher-Order-Functions" class="headerlink" title="Lexical Scope and Higher-Order Functions"></a>Lexical Scope and Higher-Order Functions</h2><ul>
+<li>Lexical scope 的一个好处是在分析函数的时候不用管代码中其它部分的定义以及对这个函数的可能的调用，可对函数进行独立的分析。在没有运行之前，就可以搞清楚每个函数的具体作用是什么，而不依赖于运行时的输入等。</li>
+<li>在使用高阶函数产生新函数的时候，每生成一个函数就会产生一个闭包。</li>
+<li>调用函数时，参数不是从 lexical scope 中获取的。</li>
+</ul>
+<h2 id="Why-Lexical-Scope"><a href="#Why-Lexical-Scope" class="headerlink" title="Why Lexical Scope"></a>Why Lexical Scope</h2><h3 id="闭包可以让使函数的含义与变量名无关"><a href="#闭包可以让使函数的含义与变量名无关" class="headerlink" title="闭包可以让使函数的含义与变量名无关"></a>闭包可以让使函数的含义与变量名无关</h3><p>这个特性可以让代码更加模块化。什么是 dynamic scope，我感觉就是一个全局的变量和值的词典，每次要使用一个变量的时候都是从这个词典中取值。例如：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> f1 x = <span class="keyword">let</span> <span class="keyword">val</span> y = <span class="number">0</span> <span class="keyword">in</span> <span class="keyword">fn</span> <span class="literal">()</span> =&gt; x + y <span class="keyword">end</span></span><br><span class="line"><span class="keyword">fun</span> f2 x = <span class="keyword">let</span> <span class="keyword">val</span> z = <span class="number">0</span> <span class="keyword">in</span> <span class="keyword">fn</span> <span class="literal">()</span> =&gt; x + z <span class="keyword">end</span></span><br><span class="line"><span class="keyword">val</span> y = <span class="number">1</span></span><br><span class="line"><span class="keyword">val</span> a1 = (f1 <span class="number">0</span>) <span class="number">0</span></span><br><span class="line"><span class="keyword">val</span> a2 = (f2 <span class="number">0</span>) <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>在词法作用域看来，<code>f1</code> 和 <code>f2</code> 完全是等价的，因此 <code>a1</code> 和 <code>a2</code> 应该相同。但是在动态作用域看来，<code>f1 0</code> 得到的函数的作用是对参数加上 <code>y</code>，而此时 <code>y</code> 的取值是 1，<code>f2 0</code> 得到的函数作用是对参数加上 <code>z</code>，而此时 <code>z</code> 的取值是 0，因此 <code>a1</code> 和 <code>a2</code> 不同。</p>
+<p>这么解释需要假定 let 语句只会执行一遍：在“编译”<code>f1</code> 时，<code>y = 0</code> 了，在调用 <code>f1</code> 时，这个 <code>y = 0</code> 不会再次被执行。</p>
+<p>闭包的特性也可以让函数中可以独立地删掉无用变量，例如</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> f g = <span class="keyword">let</span> <span class="keyword">val</span> x = <span class="number">3</span> <span class="keyword">in</span> g <span class="number">2</span> <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>如果是动态作用域，因为不知道 <code>g 2</code> 是否依赖于 <code>x</code> 而不能直接将 <code>x = 3</code> 删掉。</p>
+<h3 id="闭包可以让函数能在定义时进行类型检查"><a href="#闭包可以让函数能在定义时进行类型检查" class="headerlink" title="闭包可以让函数能在定义时进行类型检查"></a>闭包可以让函数能在定义时进行类型检查</h3><p>这个不用多说了，如果函数中访问的外部变量是从动态环境中获取的，取值类型又不确定，肯定不能进行类型检查。</p>
+<h3 id="闭包更加方便存储需要的数据"><a href="#闭包更加方便存储需要的数据" class="headerlink" title="闭包更加方便存储需要的数据"></a>闭包更加方便存储需要的数据</h3><p>这个是显然的。引入闭包的一个原因就是函数不会随着调用时的情况改变自己的功能。</p>
+<hr>
+<p>动态作用域有时会比较方便。ML 中异常的表现和动态作用域很像，异常被抛出后总是被栈上最近的 handle 语句处理，这个在编译时无法确定，只能在运行时确定。</p>
+<h2 id="Closures-and-Recomputation"><a href="#Closures-and-Recomputation" class="headerlink" title="Closures and Recomputation"></a>Closures and Recomputation</h2><p>利用闭包可以节省不必要的重复计算：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> filter(f, <span class="literal">[]</span>) = <span class="literal">[]</span></span><br><span class="line">  | filter(f, x :: xs) = <span class="keyword">if</span> f x <span class="keyword">then</span> x :: filter(f, xs) <span class="keyword">else</span> filter(f, xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">fun</span> longer_than_1(xs, x) = </span><br><span class="line">    filter(<span class="keyword">fn</span> s =&gt; <span class="type">String</span>.size s &gt; <span class="type">String</span>.size x, xs)</span><br><span class="line"><span class="keyword">fun</span> longer_than_2(xs, x) = </span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">val</span> len = <span class="type">String</span>.size x <span class="keyword">in</span> filter(<span class="keyword">fn</span> s =&gt; <span class="type">String</span>.size s &gt; len, xs) <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>longer_than_2</code> 中 <code>x</code> 的长度被缓存下来。</p>
+<h2 id="Fold-and-More-Closures"><a href="#Fold-and-More-Closures" class="headerlink" title="Fold and More Closures"></a>Fold and More Closures</h2><p><code>fold</code> 是另一个很重要的函数。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> fold(f, acc, xs) =</span><br><span class="line">    <span class="keyword">case</span> xs <span class="keyword">of</span></span><br><span class="line">        <span class="literal">[]</span> =&gt; acc</span><br><span class="line">        | y :: ys =&gt; fold(f, f(acc, y), ys)</span><br></pre></td></tr></table></figure>
+<p><code>fold</code> 的作用就是 <strong>从一个递归的结构中得到单一的结果</strong>。所有有这种需求的场景都可以考虑一下使用 <code>fold</code>。使用 <code>fold</code> 不一定是针对列表的，实际上对所有的递归结构都有效，并且 <code>fold</code> 的概念实际上将 <strong>结构的遍历方式</strong> 和 <strong>结果的计算方式</strong> 这两个不同的函数分离开了。</p>
+<h2 id="Closure-Idiom-Combining-Functions"><a href="#Closure-Idiom-Combining-Functions" class="headerlink" title="Closure Idiom: Combining Functions"></a>Closure Idiom: Combining Functions</h2><p>从这一节开始的几小节是关于高阶函数和闭包的一些 idioms。</p>
+<hr>
+<p>这一节内容就是函数的复合。比如要算一个数的绝对值的平方根：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> sqrt_abs_1 x = <span class="type">Math</span>.sqrt(<span class="type">Real</span>.fromInt(abs x))</span><br><span class="line"><span class="keyword">val</span> sqrt_abs_2 = <span class="type">Math</span>.sqrt o <span class="type">Real</span>.fromInt o abs</span><br><span class="line"></span><br><span class="line"><span class="keyword">infix</span> |&gt;</span><br><span class="line"><span class="keyword">fun</span> x |&gt; f = f x</span><br><span class="line"><span class="keyword">fun</span> sqrt_abs_3 x = x |&gt; abs |&gt; <span class="type">Real</span>.fromInt |&gt; <span class="type">Math</span>.sqrt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>第一种写法是常规写法。</li>
+<li>第二种写法使用了中缀运算符 <code>o</code> 对函数进行复合。</li>
+<li>第三种写法建立了新的中缀运算符 <code>|&gt;</code>，类似 F# 中的管道对函数复合。</li>
+</ul>
+<p>第二种和第三种的区别在于第三种复合方向是从左到右的，符合直觉。</p>
+<hr>
+<p>但是这和闭包有什么关系呢？我猜例如 <code>sqrt_abs_2</code> 这个函数使用了 <code>abs</code> 这个函数，而 <code>abs</code> 是处于 <code>sqrt_abs_2</code> 的闭包中的，只能这么强行解释了。</p>
+<h2 id="Closure-Idiom-Currying"><a href="#Closure-Idiom-Currying" class="headerlink" title="Closure Idiom: Currying"></a>Closure Idiom: Currying</h2><p>科里化是将多参数的函数转化为多个单参数的函数的过程。前面提到所有的函数实际上只接受一个参数，是一个元组，但是逻辑上还是接受多个参数的。</p>
+<p>例如有个函数接受一个三元组，判定它们是否是升序排列的：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> is_sorted(x, y, z) = x &lt; y <span class="keyword">andalso</span> y &lt; z</span><br></pre></td></tr></table></figure>
+<p>这个函数逻辑上接受三个参数，通过科里化，变成：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> is_sorted_1 = <span class="keyword">fn</span> x =&gt; <span class="keyword">fn</span> y =&gt; <span class="keyword">fn</span> z =&gt; x &lt; y <span class="keyword">andalso</span> y &lt; z</span><br></pre></td></tr></table></figure>
+<p>此时 <code>is_sorted_1</code> 变成了一个逻辑上接受单个参数的函数，它返回一个接受单个参数的函数，这个函数又返回一个接受单个参数的函数，最后这个函数才返回判定结果。闭包在其中的应用是显然的。如果要调用这个函数，只需：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> res_1 = ((is_sorted_1 <span class="number">3</span>) <span class="number">5</span>) <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p>科里化后不管是定义还是使用看起来都比较复杂，但是它是有语法糖的。ML 中表达式 <code>e1 e2 e3</code> 的顺序为 <code>((e1) e2) e3</code>。加糖之后和 Haskell 很像，都是用空格分割参数（要两者混用也是可以的）：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> is_sorted_2 x y z = x &lt; y <span class="keyword">andalso</span> y &lt; z</span><br><span class="line"><span class="keyword">val</span> res_2 = is_sorted_2 <span class="number">3</span> <span class="number">5</span> <span class="number">7</span></span><br></pre></td></tr></table></figure>
+<p><strong>匿名函数没有这个语法糖。</strong></p>
+<p>需要注意 <code>is_sorted</code> 的类型是 <code>fn : int * int * int -&gt; bool</code>，而 <code>is_sorted_2</code> 的类型是 <code>fn : int -&gt; int -&gt; int -&gt; bool</code>，二者是不一样的。<strong>但是不要想成两种不同的具有三个参数的函数的签名写法，只要把第一种想成是接受三元组，第二种想成是效果上接受三个参数的函数即可。</strong></p>
+<p>之前的写法是一个谎言，建议默认用科里化的写法。</p>
+<h2 id="Partial-Application"><a href="#Partial-Application" class="headerlink" title="Partial Application"></a>Partial Application</h2><p>Partial application 是对科里化后的函数提供部分参数，从而得到一个新的可复用的函数。比如使用 <code>fold</code> 可以定义 <code>sum</code>：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> fold f acc xs = <span class="keyword">case</span> xs <span class="keyword">of</span> <span class="literal">[]</span> =&gt; acc | y :: ys =&gt; fold f (f acc y) ys</span><br><span class="line"><span class="keyword">val</span> sum = fold (<span class="keyword">fn</span> a =&gt; <span class="keyword">fn</span> b =&gt; a + b) <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>（受限于 ML 的类型系统，有时候可能需要显式写出自变量或者函数的签名。）</p>
+<h2 id="Currying-Wrapup"><a href="#Currying-Wrapup" class="headerlink" title="Currying Wrapup"></a>Currying Wrapup</h2><p>有时候希望使用 partial application，但是要用的函数是一个接受元组的多参数函数；有时候要传入的不是函数的第一个参数。此时有些函数可以帮忙：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> curry f x y = f (x, y)</span><br><span class="line"><span class="keyword">fun</span> uncurry f (x, y) = f x y</span><br><span class="line"><span class="keyword">fun</span> flip f x y = f y x</span><br></pre></td></tr></table></figure>
+<p><code>curry</code> 函数可以将一个接受元组的函数进行科里化；<code>uncurry</code> 函数则完成相反的过程；<code>flip</code> 函数将一个函数的两个参数顺序颠倒。</p>
+<p>因为用这些函数的时候常常是以 partial application 的形式调用的，所以出现在等号左边的 <code>x</code> 和 <code>y</code> 的含义其实相当于一种“占位符”。我感觉这里最妙的是 <code>uncurry</code> 的写法，<code>f (x, y)</code> 看上去是一个函数调用，实际上只是一个模式匹配。</p>
+<hr>
+<p>关于科里化的效率问题，作者提到取决于实现而非语言，并且建议不要面向实现编程，除非十分重要。推荐总是使用科里化。</p>
+<h2 id="Mutable-References"><a href="#Mutable-References" class="headerlink" title="Mutable References"></a>Mutable References</h2><p>ML 支持可变的引用（引用指向不可变，内容可变），但是不推荐使用。</p>
+<p>对于一个类型 <code>t</code>，其可变引用类型为 <code>t ref</code>。（和 <code>t list</code> 类似。）例如指向整数的引用是 <code>int ref</code>。</p>
+<p>使用以下函数进行访问、修改：</p>
+<ul>
+<li><code>ref e</code> 会创建一个以 <code>e</code> 的类型为元素类型、<code>e</code> 的值为内容的引用。</li>
+<li><code>e1 := e2</code> 更新引用中的内容。</li>
+<li><code>!e</code> 读取引用中的内容。</li>
+</ul>
+<p>如果要解决的问题中有本质上的需要更新内容的情形，可以考虑使用。</p>
+<h2 id="Closure-Idiom-Callbacks"><a href="#Closure-Idiom-Callbacks" class="headerlink" title="Closure Idiom: Callbacks"></a>Closure Idiom: Callbacks</h2><p>用可变引用可以写出回调的效果。下面的例子里面，每次事件 <code>event</code> 触发都会产生一个 <code>onEvent</code> 的调用，进而调用对应的回调函数。</p>
+<p>假设回调的框架如下：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> callbacks : (<span class="built_in">int</span> -&gt; <span class="built_in">unit</span>) <span class="built_in">list</span> <span class="built_in">ref</span> = <span class="built_in">ref</span> <span class="literal">[]</span></span><br><span class="line"><span class="keyword">fun</span> add_callback f = callbacks := f :: !callbacks</span><br><span class="line"><span class="keyword">fun</span> on_event n = <span class="keyword">let</span> <span class="keyword">fun</span> apply_all fns x = <span class="keyword">case</span> fns <span class="keyword">of</span></span><br><span class="line">    <span class="literal">[]</span> =&gt; <span class="literal">()</span></span><br><span class="line">    | f :: fs =&gt; (f x ; apply_all fs x)</span><br><span class="line">    <span class="keyword">in</span> apply_all (!callbacks) n <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>然后注册了两个回调函数：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> count = <span class="built_in">ref</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">val</span> count_callback = add_callback (<span class="keyword">fn</span> _ =&gt; count := !count + <span class="number">1</span>)</span><br><span class="line"><span class="keyword">val</span> log_callback = add_callback (<span class="keyword">fn</span> x =&gt; print (<span class="type">Int</span>.toString x))</span><br></pre></td></tr></table></figure>
+<p>随后，系统每次调用 <code>on_event n</code> 的时候，<code>count</code> 都会加一，并且 <code>n</code> 会被打印出来。</p>
+<h2 id="Standard-Library-Documentation"><a href="#Standard-Library-Documentation" class="headerlink" title="Standard-Library Documentation"></a>Standard-Library Documentation</h2><p>ML 有一个标准库。</p>
+<hr>
+<p>可能有用的东西：</p>
+<ol>
+<li><p>在 REPL 中输入 <code>structure X = List</code>，可以得到一个输出 <code>LIST</code>。</p>
+</li>
+<li><p>再输入 <code>signature X = LIST</code> 就可以看到和 LIST 相关的所有函数的签名。</p>
+</li>
+</ol>
+<h2 id="Abstract-Data-Types-With-Closures"><a href="#Abstract-Data-Types-With-Closures" class="headerlink" title="Abstract Data Types With Closures"></a>Abstract Data Types With Closures</h2><p>通过在记录中将某项设置为一个函数的方法可以写出类似 OOP 的效果。</p>
+<p>如果将记录、闭包、可变数据类型这三者结合起来的话可以在函数式编程中用很折腾的方法写 OOP。</p>
+<h2 id="Closure-Idioms-Without-Closures"><a href="#Closure-Idioms-Without-Closures" class="headerlink" title="Closure Idioms Without Closures"></a>Closure Idioms Without Closures</h2><p>有些语言没有闭包，这节准备在这种语言中实现几个函数式编程中常用的函数。</p>
+<h2 id="Java-Without-Closures"><a href="#Java-Without-Closures" class="headerlink" title="Java Without Closures"></a>Java Without Closures</h2><p>这节讲的是如何使用 Java 中的类、接口和泛型来模拟闭包以及各种高阶函数。</p>
+<p><em>本节没有问题。</em></p>
+<h2 id="C-Without-Closures"><a href="#C-Without-Closures" class="headerlink" title="C Without Closures"></a>C Without Closures</h2><p>这节讲的是如何使用 C 中的结构体和函数指针模拟闭包和各种高阶函数。其实 C 和函数式语言类似，函数都是 first class 的，但是没有闭包。模拟出闭包的关键是在每个函数的参数中都加上一个表示环境的 <code>void*</code> 参数，这个参数用来存放该函数在某次调用中需要用到的环境。</p>
+<h2 id="Course-Motivation-Introduction"><a href="#Course-Motivation-Introduction" class="headerlink" title="Course-Motivation Introduction"></a>Course-Motivation Introduction</h2><p><em>本节没有问题。</em></p>
+<h2 id="Why-Study-General-PL-Concepts"><a href="#Why-Study-General-PL-Concepts" class="headerlink" title="Why Study General PL Concepts?"></a>Why Study General PL Concepts?</h2><p>课程将会重视语言的语义和惯用法。关于语言的基本使用需要掌握语义，掌握惯用法会让程序质量更好。</p>
+<p>一些语言中存在的语义可能在别的语言中不支持，例如 ML 有模式匹配但是很多语言没有，这时可以将模式匹配的思路作为其它语言的惯用法使代码更优美。</p>
+<h2 id="Are-All-PLs-the-Same"><a href="#Are-All-PLs-the-Same" class="headerlink" title="Are All PLs the Same?"></a>Are All PLs the Same?</h2><p>所有的编程语言在表现能力上等价，但是不同语言完成不同任务的方便程度不同。学习的时候应该注意不同语言的差异性，而不要只看到相似性。</p>
+<h2 id="Why-Functional-Languages"><a href="#Why-Functional-Languages" class="headerlink" title="Why Functional Languages?"></a>Why Functional Languages?</h2><p>对程序语言的研究一般需要相当长的时间才会在实际工程上出现。函数式语言目前还没有大规模应用，但是有越来越多的使用函数式语言的特性被加入到现有的语言中，可以认为是大势所趋。</p>
+<h2 id="Why-ML-Racket-and-Ruby"><a href="#Why-ML-Racket-and-Ruby" class="headerlink" title="Why ML, Racket, and Ruby?"></a>Why ML, Racket, and Ruby?</h2><p>ML 是静态类型函数式语言；Racket 是动态类型函数式语言；Ruby 是动态类型面向对象语言。</p>
+<p><em>本节没有问题。</em></p>
+
       
     </div>
 
@@ -471,8 +613,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -538,6 +689,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Section-3"><span class="nav-number">1.</span> <span class="nav-text">Section 3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction-to-First-Class-Functions"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction to First-Class Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数式编程与函数式语言"><span class="nav-number">1.1.1.</span> <span class="nav-text">函数式编程与函数式语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数作为值与高阶函数"><span class="nav-number">1.1.2.</span> <span class="nav-text">函数作为值与高阶函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数闭包"><span class="nav-number">1.1.3.</span> <span class="nav-text">函数闭包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Functions-as-Arguments"><span class="nav-number">1.2.</span> <span class="nav-text">Functions as Arguments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymorphic-Types-and-Functions-as-Arguments"><span class="nav-number">1.3.</span> <span class="nav-text">Polymorphic Types and Functions as Arguments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Anonymous-Functions"><span class="nav-number">1.4.</span> <span class="nav-text">Anonymous Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Unnecessary-Function-Wrapping"><span class="nav-number">1.5.</span> <span class="nav-text">Unnecessary Function Wrapping</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-and-Filter"><span class="nav-number">1.6.</span> <span class="nav-text">Map and Filter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Generalizing-Prior-Topics"><span class="nav-number">1.7.</span> <span class="nav-text">Generalizing Prior Topics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lexical-Scope"><span class="nav-number">1.8.</span> <span class="nav-text">Lexical Scope</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lexical-Scope-and-Higher-Order-Functions"><span class="nav-number">1.9.</span> <span class="nav-text">Lexical Scope and Higher-Order Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Lexical-Scope"><span class="nav-number">1.10.</span> <span class="nav-text">Why Lexical Scope</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包可以让使函数的含义与变量名无关"><span class="nav-number">1.10.1.</span> <span class="nav-text">闭包可以让使函数的含义与变量名无关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包可以让函数能在定义时进行类型检查"><span class="nav-number">1.10.2.</span> <span class="nav-text">闭包可以让函数能在定义时进行类型检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包更加方便存储需要的数据"><span class="nav-number">1.10.3.</span> <span class="nav-text">闭包更加方便存储需要的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closures-and-Recomputation"><span class="nav-number">1.11.</span> <span class="nav-text">Closures and Recomputation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fold-and-More-Closures"><span class="nav-number">1.12.</span> <span class="nav-text">Fold and More Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-Idiom-Combining-Functions"><span class="nav-number">1.13.</span> <span class="nav-text">Closure Idiom: Combining Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-Idiom-Currying"><span class="nav-number">1.14.</span> <span class="nav-text">Closure Idiom: Currying</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Partial-Application"><span class="nav-number">1.15.</span> <span class="nav-text">Partial Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Currying-Wrapup"><span class="nav-number">1.16.</span> <span class="nav-text">Currying Wrapup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutable-References"><span class="nav-number">1.17.</span> <span class="nav-text">Mutable References</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-Idiom-Callbacks"><span class="nav-number">1.18.</span> <span class="nav-text">Closure Idiom: Callbacks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Standard-Library-Documentation"><span class="nav-number">1.19.</span> <span class="nav-text">Standard-Library Documentation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract-Data-Types-With-Closures"><span class="nav-number">1.20.</span> <span class="nav-text">Abstract Data Types With Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closure-Idioms-Without-Closures"><span class="nav-number">1.21.</span> <span class="nav-text">Closure Idioms Without Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-Without-Closures"><span class="nav-number">1.22.</span> <span class="nav-text">Java Without Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C-Without-Closures"><span class="nav-number">1.23.</span> <span class="nav-text">C Without Closures</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Course-Motivation-Introduction"><span class="nav-number">1.24.</span> <span class="nav-text">Course-Motivation Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Study-General-PL-Concepts"><span class="nav-number">1.25.</span> <span class="nav-text">Why Study General PL Concepts?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Are-All-PLs-the-Same"><span class="nav-number">1.26.</span> <span class="nav-text">Are All PLs the Same?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-Functional-Languages"><span class="nav-number">1.27.</span> <span class="nav-text">Why Functional Languages?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-ML-Racket-and-Ruby"><span class="nav-number">1.28.</span> <span class="nav-text">Why ML, Racket, and Ruby?</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
