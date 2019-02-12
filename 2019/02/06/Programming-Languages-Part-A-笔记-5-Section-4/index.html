@@ -109,15 +109,18 @@
 
 
 
-  <meta name="keywords" content="编程语言理论">
+  <meta name="description" content="Section 4Section Introduction本节没有问题。 What is Type InferenceML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。 一般来说类型推断后再实施类型检查，但是实践中二者往往合并。 类型推断的难度取决于类型系统">
+<meta name="keywords" content="编程语言理论">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Programming Languages (Part A) 笔记 5 Section 4">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/index.html">
 <meta property="og:site_name" content="My Blog">
+<meta property="og:description" content="Section 4Section Introduction本节没有问题。 What is Type InferenceML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。 一般来说类型推断后再实施类型检查，但是实践中二者往往合并。 类型推断的难度取决于类型系统">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-05T16:06:16.622Z">
+<meta property="og:updated_time" content="2019-02-12T08:56:33.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Programming Languages (Part A) 笔记 5 Section 4">
+<meta name="twitter:description" content="Section 4Section Introduction本节没有问题。 What is Type InferenceML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。 一般来说类型推断后再实施类型检查，但是实践中二者往往合并。 类型推断的难度取决于类型系统">
 
 
 
@@ -321,12 +324,24 @@
                 
               
 
-              <time title="创建时间：2019-02-06 00:02:18 / 修改时间：00:06:16" itemprop="dateCreated datePublished" datetime="2019-02-06T00:02:18+08:00">2019-02-06</time>
+              <time title="创建时间：2019-02-06 00:02:18" itemprop="dateCreated datePublished" datetime="2019-02-06T00:02:18+08:00">2019-02-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-12 16:56:33" itemprop="dateModified" datetime="2019-02-12T16:56:33+08:00">2019-02-12</time>
               
             
           </span>
@@ -371,7 +386,81 @@
       
 
       
-        
+        <h1 id="Section-4"><a href="#Section-4" class="headerlink" title="Section 4"></a>Section 4</h1><h2 id="Section-Introduction"><a href="#Section-Introduction" class="headerlink" title="Section Introduction"></a>Section Introduction</h2><p><em>本节没有问题。</em></p>
+<h2 id="What-is-Type-Inference"><a href="#What-is-Type-Inference" class="headerlink" title="What is Type Inference"></a>What is Type Inference</h2><p>ML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。</p>
+<p>一般来说类型推断后再实施类型检查，但是实践中二者往往合并。</p>
+<p>类型推断的难度取决于类型系统。但是类型系统的严格程度和类型推断的难度没有直接的关系，拒绝所有程序的类型系统和接受所有程序的类型系统实现难度是一样的。</p>
+<h2 id="ML-Type-Inference"><a href="#ML-Type-Inference" class="headerlink" title="ML Type Inference"></a>ML Type Inference</h2><p>ML 中类型推断的若干步骤：</p>
+<ul>
+<li>按照次序对绑定进行类型推断（这就是为什么不能使用后面才出现的绑定）。</li>
+<li>对于每个 <code>val</code> 和 <code>fun</code> 绑定，根据其语句分析各种约束条件（constraints）。<ul>
+<li>如果约束条件不足，表明这个函数是 polymorphic 的。</li>
+<li>如果约束条件过多，表明实际上这个函数存在类型错误。</li>
+</ul>
+</li>
+</ul>
+<p>ML 的类型推断可以推断出带有类型参数的函数，但是类型推断和 polymorphic 是两个不相关的概念。</p>
+<h2 id="Type-Inference-Examples"><a href="#Type-Inference-Examples" class="headerlink" title="Type Inference Examples"></a>Type Inference Examples</h2><p>这节是几个类型推断的例子。一些通用的方式：在分析绑定时，如果不确定某个绑定的类型，就先设未知类型 $T_n$ 等。设定完成后分析绑定中的各个语句和表达式建立不同的未知类型间的方程。解这些方程，如果得到了“精确的”解就表明所有的类型都可以推导出来；如果得不到精确的解表明绑定是 polymorphic 的；如果方程间存在矛盾表明函数类型错误。</p>
+<h2 id="Polymorphic-Examples"><a href="#Polymorphic-Examples" class="headerlink" title="Polymorphic Examples"></a>Polymorphic Examples</h2><p>继续上一节的类型推断。当出现了得不到精确解的情况，即无法拥有更多信息确定绑定的类型，此时应将所有的未确定的未知类型换成类型参数。例如将所有的 $T_1$ 换成 <code>&#39;a</code>。完成替换后就得到了一个 polymorphic 的函数的类型。</p>
+<h2 id="The-Value-Restriction-and-Other-Type-Inference-Challenges"><a href="#The-Value-Restriction-and-Other-Type-Inference-Challenges" class="headerlink" title="The Value Restriction and  Other Type-Inference Challenges"></a>The Value Restriction and  Other Type-Inference Challenges</h2><h3 id="Value-Restriction"><a href="#Value-Restriction" class="headerlink" title="Value Restriction"></a>Value Restriction</h3><p>ML 的类型系统存在一个问题。比如下面的代码看上去没问题：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> r = <span class="built_in">ref</span> <span class="type">NONE</span>       <span class="comment">(* r has type 'a option ref *)</span></span><br><span class="line"><span class="keyword">val</span> _ = r := <span class="type">SOME</span> <span class="string">"hi"</span> <span class="comment">(* := is ('a -&gt; 'a ref), 'a is string *)</span></span><br><span class="line"><span class="keyword">val</span> i = <span class="number">1</span> + valOf (!r) <span class="comment">(* ! is ('a ref -&gt; 'a), 'a is int *)</span></span><br></pre></td></tr></table></figure>
+<p>三句话在独立看的情况下都可以通过类型检测，但实际上有问题。可是因为模块系统的引入会导致不能单独禁止 <code>ref</code> 对此的使用，所以需要禁止掉所有潜在的形如这样的使用。</p>
+<p>Value restriction 规则让所有的变量绑定在有 polymorphic 的情况下，右边要么是值，要么是变量，而不能是一个计算出来的值：</p>
+<ul>
+<li><strong>右边是值</strong>：<code>val x = NONE</code></li>
+<li><strong>右边是变量</strong>：<code>val y = x</code></li>
+<li><strong>右边是计算出的值，被禁止</strong>：<code>val z = ref NONE</code></li>
+</ul>
+<p>使用这个规则可以防止上述情况出现（不是很显然，不要多想）。但是另一方面会使得一些应用不方便，例如在 partial application 时下面的代码是不可行的：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> pair_with_one = map (<span class="keyword">fn</span> x =&gt; (x, <span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>要么加上类型标注（从而限制了它的泛型性），要么不使用 partial application。</p>
+<h3 id="Challenges"><a href="#Challenges" class="headerlink" title="Challenges"></a>Challenges</h3><p>ML 的类型系统实际上处于一个实现难度“极小值”之处，对这个类型系统的修改（不论是严格还是放松）都会导致实现难度上升。例如如果去掉 polymorphic 会导致类型推断时出现条件不够的情况、如果添加子类型会导致实现更加复杂等。</p>
+<h2 id="Mutual-Recursion"><a href="#Mutual-Recursion" class="headerlink" title="Mutual Recursion"></a>Mutual Recursion</h2><p>Mutual recursion 指两个函数相互调用。因为绑定顺序必定是一个在另一个前，所以这个有点麻烦。</p>
+<p>假设 <code>f</code> 比 <code>g</code> 先定义，如果要在 <code>f</code> 中调用 <code>g</code>，一个做法是在定义 <code>f</code> 的时候就预留一个函数参数，等会将 <code>g</code> 传进来，在 <code>f</code> 的定义中调用这个参数即可。</p>
+<p>ML 有对 mutual recursion 的内建支持，如果希望 <code>f</code> 和 <code>g</code> 相互调用只需：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fun f x = ... g y ...</span><br><span class="line">and g x = ... f y ...</span><br></pre></td></tr></table></figure>
+<p>即可。使用 <code>and</code> 也可以定义 mutual recursion 的 datatype。</p>
+<h2 id="Modules-for-Namespace-Management"><a href="#Modules-for-Namespace-Management" class="headerlink" title="Modules for Namespace Management"></a>Modules for Namespace Management</h2><p>使用以下语法定义一个模组：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">structure</span> <span class="type">MyLib</span> = <span class="keyword">struct</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">fun</span> fact x = <span class="keyword">if</span> x = <span class="number">0</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> x * fact (x - <span class="number">1</span>)</span><br><span class="line"><span class="keyword">val</span> pi = <span class="type">Math</span>.pi</span><br><span class="line"><span class="keyword">val</span> zero = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>使用 <code>MyLib.fact</code> 和 <code>MyLib.pi</code> 引用模组中的内容。</p>
+<p>使用 <code>open MyLib</code> 可以导入 <code>MyLib</code> 中的所有绑定，现在可以直接使用 <code>fact</code> 作为 <code>MyLib.fact</code>。</p>
+<h2 id="Signatures-and-Hiding-Things"><a href="#Signatures-and-Hiding-Things" class="headerlink" title="Signatures and Hiding Things"></a>Signatures and Hiding Things</h2><p>Signature 是对模块外部接口的描述，它规定了一个模块至少应该实现哪些绑定，类型是什么。定义 signature 的语法：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">signature</span> <span class="type">MYLIB</span> = <span class="keyword">sig</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> fact : <span class="built_in">int</span> -&gt; <span class="built_in">int</span></span><br><span class="line"><span class="keyword">val</span> zero : <span class="built_in">int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>如果需要实现某个 signature，在定义模块时，将头部改为：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">structure</span> <span class="type">MyLib</span> :&gt; <span class="type">MYLIB</span> = <span class="keyword">struct</span></span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>即可。当使用了这种写法的时候，只有 <code>MYLIB</code> 中定义的绑定会被暴露出来，其它的绑定只能在模块内部使用。</p>
+<hr>
+<p>引入 signature 的目的应该是控制模块中哪些内容是对外可见的，另外也能起到类似接口的作用。</p>
+<h2 id="A-Module-Example"><a href="#A-Module-Example" class="headerlink" title="A Module Example"></a>A Module Example</h2><p>一个典型的模块具有 properties 和 invariants。其中 properties 相当于作者对使用者的保证，是模块的某种规范；invariants 是模块内部维护的一些约定，有了这些约定可以减少内部实现时的判定（比如某个函数实际上在边界情况下是错的，但是 invariants 保证了边界情况不会出现），但是这些约定对用户不可见。</p>
+<p>通过使用 signature 可以保护 properties 和 invariants 确实是成立的，从而在一定程度上保证模块的正确性。</p>
+<h2 id="Signatures-for-Our-Example"><a href="#Signatures-for-Our-Example" class="headerlink" title="Signatures for Our Example"></a>Signatures for Our Example</h2><p>这一节里面有价值的东西是可以在 signature 的定义中通过 <code>type</code> 关键字声明一个类型存在。一般用于必须要声明类型的存在以通过类型检查，但是又不能暴露出类型的定义以防止使用者构造出破坏了 properties 和 invariants 的数据。这种类型一般称为是抽象的。</p>
+<p>如果希望部分地暴露出一个具体类型可以通过 <code>fun</code> 来暴露一个构造函数。</p>
+<h2 id="Signature-Matching"><a href="#Signature-Matching" class="headerlink" title="Signature Matching"></a>Signature Matching</h2><p>判定一个模块是否具有指定的 signature：</p>
+<ul>
+<li>检查 signature 中所有的非抽象类型都在模块中存在。</li>
+<li>检查 signature 中所有的抽象类型，模块中都存在一个对应的具体类型（不论是 datatype 还是 type 都行）。</li>
+<li>signature 中所有的函数都应该在模块中找到一个抽象程度不比 signature 低的函数实现。</li>
+<li>signature 中的每个异常应该都在模块中被声明。</li>
+</ul>
+<h2 id="An-Equivalent-Structure"><a href="#An-Equivalent-Structure" class="headerlink" title="An Equivalent Structure"></a>An Equivalent Structure</h2><p>通过使用 signature 可以为同样的功能提供不同的模块实现。如果希望用户无法区分出两个实现了同样 signature 的模块，signature 的设计应当尽量简洁。这两个模块称为是 equivalent 的。</p>
+<h2 id="Another-Equivalent-Structure"><a href="#Another-Equivalent-Structure" class="headerlink" title="Another Equivalent Structure"></a>Another Equivalent Structure</h2><p><em>本节没有问题。</em></p>
+<h2 id="Different-Modules-Define-Different-Types"><a href="#Different-Modules-Define-Different-Types" class="headerlink" title="Different Modules Define Different Types"></a>Different Modules Define Different Types</h2><p>同一个 signature 在被不同模块实现时，signature 中的同一个类型在不同模块中是不同的类型，无法混淆使用。</p>
+<p>例如 signature 中定义 <code>type A</code>，那么模块 <code>B</code> 和模块 <code>C</code> 中的对应类型是 <code>B.A</code> 和 <code>C.A</code>，是不同的类型。一般来说 <code>B.A</code> 在 <code>C</code> 模块中会无法不兼容。这是因为两个模块可能在内部使用了不同的实现。</p>
+<h2 id="Equivalent-Functions"><a href="#Equivalent-Functions" class="headerlink" title="Equivalent Functions"></a>Equivalent Functions</h2><p>两个函数如果要是相同的需要满足诸多条件，例如在所有的同样的输入下产生同样的输出，或者同时停机，或者同时抛出异常，或者同时产生相同的内存读写/副作用等（同时是针对于运算步骤而言的）。</p>
+<p>只有两个函数相同时才能保证替换后所有的表现都不变。实际上函数相同的另一个定义就是不能观测到这是两个不同的函数。</p>
+<p>总是使用纯函数编程可以让两个函数是否相同变得更加容易判定，因此推荐这种编程范式。</p>
+<h2 id="Standard-Equivalences"><a href="#Standard-Equivalences" class="headerlink" title="Standard Equivalences"></a>Standard Equivalences</h2><p>有一些简单的判定函数相同的原则。</p>
+<h3 id="语法糖"><a href="#语法糖" class="headerlink" title="语法糖"></a>语法糖</h3><p>采用了语法糖的函数，和未采用语法糖的函数的相同是容易判定的，例如以下两个：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> f1 x = x <span class="keyword">andalso</span> g x</span><br><span class="line"><span class="keyword">fun</span> f2 x = <span class="keyword">if</span> x <span class="keyword">then</span> g x <span class="keyword">else</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>另外 <code>let val x = e1 in e2 end</code> 实际上是 <code>(fn x =&gt; e2) e1</code> 的语法糖。二者行为是一致的。</p>
+<h3 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h3><p>将所有的同一个绑定换成另外一个名字。如果这种替换不会影响到运行的逻辑（没有和已经定义的绑定冲突、没有和未来要使用的绑定冲突）的话，两段代码是等价的。</p>
+<h3 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h3><p>使用了辅助函数的函数和将这个辅助函数提取出来作为单独的函数；或者使用了辅助函数和直接将辅助函数内联进函数的函数，两者是否相同是容易判定的。</p>
+<h3 id="unnecessary-wrapping"><a href="#unnecessary-wrapping" class="headerlink" title="unnecessary wrapping"></a>unnecessary wrapping</h3><p>存在 unnecessary wrapping 的情况下两个函数是否相同是容易判定的。但是要注意如果被 wrap 的函数具有副作用的话，wrap 之后的和 partial application 的函数可能是不相同的（partial application 可能只触发一次副作用，wrap 了的函数会多次触发）。</p>
+<h2 id="Equivalence-Versus-Performance"><a href="#Equivalence-Versus-Performance" class="headerlink" title="Equivalence Versus Performance"></a>Equivalence Versus Performance</h2><p>实际上前面的函数的相等是在编程语言的层面来说的。另外的层面包括 <strong>渐进性相等</strong>（时间复杂度和空间复杂度在忽略常数因子的情况下相等）和 <strong>系统性相等</strong>（在实际运行时，考虑常数因子和各种 tuning 的情况下二者的运行时间）。</p>
+<p>每种不同的层面的描述各有利弊。尽管两个函数在编程语言层面是相等的，也可以将其中运行较慢的函数换成更快的版本以获取性能提升。</p>
+<hr>
+<p>Part A 完。</p>
+
       
     </div>
 
@@ -467,8 +556,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -534,6 +632,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Section-4"><span class="nav-number">1.</span> <span class="nav-text">Section 4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Section-Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Section Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Type-Inference"><span class="nav-number">1.2.</span> <span class="nav-text">What is Type Inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ML-Type-Inference"><span class="nav-number">1.3.</span> <span class="nav-text">ML Type Inference</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Inference-Examples"><span class="nav-number">1.4.</span> <span class="nav-text">Type Inference Examples</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymorphic-Examples"><span class="nav-number">1.5.</span> <span class="nav-text">Polymorphic Examples</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Value-Restriction-and-Other-Type-Inference-Challenges"><span class="nav-number">1.6.</span> <span class="nav-text">The Value Restriction and  Other Type-Inference Challenges</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Value-Restriction"><span class="nav-number">1.6.1.</span> <span class="nav-text">Value Restriction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Challenges"><span class="nav-number">1.6.2.</span> <span class="nav-text">Challenges</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mutual-Recursion"><span class="nav-number">1.7.</span> <span class="nav-text">Mutual Recursion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modules-for-Namespace-Management"><span class="nav-number">1.8.</span> <span class="nav-text">Modules for Namespace Management</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Signatures-and-Hiding-Things"><span class="nav-number">1.9.</span> <span class="nav-text">Signatures and Hiding Things</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Module-Example"><span class="nav-number">1.10.</span> <span class="nav-text">A Module Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Signatures-for-Our-Example"><span class="nav-number">1.11.</span> <span class="nav-text">Signatures for Our Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Signature-Matching"><span class="nav-number">1.12.</span> <span class="nav-text">Signature Matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#An-Equivalent-Structure"><span class="nav-number">1.13.</span> <span class="nav-text">An Equivalent Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Another-Equivalent-Structure"><span class="nav-number">1.14.</span> <span class="nav-text">Another Equivalent Structure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Different-Modules-Define-Different-Types"><span class="nav-number">1.15.</span> <span class="nav-text">Different Modules Define Different Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Equivalent-Functions"><span class="nav-number">1.16.</span> <span class="nav-text">Equivalent Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Standard-Equivalences"><span class="nav-number">1.17.</span> <span class="nav-text">Standard Equivalences</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法糖"><span class="nav-number">1.17.1.</span> <span class="nav-text">语法糖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重命名"><span class="nav-number">1.17.2.</span> <span class="nav-text">重命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#辅助函数"><span class="nav-number">1.17.3.</span> <span class="nav-text">辅助函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#unnecessary-wrapping"><span class="nav-number">1.17.4.</span> <span class="nav-text">unnecessary wrapping</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Equivalence-Versus-Performance"><span class="nav-number">1.18.</span> <span class="nav-text">Equivalence Versus Performance</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
