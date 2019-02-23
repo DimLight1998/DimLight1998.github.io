@@ -117,7 +117,7 @@
 <meta property="og:site_name" content="My Blog">
 <meta property="og:description" content="Section 6Datatype-Programming in Racket Without Structs在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 &amp;#39; 开头的字符串，例如 &amp;#39;foo，symbol 之间用 eq? 判断相等。 以下是一个移植的例子： 1234datatype exp = Cons">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-22T02:36:33.581Z">
+<meta property="og:updated_time" content="2019-02-22T07:08:17.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Programming Languages (Part B) 笔记 3 Section 6">
 <meta name="twitter:description" content="Section 6Datatype-Programming in Racket Without Structs在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 &amp;#39; 开头的字符串，例如 &amp;#39;foo，symbol 之间用 eq? 判断相等。 以下是一个移植的例子： 1234datatype exp = Cons">
@@ -341,7 +341,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-22 10:36:33" itemprop="dateModified" datetime="2019-02-22T10:36:33+08:00">2019-02-22</time>
+                <time title="修改时间：2019-02-22 15:08:17" itemprop="dateModified" datetime="2019-02-22T15:08:17+08:00">2019-02-22</time>
               
             
           </span>
@@ -405,7 +405,8 @@
 <p>这样一来上一节的任务可以写为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(struct const (int) #:transparent)</span><br><span class="line">(struct negate (e) #:transparent)</span><br><span class="line">(struct add (e1 e2) #:transparent)</span><br><span class="line">(struct multiply (e1 e2) #:transparent)</span><br></pre></td></tr></table></figure>
 <p>针对于 <code>exp</code> 类型的 ML 函数都可以使用 Racket 写出，合理使用定义结构时得到的函数可以让实现更简单。</p>
-<h2 id="Advantages-of-Structs"><a href="#Advantages-of-Structs" class="headerlink" title="Advantages of Structs"></a>Advantages of Structs</h2><p><code>struct</code> 不是其它东西的语法糖，而是原生的能够构造出新类型的方式。如果用它构造了 <code>foo</code> 类型，那么只有 <code>foo?</code> 能返回 <code>#t</code>，其它所有类型判断都会返回 <code>#f</code>。通过使用 <code>struct</code> 可以更加精确地描述类型，同时使用它创建出来的函数也更加安全。如果没有 <code>struct</code> 的话就只能用列表和元组来定义新的类型，同时用户也能通过 <code>car</code> 和 <code>cdr</code> 进行访问，封装性不好。</p>
+<h2 id="Advantages-of-Structs"><a href="#Advantages-of-Structs" class="headerlink" title="Advantages of Structs"></a>Advantages of Structs</h2><p><code>struct</code> 不是其它东西的语法糖，而是原生的能够构造出新类型的方式。如果用它构造了 <code>foo</code> 类型，那么只有 <code>foo?</code> 能返回 <code>#t</code>，其它所有类型判断都会返回 <code>#f</code>。尽管使用列表可以模拟出 <code>struct</code>，但是使用 <code>struct</code> 构造出的类型不是列表，即 <code>list?</code> 返回 <code>#f</code>。</p>
+<p>通过使用 <code>struct</code> 可以更加精确地描述类型，同时使用它创建出来的函数也更加安全。如果没有 <code>struct</code> 的话就只能用列表和元组来定义新的类型，同时用户也能通过 <code>car</code> 和 <code>cdr</code> 进行访问，封装性不好。</p>
 <h2 id="Implementing-Programming-Languages"><a href="#Implementing-Programming-Languages" class="headerlink" title="Implementing Programming Languages"></a>Implementing Programming Languages</h2><p>实现语言的工作流是：</p>
 <ol>
 <li>语法解析字符串，得到 AST</li>
@@ -445,7 +446,7 @@
 <li><strong>进行函数调用</strong>：对 $body$ 进行求值，使用的环境是 $env$，但是要加上“函数参数对应 <code>e2</code> 的值”这一表项。为了实现函数自己递归调用，还要加上函数自身。</li>
 </ol>
 <h2 id="Are-Closures-Efficient"><a href="#Are-Closures-Efficient" class="headerlink" title="Are Closures Efficient?"></a>Are Closures Efficient?</h2><h3 id="更高效地实现闭包"><a href="#更高效地实现闭包" class="headerlink" title="更高效地实现闭包"></a>更高效地实现闭包</h3><p>每创建一个函数都要复制一遍当前的环境，看上去对空间浪费较严重，但是实际上使用 Racket 时，因为 <code>cons</code> 得到的列表和原列表是共享存储的，所以浪费没有想象中那么大。</p>
-<p>另一个实现时的技巧是 <strong>只保留函数体求值过程中要用到的绑定</strong>，为了完成这一点可以在编译阶段确定函数体中那些绑定是有可能被用到的（注意是编译阶段而不是在运行时即将创建函数的阶段，后者会慢很多，而前者对程序中的每个函数只要进行一次），这种绑定中的变量称为 <strong>free variable</strong>。在对函数进行求值后返回的闭包的环境中只包含这些 free variables 即可。</p>
+<p>另一个实现时的技巧是 <strong>只保留函数体求值过程中要用到的绑定</strong>，为了完成这一点可以在编译阶段确定函数体中哪些在外部的绑定是有可能被用到的（注意是编译阶段而不是在运行时即将创建函数的阶段，后者会慢很多，而前者对程序中的每个函数只要进行一次），这种绑定中，变量称为 <strong>free variable</strong>（也可以把所有的绑定都看成是变量）。在对函数进行求值后返回的闭包的环境中只包含这些 free variables 即可，对于用不上的变量不用包含，这样就能让闭包的环境空间占用更小。</p>
 <h3 id="将有闭包的语言编译到没有闭包的语言"><a href="#将有闭包的语言编译到没有闭包的语言" class="headerlink" title="将有闭包的语言编译到没有闭包的语言"></a>将有闭包的语言编译到没有闭包的语言</h3><p>如果源语言有闭包，目标语言没有闭包，依然是可以编译的。编译器对源语言函数进行求值时依然求出闭包，但是在目标语言中，所有的函数定义都额外接受一个“环境”参数，所有的函数调用都额外传入一个“环境”参数。在函数体中，如果函数需要用到 free variable 就在自己的“环境”参数中进行查询。</p>
 <p>只要从头到尾都保证这个 convention 就可以在没有闭包的语言中模拟出闭包特性。</p>
 <h2 id="Racket-Functions-As-“Macros”-For-Interpreted-Language"><a href="#Racket-Functions-As-“Macros”-For-Interpreted-Language" class="headerlink" title="Racket Functions As “Macros”  For Interpreted Language"></a>Racket Functions As “Macros”  For Interpreted Language</h2><p>在 Racket 中实现玩具语言时应当将 <strong>语言特性</strong> 和 <strong>元语言在实现时的功能</strong> 二者区分，例如在 <em>What Your Interpreter Can and Cannot Assume</em> 这节的代码中，<code>const</code> 是语言特性，<code>eval-exp</code> 是源语言在实现时的功能。</p>
@@ -453,7 +454,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(define (list-product es)</span><br><span class="line">  (if (null? es)</span><br><span class="line">    (const 1)</span><br><span class="line">    (multiply (car es) (list-product (cdr es)))))</span><br></pre></td></tr></table></figure>
 <p>尽管 <code>list-product</code> 看上去不是玩具语言特性的一部分，但依然可以在书写时使用之：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(add (const 3) (list-product (list (const 1) (const 2) (const 3) (const 4))))</span><br></pre></td></tr></table></figure>
-<p>由于这种函数的输入和输出都是 AST，因此确实可以看做是宏（将新的语法翻译到旧的语法上的方案）。上面的式子将会得到玩具语言中的一个合法表达式：</p>
+<p>由于这种函数的输入和输出都是玩具语言的 AST，因此确实可以看做是宏（将新的语法翻译到旧的语法上的方案）。注意在这个宏中不要执行任何的求值操作！因为宏是在编译前进行的，此处不应有任何实际的计算，计算不是宏的功能的一部分。上面的式子将会得到玩具语言中的一个合法表达式（而不应该得到 <code>(add (const 3) (const 24))</code>，否则违反前面的规则）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">(add</span><br><span class="line">  (const 3)</span><br><span class="line">  (multiply</span><br><span class="line">    (const 1)</span><br><span class="line">    (multiply (const 2) (multiply (const 3) (multiply (const 4) (const 1))))))</span><br></pre></td></tr></table></figure>
 
       
@@ -580,7 +581,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">55</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
