@@ -1447,7 +1447,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-27 21:26:33" itemprop="dateModified" datetime="2019-02-27T21:26:33+08:00">2019-02-27</time>
+                <time title="修改时间：2019-02-28 16:07:28" itemprop="dateModified" datetime="2019-02-28T16:07:28+08:00">2019-02-28</time>
               
             
           </span>
@@ -1494,8 +1494,10 @@
       
         
           
-          ML Strategy (2)
-          
+          ML Strategy (2)Error AnalysisCarrying out error analysis对于分类任务来说，如果测试集上的效果不好，可以找到那些分错类的样本，看看他们的共性是什么，然后单独训练一个专门负责这个的分类器。
+在查看共性时应当找到出现最多的共性。假设有一个将动物中的猫寻找出来的分类器，错误率是 10%，有些错误是将狗分类为了猫。如果在分类错误的样本中狗只占到了 5%，那么即使有专门的分类器处理这个情况，错误率也只能从 10% 降低到 9.5%，这是理论的错误值下限。找到分类错误的样本中那些占比较高的错误类别并进行处理的效果更好。
+Cleaning up inco
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/#more" rel="contents">
@@ -1617,7 +1619,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-27 21:25:31" itemprop="dateModified" datetime="2019-02-27T21:25:31+08:00">2019-02-27</time>
+                <time title="修改时间：2019-02-28 16:08:18" itemprop="dateModified" datetime="2019-02-28T16:08:18+08:00">2019-02-28</time>
               
             
           </span>
@@ -1664,7 +1666,8 @@
       
         
           
-          ML Strategy (1)Introduction to ML StrategyWhy ML Strategy当有一个任务需要完成的时候，如果效果不好可能需要进行相关调整和修改。如何找到关键的影响因素需要知道 ML 中的策略。
+          ML Strategy (1)来源 Coursera。
+Introduction to ML StrategyWhy ML Strategy当有一个任务需要完成的时候，如果效果不好可能需要进行相关调整和修改。如何找到关键的影响因素需要知道 ML 中的策略。
 Orthogonalization如果任务有多个性能指标需要调整，同时有多个因素可以被调节，那么较好的情况是这些因素对结果的影响是正交的，对单个因素的调节应当只影响某个性能指标。
 ML 中的性能指标有：
 
@@ -1673,7 +1676,7 @@ dev 集上的表现
 test 集上的表现
 实际产品的表项
 
-对于第一个指标，可以调节网络规模、优化器选择等；对于第二个指标，可以调节正则化
+对于第一个指标，可以调节网络规模、优化器选择等；对于
           ...
           <!--noindex-->
           <div class="post-button text-center">
