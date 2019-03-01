@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-1-Introduction-and-Overview/</loc>
+    
+    <lastmod>2019-03-01T03:34:56.254Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://DimLight1998.github.io/2018/10/20/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E8%AF%BE%E7%A8%8B%E9%A1%B9%E7%9B%AE%E5%8D%9A%E5%AE%A2-3/</loc>
     
     <lastmod>2019-02-28T08:20:27.799Z</lastmod>
@@ -121,14 +128,14 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-19/</loc>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-18/</loc>
     
     <lastmod>2019-02-28T08:20:27.784Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-18/</loc>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-19/</loc>
     
     <lastmod>2019-02-28T08:20:27.784Z</lastmod>
     
@@ -338,13 +345,6 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-5-Markov-Networks-Undirected-Models/</loc>
-    
-    <lastmod>2019-02-28T08:20:27.752Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-6-Decision-Making/</loc>
     
     <lastmod>2019-02-28T08:20:27.752Z</lastmod>
@@ -352,14 +352,21 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-4-Structured-CPDs-for-Bayesian-Networks/</loc>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-5-Markov-Networks-Undirected-Models/</loc>
+    
+    <lastmod>2019-02-28T08:20:27.752Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-3-Template-Models-for-Bayesian-Networks/</loc>
     
     <lastmod>2019-02-28T08:20:27.751Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-3-Template-Models-for-Bayesian-Networks/</loc>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-4-Structured-CPDs-for-Bayesian-Networks/</loc>
     
     <lastmod>2019-02-28T08:20:27.751Z</lastmod>
     
@@ -374,13 +381,6 @@
   
   <url>
     <loc>http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-%E7%AC%94%E8%AE%B0-4-Deep-Neural-Networks/</loc>
-    
-    <lastmod>2019-02-28T08:20:27.749Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-1-Introduction-and-Overview/</loc>
     
     <lastmod>2019-02-28T08:20:27.749Z</lastmod>
     
