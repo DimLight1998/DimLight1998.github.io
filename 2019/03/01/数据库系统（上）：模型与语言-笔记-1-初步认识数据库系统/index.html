@@ -109,15 +109,18 @@
 
 
 
-  <meta name="keywords" content="数据库">
+  <meta name="description" content="初步认识数据库系统来自 学堂在线。 数据库系统课程简要介绍本节没有问题。 本讲学习什么本节没有问题，学习时注意从使用者和实现者两方面进行考虑。 为什么要学习数据库系统本节没有问题。 什么是数据库数据库：有相联关系的数据的集合。 表：按行按列组织和展示的数据。 表的一些术语下面定义中的 表 指的是包含每列标题的表。  表名：一张表的名称。 表标题（格式）：每列的标题。 表内容：表中除去表标题剩下的数">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统（上）：模型与语言 笔记 1 初步认识数据库系统">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="初步认识数据库系统来自 学堂在线。 数据库系统课程简要介绍本节没有问题。 本讲学习什么本节没有问题，学习时注意从使用者和实现者两方面进行考虑。 为什么要学习数据库系统本节没有问题。 什么是数据库数据库：有相联关系的数据的集合。 表：按行按列组织和展示的数据。 表的一些术语下面定义中的 表 指的是包含每列标题的表。  表名：一张表的名称。 表标题（格式）：每列的标题。 表内容：表中除去表标题剩下的数">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T08:59:55.432Z">
+<meta property="og:updated_time" content="2019-03-03T08:45:46.539Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 1 初步认识数据库系统">
+<meta name="twitter:description" content="初步认识数据库系统来自 学堂在线。 数据库系统课程简要介绍本节没有问题。 本讲学习什么本节没有问题，学习时注意从使用者和实现者两方面进行考虑。 为什么要学习数据库系统本节没有问题。 什么是数据库数据库：有相联关系的数据的集合。 表：按行按列组织和展示的数据。 表的一些术语下面定义中的 表 指的是包含每列标题的表。  表名：一张表的名称。 表标题（格式）：每列的标题。 表内容：表中除去表标题剩下的数">
 
 
 
@@ -329,12 +332,24 @@
                 
               
 
-              <time title="创建时间：2019-03-01 13:10:40 / 修改时间：16:59:55" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:40+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 13:10:40" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:40+08:00">2019-03-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 16:45:46" itemprop="dateModified" datetime="2019-03-03T16:45:46+08:00">2019-03-03</time>
               
             
           </span>
@@ -379,7 +394,61 @@
       
 
       
-        
+        <h1 id="初步认识数据库系统"><a href="#初步认识数据库系统" class="headerlink" title="初步认识数据库系统"></a>初步认识数据库系统</h1><p>来自 <a href="http://www.xuetangx.com/courses/course-v1:HITx+13SC03100710_1x+sp/about" target="_blank" rel="noopener">学堂在线</a>。</p>
+<h2 id="数据库系统课程简要介绍"><a href="#数据库系统课程简要介绍" class="headerlink" title="数据库系统课程简要介绍"></a>数据库系统课程简要介绍</h2><p><em>本节没有问题。</em></p>
+<h2 id="本讲学习什么"><a href="#本讲学习什么" class="headerlink" title="本讲学习什么"></a>本讲学习什么</h2><p><em>本节没有问题，学习时注意从使用者和实现者两方面进行考虑。</em></p>
+<h2 id="为什么要学习数据库系统"><a href="#为什么要学习数据库系统" class="headerlink" title="为什么要学习数据库系统"></a>为什么要学习数据库系统</h2><p><em>本节没有问题。</em></p>
+<h2 id="什么是数据库"><a href="#什么是数据库" class="headerlink" title="什么是数据库"></a>什么是数据库</h2><p><strong>数据库</strong>：有相联关系的数据的集合。</p>
+<p><strong>表</strong>：按行按列组织和展示的数据。</p>
+<h3 id="表的一些术语"><a href="#表的一些术语" class="headerlink" title="表的一些术语"></a>表的一些术语</h3><p>下面定义中的 <strong>表</strong> 指的是包含每列标题的表。</p>
+<ul>
+<li><strong>表名</strong>：一张表的名称。</li>
+<li><strong>表标题（格式）</strong>：每列的标题。</li>
+<li><strong>表内容</strong>：表中除去表标题剩下的数据。</li>
+<li><strong>记录（元组）</strong>：一行数据。</li>
+<li><strong>字段（属性、数据项）</strong>：一列数据。一列数据又分 <strong>列名</strong> 和 <strong>列值</strong>。</li>
+<li><strong>关系模式</strong>：表名和表标题。</li>
+<li><strong>关系</strong>：不严格地讲，关系就是整张表。</li>
+</ul>
+<p>由此可以重新定义数据库：相互之间有关联关系的表的集合。</p>
+<hr>
+<p>关系数据库是结构化的数据库。存在非结构化的数据库。</p>
+<h2 id="什么是数据库系统"><a href="#什么是数据库系统" class="headerlink" title="什么是数据库系统"></a>什么是数据库系统</h2><p>数据库系统是以下软硬件的合称：</p>
+<ul>
+<li><strong>数据库（DB）</strong>：存储的实际数据。</li>
+<li><strong>数据库管理系统（DBMS）</strong>：管理数据库的系统软件，例如 MySQL。</li>
+<li><strong>数据库应用（DBAP）</strong>：可以想成是访问、修改数据库的客户端，可以完成特定的业务功能。</li>
+<li><strong>数据库管理员（DBA）</strong>：负责管理数据库和使用 DBMS 的人员。</li>
+<li><strong>计算机基本系统</strong>：基本硬件设施。</li>
+</ul>
+<h2 id="从用户角度看数据库管理系统"><a href="#从用户角度看数据库管理系统" class="headerlink" title="从用户角度看数据库管理系统"></a>从用户角度看数据库管理系统</h2><p>在 DBMS 的使用者看来，DBMS 应当提供以下功能：</p>
+<ul>
+<li><strong>允许用户创建表</strong>：DBMS 提供了 <em>数据定义语言</em>（DDL），可以用来创建表。</li>
+<li><strong>允许用户操纵数据</strong>：DBMS 提供了 <em>数据操纵语言</em>（DML），可以用来进行增删改查。</li>
+<li><strong>允许用户控制客户的权限</strong>：DBMS 提供了 <em>数据控制语言</em>（DCL），可以用来控制 DBA 的访问权限。</li>
+<li><strong>提供一些实用程序</strong>：例如转储、性能监控等。</li>
+</ul>
+<p>DDL、DML、DCL 合起来就构成了 SQL。</p>
+<p>SQL 可以被嵌入到其它高级语言中，被嵌入的语言称为 <strong>宿主语言</strong>。</p>
+<h2 id="从系统角度看数据库管理系统"><a href="#从系统角度看数据库管理系统" class="headerlink" title="从系统角度看数据库管理系统"></a>从系统角度看数据库管理系统</h2><p>在 DBMS 的实现者来看，DBMS 完成了以下事情：对于各种语言（例如 DDL），DBMS 会先使用一个编译器得知该语言的语义，然后使用对应的执行引擎操作文件完成任务。不同语言的编译器和执行引擎都不同。</p>
+<p>DBMS 可以经由操作系统工作，也有越过操作系统进行底层控制的 DBMS。</p>
+<p>DBMS 由很多更小的程序构成以完成工作：</p>
+<ul>
+<li><strong>语言编译器</strong></li>
+<li><strong>查询优化与查询实现</strong>：主要用于提高查询的性能</li>
+<li><strong>数据存储与索引</strong>：运用各种缓冲和索引</li>
+<li><strong>通信控制</strong>：提供网络环境下的操作与传输功能</li>
+<li><strong>事务管理</strong>：提供可靠性与一致性</li>
+<li><strong>故障恢复</strong></li>
+<li><strong>安全性控制</strong>：防止出现授权问题</li>
+<li><strong>完整性控制</strong>：保证数据完整、正确</li>
+<li><strong>数据字典管理</strong></li>
+<li><strong>应用程序接口</strong></li>
+<li>其它</li>
+</ul>
+<h2 id="数据库系统课程学习什么"><a href="#数据库系统课程学习什么" class="headerlink" title="数据库系统课程学习什么"></a>数据库系统课程学习什么</h2><p><em>本节没有问题。</em></p>
+<h2 id="回顾本讲学习了什么"><a href="#回顾本讲学习了什么" class="headerlink" title="回顾本讲学习了什么"></a>回顾本讲学习了什么</h2><p><em>本节没有问题。记住 DBMS 可以从使用者角度和实现者角度来看待。使用者看到的是各种语言，实现者看到的是各种程序。</em></p>
+
       
     </div>
 
@@ -479,8 +548,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -564,6 +642,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#初步认识数据库系统"><span class="nav-number">1.</span> <span class="nav-text">初步认识数据库系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统课程简要介绍"><span class="nav-number">1.1.</span> <span class="nav-text">数据库系统课程简要介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本讲学习什么"><span class="nav-number">1.2.</span> <span class="nav-text">本讲学习什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要学习数据库系统"><span class="nav-number">1.3.</span> <span class="nav-text">为什么要学习数据库系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是数据库"><span class="nav-number">1.4.</span> <span class="nav-text">什么是数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表的一些术语"><span class="nav-number">1.4.1.</span> <span class="nav-text">表的一些术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是数据库系统"><span class="nav-number">1.5.</span> <span class="nav-text">什么是数据库系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从用户角度看数据库管理系统"><span class="nav-number">1.6.</span> <span class="nav-text">从用户角度看数据库管理系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从系统角度看数据库管理系统"><span class="nav-number">1.7.</span> <span class="nav-text">从系统角度看数据库管理系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统课程学习什么"><span class="nav-number">1.8.</span> <span class="nav-text">数据库系统课程学习什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾本讲学习了什么"><span class="nav-number">1.9.</span> <span class="nav-text">回顾本讲学习了什么</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

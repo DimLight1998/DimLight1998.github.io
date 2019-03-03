@@ -121,7 +121,7 @@
 <meta property="og:image" content="http://dimlight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/DeepinScreenshot_select-area_20190302131703.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/DeepinScreenshot_select-area_20190302134716.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/DeepinScreenshot_select-area_20190302165520.png">
-<meta property="og:updated_time" content="2019-03-02T09:56:17.167Z">
+<meta property="og:updated_time" content="2019-03-02T13:48:41.054Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Probabilistic Graphical Models 1: Representation 笔记 2 Bayesian Network (Directed Models)">
 <meta name="twitter:description" content="Bayesian Network (Directed Models)Bayesian Network FundamentalsSemantics &amp;amp; Factorization贝叶斯网是一个 DAG，每个结点表示一个随机变量。将 DAG $G$ 中结点 $A$ 的直接前驱记作 $\text{Par}_G(A)$，则每个结点实际上表示了一个条件分布（conditional probabili">
@@ -354,7 +354,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-02 17:56:17" itemprop="dateModified" datetime="2019-03-02T17:56:17+08:00">2019-03-02</time>
+                <time title="修改时间：2019-03-02 21:48:41" itemprop="dateModified" datetime="2019-03-02T21:48:41+08:00">2019-03-02</time>
               
             
           </span>
@@ -401,7 +401,7 @@
       
         <h1 id="Bayesian-Network-Directed-Models"><a href="#Bayesian-Network-Directed-Models" class="headerlink" title="Bayesian Network (Directed Models)"></a>Bayesian Network (Directed Models)</h1><h2 id="Bayesian-Network-Fundamentals"><a href="#Bayesian-Network-Fundamentals" class="headerlink" title="Bayesian Network Fundamentals"></a>Bayesian Network Fundamentals</h2><h3 id="Semantics-amp-Factorization"><a href="#Semantics-amp-Factorization" class="headerlink" title="Semantics &amp; Factorization"></a>Semantics &amp; Factorization</h3><p>贝叶斯网是一个 DAG，每个结点表示一个随机变量。将 DAG $G$ 中结点 $A$ 的直接前驱记作 $\text{Par}_G(A)$，则每个结点实际上表示了一个条件分布（conditional probability distribution, CPD），结点 $X_i$ 对应 $P(X_i | \text{Par}_G(X_i))$。</p>
 <p><em>（约定“前驱”表示直接前驱和非直接前驱的并集。）</em></p>
-<p>贝叶斯网编码了一个所有结点代表的随机变量的联合分布：$P(X_1, \dots, X_n) = \prod\limits_{i = 1}^nP(X_i|\text{Par}_G(X_i))$。可以证明这个联合分布是满足定义的（例如一定非负、和为 1 等）。<em>证明过程中使用性质 $\sum_A P(A|B) = 1$（与 $B$ 无关）。</em>如果一张图 $G$ 中每个结点代表了一个随机变量，并且满足 $P(X_1, \dots, X_n) = \prod\limits_{i = 1}^nP(X_i|\text{Par}_G(X_i))$，则称 $P$ factorizes over $G$。</p>
+<p>贝叶斯网编码了一个所有结点代表的随机变量的联合分布：$P(X_1, \dots, X_n) = \prod\limits_{i = 1}^nP(X_i|\text{Par}_G(X_i))$。可以证明这个联合分布是满足定义的（例如一定非负、和为 1 等）。<em>证明过程中使用了性质 $\sum_A P(A|B) = 1$（与 $B$ 无关）。</em>如果一张图 $G$ 中每个结点代表了一个随机变量，存在一个联合分布 $P$，并且满足 $P(X_1, \dots, X_n) = \prod\limits_{i = 1}^nP(X_i|\text{Par}_G(X_i))$，则称 $P$ factorizes over $G$。</p>
 <h4 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h4><p>如果有 5 个随机变量：</p>
 <ul>
 <li>Grade</li>
@@ -425,7 +425,8 @@
 <p>在此例子中，$x_1$ 和 $x_2$ 是独立的，但是如果给定 $y = 1$，那么它们就不独立了，一个的取值会影响到另一个。这就解释了前面的现象。</p>
 <hr>
 <p>另外一个例子是在给定了课程成绩的情况下可以计算课程难度的概率。但是又给定了 SAT 分数的情况下，课程难度的分布会发生变化。从 intercausal reasoning 可以看出给定一个结点的取值后施加在其它结点上的影响是可以沿着边（顺或者逆）多跳传播的。</p>
-<h3 id="Flow-of-Probabilistic-Influence"><a href="#Flow-of-Probabilistic-Influence" class="headerlink" title="Flow of Probabilistic Influence"></a>Flow of Probabilistic Influence</h3><h4 id="无观测情况下结点间的影响"><a href="#无观测情况下结点间的影响" class="headerlink" title="无观测情况下结点间的影响"></a>无观测情况下结点间的影响</h4><p>用 $A\to B$ 表示 $A$ 是 $B$ 的直接前驱。</p>
+<h3 id="Flow-of-Probabilistic-Influence"><a href="#Flow-of-Probabilistic-Influence" class="headerlink" title="Flow of Probabilistic Influence"></a>Flow of Probabilistic Influence</h3><p>给定一个结点的值（又称确定了观测值），那么其它结点的 <strong>边际分布</strong> 会受到影响。</p>
+<h4 id="无观测情况下结点间的影响"><a href="#无观测情况下结点间的影响" class="headerlink" title="无观测情况下结点间的影响"></a>无观测情况下结点间的影响</h4><p>用 $A\to B$ 表示 $A$ 是 $B$ 的直接前驱。</p>
 <p>这几种情况下给定 $X$ 会影响到 $Y$ 的分布：</p>
 <ul>
 <li>$X \to Y$</li>
@@ -486,7 +487,7 @@ P(C = c^1 | X_1 = x_1, \dots, X_n = x_n) = \frac{P(C = c^1)\prod_iP(X_i = x_i|c 
 <li>多项式朴素贝叶斯（feature 是样本中出现的单词）</li>
 </ul>
 <h2 id="Bayesian-Networks-Knowledge-Engineering"><a href="#Bayesian-Networks-Knowledge-Engineering" class="headerlink" title="Bayesian Networks: Knowledge Engineering"></a>Bayesian Networks: Knowledge Engineering</h2><h3 id="Application-Medical-Diagnosis"><a href="#Application-Medical-Diagnosis" class="headerlink" title="Application - Medical Diagnosis"></a>Application - Medical Diagnosis</h3><p>贝叶斯网络的一个应用是医疗诊断。</p>
-<h3 id="Knowledge-Engineering-Example-SAMIAM"><a href="#Knowledge-Engineering-Example-SAMIAM" class="headerlink" title="Knowledge Engineering Example - SAMIAM"></a>Knowledge Engineering Example - SAMIAM</h3><p>SAMIAM 是一个贝叶斯网络建模工具。</p>
+<h3 id="Knowledge-Engineering-Example-SAMIAM"><a href="#Knowledge-Engineering-Example-SAMIAM" class="headerlink" title="Knowledge Engineering Example - SAMIAM"></a>Knowledge Engineering Example - SAMIAM</h3><p>SAMIAM 是一个可以进行贝叶斯网络建模的工具。</p>
 
       
     </div>
