@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.4.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第一周这些笔记是对课程 软件系统建模与验证（1）的记录。 这周讲的主要是命题逻辑。 Propositional Logic 原子：取值为真或假的不可分割的断言。 文字：原子或者它的反。 公式：使用逻辑联结词连接的文字。 解释：将公式中的每个原子映射到一个真值上的映射。确定了解释之后，公式的真值就知道了。 满足：解释 $I$ 使公式 $F$ 为真，记作 $I\vDash F$。不满足记作 $I \n">
+<meta name="keywords" content="形式化验证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="形式化验证课程笔记 1">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/index.html">
+<meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="第一周这些笔记是对课程 软件系统建模与验证（1）的记录。 这周讲的主要是命题逻辑。 Propositional Logic 原子：取值为真或假的不可分割的断言。 文字：原子或者它的反。 公式：使用逻辑联结词连接的文字。 解释：将公式中的每个原子映射到一个真值上的映射。确定了解释之后，公式的真值就知道了。 满足：解释 $I$ 使公式 $F$ 为真，记作 $I\vDash F$。不满足记作 $I \n">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304175910.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304181140.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304183135.png">
+<meta property="og:updated_time" content="2019-03-04T10:37:44.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="形式化验证课程笔记 1">
+<meta name="twitter:description" content="第一周这些笔记是对课程 软件系统建模与验证（1）的记录。 这周讲的主要是命题逻辑。 Propositional Logic 原子：取值为真或假的不可分割的断言。 文字：原子或者它的反。 公式：使用逻辑联结词连接的文字。 解释：将公式中的每个原子映射到一个真值上的映射。确定了解释之后，公式的真值就知道了。 满足：解释 $I$ 使公式 $F$ 为真，记作 $I\vDash F$。不满足记作 $I \n">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304175910.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>形式化验证课程笔记 1 | Computation & Design</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Computation & Design</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">形式化验证课程笔记 1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 17:43:30 / 修改时间：18:37:44" itemprop="dateCreated datePublished" datetime="2019-03-04T17:43:30+08:00">2019-03-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/04/形式化验证课程笔记-1/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/04/形式化验证课程笔记-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>这些笔记是对课程 <em>软件系统建模与验证（1）</em>的记录。</p>
+<p>这周讲的主要是命题逻辑。</p>
+<h2 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h2><ul>
+<li><strong>原子</strong>：取值为真或假的不可分割的断言。</li>
+<li><strong>文字</strong>：原子或者它的反。</li>
+<li><strong>公式</strong>：使用逻辑联结词连接的文字。</li>
+<li><strong>解释</strong>：将公式中的每个原子映射到一个真值上的映射。确定了解释之后，公式的真值就知道了。</li>
+<li><strong>满足</strong>：解释 $I$ 使公式 $F$ 为真，记作 $I\vDash F$。不满足记作 $I \nvDash F$。</li>
+<li><strong>从句</strong>：合取范式和析取范式中由文字和逻辑连接词构成的语法单元。</li>
+</ul>
+<p>解释在记号上可以看做词典，原子 $P$ 在解释 $I$ 下的真值为 $I[P]$。</p>
+<h2 id="Inductive-Semantics"><a href="#Inductive-Semantics" class="headerlink" title="Inductive Semantics"></a>Inductive Semantics</h2><p>Inductive semantics 用来得到一个解释下公式是否是被该解释满足的：</p>
+<img src="/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304175910.png">
+<h2 id="Satisfiability-amp-Validity"><a href="#Satisfiability-amp-Validity" class="headerlink" title="Satisfiability &amp; Validity"></a>Satisfiability &amp; Validity</h2><p>Satisfiable 指的是公式可被满足；Valid 指的是公式在任意解释下都被满足（<strong>永真式</strong>）。</p>
+<p>二者是对偶的——永真的公式的反是不可满足的，因此可以用一个判定另一个。</p>
+<p>证明可满足性或永真性的两种办法——<strong>搜索</strong> 和 <strong>推理</strong>。搜索可以用到上面的 inductive semantics。</p>
+<h2 id="Semantic-Argument"><a href="#Semantic-Argument" class="headerlink" title="Semantic Argument"></a>Semantic Argument</h2><p>Semantic argument 是使用推理证明可满足性或永真性的办法之一。</p>
+<p>证明框架：</p>
+<ol>
+<li>假设 $F$ 不是永真的，则存在解释 $I$ 使得 $I\nvDash F$。</li>
+<li>应用 <strong>证明规则</strong>。</li>
+<li>在不断应用证明规则的过程中可能出现多分支的情况，最后的情形必然是以下二者之一：<ul>
+<li>证明到最后存在没有出现矛盾并且无法继续进行下去的分支，表示 $F$ 确实不是永真的。</li>
+<li><strong>每个分支</strong> 都在不能进行下去前碰到了矛盾，表明 $F$ 是永真的。</li>
+</ul>
+</li>
+</ol>
+<p>证明规则见下一节。</p>
+<h2 id="Proof-Rules"><a href="#Proof-Rules" class="headerlink" title="Proof Rules"></a>Proof Rules</h2><p>按照 negation、conjunction、disjunction、implication、equivalence（实际上就是五个逻辑运算符）可以分成五类规则。</p>
+<p>短竖线表示 <strong>或</strong>，此时证明发生分叉。</p>
+<img src="/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304181140.png">
+<h2 id="Semantic-Judgements"><a href="#Semantic-Judgements" class="headerlink" title="Semantic Judgements"></a>Semantic Judgements</h2><p>如果 $F_1 \to F_2$ 永真，记作 $F_1\Rightarrow F_2$。</p>
+<p>如果 $F_1 \leftrightarrow F_2$ 永真，记作 $F_1\Leftrightarrow F_2$。</p>
+<p>这两个符号是用来表示公式之间的语义关系的，不是逻辑运算符。</p>
+<h2 id="Normal-Forms"><a href="#Normal-Forms" class="headerlink" title="Normal Forms"></a>Normal Forms</h2><h3 id="Negation-Normal-Form-NNF"><a href="#Negation-Normal-Form-NNF" class="headerlink" title="Negation Normal Form (NNF)"></a>Negation Normal Form (NNF)</h3><p>这种范式中，所有的 negation 必须出现在原子前面。除此之外没有其它要求。</p>
+<h3 id="Disjunctive-Normal-Form-DNF"><a href="#Disjunctive-Normal-Form-DNF" class="headerlink" title="Disjunctive Normal Form (DNF)"></a>Disjunctive Normal Form (DNF)</h3><p>析取范式。文字使用合取构成从句，从句使用析取构成公式。</p>
+<p>析取范式的可满足性判定是显然的，但是它的从句数量可能很多。将普通公式变换到 DNF 可能导致 DNF 规模随原始公式规模指数级增大。</p>
+<h3 id="Conjunctive-Normal-Form-CNF"><a href="#Conjunctive-Normal-Form-CNF" class="headerlink" title="Conjunctive Normal Form (CNF)"></a>Conjunctive Normal Form (CNF)</h3><p>合取范式。文字使用析取构成从句，从句使用合取构成公式。</p>
+<p>合取范式的可满足性判定不是显然的，但是一般可满足性判定器使用合取范式作为输入，因为将一个公式变换为<br>CNF 形式是相对容易的。</p>
+<h2 id="Equisatisfiability"><a href="#Equisatisfiability" class="headerlink" title="Equisatisfiability"></a>Equisatisfiability</h2><p>如果两个公式在可满足性上等价，这两个公式称为 <strong>可满足性等价</strong>。</p>
+<p>可满足性等价比普通的等价要弱一些。可满足性等价不一定是等价的，但是反过来，等价的公式在可满足性上一定等价。</p>
+<h2 id="Tseitin’s-Transformation"><a href="#Tseitin’s-Transformation" class="headerlink" title="Tseitin’s Transformation"></a>Tseitin’s Transformation</h2><p>这是一个将任意公式变换为 CNF 的算法，优点在于 CNF 的规模和原有的公式的规模是线性关系。</p>
+<p>Tseitin 变换的思路是对于公式中的每个子表达式都引入新的变量。见维基上的这个例子：</p>
+<img src="/2019/03/04/形式化验证课程笔记-1/DeepinScreenshot_select-area_20190304183135.png">
+<p>使用 Tseitin 变换可以变换到紫色箭头所示的那一步，随后将各项继续写为析取的形式即可。这一步是 trivial 的，因为每个要变换的子公式都最多只有两个运算符。</p>
+<p>例子中对 $\neg s$ 单独引入变量的原因，我猜测是 $\neg$ 可能会出现在某个子公式左边，因此不能简单地认为 $\neg$ 及其运算数一定构成的是文字，这里只是一种退化的情况。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/形式化验证/" rel="tag"># 形式化验证</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" rel="next" title="数据库系统（下）：管理与技术 笔记 7 数据库事务处理技术之故障恢复">
+                <i class="fa fa-chevron-left"></i> 数据库系统（下）：管理与技术 笔记 7 数据库事务处理技术之故障恢复
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一周"><span class="nav-number">1.</span> <span class="nav-text">第一周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Propositional-Logic"><span class="nav-number">1.1.</span> <span class="nav-text">Propositional Logic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inductive-Semantics"><span class="nav-number">1.2.</span> <span class="nav-text">Inductive Semantics</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Satisfiability-amp-Validity"><span class="nav-number">1.3.</span> <span class="nav-text">Satisfiability &amp; Validity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semantic-Argument"><span class="nav-number">1.4.</span> <span class="nav-text">Semantic Argument</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proof-Rules"><span class="nav-number">1.5.</span> <span class="nav-text">Proof Rules</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semantic-Judgements"><span class="nav-number">1.6.</span> <span class="nav-text">Semantic Judgements</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Normal-Forms"><span class="nav-number">1.7.</span> <span class="nav-text">Normal Forms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Negation-Normal-Form-NNF"><span class="nav-number">1.7.1.</span> <span class="nav-text">Negation Normal Form (NNF)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Disjunctive-Normal-Form-DNF"><span class="nav-number">1.7.2.</span> <span class="nav-text">Disjunctive Normal Form (DNF)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conjunctive-Normal-Form-CNF"><span class="nav-number">1.7.3.</span> <span class="nav-text">Conjunctive Normal Form (CNF)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Equisatisfiability"><span class="nav-number">1.8.</span> <span class="nav-text">Equisatisfiability</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tseitin’s-Transformation"><span class="nav-number">1.9.</span> <span class="nav-text">Tseitin’s Transformation</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+
+
+
+  
+
+  
+    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+  
+
+  
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/';
+        this.page.identifier = '2019/03/04/形式化验证课程笔记-1/';
+        this.page.title = '形式化验证课程笔记 1';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://dimlight1998.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
