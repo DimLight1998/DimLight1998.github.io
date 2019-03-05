@@ -444,6 +444,164 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" itemprop="url">
+                  数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-01 13:10:43 / 修改时间：17:00:56" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#comments" itemprop="discussionUrl">
+                
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -665,7 +823,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-04 13:05:48" itemprop="dateModified" datetime="2019-03-04T13:05:48+08:00">2019-03-04</time>
+                <time title="修改时间：2019-03-05 23:02:07" itemprop="dateModified" datetime="2019-03-05T23:02:07+08:00">2019-03-05</time>
               
             
           </span>
@@ -712,10 +870,18 @@
       
         
           
-          数据库系统的结构抽象与演变本讲学习什么本节没有问题。
-数据库系统的标准结构三层次抽象模式与视图两层映像DBMS 应该能让用户自己定义三个层次的模式，然后自动生成对应的两层映像。
-逻辑数据独立性与物理数据独立性什么是数据模型数据库系统的演变之一数据库系统的演变之二回顾本讲学习了什么
-          
+          数据库系统的结构抽象与演变数据库系统的标准结构三层次抽象数据的存储可以看做有三个抽象层次：
+
+外部层次（用户层次）：DBAP 可以看到的层次，一般是所有数据的一部分。
+概念层次（逻辑层次）：DBMS 使用到的层次，包括对应的约束和关联。
+内部层次（物理层次）：数据在介质上的存储，包括路径、索引等。
+
+模式与视图
+模式（Schema）：对数据库中的数据的结构化描述。
+视图（View）（又称数据）：通过某种表现形式表现出的数据库中的数据。它是一种表现。
+
+将三层次抽象和模式视图结合，排列组合一下可以得到六个概念：内部模式、内部视图、概念模式、概念视图、外部模式、外部视图。当然知道这几个概念并没有什
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/#more" rel="contents">
@@ -1795,178 +1961,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 2 Bayesian Network (Directed Models)
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-27 21:47:36" itemprop="dateCreated datePublished" datetime="2019-02-27T21:47:36+08:00">2019-02-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-02 21:48:41" itemprop="dateModified" datetime="2019-03-02T21:48:41+08:00">2019-03-02</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Bayesian Network (Directed Models)Bayesian Network FundamentalsSemantics &amp; Factorization贝叶斯网是一个 DAG，每个结点表示一个随机变量。将 DAG $G$ 中结点 $A$ 的直接前驱记作 $\text{Par}_G(A)$，则每个结点实际上表示了一个条件分布（conditional probability distribution, CPD），结点 $X_i$ 对应 $P(X_i | \text{Par}_G(X_i))$。
-（约定“前驱”表示直接前驱和非直接前驱的并集。）
-贝叶斯网编码了一个所有
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2014,7 +2008,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2059,7 +2053,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -109,18 +109,18 @@
 
 
 
-  <meta name="description" content="数据库系统的结构抽象与演变本讲学习什么本节没有问题。 数据库系统的标准结构三层次抽象模式与视图两层映像DBMS 应该能让用户自己定义三个层次的模式，然后自动生成对应的两层映像。 逻辑数据独立性与物理数据独立性什么是数据模型数据库系统的演变之一数据库系统的演变之二回顾本讲学习了什么">
+  <meta name="description" content="数据库系统的结构抽象与演变数据库系统的标准结构三层次抽象数据的存储可以看做有三个抽象层次：  外部层次（用户层次）：DBAP 可以看到的层次，一般是所有数据的一部分。 概念层次（逻辑层次）：DBMS 使用到的层次，包括对应的约束和关联。 内部层次（物理层次）：数据在介质上的存储，包括路径、索引等。  模式与视图 模式（Schema）：对数据库中的数据的结构化描述。 视图（View）（又称数据）：通">
 <meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统（上）：模型与语言 笔记 2 数据库系统的结构抽象与演变">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
-<meta property="og:description" content="数据库系统的结构抽象与演变本讲学习什么本节没有问题。 数据库系统的标准结构三层次抽象模式与视图两层映像DBMS 应该能让用户自己定义三个层次的模式，然后自动生成对应的两层映像。 逻辑数据独立性与物理数据独立性什么是数据模型数据库系统的演变之一数据库系统的演变之二回顾本讲学习了什么">
+<meta property="og:description" content="数据库系统的结构抽象与演变数据库系统的标准结构三层次抽象数据的存储可以看做有三个抽象层次：  外部层次（用户层次）：DBAP 可以看到的层次，一般是所有数据的一部分。 概念层次（逻辑层次）：DBMS 使用到的层次，包括对应的约束和关联。 内部层次（物理层次）：数据在介质上的存储，包括路径、索引等。  模式与视图 模式（Schema）：对数据库中的数据的结构化描述。 视图（View）（又称数据）：通">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-04T05:05:48.890Z">
+<meta property="og:updated_time" content="2019-03-05T15:02:07.403Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 2 数据库系统的结构抽象与演变">
-<meta name="twitter:description" content="数据库系统的结构抽象与演变本讲学习什么本节没有问题。 数据库系统的标准结构三层次抽象模式与视图两层映像DBMS 应该能让用户自己定义三个层次的模式，然后自动生成对应的两层映像。 逻辑数据独立性与物理数据独立性什么是数据模型数据库系统的演变之一数据库系统的演变之二回顾本讲学习了什么">
+<meta name="twitter:description" content="数据库系统的结构抽象与演变数据库系统的标准结构三层次抽象数据的存储可以看做有三个抽象层次：  外部层次（用户层次）：DBAP 可以看到的层次，一般是所有数据的一部分。 概念层次（逻辑层次）：DBMS 使用到的层次，包括对应的约束和关联。 内部层次（物理层次）：数据在介质上的存储，包括路径、索引等。  模式与视图 模式（Schema）：对数据库中的数据的结构化描述。 视图（View）（又称数据）：通">
 
 
 
@@ -349,7 +349,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-04 13:05:48" itemprop="dateModified" datetime="2019-03-04T13:05:48+08:00">2019-03-04</time>
+                <time title="修改时间：2019-03-05 23:02:07" itemprop="dateModified" datetime="2019-03-05T23:02:07+08:00">2019-03-05</time>
               
             
           </span>
@@ -394,9 +394,58 @@
       
 
       
-        <h1 id="数据库系统的结构抽象与演变"><a href="#数据库系统的结构抽象与演变" class="headerlink" title="数据库系统的结构抽象与演变"></a>数据库系统的结构抽象与演变</h1><h2 id="本讲学习什么"><a href="#本讲学习什么" class="headerlink" title="本讲学习什么"></a>本讲学习什么</h2><p><em>本节没有问题。</em></p>
-<h2 id="数据库系统的标准结构"><a href="#数据库系统的标准结构" class="headerlink" title="数据库系统的标准结构"></a>数据库系统的标准结构</h2><h3 id="三层次抽象"><a href="#三层次抽象" class="headerlink" title="三层次抽象"></a>三层次抽象</h3><h3 id="模式与视图"><a href="#模式与视图" class="headerlink" title="模式与视图"></a>模式与视图</h3><h3 id="两层映像"><a href="#两层映像" class="headerlink" title="两层映像"></a>两层映像</h3><p>DBMS 应该能让用户自己定义三个层次的模式，然后自动生成对应的两层映像。</p>
-<h3 id="逻辑数据独立性与物理数据独立性"><a href="#逻辑数据独立性与物理数据独立性" class="headerlink" title="逻辑数据独立性与物理数据独立性"></a>逻辑数据独立性与物理数据独立性</h3><h2 id="什么是数据模型"><a href="#什么是数据模型" class="headerlink" title="什么是数据模型"></a>什么是数据模型</h2><h2 id="数据库系统的演变之一"><a href="#数据库系统的演变之一" class="headerlink" title="数据库系统的演变之一"></a>数据库系统的演变之一</h2><h2 id="数据库系统的演变之二"><a href="#数据库系统的演变之二" class="headerlink" title="数据库系统的演变之二"></a>数据库系统的演变之二</h2><h2 id="回顾本讲学习了什么"><a href="#回顾本讲学习了什么" class="headerlink" title="回顾本讲学习了什么"></a>回顾本讲学习了什么</h2>
+        <h1 id="数据库系统的结构抽象与演变"><a href="#数据库系统的结构抽象与演变" class="headerlink" title="数据库系统的结构抽象与演变"></a>数据库系统的结构抽象与演变</h1><h2 id="数据库系统的标准结构"><a href="#数据库系统的标准结构" class="headerlink" title="数据库系统的标准结构"></a>数据库系统的标准结构</h2><h3 id="三层次抽象"><a href="#三层次抽象" class="headerlink" title="三层次抽象"></a>三层次抽象</h3><p>数据的存储可以看做有三个抽象层次：</p>
+<ul>
+<li><strong>外部层次</strong>（用户层次）：DBAP 可以看到的层次，一般是所有数据的一部分。</li>
+<li><strong>概念层次</strong>（逻辑层次）：DBMS 使用到的层次，包括对应的约束和关联。</li>
+<li><strong>内部层次</strong>（物理层次）：数据在介质上的存储，包括路径、索引等。</li>
+</ul>
+<h3 id="模式与视图"><a href="#模式与视图" class="headerlink" title="模式与视图"></a>模式与视图</h3><ul>
+<li><strong>模式（Schema）</strong>：对数据库中的数据的结构化描述。</li>
+<li><strong>视图（View）</strong>（又称数据）：通过某种表现形式表现出的数据库中的数据。它是一种表现。</li>
+</ul>
+<p>将三层次抽象和模式视图结合，排列组合一下可以得到六个概念：内部模式、内部视图、概念模式、概念视图、外部模式、外部视图。当然知道这几个概念并没有什么用。</p>
+<p>在不指明抽象层次的情况下，模式指的是概念模式，视图指的是外部视图。</p>
+<h3 id="两层映像"><a href="#两层映像" class="headerlink" title="两层映像"></a>两层映像</h3><p>两层映像指的是不同抽象层次之间的 <strong>模式</strong> 的映射：</p>
+<ul>
+<li><strong>C-E 映像</strong>：将概念模式映射到外部模式，这么做是为了方便用户观察和使用。</li>
+<li><strong>I-C 映像</strong>：将内部模式映射到概念模式，这么做是在保证计算机方便处理的前提下提供足够的抽象性。</li>
+</ul>
+<p>DBMS 应该能让用户自己定义三个层次的模式，然后自动生成对应的两层映像。</p>
+<p>一般只会有一个概念模式，但是可以有多个内部模式和外部模式。</p>
+<h3 id="逻辑数据独立性与物理数据独立性"><a href="#逻辑数据独立性与物理数据独立性" class="headerlink" title="逻辑数据独立性与物理数据独立性"></a>逻辑数据独立性与物理数据独立性</h3><p>抽象层次使得一层发生变动时其它层次可以几乎不用修改。各层有一定的 <strong>独立性</strong>。</p>
+<ul>
+<li><strong>逻辑数据独立性</strong> 指的是在概念模式发生变动时，外部模式不用进行修改，只要修改 C-E 映射即可。</li>
+<li><strong>物理数据独立性</strong> 指的是在内部模式发生变动时，概念模式不用进行修改，只要修改 I-C 映射即可。</li>
+</ul>
+<h2 id="什么是数据模型"><a href="#什么是数据模型" class="headerlink" title="什么是数据模型"></a>什么是数据模型</h2><h3 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h3><p>有三个概念，数据、模式和数据模型。下面的描述中将三者加粗。</p>
+<p><strong>数据</strong> 的模式称为 <strong>模式</strong>，<strong>模式</strong> 描述了 <strong>数据</strong> 应当如何进行组织，<strong>模式</strong> 是对 <strong>数据</strong> 的结构的抽象。</p>
+<p><strong>模式</strong> 的模式称为 <strong>数据模型</strong>，<strong>数据模型</strong> 描述了 <strong>模式</strong> 应当如何进行组织，<strong>数据模型</strong> 是对 <strong>模式</strong> 的结构的抽象。</p>
+<h3 id="数据模型的三个经典实例"><a href="#数据模型的三个经典实例" class="headerlink" title="数据模型的三个经典实例"></a>数据模型的三个经典实例</h3><p>三个经典的数据模型分别是关系模型、层次模型和网状模型。</p>
+<p>关系模型是很多数据库采用的数据模型，使用表组织数据。但是并非所有的数据库都是关系型的。</p>
+<p>层次模型和网状模型分别使用有根树和有向图图来描述 <strong>模式</strong>，这些树和图中，每个结点称为 <strong>实体型</strong>、边称为 <strong>系型</strong>。每个实体型是对一个实体应当如何描述的模式，在存储数据时，多个实体按照实体型制定的模式进行存储，构成一个集合。不同类型的实体的集合之间通过有向边进行连接。</p>
+<h2 id="数据库系统的演变之一"><a href="#数据库系统的演变之一" class="headerlink" title="数据库系统的演变之一"></a>数据库系统的演变之一</h2><h3 id="简要发展史"><a href="#简要发展史" class="headerlink" title="简要发展史"></a>简要发展史</h3><p>数据库的研究从 1959 年左右开始，在 1976 年左右开始成熟。早期的数据库很多不是关系型的，在成熟时关系型数据库和对应的理论开始迅速进步。</p>
+<h3 id="重要演变经历"><a href="#重要演变经历" class="headerlink" title="重要演变经历"></a>重要演变经历</h3><h4 id="从文件系统到数据库"><a href="#从文件系统到数据库" class="headerlink" title="从文件系统到数据库"></a>从文件系统到数据库</h4><p>早期数据管理使用操作系统提供的文件系统直接进行管理，但是此时数据和程序的耦合性严重。因此过渡到了数据库。数据库的引入使得数据和程序解耦，提高了数据的共享程度。</p>
+<h4 id="从层次模型和网状模型到关系模型"><a href="#从层次模型和网状模型到关系模型" class="headerlink" title="从层次模型和网状模型到关系模型"></a>从层次模型和网状模型到关系模型</h4><p>早期数据库有些是层次模型和网状模型的，实现要用到指针（指向关系要用户手动建立），很复杂而且难以对记录的集合进行操作。关系模型理论成熟并且容易对记录的集合进行操作，并且容易实现非过程化的查询。</p>
+<h2 id="数据库系统的演变之二"><a href="#数据库系统的演变之二" class="headerlink" title="数据库系统的演变之二"></a>数据库系统的演变之二</h2><h3 id="重要演变经历（续）"><a href="#重要演变经历（续）" class="headerlink" title="重要演变经历（续）"></a>重要演变经历（续）</h3><h4 id="关系数据库到对象关系数据库和面向对象数据库"><a href="#关系数据库到对象关系数据库和面向对象数据库" class="headerlink" title="关系数据库到对象关系数据库和面向对象数据库"></a>关系数据库到对象关系数据库和面向对象数据库</h4><ul>
+<li><strong>复合属性</strong>：关系型数据库中，每个域都是原子化的，不可继续分割。但是有时候希望一个域下面还有子域，可以进行分割，这种域称为复合属性。</li>
+<li><strong>多值属性</strong>：关系型数据库中，每个记录的一个域只有一个值。但是有时候希望它能够有多个值，这种域称为多值属性。</li>
+</ul>
+<p>通过引入 OOP 中的一些思路可以解决上述问题。引入列对象和行对象的概念解决复合属性的问题，引入聚集对象和结构对象的概念解决多值属性的问题。此时数据库中每个值都是一个对象。引入这些玩意后关系数据库就变成了对象关系数据库，并且还能支持多态等 OOP 概念。</p>
+<h4 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h4><ul>
+<li><strong>XML 数据库</strong>：一种半结构化数据库，数据和数据的语义合并存储和处理。</li>
+<li>从多种数据库能够进行开放式互联的变化。多种不同厂商的数据库通过同样的标准可以互相访问。</li>
+<li>其它各种新型数据库。</li>
+</ul>
+<h2 id="回顾本讲学习了什么"><a href="#回顾本讲学习了什么" class="headerlink" title="回顾本讲学习了什么"></a>回顾本讲学习了什么</h2><ul>
+<li>数据、模式、数据模型。</li>
+<li>外模式、概念模式、内模式。</li>
+<li>E-C 映像、C-I 映像。</li>
+<li>逻辑独立性与物理独立性：抽象层次引入导致的解耦。</li>
+<li>网状模型、层次模型、关系模型。</li>
+<li>各种不同的数据库。</li>
+</ul>
+
       
     </div>
 
@@ -521,7 +570,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">88</span>
+                    <span class="site-state-item-count">89</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -566,7 +615,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">15</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -602,7 +655,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统的结构抽象与演变"><span class="nav-number">1.</span> <span class="nav-text">数据库系统的结构抽象与演变</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本讲学习什么"><span class="nav-number">1.1.</span> <span class="nav-text">本讲学习什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统的标准结构"><span class="nav-number">1.2.</span> <span class="nav-text">数据库系统的标准结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三层次抽象"><span class="nav-number">1.2.1.</span> <span class="nav-text">三层次抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式与视图"><span class="nav-number">1.2.2.</span> <span class="nav-text">模式与视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两层映像"><span class="nav-number">1.2.3.</span> <span class="nav-text">两层映像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑数据独立性与物理数据独立性"><span class="nav-number">1.2.4.</span> <span class="nav-text">逻辑数据独立性与物理数据独立性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是数据模型"><span class="nav-number">1.3.</span> <span class="nav-text">什么是数据模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统的演变之一"><span class="nav-number">1.4.</span> <span class="nav-text">数据库系统的演变之一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统的演变之二"><span class="nav-number">1.5.</span> <span class="nav-text">数据库系统的演变之二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾本讲学习了什么"><span class="nav-number">1.6.</span> <span class="nav-text">回顾本讲学习了什么</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库系统的结构抽象与演变"><span class="nav-number">1.</span> <span class="nav-text">数据库系统的结构抽象与演变</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统的标准结构"><span class="nav-number">1.1.</span> <span class="nav-text">数据库系统的标准结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三层次抽象"><span class="nav-number">1.1.1.</span> <span class="nav-text">三层次抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模式与视图"><span class="nav-number">1.1.2.</span> <span class="nav-text">模式与视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两层映像"><span class="nav-number">1.1.3.</span> <span class="nav-text">两层映像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑数据独立性与物理数据独立性"><span class="nav-number">1.1.4.</span> <span class="nav-text">逻辑数据独立性与物理数据独立性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是数据模型"><span class="nav-number">1.2.</span> <span class="nav-text">什么是数据模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型"><span class="nav-number">1.2.1.</span> <span class="nav-text">数据模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据模型的三个经典实例"><span class="nav-number">1.2.2.</span> <span class="nav-text">数据模型的三个经典实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统的演变之一"><span class="nav-number">1.3.</span> <span class="nav-text">数据库系统的演变之一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简要发展史"><span class="nav-number">1.3.1.</span> <span class="nav-text">简要发展史</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要演变经历"><span class="nav-number">1.3.2.</span> <span class="nav-text">重要演变经历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从文件系统到数据库"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">从文件系统到数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从层次模型和网状模型到关系模型"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">从层次模型和网状模型到关系模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库系统的演变之二"><span class="nav-number">1.4.</span> <span class="nav-text">数据库系统的演变之二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重要演变经历（续）"><span class="nav-number">1.4.1.</span> <span class="nav-text">重要演变经历（续）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系数据库到对象关系数据库和面向对象数据库"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">关系数据库到对象关系数据库和面向对象数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其它"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">其它</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回顾本讲学习了什么"><span class="nav-number">1.5.</span> <span class="nav-text">回顾本讲学习了什么</span></a></li></ol></li></ol></div>
             
 
           </div>
