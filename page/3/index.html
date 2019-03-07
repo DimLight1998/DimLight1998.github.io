@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" itemprop="url">
-                  数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数</a>
               
             
           </h1>
@@ -346,15 +365,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -384,14 +405,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -405,6 +430,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -444,16 +472,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -463,9 +491,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" itemprop="url">
-                  数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算</a>
               
             
           </h1>
@@ -504,15 +531,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -542,14 +571,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -563,6 +596,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -602,16 +638,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -621,9 +657,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/" itemprop="url">
-                  数据库系统（上）：模型与语言 笔记 3 关系模型之基本概念
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 3 关系模型之基本概念</a>
               
             
           </h1>
@@ -662,15 +697,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -700,14 +737,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -721,6 +762,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -760,16 +804,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -779,9 +823,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/" itemprop="url">
-                  数据库系统（上）：模型与语言 笔记 2 数据库系统的结构抽象与演变
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 2 数据库系统的结构抽象与演变</a>
               
             
           </h1>
@@ -832,15 +875,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -870,7 +915,8 @@
       
         
           
-          数据库系统的结构抽象与演变数据库系统的标准结构三层次抽象数据的存储可以看做有三个抽象层次：
+            <p>
+              数据库系统的结构抽象与演变数据库系统的标准结构三层次抽象数据的存储可以看做有三个抽象层次：
 
 外部层次（用户层次）：DBAP 可以看到的层次，一般是所有数据的一部分。
 概念层次（逻辑层次）：DBMS 使用到的层次，包括对应的约束和关联。
@@ -881,13 +927,16 @@
 视图（View）（又称数据）：通过某种表现形式表现出的数据库中的数据。它是一种表现。
 
 将三层次抽象和模式视图结合，排列组合一下可以得到六个概念：内部模式、内部视图、概念模式、概念视图、外部模式、外部视图。当然知道这几个概念并没有什
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-2-数据库系统的结构抽象与演变/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -901,6 +950,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -940,16 +992,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -959,9 +1011,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/" itemprop="url">
-                  数据库系统（上）：模型与语言 笔记 1 初步认识数据库系统
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 1 初步认识数据库系统</a>
               
             
           </h1>
@@ -1012,15 +1063,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1050,7 +1103,8 @@
       
         
           
-          初步认识数据库系统来自 学堂在线。
+            <p>
+              初步认识数据库系统来自 学堂在线。
 数据库系统课程简要介绍本节没有问题。
 本讲学习什么本节没有问题，学习时注意从使用者和实现者两方面进行考虑。
 为什么要学习数据库系统本节没有问题。
@@ -1067,13 +1121,16 @@
 关系：不严格地讲，关系就是整张表。
 
 由此可以重新定义数据库：相互之间有关联关
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-1-初步认识数据库系统/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1087,6 +1144,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1126,16 +1186,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1145,9 +1205,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 7 Knowledge Engineering & Summary
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 7 Knowledge Engineering & Summary</a>
               
             
           </h1>
@@ -1198,15 +1257,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1236,14 +1297,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-7-Knowledge-Engineering-Summary/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1257,6 +1322,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1296,16 +1364,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1315,9 +1383,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 6 Decision Making
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 6 Decision Making</a>
               
             
           </h1>
@@ -1368,15 +1435,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1406,14 +1475,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-6-Decision-Making/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1427,6 +1500,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1466,16 +1542,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1485,9 +1561,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 5 Markov Networks (Undirected Models)
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 5 Markov Networks (Undirected Models)</a>
               
             
           </h1>
@@ -1538,15 +1613,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1576,14 +1653,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-5-Markov-Networks-Undirected-Models/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1597,6 +1678,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1636,16 +1720,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1655,9 +1739,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 4 Structured CPDs for Bayesian Networks
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 4 Structured CPDs for Bayesian Networks</a>
               
             
           </h1>
@@ -1708,15 +1791,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1746,14 +1831,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-4-Structured-CPDs-for-Bayesian-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1767,6 +1856,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1806,16 +1898,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1825,9 +1917,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 3 Template Models for Bayesian Networks
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 3 Template Models for Bayesian Networks</a>
               
             
           </h1>
@@ -1878,15 +1969,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1916,14 +2009,18 @@
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-3-Template-Models-for-Bayesian-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1937,6 +2034,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1986,19 +2086,18 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2020,7 +2119,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2070,7 +2173,6 @@
           
 
           
-          
 
           
           
@@ -2081,7 +2183,7 @@
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2089,6 +2191,7 @@
 
     </div>
   </aside>
+  
 
 
         
@@ -2109,9 +2212,7 @@
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2119,7 +2220,7 @@
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2145,7 +2246,7 @@
     
 
     
-	
+
     
 
     
@@ -2153,7 +2254,7 @@
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2185,54 +2286,45 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2244,9 +2336,6 @@
 
 
 
-
-
-  
 
   
 
@@ -2283,31 +2372,63 @@
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

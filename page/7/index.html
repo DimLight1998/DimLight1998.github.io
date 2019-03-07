@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-14/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-14/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-14/" itemprop="url">
-                  编译原理慕课笔记 14
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-14/" class="post-title-link" itemprop="url">编译原理慕课笔记 14</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-14/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-14/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-14/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,15 +417,19 @@
       
         
           
-          中间代码生成-4布尔表达式的回填回填指的是在生成跳转语句之类的语句的时候要跳转的目标暂时不能确定，此时会将“生成的跳转语句在哪里”这个信息记录下来，在后续的翻译过程中在适当的时候重新填入跳转目标。
+            <p>
+              中间代码生成-4布尔表达式的回填回填指的是在生成跳转语句之类的语句的时候要跳转的目标暂时不能确定，此时会将“生成的跳转语句在哪里”这个信息记录下来，在后续的翻译过程中在适当的时候重新填入跳转目标。
 为什么会出现这样的技术，我个人的感觉是使用自底向上进行分析时对语法树的遍历实际上是一种后序遍历，这种遍历其实是不太灵活的（在写完了编译原理的作业后有了这种感觉，对于 ANTLR 来说显然 visitor 模式比 listener 模式具有更高的灵活性，如果采用 listener 模式的话估计也要用回填才能解决跳转目标的问题，但是使用 visitor 模式可以通过指定遍历顺序来避免掉这个问题）。为了能
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-14/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-14/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -418,6 +443,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -457,16 +485,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-13/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-13/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -476,9 +504,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-13/" itemprop="url">
-                  编译原理慕课笔记 13
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-13/" class="post-title-link" itemprop="url">编译原理慕课笔记 13</a>
               
             
           </h1>
@@ -529,15 +556,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-13/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-13/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-13/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -567,15 +596,19 @@
       
         
           
-          中间代码生成-3控制流语句及其 SDT控制流语句分为顺序语句、条件语句和循环语句。条件语句有 if a then b 和 if a then b else c 两种，循环语句格式为 while a b。构造其 SDT 时需要在条件语句的条件中引入条件为真和条件为假时应该跳转的地址；在循环语句的条件中引入条件继续满足和不再满足时应当跳转的地址。
+            <p>
+              中间代码生成-3控制流语句及其 SDT控制流语句分为顺序语句、条件语句和循环语句。条件语句有 if a then b 和 if a then b else c 两种，循环语句格式为 while a b。构造其 SDT 时需要在条件语句的条件中引入条件为真和条件为假时应该跳转的地址；在循环语句的条件中引入条件继续满足和不再满足时应当跳转的地址。
 布尔表达式及其 SDT布尔表达式就是使用 true、false、两个表达式的比较和与或非以及括号构造出的表达式，最后的结果要么为真要么为假。如果布尔表达式只会被用于流程控制中，那么可以将整个表达式拆成多个运算过程，每个运算过程结束后都执行一次跳转。这样做
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-13/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-13/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -589,6 +622,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -628,16 +664,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-12/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-12/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -647,9 +683,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-12/" itemprop="url">
-                  编译原理慕课笔记 12
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-12/" class="post-title-link" itemprop="url">编译原理慕课笔记 12</a>
               
             
           </h1>
@@ -700,15 +735,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-12/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-12/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-12/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -738,16 +775,20 @@
       
         
           
-          中间代码生成-2简单赋值语句的翻译这节比较简单，讲的是如何将赋值语句翻译为三地址码的形式。唯一值得一提的是 增量翻译 的技术。如果翻译过程中有一个综合属性的计算有这样的特征：父结点的综合属性实际上就是各个子结点的综合属性拼接后在加上父结点的特定的信息，那么可以将这样的属性放在一个全局的地方来避免每次都要复制的情况。
+            <p>
+              中间代码生成-2简单赋值语句的翻译这节比较简单，讲的是如何将赋值语句翻译为三地址码的形式。唯一值得一提的是 增量翻译 的技术。如果翻译过程中有一个综合属性的计算有这样的特征：父结点的综合属性实际上就是各个子结点的综合属性拼接后在加上父结点的特定的信息，那么可以将这样的属性放在一个全局的地方来避免每次都要复制的情况。
 数组引用的翻译这节比较简单，主要就是计算出要访问的数组所在的地址。为了达到这个目的需要在一些非终结符中存入数组的类型（使用类型表达式）、首地址和偏移量。
 
-          
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-12/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-12/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -761,6 +802,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -800,16 +844,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-11/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-11/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -819,9 +863,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-11/" itemprop="url">
-                  编译原理慕课笔记 11
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-11/" class="post-title-link" itemprop="url">编译原理慕课笔记 11</a>
               
             
           </h1>
@@ -872,15 +915,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-11/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-11/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-11/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -910,18 +955,22 @@
       
         
           
-          中间代码生成-1中间代码生成重点在于各种语句如何进行翻译。下面两节面向的是声明语句的翻译。个人感觉这附近都是在说语法制导翻译的具体应用形式，没有多少理论上的东西了。
+            <p>
+              中间代码生成-1中间代码生成重点在于各种语句如何进行翻译。下面两节面向的是声明语句的翻译。个人感觉这附近都是在说语法制导翻译的具体应用形式，没有多少理论上的东西了。
 类型表达式为了知道声明语句如何翻译，需要搞清楚类型和类型表达式。
 类型表达式实际上表示的就是一个特定的类型。平时在高级语言里面写的 int a[50] 这种实际上是一种语法糖，a 的类型是 int[50]，类型表达式就是要让 int[50] 这种表述更加底层。
 基本类型都是类型表达式，也就是说 int 和 void 这种就是一个完整的类型表达式。
 复合类型可以通过更加基础的类型表达式通过 类型构造符 得到，几个常用的类型构造符如下
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-11/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-11/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -935,6 +984,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -974,16 +1026,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-10/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-10/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -993,9 +1045,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-10/" itemprop="url">
-                  编译原理慕课笔记 10
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-10/" class="post-title-link" itemprop="url">编译原理慕课笔记 10</a>
               
             
           </h1>
@@ -1046,15 +1097,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-10/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-10/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-10/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1084,19 +1137,23 @@
       
         
           
-          语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。
+            <p>
+              语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。
 在递归的预测分析过程中进行翻译在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：
 
 对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合属性。在之前的笔记中已经指出继承属性在非终结符分析前得出，综合属性在非终结符分析后得出，这么做是合理的。
 
 在每个非终结符对应的过程内部，会以局部变量的形式维护要用到的所有属性（不管是不是自己的）。例
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-10/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-10/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1110,6 +1167,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1149,16 +1209,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-9/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-9/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1168,9 +1228,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-9/" itemprop="url">
-                  编译原理慕课笔记 9
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-9/" class="post-title-link" itemprop="url">编译原理慕课笔记 9</a>
               
             
           </h1>
@@ -1221,15 +1280,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-9/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-9/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1259,7 +1320,8 @@
       
         
           
-          语法制导翻译-2语法制导翻译方案 SDT语法制导翻译方案是在产生式右部嵌入了程序片段（语义动作）的 CFG。
+            <p>
+              语法制导翻译-2语法制导翻译方案 SDT语法制导翻译方案是在产生式右部嵌入了程序片段（语义动作）的 CFG。
 S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 文法可以使用 LR 分析技术，SDD 是 S 属性的
@@ -1267,13 +1329,16 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 使用 SDT 实现 S-SDDS-SDD 使用的属性都是综合属性，对于每个产生式计算属性都是在计算产生式左部的符号的属性，只要将计算过程嵌入到整个产生式最右部即可。
 例如对产生式 $T\rightarrow T_1\ast F$ 以及对应的语义规则 $T.val = T_1.val \times F.
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-9/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-9/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1287,6 +1352,9 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
     
 
+    
+      
+    
     
 
     
@@ -1326,16 +1394,16 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-8/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-8/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1345,9 +1413,8 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-8/" itemprop="url">
-                  编译原理慕课笔记 8
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-8/" class="post-title-link" itemprop="url">编译原理慕课笔记 8</a>
               
             
           </h1>
@@ -1398,15 +1465,17 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-8/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-8/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1436,15 +1505,19 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
       
         
           
-          语法制导翻译-1语法制导翻译概述语法制导翻译思路编译过程中经过词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成这些步骤。语义分析完成后需要某种中间表示作为中间代码生成的输入，如果这种中间表示就是中间代码的话，这两步可以合成一步叫做 语义翻译；语法分析的结果需要写成某种中间表示作为语义翻译的输入，如果这两步合成一起的话就叫做 语法制导翻译。
+            <p>
+              语法制导翻译-1语法制导翻译概述语法制导翻译思路编译过程中经过词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成这些步骤。语义分析完成后需要某种中间表示作为中间代码生成的输入，如果这种中间表示就是中间代码的话，这两步可以合成一步叫做 语义翻译；语法分析的结果需要写成某种中间表示作为语义翻译的输入，如果这两步合成一起的话就叫做 语法制导翻译。
 其实最关键的问题在于如何表示语义。语法制导翻译使用 CFG 引导对语言的翻译。CFG 中的每个文法符号（终结符和非终结符）都会有自己的 语义属性，这个属性实际上就是一种对语义的表示。语义属性的计算需要用到 语义规则，语义规则往往和产生式（这
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1458,6 +1531,9 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
     
 
+    
+      
+    
     
 
     
@@ -1497,16 +1573,16 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-7/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-7/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1516,9 +1592,8 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-7/" itemprop="url">
-                  编译原理慕课笔记 7
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-7/" class="post-title-link" itemprop="url">编译原理慕课笔记 7</a>
               
             
           </h1>
@@ -1569,15 +1644,17 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-7/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-7/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1607,14 +1684,18 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
       
         
           
-          语法分析-4$SLR$ 分析$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲突。但是 $LR(0)$ 分析并没有往前看符号，如果这个文法中， $a$ 不在 $E$ 的 Follow 集中，那么显然使用第一个产生式是没有意义的（因为归约后的 $E$ 后面不可能是 $a$），$S
-          ...
+            <p>
+              语法分析-4$SLR$ 分析$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲突。但是 $LR(0)$ 分析并没有往前看符号，如果这个文法中， $a$ 不在 $E$ 的 Follow 集中，那么显然使用第一个产生式是没有意义的（因为归约后的 $E$ 后面不可能是 $a$），$S
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1628,6 +1709,9 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
     
 
+    
+      
+    
     
 
     
@@ -1667,16 +1751,16 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1686,9 +1770,8 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-6/" itemprop="url">
-                  编译原理慕课笔记 6
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-6/" class="post-title-link" itemprop="url">编译原理慕课笔记 6</a>
               
             
           </h1>
@@ -1739,15 +1822,17 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-6/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-6/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1777,20 +1862,24 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
       
         
           
-          语法分析-3自底向上分析概述自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。
+            <p>
+              语法分析-3自底向上分析概述自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。
 自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 移入-归约 分析。它的工作方式如下：
 
 首先对于要解析的词法单元流，维护了一个栈。
 从左至右扫描输入串，将扫描到的元素逐个压入栈中。
 如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹出，替换为产生式的左部，然后重新压回栈中。然后重新运行这个检查，直到无法归约为止。这一步中被归约的符号串称作 句柄。句柄实际上是句型中的最左直接短语。
 如果串扫描完成后，栈中恰好剩下初始符号，则归约完
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1804,6 +1893,9 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
     
 
+    
+      
+    
     
 
     
@@ -1843,16 +1935,16 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1862,9 +1954,8 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-5/" itemprop="url">
-                  编译原理慕课笔记 5
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-5/" class="post-title-link" itemprop="url">编译原理慕课笔记 5</a>
               
             
           </h1>
@@ -1915,15 +2006,17 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-5/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-5/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1953,20 +2046,24 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
       
         
           
-          语法分析-2First 集和 Follow 集的计算First 集的计算计算一个文法中各个非终结符的 First 集的方法是，不断应用以下规则，直到每个符号的 First 集稳定：
+            <p>
+              语法分析-2First 集和 Follow 集的计算First 集的计算计算一个文法中各个非终结符的 First 集的方法是，不断应用以下规则，直到每个符号的 First 集稳定：
 
 如果 $X$ 是终结符，则 $\mbox{First}(X) = \{X\}$。（引入这个的目的是方便后面的递归计算。）
 
 如果 $X\rightarrow\epsilon$ 是 $X$ 的一个产生式，则 $\epsilon\in\mbox{First}(X)$。（为了计算的方便，这里是 $\rightarrow$ 而不是 $\Rightarrow$，也就是可以直接从生成式开始计算。）
 
 如果 $X\righta
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1980,6 +2077,9 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
     
 
+    
+      
+    
     
 
     
@@ -2029,19 +2129,18 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2063,7 +2162,11 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2113,7 +2216,6 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
           
 
           
-          
 
           
           
@@ -2124,7 +2226,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2132,6 +2234,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
     </div>
   </aside>
+  
 
 
         
@@ -2152,9 +2255,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2162,7 +2263,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2188,7 +2289,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
     
 
     
-	
+
     
 
     
@@ -2196,7 +2297,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2228,54 +2329,45 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2287,9 +2379,6 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 
 
-
-
-  
 
   
 
@@ -2326,31 +2415,63 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

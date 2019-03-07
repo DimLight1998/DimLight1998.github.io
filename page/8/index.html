@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-4/" itemprop="url">
-                  编译原理慕课笔记 4
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-4/" class="post-title-link" itemprop="url">编译原理慕课笔记 4</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-4/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-4/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,16 +417,20 @@
       
         
           
-          语法分析-1自顶向下分析概述语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 推导 出这个词法单元串，另一个是找到这个词法单元串如何 归约 到初始符号，这两种做法分别叫做 自顶向下分析 和 自底向上分析。
+            <p>
+              语法分析-1自顶向下分析概述语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 推导 出这个词法单元串，另一个是找到这个词法单元串如何 归约 到初始符号，这两种做法分别叫做 自顶向下分析 和 自底向上分析。
 使用自顶向下分析时，每一步中都要做两个选择，一个是 替换当前句型中的哪个非终结符，另一个是 将这个非终结符替换为哪个候选式（一个非终结符的多个产生式称为它的 候选式）。
 最左推导与最右推导如果推导过程中总是将句型中最左边的非终结符替换为它的候选式，这样的推导过程称作是 最左推导，它的逆过程称为 最右归约（注意最右归约总是将最右边可以
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -419,6 +444,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -458,16 +486,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -477,9 +505,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-3/" itemprop="url">
-                  编译原理慕课笔记 3
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-3/" class="post-title-link" itemprop="url">编译原理慕课笔记 3</a>
               
             
           </h1>
@@ -530,15 +557,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-3/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-3/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -568,7 +597,8 @@
       
         
           
-          词法分析正则表达式正则表达式是正则文法的更加紧凑的一个定义。
+            <p>
+              词法分析正则表达式正则表达式是正则文法的更加紧凑的一个定义。
 对于每个正则文法都能写出对应的正则表达式，反之亦然。
 该节具体内容已熟悉，此处略去。
 正则定义所谓的正则定义是对一个正则表达式命名，方便后续的使用。
@@ -578,13 +608,16 @@ digit\rightarrow0|1|2|3|\cdots|8|9 \\
 letter\_\rightarrow a|b|c|\cdots|z|A|B|\cdots|Z|\_ \\
 symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更加简明了。
 有穷自动机该
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -598,6 +631,9 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
     
 
+    
+      
+    
     
 
     
@@ -637,16 +673,16 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -656,9 +692,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-2/" itemprop="url">
-                  编译原理慕课笔记 2
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-2/" class="post-title-link" itemprop="url">编译原理慕课笔记 2</a>
               
             
           </h1>
@@ -709,15 +744,17 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -747,7 +784,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
       
         
           
-          程序设计语言及其文法基本概念字母表字母表 是一个有穷符号集合。例如 ASCII 字符集就是一个合法的字母表。
+            <p>
+              程序设计语言及其文法基本概念字母表字母表 是一个有穷符号集合。例如 ASCII 字符集就是一个合法的字母表。
 字母表的运算
 乘积：两个字母表的乘积相当于这两个字母表作笛卡儿积。不过写成二元组的形式可能比较麻烦，一般直接连接起来当成串。
 幂：字母表的幂相当于自己和自己多次乘积。特别地，0 次幂得到的结果是只含空串的集合 $\{\epsilon\}$。
@@ -756,13 +794,16 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
 串一个字母表的克林闭包中的元素称为这个字母表的串。
 串有
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -776,6 +817,9 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
     
 
+    
+      
+    
     
 
     
@@ -815,16 +859,16 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -834,9 +878,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-1/" itemprop="url">
-                  编译原理慕课笔记 1
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-1/" class="post-title-link" itemprop="url">编译原理慕课笔记 1</a>
               
             
           </h1>
@@ -887,15 +930,17 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -925,7 +970,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
       
         
           
-          绪论感谢 中国大学 MOOC。
+            <p>
+              绪论感谢 中国大学 MOOC。
 什么是编译计算机语言分成 高级语言、汇编语言 和 机器语言。计算机只能执行机器语言。从汇编语言到机器语言的过程叫 汇编，从高级语言到汇编语言或直接到机器语言的过程叫 编译。
 将高级语言写的源程序转换成可以运行的进程要经历 语言处理系统，编译器只是这个系统中的一环。语言处理系统的典型工作流程为
 
@@ -934,13 +980,16 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 汇编器 从汇编语言程序生成可重定位的机器代码（可重定位指在内存中的位置不固定）；
 链接器 会将多个可重定位程序和库连接起来，并处理外部地址（跨文件的引用）；
 加载器 会
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -954,6 +1003,9 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
     
 
+    
+      
+    
     
 
     
@@ -993,16 +1045,16 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1012,9 +1064,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/10/Rust-学习笔记/" itemprop="url">
-                  Rust 学习笔记
-                </a>
+                
+                <a href="/2018/11/10/Rust-学习笔记/" class="post-title-link" itemprop="url">Rust 学习笔记</a>
               
             
           </h1>
@@ -1065,15 +1116,17 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/10/Rust-学习笔记/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/10/Rust-学习笔记/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/10/Rust-学习笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1103,7 +1156,8 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
       
         
           
-          Rust 学习笔记12$ rustc --versionrustc 1.30.0 (da5f414c2 2018-10-24)
+            <p>
+              Rust 学习笔记$ rustc --versionrustc 1.30.0 (da5f414c2 2018-10-24)
 基础工具链Rust 使用 cargo 进行项目管理。
 
 使用 cargo 建立一个新项目：cargo new project_name --bin。
@@ -1115,14 +1169,17 @@ symbol\rightarrow letter\_(digit|letter\_)^\star可见使用正则定义后更�
 运行测试：cargo test。
 
 变量与可变性
-Rust 使用 let
-          ...
+Rust 使用 let 声
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1136,6 +1193,9 @@ Rust 使用 let
 
     
 
+    
+      
+    
     
 
     
@@ -1175,16 +1235,16 @@ Rust 使用 let
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/20/软件工程课程项目博客-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/20/软件工程课程项目博客-3/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1194,9 +1254,8 @@ Rust 使用 let
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/20/软件工程课程项目博客-3/" itemprop="url">
-                  软件工程课程项目博客-集成与测试
-                </a>
+                
+                <a href="/2018/10/20/软件工程课程项目博客-3/" class="post-title-link" itemprop="url">软件工程课程项目博客-集成与测试</a>
               
             
           </h1>
@@ -1247,15 +1306,17 @@ Rust 使用 let
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/10/20/软件工程课程项目博客-3/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/20/软件工程课程项目博客-3/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/20/软件工程课程项目博客-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1285,17 +1346,21 @@ Rust 使用 let
       
         
           
-          软件工程课程项目博客-集成与测试这是对一个为期一周的开发活动的个人总结。这个开发活动的主要目的是让我们熟悉持续集成以及了解一些基本的测试的概念并进行实践。
+            <p>
+              软件工程课程项目博客-集成与测试这是对一个为期一周的开发活动的个人总结。这个开发活动的主要目的是让我们熟悉持续集成以及了解一些基本的测试的概念并进行实践。
 关于测试
 单元测试：单元测试是对程序中的最小单元的功能正确性的验证。使用 Python 的话最小单元就是函数，单元测试要检测的就是这些函数。就我的感觉而言，通过单元测试我们可以预先定义出这个函数的正确行为应该是什么，于是在以后对这个函数进行的改动都可以保证正确，这会在以后的改动过程中让我们更有信心。不过，因为这次的作业时间确实较短而且逻辑不复杂，这个效果可能不是很明显。
 功能测试：按我的理解，单元测试更多的是站在代码的角度上说的，而功能测试
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/20/软件工程课程项目博客-3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/20/软件工程课程项目博客-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1309,6 +1374,9 @@ Rust 使用 let
 
     
 
+    
+      
+    
     
 
     
@@ -1348,16 +1416,16 @@ Rust 使用 let
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1367,9 +1435,8 @@ Rust 使用 let
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/09/手写汇编器-2/" itemprop="url">
-                  汇编课程大作业博客——编码 x86 指令
-                </a>
+                
+                <a href="/2018/10/09/手写汇编器-2/" class="post-title-link" itemprop="url">汇编课程大作业博客——编码 x86 指令</a>
               
             
           </h1>
@@ -1420,15 +1487,17 @@ Rust 使用 let
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/10/09/手写汇编器-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/09/手写汇编器-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/09/手写汇编器-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1458,17 +1527,21 @@ Rust 使用 let
       
         
           
-          汇编课程大作业博客——编码 x86 指令在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。
+            <p>
+              汇编课程大作业博客——编码 x86 指令在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。
 Encoding Real x86 Instructions 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。
 x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。
 回到将所有可选部分写到一起那一步，这十六
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1482,6 +1555,9 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
 
     
 
+    
+      
+    
     
 
     
@@ -1521,16 +1597,16 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1540,9 +1616,8 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/08/软件工程课程项目博客-2/" itemprop="url">
-                  软件工程课程大作业博客——数据传输方式的选取
-                </a>
+                
+                <a href="/2018/10/08/软件工程课程项目博客-2/" class="post-title-link" itemprop="url">软件工程课程大作业博客——数据传输方式的选取</a>
               
             
           </h1>
@@ -1593,15 +1668,17 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/10/08/软件工程课程项目博客-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/08/软件工程课程项目博客-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/08/软件工程课程项目博客-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1631,16 +1708,20 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
       
         
           
-          软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。
+            <p>
+              软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。
 目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。
 比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/08/软件工程课程项目博客-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/08/软件工程课程项目博客-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1654,6 +1735,9 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
 
     
 
+    
+      
+    
     
 
     
@@ -1693,16 +1777,16 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1712,9 +1796,8 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/06/手写汇编器-1/" itemprop="url">
-                  汇编课程大作业博客——熟悉 PE 格式
-                </a>
+                
+                <a href="/2018/10/06/手写汇编器-1/" class="post-title-link" itemprop="url">汇编课程大作业博客——熟悉 PE 格式</a>
               
             
           </h1>
@@ -1765,15 +1848,17 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/10/06/手写汇编器-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/06/手写汇编器-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/06/手写汇编器-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1803,19 +1888,23 @@ x86 机器码的整体结构一条 x86 的指令在编码后会有各种部分�
       
         
           
-          汇编课程大作业博客——熟悉 PE 格式汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。
+            <p>
+              汇编课程大作业博客——熟悉 PE 格式汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。
 Windows 下能直接运行的文件格式为 exe，exe 又能细分为几种：
 
 EXE 是在 OS/2、MS-DOS 和 Windows 系统中通用的可执行文件的扩展名，包括以下几种主要的文件格式：
 
 DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Windows 中运行。它通过在文件头添加 ASCII 字符串 “MZ”（16 进制中表示为 4D5A）来
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/06/手写汇编器-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/06/手写汇编器-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1829,6 +1918,9 @@ DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Wind
 
     
 
+    
+      
+    
     
 
     
@@ -1868,16 +1960,16 @@ DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Wind
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/02/软件工程课程项目博客-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/02/软件工程课程项目博客-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1887,9 +1979,8 @@ DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Wind
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/10/02/软件工程课程项目博客-1/" itemprop="url">
-                  软件工程课程大作业博客——后端技术的选取
-                </a>
+                
+                <a href="/2018/10/02/软件工程课程项目博客-1/" class="post-title-link" itemprop="url">软件工程课程大作业博客——后端技术的选取</a>
               
             
           </h1>
@@ -1940,15 +2031,17 @@ DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Wind
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/10/02/软件工程课程项目博客-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/10/02/软件工程课程项目博客-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/10/02/软件工程课程项目博客-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1978,17 +2071,21 @@ DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Wind
       
         
           
-          软件工程课程大作业博客——后端技术的选取一些考虑考虑到后端的生态丰富程度和开发速度，只能从 Python 和 NodeJS 中选择。为了有更强的类型系统决定使用 TypeScript。
+            <p>
+              软件工程课程大作业博客——后端技术的选取一些考虑考虑到后端的生态丰富程度和开发速度，只能从 Python 和 NodeJS 中选择。为了有更强的类型系统决定使用 TypeScript。
 Web 框架打算使用 Koa，但是 Koa 本身还是比较底层，Egg.js 是对 Koa 的进一步封装，主要是引入了对 Koa 的自定义扩展的功能以及引入了一个更加强大的插件功能，暂时计划就用这个框架。
 Egg.js 的一些概念主要是对这个框架的一个 overview。
 ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有一个。它可以用来发出某些事件的信号，作为开发者可以监
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/10/02/软件工程课程项目博客-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/02/软件工程课程项目博客-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2002,6 +2099,9 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 
     
 
+    
+      
+    
     
 
     
@@ -2051,19 +2151,18 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2085,7 +2184,11 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2135,7 +2238,6 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
           
 
           
-          
 
           
           
@@ -2146,7 +2248,7 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2154,6 +2256,7 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 
     </div>
   </aside>
+  
 
 
         
@@ -2174,9 +2277,7 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2184,7 +2285,7 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2210,7 +2311,7 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
     
 
     
-	
+
     
 
     
@@ -2218,7 +2319,7 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2250,54 +2351,45 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2309,9 +2401,6 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
 
 
 
-
-
-  
 
   
 
@@ -2348,31 +2437,63 @@ ApplicationApplication 是一个全局的对象，整个 Web 应用中只会有�
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

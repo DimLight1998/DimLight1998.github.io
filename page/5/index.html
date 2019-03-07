@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/" itemprop="url">
-                  Programming Languages (Part B) 笔记 2 Section 5
-                </a>
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 2 Section 5</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,18 +417,22 @@
       
         
           
-          Section 5Introduction to RacketRacket 和 ML 最大的区别在于 Racket 是动态类型的。
+            <p>
+              Section 5Introduction to RacketRacket 和 ML 最大的区别在于 Racket 是动态类型的。
 Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
 一个简单的 Racket 程序：
-1234567; this is a comment#lang racket ; tell the language(provide (all-defined-out)) ; make all things visible(define s &quot;hello&quot;)
-其中 #lang racket 是告诉 DrRacket 使用的是何种语言
-          ...
+; this is a comment#lang racket ; tell the language(provide (all-defined-out)) ; make all things visible(define s &quot;hello&quot;)
+其中 #lang racket 是告诉 DrRacket 使用的是何种语言，因为 DrR
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -421,6 +446,9 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
 
     
 
+    
+      
+    
     
 
     
@@ -460,16 +488,16 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -479,9 +507,8 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/" itemprop="url">
-                  Programming Languages (Part B) 笔记 1 Introduction
-                </a>
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 1 Introduction</a>
               
             
           </h1>
@@ -532,15 +559,17 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -570,7 +599,8 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
       
         
           
-          Introduction感谢 Coursera。
+            <p>
+              Introduction感谢 Coursera。
 Course Information and OverviewWelcome to Part B本节没有问题。
 Overview of Part B ConceptsSection 5
 Racket 是动态类型的。
@@ -585,13 +615,16 @@ Section 7
 静态类型系统、动态类型系统及其比较。
 
 Part B Course Str
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -605,6 +638,9 @@ Part B Course Str
 
     
 
+    
+      
+    
     
 
     
@@ -644,16 +680,16 @@ Part B Course Str
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -663,9 +699,8 @@ Part B Course Str
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" itemprop="url">
-                  Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks
-                </a>
+                
+                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks</a>
               
             
           </h1>
@@ -716,15 +751,17 @@ Part B Course Str
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -754,15 +791,19 @@ Part B Course Str
       
         
           
-          Hyperparameter tuning, Batch Normalization and Programming FrameworksHyperparameter tuningTuning process经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。
+            <p>
+              Hyperparameter tuning, Batch Normalization and Programming FrameworksHyperparameter tuningTuning process经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。
 因为各个超参数的重要程度不一样，有多个超参数需要调节的时候 不要进行 grid search。所谓 grid search 就是每个超参数选取若干个值，然后
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -776,6 +817,9 @@ Part B Course Str
 
     
 
+    
+      
+    
     
 
     
@@ -815,16 +859,16 @@ Part B Course Str
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -834,9 +878,8 @@ Part B Course Str
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/" itemprop="url">
-                  Improving Deep Neural Networks 笔记 2 Optimization algorithms
-                </a>
+                
+                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 2 Optimization algorithms</a>
               
             
           </h1>
@@ -887,15 +930,17 @@ Part B Course Str
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -925,15 +970,19 @@ Part B Course Str
       
         
           
-          Optimization algorithmsOptimization algorithmsMini-batch gradient descent如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。
+            <p>
+              Optimization algorithmsOptimization algorithmsMini-batch gradient descent如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。
 记号上，例如数据集用 $X$ 表示，mini-batch 的大小选择为 $\displaystyle{k}$，那么 $X^{(1)}, \do
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -947,6 +996,9 @@ Part B Course Str
 
     
 
+    
+      
+    
     
 
     
@@ -986,16 +1038,16 @@ Part B Course Str
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1005,9 +1057,8 @@ Part B Course Str
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/" itemprop="url">
-                  Improving Deep Neural Networks 笔记 1 Practical aspects of Deep Learning
-                </a>
+                
+                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 1 Practical aspects of Deep Learning</a>
               
             
           </h1>
@@ -1058,15 +1109,17 @@ Part B Course Str
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1096,20 +1149,24 @@ Part B Course Str
       
         
           
-          Practical aspects of Deep LearningSetting up your Machine Learning ApplicationTrain / Dev / Test sets数据应当被分为三个集合：
+            <p>
+              Practical aspects of Deep LearningSetting up your Machine Learning ApplicationTrain / Dev / Test sets数据应当被分为三个集合：
 
 Train 集合用来对神经网络进行训练；
 Dev 集合用来在开发时评估网络的性能，挑选出最佳的网络；
 Test 集合用来测试这个最佳网络的性能。
 
 传统的做法是，如果只打算分出 Train/Dev，用 $70:30$ 的比例，如果三者兼顾，用 $60:20:20$。但是近年来各种问题数据量很大，而评估只需要部分数据即可，所以倾向于将大量数据设为 Train，其它设为 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1123,6 +1180,9 @@ Test 集合用来测试这个最佳网络的性能。
 
     
 
+    
+      
+    
     
 
     
@@ -1162,16 +1222,16 @@ Test 集合用来测试这个最佳网络的性能。
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1181,9 +1241,8 @@ Test 集合用来测试这个最佳网络的性能。
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/" itemprop="url">
-                  Programming Languages (Part A) 笔记 5 Section 4
-                </a>
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 5 Section 4</a>
               
             
           </h1>
@@ -1234,15 +1293,17 @@ Test 集合用来测试这个最佳网络的性能。
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1272,20 +1333,24 @@ Test 集合用来测试这个最佳网络的性能。
       
         
           
-          Section 4Section Introduction本节没有问题。
+            <p>
+              Section 4Section Introduction本节没有问题。
 What is Type InferenceML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。
 一般来说类型推断后再实施类型检查，但是实践中二者往往合并。
 类型推断的难度取决于类型系统。但是类型系统的严格程度和类型推断的难度没有直接的关系，拒绝所有程序的类型系统和接受所有程序的类型系统实现难度是一样的。
 ML Type InferenceML 中类型推断的若干步骤：
 
 按照次序对绑
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-5-Section-4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1299,6 +1364,9 @@ ML Type InferenceML 中类型推断的若干步骤：
 
     
 
+    
+      
+    
     
 
     
@@ -1338,16 +1406,16 @@ ML Type InferenceML 中类型推断的若干步骤：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1357,9 +1425,8 @@ ML Type InferenceML 中类型推断的若干步骤：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/" itemprop="url">
-                  Programming Languages (Part A) 笔记 4 Section 3
-                </a>
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 4 Section 3</a>
               
             
           </h1>
@@ -1410,15 +1477,17 @@ ML Type InferenceML 中类型推断的若干步骤：
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1448,7 +1517,8 @@ ML Type InferenceML 中类型推断的若干步骤：
       
         
           
-          Section 3Introduction to First-Class Functions函数式编程与函数式语言函数式编程是一种编程范式。具有如下特点：
+            <p>
+              Section 3Introduction to First-Class Functions函数式编程与函数式语言函数式编程是一种编程范式。具有如下特点：
 
 不使用可变数据类型。
 函数可以作为值。
@@ -1458,13 +1528,16 @@ ML Type InferenceML 中类型推断的若干步骤：
 高阶函数指的是接受函数作为参数或者返回函数的函数。
 函数闭包一个函数可以引用它外部环境中的变量，这种特性使得该函数成为了一个闭包。详细的后面会写。
 Fu
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1478,6 +1551,9 @@ Fu
 
     
 
+    
+      
+    
     
 
     
@@ -1517,16 +1593,16 @@ Fu
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1536,9 +1612,8 @@ Fu
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/" itemprop="url">
-                  Programming Languages (Part A) 笔记 3 Section 2
-                </a>
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 3 Section 2</a>
               
             
           </h1>
@@ -1589,15 +1664,17 @@ Fu
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1627,7 +1704,8 @@ Fu
       
         
           
-          Section 2我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。
+            <p>
+              Section 2我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。
 Building Compound Types基础类型和复合类型基础类型是“原子”的类型，无法继续分解。
 复合类型例如列表、元组和 Option。
 构造复合类型的通用方法复合类型都可以由三种方式组合地构造出：
@@ -1637,13 +1715,16 @@ One of：包含若干个可选类型之一
 Self reference：包含自己这个类型
 
 例如元组就是 Each of 形式的，Option 就是 One of 形式的，列表是三种形式的组合：一个 int list 可以为空（One of），也可以为一个
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1657,6 +1738,9 @@ Self reference：包含自己这个类型
 
     
 
+    
+      
+    
     
 
     
@@ -1696,16 +1780,16 @@ Self reference：包含自己这个类型
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1715,9 +1799,8 @@ Self reference：包含自己这个类型
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" itemprop="url">
-                  Programming Languages (Part A) 笔记 2 Section 1
-                </a>
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 2 Section 1</a>
               
             
           </h1>
@@ -1768,15 +1851,17 @@ Self reference：包含自己这个类型
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1806,14 +1891,18 @@ Self reference：包含自己这个类型
       
         
           
-          Section 1ML Variable Bindings and Expressions一些语法123456(* this is a comment *)val x = 1;                          (* variable binding *)val y = if x &gt; 0 then x else 0 - x; (* condition expression *)val z = abs y;                      (* function call *)val w = abs(z);                     (* anoth
-          ...
+            <p>
+              Section 1ML Variable Bindings and Expressions一些语法(* this is a comment *)val x = 1;                          (* variable binding *)val y = if x &gt; 0 then x else 0 - x; (* condition expression *)val z = abs y;                      (* function call *)val w = abs(z);                     (* another sty
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1827,6 +1916,9 @@ Self reference：包含自己这个类型
 
     
 
+    
+      
+    
     
 
     
@@ -1866,16 +1958,16 @@ Self reference：包含自己这个类型
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1885,9 +1977,8 @@ Self reference：包含自己这个类型
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" itemprop="url">
-                  Programming Languages (Part A) 笔记 1 Introduction
-                </a>
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 1 Introduction</a>
               
             
           </h1>
@@ -1938,15 +2029,17 @@ Self reference：包含自己这个类型
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1976,20 +2069,24 @@ Self reference：包含自己这个类型
       
         
           
-          Introduction感谢 Coursera。
+            <p>
+              Introduction感谢 Coursera。
 
 This is a challenging course that we hope will change the way you look at programming forever.
 
 Welcome InformationWelcome本节没有问题。
 What the Course is About / Initial Motivation这门课主要是通过 Standard ML、Racket 和 Ruby 展示各种编程语言中的基本概念以及它们如何相互关联，并非学习这三门语言。
 Recommended Background本节没有问题
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2003,6 +2100,9 @@ Recommended Background本节没有问题
 
     
 
+    
+      
+    
     
 
     
@@ -2052,19 +2152,18 @@ Recommended Background本节没有问题
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2086,7 +2185,11 @@ Recommended Background本节没有问题
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2136,7 +2239,6 @@ Recommended Background本节没有问题
           
 
           
-          
 
           
           
@@ -2147,7 +2249,7 @@ Recommended Background本节没有问题
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2155,6 +2257,7 @@ Recommended Background本节没有问题
 
     </div>
   </aside>
+  
 
 
         
@@ -2175,9 +2278,7 @@ Recommended Background本节没有问题
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2185,7 +2286,7 @@ Recommended Background本节没有问题
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2211,7 +2312,7 @@ Recommended Background本节没有问题
     
 
     
-	
+
     
 
     
@@ -2219,7 +2320,7 @@ Recommended Background本节没有问题
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2251,54 +2352,45 @@ Recommended Background本节没有问题
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2310,9 +2402,6 @@ Recommended Background本节没有问题
 
 
 
-
-
-  
 
   
 
@@ -2349,31 +2438,63 @@ Recommended Background本节没有问题
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

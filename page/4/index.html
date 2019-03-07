@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 2 Bayesian Network (Directed Models)
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 2 Bayesian Network (Directed Models)</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,16 +417,20 @@
       
         
           
-          Bayesian Network (Directed Models)Bayesian Network FundamentalsSemantics &amp; Factorization贝叶斯网是一个 DAG，每个结点表示一个随机变量。将 DAG $G$ 中结点 $A$ 的直接前驱记作 $\text{Par}_G(A)$，则每个结点实际上表示了一个条件分布（conditional probability distribution, CPD），结点 $X_i$ 对应 $P(X_i | \text{Par}_G(X_i))$。
+            <p>
+              Bayesian Network (Directed Models)Bayesian Network FundamentalsSemantics &amp; Factorization贝叶斯网是一个 DAG，每个结点表示一个随机变量。将 DAG $G$ 中结点 $A$ 的直接前驱记作 $\text{Par}_G(A)$，则每个结点实际上表示了一个条件分布（conditional probability distribution, CPD），结点 $X_i$ 对应 $P(X_i | \text{Par}_G(X_i))$。
 （约定“前驱”表示直接前驱和非直接前驱的并集。）
 贝叶斯网编码了一个所有
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-2-Bayesian-Network-Directed-Models/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -419,6 +444,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -458,16 +486,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -477,9 +505,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/" itemprop="url">
-                  Probabilistic Graphical Models 1: Representation 笔记 1 Introduction and Overview
-                </a>
+                
+                <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/" class="post-title-link" itemprop="url">Probabilistic Graphical Models 1: Representation 笔记 1 Introduction and Overview</a>
               
             
           </h1>
@@ -530,15 +557,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -568,19 +597,23 @@
       
         
           
-          Introduction and OverviewWelcome!本节没有问题。
+            <p>
+              Introduction and OverviewWelcome!本节没有问题。
 Overview and MotivationPGM 的一些应用疾病诊断、图像分割、文本信息提取、传感器数据融合等。
 Probabilistic Graphical Models 中各个词的含义
 Models：模型是人类对世界认知的声明式的描述。专家可以导出模型，数据可以让模型学习到参数，最终被多种算法应用。
 Probabilistic：设计这些模型是为了处理大量的不确定性。不确定性来自于对世界的不完全认知、观测噪声、建模的不完全性和世界的随机性。
 Graphical：使用图建模可以处理含有大量变量的复杂系统。使
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/27/Probabilistic-Graphical-Models-1-Representation-笔记-1-Introduction-and-Overview/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -594,6 +627,9 @@ Graphical：使用图建模可以处理含有大量变量的复杂系统。使
 
     
 
+    
+      
+    
     
 
     
@@ -633,16 +669,16 @@ Graphical：使用图建模可以处理含有大量变量的复杂系统。使
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -652,9 +688,8 @@ Graphical：使用图建模可以处理含有大量变量的复杂系统。使
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/" itemprop="url">
-                  Structuring Machine Learning Projects 笔记 2 ML Strategy (2)
-                </a>
+                
+                <a href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/" class="post-title-link" itemprop="url">Structuring Machine Learning Projects 笔记 2 ML Strategy (2)</a>
               
             
           </h1>
@@ -705,15 +740,17 @@ Graphical：使用图建模可以处理含有大量变量的复杂系统。使
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -743,16 +780,20 @@ Graphical：使用图建模可以处理含有大量变量的复杂系统。使
       
         
           
-          ML Strategy (2)Error AnalysisCarrying out error analysis对于分类任务来说，如果测试集上的效果不好，可以找到那些分错类的样本，看看他们的共性是什么，然后单独训练一个专门负责这个的分类器。
+            <p>
+              ML Strategy (2)Error AnalysisCarrying out error analysis对于分类任务来说，如果测试集上的效果不好，可以找到那些分错类的样本，看看他们的共性是什么，然后单独训练一个专门负责这个的分类器。
 在查看共性时应当找到出现最多的共性。假设有一个将动物中的猫寻找出来的分类器，错误率是 10%，有些错误是将狗分类为了猫。如果在分类错误的样本中狗只占到了 5%，那么即使有专门的分类器处理这个情况，错误率也只能从 10% 降低到 9.5%，这是理论的错误值下限。找到分类错误的样本中那些占比较高的错误类别并进行处理的效果更好。
 Cleaning up inco
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-2-ML-Strategy-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -766,6 +807,9 @@ Cleaning up inco
 
     
 
+    
+      
+    
     
 
     
@@ -805,16 +849,16 @@ Cleaning up inco
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -824,9 +868,8 @@ Cleaning up inco
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/" itemprop="url">
-                  Structuring Machine Learning Projects 笔记 1 ML Strategy (1)
-                </a>
+                
+                <a href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/" class="post-title-link" itemprop="url">Structuring Machine Learning Projects 笔记 1 ML Strategy (1)</a>
               
             
           </h1>
@@ -877,15 +920,17 @@ Cleaning up inco
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -915,7 +960,8 @@ Cleaning up inco
       
         
           
-          ML Strategy (1)来源 Coursera。
+            <p>
+              ML Strategy (1)来源 Coursera。
 Introduction to ML StrategyWhy ML Strategy当有一个任务需要完成的时候，如果效果不好可能需要进行相关调整和修改。如何找到关键的影响因素需要知道 ML 中的策略。
 Orthogonalization如果任务有多个性能指标需要调整，同时有多个因素可以被调节，那么较好的情况是这些因素对结果的影响是正交的，对单个因素的调节应当只影响某个性能指标。
 ML 中的性能指标有：
@@ -926,13 +972,16 @@ test 集上的表现
 实际产品的表项
 
 对于第一个指标，可以调节网络规模、优化器选择等；对于
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -946,6 +995,9 @@ test 集上的表现
 
     
 
+    
+      
+    
     
 
     
@@ -985,16 +1037,16 @@ test 集上的表现
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1004,9 +1056,8 @@ test 集上的表现
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/" itemprop="url">
-                  Programming Languages (Part C) 笔记 4 Section 10
-                </a>
+                
+                <a href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/" class="post-title-link" itemprop="url">Programming Languages (Part C) 笔记 4 Section 10</a>
               
             
           </h1>
@@ -1057,15 +1108,17 @@ test 集上的表现
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1095,7 +1148,8 @@ test 集上的表现
       
         
           
-          Section 10Subtyping From the Beginning接下来的几节中使用了作者自己定义的语言。语言中的记录类型和 ML 很类似，并且是 mutable 的。语法：
+            <p>
+              Section 10Subtyping From the Beginning接下来的几节中使用了作者自己定义的语言。语言中的记录类型和 ML 很类似，并且是 mutable 的。语法：
 
 字面量：e = {f1=e1, f2=e2, ..., fn=en}
 读写：e.f1 = e1
@@ -1103,14 +1157,17 @@ test 集上的表现
 
 这个语言可以建立简单的类型系统，该系统的规则和直觉一致。
 为何引入 subtyping假设有这个函数：
-12fun distance_to_origin(point: &#123;x: real, y: real&#125;) =	Math.s
-          ...
+fun distance_to_origin(point: &#123;x: real, y: real&#125;) =	Math.sqr
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1124,6 +1181,9 @@ test 集上的表现
 
     
 
+    
+      
+    
     
 
     
@@ -1163,16 +1223,16 @@ test 集上的表现
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1182,9 +1242,8 @@ test 集上的表现
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/" itemprop="url">
-                  Programming Languages (Part C) 笔记 3 Section 9
-                </a>
+                
+                <a href="/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/" class="post-title-link" itemprop="url">Programming Languages (Part C) 笔记 3 Section 9</a>
               
             
           </h1>
@@ -1235,15 +1294,17 @@ test 集上的表现
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1273,20 +1334,24 @@ test 集上的表现
       
         
           
-          Section 9OOP Versus Functional DecompositionBreaking things down
+            <p>
+              Section 9OOP Versus Functional DecompositionBreaking things down
 FP 的策略是将程序拆分为若干执行不同功能的函数
 OOP 的策略是将程序拆分为若干类，每个类有各自的行为
 
 这两种策略是正好相反的。采用哪种方法一般是个人喜好，但是两种不同方式适合于软件不同的扩展方式。
 直观认识假设要实现一个简单的解释器，支持三种表达式 Int、Add 和 Negate，每种表达式都支持 eval、toString 和 hasZero 操作。这样就一共要实现 9 个函数。
 可以将这 9 个函数组织到一张表中，每行对应一个表达式类型，每列对应一个操作
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1300,6 +1365,9 @@ OOP 的策略是将程序拆分为若干类，每个类有各自的行为
 
     
 
+    
+      
+    
     
 
     
@@ -1339,16 +1407,16 @@ OOP 的策略是将程序拆分为若干类，每个类有各自的行为
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1358,9 +1426,8 @@ OOP 的策略是将程序拆分为若干类，每个类有各自的行为
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/" itemprop="url">
-                  Programming Languages (Part C) 笔记 2 Section 8
-                </a>
+                
+                <a href="/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/" class="post-title-link" itemprop="url">Programming Languages (Part C) 笔记 2 Section 8</a>
               
             
           </h1>
@@ -1411,15 +1478,17 @@ OOP 的策略是将程序拆分为若干类，每个类有各自的行为
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1449,7 +1518,8 @@ OOP 的策略是将程序拆分为若干类，每个类有各自的行为
       
         
           
-          Section 8Introduction to RubyRuby 的一些特性：
+            <p>
+              Section 8Introduction to RubyRuby 的一些特性：
 
 所有的值都是对象，是纯 OOP 的。
 是基于类的（存在不基于类的语言，比如 JavaScript）。
@@ -1460,14 +1530,17 @@ OOP 的策略是将程序拆分为若干类，每个类有各自的行为
 是一门脚本语言。
 
 Ruby 的 hello world 程序（缩进无所谓）：
-12345678910# this is a commentclass Hello    def hello_method        puts "Hello, world!"    endendx = Hello.ne
-          ...
+# this is a commentclass Hello    def hello_method        puts "Hello, world!"    endendx = Hello.newx.hello_me
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-2-Section-8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1481,6 +1554,9 @@ Ruby 的 hello world 程序（缩进无所谓）：
 
     
 
+    
+      
+    
     
 
     
@@ -1520,16 +1596,16 @@ Ruby 的 hello world 程序（缩进无所谓）：
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1539,9 +1615,8 @@ Ruby 的 hello world 程序（缩进无所谓）：
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/" itemprop="url">
-                  Programming Languages (Part C) 笔记 1 Introduction
-                </a>
+                
+                <a href="/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part C) 笔记 1 Introduction</a>
               
             
           </h1>
@@ -1592,15 +1667,17 @@ Ruby 的 hello world 程序（缩进无所谓）：
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1630,7 +1707,8 @@ Ruby 的 hello world 程序（缩进无所谓）：
       
         
           
-          Introduction感谢 Coursera。
+            <p>
+              Introduction感谢 Coursera。
 Course Information and OverviewWelcome to Part CRuby 是动态类型 OOP 语言，并且是纯 OOP 的（所有的值都是对象）。
 Overview of Part C Concepts
 动态类型 OOP 语言
@@ -1638,15 +1716,18 @@ OOP 和 FP 在解决问题时如何对问题进行分解
 子类型、泛型和子类型
 
 Part C Course Structure本节没有问题。
-Software Installation1sudo pacman -S ruby ruby-irb
-使用 ruby &quot;foo.rb&quot; 运
-          ...
+Software Installationsudo pacman -S ruby ruby-irb
+使用 ruby &quot;foo.rb&quot; 运行
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1660,6 +1741,9 @@ Software Installation1sudo pacman -S ruby ruby-irb
 
     
 
+    
+      
+    
     
 
     
@@ -1699,16 +1783,16 @@ Software Installation1sudo pacman -S ruby ruby-irb
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1718,9 +1802,8 @@ Software Installation1sudo pacman -S ruby ruby-irb
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/" itemprop="url">
-                  Programming Languages (Part B) 笔记 4 Section 7
-                </a>
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 4 Section 7</a>
               
             
           </h1>
@@ -1771,15 +1854,17 @@ Software Installation1sudo pacman -S ruby ruby-irb
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1809,16 +1894,20 @@ Software Installation1sudo pacman -S ruby ruby-irb
       
         
           
-          Section 7ML Versus RacketML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。
+            <p>
+              Section 7ML Versus RacketML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。
 它们可以互相实现对方的类型系统。
 Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部分符合 ML 类型系统要求的程序能够通过 ML 编译器（忽略语法差异），这种限制使得程序的一些潜在 bug 被提前检查出来，但是同时一些本来可以正常运行的程序也被拒绝了。例如以下程序在 Racket 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1832,6 +1921,9 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
     
 
+    
+      
+    
     
 
     
@@ -1871,16 +1963,16 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1890,9 +1982,8 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" itemprop="url">
-                  Programming Languages (Part B) 笔记 3 Section 6
-                </a>
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 3 Section 6</a>
               
             
           </h1>
@@ -1943,15 +2034,17 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1981,16 +2074,21 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
       
         
           
-          Section 6Datatype-Programming in Racket Without Structs在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 &#39; 开头的字符串，例如 &#39;foo，symbol 之间用 eq? 判断相等。
+            <p>
+              Section 6Datatype-Programming in Racket Without Structs在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 &#39; 开头的字符串，例如 &#39;foo，symbol 之间用 eq? 判断相等。
 以下是一个移植的例子：
-1234datatype exp = Const of int             | Negate of exp             | Add of exp * exp             | Multiply of exp * 
-          ...
+datatype exp = Const of int             | Negate of exp             | Add of exp * exp             | Multiply of exp * exp
+
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -2004,6 +2102,9 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
     
 
+    
+      
+    
     
 
     
@@ -2053,19 +2154,18 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2087,7 +2187,11 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2137,7 +2241,6 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
           
 
           
-          
 
           
           
@@ -2148,7 +2251,7 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2156,6 +2259,7 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
     </div>
   </aside>
+  
 
 
         
@@ -2176,9 +2280,7 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2186,7 +2288,7 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2212,7 +2314,7 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
     
 
     
-	
+
     
 
     
@@ -2220,7 +2322,7 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2252,54 +2354,45 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2311,9 +2404,6 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
 
 
 
-
-
-  
 
   
 
@@ -2350,31 +2440,63 @@ Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/06/从零开始搞懂异步/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/06/从零开始搞懂异步/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/06/从零开始搞懂异步/" itemprop="url">
-                  从零开始搞懂异步
-                </a>
+                
+                <a href="/2018/09/06/从零开始搞懂异步/" class="post-title-link" itemprop="url">从零开始搞懂异步</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/09/06/从零开始搞懂异步/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/06/从零开始搞懂异步/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/06/从零开始搞懂异步/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,19 +417,23 @@
       
         
           
-          从零开始搞懂异步之前小学期学 NodeJS 的时候就被异步搞得很头疼，过几天的 Python 自学报告就打算写异步编程了。现在我打算从最基础的地方开始弄懂异步和与其相关的一些概念。
+            <p>
+              从零开始搞懂异步之前小学期学 NodeJS 的时候就被异步搞得很头疼，过几天的 Python 自学报告就打算写异步编程了。现在我打算从最基础的地方开始弄懂异步和与其相关的一些概念。
 阻塞与非阻塞、同步与异步、并发与并行
 阻塞：程序的某个线程进行了某个调用后如果这个线程要等着运行结果，则称为线程被阻塞。（虽然 CPU 可以把它换下来，但是这个线程依然是阻塞的。）
 非阻塞：程序的某个线程进行了某个调用后不等结果出来继续运行，则称为非阻塞。
 同步：进行了某个调用后，这个调用不是立即返回的，可能需要等一段时间，一旦调用返回就得到了希望得到的记过，则称这种情况为同步调用。
 异步：进行了某个调用后，这个调
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/06/从零开始搞懂异步/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/06/从零开始搞懂异步/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -422,6 +447,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -461,16 +489,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -480,9 +508,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/03/计算几何学习笔记-4/" itemprop="url">
-                  计算几何学习笔记 4
-                </a>
+                
+                <a href="/2018/09/03/计算几何学习笔记-4/" class="post-title-link" itemprop="url">计算几何学习笔记 4</a>
               
             
           </h1>
@@ -533,15 +560,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/09/03/计算几何学习笔记-4/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/03/计算几何学习笔记-4/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/03/计算几何学习笔记-4/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -571,18 +600,22 @@
       
         
           
-          计算几何学习笔记——Voronoi 图
+            <p>
+              计算几何学习笔记——Voronoi 图
 todo
 
 基础概念Voronoi 图的概念只考虑二维的情况，设想平面上有一系列的点，这些点被称作 site。在平面上任取一个点，这个点到所有 site 的距离中必然有一个最近的，对这个点来说这个 site 是离它最近的 site。对于每个 site，它周围总会有一小块区域，使得对这个区域中的每个点，这个 site 都是离这个点最近的 site，这样的区域称作是这个 site 的 cell。
 总的来看，给定了一些 site 之后，它们对应得到的 cell 就会平铺满整个平面，这样的到的图称作是 Voronoi 图。cell 的边称作是 Voronoi 边
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/03/计算几何学习笔记-4/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/03/计算几何学习笔记-4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -596,6 +629,9 @@ todo
 
     
 
+    
+      
+    
     
 
     
@@ -635,16 +671,16 @@ todo
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-3/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -654,9 +690,8 @@ todo
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/03/计算几何学习笔记-3/" itemprop="url">
-                  计算几何学习笔记 3
-                </a>
+                
+                <a href="/2018/09/03/计算几何学习笔记-3/" class="post-title-link" itemprop="url">计算几何学习笔记 3</a>
               
             
           </h1>
@@ -707,15 +742,17 @@ todo
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/09/03/计算几何学习笔记-3/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/03/计算几何学习笔记-3/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/03/计算几何学习笔记-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -745,20 +782,24 @@ todo
       
         
           
-          计算几何学习笔记——画廊问题与三角剖分问题基础概念
+            <p>
+              计算几何学习笔记——画廊问题与三角剖分问题基础概念
 星形多边形：这样的多边形具有一个核，从核向任意一个顶点连线，连线都不会和边有交点。注意星形多边形不一定是凸多边形。
 简单多边形：这样的多边形任意不相邻的两条边不相交（也不搭接）。
 正交多边形：如果多边形的所有边都平行于两个方向，并且这两个方向是垂直的，那么这个多边形为正交多边形。
 内对角线：多边形的对角线，且这样的对角线与其它边没有交点。
 
 在平面上，三角剖分问题有两种。一种是对于一个给定的（可能带洞的）多边形，如何将它分解为若干个不重合的以它的顶点为顶点的三角形的并；另一个是对于给定的点集如何进行结构化（以后可能会写）。这篇中所有的三角剖分
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/03/计算几何学习笔记-3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/03/计算几何学习笔记-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -772,6 +813,9 @@ todo
 
     
 
+    
+      
+    
     
 
     
@@ -811,16 +855,16 @@ todo
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/01/计算几何学习笔记-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/01/计算几何学习笔记-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -830,9 +874,8 @@ todo
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/09/01/计算几何学习笔记-2/" itemprop="url">
-                  计算几何学习笔记 2
-                </a>
+                
+                <a href="/2018/09/01/计算几何学习笔记-2/" class="post-title-link" itemprop="url">计算几何学习笔记 2</a>
               
             
           </h1>
@@ -883,15 +926,17 @@ todo
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/09/01/计算几何学习笔记-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/01/计算几何学习笔记-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/09/01/计算几何学习笔记-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -921,17 +966,21 @@ todo
       
         
           
-          计算几何学习笔记——几何求交问题这一篇的内容是几何求交。
+            <p>
+              计算几何学习笔记——几何求交问题这一篇的内容是几何求交。
 基础算法和理论Element Uniqueness 问题给定若干个实数，它们之中有没有重复的元素？一个直观的想法是先对其排序然后做一个线性的判定，这会耗费 $O(n\log n)$ 的时间。可以证明，这个时间已经是这个问题的最好能达到的时间了。
 Integer Element Uniqueness 问题即使将 Element Uniqueness 问题中的实数换成整数，最优时间不会发生改变。
 Minimal Gap 问题给定若干个实数（未排序），求这些实数中间隔最小的两个实数的间隔是多少。直观的想法是排序然后线性判定，复杂度是 $O(n
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/09/01/计算几何学习笔记-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/01/计算几何学习笔记-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -945,6 +994,9 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     
 
+    
+      
+    
     
 
     
@@ -984,16 +1036,16 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/31/计算几何学习笔记-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/31/计算几何学习笔记-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1003,9 +1055,8 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/31/计算几何学习笔记-1/" itemprop="url">
-                  计算几何学习笔记 1
-                </a>
+                
+                <a href="/2018/08/31/计算几何学习笔记-1/" class="post-title-link" itemprop="url">计算几何学习笔记 1</a>
               
             
           </h1>
@@ -1056,15 +1107,17 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/08/31/计算几何学习笔记-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/31/计算几何学习笔记-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/31/计算几何学习笔记-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1094,15 +1147,19 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
       
         
           
-          计算几何学习笔记——平面凸包问题基本来自学堂在线上的 计算几何慕课。这一篇的内容是平面凸包问题。
+            <p>
+              计算几何学习笔记——平面凸包问题基本来自学堂在线上的 计算几何慕课。这一篇的内容是平面凸包问题。
 基础算法和理论判定平面上一个点在有向直线的左边还是右边（ToLeftTest）使用矢量叉乘，如果有向直线的向量为 $\overrightarrow{AB}$，要判定的点是 $C$，则可以通过 $\overrightarrow{AB}\times\overrightarrow{AC}$ 的竖坐标符号来确定 $C$ 在 $\overrightarrow{AB}$ 的哪一侧。这个叉乘可以写成 $\left|\begin{array}{ccc}\vec i &amp; \vec j &amp; \vec 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/31/计算几何学习笔记-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/31/计算几何学习笔记-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1116,6 +1173,9 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     
 
+    
+      
+    
     
 
     
@@ -1155,16 +1215,16 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/28/CS184-1X-计算机图形学学习笔记-3/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/28/CS184-1X-计算机图形学学习笔记-3/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1174,9 +1234,8 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/" itemprop="url">
-                  CS184.1X 计算机图形学学习笔记 (3)
-                </a>
+                
+                <a href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (3)</a>
               
             
           </h1>
@@ -1227,15 +1286,17 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/28/CS184-1X-计算机图形学学习笔记-3/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/28/CS184-1X-计算机图形学学习笔记-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1265,16 +1326,20 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
       
         
           
-          CS184.1X 计算机图形学学习笔记 (3)光线追踪及其实现。
+            <p>
+              CS184.1X 计算机图形学学习笔记 (3)光线追踪及其实现。
 光线追踪算法如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。
 另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显示的像素，利用光路可逆的性质从摄像机向这个像素发出一条光线，这条光线打到物体上后根据物体的相关物理性质决定出光线的颜色，如有必要，对反射光线继续进行追踪，最后叠加它们的颜色。光线追踪算法易于实现，能够
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1288,6 +1353,9 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     
 
+    
+      
+    
     
 
     
@@ -1327,16 +1395,16 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/22/CS184-1X-计算机图形学学习笔记-2/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/22/CS184-1X-计算机图形学学习笔记-2/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1346,9 +1414,8 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/" itemprop="url">
-                  CS184.1X 计算机图形学学习笔记 (2)
-                </a>
+                
+                <a href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (2)</a>
               
             
           </h1>
@@ -1399,15 +1466,17 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/22/CS184-1X-计算机图形学学习笔记-2/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/22/CS184-1X-计算机图形学学习笔记-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1437,17 +1506,21 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
       
         
           
-          CS184.1X 计算机图形学学习笔记 (2)主要是 OpenGL 的一些概念。学习资料主要来自 LearnOpenGL CN。
+            <p>
+              CS184.1X 计算机图形学学习笔记 (2)主要是 OpenGL 的一些概念。学习资料主要来自 LearnOpenGL CN。
 各种矩阵
 模型（model）矩阵：比如一个模型是存放在文件中的，要描述这个模型，每个顶点的坐标应该是一个相对于某个中心的相对坐标。例如一个人体模型中，头的坐标可能是以相对于人体重心的形式给出的。当要将这个人体加载到世界中时需要使用一个矩阵左乘所有模型中的坐标得到世界坐标，这个矩阵就是模型矩阵。
 观察（view）矩阵：世界空间中，所有的点都是相对于世界的原点给出坐标的；摄像机空间中所有的点都是相对摄像机给出坐标的，即摄像机是原点。OpenGL 中我们希望能通过移动世界
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1461,6 +1534,9 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     
 
+    
+      
+    
     
 
     
@@ -1500,16 +1576,16 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/21/CS184-1X-计算机图形学学习笔记-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/21/CS184-1X-计算机图形学学习笔记-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1519,9 +1595,8 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/" itemprop="url">
-                  CS184.1X 计算机图形学学习笔记 (1)
-                </a>
+                
+                <a href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (1)</a>
               
             
           </h1>
@@ -1572,15 +1647,17 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/21/CS184-1X-计算机图形学学习笔记-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/21/CS184-1X-计算机图形学学习笔记-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1610,15 +1687,19 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
       
         
           
-          CS184.1X 计算机图形学学习笔记 (1)变换——数学基础基本变换缩放二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp; 0 \\ 0 &amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp; 0 \\ 0 &amp; s_y^{-1} \end{array}\right]}$，其中 $s_x, s_y$ 表示不同轴方向上的缩放系数。
+            <p>
+              CS184.1X 计算机图形学学习笔记 (1)变换——数学基础基本变换缩放二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp; 0 \\ 0 &amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp; 0 \\ 0 &amp; s_y^{-1} \end{array}\right]}$，其中 $s_x, s_y$ 表示不同轴方向上的缩放系数。
 三维缩放变换矩阵为 $\displaystyle{\left[\begi
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1632,6 +1713,9 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     
 
+    
+      
+    
     
 
     
@@ -1671,16 +1755,16 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/20/动手实现简单-TensorFlow/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/20/动手实现简单-TensorFlow/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1690,9 +1774,8 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/08/20/动手实现简单-TensorFlow/" itemprop="url">
-                  动手实现简单 TensorFlow
-                </a>
+                
+                <a href="/2018/08/20/动手实现简单-TensorFlow/" class="post-title-link" itemprop="url">动手实现简单 TensorFlow</a>
               
             
           </h1>
@@ -1743,15 +1826,17 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/08/20/动手实现简单-TensorFlow/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/08/20/动手实现简单-TensorFlow/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/08/20/动手实现简单-TensorFlow/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1781,15 +1866,19 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
       
         
           
-          动手实现简单 TensorFlow这篇文章是对 Deep Learning From Scratch: Theory and Implementation 的学习和整理，原作者使用纯 Python 实现了一个和 TensorFlow 接口类似的框架用来解释深度学习的基本原理以及 TensorFlow 这类框架是如何工作的。此处是看完原博客后的一些总结。（顺便测试一下这个博客系统）
+            <p>
+              动手实现简单 TensorFlow这篇文章是对 Deep Learning From Scratch: Theory and Implementation 的学习和整理，原作者使用纯 Python 实现了一个和 TensorFlow 接口类似的框架用来解释深度学习的基本原理以及 TensorFlow 这类框架是如何工作的。此处是看完原博客后的一些总结。（顺便测试一下这个博客系统）
 计算图计算图是一张有向无环图，它可以将一个复杂的函数分解成各种基本的运算，方便后续对各自变量求导。比如一个 $\displaystyle{\vec{y} = \mathbf{A}\vec{x} + \vec{b}}$
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/20/动手实现简单-TensorFlow/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/08/20/动手实现简单-TensorFlow/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1803,6 +1892,9 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     
 
+    
+      
+    
     
 
     
@@ -1852,19 +1944,18 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -1886,7 +1977,11 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -1936,7 +2031,6 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
           
 
           
-          
 
           
           
@@ -1947,7 +2041,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -1955,6 +2049,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
     </div>
   </aside>
+  
 
 
         
@@ -1975,9 +2070,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -1985,7 +2078,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2011,7 +2104,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
     
 
     
-	
+
     
 
     
@@ -2019,7 +2112,7 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2051,54 +2144,45 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2110,9 +2194,6 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
 
 
 
-
-
-  
 
   
 
@@ -2147,31 +2228,63 @@ Minimal Gap 问题给定若干个实数（未排序），求这些实数中间�
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

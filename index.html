@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home menu-item-active">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/05/Happy-与-Parsec-学习笔记/" itemprop="url">
-                  Happy 与 Parsec 学习笔记
-                </a>
+                
+                <a href="/2019/03/05/Happy-与-Parsec-学习笔记/" class="post-title-link" itemprop="url">Happy 与 Parsec 学习笔记</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/05/Happy-与-Parsec-学习笔记/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/05/Happy-与-Parsec-学习笔记/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/05/Happy-与-Parsec-学习笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,7 +417,8 @@
       
         
           
-          Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。
+            <p>
+              Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。
 
 Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。
 
@@ -405,13 +427,16 @@ Combinator 将一些小的语法分析函数组合起来，形成功能更复杂
 
 Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者是 parser combinator。
 作为例子，这篇文章会使用两种不同的策略对 json 文
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/05/Happy-与-Parsec-学习笔记/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/05/Happy-与-Parsec-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -425,6 +450,9 @@ Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者�
 
     
 
+    
+      
+    
     
 
     
@@ -464,16 +492,16 @@ Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -483,9 +511,8 @@ Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/04/形式化验证课程笔记-1/" itemprop="url">
-                  形式化验证课程笔记 1
-                </a>
+                
+                <a href="/2019/03/04/形式化验证课程笔记-1/" class="post-title-link" itemprop="url">形式化验证课程笔记 1</a>
               
             
           </h1>
@@ -524,15 +551,17 @@ Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/04/形式化验证课程笔记-1/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/04/形式化验证课程笔记-1/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/04/形式化验证课程笔记-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -562,7 +591,8 @@ Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者�
       
         
           
-          第一周这些笔记是对课程 软件系统建模与验证（1）的记录。
+            <p>
+              第一周这些笔记是对课程 软件系统建模与验证（1）的记录。
 这周讲的主要是命题逻辑。
 Propositional Logic
 原子：取值为真或假的不可分割的断言。
@@ -574,13 +604,16 @@ Propositional Logic
 
 解释在记号上可以看做词典，原子 $P$ 在解释 $I$ 下的真值为 $I[P]$。
 Inductive Semant
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/04/形式化验证课程笔记-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/04/形式化验证课程笔记-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -594,6 +627,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -633,16 +669,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -652,9 +688,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 7 数据库事务处理技术之故障恢复
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 7 数据库事务处理技术之故障恢复</a>
               
             
           </h1>
@@ -693,15 +728,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -731,14 +768,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -752,6 +793,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -791,16 +835,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -810,9 +854,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 6 数据库事务处理技术之并发控制
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 6 数据库事务处理技术之并发控制</a>
               
             
           </h1>
@@ -851,15 +894,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -889,14 +934,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -910,6 +959,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -949,16 +1001,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -968,9 +1020,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 5 数据库查询优化技术
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 5 数据库查询优化技术</a>
               
             
           </h1>
@@ -1009,15 +1060,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1047,14 +1100,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-5-数据库查询优化技术/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1068,6 +1125,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -1107,16 +1167,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1126,9 +1186,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 4 数据库查询实现算法之两趟扫描算法
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 4 数据库查询实现算法之两趟扫描算法</a>
               
             
           </h1>
@@ -1167,15 +1226,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1205,14 +1266,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-4-数据库查询实现算法之两趟扫描算法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1226,6 +1291,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -1265,16 +1333,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1284,9 +1352,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 3 数据库查询实现算法之一趟扫描算法
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 3 数据库查询实现算法之一趟扫描算法</a>
               
             
           </h1>
@@ -1325,15 +1392,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1363,14 +1432,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-3-数据库查询实现算法之一趟扫描算法/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1384,6 +1457,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -1423,16 +1499,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1442,9 +1518,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 2 数据库索引技术
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 2 数据库索引技术</a>
               
             
           </h1>
@@ -1483,15 +1558,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1521,14 +1598,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1542,6 +1623,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -1581,16 +1665,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1600,9 +1684,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/" itemprop="url">
-                  数据库系统（下）：管理与技术 笔记 1 数据库物理存储
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 1 数据库物理存储</a>
               
             
           </h1>
@@ -1641,15 +1724,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1679,14 +1764,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（下）：管理与技术-笔记-1-数据库物理存储/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1700,6 +1789,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -1739,16 +1831,16 @@ Inductive Semant
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1758,9 +1850,8 @@ Inductive Semant
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/" itemprop="url">
-                  数据库系统（中）：建模与设计 笔记 6 模式分解存在什么问题
-                </a>
+                
+                <a href="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/" class="post-title-link" itemprop="url">数据库系统（中）：建模与设计 笔记 6 模式分解存在什么问题</a>
               
             
           </h1>
@@ -1799,15 +1890,17 @@ Inductive Semant
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1837,14 +1930,18 @@ Inductive Semant
       
         
           
-          
-          
+            <p>
+              
+              
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1858,6 +1955,9 @@ Inductive Semant
 
     
 
+    
+      
+    
     
 
     
@@ -1907,19 +2007,18 @@ Inductive Semant
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -1941,7 +2040,11 @@ Inductive Semant
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -1991,7 +2094,6 @@ Inductive Semant
           
 
           
-          
 
           
           
@@ -2002,7 +2104,7 @@ Inductive Semant
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2010,6 +2112,7 @@ Inductive Semant
 
     </div>
   </aside>
+  
 
 
         
@@ -2030,9 +2133,7 @@ Inductive Semant
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2040,7 +2141,7 @@ Inductive Semant
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2066,7 +2167,7 @@ Inductive Semant
     
 
     
-	
+
     
 
     
@@ -2074,7 +2175,7 @@ Inductive Semant
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2106,54 +2207,45 @@ Inductive Semant
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2165,9 +2257,6 @@ Inductive Semant
 
 
 
-
-
-  
 
   
 
@@ -2204,31 +2293,63 @@ Inductive Semant
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   

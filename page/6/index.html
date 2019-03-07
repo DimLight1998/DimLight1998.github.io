@@ -17,7 +17,7 @@
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 <meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
@@ -33,8 +33,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -50,6 +48,21 @@
 
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
@@ -57,37 +70,15 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.0" rel="stylesheet" type="text/css" />
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.0" color="#222">
-
-
-
-
-
-
-
-
-
-<script type="text/javascript" id="hexo.configurations">
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
     scheme: 'Muse',
-    version: '6.4.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -126,7 +117,7 @@
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -143,30 +134,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript>
 
@@ -185,7 +177,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -195,6 +187,7 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+    
     
   </div>
 
@@ -218,24 +211,51 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
   </li>
 
       
@@ -286,16 +306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -305,9 +325,8 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/" itemprop="url">
-                  Neural Networks and Deep Learning 笔记 4 Deep Neural Networks
-                </a>
+                
+                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 4 Deep Neural Networks</a>
               
             
           </h1>
@@ -358,15 +377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -396,18 +417,22 @@
       
         
           
-          Deep Neural NetworksDeep Neural NetworksDeep L-layer neural network将网络层数加深，具有 $L$ 层的神经网络称为 L-layer 神经网络。输入层是第 0 层，但是计算层数的时候不计入总层数。一些记号如下（和之前的大致相同）：
+            <p>
+              Deep Neural NetworksDeep Neural NetworksDeep L-layer neural network将网络层数加深，具有 $L$ 层的神经网络称为 L-layer 神经网络。输入层是第 0 层，但是计算层数的时候不计入总层数。一些记号如下（和之前的大致相同）：
 
 $n^{[k]}$ 是第 $k$ 层的神经元数目，故 $n^{[0]}$ 即样本的特征维数，对于二分类问题 $n^{[l]} = 1$。
 $z^{[k]}$ 是第 $k$ 层神经元输出的未经过激活函数的值，多样本时为 $Z^{[k]}$。
 $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -421,6 +446,9 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
 
     
 
+    
+      
+    
     
 
     
@@ -460,16 +488,16 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -479,9 +507,8 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/" itemprop="url">
-                  Neural Networks and Deep Learning 笔记 3 Shallow Neural Networks
-                </a>
+                
+                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 3 Shallow Neural Networks</a>
               
             
           </h1>
@@ -532,15 +559,17 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -570,14 +599,18 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
       
         
           
-          Shallow Neural NetworksShallow Neural NetworksNeural Networks Overview在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z = \vec w^T\vec x + b$ 中有多个 $\vec w$ 以及 $b$ 就可以得到一个向量作为输出，此时可以表示为 $\vec z = W\vec x + \vec b$。如果希望得到 $
-          ...
+            <p>
+              Shallow Neural NetworksShallow Neural NetworksNeural Networks Overview在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z = \vec w^T\vec x + b$ 中有多个 $\vec w$ 以及 $b$ 就可以得到一个向量作为输出，此时可以表示为 $\vec z = W\vec x + \vec b$。如果希望得到 $
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -591,6 +624,9 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
 
     
 
+    
+      
+    
     
 
     
@@ -630,16 +666,16 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -649,9 +685,8 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" itemprop="url">
-                  Neural Networks and Deep Learning 笔记 2 Neural Networks Basics
-                </a>
+                
+                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 2 Neural Networks Basics</a>
               
             
           </h1>
@@ -702,15 +737,17 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -740,7 +777,8 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
       
         
           
-          Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：
+            <p>
+              Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：
 
 $m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。
 $n$ 表示每个样本的特征向量的维数。
@@ -750,13 +788,16 @@ $X$ 表示整个训练集，每一列表示一个样本，相当于样本按照�
 $Y$ 表示所有的标签，每一列表示一个样本，因此 $Y$ 的规模是 $1 \times m$ 的。
 
 Logistic 
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -770,6 +811,9 @@ Logistic
 
     
 
+    
+      
+    
     
 
     
@@ -809,16 +853,16 @@ Logistic
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -828,9 +872,8 @@ Logistic
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/" itemprop="url">
-                  Neural Networks and Deep Learning 笔记 1 Introduction to Deep Learning
-                </a>
+                
+                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 1 Introduction to Deep Learning</a>
               
             
           </h1>
@@ -881,15 +924,17 @@ Logistic
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -919,18 +964,22 @@ Logistic
       
         
           
-          Introduction to Deep Learning感谢 Coursera。
+            <p>
+              Introduction to Deep Learning感谢 Coursera。
 Welcome to the Deep Learning SpecializationWelcome本节没有问题。
 Introduction to Deep LearningWhat is a neural network?对于有输入的特征以及输出的大量样本，神经网络可以很好地学习到其中的映射关系。
 Supervised Learning with Neural Networks监督学习是给定输入特征和输出，要求找到二者之间的对应关系。
 卷积神经网络常用于图像数据，循环神经网络常用于序列数据。对于更复杂的数据可
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -944,6 +993,9 @@ Supervised Learning with Neural Networks监督学习是给定输入特征和输�
 
     
 
+    
+      
+    
     
 
     
@@ -983,16 +1035,16 @@ Supervised Learning with Neural Networks监督学习是给定输入特征和输�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-20/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-20/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1002,9 +1054,8 @@ Supervised Learning with Neural Networks监督学习是给定输入特征和输�
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-20/" itemprop="url">
-                  编译原理慕课笔记 20
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-20/" class="post-title-link" itemprop="url">编译原理慕课笔记 20</a>
               
             
           </h1>
@@ -1055,15 +1106,17 @@ Supervised Learning with Neural Networks监督学习是给定输入特征和输�
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-20/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-20/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-20/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1093,7 +1146,8 @@ Supervised Learning with Neural Networks监督学习是给定输入特征和输�
       
         
           
-          代码生成代码生成器的主要任务代码生成器将中间表示转换到汇编语句。
+            <p>
+              代码生成代码生成器的主要任务代码生成器将中间表示转换到汇编语句。
 三个主要任务：
 
 选择适当的目标机指令表示中间表示
@@ -1111,13 +1165,16 @@ Bcond c, l：在满足条件 c 时跳转到 l
 以及各种寻址方式。
 指令选择这一节主要是几个例子，表示对于给定的中间表示如何生成出对应的指令。显然没有什么好记录的。
 寄存器的选择寄存器分配当要为 x = y o
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-20/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-20/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1131,6 +1188,9 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     
 
+    
+      
+    
     
 
     
@@ -1170,16 +1230,16 @@ Bcond c, l：在满足条件 c 时跳转到 l
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-19/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-19/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1189,9 +1249,8 @@ Bcond c, l：在满足条件 c 时跳转到 l
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-19/" itemprop="url">
-                  编译原理慕课笔记 19
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-19/" class="post-title-link" itemprop="url">编译原理慕课笔记 19</a>
               
             
           </h1>
@@ -1242,15 +1301,17 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-19/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-19/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-19/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1280,17 +1341,21 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-          代码优化-4支配结点和回边支配：在流图中，如果从入口基本块结点（$ENTRY$）到某基本块结点 n 的所有路径都要经过基本块结点 m，则称结点 m 支配结点 n。每个结点都会支配自己。
+            <p>
+              代码优化-4支配结点和回边支配：在流图中，如果从入口基本块结点（$ENTRY$）到某基本块结点 n 的所有路径都要经过基本块结点 m，则称结点 m 支配结点 n。每个结点都会支配自己。
 支配结点树：将所有的结点按照支配关系可以排列成一棵树，这棵树的任意一棵子树满足根结点支配子树中所有结点（包括自己）。
 直接支配结点：一个结点的直接支配结点是从入口结点到它自己的路径上最后一个支配它的结点。
 求解支配结点寻找支配结点是一个前向风格的数据流问题。将 $\mbox{In}[B]$ 表示 $B$ 入口处的支配结点集合，$\mbox{Out}[B]$ 表示出口处的支配结点集合，得到方程 $\mbox{Ou
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-19/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-19/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1304,6 +1369,9 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     
 
+    
+      
+    
     
 
     
@@ -1343,16 +1411,16 @@ Bcond c, l：在满足条件 c 时跳转到 l
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-18/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-18/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1362,9 +1430,8 @@ Bcond c, l：在满足条件 c 时跳转到 l
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-18/" itemprop="url">
-                  编译原理慕课笔记 18
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-18/" class="post-title-link" itemprop="url">编译原理慕课笔记 18</a>
               
             
           </h1>
@@ -1415,15 +1482,17 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-18/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-18/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-18/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1453,20 +1522,24 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-          代码优化-3活跃变量分析在某个程序点上，如果存在某条执行路径，使得变量 $x$ 在该程序点上的值在路径上某处被引用，则称变量 $x$ 在该程序点处活跃。直观来说就是 $x$ 在以后会被用到。
+            <p>
+              代码优化-3活跃变量分析在某个程序点上，如果存在某条执行路径，使得变量 $x$ 在该程序点上的值在路径上某处被引用，则称变量 $x$ 在该程序点处活跃。直观来说就是 $x$ 在以后会被用到。
 活跃变量分析是逆向风格的数据流分析问题，它的一些应用：
 
 删除无用赋值：一个变量在定值后，在基本块内不再被引用，并且在基本块出口处不活跃，则为无用赋值。
 为基本块分配寄存器：在寄存器已经完全分配出去后，如果需要新的寄存器可以优先使用存放了非活跃变量的寄存器；在基本块出口处，可以不保存出口处不活跃的变量。
 
 传递函数与数据流方程用 $\mbox{In}[B]$ 表示 $B$ 入口处的活跃变量集合，$\mbo
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-18/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-18/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1480,6 +1553,9 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     
 
+    
+      
+    
     
 
     
@@ -1519,16 +1595,16 @@ Bcond c, l：在满足条件 c 时跳转到 l
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-17/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-17/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1538,9 +1614,8 @@ Bcond c, l：在满足条件 c 时跳转到 l
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-17/" itemprop="url">
-                  编译原理慕课笔记 17
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-17/" class="post-title-link" itemprop="url">编译原理慕课笔记 17</a>
               
             
           </h1>
@@ -1591,15 +1666,17 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-17/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-17/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-17/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1629,16 +1706,20 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-          代码优化-2数据流分析数据流分析是一种用来获取程序执行路径上的数据流信息的方法。分析过程会将每个程序点和一个 数据流值 关联起来。这个定义过于抽象，不要深究。什么是数据流我暂且认为是 表示各个变量的值的传递过程的信息。
+            <p>
+              代码优化-2数据流分析数据流分析是一种用来获取程序执行路径上的数据流信息的方法。分析过程会将每个程序点和一个 数据流值 关联起来。这个定义过于抽象，不要深究。什么是数据流我暂且认为是 表示各个变量的值的传递过程的信息。
 数据流分析有 到达定值分析、活跃变量分析 和 可用表达式分析 这几种应用。
 对于语句 $s$，使用 $\mbox{In}[s]$ 表示 $s$ 之前的数据流值，$\mbox{Out}[s]$ 表示 $s$ 之后的数据流值，随着 $s$ 的不同可以得到两者之间的函数 $\mbox{Out}[s] = f_s(\mbox{In}[s])$，这个函数称作 $s$ 的传递函数，这种风格
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-17/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-17/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1652,6 +1733,9 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     
 
+    
+      
+    
     
 
     
@@ -1691,16 +1775,16 @@ Bcond c, l：在满足条件 c 时跳转到 l
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1710,9 +1794,8 @@ Bcond c, l：在满足条件 c 时跳转到 l
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-16/" itemprop="url">
-                  编译原理慕课笔记 16
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-16/" class="post-title-link" itemprop="url">编译原理慕课笔记 16</a>
               
             
           </h1>
@@ -1763,15 +1846,17 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-16/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-16/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-16/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1801,17 +1886,21 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-          代码优化-1代码优化就是使程序运行更快、效率更高的对程序的等价变换。
+            <p>
+              代码优化-1代码优化就是使程序运行更快、效率更高的对程序的等价变换。
 流图基本块基本块是一段连续的三地址指令序列，满足 控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机。
 将一段程序划分为基本块的算法需要先确定 首指令，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。
 流图流图是一张有向图，反映了控制流的转移。其结点对应着基本块，两个结点之间存在一条边当且仅当这两个结点对应的基本块存在可能的控制流转移。结点 M 指向结点 N 有可能是 M 在某种情况下会跳转向 N，也可能是 M 执
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-16/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-16/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1825,6 +1914,9 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     
 
+    
+      
+    
     
 
     
@@ -1864,16 +1956,16 @@ Bcond c, l：在满足条件 c 时跳转到 l
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Zhang Yang"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
+      <meta itemprop="name" content="Computation & Design"/>
     </span>
 
     
@@ -1883,9 +1975,8 @@ Bcond c, l：在满足条件 c 时跳转到 l
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/23/编译原理慕课笔记-15/" itemprop="url">
-                  编译原理慕课笔记 15
-                </a>
+                
+                <a href="/2018/11/23/编译原理慕课笔记-15/" class="post-title-link" itemprop="url">编译原理慕课笔记 15</a>
               
             
           </h1>
@@ -1936,15 +2027,17 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/11/23/编译原理慕课笔记-15/#comments" itemprop="discussionUrl">
-                
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/11/23/编译原理慕课笔记-15/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-15/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1974,17 +2067,21 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-          运行存储分配运行存储分配概述分配策略在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 静态分配，如果在编译时无法完成分配，需要在运行时进行确定则称为 动态分配。在动态分配时，可以进行 栈式内存分配 或 堆式内存分配。
+            <p>
+              运行存储分配运行存储分配概述分配策略在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 静态分配，如果在编译时无法完成分配，需要在运行时进行确定则称为 动态分配。在动态分配时，可以进行 栈式内存分配 或 堆式内存分配。
 活动记录函数的每次执行称作一个 活动，活动记录 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。
 活动记录中会存放实参、返回值、控制链（指向调用者的活动记录）、访问链（指向其它活动记录，后面会用到）、保存的状态、局部变量和临时变量。
 同一个函数的活动记录不一定是定长的，栈上也可以进行动态内存分配，此
-          ...
+              ...
+            </p>
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/11/23/编译原理慕课笔记-15/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/23/编译原理慕课笔记-15/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
@@ -1998,6 +2095,9 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     
 
+    
+      
+    
     
 
     
@@ -2047,19 +2147,18 @@ Bcond c, l：在满足条件 c 时跳转到 l
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Zhang Yang</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -2081,7 +2180,11 @@ Bcond c, l：在满足条件 c 时跳转到 l
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2131,7 +2234,6 @@ Bcond c, l：在满足条件 c 时跳转到 l
           
 
           
-          
 
           
           
@@ -2142,7 +2244,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2150,6 +2252,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
     </div>
   </aside>
+  
 
 
         
@@ -2170,9 +2273,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 </div>
 
 
-
-
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2180,7 +2281,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
 
 
-  <div class="theme-info">主题 – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Muse</a> v6.4.0</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
@@ -2206,7 +2307,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
     
 
     
-	
+
     
 
     
@@ -2214,7 +2315,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2246,54 +2347,45 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.0"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.0"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.0"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
   
-    <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
   
 
   
-
-
-
-
-
+  
+  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
 
 
@@ -2305,9 +2397,6 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
 
 
-
-
-  
 
   
 
@@ -2344,31 +2433,63 @@ Bcond c, l：在满足条件 c 时跳转到 l
   
     
       <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-        processEscapes: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-      },
-      TeX: {equationNumbers: { autoNumber: "AMS" }}
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
     });
+  });
 </script>
 
 <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
 </script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
 
     
   
 
 
   
+
+  
+
+  
+
+  
+
+  
+
   
 
   
