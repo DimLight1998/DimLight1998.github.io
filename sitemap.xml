@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://DimLight1998.github.io/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%AF%AD%E8%A8%80-%E7%AC%94%E8%AE%B0-4-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/</loc>
+    
+    <lastmod>2019-03-07T17:13:30.771Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://DimLight1998.github.io/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%AF%AD%E8%A8%80-%E7%AC%94%E8%AE%B0-3-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</loc>
     
     <lastmod>2019-03-07T14:50:00.350Z</lastmod>
@@ -184,13 +191,6 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%8A%EF%BC%89%EF%BC%9A%E6%A8%A1%E5%9E%8B%E4%B8%8E%E8%AF%AD%E8%A8%80-%E7%AC%94%E8%AE%B0-4-%E5%85%B3%E7%B3%BB%E6%A8%A1%E5%9E%8B%E4%B9%8B%E5%85%B3%E7%B3%BB%E4%BB%A3%E6%95%B0/</loc>
-    
-    <lastmod>2019-03-01T09:00:56.543Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-1-Introduction-and-Overview/</loc>
     
     <lastmod>2019-03-01T03:34:56.254Z</lastmod>
@@ -345,13 +345,6 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-15/</loc>
-    
-    <lastmod>2019-02-28T08:20:27.781Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-14/</loc>
     
     <lastmod>2019-02-28T08:20:27.781Z</lastmod>
@@ -359,9 +352,9 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-12/</loc>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-15/</loc>
     
-    <lastmod>2019-02-28T08:20:27.780Z</lastmod>
+    <lastmod>2019-02-28T08:20:27.781Z</lastmod>
     
   </url>
   
@@ -373,14 +366,21 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-11/</loc>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-12/</loc>
+    
+    <lastmod>2019-02-28T08:20:27.780Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-10/</loc>
     
     <lastmod>2019-02-28T08:20:27.779Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-10/</loc>
+    <loc>http://DimLight1998.github.io/2018/11/23/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E6%85%95%E8%AF%BE%E7%AC%94%E8%AE%B0-11/</loc>
     
     <lastmod>2019-02-28T08:20:27.779Z</lastmod>
     
@@ -415,14 +415,14 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-%E7%AC%94%E8%AE%B0-1-ML-Strategy-1/</loc>
+    <loc>http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-%E7%AC%94%E8%AE%B0-2-ML-Strategy-2/</loc>
     
     <lastmod>2019-02-28T08:20:27.771Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-%E7%AC%94%E8%AE%B0-2-ML-Strategy-2/</loc>
+    <loc>http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-%E7%AC%94%E8%AE%B0-1-ML-Strategy-1/</loc>
     
     <lastmod>2019-02-28T08:20:27.771Z</lastmod>
     
@@ -513,13 +513,6 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-7-Knowledge-Engineering-Summary/</loc>
-    
-    <lastmod>2019-02-28T08:20:27.753Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-%E7%AC%94%E8%AE%B0-1-Introduction/</loc>
     
     <lastmod>2019-02-28T08:20:27.753Z</lastmod>
@@ -527,14 +520,21 @@
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-5-Markov-Networks-Undirected-Models/</loc>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-7-Knowledge-Engineering-Summary/</loc>
+    
+    <lastmod>2019-02-28T08:20:27.753Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-6-Decision-Making/</loc>
     
     <lastmod>2019-02-28T08:20:27.752Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-6-Decision-Making/</loc>
+    <loc>http://DimLight1998.github.io/2019/02/27/Probabilistic-Graphical-Models-1-Representation-%E7%AC%94%E8%AE%B0-5-Markov-Networks-Undirected-Models/</loc>
     
     <lastmod>2019-02-28T08:20:27.752Z</lastmod>
     

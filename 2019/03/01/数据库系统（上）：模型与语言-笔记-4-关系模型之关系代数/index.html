@@ -15,12 +15,12 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk" />
+<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
 
 
 
@@ -48,9 +48,9 @@
 
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
@@ -100,22 +100,27 @@
 
 
 
-  <meta name="keywords" content="数据库">
+  <meta name="description" content="关系模型之关系代数关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。 下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。 什么是关系代数关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。 关系代数可以分成 集合操作（并交差积） 和 纯关系操作（投影、选择、连接、除）。 DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="关系模型之关系代数关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。 下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。 什么是关系代数关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。 关系代数可以分成 集合操作（并交差积） 和 纯关系操作（投影、选择、连接、除）。 DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T09:00:56.543Z">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/DeepinScreenshot_select-area_20190308010255.png">
+<meta property="og:updated_time" content="2019-03-07T17:13:30.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数">
+<meta name="twitter:description" content="关系模型之关系代数关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。 下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。 什么是关系代数关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。 关系代数可以分成 集合操作（并交差积） 和 纯关系操作（投影、选择、连接、除）。 DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/DeepinScreenshot_select-area_20190308010255.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/"/>
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/">
 
 
 
@@ -221,7 +226,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -238,7 +243,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -255,11 +260,19 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
       
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
       
     </ul>
   
@@ -269,6 +282,27 @@
 
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -307,16 +341,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/"/>
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design"/>
+      <meta itemprop="name" content="Computation & Design">
     </span>
 
     
@@ -350,12 +384,24 @@
                 
               
 
-              <time title="创建时间：2019-03-01 13:10:43 / 修改时间：17:00:56" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 13:10:43" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-08 01:13:30" itemprop="dateModified" datetime="2019-03-08T01:13:30+08:00">2019-03-08</time>
               
             
           </span>
@@ -402,7 +448,95 @@
       
 
       
-        
+        <h1 id="关系模型之关系代数"><a href="#关系模型之关系代数" class="headerlink" title="关系模型之关系代数"></a>关系模型之关系代数</h1><p>关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。</p>
+<p>下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。</p>
+<h2 id="什么是关系代数"><a href="#什么是关系代数" class="headerlink" title="什么是关系代数"></a>什么是关系代数</h2><p>关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。</p>
+<p>关系代数可以分成 <strong>集合操作</strong>（并交差积） 和 <strong>纯关系操作</strong>（投影、选择、连接、除）。</p>
+<p>DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操作的序列。这样，只要实现了基本的一些关系代数操作就可以实现一个 DBMS 了。</p>
+<h2 id="并相容性的概念"><a href="#并相容性的概念" class="headerlink" title="并相容性的概念"></a>并相容性的概念</h2><p>两个关系是并相容的，如果它们的属性数目相同，相同位置上的属性的类型也相同。</p>
+<p>简单来说，两个关系并相容，表示可以把一个关系纵向拼接到另一个关系下面形成更大的关系。</p>
+<p><strong>并相容性是其它很多操作的基础。</strong></p>
+<h2 id="并操作"><a href="#并操作" class="headerlink" title="并操作"></a>并操作</h2><p>两个并相容关系的并是两个关系的并形成的更大的关系。重复记录被移除：</p>
+<script type="math/tex; mode=display">
+R\cup S = \{r | r \in R \or r\in S\}</script><p>显然并操作是交换的。</p>
+<blockquote>
+<p>学习各种操作时，也应从自然语义的角度进行理解。</p>
+</blockquote>
+<h2 id="差操作"><a href="#差操作" class="headerlink" title="差操作"></a>差操作</h2><p>两个并相容关系的差是两个关系的差形成的关系。差由属于一个关系但不属于另一个关系的记录构成：</p>
+<script type="math/tex; mode=display">
+R - S = \{r | r \in R \and r \notin S\}</script><p>差操作不是交换的。</p>
+<h2 id="广义积操作"><a href="#广义积操作" class="headerlink" title="广义积操作"></a>广义积操作</h2><p>广义积可以直接称为集。它是关系的笛卡尔积，但是其结果不像普通笛卡尔积那样。</p>
+<p>如果 $R$ 的类型是 $(R_1, \cdots, R_n)$，$S$ 的类型是 $(S_1, \dots, S_m)$，那么笛卡尔积 $R\times S$ 的类型应该是 $((R_1,\dots, R_n), (S_1, \dots, S_m))$，而广义积的类型是两个元组的拼接 $(R_1,\dots, R_n, S_1, \dots, S_m)$。</p>
+<p>关系的广义积会得到所有可能的拼接：</p>
+<script type="math/tex; mode=display">
+R\times S = \{\langle r_1, \dots, r_n, s_1, \dots, s_m\rangle | \langle r_1, \dots, r_n\rangle\in R \and \langle s_1, \dots, s_m\rangle\in S \}</script><p>广义积是交换的（注意关系中列是可以交换的）。</p>
+<p><strong>广义积的性质</strong>：度数是原关系度数之和，基数是原关系基数之积。</p>
+<p>当涉及到多个表时，就可能要用到广义积。</p>
+<h2 id="选择操作"><a href="#选择操作" class="headerlink" title="选择操作"></a>选择操作</h2><p>选择操作相当于对记录进行 filter。选择操作的结果依然是关系。</p>
+<script type="math/tex; mode=display">
+\sigma_{cond}(R) = \{t | t \in R \and cond (t) = \texttt{true}\}</script><p>将 $cond$ 替换为想要的条件即可。这个是有某种语法的，不过我猜瞎写也可以。</p>
+<blockquote>
+<p>$\sigma \to sigma \to select$</p>
+</blockquote>
+<h2 id="投影操作及基本操作小结"><a href="#投影操作及基本操作小结" class="headerlink" title="投影操作及基本操作小结"></a>投影操作及基本操作小结</h2><h3 id="投影操作"><a href="#投影操作" class="headerlink" title="投影操作"></a>投影操作</h3><p>投影操作相当于只保留关系中感兴趣的那些列。投影操作的结果依然是关系。投影完成后，可能需要删除重复的行。</p>
+<script type="math/tex; mode=display">
+\pi_{\langle A_1, \dots, A_n\rangle}(R) = \{t[A_1],\dots,t[A_n] | t\in R\}</script><blockquote>
+<p>$\pi \to pi\to project$</p>
+</blockquote>
+<p><strong>投影操作是删除列，选择操作是选择行。</strong></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>上面五种操作是基本操作。推荐在书写时从右往左写，这和自然思维的方向一致。</p>
+<h2 id="交操作"><a href="#交操作" class="headerlink" title="交操作"></a>交操作</h2><p>下面的这些操作称为扩展操作，可以用基本操作实现。</p>
+<p>交操作是并相容关系的交。交运算是交换的。</p>
+<script type="math/tex; mode=display">
+R\cap S = \{r | r\in R \and r\in S\}</script><p>交运算可以通过差运算实现：$R\cap S = R - (R - S)$。</p>
+<h2 id="theta-连接操作及更名操作"><a href="#theta-连接操作及更名操作" class="headerlink" title="theta 连接操作及更名操作"></a>theta 连接操作及更名操作</h2><h3 id="theta-连接操作"><a href="#theta-连接操作" class="headerlink" title="theta 连接操作"></a>theta 连接操作</h3><p>连接操作有几种不同的定义，这里是 theta 连接。连接操作用来进行涉及多个表的查询。</p>
+<p>Theta 连接操作是笛卡尔积和选择的复合，其中选择操作的条件是来自两个关系的某两个属性的比较。</p>
+<script type="math/tex; mode=display">
+R\underset{A\theta B}{\bowtie}S = \sigma_{t[A]\theta s[B]}(R\times S)</script><p>上式中，$A$ 是 $R$ 的某个属性，$B$ 是 $S$ 的某个属性，二者是可比的；$t$ 和 $s$ 分别是 $R$ 和 $S$ 中的记录；$\theta$ 是一个二元运算符。</p>
+<p>在实现上，theta 连接操作一般要比笛卡尔积然后选择要更快。<strong>尽量避免积操作。</strong></p>
+<hr>
+<p>当 $\theta$ 为相等时，得到特例 <strong>等值连接</strong>。等值连接很实用，因为要进行 theta 连接时可能产生大量中间数据，而很多需要进行 theta 连接的场景实际上可以用等值连接减小运算量。</p>
+<h3 id="更名操作"><a href="#更名操作" class="headerlink" title="更名操作"></a>更名操作</h3><p>对一个关系重新进行命名：</p>
+<script type="math/tex; mode=display">
+\rho_{T}(S) =T</script><p>$S$ 会被重新命名为 $T$。</p>
+<p>更名操作存在的意义是关系自己和自己进行连接。</p>
+<p><strong>更名操作可以被归为基本操作。</strong></p>
+<blockquote>
+<p>$\rho\to rho\to rename$</p>
+</blockquote>
+<h2 id="自然连接操作"><a href="#自然连接操作" class="headerlink" title="自然连接操作"></a>自然连接操作</h2><p>自然连接是另一种连接，是一种特殊的等值连接。</p>
+<p>假定 $R$ 和 $S$ 中存在相同的属性（可能有多个），经过笛卡尔积后，<strong>只保留所有相同属性的值相等的那些记录</strong>，随后删除重复的列，这个操作是自然连接操作。</p>
+<script type="math/tex; mode=display">
+R\bowtie S = \sigma_{r[B] = s[B]}(R\times S)</script><h2 id="应用关系代数操作训练"><a href="#应用关系代数操作训练" class="headerlink" title="应用关系代数操作训练"></a>应用关系代数操作训练</h2><p><em>套路较多，本节没有问题。</em></p>
+<p>常用的套路是“选投连”：连接，然后选择，然后投影。</p>
+<h2 id="除操作"><a href="#除操作" class="headerlink" title="除操作"></a>除操作</h2><p>除操作比较绕，常用来回答“所有的”之类的问题。</p>
+<p>能够执行 $R\div S$ 的前提条件是，$S$ 的属性是 $R$ 的属性的真子集。</p>
+<ul>
+<li>$R\div S$ 的结果的属性是 $R$ 的属性减去 $S$ 的属性</li>
+<li>$R\div S$ 的结果的记录满足这样的性质：这些记录和 $S$ 做了广义积之后应该全部位于 $R$ 中。</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{aligned}
+R\div S &= \{t | t\in \pi_{R - S}(R)\and \forall u\in S, (tu\in R)\} \\
+&=\pi_{R - S}(R) - \pi_{R - S}((\pi_{R - S}(R)\times S) - R)
+\end{aligned}</script><h2 id="外连接操作"><a href="#外连接操作" class="headerlink" title="外连接操作"></a>外连接操作</h2><p>外连接是一种特殊的连接。在自然连接中，只有相同属性值相同的记录会被保留，这样损失了一部分信息。</p>
+<p>外连接的操作是，对于相同属性的不同值，为了避免信息丢失，使用除了该属性以外全空的记录进行连接。例子：</p>
+<img src="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/DeepinScreenshot_select-area_20190308010255.png">
+<p>外连接可以进一步细分：</p>
+<ul>
+<li><strong>左外连接</strong>：$R ⟕ S​$，保留 $R​$ 中的失配记录（$R​$ 中的信息不丢失）。</li>
+<li><strong>右外连接</strong>：$R⟖S$，保留 $S$ 中的失配记录（$S$ 中的信息不丢失）。</li>
+<li><strong>全外连接</strong>：$R⟗S$，两边的失配记录都被保留。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>五个基本操作（算上更名是六个）。</li>
+<li>三个扩展操作。</li>
+<li>两个复杂扩展操作。</li>
+</ul>
+<p>各种操作都是对集合进行的！</p>
+<p>操作的“选投连”套路正好和 SQL 的 <code>select ... from ... where</code> 是一致的。</p>
+<p>DBMS 的功能就是将 SQL 解释为各种关系代数操作，然后在数据上执行这些操作。</p>
+
       
     </div>
 
@@ -438,8 +572,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-3-关系模型之基本概念/" rel="next" title="数据库系统（上）：模型与语言 笔记 3 关系模型之基本概念">
-                <i class="fa fa-chevron-left"></i> 数据库系统（上）：模型与语言 笔记 3 关系模型之基本概念
+              <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" rel="next" title="数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算">
+                <i class="fa fa-chevron-left"></i> 数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算
               </a>
             
           </div>
@@ -448,8 +582,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" rel="prev" title="数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算">
-                数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-6-SQL-语言之概述/" rel="prev" title="数据库系统（上）：模型与语言 笔记 6 SQL 语言之概述">
+                数据库系统（上）：模型与语言 笔记 6 SQL 语言之概述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -501,8 +635,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -596,6 +739,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关系模型之关系代数"><span class="nav-number">1.</span> <span class="nav-text">关系模型之关系代数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是关系代数"><span class="nav-number">1.1.</span> <span class="nav-text">什么是关系代数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并相容性的概念"><span class="nav-number">1.2.</span> <span class="nav-text">并相容性的概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#并操作"><span class="nav-number">1.3.</span> <span class="nav-text">并操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#差操作"><span class="nav-number">1.4.</span> <span class="nav-text">差操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广义积操作"><span class="nav-number">1.5.</span> <span class="nav-text">广义积操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#选择操作"><span class="nav-number">1.6.</span> <span class="nav-text">选择操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#投影操作及基本操作小结"><span class="nav-number">1.7.</span> <span class="nav-text">投影操作及基本操作小结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#投影操作"><span class="nav-number">1.7.1.</span> <span class="nav-text">投影操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">1.7.2.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#交操作"><span class="nav-number">1.8.</span> <span class="nav-text">交操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#theta-连接操作及更名操作"><span class="nav-number">1.9.</span> <span class="nav-text">theta 连接操作及更名操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#theta-连接操作"><span class="nav-number">1.9.1.</span> <span class="nav-text">theta 连接操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更名操作"><span class="nav-number">1.9.2.</span> <span class="nav-text">更名操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自然连接操作"><span class="nav-number">1.10.</span> <span class="nav-text">自然连接操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用关系代数操作训练"><span class="nav-number">1.11.</span> <span class="nav-text">应用关系代数操作训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#除操作"><span class="nav-number">1.12.</span> <span class="nav-text">除操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#外连接操作"><span class="nav-number">1.13.</span> <span class="nav-text">外连接操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.14.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -622,7 +782,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -766,6 +926,326 @@
 
 
   
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
 
 
 
