@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -108,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="代码优化-4支配结点和回边支配：在流图中，如果从入口基本块结点（$ENTRY$）到某基本块结点 n 的所有路径都要经过基本块结点 m，则称结点 m 支配结点 n。每个结点都会支配自己。 支配结点树：将所有的结点按照支配关系可以排列成一棵树，这棵树的任意一棵子树满足根结点支配子树中所有结点（包括自己）。 直接支配结点：一个结点的直接支配结点是从入口结点到它自己的路径上最后一个支配它的结点。 求解支配">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.784Z">
+<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理慕课笔记 19">
 <meta name="twitter:description" content="代码优化-4支配结点和回边支配：在流图中，如果从入口基本块结点（$ENTRY$）到某基本块结点 n 的所有路径都要经过基本块结点 m，则称结点 m 支配结点 n。每个结点都会支配自己。 支配结点树：将所有的结点按照支配关系可以排列成一棵树，这棵树的任意一棵子树满足根结点支配子树中所有结点（包括自己）。 直接支配结点：一个结点的直接支配结点是从入口结点到它自己的路径上最后一个支配它的结点。 求解支配">
@@ -409,19 +407,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/11/23/编译原理慕课笔记-19/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-19/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -503,8 +488,8 @@
 </ol>
 <p>可以看到强度削弱引入了新的归纳变量。</p>
 <h2 id="归纳变量的删除"><a href="#归纳变量的删除" class="headerlink" title="归纳变量的删除"></a>归纳变量的删除</h2><h3 id="删除额外的复制语句"><a href="#删除额外的复制语句" class="headerlink" title="删除额外的复制语句"></a>删除额外的复制语句</h3><p>在对归纳变量进行强度削弱时，引入了新的复制语句，将一个新的归纳变量复制给了旧的归纳变量。由前面的代码优化知识可以知道这种复制语句有冗余的可能，可以考虑将其删除。</p>
-<h3 id="删除用作测试的归纳变量"><a href="#删除用作测试的归纳变量" class="headerlink" title="删除用作测试的归纳变量"></a>删除用作测试的归纳变量</h3><p>对于仅用作测试（出现在条件中）的基本归纳变量，有时可以将其删除。如果 $i$ 是一个基本归纳变量，$j$ 是 $i$ 族的归纳变量，有 $j = a\times i + b (a &gt; 0)$，某个条件语句是 $i &gt; x$，则该条件等价于 $j &gt; a\times x + b$，替换完成后，有可能可以删除基本归纳变量 $i$。</p>
-<p>另一种情况是条件中两个都是基本归纳变量，例如 $j_1 = a\times i_1 + b, j_2 = a\times i_2 + b (a &gt; 0)$，对于条件 $i_1 &gt; i_2$ 而言可以替换为 $j_1 &gt; j_2$。这样求三元组的后两个分量是相同的，如果三元组的后两个分量不同的话可能引入额外的计算从而得不偿失。</p>
+<h3 id="删除用作测试的归纳变量"><a href="#删除用作测试的归纳变量" class="headerlink" title="删除用作测试的归纳变量"></a>删除用作测试的归纳变量</h3><p>对于仅用作测试（出现在条件中）的基本归纳变量，有时可以将其删除。如果 $i$ 是一个基本归纳变量，$j$ 是 $i$ 族的归纳变量，有 $j = a\times i + b\ (a &gt; 0)$，某个条件语句是 $i &gt; x$，则该条件等价于 $j &gt; a\times x + b$，替换完成后，有可能可以删除基本归纳变量 $i$。</p>
+<p>另一种情况是条件中两个都是基本归纳变量，例如 $j_1 = a\times i_1 + b, j_2 = a\times i_2 + b\ (a &gt; 0)$，对于条件 $i_1 &gt; i_2$ 而言可以替换为 $j_1 &gt; j_2$。这样求三元组的后两个分量是相同的，如果三元组的后两个分量不同的话可能引入额外的计算从而得不偿失。</p>
 
       
     </div>
@@ -574,13 +559,6 @@
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
 
   
 
@@ -866,29 +844,10 @@
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-19/";
-    this.page.identifier = "2018/11/23/编译原理慕课笔记-19/";
-    this.page.title = '编译原理慕课笔记 19';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1278,10 +1237,6 @@
     
   
 
-
-  
-
-  
 
   
 

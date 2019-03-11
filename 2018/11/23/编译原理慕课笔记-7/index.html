@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -108,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="语法分析-4$SLR$ 分析$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.791Z">
+<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理慕课笔记 7">
 <meta name="twitter:description" content="语法分析-4$SLR$ 分析$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲">
@@ -409,19 +407,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/11/23/编译原理慕课笔记-7/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-7/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -474,14 +459,14 @@ B_n \rightarrow & \gamma_n\cdot \\
 <li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
 <li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
 <li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in \mbox{Follow}(A), \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
-<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, \$]=acc$</li>
+<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
 <li>其它所有情况都设为 $err$</li>
 </ul>
 </li>
 </ol>
 <p><strong>如果一个文法构造完 $SLR$ 分析表后无冲突，称为 $SLR$ 文法。</strong></p>
 <h2 id="LR-1-分析"><a href="#LR-1-分析" class="headerlink" title="$LR(1)$ 分析"></a>$LR(1)$ 分析</h2><p>如果仔细研究 $SLR$ 的处理方式就会发现它实际上是将可以归约的情况作了一些限制，使得有时移入-归约冲突被消除了，但是这种限制加上后之后依然是某种必要条件而不是充分条件（对于一个产生式，只有下一个符号是产生式左部符号的 Follow 集中的元素时才能进行归约，但是实际上这种归约也不一定正确）。实际上可以观察到在分析的过程中，某些条件下进行归约时，这个符号不仅需要在产生符号的 Follow 集中，而且要在某个特定的子集中。</p>
-<p>$LR(1)$ 分析对这种情况做了改进。使用 $LR(1)$ 分析时每个项目还要加上一个额外的 <strong>展望符</strong>。例如对于 $A\rightarrow\alpha \cdot$ 这个项目加上了展望符 $b$，完整的产生式是 $A\rightarrow\alpha\cdot, b$，表示如果希望在下一步中进行归约，那么未移入的第一个终结符需要是 $b$。<strong>展望符是产生式左部符号 Follow 集的子集（一般是真子集）。</strong>一个 $LR(1)$ 符号的形式为 $A\rightarrow\alpha\cdot\beta, a$，其中 $a$ 是个终结符或者结束符 $\$$，表示的是 <strong>当前状态下</strong> $A$ 后面需要紧跟的终结符（因为项目总是在一个项目集中，一个项目集对应自动机的一个状态，所以一个项目会有一个当前状态）。一些注解：</p>
+<p>$LR(1)$ 分析对这种情况做了改进。使用 $LR(1)$ 分析时每个项目还要加上一个额外的 <strong>展望符</strong>。例如对于 $A\rightarrow\alpha \cdot$ 这个项目加上了展望符 $b$，完整的产生式是 $A\rightarrow\alpha\cdot, b$，表示如果希望在下一步中进行归约，那么未移入的第一个终结符需要是 $b$。<strong>展望符是产生式左部符号 Follow 集的子集（一般是真子集）。</strong>一个 $LR(1)$ 符号的形式为 $A\rightarrow\alpha\cdot\beta, a$，其中 $a$ 是个终结符或者结束符 $$$，表示的是 <strong>当前状态下</strong> $A$ 后面需要紧跟的终结符（因为项目总是在一个项目集中，一个项目集对应自动机的一个状态，所以一个项目会有一个当前状态）。一些注解：</p>
 <ul>
 <li>$LR(n)$ 指的是展望符的长度为 $n$，不过一般 1 就够用了。</li>
 <li>如果 $\beta\neq\epsilon$，那么展望符没有意义。</li>
@@ -493,7 +478,7 @@ B_n \rightarrow & \gamma_n\cdot \\
 <h3 id="Closure，Goto-以及项集族的计算"><a href="#Closure，Goto-以及项集族的计算" class="headerlink" title="Closure，Goto 以及项集族的计算"></a>Closure，Goto 以及项集族的计算</h3><ul>
 <li>Closure 的计算变成 $\mbox{Closure}(I) = I\cup\{[B\rightarrow\cdot\gamma, b]|[A\rightarrow a\cdot B\beta, a]\in\mbox{Closure}(I), B\rightarrow\gamma\in P, b\in\mbox{First}(\beta a)\}$</li>
 <li>Goto 的计算变成 $\mbox{Goto}(I, X) = \mbox{Closure}(\{[A\rightarrow\alpha X\cdot \beta, a]|[A\rightarrow\alpha\cdot X \beta, a]\in I\})$</li>
-<li>计算 $LR(1)$ 的项集族时初始状态为 $\mbox{Closure}([S’\rightarrow\cdot S, \$])$</li>
+<li>计算 $LR(1)$ 的项集族时初始状态为 $\mbox{Closure}([S’\rightarrow\cdot S, $])$</li>
 </ul>
 <h3 id="分析表构造"><a href="#分析表构造" class="headerlink" title="分析表构造"></a>分析表构造</h3><p>这段从 $LR(0)$ 分析表构造过程修改而来，区别在于 3 的第三条中对 $a$ 的来源有了更加严格的限制。</p>
 <p>对一个文法构造对应的 $LR(1)$ 分析表：</p>
@@ -504,7 +489,7 @@ B_n \rightarrow & \gamma_n\cdot \\
 <li>$\mbox{if }[A\rightarrow\alpha\cdot a\beta, b]\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
 <li>$\mbox{if }[A\rightarrow\alpha\cdot B\beta, b]\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
 <li>$\mbox{if }[A\rightarrow\alpha\cdot, a]\in I_i\mbox{ and }A\neq S’\mbox{ then }\mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号</li>
-<li>$\mbox{if }[S’\rightarrow S\cdot, \$]\in I_i \mbox{ then Action}[i, \$]=acc$</li>
+<li>$\mbox{if }[S’\rightarrow S\cdot, $]\in I_i \mbox{ then Action}[i, $]=acc$</li>
 <li>其它所有情况都设为 $err$</li>
 </ul>
 </li>
@@ -598,13 +583,6 @@ B_n \rightarrow & \gamma_n\cdot \\
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
 
   
 
@@ -890,29 +868,10 @@ B_n \rightarrow & \gamma_n\cdot \\
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-7/";
-    this.page.identifier = "2018/11/23/编译原理慕课笔记-7/";
-    this.page.title = '编译原理慕课笔记 7';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1302,10 +1261,6 @@ B_n \rightarrow & \gamma_n\cdot \\
     
   
 
-
-  
-
-  
 
   
 

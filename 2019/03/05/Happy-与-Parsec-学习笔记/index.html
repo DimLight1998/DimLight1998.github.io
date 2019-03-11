@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -109,7 +107,7 @@
 <meta property="og:description" content="Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。  Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。  Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。   H">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/DeepinScreenshot_select-area_20190307164636.png">
-<meta property="og:updated_time" content="2019-03-07T08:47:43.959Z">
+<meta property="og:updated_time" content="2019-03-07T08:47:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Happy 与 Parsec 学习笔记">
 <meta name="twitter:description" content="Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。  Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。  Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。   H">
@@ -411,19 +409,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/05/Happy-与-Parsec-学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/05/Happy-与-Parsec-学习笔记/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -466,7 +451,7 @@
 <h3 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h3><p>和 Yacc 类似，Happy 需要一个语法文件。</p>
 <p>语法文件中需要定义用到的 <strong>语法中用到的</strong> token，小写字母开头或者单字符（名称可以任意）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- token definition for parser</span><br><span class="line">%token</span><br><span class="line">    string  &#123; TokenString $$ &#125;</span><br><span class="line">    number  &#123; TokenNumber $$ &#125;</span><br><span class="line">    null    &#123; TokenNull &#125;</span><br><span class="line">    true    &#123; TokenTrue &#125;</span><br><span class="line">    false   &#123; TokenFalse &#125;</span><br><span class="line">    &apos;&#123;&apos;     &#123; TokenLBrace &#125;</span><br><span class="line">    &apos;&#125;&apos;     &#123; TokenRBrace &#125;</span><br><span class="line">    &apos;[&apos;     &#123; TokenLBracket &#125;</span><br><span class="line">    &apos;]&apos;     &#123; TokenRBracket &#125;</span><br><span class="line">    &apos;:&apos;     &#123; TokenColon &#125;</span><br><span class="line">    &apos;,&apos;     &#123; TokenComma &#125;</span><br></pre></td></tr></table></figure>
-<p>一共两列，左边是语法定义中使用的 token，相当于终结符，右边是词法分析得到的 token。Happy 进行词法分析时希望得到的是一个 token 流，<strong>Happy 在这里会进行一个匹配</strong>，将右边的 token 对应到左边后进行语法分析。词法分析得到的 token 可以带有属性，使用 <code>$$</code> 表示即可。</p>
+<p>一共两列，左边是语法定义中使用的 token，相当于终结符，右边是词法分析得到的 token。Happy 进行词法分析时希望得到的是一个 token 流，<strong>Happy 在这里会进行一个匹配</strong>，将右边的 token 对应到左边后进行语法分析。词法分析得到的 token 可以带有属性，使用 $$$$ 表示即可。</p>
 <p>然后写语法定义（右边一些 <code>J</code> 开头的后面会写）：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/* grammar definition */</span><br><span class="line"></span><br><span class="line">Json</span><br><span class="line">    : Value                         &#123; Json $1 &#125;</span><br><span class="line"></span><br><span class="line">Value</span><br><span class="line">    : string                        &#123; JString $1 &#125;</span><br><span class="line">    | number                        &#123; JNumber $1 &#125;</span><br><span class="line">    | true                          &#123; JTrue &#125;</span><br><span class="line">    | false                         &#123; JFalse &#125;</span><br><span class="line">    | null                          &#123; JNull &#125;</span><br><span class="line">    | Object                        &#123; JObject $1 &#125;</span><br><span class="line">    | Array                         &#123; JArray $1 &#125;</span><br><span class="line"></span><br><span class="line">Object</span><br><span class="line">    : &apos;&#123;&apos; &apos;&#125;&apos;                       &#123; [] &#125;</span><br><span class="line">    | &apos;&#123;&apos; Pairs &apos;&#125;&apos;                 &#123; $2 &#125;</span><br><span class="line"></span><br><span class="line">Pairs</span><br><span class="line">    : string &apos;:&apos; Value              &#123; [($1, $3)] &#125;</span><br><span class="line">    | string &apos;:&apos; Value &apos;,&apos; Pairs    &#123; ($1, $3) : $5 &#125;</span><br><span class="line"></span><br><span class="line">Array</span><br><span class="line">    : &apos;[&apos; &apos;]&apos;                       &#123; [] &#125;</span><br><span class="line">    | &apos;[&apos; Values &apos;]&apos;                &#123; $2 &#125;</span><br><span class="line"></span><br><span class="line">Values</span><br><span class="line">    : Value                         &#123; [$1] &#125;</span><br><span class="line">    | Value &apos;,&apos; Values              &#123; $1 : $3 &#125;</span><br></pre></td></tr></table></figure>
 <p>Happy 最后会把语法分析的结果转换为 Haskell 中的一个 datatype（我称之为 target datatype）。因此还需要定义对应的 datatype。语法规则的声明可以看做有两列：左边是对文法的描述，是终结符和非终结符构成的模式；右边是一个 Haskell 表达式（甚至可以是一个函数），表示应当将对应的模式转换到 Haskell 中的什么值。使用形如 <code>$1</code> 这样的符号来对产生式右部的符号进行索引。</p>
@@ -599,13 +584,6 @@
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
 
   
 
@@ -891,29 +869,10 @@
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/";
-    this.page.identifier = "2019/03/05/Happy-与-Parsec-学习笔记/";
-    this.page.title = 'Happy 与 Parsec 学习笔记';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1303,10 +1262,6 @@
     
   
 
-
-  
-
-  
 
   
 

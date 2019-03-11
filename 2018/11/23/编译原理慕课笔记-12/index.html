@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -108,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="中间代码生成-2简单赋值语句的翻译这节比较简单，讲的是如何将赋值语句翻译为三地址码的形式。唯一值得一提的是 增量翻译 的技术。如果翻译过程中有一个综合属性的计算有这样的特征：父结点的综合属性实际上就是各个子结点的综合属性拼接后在加上父结点的特定的信息，那么可以将这样的属性放在一个全局的地方来避免每次都要复制的情况。 数组引用的翻译这节比较简单，主要就是计算出要访问的数组所在的地址。为了达到这个目的">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.780Z">
+<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理慕课笔记 12">
 <meta name="twitter:description" content="中间代码生成-2简单赋值语句的翻译这节比较简单，讲的是如何将赋值语句翻译为三地址码的形式。唯一值得一提的是 增量翻译 的技术。如果翻译过程中有一个综合属性的计算有这样的特征：父结点的综合属性实际上就是各个子结点的综合属性拼接后在加上父结点的特定的信息，那么可以将这样的属性放在一个全局的地方来避免每次都要复制的情况。 数组引用的翻译这节比较简单，主要就是计算出要访问的数组所在的地址。为了达到这个目的">
@@ -409,19 +407,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/11/23/编译原理慕课笔记-12/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-12/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -517,13 +502,6 @@
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
 
   
 
@@ -809,29 +787,10 @@
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-12/";
-    this.page.identifier = "2018/11/23/编译原理慕课笔记-12/";
-    this.page.title = '编译原理慕课笔记 12';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1221,10 +1180,6 @@
     
   
 
-
-  
-
-  
 
   
 

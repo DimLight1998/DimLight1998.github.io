@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -100,15 +98,18 @@
 
 
 
-  <meta name="keywords" content="数据库">
+  <meta name="description" content="关系模型之关系演算什么是关系元组演算关系运算分为关系代数（见上次的笔记）与关系演算。关系演算是以谓词演算为基础的，按照谓词变量不同分为 元组演算 和 域演算。从名字可以看出一个是针对行，一个是针对列。 后面可以看到在一定的条件下，关系代数和关系演算是可以相互转化的。  元组演算也是用来找出某个关系中的记录的。这里的“元组”就是记录的意思，但是名字听起来让人不爽。 元组演算和一般形式是：  \{t|">
+<meta name="keywords" content="数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="关系模型之关系演算什么是关系元组演算关系运算分为关系代数（见上次的笔记）与关系演算。关系演算是以谓词演算为基础的，按照谓词变量不同分为 元组演算 和 域演算。从名字可以看出一个是针对行，一个是针对列。 后面可以看到在一定的条件下，关系代数和关系演算是可以相互转化的。  元组演算也是用来找出某个关系中的记录的。这里的“元组”就是记录的意思，但是名字听起来让人不爽。 元组演算和一般形式是：  \{t|">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-01T09:00:58.558Z">
+<meta property="og:updated_time" content="2019-03-11T03:34:08.913Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算">
+<meta name="twitter:description" content="关系模型之关系演算什么是关系元组演算关系运算分为关系代数（见上次的笔记）与关系演算。关系演算是以谓词演算为基础的，按照谓词变量不同分为 元组演算 和 域演算。从名字可以看出一个是针对行，一个是针对列。 后面可以看到在一定的条件下，关系代数和关系演算是可以相互转化的。  元组演算也是用来找出某个关系中的记录的。这里的“元组”就是记录的意思，但是名字听起来让人不爽。 元组演算和一般形式是：  \{t|">
 
 
 
@@ -379,12 +380,24 @@
                 
               
 
-              <time title="创建时间：2019-03-01 13:10:43 / 修改时间：17:00:58" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 13:10:43" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 11:34:08" itemprop="dateModified" datetime="2019-03-11T11:34:08+08:00">2019-03-11</time>
               
             
           </span>
@@ -393,19 +406,6 @@
 
           
             
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/" itemprop="commentCount"></span>
-                </a>
-              </span>
             
           
 
@@ -431,7 +431,139 @@
       
 
       
-        
+        <h1 id="关系模型之关系演算"><a href="#关系模型之关系演算" class="headerlink" title="关系模型之关系演算"></a>关系模型之关系演算</h1><h2 id="什么是关系元组演算"><a href="#什么是关系元组演算" class="headerlink" title="什么是关系元组演算"></a>什么是关系元组演算</h2><p>关系运算分为关系代数（见上次的笔记）与关系演算。关系演算是以谓词演算为基础的，按照谓词变量不同分为 <strong>元组演算</strong> 和 <strong>域演算</strong>。从名字可以看出一个是针对行，一个是针对列。</p>
+<p>后面可以看到在一定的条件下，关系代数和关系演算是可以相互转化的。</p>
+<hr>
+<p>元组演算也是用来找出某个关系中的记录的。这里的“元组”就是记录的意思，但是名字听起来让人不爽。</p>
+<p>元组演算和一般形式是：</p>
+<script type="math/tex; mode=display">
+\{t| P(t)\}</script><p>其中 $t$ 一般表示一个元组，$P(t)$ 是一个逻辑表达式，它的格式有严格限定，只能是以下的形式：</p>
+<ul>
+<li>（原子）$t\in R$，$t[A]\ \theta\ c$，$t[A]\ \theta\ s[B]$（中括号表示取出分量；$\theta$ 表示二元关系，例如大于或等于）</li>
+<li>（逻辑连接词）原子通过与或非连接起来</li>
+<li>（量词）使用存在量词和全称量词进一步修饰</li>
+</ul>
+<p>其它所有形式都不是。</p>
+<p>语义上，这个表达式会选择出所有符合 $P(t)​$ 的所有 $t​$。为了实用，基本上所有的 $P(t)​$ 都会以 $t\in R​$ 开头来限制 $t​$ 的取值范围。</p>
+<h2 id="简单运用元组演算公式"><a href="#简单运用元组演算公式" class="headerlink" title="简单运用元组演算公式"></a>简单运用元组演算公式</h2><h3 id="Schema"><a href="#Schema" class="headerlink" title="Schema"></a>Schema</h3><p>这一讲中的所有例子都是基于以下 Schema：</p>
+<ul>
+<li>Student 表：包括 SNum，Sname，Ssex，Sage，DNum，Sclass</li>
+<li>SC 表：包括 SNum，CNum，Score</li>
+<li>Course 表：包括 CNum，Cname，Chours，Credit，TNum，Tname</li>
+</ul>
+<h3 id="元组演算示例"><a href="#元组演算示例" class="headerlink" title="元组演算示例"></a>元组演算示例</h3><p>看了例子就知道元组演算是啥了。</p>
+<ul>
+<li>找出叫 Bob 的所有学生：$\{t|t\in\text{Student}\land t[\text{Sname}]=\text{Bob}\}​$</li>
+<li>年龄小于 20 岁的男生：$\{t|t\in\text{Student}\land t[\text{Ssex}]=\text{Male}\land t[\text{Sage}] &lt; 20\}$</li>
+</ul>
+<h2 id="存在量词与全称量词"><a href="#存在量词与全称量词" class="headerlink" title="存在量词与全称量词"></a>存在量词与全称量词</h2><p>存在量词和全称量词也可以用来进行元组演算，在关系的连接中很有用。以下是一些例子：</p>
+<ul>
+<li>找出年龄不是最小的所有同学：$\{t|t\in\text{Student}\land (\exists(u\in\text{Student})(u[\text{Sage}] &lt; t[\text{Sage}])\}$。</li>
+<li><strong>量词可以用来进行表的连接</strong>，找出所有课程都及格的同学：$\{t|t\in\text{Student}\land\forall(u\in\text{SC}\land u[SNum]=t[SNum])(u[Score] \ge 60)\}$。</li>
+</ul>
+<p>可以看到关系连接时也满足：</p>
+<blockquote>
+<p>语义上，这个表达式会选择出所有符合 $P(t)$ 的所有 $t$。为了实用，基本上所有的 $P(t)$ 都会以 $t\in R$ 开头来限制 $t$ 的取值范围。</p>
+</blockquote>
+<h2 id="等价变换"><a href="#等价变换" class="headerlink" title="等价变换"></a>等价变换</h2><p>这一节讲的是逻辑运算的等价性，比如摩根律这种。没什么好记的。复习一下下面两个：</p>
+<ul>
+<li>$\exist(P[t])(Q[t])​$ 等价于 $\lnot\forall(P[t])(\lnot Q[t])​$</li>
+<li>$\forall(P[t])(Q[t])$ 等价于 $\lnot\exist(P[t])(\lnot Q[t])$</li>
+</ul>
+<p>至于为啥量词后面可以跟一个命题，因为 $\exist(P[t])(Q[t])$ 和 $\exists(t)(P[t]\to Q[t])$，而后者可以使用与或非转换出。</p>
+<h2 id="四个典型示例"><a href="#四个典型示例" class="headerlink" title="四个典型示例"></a>四个典型示例</h2><p>本节主要是元组演算的几个较为复杂的示例，同时使用关系代数作了比较。摘录一个：找出 Alice 老师教的所有课程的所有学生。</p>
+<ul>
+<li><strong>关系代数</strong>：$\pi_{Sname}(\pi_{Sname, CNum}(\text{Student}\bowtie\text{SC}\bowtie\text{Course})\div\pi_{CNum}(\sigma_{Tname=Alice}(\text{Course})))$</li>
+<li><strong>元组演算</strong>：$\{t|t\in\text{Student}\land \forall(u\in\text{Course}\land u[\text{Tname}]=\text{Alice})(\exist (v\in\text{SC})(v[SNum]=t[SNum]\land v[CNum]=u[CNum]))\}$</li>
+</ul>
+<h2 id="用元组演算实现关系代数操作"><a href="#用元组演算实现关系代数操作" class="headerlink" title="用元组演算实现关系代数操作"></a>用元组演算实现关系代数操作</h2><p>可以看到关系代数是以关系作为基本单位的，元组演算是以元组作为基本单位的，不过得到的依然是集合。</p>
+<p>后者可以对前者进行模拟。例如 $\sigma_{cond}(R)$ 可以使用 $\{t|t\in R\land cond(t)\}$ 完成。</p>
+<h2 id="什么是域演算"><a href="#什么是域演算" class="headerlink" title="什么是域演算"></a>什么是域演算</h2><p>域演算和元组演算很相似，不同的是它的粒度更细。元组演算每次操作一个元组，而域演算操作的是其中的一个域。但是二者是等价的。形式上，域演算也是使用集合，并且短竖线右端也是和元组演算相同的格式。</p>
+<p>从例子来看，找出所有不是 03 系的学生的记录：$\{\langle a, b, c, d,e, f\rangle|\langle a, b, c, d,e, f\rangle\in\text{Student}\land e\neq 03\}​$。可以看到域演算相当于 unpack 了的元组演算。</p>
+<p>如果希望不查询所有的域，套路是将其它域移到短竖线后面的存在量词中。</p>
+<p>假设上面的例子中我们只对名字感兴趣：$\{b|\exist(a, c, d, e, f)(\langle a, b, c, d,e, f\rangle\in\text{Student}\land e\neq 03)\}$</p>
+<h2 id="什么是按按示例查询-QBE"><a href="#什么是按按示例查询-QBE" class="headerlink" title="什么是按按示例查询-QBE"></a>什么是按按示例查询-QBE</h2><p>QBE（Query by example）是一种非过程化的查询语言。使用域演算实现，适合终端用户使用。</p>
+<p>QBE 中有四种操作：Print、Update、Insert、Delete。QBE 在一张表格上进行操作，这张表格中用来填写条件。表格的每一列是对应关系中的一个属性，每一行是要进行的 QBE 操作。例如找到所有小于 17 岁的女生，表格应该这样填写：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SNum</th>
+<th>Sname</th>
+<th>Ssex</th>
+<th>Sage</th>
+<th>DNum</th>
+<th>DClass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Print</td>
+<td></td>
+<td></td>
+<td>Female</td>
+<td>&lt;17</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>这就会找到所有记录并打印。更新、插入删除同理。</p>
+<h3 id="示例元素"><a href="#示例元素" class="headerlink" title="示例元素"></a>示例元素</h3><p>使用示例元素可以将不同的记录关联起来。作者使用的符号是下划线，但是 Markdown 里没有，这里用斜体。</p>
+<p>找到年龄介于 17 岁到 20 岁的学生：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SNum</th>
+<th>Sname</th>
+<th>Ssex</th>
+<th>Sage</th>
+<th>DNum</th>
+<th>DClass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>Print.<em>S</em></td>
+<td></td>
+<td></td>
+<td>&gt;17</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Print.<em>S</em></td>
+<td></td>
+<td></td>
+<td>&lt;20</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>如果将第二行的 <em>S</em> 换成其它字母，就可以表示“或”关系。</p>
+<p>使用示例元素可以对不同的表进行连接。</p>
+<h2 id="QBE-应用训练"><a href="#QBE-应用训练" class="headerlink" title="QBE 应用训练"></a>QBE 应用训练</h2><p>使用 QBE 可以表达很多查询，实际上它可以模拟出关系代数。例子略去。</p>
+<h2 id="关系演算的安全性"><a href="#关系演算的安全性" class="headerlink" title="关系演算的安全性"></a>关系演算的安全性</h2><p><strong>安全性</strong>：不产生无限关系和无穷验证的演算是安全的。</p>
+<p>关系代数是安全的，因为是对有限集合的有限操作。</p>
+<p>关系演算不一定安全，例如 $\{t|t\notin R\}$ 就可以产生无限的 $t$（无限关系）。量词中如果不加限定的话也可能导致对无数个元素进行验证（无穷验证）。</p>
+<h3 id="元组演算的安全化"><a href="#元组演算的安全化" class="headerlink" title="元组演算的安全化"></a>元组演算的安全化</h3><p>对于命题 $\phi$ 引入安全约束有限集合 $DOM(\phi)$，它是一些值的集合，元素要么是 $\phi$ 中的值（如常量），要么是 $\phi$ 中的关系的记录的某个属性的值。注意 $DOM(\phi)$ 是有限的。</p>
+<p>满足以下条件的元组演算 $\{t|\phi(t)\}$ 是安全的：</p>
+<ul>
+<li>如果 $\phi(t)$ 为真，$t$ 的每个分量都在 $DOM(\phi)$ 中。（集合不能产出无限的元素，这条性质避免掉了无限关系。）</li>
+<li>对于 $\phi(t)$ 中的存在量词子句 $\exist u(\omega(u))$，只要 $\omega(u)$ 为真，$u$ 的每个分量都在 $DOM(\phi)$ 中。</li>
+<li>对于 $\phi(t)$ 中的全称量词子句 $\forall u(\omega(u))$，只要 $\omega(u)$ 为假，$u$ 的每个分量都在 $DOM(\phi)$ 中。（量词子句本质上会得到一个布尔值，通过这些约束可以让判定的时候只用从一个有限集合中找是否存在、不存在即可，避免掉了无穷验证。）</li>
+</ul>
+<h3 id="域演算的安全化"><a href="#域演算的安全化" class="headerlink" title="域演算的安全化"></a>域演算的安全化</h3><p>上面是元组演算的安全化，对域演算有类似定义。</p>
+<h2 id="三种关系运算之比较"><a href="#三种关系运算之比较" class="headerlink" title="三种关系运算之比较"></a>三种关系运算之比较</h2><p>三种关系运算从不同层面反映了查询操作。</p>
+<p>按照过程化程度递减、函数式程度递增的顺序：关系代数、元组演算、域演算。</p>
+<p><strong>关系代数</strong>、<strong>安全的元组演算</strong>、<strong>安全的域演算</strong> 三者表达能力等价。</p>
+
       
     </div>
 
@@ -502,13 +634,6 @@
           
 
   
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
-
-  
 
 
 
@@ -530,8 +655,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -624,6 +758,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#关系模型之关系演算"><span class="nav-number">1.</span> <span class="nav-text">关系模型之关系演算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是关系元组演算"><span class="nav-number">1.1.</span> <span class="nav-text">什么是关系元组演算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单运用元组演算公式"><span class="nav-number">1.2.</span> <span class="nav-text">简单运用元组演算公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Schema"><span class="nav-number">1.2.1.</span> <span class="nav-text">Schema</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#元组演算示例"><span class="nav-number">1.2.2.</span> <span class="nav-text">元组演算示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存在量词与全称量词"><span class="nav-number">1.3.</span> <span class="nav-text">存在量词与全称量词</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#等价变换"><span class="nav-number">1.4.</span> <span class="nav-text">等价变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四个典型示例"><span class="nav-number">1.5.</span> <span class="nav-text">四个典型示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用元组演算实现关系代数操作"><span class="nav-number">1.6.</span> <span class="nav-text">用元组演算实现关系代数操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是域演算"><span class="nav-number">1.7.</span> <span class="nav-text">什么是域演算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是按按示例查询-QBE"><span class="nav-number">1.8.</span> <span class="nav-text">什么是按按示例查询-QBE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#示例元素"><span class="nav-number">1.8.1.</span> <span class="nav-text">示例元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QBE-应用训练"><span class="nav-number">1.9.</span> <span class="nav-text">QBE 应用训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系演算的安全性"><span class="nav-number">1.10.</span> <span class="nav-text">关系演算的安全性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#元组演算的安全化"><span class="nav-number">1.10.1.</span> <span class="nav-text">元组演算的安全化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#域演算的安全化"><span class="nav-number">1.10.2.</span> <span class="nav-text">域演算的安全化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三种关系运算之比较"><span class="nav-number">1.11.</span> <span class="nav-text">三种关系运算之比较</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -766,29 +917,10 @@
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/";
-    this.page.identifier = "2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/";
-    this.page.title = '数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1178,10 +1310,6 @@
     
   
 
-
-  
-
-  
 
   
 

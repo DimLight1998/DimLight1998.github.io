@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -108,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="语法分析-3自底向上分析概述自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。 自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 移入-归约 分析。它的工作方式如下：  首先对于要解析的词法单元流，维护了一个栈。 从左至右扫描输入串，将扫描到的元素逐个压入栈中。 如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.790Z">
+<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理慕课笔记 6">
 <meta name="twitter:description" content="语法分析-3自底向上分析概述自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。 自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 移入-归约 分析。它的工作方式如下：  首先对于要解析的词法单元流，维护了一个栈。 从左至右扫描输入串，将扫描到的元素逐个压入栈中。 如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹">
@@ -409,19 +407,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/11/23/编译原理慕课笔记-6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -457,7 +442,7 @@
 <p>这个方法实际上有问题，如果某两个产生式的右部存在后缀关系，就有可能选出错误的句柄。因此需要研究如何正确选择句柄。</p>
 <h2 id="LR-分析法概述"><a href="#LR-分析法概述" class="headerlink" title="$LR$ 分析法概述"></a>$LR$ 分析法概述</h2><p>自底向上分析可以使用 $LR$ 文法，$LR$ 文法是最大的能够构造相应移入-归约语法分析器的文法类。$LR(k)$ 分析表示在最左归约过程中需要向前看 $k$ 个符号的归约方式。一般 $k = 1$ 或 $k = 0$。</p>
 <p>在使用移入-归约技术时，句柄是逐步形成的，这可以使用一系列的整数来表示某种 <strong>状态</strong>。</p>
-<h3 id="LR-分析表"><a href="#LR-分析表" class="headerlink" title="$LR$ 分析表"></a>$LR$ 分析表</h3><p>为了进行 $LR$ 分析需要使用 $LR$ 分析表，$LR$ 分析表的每一行代表一个状态（怎么确定见后面），每一列是一个符号（终结符、非终结符以及 $\<script type="math/tex">符号）。这张表会被拆分成两部分：列为终结符和 $\</script> 时为 <strong>Action 表</strong>，列为非终结符时为 <strong>Goto 表</strong>。</p>
+<h3 id="LR-分析表"><a href="#LR-分析表" class="headerlink" title="$LR$ 分析表"></a>$LR$ 分析表</h3><p>为了进行 $LR$ 分析需要使用 $LR$ 分析表，$LR$ 分析表的每一行代表一个状态（怎么确定见后面），每一列是一个符号（终结符、非终结符以及 $$$ 符号）。这张表会被拆分成两部分：列为终结符和 $$$ 时为 <strong>Action 表</strong>，列为非终结符时为 <strong>Goto 表</strong>。</p>
 <p>进行 $LR$ 分析时要维护两个栈：状态栈和符号栈。</p>
 <p>在 Goto 表中，每个元素是一个整数代表状态；在 Action 表中，每个元素是以下四种之一：</p>
 <ul>
@@ -469,7 +454,7 @@
 <p>$LR$ 分析表的构造可使用 $LR(0)$ 分析、$SLR$ 分析、$LR(1)$ 分析或 $LALR$ 分析。</p>
 <h3 id="LR-分析器的工作过程"><a href="#LR-分析器的工作过程" class="headerlink" title="$LR$ 分析器的工作过程"></a>$LR$ 分析器的工作过程</h3><p>正常情况下，符号栈中的元素个数和状态栈中相同。一般情况是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">status stack: st_0 st_1 st_2 st_3</span><br><span class="line">symbol stack: sy_$ sy_0 sy_1 sy_2</span><br><span class="line">token buffer: a_1 a_2 ... $</span><br></pre></td></tr></table></figure>
-<p>初始情况下符号栈中只有 <code>sy_$</code>，状态栈中只有 <code>st_0</code>，输入串为完整的输入串加上 $\$$ 符号，也符合上述情况。</p>
+<p>初始情况下符号栈中只有 <code>sy_$</code>，状态栈中只有 <code>st_0</code>，输入串为完整的输入串加上 $$$ 符号，也符合上述情况。</p>
 <p>根据当前状态栈栈顶，和输入串第一个元素在 Action 表中找到对应的元素，重复以下过程：</p>
 <ul>
 <li>若为接受或者拒绝则执行相应动作，退出循环。</li>
@@ -498,8 +483,8 @@
 <li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
 <li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
 <li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
-<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in V_T\cup\{\$\}, \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
-<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, \$]=acc$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in V_T\cup\{$\}, \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
 <li>其它所有情况都设为 $err$</li>
 </ul>
 </li>
@@ -577,13 +562,6 @@
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
 
   
 
@@ -869,29 +847,10 @@
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/";
-    this.page.identifier = "2018/11/23/编译原理慕课笔记-6/";
-    this.page.title = '编译原理慕课笔记 6';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1281,10 +1240,6 @@
     
   
 
-
-  
-
-  
 
   
 

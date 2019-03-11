@@ -20,8 +20,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="google-site-verification" content="mS6tdIKrisqbP1HemlJXaAUWsqoLxTRprQdjQnk-OYk">
-
 
 
 
@@ -108,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="语法分析-1自顶向下分析概述语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 推导 出这个词法单元串，另一个是找到这个词法单元串如何 归约 到初始符号，这两种做法分别叫做 自顶向下分析 和 自底向上分析。 使用自顶向下分析时，每一步中都要做两个选择，一个是 替换当前句型中的哪个非终结符，另一个是 将这个非终结符替换为哪个候选式（一个非终结">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.788Z">
+<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理慕课笔记 4">
 <meta name="twitter:description" content="语法分析-1自顶向下分析概述语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 推导 出这个词法单元串，另一个是找到这个词法单元串如何 归约 到初始符号，这两种做法分别叫做 自顶向下分析 和 自底向上分析。 使用自顶向下分析时，每一步中都要做两个选择，一个是 替换当前句型中的哪个非终结符，另一个是 将这个非终结符替换为哪个候选式（一个非终结">
@@ -409,19 +407,6 @@
           
             
             
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2018/11/23/编译原理慕课笔记-4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/11/23/编译原理慕课笔记-4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -480,7 +465,7 @@ A \rightarrow \beta_1A'|\beta_2A'|\cdots|\beta_mA' \\
 A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于 <strong>间接左递归</strong> 的情况，可以考虑将一个产生式带入另一个产生式当中以破坏掉环形的产生式依赖关系，这样做了之后可以对其中一个产生式消除掉左递归，然后就不会有左递归出现了。</p>
 <p>消除左递归的代价是引入新的非终结符和 $\epsilon$ 产生式。</p>
 <h2 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="$LL(1)$ 文法"></a>$LL(1)$ 文法</h2><h3 id="S-文法"><a href="#S-文法" class="headerlink" title="S 文法"></a>S 文法</h3><p>S 文法又叫作 <strong>简单的确定性文法</strong>。它要求每个产生式必须以终结符开头，并且同一个非终结符的所有产生式的开头的终结符不能相同。S 文法的这个要求就使得 S 文法中的产生式不能包括 $\epsilon$ 产生式。S 文法可以很方便地构造出预测分析器。</p>
-<h3 id="含有-epsilon-产生式的文法"><a href="#含有-epsilon-产生式的文法" class="headerlink" title="含有 $\epsilon$ 产生式的文法"></a>含有 $\epsilon$ 产生式的文法</h3><p><strong>对于每个非终结符</strong>，可以给它定义一个 <strong>后继符号集</strong>。后继符号集是终极符的集合，一个终结符 $a$ 如果在 $A$ 的后继符号集中，就必然有从初始符号 $S$ 开始的某个推导，使得 $S\Rightarrow^\star \alpha Aa\beta$，即 $a$ 需要在某个合法的句型中为 $A$ 的直接后继。特别地，如果 $A$ 在某个句型中是最后一个符号（后面没有任何终极符或非终结符），则 $\$$（表示句子的结尾）也在 $A$ 的后继符号集中。$A$ 的后继符号集记作是 $A$ 的 Follow 集。</p>
+<h3 id="含有-epsilon-产生式的文法"><a href="#含有-epsilon-产生式的文法" class="headerlink" title="含有 $\epsilon$ 产生式的文法"></a>含有 $\epsilon$ 产生式的文法</h3><p><strong>对于每个非终结符</strong>，可以给它定义一个 <strong>后继符号集</strong>。后继符号集是终极符的集合，一个终结符 $a$ 如果在 $A$ 的后继符号集中，就必然有从初始符号 $S$ 开始的某个推导，使得 $S\Rightarrow^\star \alpha Aa\beta$，即 $a$ 需要在某个合法的句型中为 $A$ 的直接后继。特别地，如果 $A$ 在某个句型中是最后一个符号（后面没有任何终极符或非终结符），则 $$$（表示句子的结尾）也在 $A$ 的后继符号集中。$A$ 的后继符号集记作是 $A$ 的 Follow 集。</p>
 <p><strong>对于每个产生式</strong>，可以定义产生式的 <strong>可选集</strong>。可选集是终极符或者非终结符的集合，一个符号 $x$ 如果在某个产生式的可选集当中，就表明如果当前正在从某个句型开始推导并且输入符号为 $x$，则可以选用这个产生式。可选集记作 Select 集。以下是两个例子：</p>
 <ul>
 <li>Select($A\rightarrow a\beta$) = $\{a\}$：只有在输入符号是 $a$ 的时候才可能选用这个产生式。</li>
@@ -575,13 +560,6 @@ A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-      <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
-      </div>
-    </div>
 
   
 
@@ -867,29 +845,10 @@ A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于
   
 
   
+
   
-  <script id="dsq-count-scr" src="https://dimlight1998.disqus.com/count.js" async></script>
 
-
-<script>
-  var disqus_config = function() {
-    this.page.url = "http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/";
-    this.page.identifier = "2018/11/23/编译原理慕课笔记-4/";
-    this.page.title = '编译原理慕课笔记 4';
-    };
-  function loadComments() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://dimlight1998.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', '' + +new Date());
-    (d.head || d.body).appendChild(s);
-  }
   
-    loadComments();
-  
-</script>
-
-
-
 
 
   
@@ -1279,10 +1238,6 @@ A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于
     
   
 
-
-  
-
-  
 
   
 
