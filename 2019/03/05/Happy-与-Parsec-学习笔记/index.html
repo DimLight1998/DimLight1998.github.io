@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。  Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。  Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。   H">
+<meta name="keywords" content="函数式编程,Parser,Haskell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Happy 与 Parsec 学习笔记">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/index.html">
+<meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。  Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。  Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。   H">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/DeepinScreenshot_select-area_20190307164636.png">
+<meta property="og:updated_time" content="2019-03-11T07:16:57.483Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Happy 与 Parsec 学习笔记">
+<meta name="twitter:description" content="Happy 与 Parsec 学习笔记Parser Generator 与 Parser CombinatorParser 有两种——Generator 和 combinator。  Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。  Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。   H">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/DeepinScreenshot_select-area_20190307164636.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Happy 与 Parsec 学习笔记 | Computation & Design</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Computation & Design</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Happy 与 Parsec 学习笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-05 09:01:10" itemprop="dateCreated datePublished" datetime="2019-03-05T09:01:10+08:00">2019-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:16:57" itemprop="dateModified" datetime="2019-03-11T15:16:57+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Happy-与-Parsec-学习笔记"><a href="#Happy-与-Parsec-学习笔记" class="headerlink" title="Happy 与 Parsec 学习笔记"></a>Happy 与 Parsec 学习笔记</h1><h2 id="Parser-Generator-与-Parser-Combinator"><a href="#Parser-Generator-与-Parser-Combinator" class="headerlink" title="Parser Generator 与 Parser Combinator"></a>Parser Generator 与 Parser Combinator</h2><p>Parser 有两种——Generator 和 combinator。</p>
+<ul>
+<li><p>Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。</p>
+</li>
+<li><p>Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。</p>
+</li>
+</ul>
+<p>Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者是 parser combinator。</p>
+<p>作为例子，这篇文章会使用两种不同的策略对 json 文件进行语法分析。</p>
+<a id="more"></a>
+<h2 id="Happy-Parser-Generator"><a href="#Happy-Parser-Generator" class="headerlink" title="Happy - Parser Generator"></a>Happy - Parser Generator</h2><h3 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h3><p>Happy 是用来进行进行语法分析的，没有词法分析的功能（但是可以模拟出来）。Happy 和 yacc 的用法类似。</p>
+<p>这里应用了 Happy 官方文档第二章中的一部分，对于简单的语法分析任务应该够用了。</p>
+<p>首先定义要解析的语言的 Token：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- token definition for lexer</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Token</span></span></span><br><span class="line">    = <span class="type">TokenString</span> <span class="type">String</span></span><br><span class="line">    | <span class="type">TokenNumber</span> <span class="type">String</span></span><br><span class="line">    | <span class="type">TokenNull</span></span><br><span class="line">    | <span class="type">TokenTrue</span></span><br><span class="line">    | <span class="type">TokenFalse</span></span><br><span class="line">    | <span class="type">TokenLBrace</span></span><br><span class="line">    | <span class="type">TokenRBrace</span></span><br><span class="line">    | <span class="type">TokenLBracket</span></span><br><span class="line">    | <span class="type">TokenRBracket</span></span><br><span class="line">    | <span class="type">TokenColon</span></span><br><span class="line">    | <span class="type">TokenComma</span></span><br><span class="line">    <span class="keyword">deriving</span> <span class="type">Show</span></span><br></pre></td></tr></table></figure>
+<p>然后瞎写一个词法分析函数（基本上是对的）：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- lexer program</span></span><br><span class="line"><span class="title">lexer</span> :: <span class="type">String</span> -&gt; [<span class="type">Token</span>]</span><br><span class="line"><span class="title">lexer</span> <span class="string">""</span> = []</span><br><span class="line"><span class="title">lexer</span> ccs @ (c : cs)</span><br><span class="line">    | isSpace c = lexer cs</span><br><span class="line">    | c == '&#123;' = <span class="type">TokenLBrace</span> : lexer cs</span><br><span class="line">    | c == '&#125;' = <span class="type">TokenRBrace</span> : lexer cs</span><br><span class="line">    | c == '[' = <span class="type">TokenLBracket</span> : lexer cs</span><br><span class="line">    | c == ']' = <span class="type">TokenRBracket</span> : lexer cs</span><br><span class="line">    | c == ':' = <span class="type">TokenColon</span> : lexer cs</span><br><span class="line">    | c == ',' = <span class="type">TokenComma</span> : lexer cs</span><br><span class="line">    | length cs &gt;= <span class="number">3</span> &amp;&amp; (c : take <span class="number">3</span> cs == <span class="string">"null"</span>) = <span class="type">TokenNull</span> : lexer (drop <span class="number">3</span> cs)</span><br><span class="line">    | length cs &gt;= <span class="number">3</span> &amp;&amp; (c : take <span class="number">3</span> cs == <span class="string">"true"</span>) = <span class="type">TokenTrue</span> : lexer (drop <span class="number">3</span> cs)</span><br><span class="line">    | length cs &gt;= <span class="number">4</span> &amp;&amp; (c : take <span class="number">4</span> cs == <span class="string">"false"</span>) = <span class="type">TokenFalse</span> : lexer (drop <span class="number">4</span> cs)</span><br><span class="line">    | c == '<span class="string">"' = let (s, remain) = lexString ccs in TokenString s : lexer remain</span></span><br><span class="line"><span class="string">    | c == '-' || isDigit c = let (s, remain) = lexNumber ccs in TokenNumber s : lexer remain</span></span><br><span class="line"><span class="string">    | otherwise = error "</span><span class="type">Lexer</span> error - unexpected character.<span class="string">"</span></span><br><span class="line"><span class="string">    where</span></span><br><span class="line"><span class="string">        firstChar s = case s of</span></span><br><span class="line"><span class="string">            "</span><span class="string">" -&gt; ("</span><span class="string">", "</span><span class="string">")</span></span><br><span class="line"><span class="string">            '\\' : '\\' : remain -&gt; ("</span>\\\\<span class="string">", remain)</span></span><br><span class="line"><span class="string">            '\\' : '\"' : remain -&gt; ("</span>\\\<span class="string">""</span>, remain)</span><br><span class="line">            '\\' : 'b' : remain -&gt; (<span class="string">"\\b"</span>, remain)</span><br><span class="line">            '\\' : 'f' : remain -&gt; (<span class="string">"\\f"</span>, remain)</span><br><span class="line">            '\\' : 'n' : remain -&gt; (<span class="string">"\\n"</span>, remain)</span><br><span class="line">            '\\' : 'r' : remain -&gt; (<span class="string">"\\r"</span>, remain)</span><br><span class="line">            '\\' : 't' : remain -&gt; (<span class="string">"\\t"</span>, remain)</span><br><span class="line">            '\\' : '/' : remain -&gt; (<span class="string">"\\/"</span>, remain)</span><br><span class="line">            '\\' : 'u' : c1 : c2 : c3 : c4 : remain -&gt;</span><br><span class="line">                <span class="keyword">if</span> all (\x -&gt; isLower x &amp;&amp; isHexDigit x) [c1, c2, c3, c4]</span><br><span class="line">                <span class="keyword">then</span> (['\\', 'u', c1, c2, c3, c4], remain)</span><br><span class="line">                <span class="keyword">else</span> error <span class="string">"Lexer error - unrecognized escaped unicode."</span></span><br><span class="line">            c : cs -&gt; ([c], cs)</span><br><span class="line">        lexUntilQuote s = <span class="keyword">case</span> s <span class="keyword">of</span></span><br><span class="line">            <span class="string">""</span> -&gt; error <span class="string">"Lexer error - unmatched quote."</span></span><br><span class="line">            otherwise -&gt; <span class="keyword">let</span> (fc, r) = firstChar s <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> fc == <span class="string">"\""</span></span><br><span class="line">                <span class="keyword">then</span> (fc, r)</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">let</span> (ans, rr) = lexUntilQuote r <span class="keyword">in</span> (fc ++ ans, rr)</span><br><span class="line">        lexString s = <span class="keyword">let</span> (ans, remain) = lexUntilQuote (tail s) <span class="keyword">in</span> (head s : ans, remain)</span><br><span class="line">        getNumber :: <span class="type">String</span> -&gt; (<span class="type">Int</span>, <span class="type">Int</span>)</span><br><span class="line">        getNumber s = s =~ <span class="string">"-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?"</span></span><br><span class="line">        lexNumber s = <span class="keyword">let</span> (off, len) = getNumber s <span class="keyword">in</span></span><br><span class="line">            <span class="keyword">if</span> off /= <span class="number">0</span></span><br><span class="line">            <span class="keyword">then</span> error <span class="string">"Lexer error - not a number."</span></span><br><span class="line">            <span class="keyword">else</span> (take len s, drop len s)</span><br></pre></td></tr></table></figure>
+<h3 id="语法分析"><a href="#语法分析" class="headerlink" title="语法分析"></a>语法分析</h3><p>和 Yacc 类似，Happy 需要一个语法文件。</p>
+<p>语法文件中需要定义用到的 <strong>语法中用到的</strong> token，小写字母开头或者单字符（名称可以任意）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">-- token definition for parser</span><br><span class="line">%token</span><br><span class="line">    string  &#123; TokenString $$ &#125;</span><br><span class="line">    number  &#123; TokenNumber $$ &#125;</span><br><span class="line">    null    &#123; TokenNull &#125;</span><br><span class="line">    true    &#123; TokenTrue &#125;</span><br><span class="line">    false   &#123; TokenFalse &#125;</span><br><span class="line">    &apos;&#123;&apos;     &#123; TokenLBrace &#125;</span><br><span class="line">    &apos;&#125;&apos;     &#123; TokenRBrace &#125;</span><br><span class="line">    &apos;[&apos;     &#123; TokenLBracket &#125;</span><br><span class="line">    &apos;]&apos;     &#123; TokenRBracket &#125;</span><br><span class="line">    &apos;:&apos;     &#123; TokenColon &#125;</span><br><span class="line">    &apos;,&apos;     &#123; TokenComma &#125;</span><br></pre></td></tr></table></figure>
+<p>一共两列，左边是语法定义中使用的 token，相当于终结符，右边是词法分析得到的 token。Happy 进行词法分析时希望得到的是一个 token 流，<strong>Happy 在这里会进行一个匹配</strong>，将右边的 token 对应到左边后进行语法分析。词法分析得到的 token 可以带有属性，使用 $$$$ 表示即可。</p>
+<p>然后写语法定义（右边一些 <code>J</code> 开头的后面会写）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/* grammar definition */</span><br><span class="line"></span><br><span class="line">Json</span><br><span class="line">    : Value                         &#123; Json $1 &#125;</span><br><span class="line"></span><br><span class="line">Value</span><br><span class="line">    : string                        &#123; JString $1 &#125;</span><br><span class="line">    | number                        &#123; JNumber $1 &#125;</span><br><span class="line">    | true                          &#123; JTrue &#125;</span><br><span class="line">    | false                         &#123; JFalse &#125;</span><br><span class="line">    | null                          &#123; JNull &#125;</span><br><span class="line">    | Object                        &#123; JObject $1 &#125;</span><br><span class="line">    | Array                         &#123; JArray $1 &#125;</span><br><span class="line"></span><br><span class="line">Object</span><br><span class="line">    : &apos;&#123;&apos; &apos;&#125;&apos;                       &#123; [] &#125;</span><br><span class="line">    | &apos;&#123;&apos; Pairs &apos;&#125;&apos;                 &#123; $2 &#125;</span><br><span class="line"></span><br><span class="line">Pairs</span><br><span class="line">    : string &apos;:&apos; Value              &#123; [($1, $3)] &#125;</span><br><span class="line">    | string &apos;:&apos; Value &apos;,&apos; Pairs    &#123; ($1, $3) : $5 &#125;</span><br><span class="line"></span><br><span class="line">Array</span><br><span class="line">    : &apos;[&apos; &apos;]&apos;                       &#123; [] &#125;</span><br><span class="line">    | &apos;[&apos; Values &apos;]&apos;                &#123; $2 &#125;</span><br><span class="line"></span><br><span class="line">Values</span><br><span class="line">    : Value                         &#123; [$1] &#125;</span><br><span class="line">    | Value &apos;,&apos; Values              &#123; $1 : $3 &#125;</span><br></pre></td></tr></table></figure>
+<p>Happy 最后会把语法分析的结果转换为 Haskell 中的一个 datatype（我称之为 target datatype）。因此还需要定义对应的 datatype。语法规则的声明可以看做有两列：左边是对文法的描述，是终结符和非终结符构成的模式；右边是一个 Haskell 表达式（甚至可以是一个函数），表示应当将对应的模式转换到 Haskell 中的什么值。使用形如 <code>$1</code> 这样的符号来对产生式右部的符号进行索引。</p>
+<p>这个例子中对应的 datatype 的定义是：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- target datatype</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Json</span> = <span class="type">Json</span> <span class="type">JValue</span> <span class="keyword">deriving</span> <span class="type">Show</span></span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">JValue</span></span></span><br><span class="line">    = <span class="type">JString</span> <span class="type">String</span></span><br><span class="line">    | <span class="type">JNumber</span> <span class="type">String</span></span><br><span class="line">    | <span class="type">JTrue</span></span><br><span class="line">    | <span class="type">JFalse</span></span><br><span class="line">    | <span class="type">JNull</span></span><br><span class="line">    | <span class="type">JObject</span> [(<span class="type">String</span>, <span class="type">JValue</span>)]</span><br><span class="line">    | <span class="type">JArray</span> [<span class="type">JValue</span>]</span><br><span class="line">    <span class="keyword">deriving</span> <span class="type">Show</span></span><br></pre></td></tr></table></figure>
+<p>整个 json 文件会被 parse 成一个 <code>Json</code> 对象。</p>
+<p>例如，在语法定义中</p>
+<ul>
+<li><code>true { JTrue }</code> 表示 <code>true</code> 这个 token 会被映射到 <code>JTrue</code></li>
+<li><code>string &#39;:&#39; Value { [($1, $3)] }</code> 表示整个模式会被映射到一个只有一个元素的列表，唯一的元素是一个二元组，第二个分量是 <code>Value</code> 将会被映射得到的量，而第一个分量是 <code>string</code> 这个 token 的值（在 <strong>语法中用到的</strong> token 中 <code>string</code> 这个 token 是带有值的），整个的类型是 <code>[(String, JValue)]</code>，和 target datatype 定义一致。</li>
+</ul>
+<p><strong>总结</strong>：源语言按照语法规则被映射到 Haskell 中使用 target datatype 表示的值。</p>
+<h3 id="完整的语法文件"><a href="#完整的语法文件" class="headerlink" title="完整的语法文件"></a>完整的语法文件</h3><p>语法文件使用 <code>.y</code> 作为后缀。完整的语法文件的格式为（将注释中以 <code>EXPAND</code> 开头的替换为前面对应的代码片段）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">module HappyJsonParser where</span><br><span class="line"></span><br><span class="line">import Data.Char</span><br><span class="line">import Text.Regex.Posix</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">%name happyJsonParser</span><br><span class="line">%tokentype &#123; Token &#125;</span><br><span class="line">%error &#123; parseError &#125;</span><br><span class="line"></span><br><span class="line">/* EXPAND token definition for parser */</span><br><span class="line"></span><br><span class="line">%%</span><br><span class="line"></span><br><span class="line">/* EXPAND grammar definition */</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">parseError :: [Token] -&gt; a</span><br><span class="line">parseError _ = error &quot;Parse Error&quot;</span><br><span class="line"></span><br><span class="line">-- EXPAND target datatype</span><br><span class="line">-- EXPAND token definition for lexer</span><br><span class="line">-- EXPAND lexer program</span><br><span class="line"></span><br><span class="line">lexAndParse :: String -&gt; Json</span><br><span class="line">lexAndParse = happyJsonParser . lexer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用 <code>{</code> 和 <code>}</code> 扩起的是在生成 hs 文件时会原封不动复制过去的代码片段，因此里面应当是 Haskell 代码，包括：模块声明、引入声明、错误处理程序、target datatype、token datatype 和词法分析器等。</p>
+<ul>
+<li><code>%name</code> 后面跟一个函数名，Happy 会生成相同名称的签名为 <code>[Token] -&gt; Exp</code> 的函数，其中 <code>Token</code> 是 token datatype，<code>Exp</code> 是语法规则第一条会被翻译到的 datatype 即 target datatype。</li>
+<li><code>%tokentype</code> 指定 token datatype。</li>
+<li><p><code>%error</code> 制定错误处理函数，可以就像上面那样写个没有任何功能的函数。</p>
+</li>
+<li><p>注意定义完了词法单元后再定义文法时要用 <code>%%</code> 进行分割。</p>
+</li>
+</ul>
+<p>在最后可以搞一个将词法分析与语法分析结合起来的函数 <code>lexAndParse</code>，其中用到的 <code>happyJsonParser</code> 就是 Happy 生成的函数。</p>
+<p>随后执行 <code>happy this_file.y</code> 即可生成对应的 hs 文件，然后使用其中定义的函数即可（一般就是 <code>happyJsonParser</code> 和 <code>lexAndParse</code> 了）。</p>
+<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>对于以下 json：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"widget"</span>: &#123;</span><br><span class="line">    <span class="attr">"debug"</span>: <span class="string">"on"</span>,</span><br><span class="line">    <span class="attr">"window"</span>: &#123;</span><br><span class="line">      <span class="attr">"title"</span>: <span class="string">"Sample Konfabulator Widget"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"main_window"</span>,</span><br><span class="line">      <span class="attr">"width"</span>: <span class="number">500</span>,</span><br><span class="line">      <span class="attr">"height"</span>: <span class="number">500</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"image"</span>: &#123;</span><br><span class="line">      <span class="attr">"src"</span>: <span class="string">"Images/Sun.png"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"sun1"</span>,</span><br><span class="line">      <span class="attr">"hOffset"</span>: <span class="number">250</span>,</span><br><span class="line">      <span class="attr">"vOffset"</span>: <span class="number">250</span>,</span><br><span class="line">      <span class="attr">"alignment"</span>: <span class="string">"center"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"text"</span>: &#123;</span><br><span class="line">      <span class="attr">"data"</span>: <span class="string">"Click Here"</span>,</span><br><span class="line">      <span class="attr">"size"</span>: <span class="number">36</span>,</span><br><span class="line">      <span class="attr">"style"</span>: <span class="string">"bold"</span>,</span><br><span class="line">      <span class="attr">"name"</span>: <span class="string">"text1"</span>,</span><br><span class="line">      <span class="attr">"hOffset"</span>: <span class="number">250</span>,</span><br><span class="line">      <span class="attr">"vOffset"</span>: <span class="number">100</span>,</span><br><span class="line">      <span class="attr">"alignment"</span>: <span class="string">"center"</span>,</span><br><span class="line">      <span class="attr">"onMouseUp"</span>: <span class="string">"sun1.opacity = (sun1.opacity / 100) * 90;"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>会得到：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Json</span> (<span class="type">JObject</span> [(<span class="string">"\"widget\""</span>,<span class="type">JObject</span> [(<span class="string">"\"debug\""</span>,<span class="type">JString</span> <span class="string">"\"on\""</span>),(<span class="string">"\"window\""</span>,<span class="type">JObject</span> [(<span class="string">"\"title\""</span>,<span class="type">JString</span> <span class="string">"\"Sample Konfabulator Widget\""</span>),(<span class="string">"\"name\""</span>,<span class="type">JString</span> <span class="string">"\"main_window\""</span>),(<span class="string">"\"width\""</span>,<span class="type">JNumber</span> <span class="string">"500"</span>),(<span class="string">"\"height\""</span>,<span class="type">JNumber</span> <span class="string">"500"</span>)]),(<span class="string">"\"image\""</span>,<span class="type">JObject</span> [(<span class="string">"\"src\""</span>,<span class="type">JString</span> <span class="string">"\"Images/Sun.png\""</span>),(<span class="string">"\"name\""</span>,<span class="type">JString</span> <span class="string">"\"sun1\""</span>),(<span class="string">"\"hOffset\""</span>,<span class="type">JNumber</span> <span class="string">"250"</span>),(<span class="string">"\"vOffset\""</span>,<span class="type">JNumber</span> <span class="string">"250"</span>),(<span class="string">"\"alignment\""</span>,<span class="type">JString</span> <span class="string">"\"center\""</span>)]),(<span class="string">"\"text\""</span>,<span class="type">JObject</span> [(<span class="string">"\"data\""</span>,<span class="type">JString</span> <span class="string">"\"Click Here\""</span>),(<span class="string">"\"size\""</span>,<span class="type">JNumber</span> <span class="string">"36"</span>),(<span class="string">"\"style\""</span>,<span class="type">JString</span> <span class="string">"\"bold\""</span>),(<span class="string">"\"name\""</span>,<span class="type">JString</span> <span class="string">"\"text1\""</span>),(<span class="string">"\"hOffset\""</span>,<span class="type">JNumber</span> <span class="string">"250"</span>),(<span class="string">"\"vOffset\""</span>,<span class="type">JNumber</span> <span class="string">"100"</span>),(<span class="string">"\"alignment\""</span>,<span class="type">JString</span> <span class="string">"\"center\""</span>),(<span class="string">"\"onMouseUp\""</span>,<span class="type">JString</span> <span class="string">"\"sun1.opacity = (sun1.opacity / 100) * 90;\""</span>)])])])</span><br></pre></td></tr></table></figure>
+<h3 id="其它功能"><a href="#其它功能" class="headerlink" title="其它功能"></a>其它功能</h3><p>Happy 还支持：</p>
+<ul>
+<li>定义优先级和结合性</li>
+<li>对产生式进行类型标注</li>
+<li>使用 Monadic Parser（并没有仔细看）</li>
+<li>错误处理</li>
+<li>其它</li>
+</ul>
+<h2 id="Parsec-Parser-Combinator"><a href="#Parsec-Parser-Combinator" class="headerlink" title="Parsec - Parser Combinator"></a>Parsec - Parser Combinator</h2><p>Parsec 使用 parser combinator 的策略：每个函数处理一件小事，然后通过函数组合让它的功能更加复杂。</p>
+<p>Parsec 最低可以到字符粒度的控制，因此既可以进行词法分析也可以进行语法分析。Parsec 库中提供了大量可以直接使用的函数，只需要将这些函数组合起来即可，并且这些函数的语义比较明确。</p>
+<h3 id="Target-datatype"><a href="#Target-datatype" class="headerlink" title="Target datatype"></a>Target datatype</h3><p>和使用 Happy 时一致：</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- target datatype</span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">Json</span> = <span class="type">Json</span> <span class="type">JValue</span> <span class="keyword">deriving</span> <span class="type">Show</span></span></span><br><span class="line"><span class="class"><span class="keyword">data</span> <span class="type">JValue</span></span></span><br><span class="line">    = <span class="type">JString</span> <span class="type">String</span></span><br><span class="line">    | <span class="type">JNumber</span> <span class="type">String</span></span><br><span class="line">    | <span class="type">JTrue</span></span><br><span class="line">    | <span class="type">JFalse</span></span><br><span class="line">    | <span class="type">JNull</span></span><br><span class="line">    | <span class="type">JObject</span> [(<span class="type">String</span>, <span class="type">JValue</span>)]</span><br><span class="line">    | <span class="type">JArray</span> [<span class="type">JValue</span>]</span><br><span class="line">    <span class="keyword">deriving</span> <span class="type">Show</span></span><br></pre></td></tr></table></figure>
+<h3 id="处理数字"><a href="#处理数字" class="headerlink" title="处理数字"></a>处理数字</h3><p>使用 Parsec 时，所有的做解析的函数的签名都应为 <code>GenParser Char st X</code>，其中 <code>X</code> 按照自己需要决定。</p>
+<p>Json 中数字的正则表达式是 <code>-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?</code>。下面首先使用 <code>integer</code>、<code>fraction</code> 和 <code>exponential</code> 分别处理整数部分、小数部分和指数部分，它们处理的结果都“返回”字符串。然后使用 <code>number</code> 将它们结合起来最终返回一个 <code>JValue</code>。</p>
+<p>以 <code>integer</code> 为例，首先 <code>string &quot;0&quot;</code> 会尝试从字符串流中匹配 <code>&quot;0&quot;</code>，一旦成功，立即返回；否则会开始匹配 <code>&lt;|&gt;</code> 后的内容（<code>&lt;|&gt;</code> 是 <code>Alternative</code> 的一个运算符）。<code>oneOf</code> 会从给定的多个字符中进行匹配，<code>digit</code> 会尝试匹配一个数字，<code>many</code> 会进行多次匹配（可以是 0 次，而 <code>many1</code> 不允许是 0 次）。</p>
+<p><strong>需要注意对于 <code>&lt;|&gt;</code> 来说，如果前面已经匹配了一部分然后失败了，那么匹配后面时前面已匹配部分已经被消耗了。可使用 <code>try</code> 解决这个问题。</strong></p>
+<p><code>choice</code> 会从一个列表的匹配函数中依次选择直到成功，option 会在不成功时返回一个 fallback 值。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- number</span></span><br><span class="line"><span class="title">integer</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">String</span></span><br><span class="line"><span class="title">integer</span> = (string <span class="string">"0"</span>) &lt;|&gt; (<span class="keyword">do</span> l &lt;- oneOf ['<span class="number">1</span>' .. '<span class="number">9</span>']; r &lt;- many digit; return (l : r))</span><br><span class="line"></span><br><span class="line"><span class="title">fraction</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">String</span></span><br><span class="line"><span class="title">fraction</span> = <span class="keyword">do</span> char '.'; r &lt;- many1 digit; return ('.' : r)</span><br><span class="line"></span><br><span class="line"><span class="title">exponential</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">String</span></span><br><span class="line"><span class="title">exponential</span> = <span class="keyword">do</span></span><br><span class="line">    e &lt;- oneOf ['e', '<span class="type">E'</span>]</span><br><span class="line">    s &lt;- option <span class="string">""</span> (choice [string <span class="string">"-"</span>, string <span class="string">"+"</span>])</span><br><span class="line">    d &lt;- many1 digit</span><br><span class="line">    return ((e : s) ++ d)</span><br><span class="line"></span><br><span class="line"><span class="title">number</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">number</span> = <span class="keyword">do</span></span><br><span class="line">    s &lt;- option <span class="string">""</span> (string <span class="string">"-"</span>)</span><br><span class="line">    i &lt;- integer</span><br><span class="line">    f &lt;- option <span class="string">""</span> fraction</span><br><span class="line">    e &lt;- option <span class="string">""</span> exponential</span><br><span class="line">    return $ <span class="type">JNumber</span> (s ++ i ++ f ++ e)</span><br></pre></td></tr></table></figure>
+<h3 id="处理字符串"><a href="#处理字符串" class="headerlink" title="处理字符串"></a>处理字符串</h3><p><code>count</code> 可以指定匹配次数；<code>noneOf</code> 相当于反向的 <code>oneOf</code>。</p>
+<p>使用 <code>choice</code> 时，也会出现匹配一部分后失败导致字符被消耗的问题，因此这里用 <code>map try</code> 来解决。应该有更好的办法。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- string</span></span><br><span class="line"><span class="title">lowerHex</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">Char</span></span><br><span class="line"><span class="title">lowerHex</span> = oneOf (['<span class="number">0</span>' .. '<span class="number">9</span>'] ++ ['a' .. 'f'])</span><br><span class="line"></span><br><span class="line"><span class="title">legalEscape</span> = map try [</span><br><span class="line">    string <span class="string">"\\\\"</span>, string <span class="string">"\\\""</span>, string <span class="string">"\\b"</span>, string <span class="string">"\\f"</span>,</span><br><span class="line">    string <span class="string">"\\n"</span>, string <span class="string">"\\r"</span>, string <span class="string">"\\t"</span>, string <span class="string">"\\/"</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line"><span class="title">stringChar</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">String</span></span><br><span class="line"><span class="title">stringChar</span> =</span><br><span class="line">    choice legalEscape</span><br><span class="line">    &lt;|&gt; (<span class="keyword">do</span> string <span class="string">"\\u"</span>; esc &lt;- count <span class="number">4</span> lowerHex; return (<span class="string">"\\u"</span> ++ esc))</span><br><span class="line">    &lt;|&gt; count <span class="number">1</span> (noneOf ['\<span class="string">"'])</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">quotedString :: GenParser Char st JValue</span></span><br><span class="line"><span class="string">quotedString = do char '\"'; s &lt;- many stringChar; char '\"'; return $ JString (concat (["</span>\<span class="string">""</span>] ++ s ++ [<span class="string">"\""</span>]))</span><br></pre></td></tr></table></figure>
+<h3 id="核心的处理"><a href="#核心的处理" class="headerlink" title="核心的处理"></a>核心的处理</h3><p><code>space</code> 可以匹配空白字符（因为没有 tokenize 的过程，所以即使是语法解析阶段也要手动处理空白字符）；<code>sepBy</code> 可以匹配模式 A 被模式 B 分割的模式（<code>endBy</code> 则匹配模式 A 总以模式 B 结尾的模式）。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- parser</span></span><br><span class="line"><span class="title">true</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">true</span> = string <span class="string">"true"</span> &gt;&gt; return <span class="type">JTrue</span></span><br><span class="line"></span><br><span class="line"><span class="title">false</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">false</span> = string <span class="string">"false"</span> &gt;&gt; return <span class="type">JFalse</span></span><br><span class="line"></span><br><span class="line"><span class="title">nullVal</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">nullVal</span> = string <span class="string">"null"</span> &gt;&gt; return <span class="type">JNull</span></span><br><span class="line"></span><br><span class="line"><span class="title">pair</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st (<span class="type">String</span>, <span class="type">JValue</span>)</span><br><span class="line"><span class="title">pair</span> = <span class="keyword">do</span></span><br><span class="line">    many space</span><br><span class="line">    (<span class="type">JString</span> s) &lt;- quotedString</span><br><span class="line">    many space</span><br><span class="line">    char ':'</span><br><span class="line">    v &lt;- value</span><br><span class="line">    return (s, v)</span><br><span class="line"></span><br><span class="line"><span class="title">object</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">object</span> = <span class="keyword">do</span></span><br><span class="line">    char '&#123;'</span><br><span class="line">    kvs &lt;- sepBy pair (char ',')</span><br><span class="line">    char '&#125;'</span><br><span class="line">    return $ <span class="type">JObject</span> kvs</span><br><span class="line"></span><br><span class="line"><span class="title">array</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">array</span> = <span class="keyword">do</span></span><br><span class="line">    char '['</span><br><span class="line">    vs &lt;- sepBy value (char ',')</span><br><span class="line">    char ']'</span><br><span class="line">    return $ <span class="type">JArray</span> vs</span><br><span class="line"></span><br><span class="line"><span class="title">value</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">JValue</span></span><br><span class="line"><span class="title">value</span> = <span class="keyword">do</span></span><br><span class="line">    many space</span><br><span class="line">    v &lt;- choice (map try [quotedString, number, true, false, nullVal, object, array])</span><br><span class="line">    many space</span><br><span class="line">    return v</span><br><span class="line"></span><br><span class="line"><span class="title">json</span> :: <span class="type">GenParser</span> <span class="type">Char</span> st <span class="type">Json</span></span><br><span class="line"><span class="title">json</span> = <span class="type">Json</span> &lt;$&gt; value</span><br></pre></td></tr></table></figure>
+<h3 id="主函数"><a href="#主函数" class="headerlink" title="主函数"></a>主函数</h3><figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- main</span></span><br><span class="line"><span class="title">parseJson</span> :: <span class="type">String</span> -&gt; <span class="type">Json</span></span><br><span class="line"><span class="title">parseJson</span> s = <span class="keyword">case</span> parse json <span class="string">""</span> s <span class="keyword">of</span></span><br><span class="line">    <span class="type">Right</span> x -&gt; x</span><br><span class="line">    <span class="type">Left</span> _ -&gt; error <span class="string">"Parse error."</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>可以看到，Parsec 的语义性很好。</p>
+<p>Parsec 还能和 Applicative Functor 结合使用，应该能进一步简化代码，但是我没有细看。</p>
+<h2 id="Parser-Combinator-与-Parser-Generator-的比较"><a href="#Parser-Combinator-与-Parser-Generator-的比较" class="headerlink" title="Parser Combinator 与 Parser Generator 的比较"></a>Parser Combinator 与 Parser Generator 的比较</h2><p>来自 <a href="https://gist.github.com/ChShersh/27844477752359735dfa41ac184d3bf2" target="_blank" rel="noopener">https://gist.github.com/ChShersh/27844477752359735dfa41ac184d3bf2</a>。</p>
+<img src="/2019/03/05/Happy-与-Parsec-学习笔记/DeepinScreenshot_select-area_20190307164636.png">
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://gist.github.com/ChShersh/27844477752359735dfa41ac184d3bf2" target="_blank" rel="noopener">https://gist.github.com/ChShersh/27844477752359735dfa41ac184d3bf2</a></li>
+<li><a href="https://www.haskell.org/happy/doc/html/index.html" target="_blank" rel="noopener">https://www.haskell.org/happy/doc/html/index.html</a></li>
+<li><a href="http://book.realworldhaskell.org/read/using-parsec.html" target="_blank" rel="noopener">http://book.realworldhaskell.org/read/using-parsec.html</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+            <a href="/tags/Parser/" rel="tag"># Parser</a>
+          
+            <a href="/tags/Haskell/" rel="tag"># Haskell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/04/形式化验证课程笔记-1/" rel="next" title="形式化验证课程笔记 1">
+                <i class="fa fa-chevron-left"></i> 形式化验证课程笔记 1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/形式化验证课程笔记-2/" rel="prev" title="形式化验证课程笔记 2">
+                形式化验证课程笔记 2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Happy-与-Parsec-学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Happy 与 Parsec 学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Parser-Generator-与-Parser-Combinator"><span class="nav-number">1.1.</span> <span class="nav-text">Parser Generator 与 Parser Combinator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Happy-Parser-Generator"><span class="nav-number">1.2.</span> <span class="nav-text">Happy - Parser Generator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#词法分析"><span class="nav-number">1.2.1.</span> <span class="nav-text">词法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#语法分析"><span class="nav-number">1.2.2.</span> <span class="nav-text">语法分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完整的语法文件"><span class="nav-number">1.2.3.</span> <span class="nav-text">完整的语法文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#效果"><span class="nav-number">1.2.4.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其它功能"><span class="nav-number">1.2.5.</span> <span class="nav-text">其它功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parsec-Parser-Combinator"><span class="nav-number">1.3.</span> <span class="nav-text">Parsec - Parser Combinator</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Target-datatype"><span class="nav-number">1.3.1.</span> <span class="nav-text">Target datatype</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理数字"><span class="nav-number">1.3.2.</span> <span class="nav-text">处理数字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#处理字符串"><span class="nav-number">1.3.3.</span> <span class="nav-text">处理字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#核心的处理"><span class="nav-number">1.3.4.</span> <span class="nav-text">核心的处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主函数"><span class="nav-number">1.3.5.</span> <span class="nav-text">主函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parser-Combinator-与-Parser-Generator-的比较"><span class="nav-number">1.4.</span> <span class="nav-text">Parser Combinator 与 Parser Generator 的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

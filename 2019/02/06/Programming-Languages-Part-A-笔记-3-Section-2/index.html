@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Section 2我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。 Building Compound Types基础类型和复合类型基础类型是“原子”的类型，无法继续分解。 复合类型例如列表、元组和 Option。 构造复合类型的通用方法复合类型都可以由三种方式组合地构造出：  Each of：包括全部的可选类型 One of：包含若干个可选类型之一 Self re">
+<meta name="keywords" content="编程语言理论,函数式编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Programming Languages (Part A) 笔记 3 Section 2">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/index.html">
+<meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="Section 2我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。 Building Compound Types基础类型和复合类型基础类型是“原子”的类型，无法继续分解。 复合类型例如列表、元组和 Option。 构造复合类型的通用方法复合类型都可以由三种方式组合地构造出：  Each of：包括全部的可选类型 One of：包含若干个可选类型之一 Self re">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-11T07:26:53.391Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Programming Languages (Part A) 笔记 3 Section 2">
+<meta name="twitter:description" content="Section 2我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。 Building Compound Types基础类型和复合类型基础类型是“原子”的类型，无法继续分解。 复合类型例如列表、元组和 Option。 构造复合类型的通用方法复合类型都可以由三种方式组合地构造出：  Each of：包括全部的可选类型 One of：包含若干个可选类型之一 Self re">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Programming Languages (Part A) 笔记 3 Section 2 | Computation & Design</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Computation & Design</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-3-Section-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Programming Languages (Part A) 笔记 3 Section 2
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-06 00:02:05" itemprop="dateCreated datePublished" datetime="2019-02-06T00:02:05+08:00">2019-02-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:26:53" itemprop="dateModified" datetime="2019-03-11T15:26:53+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h1><p>我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。</p>
+<h2 id="Building-Compound-Types"><a href="#Building-Compound-Types" class="headerlink" title="Building Compound Types"></a>Building Compound Types</h2><h3 id="基础类型和复合类型"><a href="#基础类型和复合类型" class="headerlink" title="基础类型和复合类型"></a>基础类型和复合类型</h3><p>基础类型是“原子”的类型，无法继续分解。</p>
+<p>复合类型例如列表、元组和 Option。</p>
+<h3 id="构造复合类型的通用方法"><a href="#构造复合类型的通用方法" class="headerlink" title="构造复合类型的通用方法"></a>构造复合类型的通用方法</h3><p>复合类型都可以由三种方式组合地构造出：</p>
+<ul>
+<li><strong>Each of</strong>：包括全部的可选类型</li>
+<li><strong>One of</strong>：包含若干个可选类型之一</li>
+<li><strong>Self reference</strong>：包含自己这个类型</li>
+</ul>
+<p>例如元组就是 Each of 形式的，Option 就是 One of 形式的，列表是三种形式的组合：一个 <code>int list</code> 可以为空（One of），也可以为一个 <code>int</code> 加上一个 <code>int list</code>（Self reference 和 One of）。</p>
+<a id="more"></a>
+<h2 id="Records"><a href="#Records" class="headerlink" title="Records"></a>Records</h2><p>记录类型本质上是有名字的元组。</p>
+<ul>
+<li><p><strong>构造</strong>：<code>val r = {foo = 123, bar = false}</code> 。</p>
+</li>
+<li><p><strong>访问</strong>：<code>#foo r = 123, #bar r = false</code>。</p>
+</li>
+</ul>
+<p>记录的键是无序的。</p>
+<hr>
+<p>记录和元组的区别在于一个是靠名称访问，一个是靠位置访问。</p>
+<p>一个事实是很多语言中的函数调用是二者的结合：调用者使用位置访问传递参数，被调用者使用名称访问读取参数。有些语言允许不这样做。</p>
+<h2 id="Tuples-as-Syntactic-Sugar"><a href="#Tuples-as-Syntactic-Sugar" class="headerlink" title="Tuples as Syntactic Sugar"></a>Tuples as Syntactic Sugar</h2><p>元组本质上是记录的语法糖。可以认为 ML 中没有元组，只有记录。以下两个绑定是等价的。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = (<span class="number">3</span>, <span class="string">"hi"</span>, <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = &#123;<span class="number">2</span> = <span class="string">"hi"</span>, <span class="number">1</span> = <span class="number">3</span>, <span class="number">3</span> = <span class="literal">true</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>记录的键可以是数字。当键不是 1 到 n 时，会成为普通记录。</p>
+<h2 id="Datatype-Bindings"><a href="#Datatype-Bindings" class="headerlink" title="Datatype Bindings"></a>Datatype Bindings</h2><p><code>datatype</code> 和 <code>val</code> 以及 <code>fun</code> 一样，是一种绑定。</p>
+<p>语法示例：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> <span class="type">MyType</span> = <span class="type">IntPair</span> <span class="keyword">of</span> <span class="built_in">int</span> * <span class="built_in">int</span> | <span class="type">Str</span> <span class="keyword">of</span> <span class="built_in">string</span> | <span class="type">Pizza</span></span><br></pre></td></tr></table></figure>
+<p>后面的 <code>IntPair</code>、<code>Str</code> 和 <code>Pizza</code> 是 <strong>构造函数</strong>，本质上是函数，接受相应的参数构造出一个 <code>MyType</code> 类型的值。这句话会同时更新静态和动态环境：</p>
+<ul>
+<li><strong>静态环境更新</strong>：添加了新的类型 <code>MyType</code>。</li>
+<li><strong>动态环境更新</strong>：添加了构造函数。</li>
+</ul>
+<p>使用构造函数和使用函数别无二致：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="type">IntPair</span>(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="keyword">val</span> b = <span class="type">Str</span> <span class="string">"hello"</span></span><br><span class="line"><span class="keyword">val</span> c = <span class="type">Pizza</span></span><br></pre></td></tr></table></figure>
+<p>如果检查一下 <code>a</code> 的值发现它就是 <code>IntPair (3, 4)</code>，这是所谓的 tagged union，其中 <code>IntPair</code> 相当于一个 tag。</p>
+<p>如果已经知道了一个 datatype，如何获取其中的值？可以像 Option 那样为每一个构造函数生成一个判定是否为该 tag 的函数和一个从这个 tag 中取出值的函数，但是这么做太蠢了。后面有更好的解决方案。</p>
+<h2 id="Case-Expressions"><a href="#Case-Expressions" class="headerlink" title="Case Expressions"></a>Case Expressions</h2><p>这节解决上节的问题。</p>
+<p>case 实际上是一个语句，用来进行模式匹配，匹配时可以直接取出变量的值：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="type">IntPair</span>(<span class="number">3</span>, <span class="number">4</span>)</span><br><span class="line"><span class="keyword">val</span> k = <span class="keyword">case</span> a <span class="keyword">of</span></span><br><span class="line">    <span class="type">IntPair</span>(x, y) =&gt; x + y</span><br><span class="line">    | <span class="type">Str</span> s =&gt; <span class="number">0</span></span><br><span class="line">    | <span class="type">Pizza</span> =&gt; <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p><code>=&gt;</code> 左边的称为 pattern，语法上和一个表达式类似，但是不是表达式。</p>
+<p>模式匹配必须是不重复的，否则会引起编译错误。最好是完备的，否则会引起编译警告。</p>
+<h2 id="Useful-Datatypes"><a href="#Useful-Datatypes" class="headerlink" title="Useful Datatypes"></a>Useful Datatypes</h2><p>Datatype 可以用来实现枚举（并且元素自己还可以带有属性）。</p>
+<p>Datatype 相当于一种 one of 的结构，记录相当于一种 each of 的结构。两者不要混淆使用。</p>
+<p>使用 Datatype 进行递归的使用可以构造类似语法树的结构（注意构造函数是普通的函数），再使用模式匹配还可以对这种语法树进行求值。</p>
+<h2 id="Pattern-Matching-So-Far"><a href="#Pattern-Matching-So-Far" class="headerlink" title="Pattern Matching So Far"></a>Pattern Matching So Far</h2><p>这节正式写出了 datatype 和模式匹配的三个要素，比较显然。</p>
+<h2 id="Another-Expression-Example"><a href="#Another-Expression-Example" class="headerlink" title="Another Expression Example"></a>Another Expression Example</h2><p><em>本节没有问题。</em></p>
+<h2 id="Type-Synonyms"><a href="#Type-Synonyms" class="headerlink" title="Type Synonyms"></a>Type Synonyms</h2><p>使用 <code>type</code> 可以定义新的类型。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="type">IntBool</span> = <span class="built_in">int</span> * <span class="built_in">bool</span></span><br><span class="line"><span class="keyword">type</span> <span class="type">Person</span> = &#123;name: <span class="built_in">string</span>, age: <span class="built_in">int</span>&#125;</span><br></pre></td></tr></table></figure>
+<p>本质上只是取个别名而已，二者在所有的地方都可以交换使用，二者是完全等价的。</p>
+<h2 id="Lists-and-Options-are-Datatypes"><a href="#Lists-and-Options-are-Datatypes" class="headerlink" title="Lists and Options are Datatypes"></a>Lists and Options are Datatypes</h2><p>列表和 Option 上是 datatype，通过使用模式匹配，可以避免掉使用 <code>isSome</code>、<code>valOf</code>、<code>null</code>、<code>hd</code> 以及 <code>tl</code>，因为这些函数实际上都可以使用模式匹配等价地搞出来。</p>
+<p>例如列表的构造函数实际上是 <code>[]</code> 和 <code>::</code>。</p>
+<p>这些函数存在的意义是有时候会便利，并且有时候需要将函数作为参数传递的时候有用。</p>
+<p>可以认为列表和 Option 是可以自己造出来的，语言不一定要提供。</p>
+<h2 id="Polymorphic-Datatypes"><a href="#Polymorphic-Datatypes" class="headerlink" title="Polymorphic Datatypes"></a>Polymorphic Datatypes</h2><p><code>list</code>和 <code>option</code> 本身不是类型，它们需要接受一个 <strong>类型参数</strong> 才能构造出具体的类型。<code>int list</code> 和 <code>int option</code> 才是类型。<code>&#39;a list</code> 也是具体的类型。<code>list</code> 和 <code>option</code> 称为 type constructor。</p>
+<p>定义 polymorphic datatype：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> <span class="symbol">'a</span> <span class="type">MyList</span> =</span><br><span class="line">    <span class="type">Empty</span></span><br><span class="line">    | <span class="type">Cons</span> <span class="keyword">of</span> <span class="symbol">'a</span> * <span class="symbol">'a</span> <span class="type">MyList</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">datatype</span> (<span class="symbol">'a</span>, <span class="symbol">'b</span>) <span class="type">BinaryTree</span> =</span><br><span class="line">    <span class="type">Node</span> <span class="keyword">of</span> <span class="symbol">'a</span> * (<span class="symbol">'a</span>, <span class="symbol">'b</span>) <span class="type">BinaryTree</span> * (<span class="symbol">'a</span>, <span class="symbol">'b</span>) <span class="type">BinaryTree</span></span><br><span class="line">    | <span class="type">Leaf</span> <span class="keyword">of</span> <span class="symbol">'b</span></span><br></pre></td></tr></table></figure>
+<p>它和列表一样使用。</p>
+<p>当在函数中使用 polymorphic datatype 的时候如果依赖于语言的类型推断，语言会得到一个最大的适合函数的类型签名。例如对列表求和要求是 <code>int list</code>，但是对列表进行连接只要求是 <code>&#39;a list</code>。</p>
+<h2 id="Each-of-Pattern-Matching-Truth-About-Functions"><a href="#Each-of-Pattern-Matching-Truth-About-Functions" class="headerlink" title="Each of Pattern Matching / Truth About Functions"></a>Each of Pattern Matching / Truth About Functions</h2><p><strong>这一节很有意思！</strong>主要的观点：</p>
+<ul>
+<li>所有的变量绑定和函数绑定都可以使用模式匹配来完成。</li>
+<li>所有的函数本质上都只接受一个参数。</li>
+</ul>
+<h3 id="对元组和记录的模式匹配"><a href="#对元组和记录的模式匹配" class="headerlink" title="对元组和记录的模式匹配"></a>对元组和记录的模式匹配</h3><p>之前对模式匹配的使用是对 datatype 在用，这种用法实际上是匹配一个 one of 类型的数据。但是模式匹配可以对 each of 类型的数据进行匹配，例如元组和记录。在这种情况下，模式匹配相当于一种 unpack 的操作。</p>
+<h3 id="绑定时的模式匹配"><a href="#绑定时的模式匹配" class="headerlink" title="绑定时的模式匹配"></a>绑定时的模式匹配</h3><p>绑定时，等号左边实际上是一个模式 $p$。对于变量绑定 <code>val x = 3</code> 而言，实际上 <code>x</code> 已经是一个特殊的模式了。可以使用这样的写法：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> triple = (<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"><span class="keyword">val</span> (x, y, z) = triple</span><br></pre></td></tr></table></figure>
+<p>这个绑定是一个模式的绑定，<code>x</code> 会等于 3，其它同理。</p>
+<hr>
+<p>现在看一下对元组的匹配。假设要实现一个函数 <code>sum</code>，作用是对三元组求和。最差的写法是使用 case 语句进行模式匹配：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> sum_1 triple =</span><br><span class="line">    <span class="keyword">case</span> triple <span class="keyword">of</span></span><br><span class="line">        (x, y, z) =&gt; x + y + z</span><br></pre></td></tr></table></figure>
+<p>这是一种比较差的写法。因为这个实际上使用了单个分支的 case 语句。在对 one of 类型进行匹配的时候，这样的语句有可能产生运行时错误。为了 case 语句的一致性，尽管这里不会有任何问题（也不会有警告），还是不要这样写。</p>
+<p>实际上我们知道了只可能出现一种 case，因此好一点的写法是使用绑定，代码如下：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> sum_2 triple =</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">val</span> (x, y, z) = triple <span class="keyword">in</span> x + y + z <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>这个相当于做了一个 unpack 的操作。实际上 ML 是可以在函数的参数那里就地 unpack 的，写出来的话最终的形态是</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> sum_3 (x, y, z) = x + y + z</span><br></pre></td></tr></table></figure>
+<p>然后可以直接将一个三元组传给 <code>sum_3</code>。<code>sum_3</code> 看上去和一个接受 3 个 int 的函数一模一样！它们是没有区别的，这就是为啥 ML 中的函数都接受一个参数。（对于不带参数的函数，实际上它接受一个空元组。）</p>
+<p><strong>所以多参数的函数实际上是一种语法糖。</strong></p>
+<hr>
+<p>元组是记录的语法糖，对应地也有记录的模式匹配：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> <span class="type">Person</span> = &#123;name: <span class="built_in">string</span>, age: <span class="built_in">int</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fun</span> show_1 person = <span class="keyword">case</span> person <span class="keyword">of</span> &#123;name = n, age = a&#125; =&gt; n ^ <span class="type">Int</span>.toString(a)</span><br><span class="line"><span class="keyword">fun</span> show_2 person = <span class="keyword">let</span> <span class="keyword">val</span> &#123;name = n, age = a&#125; = person <span class="keyword">in</span> n ^ <span class="type">Int</span>.toString(a) <span class="keyword">end</span></span><br><span class="line"><span class="keyword">fun</span> show_3 &#123;name = n, age = a&#125; = n ^ <span class="type">Int</span>.toString(a)</span><br></pre></td></tr></table></figure>
+<p>这三个函数等价。</p>
+<hr>
+<p>这个特性的一个好处是：一个函数如果返回一个元组或者记录，这个返回值可以直接作为某个函数的输入，而不用显式地进行解包：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> rotate_right (x, y, z) = (z, x, y)</span><br><span class="line"><span class="keyword">fun</span> rotate_left tup = rotate_right (rotate_right tup)</span><br></pre></td></tr></table></figure>
+<h2 id="A-Little-Type-Inference"><a href="#A-Little-Type-Inference" class="headerlink" title="A Little Type Inference"></a>A Little Type Inference</h2><h3 id="ML-类型系统的一个限制"><a href="#ML-类型系统的一个限制" class="headerlink" title="ML 类型系统的一个限制"></a>ML 类型系统的一个限制</h3><p>使用模式匹配，可以在不使用 <code>#</code> 和类型标注的情况下编写程序。但是如果不适用模式匹配就难以做到，例如下面这段代码：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> sum_1(tup: <span class="built_in">int</span> * <span class="built_in">int</span> * <span class="built_in">int</span>) = #<span class="number">1</span> tup + #<span class="number">2</span> tup + #<span class="number">3</span> tup</span><br><span class="line"><span class="keyword">fun</span> sum_2(tup) = #<span class="number">1</span> tup + #<span class="number">2</span> tup + #<span class="number">3</span> tup</span><br></pre></td></tr></table></figure>
+<p>第一个函数可以通过编译，但是第二个不行。因为第二个的情况下 ML 不知道 <code>tup</code> 到底是什么类型的（可不可能有别的域）。ML 类型系统的一个限制就是无法写出这样的函数，使得它可以同时接受三元组和四元组。</p>
+<hr>
+<p>ML 进行类型推断的时候可能给出比自己期待的更加广泛的类型。</p>
+<h2 id="Polymorphic-and-Equality-Types"><a href="#Polymorphic-and-Equality-Types" class="headerlink" title="Polymorphic and Equality Types"></a>Polymorphic and Equality Types</h2><h3 id="类型的广泛性"><a href="#类型的广泛性" class="headerlink" title="类型的广泛性"></a>类型的广泛性</h3><p>如果一个复合类型中存在形如 <code>&#39;a</code> 的类型变量，这种变量可以替换为一个具体的类型或者其它类型变量。一个复合类型 $T_1$ 比另一个复合类型 $T_2$ 更加广泛的判定是，如果将 $T_1$ 中某个类型变量的所有出现之处全部替换为另一个类型变量或者具体的类型能够得到 $T_2$，则 $T_1$ 比 $T_2$ 更加广泛。</p>
+<h3 id="Equality-类型"><a href="#Equality-类型" class="headerlink" title="Equality 类型"></a>Equality 类型</h3><p>形如 <code>&#39;&#39;a</code> 的类型表示这个类型不仅是类型变量，而且可以使用 <code>=</code> 来判定相等性。</p>
+<h2 id="Nested-Patterns"><a href="#Nested-Patterns" class="headerlink" title="Nested Patterns"></a>Nested Patterns</h2><p>模式匹配可以进行嵌套。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exception</span> <span class="type">Err</span></span><br><span class="line"><span class="keyword">fun</span> zip3 lists = <span class="keyword">case</span> lists <span class="keyword">of</span></span><br><span class="line">    (<span class="literal">[]</span>, <span class="literal">[]</span>, <span class="literal">[]</span>) =&gt; <span class="literal">[]</span></span><br><span class="line">    | (x :: xs, y :: ys, z :: zs) =&gt; (x, y, z) :: zip3 (xs, ys, zs)</span><br><span class="line">    | _ =&gt; <span class="keyword">raise</span> <span class="type">Err</span></span><br></pre></td></tr></table></figure>
+<p>如果单纯地使用简单的模式匹配或者用 if 表达式进行判断会比这个复杂很多。</p>
+<p>最后的 <code>_</code> 是通配符。</p>
+<h2 id="More-Nested-Patterns"><a href="#More-Nested-Patterns" class="headerlink" title="More Nested Patterns"></a>More Nested Patterns</h2><p>对嵌套模式匹配的一些例子。</p>
+<p><em>本节没有问题。</em></p>
+<h2 id="Nested-Patterns-Precisely"><a href="#Nested-Patterns-Precisely" class="headerlink" title="Nested Patterns Precisely"></a>Nested Patterns Precisely</h2><p>这节对模式匹配能否成功做了递归的定义。</p>
+<ul>
+<li>如果模式是 $p$，值是 $v$，可以匹配，会引入绑定 $p = v$。</li>
+<li>如果模式是 $_$，值是 $v$，可以匹配，不会引入绑定。</li>
+<li>如果模式是 $(p_1, p_2, \dots, p_n)$，值是 $(v_1, v_2, \dots, v_n)$，可以匹配并引入对应的绑定。</li>
+<li>如果模式是 $C\ p$，其中 $C$ 是一个构造函数，并且值是 $C\ v$，可以匹配并且引入绑定 $p = v$。</li>
+</ul>
+<p>上面的准则中的模式不一定是变量，也可以是复合的模式，这样一来整个准则可以递归应用下去。</p>
+<h2 id="Function-Patterns"><a href="#Function-Patterns" class="headerlink" title="Function Patterns"></a>Function Patterns</h2><p>如果在进入一个函数后需要马上对参数进行模式匹配，有一个语法糖：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> len_1 <span class="built_in">list</span> = <span class="keyword">case</span> <span class="built_in">list</span> <span class="keyword">of</span></span><br><span class="line">    <span class="literal">[]</span> =&gt; <span class="number">0</span></span><br><span class="line">    | _ :: xs =&gt; <span class="number">1</span> + len_1 xs</span><br><span class="line"></span><br><span class="line"><span class="comment">(* below is better *)</span></span><br><span class="line"><span class="keyword">fun</span> len_2 <span class="literal">[]</span> = <span class="number">0</span></span><br><span class="line">  | len_2 (_ :: xs) = <span class="number">1</span> + len_2 xs</span><br></pre></td></tr></table></figure>
+<h2 id="Exceptions"><a href="#Exceptions" class="headerlink" title="Exceptions"></a>Exceptions</h2><p>ML 中的异常和 datatype 非常相似。每定义一种新的异常，都可以认为是为一个叫做 <code>exn</code> 的 datatype 添加了新的 Constructor。</p>
+<p><code>exception</code> 定义异常：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exception</span> <span class="type">MyException</span></span><br><span class="line"><span class="keyword">exception</span> <span class="type">MyParamException</span> <span class="keyword">of</span> <span class="built_in">int</span> * <span class="built_in">int</span> <span class="comment">(* exception can keep value *)</span></span><br></pre></td></tr></table></figure>
+<p><code>raise</code> 抛出异常：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> my_mod(y, z) = <span class="keyword">if</span> z = <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">raise</span> <span class="type">MyParamException</span>(y, z) <span class="keyword">else</span> y mod z</span><br></pre></td></tr></table></figure>
+<p><code>handle</code> 处理异常，这里有一个模板匹配，匹配不上会导致异常继续抛出：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x =  my_mod(<span class="number">3</span>, <span class="number">0</span>) <span class="keyword">handle</span> <span class="type">MyParamException</span>(y, z) =&gt; y + z | <span class="type">MyException</span> =&gt; <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>异常可以像值一样传递，因为它实际上和 datatype 类似。构造一个异常不会导致该异常被抛出：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">exception</span> <span class="type">NumException</span> <span class="keyword">of</span> <span class="built_in">int</span></span><br><span class="line"><span class="keyword">fun</span> throw_abs(e) =</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">val</span> <span class="type">NumException</span>(x) = e <span class="keyword">in</span> <span class="keyword">if</span> x &gt;= <span class="number">0</span> <span class="keyword">then</span> <span class="keyword">raise</span> e <span class="keyword">else</span> <span class="keyword">raise</span> <span class="type">NumException</span>(~x) <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> abs_of_neg_3 = throw_abs(<span class="type">NumException</span>(~<span class="number">3</span>)) <span class="keyword">handle</span> <span class="type">NumException</span>(x) =&gt; x</span><br></pre></td></tr></table></figure>
+<p>其中 <code>throw_abs</code> 的类型是 <code>fn : exn -&gt; &#39;a</code>。</p>
+<h2 id="Tail-Recursion"><a href="#Tail-Recursion" class="headerlink" title="Tail Recursion"></a>Tail Recursion</h2><p>如果 $f$ 调用 $g$，但是 $f$ 的结果就是 $g$ 的结果而没有做任何变化和读取，就只是原封不动地传递回去了，这个情况下就是尾递归（不一定是在调用自己）。</p>
+<p>看一下运行时栈的情况。如果写了两个不同的阶乘函数：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> fact n = <span class="keyword">if</span> n = <span class="number">0</span> <span class="keyword">then</span> <span class="number">1</span> <span class="keyword">else</span> n * fact(n - <span class="number">1</span>)</span><br><span class="line"><span class="keyword">fun</span> fact_t n =</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">fun</span> aux(m, acc) = <span class="keyword">if</span> m = <span class="number">0</span> <span class="keyword">then</span> acc <span class="keyword">else</span> aux(m - <span class="number">1</span>, m * acc) <span class="keyword">in</span> aux(n, <span class="number">1</span>) <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>第一个的情况下，因为 <code>fact</code> 调 <code>fact</code> 之后对返回值还要加以利用，所以不是尾递归。这种情况下，每次调用都会用掉一个栈帧，比使用循环效率低很多。</p>
+<p>第二个的情况下，所有使用了 <code>aux</code> 的地方都是以尾递归的形式使用的。<strong>凡是这种情况，ML 会在运行时将新的 <code>aux</code> 的栈帧直接替换掉调用 <code>aux</code> 的那个函数的栈帧</strong>（毕竟这个函数做的唯一的事就是继续返回 <code>aux</code> 的返回值），这样一来栈空间占用就可以保持在一个较小的水平。只要使用了尾递归，即使是无限递归也不会导致栈爆掉。</p>
+<h2 id="Accumulators-for-Tail-Recursion"><a href="#Accumulators-for-Tail-Recursion" class="headerlink" title="Accumulators for Tail Recursion"></a>Accumulators for Tail Recursion</h2><p>有一个经验性的法则可以把递归转换成尾递归。一般来说需要一个辅助函数和一个 accumulator 表示当前完成的工作，这个辅助函数的参数是原函数的参数加上额外的这个 accumulator。辅助函数的实现中，如果发现原函数对应的那些参数是递归基的情形就返回 accumulator，否则计算新的参数并直接调用辅助函数（就是说所有的计算最好在单个表达式中完成，并且表达式就是新被调用辅助函数的参数）。</p>
+<p>例子如下，假设要翻转一个列表。</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> rev_1 <span class="built_in">list</span> = <span class="keyword">case</span> <span class="built_in">list</span> <span class="keyword">of</span> </span><br><span class="line">    <span class="literal">[]</span> =&gt; <span class="literal">[]</span></span><br><span class="line">    | x :: xs =&gt; (rev_1 xs) @ [x]</span><br><span class="line"></span><br><span class="line"><span class="keyword">fun</span> rev_2 <span class="built_in">list</span> =</span><br><span class="line">    <span class="keyword">let</span></span><br><span class="line">        <span class="keyword">fun</span> aux(<span class="built_in">list</span>, acc) = <span class="keyword">case</span> <span class="built_in">list</span> <span class="keyword">of</span></span><br><span class="line">            <span class="literal">[]</span> =&gt; acc</span><br><span class="line">            | x :: xs =&gt; aux(xs, x :: acc)</span><br><span class="line">    <span class="keyword">in</span> aux(<span class="built_in">list</span>, <span class="literal">[]</span>) <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>第一种写法不是尾递归，并且由于 <code>@</code> 操作需要复制第一个运算分量，实际上其复杂度是 $O(n^2)​$ 的。</p>
+<p>第二种写法是尾递归，并且应用了上面的法则。复杂度是 $O(n)$ 的。似乎可以无脑套用法则。</p>
+<h2 id="Perspective-on-Tail-Recursion"><a href="#Perspective-on-Tail-Recursion" class="headerlink" title="Perspective on Tail Recursion"></a>Perspective on Tail Recursion</h2><p>并非所有的递归都 <strong>适合</strong> 转换成尾递归。理论上，所有的递归确实可以写成尾递归，但是 accumulator 占用的空间可能和不适用尾递归时栈帧的大小差不多，这相当于自己实现了一个栈管理器。</p>
+<hr>
+<p>什么调用是一个尾调用是有严格的递归定义的。每个表达式都有一个 <strong>尾区域</strong>。例如：</p>
+<ul>
+<li>$\texttt{fun f p = e}$ 中的尾区域包括 $\texttt{e}$，不包括其它。</li>
+<li>$\texttt{if e1 then e2 else e3}$ 中的尾区域包括 $\texttt{e2}$ 和 $\texttt{e3}$，不包括其它。</li>
+<li>$\texttt{let b1 b2 … bn in e end}$ 中的尾区域包括 $\texttt{e}$，不包括其它。</li>
+</ul>
+<p>给定了各个表达式的尾区域中，有一个规则：<strong>如果一个表达式不在尾区域中，那么它的任意子表达式也在尾区域中。</strong>递归地应用这些定义可以得到相对于每个表达式的尾区域。</p>
+<p><strong>尾调用指的是位于尾区域中的调用。</strong>（这个说法中的尾区域是相对于某个表达式而言的，因为如果再深入看一点进入更小的子表达式，这个尾区域中的一个子集才是尾区域。）</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程语言理论/" rel="tag"># 编程语言理论</a>
+          
+            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" rel="next" title="Programming Languages (Part A) 笔记 2 Section 1">
+                <i class="fa fa-chevron-left"></i> Programming Languages (Part A) 笔记 2 Section 1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/06/Programming-Languages-Part-A-笔记-4-Section-3/" rel="prev" title="Programming Languages (Part A) 笔记 4 Section 3">
+                Programming Languages (Part A) 笔记 4 Section 3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Section-2"><span class="nav-number">1.</span> <span class="nav-text">Section 2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Building-Compound-Types"><span class="nav-number">1.1.</span> <span class="nav-text">Building Compound Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础类型和复合类型"><span class="nav-number">1.1.1.</span> <span class="nav-text">基础类型和复合类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造复合类型的通用方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">构造复合类型的通用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Records"><span class="nav-number">1.2.</span> <span class="nav-text">Records</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuples-as-Syntactic-Sugar"><span class="nav-number">1.3.</span> <span class="nav-text">Tuples as Syntactic Sugar</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Datatype-Bindings"><span class="nav-number">1.4.</span> <span class="nav-text">Datatype Bindings</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Case-Expressions"><span class="nav-number">1.5.</span> <span class="nav-text">Case Expressions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Useful-Datatypes"><span class="nav-number">1.6.</span> <span class="nav-text">Useful Datatypes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pattern-Matching-So-Far"><span class="nav-number">1.7.</span> <span class="nav-text">Pattern Matching So Far</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Another-Expression-Example"><span class="nav-number">1.8.</span> <span class="nav-text">Another Expression Example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Type-Synonyms"><span class="nav-number">1.9.</span> <span class="nav-text">Type Synonyms</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lists-and-Options-are-Datatypes"><span class="nav-number">1.10.</span> <span class="nav-text">Lists and Options are Datatypes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymorphic-Datatypes"><span class="nav-number">1.11.</span> <span class="nav-text">Polymorphic Datatypes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Each-of-Pattern-Matching-Truth-About-Functions"><span class="nav-number">1.12.</span> <span class="nav-text">Each of Pattern Matching / Truth About Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对元组和记录的模式匹配"><span class="nav-number">1.12.1.</span> <span class="nav-text">对元组和记录的模式匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绑定时的模式匹配"><span class="nav-number">1.12.2.</span> <span class="nav-text">绑定时的模式匹配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-Little-Type-Inference"><span class="nav-number">1.13.</span> <span class="nav-text">A Little Type Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ML-类型系统的一个限制"><span class="nav-number">1.13.1.</span> <span class="nav-text">ML 类型系统的一个限制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymorphic-and-Equality-Types"><span class="nav-number">1.14.</span> <span class="nav-text">Polymorphic and Equality Types</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类型的广泛性"><span class="nav-number">1.14.1.</span> <span class="nav-text">类型的广泛性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Equality-类型"><span class="nav-number">1.14.2.</span> <span class="nav-text">Equality 类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nested-Patterns"><span class="nav-number">1.15.</span> <span class="nav-text">Nested Patterns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#More-Nested-Patterns"><span class="nav-number">1.16.</span> <span class="nav-text">More Nested Patterns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nested-Patterns-Precisely"><span class="nav-number">1.17.</span> <span class="nav-text">Nested Patterns Precisely</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function-Patterns"><span class="nav-number">1.18.</span> <span class="nav-text">Function Patterns</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exceptions"><span class="nav-number">1.19.</span> <span class="nav-text">Exceptions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tail-Recursion"><span class="nav-number">1.20.</span> <span class="nav-text">Tail Recursion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accumulators-for-Tail-Recursion"><span class="nav-number">1.21.</span> <span class="nav-text">Accumulators for Tail Recursion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Perspective-on-Tail-Recursion"><span class="nav-number">1.22.</span> <span class="nav-text">Perspective on Tail Recursion</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

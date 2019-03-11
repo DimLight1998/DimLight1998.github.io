@@ -1,0 +1,3009 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Computation &amp; Design">
+<meta property="og:url" content="http://DimLight1998.github.io/page/8/index.html">
+<meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Computation &amp; Design">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/page/8/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Computation & Design</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Computation & Design</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-6/" class="post-title-link" itemprop="url">编译原理慕课笔记 6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:46" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:46+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-3"><a href="#语法分析-3" class="headerlink" title="语法分析-3"></a>语法分析-3</h1><h2 id="自底向上分析概述"><a href="#自底向上分析概述" class="headerlink" title="自底向上分析概述"></a>自底向上分析概述</h2><p>自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。</p>
+<p>自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 <strong>移入-归约</strong> 分析。它的工作方式如下：</p>
+<ol>
+<li>首先对于要解析的词法单元流，维护了一个栈。</li>
+<li>从左至右扫描输入串，将扫描到的元素逐个压入栈中。</li>
+<li>如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹出，替换为产生式的左部，然后重新压回栈中。然后重新运行这个检查，直到无法归约为止。这一步中被归约的符号串称作 <strong>句柄</strong>。<strong>句柄实际上是句型中的最左直接短语。</strong></li>
+<li>如果串扫描完成后，栈中恰好剩下初始符号，则归约完成。</li>
+</ol>
+<p>这个方法实际上有问题，如果某两个产生式的右部存在后缀关系，就有可能选出错误的句柄。因此需要研究如何正确选择句柄。</p>
+<h2 id="LR-分析法概述"><a href="#LR-分析法概述" class="headerlink" title="$LR$ 分析法概述"></a>$LR$ 分析法概述</h2><p>自底向上分析可以使用 $LR$ 文法，$LR$ 文法是最大的能够构造相应移入-归约语法分析器的文法类。$LR(k)$ 分析表示在最左归约过程中需要向前看 $k$ 个符号的归约方式。一般 $k = 1$ 或 $k = 0$。</p>
+<p>在使用移入-归约技术时，句柄是逐步形成的，这可以使用一系列的整数来表示某种 <strong>状态</strong>。</p>
+<h3 id="LR-分析表"><a href="#LR-分析表" class="headerlink" title="$LR$ 分析表"></a>$LR$ 分析表</h3><p>为了进行 $LR$ 分析需要使用 $LR$ 分析表，$LR$ 分析表的每一行代表一个状态（怎么确定见后面），每一列是一个符号（终结符、非终结符以及 $$$ 符号）。这张表会被拆分成两部分：列为终结符和 $$$ 时为 <strong>Action 表</strong>，列为非终结符时为 <strong>Goto 表</strong>。</p>
+<p>进行 $LR$ 分析时要维护两个栈：状态栈和符号栈。</p>
+<p>在 Goto 表中，每个元素是一个整数代表状态；在 Action 表中，每个元素是以下四种之一：</p>
+<ul>
+<li><code>acc</code>：表示解析完成且正确。</li>
+<li><code>err</code>：解析出错。</li>
+<li><code>sn</code>：表示应该执行 shift 动作，将扫描的当前单元压入符号栈中，将 <code>n</code> 压入状态栈中。</li>
+<li><code>rn</code>：表示应该执行 reduce 动作，使用第 <code>n</code> 条产生式对当前符号栈的顶部进行归约，如果归约了 m 个符号就弹出 m 个状态。</li>
+</ul>
+<p>$LR$ 分析表的构造可使用 $LR(0)$ 分析、$SLR$ 分析、$LR(1)$ 分析或 $LALR$ 分析。</p>
+<h3 id="LR-分析器的工作过程"><a href="#LR-分析器的工作过程" class="headerlink" title="$LR$ 分析器的工作过程"></a>$LR$ 分析器的工作过程</h3><p>正常情况下，符号栈中的元素个数和状态栈中相同。一般情况是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">status stack: st_0 st_1 st_2 st_3</span><br><span class="line">symbol stack: sy_$ sy_0 sy_1 sy_2</span><br><span class="line">token buffer: a_1 a_2 ... $</span><br></pre></td></tr></table></figure>
+<p>初始情况下符号栈中只有 <code>sy_$</code>，状态栈中只有 <code>st_0</code>，输入串为完整的输入串加上 $$$ 符号，也符合上述情况。</p>
+<p>根据当前状态栈栈顶，和输入串第一个元素在 Action 表中找到对应的元素，重复以下过程：</p>
+<ul>
+<li>若为接受或者拒绝则执行相应动作，退出循环。</li>
+<li>若为移入操作则移入该元素并压入对应状态。</li>
+<li>若为归约操作则进行归约，不要移入元素。弹出和归约符号数相同数目的状态。完成后，符号栈会比状态栈少一个元素，此时根据状态栈栈顶和符号栈栈顶在 Goto 表中找到对应的状态，将这个状态压入到状态栈中。（这个时候还能顺带着打一条产生式。）</li>
+</ul>
+<p>上述过程中将始终保持符号栈中的元素个数和状态栈中相同的性质。</p>
+<h2 id="LR-0-分析"><a href="#LR-0-分析" class="headerlink" title="$LR(0)$ 分析"></a>$LR(0)$ 分析</h2><p>$LR(0)$ 分析是一种构造分析表的技术。</p>
+<h3 id="产生式的项目"><a href="#产生式的项目" class="headerlink" title="产生式的项目"></a>产生式的项目</h3><p>前面提到句柄是逐渐产生的，对于每一个产生式，为了标记出当前这个产生式的解析状态，可以生成若干个 <strong>项目</strong>。对于有 $k$ 个元素的产生式，可以定义出 $k + 1$ 个项目。使用 $\cdot$ 来进行标记，例如 $A\rightarrow \alpha B\beta$ 可以产生 $A\rightarrow\cdot \alpha B\beta$、$A\rightarrow\alpha\cdot  B\beta$、$A\rightarrow \alpha B\cdot \beta$ 以及 $A\rightarrow\alpha B\beta\cdot$ 这四个项目。此外，对于空产生式也会产生一个项目。</p>
+<p>根据圆点的位置和圆点后面是终结符还是非终结符可以将项目进行分类。如果后面是终结符，称为 <strong>移进项目</strong>；后面是非终结符称为 <strong>待约项目</strong>；后面没有符号（圆点在最后一个）符号后面称为 <strong>归约项目</strong>。</p>
+<p>一个项目如果是另一个项目在接收一个符号后得到的，称后者为前者的 <strong>后继项目</strong>。</p>
+<h3 id="增广文法"><a href="#增广文法" class="headerlink" title="增广文法"></a>增广文法</h3><p>对于一个文法 $G$，如果它的初始符号是 $S$，那么增加一个产生式 $S’\rightarrow S$ 并将这个 $S’$ 作为新的初始符号，得到的文法 $G’$ 称为增广文法。这种文法的初始符号只有一个产生式。</p>
+<p>对于增广文法，$S’\rightarrow \cdot S$ 称为 <strong>初始项目</strong>，$S’\rightarrow S\cdot$ 称为 <strong>接收项目</strong>。</p>
+<h3 id="LR-0-自动机"><a href="#LR-0-自动机" class="headerlink" title="$LR(0)$ 自动机"></a>$LR(0)$ 自动机</h3><p>对于一个文法，在得到了增广文法后可以构造出所有产生式对应的所有项目。这些项目中有些是等价的（严格来说不是等价，因为不满足等价的三个条件，这里不严谨）。按照等价关系可以将这些项目划分为组，称作 <strong>项目集闭包</strong>（因为不严谨，实际上这个组并不是等价类），对于有 m 个产生式的文法可能只有不到 m 个项目集闭包。</p>
+<p>所谓等价指的是，例如有两个产生式 $A\rightarrow B, B\rightarrow \alpha C$，由于解析到 $B$ 前时相当于解析到 $\alpha C$ 前，因此 $A\rightarrow\cdot B$ 和 $B\rightarrow\cdot \alpha C$ 实际上是等价的。</p>
+<p>当得到了各个项目集闭包之后，实际上这个文法会对应一个自动机，自动机的状态就是这些项目集闭包，自动机的字符集就是所有的终结符与非终结符。（实际上也不是一个自动机，因为状态可以以非迁移的方式改变。）</p>
+<h2 id="LR-0-分析表构造算法"><a href="#LR-0-分析表构造算法" class="headerlink" title="$LR(0)$ 分析表构造算法"></a>$LR(0)$ 分析表构造算法</h2><h3 id="计算项目集的-Closure-集"><a href="#计算项目集的-Closure-集" class="headerlink" title="计算项目集的 Closure 集"></a>计算项目集的 Closure 集</h3><p>一个项目集的 Closure 集指的是和它等价的所有项目的集合（这里的等价依然不严谨），实际上就是这个项目集的项目集闭包。</p>
+<p>定义为 $\mbox{Closure}(I) = I\cup\{B\rightarrow\cdot\gamma|A\rightarrow\alpha\cdot B\beta\in\mbox{Closure}(I), B\rightarrow\gamma\in P\}$，其中 $P$ 是产生式集合。重复这个计算公式直到稳定，就算出了一个项目集的 Closure 集。</p>
+<h3 id="计算项目集的-Goto-集"><a href="#计算项目集的-Goto-集" class="headerlink" title="计算项目集的 Goto 集"></a>计算项目集的 Goto 集</h3><p>前面说到 $LR(0)$ 对应的是一个自动机，这个自动机的一个状态对应一个项目集闭包，字符集是所有的符号。如何在知道一个状态和输入符号的情况下知道进入了哪个状态？手动计算的方法是该项目集闭包的每个项目，如果它的 $\cdot$ 后面跟的是输入符号的话，就计算处它的后继状态。所有的这样的后继状态并起来取一次闭包就行了。</p>
+<p>定义为 $\mbox{Goto}(I, X) = \mbox{Closure}(\{A\rightarrow\alpha X\cdot\beta|A\rightarrow\alpha\cdot X\beta\in I\})$，其中 $I$ 为当前项目集闭包，$X$ 为输入符号。重复直到稳定。</p>
+<h3 id="规范-LR-0-项集族"><a href="#规范-LR-0-项集族" class="headerlink" title="规范 $LR(0)$ 项集族"></a>规范 $LR(0)$ 项集族</h3><p>这个听起来很牛逼的名字实际上就是一个文法对应的自动机中所有可能出现的项目集闭包的集合。它代表了自动机可能有哪些状态。可以使用初始项目集闭包不断计算 Goto 集得到。</p>
+<h3 id="分析表构造算法"><a href="#分析表构造算法" class="headerlink" title="分析表构造算法"></a>分析表构造算法</h3><p>对一个文法构造对应的 $LR(0)$ 分析表：</p>
+<ol>
+<li>构造增广文法 $G$</li>
+<li>得到 $G$ 的规范 $LR(0)$ 项集族 $C$</li>
+<li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
+<li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in V_T\cup\{$\}, \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>其它所有情况都设为 $err$</li>
+</ul>
+</li>
+</ol>
+<h3 id="LR-0-分析中的冲突"><a href="#LR-0-分析中的冲突" class="headerlink" title="$LR(0)$ 分析中的冲突"></a>$LR(0)$ 分析中的冲突</h3><p>冲突指的是在自动机的某个状态中，读入下一个符号后有多种选择的情况。反映到分析表中就是某个状态对应的符号不只有一个条目。</p>
+<p><strong>移入-归约冲突</strong>：在读入一个符号后，既可以选择移入也可以选择归约，例如某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$，在读入 $a$ 后就有问题。</p>
+<p><strong>归约-归约冲突</strong>：在读入一个符号后需要归约，但是有多条可供选择的产生式。</p>
+<p><strong>如果一个文法构造完 $LR(0)$ 分析表后无冲突，称为 $LR(0)$ 文法。</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-5/" class="post-title-link" itemprop="url">编译原理慕课笔记 5</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:18:40" itemprop="dateCreated datePublished" datetime="2018-11-23T16:18:40+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-2"><a href="#语法分析-2" class="headerlink" title="语法分析-2"></a>语法分析-2</h1><h2 id="First-集和-Follow-集的计算"><a href="#First-集和-Follow-集的计算" class="headerlink" title="First 集和 Follow 集的计算"></a>First 集和 Follow 集的计算</h2><h3 id="First-集的计算"><a href="#First-集的计算" class="headerlink" title="First 集的计算"></a>First 集的计算</h3><p>计算一个文法中各个非终结符的 First 集的方法是，<strong>不断应用以下规则，直到每个符号的 First 集稳定：</strong></p>
+<ul>
+<li><p>如果 $X$ 是终结符，则 $\mbox{First}(X) = \{X\}$。（引入这个的目的是方便后面的递归计算。）</p>
+</li>
+<li><p>如果 $X\rightarrow\epsilon$ 是 $X$ 的一个产生式，则 $\epsilon\in\mbox{First}(X)$。（为了计算的方便，这里是 $\rightarrow$ 而不是 $\Rightarrow$，也就是可以直接从生成式开始计算。）</p>
+</li>
+<li><p>如果 $X\rightarrow Y_1Y_2\cdots Y_n$ 是 $X$ 的一个产生式，则</p>
+<ul>
+<li>$\mbox{First}(Y_1)-\{\epsilon\}\subset\mbox{First}(X)$，去掉 $\epsilon$ 是因为后续的符号才能作为初始符号。</li>
+<li>若 $\epsilon\in \mbox{First}(Y_1)$，则 $\mbox{First}(Y_2)-\{\epsilon\}\subset\mbox{First}(X)$。</li>
+<li>若 $\epsilon\in \mbox{First}(Y_1)$ 且 $\epsilon \in \mbox{First}(Y_2)$，则 $\mbox{First}(Y_3)-\{\epsilon\}\subset\mbox{First}(X)$。</li>
+<li>同上类推。</li>
+</ul>
+<p>如果某个符号是 $Y_k$ 的初始符号，并且 $Y_k$ 之前的非终结符都可以生成空串，那么这个初始符号也是 $X$ 的初始符号。此外，如果所有的 $Y_k$ 都可以生成空串，则 $\epsilon$ 也是 $X$ 的初始符号。</p>
+<p>也可以单独为一个串 $X_1X_2\cdots X_n$ 计算 First 集，做法和为 $X\rightarrow Y_1Y_2\cdots Y_n$ 计算 First 集的方法类似。</p>
+</li>
+</ul>
+<h3 id="Follow-集的计算"><a href="#Follow-集的计算" class="headerlink" title="Follow 集的计算"></a>Follow 集的计算</h3><p>计算一个文法中各个非终结符的 Follow 集的方法是，<strong>不断应用以下规则，直到每个符号的 Follow 集稳定</strong>：</p>
+<ul>
+<li>对于初始符号 $S$，有 $$\in\mbox{Follow}(S)$。</li>
+<li>如果有产生式 $A\rightarrow \alpha B$，则 $\forall X\in \mbox{Follow}(A), X\in\mbox{Follow}(B)$。这是显然的。</li>
+<li>如果有产生式 $A\rightarrow \alpha B\beta$ 且 $\epsilon\in \mbox{First}(\beta)$，则 $\forall X\in \mbox{Follow}(A), X\in\mbox{Follow}(B)$。这是显然的，但是还不够，见下一条。</li>
+<li>如果有产生式 $A\rightarrow \alpha B\beta$，则 $\forall X\in \mbox{First}(\beta),X\neq\epsilon\Rightarrow X\in\mbox{Follow}(B)$。注意上一节已经定义了如何计算一个串的 First 集。</li>
+</ul>
+<h3 id="Select-集的计算"><a href="#Select-集的计算" class="headerlink" title="Select 集的计算"></a>Select 集的计算</h3><p>已在语法分析-1 中描述。</p>
+<ul>
+<li>$\epsilon \notin \mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=\mbox{First}(\alpha)$：如果一个串 $\alpha$ 无法推导出空串，那么当它作为产生式的右部时，只有这个串的串首终结符作为输入符号的时候才能考虑使用该产生式。</li>
+<li>$\epsilon\in\mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=(\mbox{First}(\alpha)-\{\epsilon\})\cup\mbox{Follow}(A)$：如果一个串 $\alpha$ 可以产生空串，那么当它作为产生式的右部时，它的串首终结符或者产生式的左部的后继符号集总的元素作为输入符号时都可以使用该产生式。</li>
+</ul>
+<hr>
+<p>在使用上面的算法进行计算的时候，Select 集依赖于 Follow 集，Follow 集依赖于 First 集。</p>
+<p>在完成了计算后，如果这是一个 $LL(1)$ 文法，那么可以在构建预测分析器的时候可以建立 <strong>预测分析表</strong>。这个表的每一行代表不同的非终结符，每一列代表不同的输入符号，表中的每个元素是一个产生式。当进行语法分析时，只要查一下当前的非终结符和输入符号就可以确定唯一的产生式，这是因为 $LL(1)$ 文法具有相同非终结符 Select 集不相交的性质。</p>
+<h2 id="递归的预测分析法"><a href="#递归的预测分析法" class="headerlink" title="递归的预测分析法"></a>递归的预测分析法</h2><p>递归的预测分析法在递归下降分析中通过使用预测分析表选择产生式。这个方法需要为每个非终结符根据产生式和预测分析表写一个方法。这里直接使用课件中用到的语言的文法：</p>
+<script type="math/tex; mode=display">
+\begin{array}{cc}
+\begin{align*}
+\mbox{Program} &\rightarrow \texttt{program}\mbox{ DecList : Type ; StList } \texttt{end}\\
+\mbox{DecList} &\rightarrow id\mbox{ DecListN} \\
+\mbox{DecListN} &\rightarrow \mbox{,}id\mbox{ DecListN} | \epsilon \\
+\mbox{StList} &\rightarrow s\mbox{ StListN} \\
+\mbox{StListN} &\rightarrow \mbox{;}s\mbox{ StListN} | \epsilon \\
+\mbox{Type} &\rightarrow \texttt{real} | \texttt{int}
+\end{align*}
+\end{array}</script><p>（我估计这个文法得到的程序看上去会怪怪的，下面构造一个试试。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">program foo, bar : int;</span><br><span class="line">    foo += 1;</span><br><span class="line">    foo += bar;</span><br><span class="line">    bar ++;</span><br><span class="line">    foo + bar</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>嗯，这个语言看上去非常诡异，而且文法看着也不优雅。现在写一段 Python 程序作为例子，它可以检验一个 token 流是否能够被该文法生成（实际上检验完成后就可以给出分析树了）。</p>
+<p>首先需要对每个非终结符写一个过程，每个过程的参数是当前 token 流的位置，一般没有返回值。副作用是将解析位置移到 token 流中下一个正确的位置，也就是所，当这样的一个过程结束的时候，解析位置应该处于下一个该过程解析的 <strong>最后一个符号的下一个位置</strong>。这样做的好处后面会分析。</p>
+<p>首先定义一个 <code>TokenStatus</code> 类，记录处理进度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TokenStatus</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, tokens: List[str])</span>:</span></span><br><span class="line">        self.tokens = tokens</span><br><span class="line">        self.position = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>这个文法一共有 6 个非终结符，每个终结符都会对应一个 <code>analyze_*</code> 函数，此外，整个分析过程会对应 <code>analyze</code> 函数。</p>
+<p>首先是 <code>analyze</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(tokens: List[str])</span>-&gt; bool:</span></span><br><span class="line">    token_status = TokenStatus(tokens)</span><br><span class="line">    analyze_program(token_status)</span><br><span class="line">    <span class="keyword">if</span> token_status.position != len(token_status.tokens):</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">    print(<span class="string">'Done.'</span>)</span><br></pre></td></tr></table></figure>
+<p>然后是各个分析函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_program</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">'program'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_dec_list(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">':'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_type(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">';'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_st_list(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">'end'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_dec_list</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    print(<span class="string">f'Get identifier "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_dec_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_dec_list_n</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] == <span class="string">','</span>:</span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        print(<span class="string">f'Get identifier "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        analyze_dec_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_st_list</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    print(<span class="string">f'Get statement "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_st_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_st_list_n</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] == <span class="string">';'</span>:</span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        print(<span class="string">f'Get statement "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        analyze_st_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_type</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    token = token_status.tokens[token_status.position]</span><br><span class="line">    <span class="keyword">if</span> token != <span class="string">'real'</span> <span class="keyword">and</span> token != <span class="string">'int'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">f'Get type "<span class="subst">&#123;token&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>最后是测试部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    tokens = [</span><br><span class="line">        <span class="string">'program'</span>,</span><br><span class="line">        <span class="string">'foo'</span>,</span><br><span class="line">        <span class="string">','</span>,</span><br><span class="line">        <span class="string">'bar'</span>,</span><br><span class="line">        <span class="string">':'</span>,</span><br><span class="line">        <span class="string">'int'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo += 1'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo += bar'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'bar ++'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo + bar'</span>,</span><br><span class="line">        <span class="string">'end'</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    analyze(tokens)</span><br></pre></td></tr></table></figure>
+<p>运行这个程序将会输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Get identifier &quot;foo&quot;.</span><br><span class="line">Get identifier &quot;bar&quot;.</span><br><span class="line">Get type &quot;int&quot;.</span><br><span class="line">Get statement &quot;foo += 1&quot;.</span><br><span class="line">Get statement &quot;foo += bar&quot;.</span><br><span class="line">Get statement &quot;bar ++&quot;.</span><br><span class="line">Get statement &quot;foo + bar&quot;.</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+<p>课件中有一些实现上的细节没有说清楚，这里写一下：</p>
+<ul>
+<li>每个分析函数开始时，参数中的 <code>position</code> 应当对应处于该分析函数的串首终结符。</li>
+<li>每个分析函数开始时，<code>position</code> 应当被修改为最后一个终结符的下一个位置。这样设计的原因是做到了左闭右开，否则的话对于空串的情况就很麻烦。如果设计成移动到终结符的位置，那么调用这个分析函数的函数就会主动将位置加一，但是如果产生式是空串呢，就要在分析函数返回前将位置减一，这样做不太优雅。</li>
+<li>体现了 <strong>预测分析</strong> 的地方在于每个分析函数中会通过查看第一个非终结符决定具体调用哪个产生式，如果都没有的话会尝试调用 $\epsilon$ 产生式，还没有的话就报错了。</li>
+</ul>
+<p>总的来看整个程序写起来还是很套路的。</p>
+<h2 id="非递归的预测分析法"><a href="#非递归的预测分析法" class="headerlink" title="非递归的预测分析法"></a>非递归的预测分析法</h2><p>非递归的预测分析法也叫 <strong>表驱动的预测分析</strong>，使用下推自动机来完成分析过程。非确定下推自动机（NPDA）可以表达所有的上下文无关语言。</p>
+<p>尽管之前学的 NPDA 中会出现不能判定路径，但是因为此处可以“预览”一个 token，并且使用的是 $LL(1)$ 文法，所以实际上这个 NPDA 中状态的变迁是确定的。</p>
+<p>NPDA 会维护一个栈，这个栈中初始有两个元素：栈顶的开始符号和栈底的结束符号 $$$（使用的是空栈结束的 NPDA？）。每次读到一个元素的时候</p>
+<ul>
+<li>如果当前栈顶是终结符且该终结符与读入元素相同，出栈，移动读位置。</li>
+<li>如果当前元素是非终结符，根据读入元素选择出产生式，出栈，将产生式压入栈中（注意方向），不移动读位置（相当于预览）。</li>
+</ul>
+<p>依然使用上一节的文法，代码如下，先定义相关的数据结构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SymbolType</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    TERMINAL = <span class="number">1</span></span><br><span class="line">    NONTERMINAL = <span class="number">2</span></span><br><span class="line">    VARIABLE = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TokenStatus</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, tokens: List[str])</span>:</span></span><br><span class="line">        self.tokens = tokens</span><br><span class="line">        self.position = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>SymbolType</code> 的 <code>VARIABLE</code> 是为了通配类似符号名和语句这样的非固定字符串。</p>
+<p>预测分析函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(tokens: List[str])</span>:</span></span><br><span class="line">    token_status = TokenStatus(tokens)</span><br><span class="line">    analyze_table = &#123;</span><br><span class="line">        <span class="string">'program'</span>: &#123;</span><br><span class="line">            <span class="string">'program'</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">'program'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">':'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'type'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">';'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">'end'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'dec_list'</span>: &#123;</span><br><span class="line">            <span class="literal">None</span>: [</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'identifier'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list_n'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'dec_list_n'</span>: &#123;</span><br><span class="line">            <span class="string">','</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">','</span>),</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'identifier'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list_n'</span>)</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">':'</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'st_list'</span>: &#123;</span><br><span class="line">            <span class="literal">None</span>: [</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'statement'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list_n'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'st_list_n'</span>: &#123;</span><br><span class="line">            <span class="string">';'</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">';'</span>),</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'statement'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list_n'</span>)</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">'end'</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'type'</span>: &#123;</span><br><span class="line">            <span class="string">'real'</span>: [(SymbolType.TERMINAL, <span class="string">'real'</span>)],</span><br><span class="line">            <span class="string">'int'</span>: [(SymbolType.TERMINAL, <span class="string">'int'</span>)]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stack = [(SymbolType.TERMINAL, <span class="string">'$'</span>), (SymbolType.NONTERMINAL, <span class="string">'program'</span>)]</span><br><span class="line">    <span class="keyword">while</span> len(stack) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.TERMINAL <span class="keyword">and</span> stack[<span class="number">-1</span>][<span class="number">1</span>] == token_status.tokens[token_status.position]:</span><br><span class="line">            stack.pop()</span><br><span class="line">            token_status.position += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.TERMINAL:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.VARIABLE:</span><br><span class="line">            print(<span class="string">f'Get variable typed <span class="subst">&#123;stack[<span class="number">-1</span>][<span class="number">1</span>]&#125;</span> with value <span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>'</span>)</span><br><span class="line">            stack.pop()</span><br><span class="line">            token_status.position += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.NONTERMINAL:</span><br><span class="line">            nonterminal = stack[<span class="number">-1</span>][<span class="number">1</span>]</span><br><span class="line">            stack.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="literal">None</span> <span class="keyword">in</span> analyze_table[nonterminal]:</span><br><span class="line">                stack.extend(analyze_table[nonterminal][<span class="literal">None</span>][::<span class="number">-1</span>])</span><br><span class="line">            <span class="keyword">elif</span> token_status.tokens[token_status.position] <span class="keyword">not</span> <span class="keyword">in</span> analyze_table[nonterminal]:</span><br><span class="line">                <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                peek = token_status.tokens[token_status.position]</span><br><span class="line">                stack.extend(analyze_table[nonterminal][peek][::<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Unexpected type.'</span>)</span><br><span class="line">    print(<span class="string">'Done.'</span>)</span><br></pre></td></tr></table></figure>
+<p><code>analyze_table</code> 就是驱动整个程序的表，由文法得到。它是一个 <code>dict</code>，每个 key 都是文法中的非终结符，每个 value 又是一个 <code>dict</code>，这个 <code>dict</code> 的 key 是该终结符的所有产生式的 Select 集之并（根据不同的元素使用不同的产生式），每个 value 是一个 <code>list</code>。一个例外是 <code>None</code> 这个 key，因为要匹配的是非固定的字符串所以这里这样偷懒写了，实际中我估计要从 token 中取出相关的 token 类型信息，当然这里是没有的，不过因为 <code>dec_list</code> 和 <code>st_list</code> 的生成式唯一，这么搞也没 bug，意思到了就行。</p>
+<p>运行这个程序，得到的输出是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Get variable typed identifier with value foo</span><br><span class="line">Get variable typed identifier with value bar</span><br><span class="line">Get variable typed statement with value foo += 1</span><br><span class="line">Get variable typed statement with value foo += bar</span><br><span class="line">Get variable typed statement with value bar ++</span><br><span class="line">Get variable typed statement with value foo + bar</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+<hr>
+<p>递归的预测分析方法和非递归的预测分析方法进行比较的话，递归的预测分析方法更加直观，效率低，难以自动生成；非递归的预测分析方法因为使用了 NPDA 可能不直观，但是对计算机更加友好。</p>
+<p>使用预测分析进行语法分析的一般步骤：</p>
+<ol>
+<li>构造文法；</li>
+<li>改造文法（消除二义性、左递归和回溯情况）；</li>
+<li>求出各个生成式的 Select 集，这一步会需要先求出各个非终结符的 First 集和 Follow 集；</li>
+<li>如果做完了之后通过 Select 集发现是 $LL(1)$ 文法，就可以构造预测分析表并选择一种实现方式进行实现。</li>
+</ol>
+<h2 id="预测分析中的错误处理"><a href="#预测分析中的错误处理" class="headerlink" title="预测分析中的错误处理"></a>预测分析中的错误处理</h2><p>在预测分析过程中如果碰到分析错误，有些情况下不一定要直接终止掉整个程序的运行，而可以从错误中恢复。</p>
+<p>以下两种情况可以进行 <strong>错误检测</strong>：</p>
+<ul>
+<li>栈顶终结符与输入符号不匹配</li>
+<li>栈顶非终结符与当前输入符号在预测分析表中没有条目（输入符号不在任何一个生成式的 Select 集中）</li>
+</ul>
+<p><strong>错误恢复</strong> 是在检测到错误后继续进行分析，错误恢复的一个策略是 <strong>恐慌模式</strong>。对应上面的两种检测到错误的情况，</p>
+<ul>
+<li><p>如果栈顶的终结符和输入符号不匹配，就直接弹出栈顶的终结符，继续运行。</p>
+</li>
+<li><p>对于每个非终结符，都可以设计一个叫做 <strong>同步词法单元</strong> 的集合，这个集合中的元素是终结符。如果栈顶的非终结符和输入符号不匹配，那么就不断跳过 token 流中的 token，直到</p>
+<ul>
+<li>遇到了在同步词法单元集合中的 token，此时就可以进行 <strong>同步</strong>，将栈顶的非终结符弹出，继续运行。</li>
+<li>遇到了可以识别的 token，即该 token 与非终结符在预测分析表中对应的条目不为空，此时将继续运行分析过程，栈顶符号不出栈。</li>
+</ul>
+<p>这个方案的效果依赖于同步词法单元的选取，例如可以将该非终结符的 Follow 集中的元素作为同步词法单元的元素，在这个情况下，可以直观感受到这种错误恢复就是一致丢弃 token 直到可以进行下一个非终结符的分析。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-4/" class="post-title-link" itemprop="url">编译原理慕课笔记 4</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:28" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:28+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-1"><a href="#语法分析-1" class="headerlink" title="语法分析-1"></a>语法分析-1</h1><h2 id="自顶向下分析概述"><a href="#自顶向下分析概述" class="headerlink" title="自顶向下分析概述"></a>自顶向下分析概述</h2><p>语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 <em>推导</em> 出这个词法单元串，另一个是找到这个词法单元串如何 <em>归约</em> 到初始符号，这两种做法分别叫做 <strong>自顶向下分析</strong> 和 <strong>自底向上分析</strong>。</p>
+<p>使用自顶向下分析时，每一步中都要做两个选择，一个是 <strong>替换当前句型中的哪个非终结符</strong>，另一个是 <strong>将这个非终结符替换为哪个候选式</strong>（一个非终结符的多个产生式称为它的 <strong>候选式</strong>）。</p>
+<h3 id="最左推导与最右推导"><a href="#最左推导与最右推导" class="headerlink" title="最左推导与最右推导"></a>最左推导与最右推导</h3><p>如果推导过程中总是将句型中最左边的非终结符替换为它的候选式，这样的推导过程称作是 <strong>最左推导</strong>，它的逆过程称为 <strong>最右归约</strong>（注意最右归约总是将最右边可以进行归约的部分进行归约）。一个文法通过最左推导得到的句型称为 <strong>最左句型</strong>。</p>
+<p>同样的，可以定义 <strong>最右推导</strong>、<strong>最左归约</strong> 以及 <strong>最右句型</strong>。</p>
+<p>当我们使用自底向上的分析时，会使用最左归约，因此最左归约过程又称为 <strong>规范归约</strong>，对应地，最右推导被称为是 <strong>规范推导</strong>。</p>
+<p>给定一个句型，它的最左推导和最右推导都是唯一的。</p>
+<h3 id="使用最左推导进行自顶向下分析"><a href="#使用最左推导进行自顶向下分析" class="headerlink" title="使用最左推导进行自顶向下分析"></a>使用最左推导进行自顶向下分析</h3><p>因为词法单元流是从左到右生成的，使用自顶向下分析时一般采用的是最左推导。工作方式如下</p>
+<ul>
+<li>使用最左推导，每次从当前的句型中选择最左边的非终结符进行推导（这解决了替换哪个终结符的问题）。</li>
+<li>通过查看右边的若干个词法单元（通常是 1 个）来确定要推导为哪个候选式（这解决了替换为哪个候选式的问题，注意不一定总是可以一次成功）。</li>
+<li>不断进行上述的过程，如果初始符号可以完全推导开，则表明语法分析成功，否则失败。当成功的时候得到的分析树就是需要的分析树。</li>
+</ul>
+<p>实现上要使用一个叫做 <strong>递归下降分析</strong> 的技术，这个技术叫这个名字估计就是因为分析树就是是以递归形式展开的，而展开的时候层数越多越往下。</p>
+<p>递归下降分析中，我们需要为每个非终结符定义一个对应的 <strong>过程</strong>。这个过程的一般套路是这样的（假设我们要当前的非终结符是 $A$）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   	选择 A 的一个产生式 A -&gt; X_1 X_2 X_3 ... X_k;</span><br><span class="line">   	<span class="keyword">for</span> i in <span class="number">1.</span>.k &#123;</span><br><span class="line">        <span class="keyword">if</span> (X_i 是一个非终结符) &#123;</span><br><span class="line">            调用 X_i 对应的过程 X_i();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (X_i 等于当前的输入符号) &#123;</span><br><span class="line">            读取当前的输入符号;</span><br><span class="line">        &#125; esle &#123;</span><br><span class="line">            报错;</span><br><span class="line">        &#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过调用初始符号对应的过程就可以对整个程序进行语法分析。</p>
+<p>其中选择产生式这一步不一定正好就能一次选对。如果一次无法选对的话就需要进行 <strong>回溯</strong> 然后选择其它的候选式，这个过程会降低语法分析的效率。使用了回溯的分析器叫做不确定性分析器。</p>
+<p>我们可以通过设计合适的文法来避免使用回溯。<strong>预测分析</strong> 是递归下降技术的一个特例，它是确定性的，它通过在词法单元流中向后看 $k$ 个符号来选择当前 <strong>正确</strong> 的候选式。使用了预测分析后可以避免回溯（因为每次都选择了正确的候选式），对应的文法称作是 $LL(k)$ 文法。通常来说 $k = 1$。</p>
+<h2 id="文法转换"><a href="#文法转换" class="headerlink" title="文法转换"></a>文法转换</h2><p>有些文法在使用自顶向下分析时会遇到问题，有的问题来自于一个非终结符的候选式中存在前缀相同的候选式（导致如果向前看的个数少的话会不知道要选择哪个候选式），有的问题来自于 <strong>左递归的文法</strong> 会让分析器进入无限循环。</p>
+<h3 id="提取左公因子"><a href="#提取左公因子" class="headerlink" title="提取左公因子"></a>提取左公因子</h3><p>对于第一个问题我们可以 <strong>提取左公因子</strong>。提取左公因子的算法接收一个文法，输出的是不含左公因子的等价文法。这个算法很简单，就是对于每个非终结符，找到它的两个含有非平凡左公因子的候选式并求出最长左公因子，然后提取出来。重复进行下去，直到所有的产生式都没有公因子为止。通用的形式为：</p>
+<script type="math/tex; mode=display">
+A\rightarrow \alpha\beta_1|\alpha\beta_2|\cdots|\alpha\beta_n|\gamma_1|\gamma_2|\cdots|\gamma_m \\</script><p>被替换为</p>
+<script type="math/tex; mode=display">
+A\rightarrow \alpha A'|\gamma_1|\gamma_2|\cdots|\gamma_m \\
+A'\rightarrow \beta_1|\beta_2|\cdots|\beta_n</script><h3 id="消除左递归文法"><a href="#消除左递归文法" class="headerlink" title="消除左递归文法"></a>消除左递归文法</h3><p>所谓的左递归文法指的是存在一个串 $\alpha$ 使得 $A\rightarrow^+ A\alpha$，也仅是经过若干步推导后，$A$ 可以推导出一个以自己开头的句型。如果这个推导过程一步就可以完成，那么称为是 <strong>直接左递归</strong>，否则如果需要多步推导是称为 <strong>间接左递归</strong>（零步推导是平凡的，不考虑）。</p>
+<p><strong>对于一个简单的直接左递归产生式</strong>，可以将它转化成右递归产生式。对于产生式 $A\rightarrow A\alpha|\beta$，如果 $\alpha\neq\epsilon$ 且 $\beta$ 不以 $A$ 开头，那么这个产生式实际上等价于 $A\rightarrow\beta A’;A’\rightarrow\alpha A’|\epsilon$。</p>
+<p>更加一般的形式是：</p>
+<script type="math/tex; mode=display">
+A\rightarrow A\alpha_1|A\alpha_2|\cdots|A\alpha_n|\beta_1|\beta_2|\cdots|\beta_m(\alpha_i\neq\epsilon, A\ \mbox{is not prefix of}\ \beta_j)</script><p>等价于</p>
+<script type="math/tex; mode=display">
+A \rightarrow \beta_1A'|\beta_2A'|\cdots|\beta_mA' \\
+A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于 <strong>间接左递归</strong> 的情况，可以考虑将一个产生式带入另一个产生式当中以破坏掉环形的产生式依赖关系，这样做了之后可以对其中一个产生式消除掉左递归，然后就不会有左递归出现了。</p>
+<p>消除左递归的代价是引入新的非终结符和 $\epsilon$ 产生式。</p>
+<h2 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="$LL(1)$ 文法"></a>$LL(1)$ 文法</h2><h3 id="S-文法"><a href="#S-文法" class="headerlink" title="S 文法"></a>S 文法</h3><p>S 文法又叫作 <strong>简单的确定性文法</strong>。它要求每个产生式必须以终结符开头，并且同一个非终结符的所有产生式的开头的终结符不能相同。S 文法的这个要求就使得 S 文法中的产生式不能包括 $\epsilon$ 产生式。S 文法可以很方便地构造出预测分析器。</p>
+<h3 id="含有-epsilon-产生式的文法"><a href="#含有-epsilon-产生式的文法" class="headerlink" title="含有 $\epsilon$ 产生式的文法"></a>含有 $\epsilon$ 产生式的文法</h3><p><strong>对于每个非终结符</strong>，可以给它定义一个 <strong>后继符号集</strong>。后继符号集是终极符的集合，一个终结符 $a$ 如果在 $A$ 的后继符号集中，就必然有从初始符号 $S$ 开始的某个推导，使得 $S\Rightarrow^\star \alpha Aa\beta$，即 $a$ 需要在某个合法的句型中为 $A$ 的直接后继。特别地，如果 $A$ 在某个句型中是最后一个符号（后面没有任何终极符或非终结符），则 $$$（表示句子的结尾）也在 $A$ 的后继符号集中。$A$ 的后继符号集记作是 $A$ 的 Follow 集。</p>
+<p><strong>对于每个产生式</strong>，可以定义产生式的 <strong>可选集</strong>。可选集是终极符或者非终结符的集合，一个符号 $x$ 如果在某个产生式的可选集当中，就表明如果当前正在从某个句型开始推导并且输入符号为 $x$，则可以选用这个产生式。可选集记作 Select 集。以下是两个例子：</p>
+<ul>
+<li>Select($A\rightarrow a\beta$) = $\{a\}$：只有在输入符号是 $a$ 的时候才可能选用这个产生式。</li>
+<li>Select($A\rightarrow\epsilon$) = Follow($A$)：只要输入符号在 $A$ 的 Follow 集中就可以使用这个产生式。</li>
+</ul>
+<p>再看定义，所谓的 <em>输入符号</em> 指的是当 $A$ 是最左的符号，需要选择一个产生式进行推导时，我们要看 $A$ 右边的终结符决定使用哪个产生式。对于 $A$ 的每个产生式，只有这个终结符位于该产生式的 Select 集中时，我们才可能使用这个产生式。</p>
+<p>通过引入这个概念可以方便引入含有 $\epsilon$ 产生式的文法，其中的一种叫做 <strong>q 文法</strong>，该文法要求每个产生式的右边要么是 $\epsilon$ 要么以不同的终极符开始；此外，同一个非终结符的所有产生式的 Select 集应该两两不交（这个好理解，如果某两个 Select 相交，那么对于交集中的某个元素，当它是输入符号时，就无法确定使用哪个产生式）。<strong>q 文法产生式不能以非终结符开始。</strong></p>
+<h3 id="产生式可以以非终结符开始的文法"><a href="#产生式可以以非终结符开始的文法" class="headerlink" title="产生式可以以非终结符开始的文法"></a>产生式可以以非终结符开始的文法</h3><p><strong>对于每个串</strong>（一个串一般是个句型），我们可以定义 <strong>串首终结符集合</strong>。这个集合是终结符的集合，一个终结符 $a$ 如果在 $\alpha$ 的串首终结符集中，那么有 $\alpha \Rightarrow ^\star a\beta$。特别地，如果 $\alpha\Rightarrow^\star\epsilon$，则 $\epsilon$ 也在这个集合中。串首终结符集合称为 $a$ 的 First 集。</p>
+<p>First 集、Follow 集和 Select 集的性质：</p>
+<ul>
+<li>$\epsilon \notin \mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=\mbox{First}(\alpha)$：如果一个串 $\alpha$ 无法推导出空串，那么当它作为产生式的右部时，只有这个串的串首终结符作为输入符号的时候才能考虑使用该产生式。</li>
+<li>$\epsilon\in\mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=(\mbox{First}(\alpha)-\{\epsilon\})\cup\mbox{Follow}(A)$：如果一个串 $\alpha$ 可以产生空串，那么当它作为产生式的右部时，它的串首终结符或者产生式的左部的后继符号集总的元素作为输入符号时都可以使用该产生式。</li>
+</ul>
+<p>这两个性质还比较显然，上述的两个性质也可以看作是 Select 集的定义。</p>
+<p>由此可以定义 $LL(1)$ 文法，其正式的定义如下。</p>
+<p>如果 $G$ 是 $LL(1)$ 文法，当且仅当 $G$ 中的任意具有两个相同左部的生成式 $A\rightarrow\alpha|\beta$，满足以下三者之一：</p>
+<ul>
+<li>$\epsilon\notin\mbox{First}(\alpha),\epsilon\notin\mbox{First}(\beta),\mbox{First}(\alpha)\cap\mbox{First}(\beta) =\varnothing$。解释：如果 $\alpha$ 和 $\beta$ 都不能推导出空串，那么它们的串首符号集不能相交，否则，无法决定相交元素为输入符号时选择哪个产生式。</li>
+<li>$\epsilon\in\mbox{First}(\alpha), \epsilon\notin\mbox{First}(\beta), \mbox{First}(\beta)\cap\mbox{Follow}(A)=\varnothing$。解释：如果 $\alpha$ 可以推导出空串，那么 $\beta$ 必须不能推导出空串。并且 $\beta$ 的串首符号集和 $A$ 的后继符号集不能相交，否则，当交集中的某个元素作为输入符号时，无法断决是使用 $\alpha$ 还是使用 $\beta$ 作为产生式。</li>
+<li>$\epsilon\in\mbox{First}(\beta), \epsilon\notin\mbox{First}(\alpha), \mbox{First}(\alpha)\cap\mbox{Follow}(A)=\varnothing$。这个与上面的对偶。</li>
+</ul>
+<p>不可能出现 $\alpha$ 和 $\beta$ 都能推导出空串的情况。</p>
+<p>$LL(1)$ 文法的同一个非终结符的多个产生式的 Select 集不会相交，因此还是可以构造出预测分析器。</p>
+<hr>
+<p>上面提到的三个文法都可以构造预测分析器，不过三个文法的方便程度依次增强。q 文法不支持产生式右部以非终结符开头，但是 $LL(1)$ 文法是可以的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-3/" class="post-title-link" itemprop="url">编译原理慕课笔记 3</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:23" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:23+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h1><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式是正则文法的更加紧凑的一个定义。</p>
+<p>对于每个正则文法都能写出对应的正则表达式，反之亦然。</p>
+<p>该节具体内容已熟悉，此处略去。</p>
+<h2 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h2><p>所谓的正则定义是对一个正则表达式命名，方便后续的使用。</p>
+<p>例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出</p>
+<script type="math/tex; mode=display">
+digit\rightarrow0|1|2|3|\cdots|8|9 \\
+letter\_\rightarrow a|b|c|\cdots|z|A|B|\cdots|Z|\_ \\
+symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则定义后更加简明了。</p>
+<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>该节具体内容已熟悉，此处略去。</p>
+<h2 id="有穷自动机的分类"><a href="#有穷自动机的分类" class="headerlink" title="有穷自动机的分类"></a>有穷自动机的分类</h2><p>有穷自动机分为确定有穷自动机和非确定有穷自动机，其中非确定有穷自动机分为能够带有 $\epsilon$ 转移的和不能带有 $\epsilon$ 转移两种，但是表达能力相同。</p>
+<p>不论是哪种有穷自动机，它能够描述的语言总是正则语言。正则表达式、正则文法和有穷自动机的表达能力相同。</p>
+<p>有穷自动机的具体内容已熟悉，此处略去。</p>
+<h2 id="从正则表达式到有穷自动机"><a href="#从正则表达式到有穷自动机" class="headerlink" title="从正则表达式到有穷自动机"></a>从正则表达式到有穷自动机</h2><p>为了能够使用正则表达式，需要将它转化为确定有穷自动机（DFA），这个过程比较复杂，可以考虑先转化为非确定有穷自动机（NFA）。</p>
+<p>正则表达式转化为 NFA 的过程已熟悉，此处略去。</p>
+<h2 id="从-NFA-到-DFA-的转换"><a href="#从-NFA-到-DFA-的转换" class="headerlink" title="从 NFA 到 DFA 的转换"></a>从 NFA 到 DFA 的转换</h2><p>该节具体内容已熟悉，此处略去。转化方法可是使用 NFA 中集合的幂集的子集作为 DFA 的状态集合，这个方法叫做 <strong>子集构造法</strong>。</p>
+<h2 id="识别单词的-DFA"><a href="#识别单词的-DFA" class="headerlink" title="识别单词的 DFA"></a>识别单词的 DFA</h2><p>这一节主要是 DFA 的例子。</p>
+<p>在词法分析阶段使用到的工具可以就是 DFA。它可以进行错误检测。工作方式：让字符流通过这个 DFA，直到发生错误（慕课中的 DFA 不是每个状态都有所有的转移，和我学的 DFA 略有不同；一般来说 DFA 会有一个陷阱状态，发生错误指的就是进入了这个状态）。当发生了这个错误之后只能说明 DFA 解析出错，<strong>并不能说明程序本身有错</strong>。此时将读取字符的指针向前移动，一直定位到最后一个位于终止状态的字符，将这个字符以及它前面的所有字符判定为一个单词。不过，也有找不到这样的单词的情况，如果这发生了，就表明程序真的发生的错误，此时要进行 <strong>错误恢复</strong>。错误恢复的一个策略叫做 <strong>恐慌模式</strong>，这种模式将首先定位到上一个成功解析的单词的结尾，然后尝试不断跳过无法解析的字符，直到找到一个可以解析的字符为止，从此处开始解析。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-2/" class="post-title-link" itemprop="url">编译原理慕课笔记 2</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:18" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:18+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="程序设计语言及其文法"><a href="#程序设计语言及其文法" class="headerlink" title="程序设计语言及其文法"></a>程序设计语言及其文法</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><h3 id="字母表"><a href="#字母表" class="headerlink" title="字母表"></a>字母表</h3><p><strong>字母表</strong> 是一个有穷符号集合。例如 ASCII 字符集就是一个合法的字母表。</p>
+<h3 id="字母表的运算"><a href="#字母表的运算" class="headerlink" title="字母表的运算"></a>字母表的运算</h3><ul>
+<li><strong>乘积</strong>：两个字母表的乘积相当于这两个字母表作笛卡儿积。不过写成二元组的形式可能比较麻烦，一般直接连接起来当成串。</li>
+<li><strong>幂</strong>：字母表的幂相当于自己和自己多次乘积。特别地，0 次幂得到的结果是只含空串的集合 $\{\epsilon\}$。</li>
+<li><strong>正闭包</strong>：字母表的正闭包是使用字母表中元素构造出的长度大于 0 的字符串的集合。</li>
+<li><strong>克林闭包</strong>：字母表的正闭包是使用字母表中元素构造出的长度大于等于 0 的字符串的集合，它比正闭包多了一个空串。</li>
+</ul>
+<h3 id="串"><a href="#串" class="headerlink" title="串"></a>串</h3><p>一个字母表的克林闭包中的元素称为这个字母表的串。</p>
+<p>串有 <strong>前缀</strong> 和 <strong>后缀</strong> 的概念，和其它学科的定义类似。</p>
+<h3 id="串上的运算"><a href="#串上的运算" class="headerlink" title="串上的运算"></a>串上的运算</h3><ul>
+<li><strong>连接</strong>：两个串可以进行连接操作，依然得到一个串。空串是连接操作的单位元。</li>
+<li><strong>幂</strong>：串的幂运算就是自己和自己连接，特别地，0 次幂会得到空串。</li>
+</ul>
+<h2 id="文法的定义"><a href="#文法的定义" class="headerlink" title="文法的定义"></a>文法的定义</h2><p>这玩意已经学过了，需要注意的是一个文法的产生式的左部不一定是一个单独的非终结符号，实际上它可以是一个串。之前用到的文法的产生式左边是单个的非终结符实际上只是上下文无关文法的性质。</p>
+<h2 id="语言的定义"><a href="#语言的定义" class="headerlink" title="语言的定义"></a>语言的定义</h2><p>一个由终结符与非终结符组成的串，如果不断将这个串中出现在某个产生式左部的部分替换为右部，这个过程称为 <strong>推导</strong>。这个过程的逆过程成为 <strong>归约</strong>。推导的符号是 $\Rightarrow$，如果是 $n$ 步推导的话符号是 $\Rightarrow^n$，另外 0 步推导就是不推导。</p>
+<p>一个文法的 <strong>句型</strong> 是这个文法从开始符号能够推导出的所有终结符与非终结符连接形成的串的集合，一个句型也可能是空串。如果一个句型中没有任何非终结符，这个句型称为是一个 <strong>句子</strong>。一个文法能够生成的所有句子的集合称作是这个文法的 <strong>语言</strong>。对语言我们可以定义一系列的运算（两个不同的语言指的是两个不同的文法推导出的语言）。</p>
+<h2 id="文法的分类"><a href="#文法的分类" class="headerlink" title="文法的分类"></a>文法的分类</h2><p>在 Chomsky 文法分类体系下，文法被分为四类。</p>
+<p>在不考虑空串的情况下，这四种文法之间存在的层级的真包含关系。</p>
+<h3 id="0-型文法"><a href="#0-型文法" class="headerlink" title="0 型文法"></a>0 型文法</h3><p>最自由的文法，又称 <strong>无限制文法</strong>。它要求产生式的左边是一个终结符与非终结符构成的串（需要至少包含一个非终结符），右边是一个终结符与非终结符构成的串。此外没有更多限制。一个串是否属于某个 0 型文法只能被图灵机判定。</p>
+<h3 id="1-型文法"><a href="#1-型文法" class="headerlink" title="1 型文法"></a>1 型文法</h3><p>在无限制文法的基础上，限制了产生式左边的长度必须小于等于右边的长度，其一般形式是 $\alpha A\beta\rightarrow \alpha\gamma\beta$，其中希腊字母表示终结符与非终结符构成的串，要求 $|A| \le |\gamma|$，这个要求实际上限制了 1 型文法不能有 $\epsilon$ 产生式。</p>
+<p>这个文法又称为 <strong>上下文有关文法</strong>。</p>
+<h3 id="2-型文法"><a href="#2-型文法" class="headerlink" title="2 型文法"></a>2 型文法</h3><p>2 型文法就是 <strong>上下文无关文法</strong>，产生式的一般形式是 $A\rightarrow\alpha$。上下文无关文法简称 CFG。</p>
+<h3 id="3-型文法"><a href="#3-型文法" class="headerlink" title="3 型文法"></a>3 型文法</h3><p>3 型文法就是 <strong>正则文法</strong>，正则文法可以使用左线性文法和右线性文法表示，例如右线性文法的产生式的一般形式是 $A \rightarrow xB$ 或 $A\rightarrow x$，其中 $x$ 是终结符的串，$B$ 是一个非终结符。</p>
+<h2 id="CFG-的分析树"><a href="#CFG-的分析树" class="headerlink" title="CFG 的分析树"></a>CFG 的分析树</h2><p>实际上上下文无关文法是程序中使用得最多的文法，上下文无关文法的推导过程可以表述为一棵分析树。</p>
+<p>CFG 的分析树根结点总为开始符号，每个内部结点都是对文法产生式的一次应用。如果将分析树的所有的叶结点从左到右排列起来，得到的序列是整个文法的一个句型。这样的序列称为是分析树的 <strong>边缘</strong>。对于文法的每一个句型，必定存在一个分析树，使得该分析树的边缘是这个句型。</p>
+<p>对于一个句型，它对应的分析树的任意一棵子树的边缘称作是这个句型的 <strong>短语</strong>。如果这棵子树的高度为 2，则这个短语进一步称作是 <strong>直接短语</strong>。</p>
+<p>一个文法可能是二义性的，如果一个文法的某个句型对应两个以上的不同的分析树，这个文法就是二义性的。一个文法是否是二义的无法通过通用的算法加以判定，但是可以给出一个充分条件，一旦满足这个充分条件，这个文法就不是二义性的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-1/" class="post-title-link" itemprop="url">编译原理慕课笔记 1</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:15:29" itemprop="dateCreated datePublished" datetime="2018-11-23T16:15:29+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>感谢 <a href="https://www.icourse163.org/course/HIT-1002123007?tid=1003246005" target="_blank" rel="noopener">中国大学 MOOC</a>。</p>
+<h2 id="什么是编译"><a href="#什么是编译" class="headerlink" title="什么是编译"></a>什么是编译</h2><p>计算机语言分成 <strong>高级语言</strong>、<strong>汇编语言</strong> 和 <strong>机器语言</strong>。计算机只能执行机器语言。从汇编语言到机器语言的过程叫 <strong>汇编</strong>，从高级语言到汇编语言或直接到机器语言的过程叫 <strong>编译</strong>。</p>
+<p>将高级语言写的源程序转换成可以运行的进程要经历 <strong>语言处理系统</strong>，编译器只是这个系统中的一环。语言处理系统的典型工作流程为</p>
+<ol>
+<li><strong>预处理器</strong> 将不同文件中源文件聚合到一起，并对宏进行操作；</li>
+<li><strong>编译器</strong> 将处理后的源文件编译为汇编语言程序；</li>
+<li><strong>汇编器</strong> 从汇编语言程序生成可重定位的机器代码（可重定位指在内存中的位置不固定）；</li>
+<li><strong>链接器</strong> 会将多个可重定位程序和库连接起来，并处理外部地址（跨文件的引用）；</li>
+<li><strong>加载器</strong> 会处理可重定位的地址，变成真实的地址，并将程序装入内存中。</li>
+</ol>
+<h2 id="编译系统的结构"><a href="#编译系统的结构" class="headerlink" title="编译系统的结构"></a>编译系统的结构</h2><p><strong>编译的本质是翻译，将源语言翻译到目标语言。</strong></p>
+<p>假定我们要将一个句子中英文翻译到中文，我们会先尝试了解这个句子的意思，这个意思是独立于任何自然语言的，专业点来说这个叫做 <strong>中间语言表示</strong>。在这个例子中，为了得到中间语言表示我们需要进行 <strong>语义分析</strong>；为了进行语义分析需要知道句子中每个短语的成分，这个过程为 <strong>语法分析</strong>；为了进行语法分析还需要知道每个词的词性，这个过程为 <strong>词法分析</strong>。</p>
+<p>一个典型的编译器的结构可以分成前端和后端。前端与源语言相关，将源语言翻译为中间表示；后端语言与目标语言相关，将中间表示翻译为目标语言。</p>
+<h2 id="词法分析概述"><a href="#词法分析概述" class="headerlink" title="词法分析概述"></a>词法分析概述</h2><p>词法分析一般是编译的第一个阶段。</p>
+<p>词法分析的主要任务是从左到右扫描扫描源程序字符，识别出各个单词，确定单词的类型，将它们转化成统一的内部表示 <strong>词法单元（token）</strong>。</p>
+<p>每个 token 是一个二元组（种别码，属性值）。其中种别码用来表示这个 token 的类型，属性值作为额外数据进一步表明这个 token 的值。</p>
+<p>扫描的过程中可能碰到五类 token，分别为</p>
+<ul>
+<li><strong>关键词</strong>，例如 <code>while</code>、<code>for</code> 这样的。它们的总量是可以枚举的，因此每个关键词都会得到一个种别码，并且属性值可以为空。例如 <code>while</code> 的 token 可能为 <code>&lt;WHILE, NONE&gt;</code>。</li>
+<li>变量名、函数名等<strong>标识符</strong>，这种标识符的总量不可枚举。所有的标识符都是一种种别，例如一个变量 <code>arr</code> 的 token 可能为 <code>&lt;IDENTIFIER, a&gt;</code>（最简单的实现中，属性值的取值就是变量名）。</li>
+<li><strong>常量</strong>，由于扫描的时候就可以确定常量的类型，尽管常量的取值不可枚举，但是可以按照常量的类型进行分类，并将常量的值作为属性。例如 <code>0.123</code> 的 token 可能为 <code>&lt;FLOAT, 0.123&gt;</code>。</li>
+<li><strong>运算符</strong>，这个比较简单，和关键词类似，每个运算符都可以分配一个种别码，例如 <code>+</code> 的 token 可能为 <code>&lt;ADD, NONE&gt;</code>。</li>
+<li><strong>界定符</strong>，这种符号一般是括号、花括号、等号这种作为语句的边界的符号，和运算符的处理类似，不需要属性值。</li>
+</ul>
+<p>进行了扫描后，字符流就可以转化为 token 流。</p>
+<h2 id="语法分析概述"><a href="#语法分析概述" class="headerlink" title="语法分析概述"></a>语法分析概述</h2><p>语法分析一般是编译的第二个阶段。</p>
+<p>语法分析的主要任务是根据词法分析器输出的 token 流识别出各类短语，构造 <strong>语法分析树（parse tree）</strong>。</p>
+<p>语法分析树是一棵树，叶结点是各个 token，非叶结点表示的是短语的类型。token 组合起来会形成短语，短语组合起来会形成更大的短语，因此形成了树的形式。</p>
+<p>语法分析的过程需要使用到语言的 <strong>文法</strong>，因为语法分析树的每棵子树中，子树的根结点和它的所有直接子结点正好对应文法中的一个生成式。</p>
+<p>进行了语法分析后，token 流就被转化成了多棵语法分析树。</p>
+<h2 id="语义分析概述"><a href="#语义分析概述" class="headerlink" title="语义分析概述"></a>语义分析概述</h2><p>语义分析的主要任务是收集语义相关的信息。这么说比较抽象，例子是高级语言的语句大多可以分成声明语句和命令语句，对于声明语句，语义分析的任务是收集标识符的属性信息，包括</p>
+<ul>
+<li><strong>种属</strong>：简单变量、符合变量（数组、结构体等）、函数等</li>
+<li><strong>类型</strong>：整型、布尔型等</li>
+<li><strong>存储的位置和长度</strong></li>
+<li>如果是变量的话，变量的 <strong>值</strong></li>
+<li><strong>作用域</strong></li>
+<li>如果是函数的话，<strong>参数和返回值类型</strong></li>
+</ul>
+<p>这个过程中标识符会被存放到符号表中，符号表中维护了这些标识符的名称以及上述属性信息。</p>
+<p>对于命令语句，语义分析可能会进行一些语义检查，例如</p>
+<ul>
+<li>变量或过程未定义就使用、或被重复定义</li>
+<li>运算分量类型不匹配（数组与过程相加这样的错误）</li>
+<li>操作符和操作数之间类型不匹配，例如<ul>
+<li>数组下标不是整数</li>
+<li>使用数组访问操作符访问非数组、使用过程调用操作符调用非过程</li>
+<li>过程调用的参数类型或数目不匹配，或者返回值的类型错误</li>
+</ul>
+</li>
+</ul>
+<h2 id="中间代码生成及编译器后端概述"><a href="#中间代码生成及编译器后端概述" class="headerlink" title="中间代码生成及编译器后端概述"></a>中间代码生成及编译器后端概述</h2><h3 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h3><p>常用的中间表示有 <strong>三地址代码</strong> 和 <strong>语法结构树（syntax tree）</strong>。</p>
+<p><em>语法结构树和前面提到的 parse tree 不是同一个概念。parse tree 是分析树，在语法分析过程后得到，而 syntax tree 是结构树，是一种中间表示。</em></p>
+<h3 id="三地址码"><a href="#三地址码" class="headerlink" title="三地址码"></a>三地址码</h3><p>三地址码由类似汇编语言的指令序列构成，每个语句最多只包含三个操作数。</p>
+<p>常用的三地址运算符有赋值、复制、条件跳转、无条件跳转、参数传递（类似汇编的 <code>push</code>）、过程调用（类似汇编的 <code>call</code>）、过程返回（类似汇编的 <code>ret</code>）、数组引用、数组赋值、地址及指针的操作等。</p>
+<p>三地址码的表示有 <strong>四元式</strong>、<strong>三元式</strong> 和 <strong>间接三元式</strong>。</p>
+<p>在四元式中，第一个分量指定语句类型，后三个分量分别是三个操作数，例如 <code>x = y + z</code> 的四元式为 <code>(+, y, z, x)</code>。</p>
+<p>因为一句三地址码只能干一件事情，所以 <strong>三地址码序列唯一确定了程序的完成顺序</strong>。把一个三地址码的序列写出来的话，看上去的效果就跟汇编代码差不多。</p>
+<h3 id="编译器后端"><a href="#编译器后端" class="headerlink" title="编译器后端"></a>编译器后端</h3><p>编译器在 <strong>目标代码生成</strong> 阶段会将中间表示翻译到目标语言，这个过程中的一个重要任务就是为变量分配合适的寄存器。</p>
+<p>编译器可能会进行一些优化，优化可以在两个时间进行</p>
+<ul>
+<li><strong>机器无关代码优化</strong>，这个优化针对中间表示进行，在目标代码生成过程前完成</li>
+<li><strong>机器相关代码优化</strong>，这个优化针对目标机器语言进行，在目标代码生成过程后完成</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/10/Rust-学习笔记/" class="post-title-link" itemprop="url">Rust 学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-10 16:48:43" itemprop="dateCreated datePublished" datetime="2018-11-10T16:48:43+08:00">2018-11-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:29:09" itemprop="dateModified" datetime="2019-03-11T15:29:09+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Rust-学习笔记"><a href="#Rust-学习笔记" class="headerlink" title="Rust 学习笔记"></a>Rust 学习笔记</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rustc --version</span></span><br><span class="line">rustc 1.30.0 (da5f414c2 2018-10-24)</span><br></pre></td></tr></table></figure>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><p>Rust 使用 cargo 进行项目管理。</p>
+<ul>
+<li>使用 <code>cargo</code> 建立一个新项目：<code>cargo new project_name --bin</code>。</li>
+<li>使用 <code>cargo</code> 建立一个新模块：<code>cargo new module_name --lib</code>。</li>
+<li>编译并运行： <code>cargo run</code>。</li>
+<li>只编译：<code>cargo build</code>。</li>
+<li>只检查是否能够通过编译：<code>cargo check</code>。</li>
+<li>更新依赖：<code>cargo update</code>。</li>
+<li>运行测试：<code>cargo test</code>。</li>
+</ul>
+<h3 id="变量与可变性"><a href="#变量与可变性" class="headerlink" title="变量与可变性"></a>变量与可变性</h3><ul>
+<li>Rust 使用 <code>let</code> 声明变量，建议使用 <code>snake_case</code> 命名。</li>
+<li>Rust 使用 <code>const</code> 声明常量，建议使用 <code>SCREAMING_SNAKE_CASE</code> 命名。</li>
+<li>Rust 变量默认不可变，如果需要可变的话，需要加上 <code>mut</code>。</li>
+</ul>
+<p>Rust 具有 Shadowing 的特性，可以将声明一个与同作用域已经声明的变量名称相同的变量名。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/20/软件工程课程项目博客-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/20/软件工程课程项目博客-3/" class="post-title-link" itemprop="url">软件工程课程项目博客-集成与测试</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-20 20:10:15" itemprop="dateCreated datePublished" datetime="2018-10-20T20:10:15+08:00">2018-10-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:31:04" itemprop="dateModified" datetime="2019-03-11T15:31:04+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="软件工程课程项目博客-集成与测试"><a href="#软件工程课程项目博客-集成与测试" class="headerlink" title="软件工程课程项目博客-集成与测试"></a>软件工程课程项目博客-集成与测试</h1><p>这是对一个为期一周的开发活动的个人总结。这个开发活动的主要目的是让我们熟悉持续集成以及了解一些基本的测试的概念并进行实践。</p>
+<h2 id="关于测试"><a href="#关于测试" class="headerlink" title="关于测试"></a>关于测试</h2><ul>
+<li><strong>单元测试</strong>：单元测试是对程序中的最小单元的功能正确性的验证。使用 Python 的话最小单元就是函数，单元测试要检测的就是这些函数。就我的感觉而言，通过单元测试我们可以预先定义出这个函数的正确行为应该是什么，于是在以后对这个函数进行的改动都可以保证正确，这会在以后的改动过程中让我们更有信心。不过，因为这次的作业时间确实较短而且逻辑不复杂，这个效果可能不是很明显。</li>
+<li><strong>功能测试</strong>：按我的理解，单元测试更多的是站在代码的角度上说的，而功能测试更多是站在业务的角度上说的。单元测试是检查负责抢票的处理函数在一个人在已经抢过的情况下再次抢票能够正确处理，而功能测试则直接要求一个人只能抢一张票，至于背后的实现它是不关心的。通过功能测试我们可以保证自己的系统能够满足用户的需求，而不仅仅是“能够正确地工作”。</li>
+<li><strong>性能测试</strong>：性能测试就是对服务器处理能力的考验。抢票这个功能从名称上看来就是需要服务器在某些情况下能够处理大量数据的。通过使用性能测试我们能够知道服务器最大能够处理多大量的数据，这样在应对一些极端情况之前我们就能知道能不能扛得住从而提前做决定，减小损失。</li>
+</ul>
+<p>通过这些测试我们就拥有了一个评价代码质量的标准，能够让自己对代码的表现有更加精确的预期。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/20/软件工程课程项目博客-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/09/手写汇编器-2/" class="post-title-link" itemprop="url">汇编课程大作业博客——编码 x86 指令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-09 10:50:13" itemprop="dateCreated datePublished" datetime="2018-10-09T10:50:13+08:00">2018-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:29" itemprop="dateModified" datetime="2019-03-11T15:30:29+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="汇编课程大作业博客——编码-x86-指令"><a href="#汇编课程大作业博客——编码-x86-指令" class="headerlink" title="汇编课程大作业博客——编码 x86 指令"></a>汇编课程大作业博客——编码 x86 指令</h1><p>在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。</p>
+<p><a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">Encoding Real x86 Instructions</a> 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。</p>
+<h2 id="x86-机器码的整体结构"><a href="#x86-机器码的整体结构" class="headerlink" title="x86 机器码的整体结构"></a>x86 机器码的整体结构</h2><p>一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。</p>
+<p>回到将所有可选部分写到一起那一步，这十六个字节的结构如下：</p>
+<ul>
+<li><strong>最高四个字节</strong>：Prefix Bytes，实际可能有零到四个字节，这些前缀会影响操作的结果。</li>
+<li><strong>次高四个字节</strong>：这四个字节编码了指令以及指令的工作方式（opcode + Mod-Reg-R/M + SIB，后面会写）。</li>
+<li><strong>次低四个字节</strong>：这四个字节编码了 displacement [<a href="https://stackoverflow.com/questions/13329611/x86-x64-add-displacement-addressing" target="_blank" rel="noopener">1</a>]，displacement 用于寻址。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+<li><strong>最低四个字节</strong>：这四个字节编码了 immediate data。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+</ul>
+<p>对于次高四个字节，还可以进一步细分：</p>
+<ul>
+<li>最高的两个字节，编码 opcode，可能会使用其中的一个或两个字节。</li>
+<li>接下来的一个字节称为 <em>Mod-Reg-R/M</em> 字节，这个字节指明了寻址模式和操作数的大小。只有指令需要寄存器或者内存的操作数的时候才会使用这个字节。</li>
+<li>接下来的一个字节称为 SIB（Scaled Indexed Byte）。如果指令使用了 scaled indexed memory addressing，就会用到这个字节。具体是什么后面会写。</li>
+</ul>
+<p>不是所有的字节都会被用到（实际上大部分字节都不会被用到）。我们会先了解次高四个字节。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/08/软件工程课程项目博客-2/" class="post-title-link" itemprop="url">软件工程课程大作业博客——数据传输方式的选取</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-08 10:01:49" itemprop="dateCreated datePublished" datetime="2018-10-08T10:01:49+08:00">2018-10-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:59" itemprop="dateModified" datetime="2019-03-11T15:30:59+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="软件工程课程大作业博客——数据传输方式的选取"><a href="#软件工程课程大作业博客——数据传输方式的选取" class="headerlink" title="软件工程课程大作业博客——数据传输方式的选取"></a>软件工程课程大作业博客——数据传输方式的选取</h1><p><strong>一些考虑</strong>：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。</p>
+<p>目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。</p>
+<p>比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html，但是上面没有任何数据，这个文件中的 js 会根据当前的 url 发起第二次请求，url 可能为 /api/contests/2/comments/4，这次请求会返回实际数据。</p>
+<p>数据传输的方式可以采用某种应用层上的协议来简化开发。目前备选的方案有 REST、GraphQL 和 gRPC。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/08/软件工程课程项目博客-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
