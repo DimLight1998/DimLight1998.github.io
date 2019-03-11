@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -333,6 +333,384 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-16/" class="post-title-link" itemprop="url">编译原理慕课笔记 16</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:20:06" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:06+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="代码优化-1"><a href="#代码优化-1" class="headerlink" title="代码优化-1"></a>代码优化-1</h1><p>代码优化就是使程序运行更快、效率更高的对程序的等价变换。</p>
+<h2 id="流图"><a href="#流图" class="headerlink" title="流图"></a>流图</h2><h3 id="基本块"><a href="#基本块" class="headerlink" title="基本块"></a>基本块</h3><p>基本块是一段连续的三地址指令序列，满足 <strong>控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机</strong>。</p>
+<p>将一段程序划分为基本块的算法需要先确定 <strong>首指令</strong>，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。</p>
+<h3 id="流图-1"><a href="#流图-1" class="headerlink" title="流图"></a>流图</h3><p>流图是一张有向图，反映了控制流的转移。其结点对应着基本块，两个结点之间存在一条边当且仅当这两个结点对应的基本块存在可能的控制流转移。结点 M 指向结点 N 有可能是 M 在某种情况下会跳转向 N，也可能是 M 执行完了后不会跳转，但是会顺着进入 N。</p>
+<h2 id="常用的代码优化方法（一）"><a href="#常用的代码优化方法（一）" class="headerlink" title="常用的代码优化方法（一）"></a>常用的代码优化方法（一）</h2><h3 id="优化分类"><a href="#优化分类" class="headerlink" title="优化分类"></a>优化分类</h3><p>按照优化的目标可以分为针对中间表示的 <strong>机器无关优化 </strong>和针对目标代码的 <strong>机器相关优化</strong>。</p>
+<p>按照优化的范围可以分为针对单个基本块的 <strong>局部代码优化</strong> 和针对多个基本块的 <strong>全局代码优化</strong>。</p>
+<h3 id="删除公共子表达式"><a href="#删除公共子表达式" class="headerlink" title="删除公共子表达式"></a>删除公共子表达式</h3><p>如果一个表达式中的子表达式之前计算过，下次遇到时表达式中的元素的值未改变，则称为公共子表达式，可以删去。</p>
+<p>如果子表达式的上次计算是在同一个基本块中完成的，称为 <strong>局部公共子表达式</strong>，否则应该是在不同基本块中完成的，称为 <strong>全局公共子表达式</strong>。</p>
+<p>一个重要的问题是如何识别公共子表达式。</p>
+<h2 id="常用的代码优化方法（二）"><a href="#常用的代码优化方法（二）" class="headerlink" title="常用的代码优化方法（二）"></a>常用的代码优化方法（二）</h2><h3 id="删除无用代码"><a href="#删除无用代码" class="headerlink" title="删除无用代码"></a>删除无用代码</h3><p>有些代码是无用的，例如执行了公共子表达式删除后会引入一些复制语句如 <code>x = y</code>，复制传播就是尽可能使用 <code>y</code> 代替 <code>x</code>。</p>
+<p>使用了复制传播后又有可能产生死代码，这种代码的执行结果永远不会被用到，可以直接删除。</p>
+<h3 id="常量合并"><a href="#常量合并" class="headerlink" title="常量合并"></a>常量合并</h3><p>在编译时就识别出常量的表达式，并计算出结果替代这些表达式。</p>
+<h3 id="代码移动"><a href="#代码移动" class="headerlink" title="代码移动"></a>代码移动</h3><p>对于循环，可以找到循环中有哪些量是在各循环间不会变动的，提到循环外面。</p>
+<h3 id="强度削弱"><a href="#强度削弱" class="headerlink" title="强度削弱"></a>强度削弱</h3><p>使用执行更快的指令替代更慢的指令，例如使用 <code>lea</code> 和各种位移替代乘法。</p>
+<h3 id="删除归纳变量"><a href="#删除归纳变量" class="headerlink" title="删除归纳变量"></a>删除归纳变量</h3><p>归纳变量指的是循环中的一些变量，在循环的过程中每轮循环后的改变量总是固定的。如果一个循环中有多个这样的变量并且变化步调一致，则可以删除到只剩一个。</p>
+<h2 id="基本块的优化"><a href="#基本块的优化" class="headerlink" title="基本块的优化"></a>基本块的优化</h2><p>为了执行局部优化常常将基本块转化为一个有向无环图。这个图中每个结点会对应一个运算并且关联一个变量的列表，结点 M 指向结点 N 表示在某条语句中，M 关联的变量的计算依赖于 N 变量的值。</p>
+<p>这个图是随着基本块的一条条语句逐渐建立起来的。每分析到一条语句（以 <code>x = y + z</code> 为例），首先在图中找到关联了 <code>x</code> 的结点，如果找到将 <code>x</code> 移出这个列表；然后在图中找到关联了 <code>y</code> 和 <code>z</code> 的结点，如果没有的话就创建关联了 <code>y_0</code> 或 <code>z_0</code> 的空结点表示初始值。然后看一下有没有某个结点已经表示了 <code>y</code> 和 <code>z</code> 的相加，如果有的话直接将 <code>x</code> 加入到对应的列表中， 否则创建新结点。可以注意到这样的性质：每个结点关联的列表是不相交的。这个列表称为 <strong>定值变量表</strong>。</p>
+<p>有些变量在一个基本块后面还会被用到，称为 <strong>活跃变量</strong>。对于由基本块得到的图，如果某个结点的定制变量表中所有的变量都是非活跃的，并且这个结点不被依赖，则可将其删除；重复这个过程就可以删除一部分的无用代码。</p>
+<p>这个图中有些结点会处于特殊的 <strong>杀死</strong> 状态，这种状态的产生可能是出现了形如 <code>x[y] = z</code> 的数组赋值，随后所有对 <code>x[w]</code> 的使用，即时之前已经计算过 <code>x[w]</code> 的值也不能视作是公共子表达式。当处理 <code>x[y] = z</code> 后需要杀死所有依赖于 <code>x</code> 的结点，这些结点无法使用定制变量表进行优化。</p>
+<h3 id="图的信息和使用"><a href="#图的信息和使用" class="headerlink" title="图的信息和使用"></a>图的信息和使用</h3><p>从图中可以得到一些基本块的信息，例如哪些变量在赋值前被引用过；哪些计算结果可以在基本块外使用等。</p>
+<p>使用这张图可以对基本块进行重组。由于每个结点关联了若干变量，但是它们的值是相同的，所以可以只计算出其中一个变量的值来。这个变量的选取依据是 <strong>尽量选取活跃的变量</strong>，其它的变量的值可以不求，直接使用这个变量代替；如果有多个活跃变量，应该使用赋值语句让其它变量和这个变量的值相同。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-15/" class="post-title-link" itemprop="url">编译原理慕课笔记 15</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:20:04" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:04+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="运行存储分配"><a href="#运行存储分配" class="headerlink" title="运行存储分配"></a>运行存储分配</h1><h2 id="运行存储分配概述"><a href="#运行存储分配概述" class="headerlink" title="运行存储分配概述"></a>运行存储分配概述</h2><h3 id="分配策略"><a href="#分配策略" class="headerlink" title="分配策略"></a>分配策略</h3><p>在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 <strong>静态分配</strong>，如果在编译时无法完成分配，需要在运行时进行确定则称为 <strong>动态分配</strong>。在动态分配时，可以进行 <strong>栈式内存分配</strong> 或 <strong>堆式内存分配</strong>。</p>
+<h3 id="活动记录"><a href="#活动记录" class="headerlink" title="活动记录"></a>活动记录</h3><p>函数的每次执行称作一个 <strong>活动</strong>，<strong>活动记录</strong> 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。</p>
+<p>活动记录中会存放实参、返回值、控制链（指向调用者的活动记录）、访问链（指向其它活动记录，后面会用到）、保存的状态、局部变量和临时变量。</p>
+<p><strong>同一个函数的活动记录不一定是定长的</strong>，栈上也可以进行动态内存分配，此时一般要将变长数据放在最后面（栈顶）。这样分配的内存具有更好的 locality，并且清理的时候代价更小。</p>
+<h2 id="静态存储分配"><a href="#静态存储分配" class="headerlink" title="静态存储分配"></a>静态存储分配</h2><p>有些语言（BASIC 和 FORTRAN）可以完全使用静态存储分配，只要：</p>
+<ul>
+<li>数组定长</li>
+<li>过程无法递归调用（直接和间接都不行）</li>
+<li>不能动态建立数据实体</li>
+</ul>
+<h3 id="顺序分配法"><a href="#顺序分配法" class="headerlink" title="顺序分配法"></a>顺序分配法</h3><p>这种分配方法比较简单，就是对每个函数指定一个固定大小、固定位置的区域。这些区域彼此不会相交。在运行时如果这个函数被调用这个区域就会作为它的工作内存。</p>
+<h3 id="层次分配法"><a href="#层次分配法" class="headerlink" title="层次分配法"></a>层次分配法</h3><p>上面那种方法会有内存的浪费，这种分配方式需要分析出函数之间的调用关系，然后建立一棵调用树。因为禁止递归调用，所以这样的调用关系一定是无环的，可以形成一棵树。</p>
+<p>随后给对应的函数分配内存区域，但是不同的函数的内存区域会相交，相交的这些内存区域对应的函数不会出现调用关系即可。例如如果两个函数在调用树中都只出现了一次并且是兄弟结点，就可以重叠分配。</p>
+<h2 id="栈式存储分配"><a href="#栈式存储分配" class="headerlink" title="栈式存储分配"></a>栈式存储分配</h2><h3 id="活动树"><a href="#活动树" class="headerlink" title="活动树"></a>活动树</h3><p>活动树就是展示函数调用关系的树。</p>
+<hr>
+<p>在使用栈式存储分配的时候会有一个控制栈。运行时，每个活动在栈中都有自己的活动记录。大部分以函数为单位的语言都是这样进行分配的，例如 C。所以这里就不写栈式存储分配在运行时具体怎么操作的了。</p>
+<p>在这样的分配方式下，活动记录的设计一般有如下的原则：</p>
+<ul>
+<li>在调用者和被调用者之间的传递的值会尽可能靠近两个活动记录的边界</li>
+<li>固定长度的项目位于活动记录中间</li>
+<li>变长的项目位于活动记录的最后</li>
+<li>每个活动记录会有一个用来寻找该活动记录中局部变量的基指针，这个指针位于固定长度项目和变长项目边界上</li>
+</ul>
+<h2 id="调用序列和返回序列"><a href="#调用序列和返回序列" class="headerlink" title="调用序列和返回序列"></a>调用序列和返回序列</h2><p><strong>调用序列</strong> 是函数开始调用前进行的工作，<strong>返回序列</strong> 是函数调用完成后进行的收尾工作。这两种序列都是调用者和被调用者配合完成的。</p>
+<h3 id="调用序列"><a href="#调用序列" class="headerlink" title="调用序列"></a>调用序列</h3><p>向添加被调函数的活动记录。</p>
+<ul>
+<li>调用者计算实参</li>
+<li>调用者将返回地址放入被调函数保存的状态中、修改基址寄存器</li>
+<li>被调用者保存寄存器值和其他状态信息、初始化局部变量、开始执行</li>
+</ul>
+<p>此外调用序列会建立 <strong>访问链</strong>，见下文。</p>
+<h3 id="返回序列"><a href="#返回序列" class="headerlink" title="返回序列"></a>返回序列</h3><ul>
+<li>被调用者将返回值放入自己活动记录的指定位置</li>
+<li>被调用者恢复调用者的基址寄存器、通过返回地址返回到调用者</li>
+<li>调用者获取返回值，继续执行</li>
+</ul>
+<h2 id="非局部数据的访问"><a href="#非局部数据的访问" class="headerlink" title="非局部数据的访问"></a>非局部数据的访问</h2><h3 id="嵌套深度"><a href="#嵌套深度" class="headerlink" title="嵌套深度"></a>嵌套深度</h3><p>有些语言可以在函数中继续定义函数，例如 Pascal。这种语言中，在函数 f 内部定义的函数 g 可以访问 f 中的局部变量，对于 g 来说这些变量就像是全局的变量一样。</p>
+<p>对于最外层的函数，定义其嵌套深度为 1。如果 g 的定义在 f 中，则 g 的嵌套深度比 f 多 1。</p>
+<h3 id="无嵌套语言的存储分配"><a href="#无嵌套语言的存储分配" class="headerlink" title="无嵌套语言的存储分配"></a>无嵌套语言的存储分配</h3><p>这样的语言变量只有全局和局部两种，全局变量放静态区域，局部变量使用动态内存分配即可。全局变量通过静态的地址访问，局部变量通过运行时活动记录对应的基地址进行访问。</p>
+<h3 id="有嵌套语言的存储分配"><a href="#有嵌套语言的存储分配" class="headerlink" title="有嵌套语言的存储分配"></a>有嵌套语言的存储分配</h3><p>使用前面预留给每个活动记录的 <strong>访问链</strong> 可以实现过程嵌套的语言中内层函数对外层函数局部变量的访问。如果函数 f 内部定义了函数 g，则运行时，<strong>函数 g 的任意活动的访问链都指向最近的函数 f 的活动记录</strong>。</p>
+<h3 id="如何建立访问链"><a href="#如何建立访问链" class="headerlink" title="如何建立访问链"></a>如何建立访问链</h3><p>如果函数 f 调用函数 g，可能有三种情况：</p>
+<ul>
+<li>f 的嵌套深度比 g 小（相当于外层调内层）：此时函数 g 必然在 f 中直接定义，只要在调用 g 时，将 g 的访问链设置为指向上一个活动记录即可。</li>
+<li>f 的嵌套深度和 g 相同（同层函数或者直接递归）：此时直接复制访问链即可。</li>
+<li>f 的嵌套深度比 g 大（相当与内层调外层）：此时 g 的访问链的设置需要 <strong>沿着访问链</strong> 进行查找（注意不是在活动栈中进行查找）。如果 f 的嵌套深度是 a，g 的嵌套深度是 b，只要沿着访问链走 (b - a + 1) 步就可以到达直接定义了 g 的函数。</li>
+</ul>
+<h2 id="符号表"><a href="#符号表" class="headerlink" title="符号表"></a>符号表</h2><p>对于每个函数（也有可能是作用域）都需要建立一张单独的符号表。符号表中也可以存放指向这个函数中定义的其它函数的符号表的指针。符号表会有一个指针指向这个函数外部那个函数的符号表。</p>
+<p>在定义符号时，如果当前符号表中存在同名符号，表示符号重定义，否则可以正常定义；在使用符号时，如果当前符号表中存在则可正常使用，否则应该查找外部的那个符号表中是否有对应的符号，可以一直这样查找下去。</p>
+<h2 id="符号表的建立"><a href="#符号表的建立" class="headerlink" title="符号表的建立"></a>符号表的建立</h2><p>这个没什么好记录的，算法比较直接。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -431,20 +809,33 @@
       
         
           
-            <p>
-              中间代码生成-4布尔表达式的回填回填指的是在生成跳转语句之类的语句的时候要跳转的目标暂时不能确定，此时会将“生成的跳转语句在哪里”这个信息记录下来，在后续的翻译过程中在适当的时候重新填入跳转目标。
-为什么会出现这样的技术，我个人的感觉是使用自底向上进行分析时对语法树的遍历实际上是一种后序遍历，这种遍历其实是不太灵活的（在写完了编译原理的作业后有了这种感觉，对于 ANTLR 来说显然 visitor 模式比 listener 模式具有更高的灵活性，如果采用 listener 模式的话估计也要用回填才能解决跳转目标的问题，但是使用 visitor 模式可以通过指定遍历顺序来避免掉这个问题）。为了能
-              ...
-            </p>
-          <!--noindex-->
+            <h1 id="中间代码生成-4"><a href="#中间代码生成-4" class="headerlink" title="中间代码生成-4"></a>中间代码生成-4</h1><h2 id="布尔表达式的回填"><a href="#布尔表达式的回填" class="headerlink" title="布尔表达式的回填"></a>布尔表达式的回填</h2><p>回填指的是在生成跳转语句之类的语句的时候要跳转的目标暂时不能确定，此时会将“生成的跳转语句在哪里”这个信息记录下来，在后续的翻译过程中在适当的时候重新填入跳转目标。</p>
+<p><em>为什么会出现这样的技术，我个人的感觉是使用自底向上进行分析时对语法树的遍历实际上是一种后序遍历，这种遍历其实是不太灵活的（在写完了编译原理的作业后有了这种感觉，对于 ANTLR 来说显然 visitor 模式比 listener 模式具有更高的灵活性，如果采用 listener 模式的话估计也要用回填才能解决跳转目标的问题，但是使用 visitor 模式可以通过指定遍历顺序来避免掉这个问题）。为了能够在保证遍历顺序是一遍后序遍历的情况下生成正确的中间代码就需要引入这种看起来不太自然的技术。</em></p>
+<p>这一节讲的是如何生成复合的布尔表达式，<del>对于这种复合的布尔表达式居然不是使用算符优先级计算出最后的布尔值，而是通过各种跳转来到达最后的目的地址。不是很理解为什么需要使用这么诡异的方式</del> 使用各种跳转来完成计算是为了实现短路求值。</p>
+<p>对于布尔表达式中的每个子表达式，它都有两个综合属性 <code>FalseList</code> 和 <code>TrueList</code>，这是两个集合，元素分别是翻译过程中未填写跳转目标的那些语句的编号（<code>FalseList</code> 中存的是会往假出口跳转的那些语句的编号）。</p>
+<p>一些例子及其解释：</p>
+<ul>
+<li>$B\rightarrow E_1\mbox{relop} E_2\{a_1\}$，其中 $a_1$ 动作为生成两条跳转（不指定目标），第一条在条件为真时执行，放入 $B$ 的 <code>TrueList</code> 中；第二条在条件为假时执行，放入 <code>FalseList</code> 中。注意 $E_1\mbox{relop}E_2$ 已经是“原子性”的了，不会为复合布尔表达式的一部分。</li>
+<li>$B\rightarrow(B_1)\{a_1\}$，将 $B_1$ 的两个综合属性直接复制到 $B$ 中。</li>
+<li>$B\rightarrow B_1 \mbox{ or } MB_2\{a_1\}, M\rightarrow \epsilon\{a_2\}$，其中 $a_2$ 动作是将下一条要生成的语句（实际上就是 $B_2$ 的第一条语句）的编号放在 $M$ 的某个综合属性 <code>quad</code> 中；$a_1$ 动作是将 $M$ 的 <code>quad</code> 属性填入 $B_1$ 的 <code>FalseList</code> 中（这样的话 $B_1$ 为假就会开始判定 $B_2$，并将 $B_1$ 和 $B_2$ 的 <code>TrueList</code> 合并作为 $B$ 的 <code>TrueList</code>（如果两个任意一个满足应该会跳转到 $B$ 的真出口），随后将 $B_2$ 的 <code>FalseList</code> 作为 $B$ 的 <code>FalseList</code>（注意如果执行到了 $B_2$ 的 <code>FalseList</code> 中的某个元素，则必然 $B_1$ 为假）。</li>
+</ul>
+<p>其它情况略去，大致思想就是上面那样。</p>
+<h2 id="控制流语句的回填"><a href="#控制流语句的回填" class="headerlink" title="控制流语句的回填"></a>控制流语句的回填</h2><p>除了布尔表达式，凡是带有跳转的语句都可以使用到回填技术。</p>
+<p>为此，需要对每个语句 $S$（可能是复合语句）设置一个综合属性 <code>NextList</code>，它是一个集合，元素是这个语句翻译出的中间表示的那些跳转指令中，需要跳转到 $S$ 的后续第一条指令的那些跳转指令的编号。</p>
+<p>一些例子和解释：</p>
+<ul>
+<li>$S\rightarrow\mbox{if }B\mbox{ then }M_1S_1N\mbox{ else }M_2S_2\{a_1\}$，其中两个标记非终结符 $M$ 是将生成的下一条语句放入自己的 <code>quad</code> 综合属性中：这个是希望翻译条件跳转语句。$a_1$ 动作是将 $M_1$ 的 <code>quad</code> 填入 $B$ 的 <code>TrueList</code> 中，将 $M_2$ 的 <code>quad</code> 放入 $B$ 的 <code>FalseList</code> 中，将 $S_1,S_2,N$ 的 <code>NextList</code> 合并作为 $S$ 的 <code>NextList</code>。标记非终结符 $N$ 的动作是生成一条未指明目的的跳转语句，并放入自己的 <code>NextList</code> 中（防止 $S_1$ 运行完了之后又开始运行 $S_2$）。</li>
+<li>$S\rightarrow \mbox{while }M_1B\mbox{ do }M_2S_1\{a_1\}$，其中两个标记非终结符 $M$ 是将生成的下一条语句放入自己的 <code>quad</code> 综合属性中：这个是希望翻译循环语句。$a_1$ 动作是将 $M_1$ 的 <code>quad</code> 填入 $S_1$ 的 <code>NextList</code> 中，将 $M_2$ 的 <code>quad</code> 填入 $B$ 的 <code>TrueList</code> 中，将 $B$ 的 <code>FalseList</code> 赋给 $S$ 的 <code>NextList</code>，随后生成一条跳向 $M_1$ 的 <code>quad</code> 的跳转指令。</li>
+<li>$S\rightarrow S_1MS_2\{a_1\}$：两条语句如何进行操作，其实很简单的。$M$ 会生成一条语句放入自己的 <code>quad</code> 属性，$a_1$ 操作就是将 $M$ 的 <code>quad</code> 填入 $S_1$ 的 <code>NextList</code>，将 $S_2$ 的 <code>NextList</code> 作为 $S$ 的 <code>NextList</code>。</li>
+</ul>
+<h2 id="switch-语句的翻译"><a href="#switch-语句的翻译" class="headerlink" title="switch 语句的翻译"></a>switch 语句的翻译</h2><p>这节没什么新的地方，switch 语句的翻译有两种方案：</p>
+<ul>
+<li>逐个翻译各个 case。进入后依次判断各个 case 是否成立，如果成立的话就不跳转开始执行 case 对应的代码，否则跳转到下一个 case 进行判断。执行完对应的 case 后统一跳转到某个出口语句。</li>
+<li>也是逐个翻译各个 case。但是进入后向跳转到一个集中化的专门负责选择 case 的地方，这个地方对各个 case 进行匹配，如果匹配跳转到对应的 case 代码，否则不跳转，匹配下一个 case。这样做有利于生成更加高效的 case 选择指令。</li>
+</ul>
+<h2 id="过程调用语句的翻译"><a href="#过程调用语句的翻译" class="headerlink" title="过程调用语句的翻译"></a>过程调用语句的翻译</h2><p>这节主要讲的就是在进行过程调用的时候可以维护一个参数的队列。对于计算出的每个参数（参数可能是以表达式的形式给出的，因此需要额外的计算代码），将这个参数压入队列中。当所有参数计算完毕后，从队列中取出所有的已计算参数，然后执行过程调用。</p>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-14/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -597,20 +988,10 @@
       
         
           
-            <p>
-              中间代码生成-3控制流语句及其 SDT控制流语句分为顺序语句、条件语句和循环语句。条件语句有 if a then b 和 if a then b else c 两种，循环语句格式为 while a b。构造其 SDT 时需要在条件语句的条件中引入条件为真和条件为假时应该跳转的地址；在循环语句的条件中引入条件继续满足和不再满足时应当跳转的地址。
-布尔表达式及其 SDT布尔表达式就是使用 true、false、两个表达式的比较和与或非以及括号构造出的表达式，最后的结果要么为真要么为假。如果布尔表达式只会被用于流程控制中，那么可以将整个表达式拆成多个运算过程，每个运算过程结束后都执行一次跳转。这样做
-              ...
-            </p>
-          <!--noindex-->
+            <h1 id="中间代码生成-3"><a href="#中间代码生成-3" class="headerlink" title="中间代码生成-3"></a>中间代码生成-3</h1><h2 id="控制流语句及其-SDT"><a href="#控制流语句及其-SDT" class="headerlink" title="控制流语句及其 SDT"></a>控制流语句及其 SDT</h2><p>控制流语句分为顺序语句、条件语句和循环语句。条件语句有 <code>if a then b</code> 和 <code>if a then b else c</code> 两种，循环语句格式为 <code>while a b</code>。构造其 SDT 时需要在条件语句的条件中引入条件为真和条件为假时应该跳转的地址；在循环语句的条件中引入条件继续满足和不再满足时应当跳转的地址。</p>
+<h2 id="布尔表达式及其-SDT"><a href="#布尔表达式及其-SDT" class="headerlink" title="布尔表达式及其 SDT"></a>布尔表达式及其 SDT</h2><p>布尔表达式就是使用 <code>true</code>、<code>false</code>、两个表达式的比较和与或非以及括号构造出的表达式，最后的结果要么为真要么为假。如果布尔表达式只会被用于流程控制中，那么可以将整个表达式拆成多个运算过程，每个运算过程结束后都执行一次跳转。这样做会导致各种逻辑运算符不出现在翻译后的代码中，翻译后的代码使用小的条件语句来实现宏观的逻辑上的逻辑运算。<del>不过我觉得这种做法不好，它把布尔表达式和其它的算术表达式的统一性破坏掉了。</del> 这样处理的目的是实现短路求值，因此不能和普通的算术表达式作类似处理。</p>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-13/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -763,21 +1144,10 @@
       
         
           
-            <p>
-              中间代码生成-2简单赋值语句的翻译这节比较简单，讲的是如何将赋值语句翻译为三地址码的形式。唯一值得一提的是 增量翻译 的技术。如果翻译过程中有一个综合属性的计算有这样的特征：父结点的综合属性实际上就是各个子结点的综合属性拼接后在加上父结点的特定的信息，那么可以将这样的属性放在一个全局的地方来避免每次都要复制的情况。
-数组引用的翻译这节比较简单，主要就是计算出要访问的数组所在的地址。为了达到这个目的需要在一些非终结符中存入数组的类型（使用类型表达式）、首地址和偏移量。
+            <h1 id="中间代码生成-2"><a href="#中间代码生成-2" class="headerlink" title="中间代码生成-2"></a>中间代码生成-2</h1><h2 id="简单赋值语句的翻译"><a href="#简单赋值语句的翻译" class="headerlink" title="简单赋值语句的翻译"></a>简单赋值语句的翻译</h2><p>这节比较简单，讲的是如何将赋值语句翻译为三地址码的形式。唯一值得一提的是 <strong>增量翻译</strong> 的技术。如果翻译过程中有一个综合属性的计算有这样的特征：父结点的综合属性实际上就是各个子结点的综合属性拼接后在加上父结点的特定的信息，那么可以将这样的属性放在一个全局的地方来避免每次都要复制的情况。</p>
+<h2 id="数组引用的翻译"><a href="#数组引用的翻译" class="headerlink" title="数组引用的翻译"></a>数组引用的翻译</h2><p>这节比较简单，主要就是计算出要访问的数组所在的地址。为了达到这个目的需要在一些非终结符中存入数组的类型（使用类型表达式）、首地址和偏移量。</p>
 
-              
-            </p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-12/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -930,23 +1300,23 @@
       
         
           
-            <p>
-              中间代码生成-1中间代码生成重点在于各种语句如何进行翻译。下面两节面向的是声明语句的翻译。个人感觉这附近都是在说语法制导翻译的具体应用形式，没有多少理论上的东西了。
-类型表达式为了知道声明语句如何翻译，需要搞清楚类型和类型表达式。
-类型表达式实际上表示的就是一个特定的类型。平时在高级语言里面写的 int a[50] 这种实际上是一种语法糖，a 的类型是 int[50]，类型表达式就是要让 int[50] 这种表述更加底层。
-基本类型都是类型表达式，也就是说 int 和 void 这种就是一个完整的类型表达式。
-复合类型可以通过更加基础的类型表达式通过 类型构造符 得到，几个常用的类型构造符如下
-              ...
-            </p>
-          <!--noindex-->
+            <h1 id="中间代码生成-1"><a href="#中间代码生成-1" class="headerlink" title="中间代码生成-1"></a>中间代码生成-1</h1><p>中间代码生成重点在于各种语句如何进行翻译。下面两节面向的是声明语句的翻译。个人感觉这附近都是在说语法制导翻译的具体应用形式，没有多少理论上的东西了。</p>
+<h2 id="类型表达式"><a href="#类型表达式" class="headerlink" title="类型表达式"></a>类型表达式</h2><p>为了知道声明语句如何翻译，需要搞清楚类型和类型表达式。</p>
+<p>类型表达式实际上表示的就是一个特定的类型。平时在高级语言里面写的 <code>int a[50]</code> 这种实际上是一种语法糖，<code>a</code> 的类型是 <code>int[50]</code>，类型表达式就是要让 <code>int[50]</code> 这种表述更加底层。</p>
+<p>基本类型都是类型表达式，也就是说 <code>int</code> 和 <code>void</code> 这种就是一个完整的类型表达式。</p>
+<p>复合类型可以通过更加基础的类型表达式通过 <strong>类型构造符</strong> 得到，几个常用的类型构造符如下：</p>
+<ul>
+<li><strong>数组构造符</strong>：例如 <code>int[50][20]</code> 实际上对应着一个类型表达式 $array(50, array(50, int))$。</li>
+<li><strong>指针构造符</strong>：例如 <code>int**</code> 实际上对应着一个类型表达式 $pointer(pointer(int))$。</li>
+<li><strong>笛卡儿积构造符</strong>：我觉得这个构造符用于某些语言中的匿名元组，例如 <code>(int, bool)</code> 对应着 $int\times bool$，注意这个构造符在这里是中缀的。</li>
+<li><strong>函数构造符</strong>：这个构造符接收两个类型表达式，得到一个新的类型表达式表示函数。比如 <code>function&lt;int(bool)&gt;</code> 对应着 $bool\rightarrow int$，如果有多个参数的话可以使用笛卡儿积打包。</li>
+<li><strong>记录构造符</strong>：实际上就是结构体的构造符，使用若干笛卡儿积记录每个记录中域的名称和类型（不知道为什么要单独列出来）。</li>
+</ul>
+<p>通过这些构造符和基本类型基本上可以构造出语言中出现得了的类型了。</p>
+<h2 id="声明语句的翻译"><a href="#声明语句的翻译" class="headerlink" title="声明语句的翻译"></a>声明语句的翻译</h2><p>对于声明语句，语义分析的目的就是找到声明的变量的名字、类型、宽度，并将这些信息存放到符号表中。在语义分析过程中还能够为这些声明出的变量提供相对地址，相对地址也存放在符号表中。</p>
+<p>每当语义分析过程中发现了一个新的变量的时候就可以在符号表中分配新的入口了，这个分配过程可以看作是某种副作用。</p>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-11/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1099,24 +1469,27 @@
       
         
           
-            <p>
-              语法制导翻译-3以下两节讨论的是如何实现 L-SDD 对应的翻译过程。
-在递归的预测分析过程中进行翻译在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：
+            <h1 id="语法制导翻译-3"><a href="#语法制导翻译-3" class="headerlink" title="语法制导翻译-3"></a>语法制导翻译-3</h1><p>以下两节讨论的是如何实现 L-SDD 对应的翻译过程。</p>
+<h2 id="在递归的预测分析过程中进行翻译"><a href="#在递归的预测分析过程中进行翻译" class="headerlink" title="在递归的预测分析过程中进行翻译"></a>在递归的预测分析过程中进行翻译</h2><p>在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：</p>
+<ul>
+<li><p>对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合属性。在之前的笔记中已经指出继承属性在非终结符分析前得出，综合属性在非终结符分析后得出，这么做是合理的。</p>
+</li>
+<li><p>在每个非终结符对应的过程内部，会以局部变量的形式维护要用到的所有属性（不管是不是自己的）。例如对于这个嵌入代码的产生式 $T\rightarrow F\{K.inh = F.val\}K\{T.val = K.syn\}$（其中 inh 表示继承属性，syn 表示综合属性，val 表示计算出的属性），转换为 $T$ 对应的过程就应该是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">T(state) -&gt; Tval:</span><br><span class="line">    Fval = F(state)</span><br><span class="line">    Kinh = Fval</span><br><span class="line"></span><br><span class="line">    state_update(state)</span><br><span class="line"></span><br><span class="line">    Ksyn = K(state, Kinh)</span><br><span class="line">    Tval = Ksyn</span><br><span class="line"></span><br><span class="line">    state_update(state)</span><br><span class="line">    <span class="keyword">return</span> Tval</span><br></pre></td></tr></table></figure>
+<p><code>state</code> 中存放的是当前的解析进度，可以看到这种实现方式几乎是在翻译 SDT，很直观。</p>
+</li>
+<li><p>在主函数中，解析初始符号得到初始符号对应的综合属性即可。此时翻译过程完成。</p>
+</li>
+</ul>
+<p>这种实现方式还比较优雅。</p>
+<h2 id="L-属性定义的自底向上翻译"><a href="#L-属性定义的自底向上翻译" class="headerlink" title="L-属性定义的自底向上翻译"></a>L-属性定义的自底向上翻译</h2><p>这里涉及的是如何使用 LR 分析技术解决 LL 文法对应的语言，因为自底向上翻译一般处理的是 LR 文法。</p>
+<p>在 S-SDD 中使用自底向上翻译时，对应的状态栈和符号栈旁边会有一个属性栈。对于 L-SDD，也是如此。</p>
+<p>对于一个 L-SDD，可以通过如下的转换使得所有的语义动作都位于产生式的末尾，这个过程会改写文法。例如对于 $A\rightarrow \{a_1\}B\{a_2\}$，引入产生式 $M\rightarrow \epsilon \{a_1’\}$ 即可将原来的产生式变换到 $A\rightarrow MB \{a_2\}$。这个产生式的语义动作实际上完成了它替换掉的那个语义动作要做的事情。这样引入的非终结符称为 <strong>标记非终结符</strong>。当然想想就知道变化完了之后肯定不是 S-SDD，这是因为 $a_1’$ 能够处理的操作比 $a_1$ 要少，$a_1$ 要处理的可能是计算 $B$ 的某个继承属性，但是变化完成后 $a_1’$ 逻辑上不能访问到 $B$，它只能计算出 $M$ 的综合属性。但是因为这个产生式被专用，所以实现上可以让 $a_1’$ 能够访问到 $B$，只不过不太干净罢了。</p>
+<p>形式上来讲所有的语义动作都位于产生式的末尾了，就可以像 S-SDD 中那样操作，<strong>每次归约时执行语义动作</strong>。变换完成后，对于每个产生式都可以静态地（不依赖于具体的语言组成）写出每个产生式对应的执行过程（可以实际执行的对栈的操作）。需要注意的是，对于引入的标记非终结符，它对应的那个语义动作，会将该标记非终结符左边的那些符号的属性复制一下作为为自己的继承属性，并计算出一个综合属性。这个综合属性实际上就是标记非终结符右边的那个符号 $B$ 想要将计算的继承属性。因此如果后续的处理过程中需要用到 $B$ 的继承属性的话要找的是标记非终结符的综合属性。问题是每次是否都能找到呢？实际上 $M$ 就在 $B$ 的左边，因此实际实现和运行中这个综合属性一定能够轻松找到。</p>
+<p>由于引入的标记非终结符推导出空串，所以标记非终结符进行归约是每次都是往栈里面压入了一个新的元素。实际上可以将这个压入的元素看作是某种存放了它右边那个符号的继承属性的特殊元素容器，当后面的符号要引用前面的符号的属性时，不管是继承属性（此时是对应标记非终结符的综合属性）还是综合属性（此时就是对应符号的综合属性）都能够找到。这样说就比较说得通了。</p>
+<p>这一节因为没有看到代码实现，所以自己实际上只有概念和方法上的了解。一些细节的地方估计有疏漏。</p>
 
-对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合属性。在之前的笔记中已经指出继承属性在非终结符分析前得出，综合属性在非终结符分析后得出，这么做是合理的。
-
-在每个非终结符对应的过程内部，会以局部变量的形式维护要用到的所有属性（不管是不是自己的）。例
-              ...
-            </p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-10/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1269,26 +1642,38 @@
       
         
           
-            <p>
-              语法制导翻译-2语法制导翻译方案 SDT语法制导翻译方案是在产生式右部嵌入了程序片段（语义动作）的 CFG。
-S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
+            <h1 id="语法制导翻译-2"><a href="#语法制导翻译-2" class="headerlink" title="语法制导翻译-2"></a>语法制导翻译-2</h1><h2 id="语法制导翻译方案-SDT"><a href="#语法制导翻译方案-SDT" class="headerlink" title="语法制导翻译方案 SDT"></a>语法制导翻译方案 SDT</h2><p>语法制导翻译方案是在产生式右部嵌入了程序片段（语义动作）的 CFG。</p>
+<p>S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：</p>
+<ul>
+<li>文法可以使用 LR 分析技术，SDD 是 S 属性的</li>
+<li>文法可以使用 LL 分析技术，SDD 是 L 属性的</li>
+</ul>
+<h3 id="使用-SDT-实现-S-SDD"><a href="#使用-SDT-实现-S-SDD" class="headerlink" title="使用 SDT 实现 S-SDD"></a>使用 SDT 实现 S-SDD</h3><p>S-SDD 使用的属性都是综合属性，对于每个产生式计算属性都是在计算产生式左部的符号的属性，只要将计算过程嵌入到整个产生式最右部即可。</p>
+<p>例如对产生式 $T\rightarrow T_1\ast F$ 以及对应的语义规则 $T.val = T_1.val \times F.val$，在 SDT 中这个规则就是 $T\rightarrow T_1\ast F\{T.val = T_1.val \times F.val\}$。</p>
+<p>使用 SDT 实现 S-SDD 时，如果对应的文法使用 LR 分析进行了语法分析，那么对应的语义属性的计算可以在语法分析过程中完成。使用 LR 分析时使用到了符号栈和状态栈，可以设置一个平行的 <strong>属性栈</strong> 用来存放符号栈中对应位置的符号的综合属性。因为 S-SDD 的特性，可以在语法分析过程中发生归约时计算处归约到的符号的综合属性，查看对应的语义规则，将属性栈中位于顶层的若干属性弹出，计算完毕后压入栈中即可。<strong>属性栈、符号栈、状态栈中的元素数目一般情况下是相同的。</strong></p>
+<h3 id="使用-SDT-实现-L-SDD"><a href="#使用-SDT-实现-L-SDD" class="headerlink" title="使用 SDT 实现 L-SDD"></a>使用 SDT 实现 L-SDD</h3><p>L-SDD 使用的属性是综合属性或者受限的继承属性，对于每个产生式计算属性都是在计算产生式左部的符号的综合属性或者右部符号的继承属性，只要将计算过程嵌入到整个产生式右部相应位置即可。</p>
+<p>如果这个语义规则计算的是产生式左部符号综合属性，就把语义规则嵌入到产生式末尾；如果这个语义规则计算的是右部某个符号 $A$ 的继承属性，那么它会依赖于产生式右部中位于该符号左边的符号的属性，因此可以将语义规则嵌入到 $A$ 的左边并紧邻 $A$。由于这个计算过程中可能还要依赖自己的属性，所以嵌入的时候要按照某种拓扑序进行嵌入。</p>
+<p>例如对产生式 $T\rightarrow FT’$ 和语义规则 $T’.inh = F.val; T.val = T’.syn$，在 SDT 中这个规则就是 $T\rightarrow F\{T’.inh = F.val\}T’\{T.val = T’.syn\}$。</p>
+<p>如果 L-SDD 的文法可以使用 LL 分析技术，那么它的 SDT 可以在 LL 语法分析过程或 LR 语法分析过程中实现。对应地有三种实现方式：</p>
+<ul>
+<li>在非递归的预测分析法中继行语义翻译</li>
+<li>在递归的预测分析法中继行语义翻译</li>
+<li>在 LR 分析过程中实现语义翻译</li>
+</ul>
+<h2 id="在非递归的预测分析过程中进行翻译"><a href="#在非递归的预测分析过程中进行翻译" class="headerlink" title="在非递归的预测分析过程中进行翻译"></a>在非递归的预测分析过程中进行翻译</h2><p>预测分析就是说在 LL 分析过程中往前看若干个符号就知道要使用哪个产生式。非递归的实现使用到了一个存放终结符和非终结符的栈。</p>
+<p>为了使用非递归的预测分析技术实现 L-SDD，需要在栈中引入更多种类的元素，分别是 <strong>表示语义动作的元素</strong> 和 <strong>表示综合属性</strong> 的元素；此外，对于每个元素还需要一个结构来维护它的属性信息。对于以下的嵌有语义动作的产生式 $A\rightarrow\{a_1\}\beta_1\{a_2\}\beta_2\{a_3\}\beta_3\{a_4\}$，其中 $a_i$ 是动作，根据前面的原则，$a_1\cdots a_3$ 计算的是各自右边的符号的继承属性，而 $a_4$ 计算的是 $A$ 的综合属性。</p>
+<p>现在假设栈顶存放的元素就是 $A$，并且根据预测分析，要使用的产生式就是上面的产生式，那么应该有这些元素被压入栈中（左边栈顶）：$\{a_1\}\rightarrow \beta_1\rightarrow \beta_{1,syn}\rightarrow\{a_2\} \rightarrow \beta_2\rightarrow \beta_{2, syn} \rightarrow \{a_3\} \rightarrow \beta_3\rightarrow \beta_{3, syn} \rightarrow \{a_4\}$。其中 $\beta_{i, syn}$ 表示计算 $\beta_i$ 的综合属性（如果需要的话），因为对于一个符号来讲它的综合属性应该是在解析完成后被求出，而继承属性应该在开始解析前被求出（它的解析过程中以它为左部的产生式会用到它的继承属性），这个顺序是科学的。</p>
+<p>大体的思路其实和非递归预测分析的算法差不多，不同之处在于：</p>
+<ul>
+<li>当栈顶的符号是表示语义动作的元素时（如 $\{a_1\}$），执行这个语义动作然后弹出该元素。一个典型的动作会计算其它元素的属性。通过一些适当的设置可以让这个元素存放的是指向某个函数的指针从而让代码可以直接被执行，函数中会直接访问栈。</li>
+<li>当栈顶的符号是表示综合属性的元素时（如 $\beta_{2, syn}$），弹出这个综合属性。<strong>但是</strong>，有些属性的计算会使用到这个综合属性，因此弹出前需要先把它的属性备份到那些语义动作元素中，这些语义动作元素应该位于栈中。具体是要备份到哪些语义动作元素中其实是静态的，它只依赖于这个符号被压入栈中时是随着哪一条产生式被压入的。例如，如果当前的栈顶符号是 $\beta_{2, syn}$ 并且正要出栈，那么会用到它的语义动作元素只可能是 $\{a_3\}$ 或者 $\{a_4\}$，把 $\beta_{2, syn}$ 对应的信息给它们就行了。这就使得这些表示综合属性的元素自己也存放某种策略性的东西来制导它们该如何退栈。</li>
+<li>当栈顶符号是非终结符时（如 $A$），原来的操作是将它退栈并将要使用的产生式右部的符号压栈。但是右部符号中某些属性的计算可能依赖于这个退栈的非终结符的继承属性，因此需要和上一点一样做一些备份。不同的是需要将这个继承属性备份到还没有压入栈中的元素，也就是说可能需要某种压栈完成后再执行备份功能的机制。这个决策过程依然是静态的。</li>
+<li>当栈顶符号是终结符时，正常操作。另外，其实如果产生式中有终结符，压栈的时候可以不压入对应的终结符对应的综合属性的元素，不过我觉得为了统一性可以这么搞。</li>
+</ul>
+<p>上面所说的静态，指的是给定了 SDT 后实际上就已经可以对于每个产生式（含嵌入代码）中的每个符号得到它出栈的时候应该执行的动作，和运行时得到的语言输入无关。</p>
+<p>我觉得这个算法不太优雅，为啥一个栈里面会有几种不同元素还得动态改变操作的？希望剩下两个算法看着舒服点。</p>
 
-文法可以使用 LR 分析技术，SDD 是 S 属性的
-文法可以使用 LL 分析技术，SDD 是 L 属性的
-
-使用 SDT 实现 S-SDDS-SDD 使用的属性都是综合属性，对于每个产生式计算属性都是在计算产生式左部的符号的属性，只要将计算过程嵌入到整个产生式最右部即可。
-例如对产生式 $T\rightarrow T_1\ast F$ 以及对应的语义规则 $T.val = T_1.val \times F.
-              ...
-            </p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1441,20 +1826,48 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
       
         
           
-            <p>
-              语法制导翻译-1语法制导翻译概述语法制导翻译思路编译过程中经过词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成这些步骤。语义分析完成后需要某种中间表示作为中间代码生成的输入，如果这种中间表示就是中间代码的话，这两步可以合成一步叫做 语义翻译；语法分析的结果需要写成某种中间表示作为语义翻译的输入，如果这两步合成一起的话就叫做 语法制导翻译。
-其实最关键的问题在于如何表示语义。语法制导翻译使用 CFG 引导对语言的翻译。CFG 中的每个文法符号（终结符和非终结符）都会有自己的 语义属性，这个属性实际上就是一种对语义的表示。语义属性的计算需要用到 语义规则，语义规则往往和产生式（这
-              ...
-            </p>
-          <!--noindex-->
+            <h1 id="语法制导翻译-1"><a href="#语法制导翻译-1" class="headerlink" title="语法制导翻译-1"></a>语法制导翻译-1</h1><h2 id="语法制导翻译概述"><a href="#语法制导翻译概述" class="headerlink" title="语法制导翻译概述"></a>语法制导翻译概述</h2><h3 id="语法制导翻译思路"><a href="#语法制导翻译思路" class="headerlink" title="语法制导翻译思路"></a>语法制导翻译思路</h3><p>编译过程中经过词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成这些步骤。语义分析完成后需要某种中间表示作为中间代码生成的输入，如果这种中间表示就是中间代码的话，这两步可以合成一步叫做 <strong>语义翻译</strong>；语法分析的结果需要写成某种中间表示作为语义翻译的输入，如果这两步合成一起的话就叫做 <strong>语法制导翻译</strong>。</p>
+<p>其实最关键的问题在于如何表示语义。语法制导翻译使用 CFG 引导对语言的翻译。CFG 中的每个文法符号（终结符和非终结符）都会有自己的 <strong>语义属性</strong>，这个属性实际上就是一种对语义的表示。语义属性的计算需要用到 <strong>语义规则</strong>，语义规则往往和产生式（这里有个牛逼名字叫 <strong>语法规则</strong>）关联在一起。</p>
+<p>如果需要得到一个词法单元流的语义信息，应该先构建它的语法分析树，然后按照各个产生式对应的语义规则计算出每个结点中对应的符号的语义属性，这样做的话实际上每个结点都会具有自己的语义属性。</p>
+<h3 id="语法制导定义和语法制导翻译方案简介"><a href="#语法制导定义和语法制导翻译方案简介" class="headerlink" title="语法制导定义和语法制导翻译方案简介"></a>语法制导定义和语法制导翻译方案简介</h3><p>语法制导定义（Syntax-Directed Definitions，SDD）是一套语法制导翻译的规则，它如上面描述的一样：</p>
+<ul>
+<li>对文法每个符号关联了若干个语义属性</li>
+<li>对文法的每个产生式（语法规则）关联了若干个语义规则，这些语义规则将用来计算对应的产生式中符号的各个语义属性。</li>
+</ul>
+<p>表示上，对于一个符号 $X$ 的属性 $a$，使用 $X.a$ 来表示这个符号的属性。一个产生式中如果有多个同名符号会加下标以示区别。</p>
+<p>一个示例是如下的文法以及对应的语义属性和语义规则（声明多个变量）：</p>
+<script type="math/tex; mode=display">
+\begin{array}{cccc}
+\begin{aligned}
+D\rightarrow & TL             & L.type   & = T.type        \\
+T\rightarrow & \texttt{int}   & T.type   & = \texttt{int}  \\
+T\rightarrow & \texttt{real}  & T.type   & = \texttt{real} \\
+L\rightarrow & L_1, \mbox{id} & L_1.type & =  L.type
+\end{aligned}
+\end{array}</script><p>可以看到语法制导定义以一种 <strong>定义的形式</strong> 给出了各个符号的语义属性和这些属性的计算规则，但是具体怎么实现并没有说明。语法制导翻译方案（Syntax-Directed Translation Scheme，SDT）更进一步，在 SDD 的基础上将何时计算语义属性和计算方式以程序片段伪码（称作 <strong>语义动作</strong>）形式嵌入到了产生式中，使得 SDD 的实现方式被显式指明。</p>
+<h2 id="语法制导定义-SDD"><a href="#语法制导定义-SDD" class="headerlink" title="语法制导定义 SDD"></a>语法制导定义 SDD</h2><h3 id="综合属性与继承属性"><a href="#综合属性与继承属性" class="headerlink" title="综合属性与继承属性"></a>综合属性与继承属性</h3><p>对于每个符号，在处于语法分析树上的某个结点时，它的属性的计算有可能会依赖于其它结点的属性或者自己的其它属性。</p>
+<p>对于一个非终结符，在语法分析树上，如果它的某个属性的计算只依赖于它本身的属性值以及它的子结点的属性值，这样的属性称作 <strong>综合属性</strong>。终结符也可以有综合属性，但是这种综合属性是由词法分析器提供的，不是由语义规则计算得出。</p>
+<p>对于一个非终结符，在语法分析树上，如果它的某个属性的计算只依赖于它本身的属性值以及它的父结点和兄弟结点的属性值，这样的属性称作 <strong>继承属性</strong>。终结符没有继承属性值，因为它所有的属性都是综合属性。</p>
+<p>注意按照上面的定义一个属性不可能同时为综合属性和继承属性。综合属性和继承属性都是对结点说的，而不是对符号说的。</p>
+<h3 id="其它一些定义"><a href="#其它一些定义" class="headerlink" title="其它一些定义"></a>其它一些定义</h3><p>在 SDD 中，语义规则可能含有 <strong>副作用</strong>，例如修改符号表或者打印了一些内容，不是纯粹的赋值计算语句。如果一个 SDD 的任意语义规则没有副作用，这个 SDD 称作是 <strong>属性文法</strong>。属性文法中的语法规则只使用其它的语义属性和常量来计算语义属性。</p>
+<p>当使用 SDD 时，第一步先建立了语法分析树，如果这个时候将每个结点的语义属性计算出来直接写到语法分析树的结点上，此时的语法分析树就变成了 <strong>注释分析树</strong>，即结点带有语义属性的分析树。</p>
+<h2 id="SDD-的求值顺序"><a href="#SDD-的求值顺序" class="headerlink" title="SDD 的求值顺序"></a>SDD 的求值顺序</h2><p>SDD 对文法中的符号定义了语义属性，对产生式关联了语义规则。如何使用这些语义规则计算语义属性？</p>
+<p>如果将一个语法分析树上的所有结点的所有语义属性列出来，会得到很多的语义属性。它们之间的依赖关系会形成一张有向图，称作 <strong>依赖图</strong>。对这个图进行拓扑排序，如果排序存在的话按照这个顺序对语义属性进行计算即可。</p>
+<p>特别地，如果所有的属性都是综合属性，可以自底向上依次计算。</p>
+<p>依赖图的拓扑排序可能不存在。即使一个 SDD 的所有属性都是综合属性或者继承属性，拓扑排序也可能不存在。拓扑排序存在的充要条件是图中没有环。</p>
+<p>对于一个给定的 SDD，难以确定这个 SDD 是否会在某种情况下产生有环的依赖图。但是通过适当设计 SDD 中的语义规则可以保证依赖图无环，并且还可以使语义属性的计算过程和语法分析结合在一起高效完成。这样的例子是 <strong>S-属性</strong> 和 <strong>L-属性</strong>。</p>
+<h2 id="S-属性定义和-L-属性定义"><a href="#S-属性定义和-L-属性定义" class="headerlink" title="S-属性定义和 L-属性定义"></a>S-属性定义和 L-属性定义</h2><h3 id="S-属性定义"><a href="#S-属性定义" class="headerlink" title="S-属性定义"></a>S-属性定义</h3><p>如果一个 SDD 中所有的属性都是综合属性，这样的 SDD 称作是 S-SDD。S-SDD 中语义属性的计算可以自底向上计算得到，并且很容易在自底向上语法分析过程中实现。</p>
+<h3 id="L-属性定义"><a href="#L-属性定义" class="headerlink" title="L-属性定义"></a>L-属性定义</h3><p>如果一个 SDD 中的每个属性要么是综合属性，要么是 <strong>受限的</strong> 的继承属性（下面会写具体限制），则这个 SDD 称作 L-SDD。限制条件为：</p>
+<ul>
+<li>可以依赖父结点属性，但是只能依赖父结点的继承属性而不能是其它属性。</li>
+<li>可以依赖兄弟结点的属性，但是只能依赖产生式中位于自己左边的那些符号的属性。</li>
+<li>可以依赖自己的属性，但是自己的属性不能产生循环依赖。</li>
+</ul>
+<p>其中不能依赖父结点的综合属性是因为父结点的综合属性会依赖子结点的属性，这可能造成循环依赖。</p>
+<hr>
+<p>这两种属性都可以保证依赖图中没有环出现。S-属性是特殊的 L-属性。</p>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1607,361 +2020,91 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
       
         
           
-            <p>
-              语法分析-4$SLR$ 分析$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲突。但是 $LR(0)$ 分析并没有往前看符号，如果这个文法中， $a$ 不在 $E$ 的 Follow 集中，那么显然使用第一个产生式是没有意义的（因为归约后的 $E$ 后面不可能是 $a$），$S
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-6/" class="post-title-link" itemprop="url">编译原理慕课笔记 6</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:19:46" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:46+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
+            <h1 id="语法分析-4"><a href="#语法分析-4" class="headerlink" title="语法分析-4"></a>语法分析-4</h1><h2 id="SLR-分析"><a href="#SLR-分析" class="headerlink" title="$SLR$ 分析"></a>$SLR$ 分析</h2><p>$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲突。但是 $LR(0)$ 分析并没有往前看符号，如果这个文法中， $a$ 不在 $E$ 的 Follow 集中，那么显然使用第一个产生式是没有意义的（因为归约后的 $E$ 后面不可能是 $a$），$SLR$ 分析改进了这一点，使得类似这样的冲突得以消解。</p>
+<h3 id="SLR-分析的核心思路"><a href="#SLR-分析的核心思路" class="headerlink" title="$SLR$ 分析的核心思路"></a>$SLR$ 分析的核心思路</h3><p>对于一个状态集，如果有状态</p>
+<script type="math/tex; mode=display">
+\begin{array}{cc}
+\begin{align}
+A_1 \rightarrow & \alpha_1\cdot a_1 \beta_1 \\
+\vdots \\
+A_m \rightarrow & \alpha_m\cdot a_m \beta_m \\
+B_1 \rightarrow & \gamma_1\cdot \\
+\vdots \\
+B_n \rightarrow & \gamma_n\cdot \\
+\end{align}
+\end{array}</script><p>并且已知 $\{a_1,\cdots,a_m\}, \mbox{Follow}(B_1), \cdots, \mbox{Follow}(B_n)$ 两两不交，那么对于输入的符号：</p>
+<ul>
+<li>若在 $\{a_1,\cdots,a_m\}$ 中，则可以进行相关的 <strong>移入操作</strong>。</li>
+<li>若在 $\mbox{Follow}(B_k)$ 中，则可以进行相关的 <strong>归约操作</strong>。</li>
+<li>否则报错。</li>
+</ul>
+<p>这个修改听上去简直就是废话，不过它解决了一部分的移入归约冲突。</p>
+<h3 id="SLR-分析表构造过程"><a href="#SLR-分析表构造过程" class="headerlink" title="$SLR$ 分析表构造过程"></a>$SLR$ 分析表构造过程</h3><p>这段从 $LR(0)$ 分析表构造过程修改而来，区别在于 3 的第三条中对 $a$ 的来源有了更加严格的限制。</p>
+<p>对一个文法构造对应的 $SLR$ 分析表：</p>
+<ol>
+<li>构造增广文法 $G$</li>
+<li>得到 $G$ 的规范 $LR(0)$ 项集族 $C$</li>
+<li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
+<li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in \mbox{Follow}(A), \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>其它所有情况都设为 $err$</li>
+</ul>
+</li>
+</ol>
+<p><strong>如果一个文法构造完 $SLR$ 分析表后无冲突，称为 $SLR$ 文法。</strong></p>
+<h2 id="LR-1-分析"><a href="#LR-1-分析" class="headerlink" title="$LR(1)$ 分析"></a>$LR(1)$ 分析</h2><p>如果仔细研究 $SLR$ 的处理方式就会发现它实际上是将可以归约的情况作了一些限制，使得有时移入-归约冲突被消除了，但是这种限制加上后之后依然是某种必要条件而不是充分条件（对于一个产生式，只有下一个符号是产生式左部符号的 Follow 集中的元素时才能进行归约，但是实际上这种归约也不一定正确）。实际上可以观察到在分析的过程中，某些条件下进行归约时，这个符号不仅需要在产生符号的 Follow 集中，而且要在某个特定的子集中。</p>
+<p>$LR(1)$ 分析对这种情况做了改进。使用 $LR(1)$ 分析时每个项目还要加上一个额外的 <strong>展望符</strong>。例如对于 $A\rightarrow\alpha \cdot$ 这个项目加上了展望符 $b$，完整的产生式是 $A\rightarrow\alpha\cdot, b$，表示如果希望在下一步中进行归约，那么未移入的第一个终结符需要是 $b$。<strong>展望符是产生式左部符号 Follow 集的子集（一般是真子集）。</strong>一个 $LR(1)$ 符号的形式为 $A\rightarrow\alpha\cdot\beta, a$，其中 $a$ 是个终结符或者结束符 $$$，表示的是 <strong>当前状态下</strong> $A$ 后面需要紧跟的终结符（因为项目总是在一个项目集中，一个项目集对应自动机的一个状态，所以一个项目会有一个当前状态）。一些注解：</p>
+<ul>
+<li>$LR(n)$ 指的是展望符的长度为 $n$，不过一般 1 就够用了。</li>
+<li>如果 $\beta\neq\epsilon$，那么展望符没有意义。</li>
+<li>如果 $\beta=\epsilon$，那么只有在下一个符号是 $a$ 的时候才能进行归约。</li>
+</ul>
+<h3 id="LR-1-项目的等价性"><a href="#LR-1-项目的等价性" class="headerlink" title="$LR(1)$ 项目的等价性"></a>$LR(1)$ 项目的等价性</h3><p>对于一个待约项目 $A\rightarrow \alpha\cdot B\beta, a$，并且已经知道产生式 $B\rightarrow\gamma$，则项目的一个等价项目是 $B\rightarrow\cdot\gamma, b$，其中 $b\in\mbox{First}(\beta a)$。</p>
+<p>其中展望符产生的原因是 $\beta\Rightarrow^\star\epsilon$ 时展望符应该为 $a$（这种情况下叫 <strong>继承</strong> 的展望符），否则应为 $\mbox{First}(\beta)$（<strong>自生</strong> 的展望符）。</p>
+<p>如果两个项目集中除去展望符部分后相同，则这两个项目集是 <strong>同心</strong> 的。</p>
+<h3 id="Closure，Goto-以及项集族的计算"><a href="#Closure，Goto-以及项集族的计算" class="headerlink" title="Closure，Goto 以及项集族的计算"></a>Closure，Goto 以及项集族的计算</h3><ul>
+<li>Closure 的计算变成 $\mbox{Closure}(I) = I\cup\{[B\rightarrow\cdot\gamma, b]|[A\rightarrow a\cdot B\beta, a]\in\mbox{Closure}(I), B\rightarrow\gamma\in P, b\in\mbox{First}(\beta a)\}$</li>
+<li>Goto 的计算变成 $\mbox{Goto}(I, X) = \mbox{Closure}(\{[A\rightarrow\alpha X\cdot \beta, a]|[A\rightarrow\alpha\cdot X \beta, a]\in I\})$</li>
+<li>计算 $LR(1)$ 的项集族时初始状态为 $\mbox{Closure}([S’\rightarrow\cdot S, $])$</li>
+</ul>
+<h3 id="分析表构造"><a href="#分析表构造" class="headerlink" title="分析表构造"></a>分析表构造</h3><p>这段从 $LR(0)$ 分析表构造过程修改而来，区别在于 3 的第三条中对 $a$ 的来源有了更加严格的限制。</p>
+<p>对一个文法构造对应的 $LR(1)$ 分析表：</p>
+<ol>
+<li>构造增广文法 $G$</li>
+<li>得到 $G$ 的规范 $LR(1)$ 项集族 $C$</li>
+<li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot a\beta, b]\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot B\beta, b]\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot, a]\in I_i\mbox{ and }A\neq S’\mbox{ then }\mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号</li>
+<li>$\mbox{if }[S’\rightarrow S\cdot, $]\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>其它所有情况都设为 $err$</li>
+</ul>
+</li>
+</ol>
+<p><strong>如果一个文法构造完 $LR(1)$ 分析表后无冲突，称为 $LR(1)$ 文法。</strong></p>
+<h2 id="LALR-分析"><a href="#LALR-分析" class="headerlink" title="$LALR$ 分析"></a>$LALR$ 分析</h2><p>$LR(1)$ 分析法构造出来的状态太多，为了解决这个问题可以考虑将同心的项目集进行合并，这是 $LALR$ 分析法的由来。</p>
+<p>合并了状态之后的自动机和 $LR(0)/SLR$ 分析法得到的自动机状态数相同，但是分析能力依然比它们要强。</p>
+<p>具体操作过程是，如果经过 $LR(1)$ 分析后有两个状态是同心的，那么这两个状态会合并成一个状态（新的状态中的项是原有项的并），这个操作会递归进行下去，直到不可继续合并为止。一些注解：</p>
+<ul>
+<li>对状态进行了合并后，原来可能没有归约-归约冲突，但是合并后有可能产生。</li>
+<li>对状态进行合并不会产生新的归约-移进冲突。</li>
+<li>$LALR$ 分析可能会作多余的归约动作，但是不会产生错误的移进操作。</li>
+<li>$LALR$ 分析得到的自动机和 $LR(0)$ 分析得到的自动机具有相同的形式（都具有展望符），同时和 $SLR$ 分析得到的自动机具有相同的大小。</li>
+</ul>
+<p>如果 $LALR$ 得到的自动机没有冲突，则文法称为 $LALR$ 文法。它的分析能力介于 $LR(1)$ 和 $SLR$ 之间。</p>
+<h2 id="二义性文法的-LR-分析"><a href="#二义性文法的-LR-分析" class="headerlink" title="二义性文法的 $LR$ 分析"></a>二义性文法的 $LR$ 分析</h2><p>二义性文法不是 $LR$ 文法，但是这种文法表示简单，可以使用 $LR$ 分析技术进行分析。</p>
+<p>构造出自动机后有些状态会出现冲突，会有多个产生式可以使用，此时如果通过结合性和优先级的限制可以选定使用哪个产生式。</p>
+<p>例如在构造文法 $S\rightarrow iS|iSeS|a$ 的自动机（实际上这是个 if-else 的文法）时有个状态是 $S\rightarrow iS\cdot$ 与 $S\rightarrow iS\cdot eS$，此时如果读入 $e$ 就有移入-归约冲突，但是如果限制所有的 $e$ 都和最近的 $i$ 配对就可以解决这个问题，总是选择第二个产生式。</p>
+<p>又如在构造四则运算的文法时如果出现某个状态是 $E\rightarrow E+E\cdot$ ，$E\rightarrow E\cdot +E$ 以及 $E\rightarrow E\cdot \ast E$，在读入加号或者乘号的时候有移入-归约冲突。如果限制乘号优先级大于加号、加号是左结合的，就可以在读入加号的时候总是选择第一个产生式，在读入乘号的时候总是选择第三个产生式。</p>
+<p>尽管二义性文法可以使用 $LR$ 分析，但是应当节制使用。</p>
+<h2 id="LR-分析中的错误处理"><a href="#LR-分析中的错误处理" class="headerlink" title="$LR$ 分析中的错误处理"></a>$LR$ 分析中的错误处理</h2><p>$LR$ 分析中有两种错误处理策略。</p>
+<h3 id="恐慌模式错误恢复"><a href="#恐慌模式错误恢复" class="headerlink" title="恐慌模式错误恢复"></a>恐慌模式错误恢复</h3><p>在当前的状态下，如果发现读入的符号不能前往下一个状态，就表明出现了错误。此时在 <strong>状态栈</strong> 中从栈顶开始向下扫描，找到第一个在 Goto 表中有对应表项的状态 $s$，并从 Goto 表中选择一个表项。此时得到了一个非终结符 $A$，可以假装认为当前的错误如果没有发生的话，最后会归约到 $A$，因此此时可以将两个栈中后面的元素全部弹出，一直到栈顶为 $s$ 为止，并且使得两个栈中元素数目相同；随后不断扫描输入串，舍弃其中的符号，直到输入串中第一个符号在 Follow($A$) 中，此时认为 $A$ 已经归约完毕，将 $A$ 压入符号栈，并将 Goto($s$, $A$) 压入状态栈，然后继续处理。</p>
+<h3 id="短语层次错误恢复"><a href="#短语层次错误恢复" class="headerlink" title="短语层次错误恢复"></a>短语层次错误恢复</h3><p>对于 Action 表中所有的 err 项，都建立一个独立的错误处理程序。此时已经细化到了在什么情况下出错，因此这些程序中可以提示具体的出错原因然后尝试修复这个错误。</p>
+<p>在解析过程中，整个 Action 表中所有的情况都有对应的处理方式。对于非 err 的情况按照之前的方式处理即可，对于 err 的情况就执行对应的错误处理程序修复错误（一般是修改了两个栈）后继续进行语法分析。</p>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              语法分析-3自底向上分析概述自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。
-自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 移入-归约 分析。它的工作方式如下：
-
-首先对于要解析的词法单元流，维护了一个栈。
-从左至右扫描输入串，将扫描到的元素逐个压入栈中。
-如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹出，替换为产生式的左部，然后重新压回栈中。然后重新运行这个检查，直到无法归约为止。这一步中被归约的符号串称作 句柄。句柄实际上是句型中的最左直接短语。
-如果串扫描完成后，栈中恰好剩下初始符号，则归约完
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-5/" class="post-title-link" itemprop="url">编译原理慕课笔记 5</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:18:40" itemprop="dateCreated datePublished" datetime="2018-11-23T16:18:40+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              语法分析-2First 集和 Follow 集的计算First 集的计算计算一个文法中各个非终结符的 First 集的方法是，不断应用以下规则，直到每个符号的 First 集稳定：
-
-如果 $X$ 是终结符，则 $\mbox{First}(X) = \{X\}$。（引入这个的目的是方便后面的递归计算。）
-
-如果 $X\rightarrow\epsilon$ 是 $X$ 的一个产生式，则 $\epsilon\in\mbox{First}(X)$。（为了计算的方便，这里是 $\rightarrow$ 而不是 $\Rightarrow$，也就是可以直接从生成式开始计算。）
-
-如果 $X\righta
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2005,7 +2148,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2047,7 +2190,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2111,6 +2254,32 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
 
           
 
@@ -2160,7 +2329,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -2249,6 +2418,7 @@ S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

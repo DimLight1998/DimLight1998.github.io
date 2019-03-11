@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="从零开始搞懂异步之前小学期学 NodeJS 的时候就被异步搞得很头疼，过几天的 Python 自学报告就打算写异步编程了。现在我打算从最基础的地方开始弄懂异步和与其相关的一些概念。 阻塞与非阻塞、同步与异步、并发与并行 阻塞：程序的某个线程进行了某个调用后如果这个线程要等着运行结果，则称为线程被阻塞。（虽然 CPU 可以把它换下来，但是这个线程依然是阻塞的。） 非阻塞：程序的某个线程进行了某个调用">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:29:40.833Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零开始搞懂异步">
 <meta name="twitter:description" content="从零开始搞懂异步之前小学期学 NodeJS 的时候就被异步搞得很头疼，过几天的 Python 自学报告就打算写异步编程了。现在我打算从最基础的地方开始弄懂异步和与其相关的一些概念。 阻塞与非阻塞、同步与异步、并发与并行 阻塞：程序的某个线程进行了某个调用后如果这个线程要等着运行结果，则称为线程被阻塞。（虽然 CPU 可以把它换下来，但是这个线程依然是阻塞的。） 非阻塞：程序的某个线程进行了某个调用">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:29:40" itemprop="dateModified" datetime="2019-03-11T15:29:40+08:00">2019-03-11</time>
               
             
           </span>
@@ -444,6 +444,7 @@
 <p>只有同步阻塞、同步非阻塞（某种基于轮询的搞法）、异步这三种组合。</p>
 <p>另外我见到一个说法是同步是不同程序单元进行通信来协调一致的状态，异步是不同程序单元可以不通信就能完成任务的状态。为什么我们需要异步，因为异步可以实现非阻塞。</p>
 <p>深究这些定义可能没什么卵用。</p>
+<a id="more"></a>
 <h2 id="异步编程的演化"><a href="#异步编程的演化" class="headerlink" title="异步编程的演化"></a>异步编程的演化</h2><p>造成阻塞的原因大部分是等待 IO，如果 IO 是异步的那么阻塞会少很多。</p>
 <p><a href="http://aju.space/2017/07/31/Drive-into-python-asyncio-programming-part-1.html" target="_blank" rel="noopener">深入理解 Python 异步编程 (上)</a> 这篇博客从头解释了各种异步的实现，最后引出了 Python 中的 asyncio。这一节是对这篇博客的整理，博客中是以下载十篇网页作为例子的。为了简单起见我不打算写代码。</p>
 <h3 id="朴素的同步阻塞"><a href="#朴素的同步阻塞" class="headerlink" title="朴素的同步阻塞"></a>朴素的同步阻塞</h3><p>发起 HTTP 请求，等待响应，响应后，等待接收所有数据，接收完成后，一篇网页就下好了。这样干十次，就把事情干完了，但是是最慢的。</p>
@@ -609,7 +610,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -672,6 +673,32 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -739,7 +766,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -828,6 +855,7 @@
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

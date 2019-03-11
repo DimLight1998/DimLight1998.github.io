@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="ML Strategy (1)来源 Coursera。 Introduction to ML StrategyWhy ML Strategy当有一个任务需要完成的时候，如果效果不好可能需要进行相关调整和修改。如何找到关键的影响因素需要知道 ML 中的策略。 Orthogonalization如果任务有多个性能指标需要调整，同时有多个因素可以被调节，那么较好的情况是这些因素对结果的影响是正交的，对单">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:29:27.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Structuring Machine Learning Projects 笔记 1 ML Strategy (1)">
 <meta name="twitter:description" content="ML Strategy (1)来源 Coursera。 Introduction to ML StrategyWhy ML Strategy当有一个任务需要完成的时候，如果效果不好可能需要进行相关调整和修改。如何找到关键的影响因素需要知道 ML 中的策略。 Orthogonalization如果任务有多个性能指标需要调整，同时有多个因素可以被调节，那么较好的情况是这些因素对结果的影响是正交的，对单">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:29:27" itemprop="dateModified" datetime="2019-03-11T15:29:27+08:00">2019-03-11</time>
               
             
           </span>
@@ -443,6 +443,7 @@
 </ul>
 <p>对于第一个指标，可以调节网络规模、优化器选择等；对于第二个指标，可以调节正则化方法、使用更大的 train 集等；对于第三个指标，可以使用更大的 dev 集等；对于第四个指标，可以尝试修改代价函数（就是重新定义问题）。</p>
 <p><em>Early stop 是一个正交的反例——它同时影响了 train 和 test 集上的性能。</em></p>
+<a id="more"></a>
 <h2 id="Setting-up-your-goal"><a href="#Setting-up-your-goal" class="headerlink" title="Setting up your goal"></a>Setting up your goal</h2><h3 id="Single-number-evaluation-metric"><a href="#Single-number-evaluation-metric" class="headerlink" title="Single number evaluation metric"></a>Single number evaluation metric</h3><p>如果有多个算法或者模型需要进行选择，最好在任务开始前定义一个能够用标量表示的性能指标。用这个指标衡量算法性能能够快速判断两个算法哪个更优。</p>
 <p><strong>例子</strong>：设计了一个分类器，它的评判标准有 <strong>准确率</strong> 和 <strong>召回率</strong>，这两者一般不能做到都高，因此引入它们的调和平均数（<strong>F1 score</strong>）来衡量这个分类器的效果。</p>
 <h3 id="Satisfying-and-Optimizing-metric"><a href="#Satisfying-and-Optimizing-metric" class="headerlink" title="Satisfying and Optimizing metric"></a>Satisfying and Optimizing metric</h3><p>如果上述方法难以实现，可以尝试将性能指标分为 <strong>satisfying</strong> 性质的和 <strong>optimizing</strong> 性质的。其中 satisfying 性质的是只要满足某个阈值即可的，optimizing 性质的是需要尽可能好的。</p>
@@ -606,7 +607,7 @@ Error = \frac{1}{\sum_{i = 1}^m w_i}\sum\limits_{i = 1}^mw_iI\{y^{(i)}_{predict}
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -669,6 +670,32 @@ Error = \frac{1}{\sum_{i = 1}^m w_i}\sum\limits_{i = 1}^mw_iI\{y^{(i)}_{predict}
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -736,7 +763,7 @@ Error = \frac{1}{\sum_{i = 1}^m w_i}\sum\limits_{i = 1}^mw_iI\{y^{(i)}_{predict}
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -825,6 +852,7 @@ Error = \frac{1}{\sum_{i = 1}^m w_i}\sum\limits_{i = 1}^mw_iI\{y^{(i)}_{predict}
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="ML Strategy (2)Error AnalysisCarrying out error analysis对于分类任务来说，如果测试集上的效果不好，可以找到那些分错类的样本，看看他们的共性是什么，然后单独训练一个专门负责这个的分类器。 在查看共性时应当找到出现最多的共性。假设有一个将动物中的猫寻找出来的分类器，错误率是 10%，有些错误是将狗分类为了猫。如果在分类错误的样本中狗只占到了 5%">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:29:34.744Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Structuring Machine Learning Projects 笔记 2 ML Strategy (2)">
 <meta name="twitter:description" content="ML Strategy (2)Error AnalysisCarrying out error analysis对于分类任务来说，如果测试集上的效果不好，可以找到那些分错类的样本，看看他们的共性是什么，然后单独训练一个专门负责这个的分类器。 在查看共性时应当找到出现最多的共性。假设有一个将动物中的猫寻找出来的分类器，错误率是 10%，有些错误是将狗分类为了猫。如果在分类错误的样本中狗只占到了 5%">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:29:34" itemprop="dateModified" datetime="2019-03-11T15:29:34+08:00">2019-03-11</time>
               
             
           </span>
@@ -436,6 +436,7 @@
 <h3 id="Cleaning-up-incorrectly-labeled-data"><a href="#Cleaning-up-incorrectly-labeled-data" class="headerlink" title="Cleaning up incorrectly labeled data"></a>Cleaning up incorrectly labeled data</h3><p>在分类器分类错误的那些样本中，当 train 集中的样本出现标注错误时，如果只是很少部分的样本标注错误可以不用管，因为算法本身对这种随机误差是鲁棒的。但是当 train 集中存在系统性的标注错误时，应当修正这些错误。</p>
 <p>在分类器分类错误的那些样本中，当 dev/test 集中的样本出现标注错误时，先估计一下这些错误是否会影响到测试集的功能。如果分类器本身错误率为 10%，标注错误的样本占总样本的 5%，说明即使修正后，错误率最低也只能降到 9.5%。如果对于问题而言这种错误率的下降无关紧要，那么可以不用管；但是如果影响到了测试集的功能（可能错误地选出更好的模型）就应该修正这一错误。当修正了 dev 集中的错误后，为了保证 dev 集和 test 集依然同分布应当再修正 test 集中的错误。当修正完成后，训练集和测试集的分布可能轻微不同。</p>
 <p>在分类器分类正确的那些样本中也可以进行对应的修正。但是因为这个的数据规模会比分类错误的数据规模大很多，所以经常跳过。</p>
+<a id="more"></a>
 <h3 id="Build-your-first-system-quickly-then-iterate"><a href="#Build-your-first-system-quickly-then-iterate" class="headerlink" title="Build your first system quickly, then iterate"></a>Build your first system quickly, then iterate</h3><p>当要完成一项实际任务时，应当尽快搭建出原型系统然后开始迭代，具体步骤：</p>
 <ol>
 <li>分割训练集、测试集；设定性能指标</li>
@@ -609,7 +610,7 @@ J = \sum\limits_{i = 1}^m\sum\limits_{j = 1}^nL(\hat y^{(i)}_j, y^{(i)}_j)</scri
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -672,6 +673,32 @@ J = \sum\limits_{i = 1}^m\sum\limits_{j = 1}^nL(\hat y^{(i)}_j, y^{(i)}_j)</scri
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -739,7 +766,7 @@ J = \sum\limits_{i = 1}^m\sum\limits_{j = 1}^nL(\hat y^{(i)}_j, y^{(i)}_j)</scri
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -828,6 +855,7 @@ J = \sum\limits_{i = 1}^m\sum\limits_{j = 1}^nL(\hat y^{(i)}_j, y^{(i)}_j)</scri
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

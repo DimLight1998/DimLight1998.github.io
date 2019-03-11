@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Hyperparameter tuning, Batch Normalization and Programming FrameworksHyperparameter tuningTuning process经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:23:07.909Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks">
 <meta name="twitter:description" content="Hyperparameter tuning, Batch Normalization and Programming FrameworksHyperparameter tuningTuning process经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:23:07" itemprop="dateModified" datetime="2019-03-11T15:23:07+08:00">2019-03-11</time>
               
             
           </span>
@@ -434,6 +434,7 @@
         <h1 id="Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks"><a href="#Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks" class="headerlink" title="Hyperparameter tuning, Batch Normalization and Programming Frameworks"></a>Hyperparameter tuning, Batch Normalization and Programming Frameworks</h1><h2 id="Hyperparameter-tuning"><a href="#Hyperparameter-tuning" class="headerlink" title="Hyperparameter tuning"></a>Hyperparameter tuning</h2><h3 id="Tuning-process"><a href="#Tuning-process" class="headerlink" title="Tuning process"></a>Tuning process</h3><p>经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。</p>
 <p>因为各个超参数的重要程度不一样，有多个超参数需要调节的时候 <strong>不要进行 grid search</strong>。所谓 grid search 就是每个超参数选取若干个值，然后不同超参数就用这些值的组合，类似于控制变量法。推荐的做法是直接在整个所有超参数可选的值构成的空间中随机选取。这么做的理由是在 grid search 的情况下，如果某个超参数实际上对结果影响不大，那么针对它的调节几乎都是无效的，这就参数调节工作中只有一部分是有效的。而在随机选取的情况下，不论各个超参数对结果影响如何，影响较显著的那些超参数都被取了很多个不同的值，这些值都是有用的。</p>
 <p>当找到了效果最好的那些点之后，如果这些点在空间上分布较密集，则可以对那一个较小的超参数空间进行更加密集的搜索。更密集的搜索也应采用随机选取的策略，依此类推。</p>
+<a id="more"></a>
 <h3 id="Using-an-appropriate-scale-to-pick-hyperparameters"><a href="#Using-an-appropriate-scale-to-pick-hyperparameters" class="headerlink" title="Using an appropriate scale to pick hyperparameters"></a>Using an appropriate scale to pick hyperparameters</h3><p>在对超参数进行搜索时，虽然是随机选取，但是未必是均匀随机选取。下面讨论的是对单个超参数该如何搜索，对多个超参数进行搜索时应当采用同样的策略（即整个超参数空间中的分布不应当是均匀的）。</p>
 <ul>
 <li>对于像神经元数目和层数这样的超参数，确定上下限后均匀随机选取即可。</li>
@@ -593,7 +594,7 @@ L(y, \hat y) = -\sum\limits_{i = 1}^Cy_i\log(\hat y_i)</script><p>在多个样�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -656,6 +657,32 @@ L(y, \hat y) = -\sum\limits_{i = 1}^Cy_i\log(\hat y_i)</script><p>在多个样�
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -723,7 +750,7 @@ L(y, \hat y) = -\sum\limits_{i = 1}^Cy_i\log(\hat y_i)</script><p>在多个样�
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -812,6 +839,7 @@ L(y, \hat y) = -\sum\limits_{i = 1}^Cy_i\log(\hat y_i)</script><p>在多个样�
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

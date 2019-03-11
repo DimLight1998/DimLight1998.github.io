@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -107,7 +107,7 @@
 <meta property="og:description" content="CS184.1X 计算机图形学学习笔记 (3)光线追踪及其实现。 光线追踪算法如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。 另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://dimlight1998.github.io/2018/08/28/CS184-1X-计算机图形学学习笔记-3/A1652D181F92478CB0607B5D3490D4CA.png">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:21:51.675Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS184.1X 计算机图形学学习笔记 (3)">
 <meta name="twitter:description" content="CS184.1X 计算机图形学学习笔记 (3)光线追踪及其实现。 光线追踪算法如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。 另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显">
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:21:51" itemprop="dateModified" datetime="2019-03-11T15:21:51+08:00">2019-03-11</time>
               
             
           </span>
@@ -437,6 +437,7 @@
 <h2 id="光线追踪算法"><a href="#光线追踪算法" class="headerlink" title="光线追踪算法"></a>光线追踪算法</h2><p>如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。</p>
 <p>另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显示的像素，利用光路可逆的性质从摄像机向这个像素发出一条光线，这条光线打到物体上后根据物体的相关物理性质决定出光线的颜色，如有必要，对反射光线继续进行追踪，最后叠加它们的颜色。光线追踪算法易于实现，能够容易地表现倒影、阴影等效果（所谓的全局光照），但是效率不如光栅化，一般拿来做离线渲染。</p>
 <p>这里写一个简单的光线追踪的纯 CSharp 实现，主要参考了 <a href="http://www.cnblogs.com/miloyip/archive/2010/03/29/1698953.html" target="_blank" rel="noopener">光线追踪入门</a> 这篇博客。</p>
+<a id="more"></a>
 <h2 id="光线追踪的原理"><a href="#光线追踪的原理" class="headerlink" title="光线追踪的原理"></a>光线追踪的原理</h2><p>光线追踪中没有 OpenGL 那么多的坐标系，只用一个世界坐标系就可以了。在这个世界中摆好要渲染的物体，然后就可以开始渲染了。因为是要得到一张图片，可以认为我们的眼睛是通过一个“窗口”在观察这个世界，这个窗口在世界坐标系中的位置是可以确定的。如果将这个窗口划分成细密的网格，从眼睛向每个网孔中发出一条光线，跟踪这条光线得到它的颜色，将这个颜色作为网孔的颜色。当所有的网孔都具有一个颜色之后，这个窗口的图像也就确定了，这就是最后得到的图像。另外从发射要追踪的光线的算法可以知道这样的到的正是透视投影。</p>
 <p>现在的问题就是如何确定一条光线的颜色。光线是射线，可以使用起点和方向两个参数来进行描述。对于每一个基础的图元或者结构，它们都应该具有以下的特点：</p>
 <ul>
@@ -592,7 +593,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -655,6 +656,32 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -722,7 +749,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -811,6 +838,7 @@
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

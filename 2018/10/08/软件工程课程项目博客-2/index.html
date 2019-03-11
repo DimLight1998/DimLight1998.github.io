@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。 目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:30:59.978Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="软件工程课程大作业博客——数据传输方式的选取">
 <meta name="twitter:description" content="软件工程课程大作业博客——数据传输方式的选取一些考虑：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。 目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:30:59" itemprop="dateModified" datetime="2019-03-11T15:30:59+08:00">2019-03-11</time>
               
             
           </span>
@@ -435,6 +435,7 @@
 <p>目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。</p>
 <p>比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html，但是上面没有任何数据，这个文件中的 js 会根据当前的 url 发起第二次请求，url 可能为 /api/contests/2/comments/4，这次请求会返回实际数据。</p>
 <p>数据传输的方式可以采用某种应用层上的协议来简化开发。目前备选的方案有 REST、GraphQL 和 gRPC。</p>
+<a id="more"></a>
 <h2 id="REST"><a href="#REST" class="headerlink" title="REST"></a>REST</h2><h3 id="REST-描述"><a href="#REST-描述" class="headerlink" title="REST 描述"></a>REST 描述</h3><h4 id="REST-介绍与约定"><a href="#REST-介绍与约定" class="headerlink" title="REST 介绍与约定"></a>REST 介绍与约定</h4><blockquote>
 <p><strong>表现层状态转换</strong>（REST，英文：<strong>Representational State Transfer</strong>）是 <a href="https://zh.wikipedia.org/w/index.php?title=Roy_Thomas_Fielding&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">Roy Thomas Fielding</a>博士于 2000 年在他的博士论文 <a href="https://zh.wikipedia.org/wiki/%E8%A1%A8%E7%8E%B0%E5%B1%82%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2#cite_note-Fielding-Ch5-1" target="_blank" rel="noopener">[1]</a> 中提出来的一种<a href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91" target="_blank" rel="noopener">万维网</a><a href="https://zh.wikipedia.org/wiki/%E8%BD%AF%E4%BB%B6%E6%9E%B6%E6%9E%84" target="_blank" rel="noopener">软件架构</a>风格，目的是便于不同软件 / 程序在网络（例如互联网）中互相传递信息。表现层状态转换是根基于<a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE" target="_blank" rel="noopener">超文本传输协议 (HTTP)</a> 之上而确定的一组约束和属性，是一种设计提供万维网络服务的<a href="https://zh.wikipedia.org/wiki/%E8%BB%9F%E4%BB%B6%E6%9E%B6%E6%A7%8B" target="_blank" rel="noopener">软件构建风格</a>。匹配或兼容于这种架构风格 (简称为 REST 或 RESTful) 的网络服务，允许客户端发出以<a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E6%A0%87%E5%BF%97%E7%AC%A6" target="_blank" rel="noopener">统一资源标识符</a>访问和操作网络资源的请求，而与预先定义好的无状态操作集一致化。因此表现层状态转换提供了在互联网络的计算系统之间，彼此资源可交互使用的协作性质 (interoperability)。相对于其它种类的网络服务，例如 SOAP 服务则是以本身所定义的操作集，来访问网络上的资源。</p>
 <p>目前在三种主流的 <a href="https://zh.wikipedia.org/wiki/Web%E6%9C%8D%E5%8A%A1" target="_blank" rel="noopener">Web 服务</a>实现方案中，因为 REST 模式与复杂的 <a href="https://zh.wikipedia.org/wiki/SOAP" target="_blank" rel="noopener">SOAP</a> 和 <a href="https://zh.wikipedia.org/wiki/XML-RPC" target="_blank" rel="noopener">XML-RPC</a> 相比更加简洁，越来越多的 web 服务开始采用 REST 风格设计和实现。例如，<a href="https://zh.wikipedia.org/wiki/Amazon.com" target="_blank" rel="noopener">Amazon.com</a> 提供接近 REST 风格的 Web 服务运行图书查询；<a href="https://zh.wikipedia.org/wiki/%E9%9B%85%E8%99%8E" target="_blank" rel="noopener">雅虎</a>提供的 Web 服务也是 REST 风格的。</p>
@@ -719,7 +720,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -782,6 +783,32 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -849,7 +876,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -938,6 +965,7 @@
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

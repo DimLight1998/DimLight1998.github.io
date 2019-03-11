@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -107,7 +107,7 @@
 <meta property="og:description" content="关系模型之关系代数关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。 下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。 什么是关系代数关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。 关系代数可以分成 集合操作（并交差积） 和 纯关系操作（投影、选择、连接、除）。 DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/DeepinScreenshot_select-area_20190308010255.png">
-<meta property="og:updated_time" content="2019-03-07T17:13:30.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:31:40.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数">
 <meta name="twitter:description" content="关系模型之关系代数关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。 下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。 什么是关系代数关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。 关系代数可以分成 集合操作（并交差积） 和 纯关系操作（投影、选择、连接、除）。 DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操">
@@ -399,7 +399,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-08 01:13:30" itemprop="dateModified" datetime="2019-03-08T01:13:30+08:00">2019-03-08</time>
+                <time title="修改时间：2019-03-11 15:31:40" itemprop="dateModified" datetime="2019-03-11T15:31:40+08:00">2019-03-11</time>
               
             
           </span>
@@ -441,25 +441,26 @@
 <h2 id="并相容性的概念"><a href="#并相容性的概念" class="headerlink" title="并相容性的概念"></a>并相容性的概念</h2><p>两个关系是并相容的，如果它们的属性数目相同，相同位置上的属性的类型也相同。</p>
 <p>简单来说，两个关系并相容，表示可以把一个关系纵向拼接到另一个关系下面形成更大的关系。</p>
 <p><strong>并相容性是其它很多操作的基础。</strong></p>
+<a id="more"></a>
 <h2 id="并操作"><a href="#并操作" class="headerlink" title="并操作"></a>并操作</h2><p>两个并相容关系的并是两个关系的并形成的更大的关系。重复记录被移除：</p>
 <script type="math/tex; mode=display">
-R\cup S = \{r | r \in R \or r\in S\}</script><p>显然并操作是交换的。</p>
+R\cup S = \{r | r \in R \lor r\in S\}</script><p>显然并操作是交换的。</p>
 <blockquote>
 <p>学习各种操作时，也应从自然语义的角度进行理解。</p>
 </blockquote>
 <h2 id="差操作"><a href="#差操作" class="headerlink" title="差操作"></a>差操作</h2><p>两个并相容关系的差是两个关系的差形成的关系。差由属于一个关系但不属于另一个关系的记录构成：</p>
 <script type="math/tex; mode=display">
-R - S = \{r | r \in R \and r \notin S\}</script><p>差操作不是交换的。</p>
+R - S = \{r | r \in R \land r \notin S\}</script><p>差操作不是交换的。</p>
 <h2 id="广义积操作"><a href="#广义积操作" class="headerlink" title="广义积操作"></a>广义积操作</h2><p>广义积可以直接称为集。它是关系的笛卡尔积，但是其结果不像普通笛卡尔积那样。</p>
 <p>如果 $R$ 的类型是 $(R_1, \cdots, R_n)$，$S$ 的类型是 $(S_1, \dots, S_m)$，那么笛卡尔积 $R\times S$ 的类型应该是 $((R_1,\dots, R_n), (S_1, \dots, S_m))$，而广义积的类型是两个元组的拼接 $(R_1,\dots, R_n, S_1, \dots, S_m)$。</p>
 <p>关系的广义积会得到所有可能的拼接：</p>
 <script type="math/tex; mode=display">
-R\times S = \{\langle r_1, \dots, r_n, s_1, \dots, s_m\rangle | \langle r_1, \dots, r_n\rangle\in R \and \langle s_1, \dots, s_m\rangle\in S \}</script><p>广义积是交换的（注意关系中列是可以交换的）。</p>
+R\times S = \{\langle r_1, \dots, r_n, s_1, \dots, s_m\rangle | \langle r_1, \dots, r_n\rangle\in R \land \langle s_1, \dots, s_m\rangle\in S \}</script><p>广义积是交换的（注意关系中列是可以交换的）。</p>
 <p><strong>广义积的性质</strong>：度数是原关系度数之和，基数是原关系基数之积。</p>
 <p>当涉及到多个表时，就可能要用到广义积。</p>
 <h2 id="选择操作"><a href="#选择操作" class="headerlink" title="选择操作"></a>选择操作</h2><p>选择操作相当于对记录进行 filter。选择操作的结果依然是关系。</p>
 <script type="math/tex; mode=display">
-\sigma_{cond}(R) = \{t | t \in R \and cond (t) = \texttt{true}\}</script><p>将 $cond$ 替换为想要的条件即可。这个是有某种语法的，不过我猜瞎写也可以。</p>
+\sigma_{cond}(R) = \{t | t \in R \land cond (t) = \texttt{true}\}</script><p>将 $cond$ 替换为想要的条件即可。这个是有某种语法的，不过我猜瞎写也可以。</p>
 <blockquote>
 <p>$\sigma \to sigma \to select$</p>
 </blockquote>
@@ -473,7 +474,7 @@ R\times S = \{\langle r_1, \dots, r_n, s_1, \dots, s_m\rangle | \langle r_1, \do
 <h2 id="交操作"><a href="#交操作" class="headerlink" title="交操作"></a>交操作</h2><p>下面的这些操作称为扩展操作，可以用基本操作实现。</p>
 <p>交操作是并相容关系的交。交运算是交换的。</p>
 <script type="math/tex; mode=display">
-R\cap S = \{r | r\in R \and r\in S\}</script><p>交运算可以通过差运算实现：$R\cap S = R - (R - S)$。</p>
+R\cap S = \{r | r\in R \land r\in S\}</script><p>交运算可以通过差运算实现：$R\cap S = R - (R - S)$。</p>
 <h2 id="theta-连接操作及更名操作"><a href="#theta-连接操作及更名操作" class="headerlink" title="theta 连接操作及更名操作"></a>theta 连接操作及更名操作</h2><h3 id="theta-连接操作"><a href="#theta-连接操作" class="headerlink" title="theta 连接操作"></a>theta 连接操作</h3><p>连接操作有几种不同的定义，这里是 theta 连接。连接操作用来进行涉及多个表的查询。</p>
 <p>Theta 连接操作是笛卡尔积和选择的复合，其中选择操作的条件是来自两个关系的某两个属性的比较。</p>
 <script type="math/tex; mode=display">
@@ -502,7 +503,7 @@ R\bowtie S = \sigma_{r[B] = s[B]}(R\times S)</script><h2 id="应用关系代数�
 </ul>
 <script type="math/tex; mode=display">
 \begin{aligned}
-R\div S &= \{t | t\in \pi_{R - S}(R)\and \forall u\in S, (tu\in R)\} \\
+R\div S &= \{t | t\in \pi_{R - S}(R)\land \forall u\in S, (tu\in R)\} \\
 &=\pi_{R - S}(R) - \pi_{R - S}((\pi_{R - S}(R)\times S) - R)
 \end{aligned}</script><h2 id="外连接操作"><a href="#外连接操作" class="headerlink" title="外连接操作"></a>外连接操作</h2><p>外连接是一种特殊的连接。在自然连接中，只有相同属性值相同的记录会被保留，这样损失了一部分信息。</p>
 <p>外连接的操作是，对于相同属性的不同值，为了避免信息丢失，使用除了该属性以外全空的记录进行连接。例子：</p>
@@ -638,7 +639,7 @@ R\div S &= \{t | t\in \pi_{R - S}(R)\and \forall u\in S, (tu\in R)\} \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -701,6 +702,32 @@ R\div S &= \{t | t\in \pi_{R - S}(R)\and \forall u\in S, (tu\in R)\} \\
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -768,7 +795,7 @@ R\div S &= \{t | t\in \pi_{R - S}(R)\and \forall u\in S, (tu\in R)\} \\
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -857,6 +884,7 @@ R\div S &= \{t | t\in \pi_{R - S}(R)\and \forall u\in S, (tu\in R)\} \\
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

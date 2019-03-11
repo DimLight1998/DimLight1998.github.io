@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -333,6 +333,336 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 2 Section 1</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-06 00:01:58" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:58+08:00">2019-02-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:25:40" itemprop="dateModified" datetime="2019-03-11T15:25:40+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h1><h2 id="ML-Variable-Bindings-and-Expressions"><a href="#ML-Variable-Bindings-and-Expressions" class="headerlink" title="ML Variable Bindings and Expressions"></a>ML Variable Bindings and Expressions</h2><h3 id="一些语法"><a href="#一些语法" class="headerlink" title="一些语法"></a>一些语法</h3><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(* this is a comment *)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x = <span class="number">1</span>;                          <span class="comment">(* variable binding *)</span></span><br><span class="line"><span class="keyword">val</span> y = <span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">then</span> x <span class="keyword">else</span> <span class="number">0</span> - x; <span class="comment">(* condition expression *)</span></span><br><span class="line"><span class="keyword">val</span> z = abs y;                      <span class="comment">(* function call *)</span></span><br><span class="line"><span class="keyword">val</span> w = abs(z);                     <span class="comment">(* another style of function call *)</span></span><br></pre></td></tr></table></figure>
+<p>注释和 variable binding 的语法如上。</p>
+<h3 id="关于语言的知识"><a href="#关于语言的知识" class="headerlink" title="关于语言的知识"></a>关于语言的知识</h3><p>ML 中的每句 variable binding 都维护了一个 <strong>静态环境</strong>（不用运行）和一个 <strong>动态环境</strong>（需要运行）。</p>
+<p>静态环境中有各个变量和表达式的类型的信息，动态环境中有它们的值的信息。静态环境的内容可以通过类型检查在运行前就得到，但是动态环境需要运行。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 1 Introduction</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-06 00:01:41" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:41+08:00">2019-02-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:12" itemprop="dateModified" datetime="2019-03-11T15:27:12+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>感谢 <a href="https://www.coursera.org/learn/programming-languages" target="_blank" rel="noopener">Coursera</a>。</p>
+<blockquote>
+<p>This is a challenging course that we hope will change the way you look at programming forever.</p>
+</blockquote>
+<h2 id="Welcome-Information"><a href="#Welcome-Information" class="headerlink" title="Welcome Information"></a>Welcome Information</h2><h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p><em>本节没有问题。</em></p>
+<h3 id="What-the-Course-is-About-Initial-Motivation"><a href="#What-the-Course-is-About-Initial-Motivation" class="headerlink" title="What the Course is About / Initial Motivation"></a>What the Course is About / Initial Motivation</h3><p>这门课主要是通过 Standard ML、Racket 和 Ruby 展示各种编程语言中的基本概念以及它们如何相互关联，并非学习这三门语言。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,7 +725,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:24:14" itemprop="dateModified" datetime="2019-03-11T15:24:14+08:00">2019-03-11</time>
               
             
           </span>
@@ -430,15 +760,16 @@
 
       
         
-          
-            <p>
-              Deep Neural NetworksDeep Neural NetworksDeep L-layer neural network将网络层数加深，具有 $L$ 层的神经网络称为 L-layer 神经网络。输入层是第 0 层，但是计算层数的时候不计入总层数。一些记号如下（和之前的大致相同）：
-
-$n^{[k]}$ 是第 $k$ 层的神经元数目，故 $n^{[0]}$ 即样本的特征维数，对于二分类问题 $n^{[l]} = 1$。
-$z^{[k]}$ 是第 $k$ 层神经元输出的未经过激活函数的值，多样本时为 $Z^{[k]}$。
-$a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
-              ...
-            </p>
+          <h1 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h1><h2 id="Deep-Neural-Networks-1"><a href="#Deep-Neural-Networks-1" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Deep-L-layer-neural-network"><a href="#Deep-L-layer-neural-network" class="headerlink" title="Deep L-layer neural network"></a>Deep L-layer neural network</h3><p>将网络层数加深，具有 $L$ 层的神经网络称为 L-layer 神经网络。输入层是第 0 层，但是计算层数的时候不计入总层数。一些记号如下（和之前的大致相同）：</p>
+<ul>
+<li>$n^{[k]}$ 是第 $k$ 层的神经元数目，故 $n^{[0]}$ 即样本的特征维数，对于二分类问题 $n^{[l]} = 1$。</li>
+<li>$z^{[k]}$ 是第 $k$ 层神经元输出的未经过激活函数的值，多样本时为 $Z^{[k]}$。</li>
+<li>$a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的值，特别地 $a^{[0]}$ 是样本的特征，二分类问题中 $a^{[l]}$ 是 $\hat y$，多样本时为 $A^{[k]}$。</li>
+<li>$g^{[k]}(x)$ 是第 $k$ 层的激活函数。</li>
+<li>$W^{[k]}$ 是第 $k$ 层的权值，$b^{[k]}$ 是第 $k$ 层的偏移。</li>
+</ul>
+<h3 id="Forward-Propagation-in-a-Deep-Network"><a href="#Forward-Propagation-in-a-Deep-Network" class="headerlink" title="Forward Propagation in a Deep Network"></a>Forward Propagation in a Deep Network</h3><p>这节讲的东西和之前将正向传播几乎一致，没有什么好记录的。</p>
+<p>不同层之间的计算无法完成并行化，如果一个网络层数很深也只能一层一层地算。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -564,7 +895,7 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:24:09" itemprop="dateModified" datetime="2019-03-11T15:24:09+08:00">2019-03-11</time>
               
             
           </span>
@@ -599,11 +930,13 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
 
       
         
-          
-            <p>
-              Shallow Neural NetworksShallow Neural NetworksNeural Networks Overview在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z = \vec w^T\vec x + b$ 中有多个 $\vec w$ 以及 $b$ 就可以得到一个向量作为输出，此时可以表示为 $\vec z = W\vec x + \vec b$。如果希望得到 $
-              ...
-            </p>
+          <h1 id="Shallow-Neural-Networks"><a href="#Shallow-Neural-Networks" class="headerlink" title="Shallow Neural Networks"></a>Shallow Neural Networks</h1><h2 id="Shallow-Neural-Networks-1"><a href="#Shallow-Neural-Networks-1" class="headerlink" title="Shallow Neural Networks"></a>Shallow Neural Networks</h2><h3 id="Neural-Networks-Overview"><a href="#Neural-Networks-Overview" class="headerlink" title="Neural Networks Overview"></a>Neural Networks Overview</h3><p>在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z = \vec w^T\vec x + b$ 中有多个 $\vec w$ 以及 $b$ 就可以得到一个向量作为输出，此时可以表示为 $\vec z = W\vec x + \vec b$。如果希望得到 $k$ 维的输出，只要 $W$ 的规模是 $k\times n$，$\vec b$ 的规模是 $k\times 1$ 即可。</p>
+<p>在有多层的情况下实际上和全连接的神经网络比较类似了，记号上将第 $i​$ 层的参数用中括号括起来放在上标上，例如第一层的情况下就是：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\vec z^{[1]} &= W^{[1]}x + \vec b^{[1]} \\
+\vec a^{[1]} &= \sigma(\vec z^{[1]})
+\end{aligned}</script><p>（使用中括号是为了和表达第 $i$ 个样本的时候使用圆括号区别。）</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -729,7 +1062,7 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:23:36" itemprop="dateModified" datetime="2019-03-11T15:23:36+08:00">2019-03-11</time>
               
             
           </span>
@@ -764,20 +1097,16 @@ $a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的
 
       
         
-          
-            <p>
-              Neural Networks BasicsLogistic Regression as a Neural NetworkBinary Classification课程中使用的符号：
-
-$m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。
-$n$ 表示每个样本的特征向量的维数。
-
-$X$ 表示整个训练集，每一列表示一个样本，相当于样本按照列进行堆叠，因此 $X$ 的规模是 $n\times m$ 的，据说这样表示更简单。
-
-$Y$ 表示所有的标签，每一列表示一个样本，因此 $Y$ 的规模是 $1 \times m$ 的。
-
-Logistic 
-              ...
-            </p>
+          <h1 id="Neural-Networks-Basics"><a href="#Neural-Networks-Basics" class="headerlink" title="Neural Networks Basics"></a>Neural Networks Basics</h1><h2 id="Logistic-Regression-as-a-Neural-Network"><a href="#Logistic-Regression-as-a-Neural-Network" class="headerlink" title="Logistic Regression as a Neural Network"></a>Logistic Regression as a Neural Network</h2><h3 id="Binary-Classification"><a href="#Binary-Classification" class="headerlink" title="Binary Classification"></a>Binary Classification</h3><p>课程中使用的符号：</p>
+<ul>
+<li>$m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。</li>
+<li><p>$n$ 表示每个样本的特征向量的维数。</p>
+</li>
+<li><p>$X$ 表示整个训练集，<strong>每一列表示一个样本</strong>，相当于样本按照列进行堆叠，因此 $X$ 的规模是 $n\times m$ 的，据说这样表示更简单。</p>
+</li>
+<li>$Y$ 表示所有的标签，每一列表示一个样本，因此 $Y$ 的规模是 $1 \times m$ 的。</li>
+</ul>
+<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><p>对于一个样本特征，逻辑回归用于得到这个样本对应的输出，不过这个输出被限制在了 0 到 1 的范围内，因此可以用来做一些类似二分类的事情。比如现在要对某个特征向量 $\vec x$ 进行二分类，希望得到一个输出 $\hat y$ 表示在当前特征为 $\vec x$ 的情况下真实输出为 1 的概率（二分类时这个输出是离散的，只有 0 和 1 两种情况，但是概率是连续的），可以选择 $\hat y = \vec w^T\vec x + b$ 这个模型（这时是线性回归），但是这样得到的值不一定在 0 到 1 之间，因此可以套上一个 sigmoid 函数 $\displaystyle{\sigma(x) = \frac{1}{1 + e^{-x}}}$，选择模型 $\hat y = \sigma(\vec w^T\vec x + b)$，此时为逻辑回归。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -903,7 +1232,7 @@ Logistic
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:23:23" itemprop="dateModified" datetime="2019-03-11T15:23:23+08:00">2019-03-11</time>
               
             
           </span>
@@ -938,15 +1267,12 @@ Logistic
 
       
         
-          
-            <p>
-              Introduction to Deep Learning感谢 Coursera。
-Welcome to the Deep Learning SpecializationWelcome本节没有问题。
-Introduction to Deep LearningWhat is a neural network?对于有输入的特征以及输出的大量样本，神经网络可以很好地学习到其中的映射关系。
-Supervised Learning with Neural Networks监督学习是给定输入特征和输出，要求找到二者之间的对应关系。
-卷积神经网络常用于图像数据，循环神经网络常用于序列数据。对于更复杂的数据可
-              ...
-            </p>
+          <h1 id="Introduction-to-Deep-Learning"><a href="#Introduction-to-Deep-Learning" class="headerlink" title="Introduction to Deep Learning"></a>Introduction to Deep Learning</h1><p>感谢 <a href="https://www.coursera.org/learn/neural-networks-deep-learning" target="_blank" rel="noopener">Coursera</a>。</p>
+<h2 id="Welcome-to-the-Deep-Learning-Specialization"><a href="#Welcome-to-the-Deep-Learning-Specialization" class="headerlink" title="Welcome to the Deep Learning Specialization"></a>Welcome to the Deep Learning Specialization</h2><h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p><em>本节没有问题。</em></p>
+<h2 id="Introduction-to-Deep-Learning-1"><a href="#Introduction-to-Deep-Learning-1" class="headerlink" title="Introduction to Deep Learning"></a>Introduction to Deep Learning</h2><h3 id="What-is-a-neural-network"><a href="#What-is-a-neural-network" class="headerlink" title="What is a neural network?"></a>What is a neural network?</h3><p>对于有输入的特征以及输出的大量样本，神经网络可以很好地学习到其中的映射关系。</p>
+<h3 id="Supervised-Learning-with-Neural-Networks"><a href="#Supervised-Learning-with-Neural-Networks" class="headerlink" title="Supervised Learning with Neural Networks"></a>Supervised Learning with Neural Networks</h3><p>监督学习是给定输入特征和输出，要求找到二者之间的对应关系。</p>
+<p>卷积神经网络常用于图像数据，循环神经网络常用于序列数据。对于更复杂的数据可能要使用自定义的混合结构。</p>
+<p><strong>结构化的数据</strong> 是基于数据库的数据，这种数据一般已经将每个样本的特征写成一个向量，其中每个分量的含义都是显然的，人类可理解的。<strong>非结构化的数据</strong> 例如图像、声音序列和文本序列，人类对这些数据的处理能力很强，但是计算机只有最近才逐渐有了较强的理解能力。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1108,36 +1434,62 @@ Supervised Learning with Neural Networks监督学习是给定输入特征和输�
       
         
           
-            <p>
-              代码生成代码生成器的主要任务代码生成器将中间表示转换到汇编语句。
-三个主要任务：
+            <h1 id="代码生成"><a href="#代码生成" class="headerlink" title="代码生成"></a>代码生成</h1><h2 id="代码生成器的主要任务"><a href="#代码生成器的主要任务" class="headerlink" title="代码生成器的主要任务"></a>代码生成器的主要任务</h2><p>代码生成器将中间表示转换到汇编语句。</p>
+<p>三个主要任务：</p>
+<ul>
+<li>选择适当的目标机指令表示中间表示</li>
+<li>对寄存器的分配和指派</li>
+<li>确定指令的执行顺序</li>
+</ul>
+<h2 id="一个简单的目标机模型"><a href="#一个简单的目标机模型" class="headerlink" title="一个简单的目标机模型"></a>一个简单的目标机模型</h2><p>为了后续方便引入一个简单的汇编语言，它的指令有：</p>
+<ul>
+<li><code>LD x, y</code>：读入 <code>y</code> 至 <code>x</code></li>
+<li><code>ST x, y</code>：将 <code>x</code> 写入 <code>y</code></li>
+<li><code>OP x, y, z</code>：计算 <code>y OP z</code> 后存入 <code>x</code></li>
+<li><code>BR l</code>：无条件跳转到 <code>l</code></li>
+<li><code>Bcond c, l</code>：在满足条件 <code>c</code> 时跳转到 <code>l</code></li>
+</ul>
+<p>以及各种寻址方式。</p>
+<h2 id="指令选择"><a href="#指令选择" class="headerlink" title="指令选择"></a>指令选择</h2><p>这一节主要是几个例子，表示对于给定的中间表示如何生成出对应的指令。显然没有什么好记录的。</p>
+<h2 id="寄存器的选择"><a href="#寄存器的选择" class="headerlink" title="寄存器的选择"></a>寄存器的选择</h2><h3 id="寄存器分配"><a href="#寄存器分配" class="headerlink" title="寄存器分配"></a>寄存器分配</h3><p>当要为 <code>x = y op z</code> 分配寄存器的时候，调用 <code>getReg</code> 函数选择寄存器。</p>
+<p>假设为 <code>y</code> 选出的寄存器为 $R_y$，如果其中存放的不是 <code>y</code>，就生成一条 <code>LD R_y, y</code>。对 <code>z</code> 也是同理。</p>
+<p>现在 $R_y$ 和 $R_z$ 中存放的是正确的值，生成对应的汇编语句即可。</p>
+<h3 id="使用到的数据结构"><a href="#使用到的数据结构" class="headerlink" title="使用到的数据结构"></a>使用到的数据结构</h3><p>为了实现 <code>getReg</code> 需要维护两张表。一张是记录每个寄存器中存放了哪些变量（一个寄存器中可能不止存放了一个变量，也可能存放了多个相同的变量），称为 <strong>寄存器描述符</strong>，另一张记录每个变量被存放在哪些位置（是寄存器、内存、栈等空间的组合），称为 <strong>地址描述符</strong>，第二张表可以在符号表中实现。</p>
+<p>在基本块结束时，如果某个变量不在自己的内存区域中，需要生成一条保存语句。这个类似于缓存 dirty 的策略，可以加速程序运行。</p>
+<h3 id="管理寄存器描述符和地址描述符"><a href="#管理寄存器描述符和地址描述符" class="headerlink" title="管理寄存器描述符和地址描述符"></a>管理寄存器描述符和地址描述符</h3><h4 id="LD-R-x-指令"><a href="#LD-R-x-指令" class="headerlink" title="LD R, x 指令"></a><code>LD R, x</code> 指令</h4><ol>
+<li>修改 <code>R</code> 的寄存器描述符为只包含 <code>x</code>；</li>
+<li>将 <code>R</code> 加入到 <code>x</code> 的地址描述符中；</li>
+<li>将 <code>R</code> 从其它变量地址描述符中移除。</li>
+</ol>
+<h4 id="OP-R-x-R-y-R-z-指令"><a href="#OP-R-x-R-y-R-z-指令" class="headerlink" title="OP R_x, R_y, R_z 指令"></a><code>OP R_x, R_y, R_z</code> 指令</h4><ol>
+<li>修改 <code>R_x</code> 的寄存器描述符为只包含 <code>x</code>，从其它寄存器描述符中删除 <code>x</code>。</li>
+<li>修改 <code>x</code> 的地址描述符为只包含 <code>R_x</code>，从其它变量地址描述符中移除 <code>R_x</code>。</li>
+</ol>
+<hr>
+<p>其它语句按照类似方式得到。</p>
+<p>特别地，对于复制语句 <code>x = y</code> 只用分配一个寄存器 <code>R</code>，<code>R</code> 对应的寄存器描述符中可以既存放 <code>x</code> 也存放 <code>y</code>。</p>
+<h2 id="寄存器选择函数-getReg-的设计"><a href="#寄存器选择函数-getReg-的设计" class="headerlink" title="寄存器选择函数 getReg 的设计"></a>寄存器选择函数 <code>getReg</code> 的设计</h2><p>要对一个变量选择寄存器时，按照如下流程：</p>
+<ol>
+<li>检查变量是否已经在某个寄存器中了，如果是，返回这个寄存器。（不管是读取还是写入都是对的！）</li>
+<li>检查是否有空的寄存器，有则返回。</li>
+<li>否则，计算出每个寄存器被使用后的“代价”，这个代价和每个寄存器中存放的变量数量以及后续的使用情况有关。选出代价最小的寄存器返回。</li>
+</ol>
+<p><code>getReg</code> 的输入应该是指令而不是变量，这样可以对形如复制语句的语句作特殊处理，为两个变量选择相同的寄存器。</p>
+<p>有一些特殊的情况，例如 <code>x = y + z</code> 中如果确认了 <code>y</code> 在以后不会被使用，那么为 <code>x</code> 选择寄存器时那个 <strong>只存放了</strong> <code>y</code> 的寄存器对其而言是空寄存器。</p>
+<h2 id="窥孔优化"><a href="#窥孔优化" class="headerlink" title="窥孔优化"></a>窥孔优化</h2><p>窥孔是一段对汇编程序的窗口，这个窗口可以滑动并对窗内的内容进行优化。窥孔优化的几个实例如下。</p>
+<h3 id="冗余指令删除"><a href="#冗余指令删除" class="headerlink" title="冗余指令删除"></a>冗余指令删除</h3><p>窥孔中出现了冗余的指令，并且没有相应的标号，这段指令必然是顺着时，可以进行删减，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ST a, R0</span><br><span class="line">LD R0, a</span><br></pre></td></tr></table></figure>
+<p>可以删除第二条读取。</p>
+<p>有些代码是不可达的，例如紧跟在无条件跳转后的代码，这些代码也可以删除。</p>
+<h3 id="控制流优化"><a href="#控制流优化" class="headerlink" title="控制流优化"></a>控制流优化</h3><p>如果一个跳转指令跳转到了一个无条件跳转指令，这两次跳转可以合并。</p>
+<p>假设第一条语句是 <code>goto L1</code>，第二条指令是 <code>L1: goto L2</code>，合并后没有跳转到 <code>L1</code> 的指令，并且 <code>L1</code> 前是无条件跳转，则 <code>L1</code> 可以进一步被删除。</p>
+<h3 id="代数优化"><a href="#代数优化" class="headerlink" title="代数优化"></a>代数优化</h3><p>利用代数恒等式可以删除形如 <code>x = x + 0</code> 或者 <code>x = x * 1</code> 之类的指令。</p>
+<p>此外可以进行强度削弱，例如使用加法和位移代替乘法，使用乘倒数代替除以一个常数等。</p>
+<h3 id="使用特殊指令"><a href="#使用特殊指令" class="headerlink" title="使用特殊指令"></a>使用特殊指令</h3><p>一些指令能够更好地利用硬件，由此可以实现加速。例如使用 <code>INC x</code> 代替 <code>x = x + 1</code> 等。</p>
+<hr>
+<p>完。</p>
 
-选择适当的目标机指令表示中间表示
-对寄存器的分配和指派
-确定指令的执行顺序
-
-一个简单的目标机模型为了后续方便引入一个简单的汇编语言，它的指令有：
-
-LD x, y：读入 y 至 x
-ST x, y：将 x 写入 y
-OP x, y, z：计算 y OP z 后存入 x
-BR l：无条件跳转到 l
-Bcond c, l：在满足条件 c 时跳转到 l
-
-以及各种寻址方式。
-指令选择这一节主要是几个例子，表示对于给定的中间表示如何生成出对应的指令。显然没有什么好记录的。
-寄存器的选择寄存器分配当要为 x = y o
-              ...
-            </p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-20/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1290,22 +1642,67 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-            <p>
-              代码优化-4支配结点和回边支配：在流图中，如果从入口基本块结点（$ENTRY$）到某基本块结点 n 的所有路径都要经过基本块结点 m，则称结点 m 支配结点 n。每个结点都会支配自己。
-支配结点树：将所有的结点按照支配关系可以排列成一棵树，这棵树的任意一棵子树满足根结点支配子树中所有结点（包括自己）。
-直接支配结点：一个结点的直接支配结点是从入口结点到它自己的路径上最后一个支配它的结点。
-求解支配结点寻找支配结点是一个前向风格的数据流问题。将 $\mbox{In}[B]$ 表示 $B$ 入口处的支配结点集合，$\mbox{Out}[B]$ 表示出口处的支配结点集合，得到方程 $\mbox{Ou
-              ...
-            </p>
-          <!--noindex-->
+            <h1 id="代码优化-4"><a href="#代码优化-4" class="headerlink" title="代码优化-4"></a>代码优化-4</h1><h2 id="支配结点和回边"><a href="#支配结点和回边" class="headerlink" title="支配结点和回边"></a>支配结点和回边</h2><p><strong>支配</strong>：在流图中，如果从入口基本块结点（$ENTRY$）到某基本块结点 n 的所有路径都要经过基本块结点 m，则称结点 m 支配结点 n。每个结点都会支配自己。</p>
+<p><strong>支配结点树</strong>：将所有的结点按照支配关系可以排列成一棵树，这棵树的任意一棵子树满足根结点支配子树中所有结点（包括自己）。</p>
+<p><strong>直接支配结点</strong>：一个结点的直接支配结点是从入口结点到它自己的路径上最后一个支配它的结点。</p>
+<h3 id="求解支配结点"><a href="#求解支配结点" class="headerlink" title="求解支配结点"></a>求解支配结点</h3><p>寻找支配结点是一个前向风格的数据流问题。将 $\mbox{In}[B]$ 表示 $B$ 入口处的支配结点集合，$\mbox{Out}[B]$ 表示出口处的支配结点集合，得到方程 $\mbox{Out}[ENTRY] = \{ENTRY\}$，$\mbox{Out}[B] = \mbox{In}[B] \cup \{B\}$ 以及 $\mbox{In}[B] = \cap_i\mbox{Out}[P_i]$，其中 $P_i$ 是 $B$ 的各个前驱结点。这个方程可以使用迭代的方式求解，即可得到各个结点的支配结点。</p>
+<hr>
+<p><strong>关于数据流问题的一些想法</strong>：目前已经看过了四个数据流问题，它们都是在求一个有向图上的各个结点的属性。共性是每个结点都可以关联两个属性：进入时的属性和离开时的属性。这两个属性之间的关系只由结点本身决定。给定了初始虚拟结点和终末虚拟结点的属性，并给出了每个结点的进入时的属性和其它结点离开时的属性的关系（或离开时的属性与其它结点进入时的属性的关系）后都可以通过迭代的方式求解。迭代的初始化的规律是，例如一个结点的进入时的属性是其它结点离开时的属性的交，则初始化为全集；若为并，则初始化为空集。</p>
+<h3 id="回边"><a href="#回边" class="headerlink" title="回边"></a>回边</h3><p>如果结点 m 支配结点 n，但是 n 有一条指向 m 的边，这条边称为 <strong>回边</strong>。</p>
+<h2 id="自然循环及其识别"><a href="#自然循环及其识别" class="headerlink" title="自然循环及其识别"></a>自然循环及其识别</h2><p>从流图中容易得到循环，但是找到适合优化的 <strong>自然循环</strong> 才是有意义的。</p>
+<p>自然循环是满足以下性质的循环：</p>
+<ul>
+<li>有 <strong>唯一的</strong> 支配循环中其它结点的入口结点，称为首结点。（这个限制是希望循环有唯一的入口，对于优化过程而言可能存在循环不变量等条件。）</li>
+<li>循环中至少存在一条回到入口结点的路径。</li>
+</ul>
+<p>对于一条回边，假设是 n 指向 m 的，可以得到一个自然循环。这个自然循环包括的结点有 m，以及所有不经过 m 到达 n 的结点（自然包括 n）。因为这些结点不经过 m 可以到达 n，而 n 可以直接到 m，所以可以看做是以 m 为首结点的自然循环。</p>
+<p>为了找到所有的这样的结点，对于一条从 n 指向 m 的回边，n 必然在对应的自然循环中，n 的所有前驱也在自然循环中，这些前驱的前驱也应该在其中。依此类推，可以找到这条回边对应的自然循环的所有结点。</p>
+<p>自然循环的性质：如果两个自然循环首结点不同，它们要么完全不相交，要么互相包含。对于第二种情况，相当于发生了循环嵌套。没有嵌套其它循环的循环称为 <strong>最内循环</strong>。如果两个循环具有相同的首结点，难以讨论最内循环时，可以考虑将两个循环合并进行讨论。</p>
+<h2 id="删除全局公共子表达式和复制语句"><a href="#删除全局公共子表达式和复制语句" class="headerlink" title="删除全局公共子表达式和复制语句"></a>删除全局公共子表达式和复制语句</h2><h3 id="删除全局公共子表达式"><a href="#删除全局公共子表达式" class="headerlink" title="删除全局公共子表达式"></a>删除全局公共子表达式</h3><p>这个优化依赖于可用表达式分析。思路是对于 $x = y  + z$ 中的公共子表达式 $y + z$，将其转化为 $u = y + z, x= u$，后续过程中即可使用 $u$ 代替 $y + z$。</p>
+<p>如果需要优化某个基本块中的 $x = y + z$，已知了 $y + z$ 是可用的，可以从这个基本块开始逆着流动方向进行搜索，找到所有离该基本块最近的计算了 $y + z$ 的语句，将这些语句替换为上述形式（全部使用一个变量 $u$ 来代替），然后对于 $x = y + z$ 而言就变成了 $x = u$。搜索过程中不能穿过任何计算了 $y + z$ 的块，同时应该不会出现对 $y$ 或者 $z$ 的定值，否则表达式应该是不可用的。搜索时不一定能在直接前驱中找到，可能要递归地搜索下去。</p>
+<h3 id="删除复制语句"><a href="#删除复制语句" class="headerlink" title="删除复制语句"></a>删除复制语句</h3><p>对于一个复制语句 $x = y$，如果在 $x$ 的所有引用处，$x = y$ 这个表达式都是可用的，就可以使用 $y$ 代替 $x$ 从而消除复制语句。</p>
+<p>如果需要删除掉某个复制语句 $x = y$，需要根据 $x$ 的定值-引用链找到所有对该变量的引用，然后查看在所有这些引用处是不是表达式都是可用的。如果都是可用的就可以删除复制语句并将所有的 $x$ 用 $y$ 代替。</p>
+<h2 id="代码移动"><a href="#代码移动" class="headerlink" title="代码移动"></a>代码移动</h2><p>代码移动的目的是优化循环中冗余的计算。</p>
+<h3 id="循环不变量计算"><a href="#循环不变量计算" class="headerlink" title="循环不变量计算"></a>循环不变量计算</h3><p>循环的 <strong>循环不变量</strong> 指的是在循环过程中值保持不变的量。</p>
+<p>对于一个循环（循环在流图中就是若干个结点的集合），它的循环不变量可以用如下方式找出。对于一个语句，如果它将某个运算赋给一个变量，且运算分量是以下三种情况之一：</p>
+<ul>
+<li>运算分量是常数</li>
+<li>运算分量的定值语句在循环外部</li>
+<li>运算分量的到达定值语句是对循环不变量的定值（也就是说运算分量本身也是循环不变量）</li>
+</ul>
+<p>则被赋值的变量是循环不变量。</p>
+<h3 id="代码外提"><a href="#代码外提" class="headerlink" title="代码外提"></a>代码外提</h3><p>为了实现代码外提，首先找到循环的首结点，然后引入一个 <strong>前置首结点</strong>。前置首结点与首结点的关系是，前置首结点只指向首结点，之前指向首结点的循环外结点指向前置首结点，循环内结点指向新的首结点。这样，前置首结点的内容只会被执行一次。</p>
+<p>并非所有的循环不变量的计算都可以外提到前置首结点中，要满足以下条件：</p>
+<ul>
+<li>该计算过程所在的基本块支配了所有的循环出口结点（能够离开循环的结点），保证了离开循环前这条语句必然被执行过；</li>
+<li>循环过程中没有其它语句对这个循环不变量赋值，保证了循环不变量在赋值后值总是固定的；</li>
+<li>如果循环不变量是 $x$，则所有对 $x$ 的引用只能由该循环不变量的计算这个定值语句到达。</li>
+</ul>
+<p>在找到了所有的循环不变量，并且确定可以外提之后，建立各个循环不变量之间的依赖关系（一个循环不变量可能依赖其它循环不变量），将代码外提到前置首结点中。</p>
+<h2 id="作用于归纳变量的强度削弱"><a href="#作用于归纳变量的强度削弱" class="headerlink" title="作用于归纳变量的强度削弱"></a>作用于归纳变量的强度削弱</h2><h3 id="归纳变量"><a href="#归纳变量" class="headerlink" title="归纳变量"></a>归纳变量</h3><p>循环的 <strong>归纳变量</strong> 指的是在循环中以固定步长变化的量。对归纳变量进行强度削弱主要是用加减代替乘法。<strong>归纳变量不是每轮循环都变化的，一轮循环中可能不变化或者变化多次（循环嵌套）。</strong></p>
+<p>如果变量 $i$ 只有形如 $i = i + 2$ 这样的定值，称为 <strong>基本归纳变量</strong>。</p>
+<p>如果变量 $j$ 的定值形如 $j = i\times a + b$，其中 $i$ 是基本归纳变量，称 $j$ 是 $i$ 族的归纳变量，以（族，步长，偏置）的形式关联一个三元组 $(i, a, b)$。</p>
+<p>所有的归纳变量都可以关联这样的三元组。</p>
+<h3 id="归纳变量计算"><a href="#归纳变量计算" class="headerlink" title="归纳变量计算"></a>归纳变量计算</h3><p>为了找到所有的归纳变量，第一步是找到所有的基本归纳变量。需要注意的是基本归纳变量中只要每次的步长是一个循环不变量即可，不一定要求是常量。</p>
+<p>找到基本归纳变量后在循环中找到所有的只有一次定值的变量 $k$，假设其形式是 $k = c\times i + d$。</p>
+<ul>
+<li>如果 $i$ 是基本归纳变量，则 $k$ 是 $i$ 族的归纳变量，并且三元组容易确定。</li>
+<li>如果 $i$ 不是基本归纳变量，并且是 $j$ 族的归纳变量，则 $k$ 的三元组可以确定。此时有额外的限制，循环中对 $i$ 的定值到对 $k$ 的定值之间不能有对 $j$ 的定值（因为要将 $k$ 写成 $i$ 的函数了），循环外对 $i$ 的定值不能到达 $k$（在循环中 $k$ 第一次被定值的时候如果依赖的 $i$ 的值是来自循环外的，就可能有问题）。</li>
+</ul>
+<p>这样可以找到所有的归纳变量，以及它们的三元组信息。</p>
+<h3 id="强度削弱"><a href="#强度削弱" class="headerlink" title="强度削弱"></a>强度削弱</h3><p>对归纳变量的强度削弱是按族进行的。对于这些归纳变量总是可以分成若干不相交的族。对于每一族：</p>
+<ol>
+<li>对于每个具有不同三元组的归纳变量，建立一个变量 $t$。例如对于 $j = a\times i + b$，建立变量 $t$。</li>
+<li>将对 $j$ 的赋值改成 $t$，在上一个例子中就是 $j = t$。</li>
+<li>在每次基本归纳变量发生改变后，更新 $t$ 的值。例如 $i =  i + c$ 后面应该插入 $t = t + c\times a$。</li>
+<li>为了保证 $t$ 具有正确的初值，在前置首结点的末尾插入 $t = a\times i + b$。</li>
+</ol>
+<p>可以看到强度削弱引入了新的归纳变量。</p>
+<h2 id="归纳变量的删除"><a href="#归纳变量的删除" class="headerlink" title="归纳变量的删除"></a>归纳变量的删除</h2><h3 id="删除额外的复制语句"><a href="#删除额外的复制语句" class="headerlink" title="删除额外的复制语句"></a>删除额外的复制语句</h3><p>在对归纳变量进行强度削弱时，引入了新的复制语句，将一个新的归纳变量复制给了旧的归纳变量。由前面的代码优化知识可以知道这种复制语句有冗余的可能，可以考虑将其删除。</p>
+<h3 id="删除用作测试的归纳变量"><a href="#删除用作测试的归纳变量" class="headerlink" title="删除用作测试的归纳变量"></a>删除用作测试的归纳变量</h3><p>对于仅用作测试（出现在条件中）的基本归纳变量，有时可以将其删除。如果 $i$ 是一个基本归纳变量，$j$ 是 $i$ 族的归纳变量，有 $j = a\times i + b\ (a &gt; 0)$，某个条件语句是 $i &gt; x$，则该条件等价于 $j &gt; a\times x + b$，替换完成后，有可能可以删除基本归纳变量 $i$。</p>
+<p>另一种情况是条件中两个都是基本归纳变量，例如 $j_1 = a\times i_1 + b, j_2 = a\times i_2 + b\ (a &gt; 0)$，对于条件 $i_1 &gt; i_2$ 而言可以替换为 $j_1 &gt; j_2$。这样求三元组的后两个分量是相同的，如果三元组的后两个分量不同的话可能引入额外的计算从而得不偿失。</p>
+
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-19/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1458,25 +1855,38 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-            <p>
-              代码优化-3活跃变量分析在某个程序点上，如果存在某条执行路径，使得变量 $x$ 在该程序点上的值在路径上某处被引用，则称变量 $x$ 在该程序点处活跃。直观来说就是 $x$ 在以后会被用到。
-活跃变量分析是逆向风格的数据流分析问题，它的一些应用：
+            <h1 id="代码优化-3"><a href="#代码优化-3" class="headerlink" title="代码优化-3"></a>代码优化-3</h1><h2 id="活跃变量分析"><a href="#活跃变量分析" class="headerlink" title="活跃变量分析"></a>活跃变量分析</h2><p>在某个程序点上，如果存在某条执行路径，使得变量 $x$ 在该程序点上的值在路径上某处被引用，则称变量 $x$ 在该程序点处活跃。直观来说就是 $x$ 在以后会被用到。</p>
+<p>活跃变量分析是逆向风格的数据流分析问题，它的一些应用：</p>
+<ul>
+<li><strong>删除无用赋值</strong>：一个变量在定值后，在基本块内不再被引用，并且在基本块出口处不活跃，则为无用赋值。</li>
+<li><strong>为基本块分配寄存器</strong>：在寄存器已经完全分配出去后，如果需要新的寄存器可以优先使用存放了非活跃变量的寄存器；在基本块出口处，可以不保存出口处不活跃的变量。</li>
+</ul>
+<h3 id="传递函数与数据流方程"><a href="#传递函数与数据流方程" class="headerlink" title="传递函数与数据流方程"></a>传递函数与数据流方程</h3><p>用 $\mbox{In}[B]$ 表示 $B$ 入口处的活跃变量集合，$\mbox{Out}[B]$ 表示出口处的活跃变量集合，有传递函数 $\mbox{In}[B] = f_B(\mbox{Out}[B])$。</p>
+<p>用 $def_B$ 表示 $B$ 中第一次出现是以定值形式出现的变量集合，$use_B$ 表示第一次出现是以引用形式出现的变量集合。显然 $B$ 中出现的变量必然属于其中之一。有 $f_B(x) = use_B\cup (x - def_B)$。$use_B,gen_B$ 容易从基本块中直接得到。</p>
+<p><strong>活跃变量分析的数据流方程</strong>：在流图的最后使用 $EXIT$ 这个虚拟基本块，有 $\mbox{In}[EXIT] = \varnothing$，此外对于所有基本块有 $\mbox{In}[B] = use_B\cup (\mbox{Out}[B] - def_B)$，$\mbox{Out}[B] = \cup_i\mbox{In}[S_i]$，其中 $S_i$ 是 $B$ 的所有后继基本块。</p>
+<p>该方程的计算和到达定值分析类似，也是迭代直到不变。</p>
+<h3 id="定值-引用链"><a href="#定值-引用链" class="headerlink" title="定值-引用链"></a>定值-引用链</h3><p>和到达定值分析中不同，<strong>定值-引用链不是引用-定值链</strong>。一个定值能够到达的所有引用的集合称为该定值的定值-引用链。</p>
+<p>在活跃变量分析的数据流方程中，如果将 $\mbox{Out}[B]$ 的含义定义为 $B$ 结尾处能够到达的引用的集合，就可以计算定值-引用链。</p>
+<ul>
+<li>如果 $B$ 中对 $x$ 的定值 $d$ 后在 $B$ 中没有其它对 $x$ 的定值，则 $d$ 的定值-引用链是 $d$ 后所有对 $x$ 的引用和 $\mbox{Out}[B]$ 中所有对 $x$ 的引用。</li>
+<li>如果 $B$ 中对 $x$ 的定值 $d$ 后有其它对 $x$ 的定值，且第一个定值是 $d’$，则 $d$ 的定值-引用链是 $d$ 和 $d’$ 之间所有对 $x$ 的引用。</li>
+</ul>
+<h2 id="可用表达式分析"><a href="#可用表达式分析" class="headerlink" title="可用表达式分析"></a>可用表达式分析</h2><p>在某个程序点 $p$ 上，如果从流图的首结点开始到达 $p$ 的所有路径上，对表达式 $e$ 都进行了计算并且最后一次计算完成后没有重新对 $e$ 中分量定值，则 $e$ 在 $p$ 处是可用表达式。直观来说就是 $p$ 处不用重新计算 $e$。</p>
+<p>可用表达式分析可以用来：</p>
+<ul>
+<li><strong>消除全局公共子表达式</strong>。</li>
+<li><strong>进行复制传播</strong>，将赋值语句视作一种特殊的表达式，在某个程序点 $p$ 上，如果赋值语句 $e$ 为 $x = y$ 在 $p$ 处可用，则 $p$ 处对 $x$ 的使用可以用 $y$ 代替。</li>
+</ul>
+<h3 id="传递函数与数据流方程-1"><a href="#传递函数与数据流方程-1" class="headerlink" title="传递函数与数据流方程"></a>传递函数与数据流方程</h3><p>可用表达式分析是前向风格的数据流分析问题。用 $\mbox{In}[B]$ 表示 $B$ 入口处的可用表达式集合，用 $\mbox{Out}[B]$ 表示出口处的可用表达式集合，有传递函数 $\mbox{Out}[B] = f_B(\mbox{In}[B])$。</p>
+<p>用 $gen_B$ 表示 $B$ 中生成的表达式集合，即计算了这个表达式并且后来没有对表达式中的分量重新定值；用 $kill_B$ 表示 $B$ 中杀死的表达式集合，即对表达式中的分量重新定值并且后来没有再计算过这个表达式。任一表达式只可能属于其中一个，但也可能都不属于。</p>
+<p>对于给定的基本块可以计算出它的 $gen$ 和 $kill$：</p>
+<ul>
+<li>对于 $gen_B$，先初始化为空。顺次对于 $B$ 中的每条语句 $x = y + z$，将 $y + z$ 加入 $gen_B$ 中，然后将与 $x$ 有关的语句从 $gen_B$ 中删除。</li>
+<li>对于 $kill_B$，先初始化为空。顺次对于 $B$ 中的每条语句 $x = y  + z$，将 $y + z$ 从 $kill_B$ 中删除，然后将与 $x$ 有关的语句加入到 $kill_B$ 中。</li>
+</ul>
+<p><strong>可用表达式分析的数据流方程</strong>：$\mbox{Out}[Entry] = \varnothing$，$f_B(x) = gen_B\cup (x - kill_B)$，以及 $\mbox{In}[B] = \cap_i\mbox{Out}[P_i]$，其中 $P_i$ 是 $B$ 的所有前驱。该方程的计算使用迭代，直到不变。迭代过程中每个基本块的 $\mbox{Out}$ 被设为程序中可能出现的所有表达式的集合，之所以不设为空集是因为空集在初始的若干次迭代中会导致计算缓慢，设置为全集可以更快地迭代到不变。</p>
 
-删除无用赋值：一个变量在定值后，在基本块内不再被引用，并且在基本块出口处不活跃，则为无用赋值。
-为基本块分配寄存器：在寄存器已经完全分配出去后，如果需要新的寄存器可以优先使用存放了非活跃变量的寄存器；在基本块出口处，可以不保存出口处不活跃的变量。
-
-传递函数与数据流方程用 $\mbox{In}[B]$ 表示 $B$ 入口处的活跃变量集合，$\mbo
-              ...
-            </p>
-          <!--noindex-->
           
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-18/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -1629,357 +2039,40 @@ Bcond c, l：在满足条件 c 时跳转到 l
       
         
           
-            <p>
-              代码优化-2数据流分析数据流分析是一种用来获取程序执行路径上的数据流信息的方法。分析过程会将每个程序点和一个 数据流值 关联起来。这个定义过于抽象，不要深究。什么是数据流我暂且认为是 表示各个变量的值的传递过程的信息。
-数据流分析有 到达定值分析、活跃变量分析 和 可用表达式分析 这几种应用。
-对于语句 $s$，使用 $\mbox{In}[s]$ 表示 $s$ 之前的数据流值，$\mbox{Out}[s]$ 表示 $s$ 之后的数据流值，随着 $s$ 的不同可以得到两者之间的函数 $\mbox{Out}[s] = f_s(\mbox{In}[s])$，这个函数称作 $s$ 的传递函数，这种风格
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-17/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-16/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-16/" class="post-title-link" itemprop="url">编译原理慕课笔记 16</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:20:06" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:06+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
+            <h1 id="代码优化-2"><a href="#代码优化-2" class="headerlink" title="代码优化-2"></a>代码优化-2</h1><h2 id="数据流分析"><a href="#数据流分析" class="headerlink" title="数据流分析"></a>数据流分析</h2><p>数据流分析是一种用来获取程序执行路径上的数据流信息的方法。分析过程会将每个程序点和一个 <strong>数据流值</strong> 关联起来。这个定义过于抽象，不要深究。什么是数据流我暂且认为是 <strong>表示各个变量的值的传递过程的信息</strong>。</p>
+<p>数据流分析有 <strong>到达定值分析</strong>、<strong>活跃变量分析</strong> 和 <strong>可用表达式分析</strong> 这几种应用。</p>
+<p>对于语句 $s$，使用 $\mbox{In}[s]$ 表示 $s$ 之前的数据流值，$\mbox{Out}[s]$ 表示 $s$ 之后的数据流值，随着 $s$ 的不同可以得到两者之间的函数 $\mbox{Out}[s] = f_s(\mbox{In}[s])$，这个函数称作 $s$ 的传递函数，这种风格的传递函数是前向传播风格，还有一种是 $\mbox{In}[s] = g_s(\mbox{Out}[s])$ 是逆向传播风格。对于基本块 $B$ 也有 $\mbox{In}[B]$ 和 $\mbox{Out}[B]$。</p>
+<p>对于相邻的语句有 $\mbox{In}[s_{i+1}]  = \mbox{Out}[s_i]$，对于基本块 $B$，它的 $\mbox{In}[B]$ 是第一条语句 $s_1$ 的 $\mbox{In}[s_1]$，它的 $\mbox{Out}[B]$ 是最后一条语句 $s_n$ 的 $\mbox{Out}[s_n]$。对于前向风格的传递函数，有 $f_B = f_{s_n}\cdot f_{s_{n -1}}\cdots f_{s_2}\cdot f_{s_1}$；对于逆向风格的传递函数有 $g_B = g_{s_1}\cdot g_{s_{2}}\cdots g_{s_{n - 1}}\cdot g_{s_n}$。</p>
+<h2 id="到达定值分析"><a href="#到达定值分析" class="headerlink" title="到达定值分析"></a>到达定值分析</h2><p>如果一条语句 $s$ 对变量 $x$ 赋值了，则称 $s$ 是 $x$ 的一个 <strong>定值</strong>。</p>
+<p>如果存在某个路径，它以 $x$ 的某个定值 $s$ 开始，以某个程序点 $p$ 结束，且这条路径上没有对 $x$ 的其它定值，称定值 $s$ <strong>到达</strong> 程序点 $p$。</p>
+<p>到达定值分析的一些应用：</p>
+<ul>
+<li><strong>检测循环中的不变量</strong>：一个循环中对某个变量进行了赋值，但是通过到达定值分析可能发现这个变量的值在每轮循环中都没有改变。</li>
+<li><strong>常量合并</strong>：对某个变量 $x$ 的使用只有一个定值可以到达，并且这个定值是将某个常量赋给 $x$，则可以直接替换为这个常量。</li>
+<li><strong>判断某个变量是否在被赋值前就被使用了</strong>。</li>
+</ul>
+<h3 id="生成与杀死定值"><a href="#生成与杀死定值" class="headerlink" title="生成与杀死定值"></a>生成与杀死定值</h3><p>一个定值语句会 <strong>生成</strong> 一个定值（就是它自己），同时会 <strong>杀死</strong> 其它所有对被赋值的变量的定值。</p>
+<p>用 $gen_d$ 表示语句 $d$ 生成的定值的集合，用 $kill_b$ 表示杀死的定值的集合。则对于某个语句 $d$ 而言，其传递函数可以写成 $f_d(x) = gen_d\cup(x - kill_d)$（自变量 $x$ 的“类型”是一个数据流值，由此看来此应用下的数据流值是一些定值的集合）。</p>
+<p>基本块的传递函数的形式一致：$f_B(x) = gen_B\cup(x - kill_B)$，其中 $kill_B = kill_1\cup kill_2\cup \cdots\cup kill_n$，$gen_B = gen_n\cup (gen_{n - 1} - kill_n)\cup(gen_{n - 2} - kill_{n - 1} - kill_{n})\cup\cdots\cup(gen_1-kill_2-\cdots -kill_n)$。</p>
+<h3 id="到达定值的数据流方程"><a href="#到达定值的数据流方程" class="headerlink" title="到达定值的数据流方程"></a>到达定值的数据流方程</h3><p>对于一个程序，它的定值被以下方程约束：</p>
+<ul>
+<li>$\mbox{Out}[Entry] = \varnothing$，其中 $Entry$ 是在第一个基本块前的虚拟基本块。</li>
+<li>$\mbox{Out}[B] = gen_B\cup(\mbox{In}[B] - kill_B)$，由传递函数的定义和计算方式得到，$gen_B$ 和 $kill_B$ 可以直接从 $B$ 中得到。</li>
+<li>对于基本块 $B$，如果它的前驱为 $A_1,A_2,\cdots,A_n$，则 $\mbox{In}[B] = \cup_i A_i$。</li>
+</ul>
+<h2 id="到达定值方程的计算"><a href="#到达定值方程的计算" class="headerlink" title="到达定值方程的计算"></a>到达定值方程的计算</h2><p>以下算法可以计算出每个基本块 $B_i$ 的 $\mbox{In}[B_i]$ 和 $\mbox{Out}[B_i]$，假定每个基本块的生成集合和杀死集合已经得到。</p>
+<ol>
+<li>将包括 $Entry$ 块在内的所有基本块的 $\mbox{Out}$ 设置为空集。</li>
+<li>对于除了 $Entry$ 的每个基本块，先使用 $\mbox{In}[B_i] = \cup_j A_{ij}$ 计算其 $\mbox{In}$（对于基本块 $B$，如果它的前驱为 $A_1,A_2,\cdots,A_n$，则 $\mbox{In}[B] = \cup_i A_i$），然后使用 $\mbox{Out}[B] = gen_B\cup(\mbox{In}[B] - kill_B)$ 计算 $\mbox{Out}$。完成后如果有任何基本块的 $\mbox{Out}$ 发生改变，则重复这一步直到没有改变。</li>
+</ol>
+<h3 id="引用-定值链"><a href="#引用-定值链" class="headerlink" title="引用-定值链"></a>引用-定值链</h3><p>对于一个基本块中的变量的每次引用，可以为其关联一个 <strong>引用-定值链</strong> 表示所有可以到达该引用的定值：</p>
+<ul>
+<li>如果这次引用前，基本块中已经有了对该变量的定值，则链中只有唯一元素就是最近的定值。</li>
+<li>否则，链中元素是 $\mbox{In}[B]$ 中对该变量的定值的集合。</li>
+</ul>
+<p>（考虑到到达某个基本块的路径不止一条，链中可能有多个元素。）</p>
 
           
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              代码优化-1代码优化就是使程序运行更快、效率更高的对程序的等价变换。
-流图基本块基本块是一段连续的三地址指令序列，满足 控制流只能从序列首进入，只能从序列尾退出，序列中不会出现跳转和停机。
-将一段程序划分为基本块的算法需要先确定 首指令，即作为某个基本块的第一条指令的指令。首指令可能是指令序列的第一条指令、跳转指令本身和紧接着跳转指令后的指令。首指令之间的指令片段即为一个基本块。
-流图流图是一张有向图，反映了控制流的转移。其结点对应着基本块，两个结点之间存在一条边当且仅当这两个结点对应的基本块存在可能的控制流转移。结点 M 指向结点 N 有可能是 M 在某种情况下会跳转向 N，也可能是 M 执
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-16/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-15/" class="post-title-link" itemprop="url">编译原理慕课笔记 15</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:20:04" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:04+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              运行存储分配运行存储分配概述分配策略在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 静态分配，如果在编译时无法完成分配，需要在运行时进行确定则称为 动态分配。在动态分配时，可以进行 栈式内存分配 或 堆式内存分配。
-活动记录函数的每次执行称作一个 活动，活动记录 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。
-活动记录中会存放实参、返回值、控制链（指向调用者的活动记录）、访问链（指向其它活动记录，后面会用到）、保存的状态、局部变量和临时变量。
-同一个函数的活动记录不一定是定长的，栈上也可以进行动态内存分配，此
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/23/编译原理慕课笔记-15/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
         
       
     </div>
@@ -2023,7 +2116,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2065,7 +2158,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2129,6 +2222,32 @@ Bcond c, l：在满足条件 c 时跳转到 l
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
 
           
 
@@ -2178,7 +2297,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -2267,6 +2386,7 @@ Bcond c, l：在满足条件 c 时跳转到 l
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

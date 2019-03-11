@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -333,6 +333,335 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 4 Section 7</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:14:23" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:23+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:43" itemprop="dateModified" datetime="2019-03-11T15:27:43+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-7"><a href="#Section-7" class="headerlink" title="Section 7"></a>Section 7</h1><h2 id="ML-Versus-Racket"><a href="#ML-Versus-Racket" class="headerlink" title="ML Versus Racket"></a>ML Versus Racket</h2><p>ML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。</p>
+<p>它们可以互相实现对方的类型系统。</p>
+<h3 id="Racket-实现-ML"><a href="#Racket-实现-ML" class="headerlink" title="Racket 实现 ML"></a>Racket 实现 ML</h3><p>在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部分符合 ML 类型系统要求的程序能够通过 ML 编译器（忽略语法差异），这种限制使得程序的一些潜在 bug 被提前检查出来，但是同时一些本来可以正常运行的程序也被拒绝了。例如以下程序在 Racket 中合法但是在 ML 中不合法：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">f</span> x) (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&gt;</span></span> x <span class="number">0</span>) <span class="literal">#t</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span>)))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> xs (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="literal">#t</span> <span class="string">"hi"</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> y (<span class="name">f</span> (<span class="name"><span class="builtin-name">car</span></span> xs)))</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 3 Section 6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:14:17" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:17+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:50" itemprop="dateModified" datetime="2019-03-11T15:27:50+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-6"><a href="#Section-6" class="headerlink" title="Section 6"></a>Section 6</h1><h2 id="Datatype-Programming-in-Racket-Without-Structs"><a href="#Datatype-Programming-in-Racket-Without-Structs" class="headerlink" title="Datatype-Programming in Racket Without Structs"></a>Datatype-Programming in Racket Without Structs</h2><p>在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 <code>&#39;</code> 开头的字符串，例如 <code>&#39;foo</code>，symbol 之间用 <code>eq?</code> 判断相等。</p>
+<p>以下是一个移植的例子：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> exp = <span class="type">Const</span> <span class="keyword">of</span> <span class="built_in">int</span></span><br><span class="line">             | <span class="type">Negate</span> <span class="keyword">of</span> exp</span><br><span class="line">             | <span class="type">Add</span> <span class="keyword">of</span> exp * exp</span><br><span class="line">             | <span class="type">Multiply</span> <span class="keyword">of</span> exp * exp</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Const</span> i) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Const</span> i))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Negate</span> e) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Negate</span> e))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Add</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Add</span> e1 e2))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Multiply</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Multiply</span> e1 e2))</span><br></pre></td></tr></table></figure>
+<p>针对于 <code>exp</code> 类型的 ML 函数都可以使用 Racket 写出，模式匹配功能可以用 cond 进行模拟，通过对列表的第一个元素进行比较确定它到底是哪种类型即可。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -395,7 +724,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-07 17:00:33" itemprop="dateModified" datetime="2019-03-07T17:00:33+08:00">2019-03-07</time>
+                <time title="修改时间：2019-03-11 15:27:56" itemprop="dateModified" datetime="2019-03-11T15:27:56+08:00">2019-03-11</time>
               
             
           </span>
@@ -430,15 +759,11 @@
 
       
         
-          
-            <p>
-              Section 5Introduction to RacketRacket 和 ML 最大的区别在于 Racket 是动态类型的。
-Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
-一个简单的 Racket 程序：
-; this is a comment#lang racket ; tell the language(provide (all-defined-out)) ; make all things visible(define s "hello")
-其中 #lang racket 是告诉 DrRacket 使用的是何种语言，因为 DrRacket 可以解释
-              ...
-            </p>
+          <h1 id="Section-5"><a href="#Section-5" class="headerlink" title="Section 5"></a>Section 5</h1><h2 id="Introduction-to-Racket"><a href="#Introduction-to-Racket" class="headerlink" title="Introduction to Racket"></a>Introduction to Racket</h2><p>Racket 和 ML 最大的区别在于 Racket 是动态类型的。</p>
+<p>Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。</p>
+<p>一个简单的 Racket 程序：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; this is a comment</span></span><br><span class="line"></span><br><span class="line">#lang racket ; tell the language</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">provide</span></span> (<span class="name">all-defined-out</span>)) <span class="comment">; make all things visible</span></span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> s <span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+<p>其中 <code>#lang racket</code> 是告诉 DrRacket 使用的是何种语言，因为 DrRacket 可以解释其它语言，所以必须在第一句话指出。<code>(provide (all-defined-out))</code> 是为了在其他文件中直接使用该文件的顶层定义，因为 Racket 的类型系统将每个文件单独试做一个模块，顶层定义默认不可见。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -564,7 +889,7 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:28:08" itemprop="dateModified" datetime="2019-03-11T15:28:08+08:00">2019-03-11</time>
               
             
           </span>
@@ -599,25 +924,20 @@ Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。
 
       
         
-          
-            <p>
-              Introduction感谢 Coursera。
-Course Information and OverviewWelcome to Part B本节没有问题。
-Overview of Part B ConceptsSection 5
-Racket 是动态类型的。
-Racket 可以实现 delaying evaluation（就是惰性求值）。
-Racket 具有优秀的宏系统。宏可以让程序员扩展语言的语法，同时不改变语言实现。
-
-Section 6
-Racket 的类型系统。
-如何实现一个解释器。
-
-Section 7
-静态类型系统、动态类型系统及其比较。
-
-Part B Course Str
-              ...
-            </p>
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>感谢 <a href="https://www.coursera.org/learn/programming-languages-part-b" target="_blank" rel="noopener">Coursera</a>。</p>
+<h2 id="Course-Information-and-Overview"><a href="#Course-Information-and-Overview" class="headerlink" title="Course Information and Overview"></a>Course Information and Overview</h2><h3 id="Welcome-to-Part-B"><a href="#Welcome-to-Part-B" class="headerlink" title="Welcome to Part B"></a>Welcome to Part B</h3><p><em>本节没有问题。</em></p>
+<h3 id="Overview-of-Part-B-Concepts"><a href="#Overview-of-Part-B-Concepts" class="headerlink" title="Overview of Part B Concepts"></a>Overview of Part B Concepts</h3><h4 id="Section-5"><a href="#Section-5" class="headerlink" title="Section 5"></a>Section 5</h4><ul>
+<li>Racket 是动态类型的。</li>
+<li>Racket 可以实现 delaying evaluation（就是惰性求值）。</li>
+<li>Racket 具有优秀的宏系统。宏可以让程序员扩展语言的语法，同时不改变语言实现。</li>
+</ul>
+<h4 id="Section-6"><a href="#Section-6" class="headerlink" title="Section 6"></a>Section 6</h4><ul>
+<li>Racket 的类型系统。</li>
+<li>如何实现一个解释器。</li>
+</ul>
+<h4 id="Section-7"><a href="#Section-7" class="headerlink" title="Section 7"></a>Section 7</h4><ul>
+<li>静态类型系统、动态类型系统及其比较。</li>
+</ul>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -743,7 +1063,7 @@ Part B Course Str
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:23:07" itemprop="dateModified" datetime="2019-03-11T15:23:07+08:00">2019-03-11</time>
               
             
           </span>
@@ -778,12 +1098,9 @@ Part B Course Str
 
       
         
-          
-            <p>
-              Hyperparameter tuning, Batch Normalization and Programming FrameworksHyperparameter tuningTuning process经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。
-因为各个超参数的重要程度不一样，有多个超参数需要调节的时候 不要进行 grid search。所谓 grid search 就是每个超参数选取若干个值，然后
-              ...
-            </p>
+          <h1 id="Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks"><a href="#Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks" class="headerlink" title="Hyperparameter tuning, Batch Normalization and Programming Frameworks"></a>Hyperparameter tuning, Batch Normalization and Programming Frameworks</h1><h2 id="Hyperparameter-tuning"><a href="#Hyperparameter-tuning" class="headerlink" title="Hyperparameter tuning"></a>Hyperparameter tuning</h2><h3 id="Tuning-process"><a href="#Tuning-process" class="headerlink" title="Tuning process"></a>Tuning process</h3><p>经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。</p>
+<p>因为各个超参数的重要程度不一样，有多个超参数需要调节的时候 <strong>不要进行 grid search</strong>。所谓 grid search 就是每个超参数选取若干个值，然后不同超参数就用这些值的组合，类似于控制变量法。推荐的做法是直接在整个所有超参数可选的值构成的空间中随机选取。这么做的理由是在 grid search 的情况下，如果某个超参数实际上对结果影响不大，那么针对它的调节几乎都是无效的，这就参数调节工作中只有一部分是有效的。而在随机选取的情况下，不论各个超参数对结果影响如何，影响较显著的那些超参数都被取了很多个不同的值，这些值都是有用的。</p>
+<p>当找到了效果最好的那些点之后，如果这些点在空间上分布较密集，则可以对那一个较小的超参数空间进行更加密集的搜索。更密集的搜索也应采用随机选取的策略，依此类推。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -909,7 +1226,7 @@ Part B Course Str
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:22:21" itemprop="dateModified" datetime="2019-03-11T15:22:21+08:00">2019-03-11</time>
               
             
           </span>
@@ -944,12 +1261,9 @@ Part B Course Str
 
       
         
-          
-            <p>
-              Optimization algorithmsOptimization algorithmsMini-batch gradient descent如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。
-记号上，例如数据集用 $X$ 表示，mini-batch 的大小选择为 $\displaystyle{k}$，那么 $X^{(1)}, \do
-              ...
-            </p>
+          <h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="Optimization-algorithms-1"><a href="#Optimization-algorithms-1" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h2><h3 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h3><p>如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。</p>
+<p>记号上，例如数据集用 $X$ 表示，mini-batch 的大小选择为 $\displaystyle{k}$，那么 $X^{(1)}, \dots, X^{(k)}$ 将作为第一个 mini-batch，记作 $\displaystyle{X^{\{1\}}}$。用这 $\displaystyle{k}$ 个样本向量化地进行前向传播和反向传播并更新参数，然后换一个 mini-batch 再跑一次，以此类推。</p>
+<p>小批量梯度下降比梯度下降快得多。小批量梯度下降中每遍历一次数据集成为一个 epoch（遍历），一次遍历需要多个 mini-batch。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1075,7 +1389,7 @@ Part B Course Str
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:22:11" itemprop="dateModified" datetime="2019-03-11T15:22:11+08:00">2019-03-11</time>
               
             
           </span>
@@ -1110,17 +1424,14 @@ Part B Course Str
 
       
         
-          
-            <p>
-              Practical aspects of Deep LearningSetting up your Machine Learning ApplicationTrain / Dev / Test sets数据应当被分为三个集合：
-
-Train 集合用来对神经网络进行训练；
-Dev 集合用来在开发时评估网络的性能，挑选出最佳的网络；
-Test 集合用来测试这个最佳网络的性能。
-
-传统的做法是，如果只打算分出 Train/Dev，用 $70:30$ 的比例，如果三者兼顾，用 $60:20:20$。但是近年来各种问题数据量很大，而评估只需要部分数据即可，所以倾向于将大量数据设为 Train，其它设为 
-              ...
-            </p>
+          <h1 id="Practical-aspects-of-Deep-Learning"><a href="#Practical-aspects-of-Deep-Learning" class="headerlink" title="Practical aspects of Deep Learning"></a>Practical aspects of Deep Learning</h1><h2 id="Setting-up-your-Machine-Learning-Application"><a href="#Setting-up-your-Machine-Learning-Application" class="headerlink" title="Setting up your Machine Learning Application"></a>Setting up your Machine Learning Application</h2><h3 id="Train-Dev-Test-sets"><a href="#Train-Dev-Test-sets" class="headerlink" title="Train / Dev / Test sets"></a>Train / Dev / Test sets</h3><p>数据应当被分为三个集合：</p>
+<ul>
+<li>Train 集合用来对神经网络进行训练；</li>
+<li>Dev 集合用来在开发时评估网络的性能，挑选出最佳的网络；</li>
+<li>Test 集合用来测试这个最佳网络的性能。</li>
+</ul>
+<p>传统的做法是，如果只打算分出 Train/Dev，用 $70:30$ 的比例，如果三者兼顾，用 $60:20:20$。但是近年来各种问题数据量很大，而评估只需要部分数据即可，所以倾向于将大量数据设为 Train，其它设为 Dev/Test。</p>
+<p>Dev 和 Test 二者分布最好相同。没有 Test 集合也是可以的。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1246,7 +1557,7 @@ Test 集合用来测试这个最佳网络的性能。
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:26:43" itemprop="dateModified" datetime="2019-03-11T15:26:43+08:00">2019-03-11</time>
               
             
           </span>
@@ -1281,17 +1592,10 @@ Test 集合用来测试这个最佳网络的性能。
 
       
         
-          
-            <p>
-              Section 4Section Introduction本节没有问题。
-What is Type InferenceML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。
-一般来说类型推断后再实施类型检查，但是实践中二者往往合并。
-类型推断的难度取决于类型系统。但是类型系统的严格程度和类型推断的难度没有直接的关系，拒绝所有程序的类型系统和接受所有程序的类型系统实现难度是一样的。
-ML Type InferenceML 中类型推断的若干步骤：
-
-按照次序对绑
-              ...
-            </p>
+          <h1 id="Section-4"><a href="#Section-4" class="headerlink" title="Section 4"></a>Section 4</h1><h2 id="Section-Introduction"><a href="#Section-Introduction" class="headerlink" title="Section Introduction"></a>Section Introduction</h2><p><em>本节没有问题。</em></p>
+<h2 id="What-is-Type-Inference"><a href="#What-is-Type-Inference" class="headerlink" title="What is Type Inference"></a>What is Type Inference</h2><p>ML 是静态类型语言，所有表达式的类型在编译时确定。类型推断是为程序中的每个表达式确定类型的过程。如果能够找到一个解使得每个表达式类型确定且相容，则推断成功，否则推断失败，可以认为程序有问题。</p>
+<p>一般来说类型推断后再实施类型检查，但是实践中二者往往合并。</p>
+<p>类型推断的难度取决于类型系统。但是类型系统的严格程度和类型推断的难度没有直接的关系，拒绝所有程序的类型系统和接受所有程序的类型系统实现难度是一样的。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1417,7 +1721,7 @@ ML Type InferenceML 中类型推断的若干步骤：
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:26:47" itemprop="dateModified" datetime="2019-03-11T15:26:47+08:00">2019-03-11</time>
               
             
           </span>
@@ -1452,20 +1756,12 @@ ML Type InferenceML 中类型推断的若干步骤：
 
       
         
-          
-            <p>
-              Section 3Introduction to First-Class Functions函数式编程与函数式语言函数式编程是一种编程范式。具有如下特点：
-
-不使用可变数据类型。
-函数可以作为值。
-
-大部分语言都可以进行函数式编程，但是有些语言更加便利，设计出来就是为了方便函数式编程的，这种语言的标准库可能也是用函数式编程的方法写出来的。这种语言为函数式语言。
-函数作为值与高阶函数ML 中函数可以作为值，也就是说函数本身可以像值一样传来传去。
-高阶函数指的是接受函数作为参数或者返回函数的函数。
-函数闭包一个函数可以引用它外部环境中的变量，这种特性使得该函数成为了一个闭包。详细的后面会写。
-Fu
-              ...
-            </p>
+          <h1 id="Section-3"><a href="#Section-3" class="headerlink" title="Section 3"></a>Section 3</h1><h2 id="Introduction-to-First-Class-Functions"><a href="#Introduction-to-First-Class-Functions" class="headerlink" title="Introduction to First-Class Functions"></a>Introduction to First-Class Functions</h2><h3 id="函数式编程与函数式语言"><a href="#函数式编程与函数式语言" class="headerlink" title="函数式编程与函数式语言"></a>函数式编程与函数式语言</h3><p>函数式编程是一种编程范式。具有如下特点：</p>
+<ul>
+<li>不使用可变数据类型。</li>
+<li>函数可以作为值。</li>
+</ul>
+<p>大部分语言都可以进行函数式编程，但是有些语言更加便利，设计出来就是为了方便函数式编程的，这种语言的标准库可能也是用函数式编程的方法写出来的。这种语言为函数式语言。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1591,7 +1887,7 @@ Fu
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:26:53" itemprop="dateModified" datetime="2019-03-11T15:26:53+08:00">2019-03-11</time>
               
             
           </span>
@@ -1626,20 +1922,16 @@ Fu
 
       
         
-          
-            <p>
-              Section 2我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。
-Building Compound Types基础类型和复合类型基础类型是“原子”的类型，无法继续分解。
-复合类型例如列表、元组和 Option。
-构造复合类型的通用方法复合类型都可以由三种方式组合地构造出：
-
-Each of：包括全部的可选类型
-One of：包含若干个可选类型之一
-Self reference：包含自己这个类型
-
-例如元组就是 Each of 形式的，Option 就是 One of 形式的，列表是三种形式的组合：一个 int list 可以为空（One of），也可以为一个
-              ...
-            </p>
+          <h1 id="Section-2"><a href="#Section-2" class="headerlink" title="Section 2"></a>Section 2</h1><p>我发现这课大部分时间居然是在讲语言的使用。现在我得记简略点，不然就太浪费时间了。</p>
+<h2 id="Building-Compound-Types"><a href="#Building-Compound-Types" class="headerlink" title="Building Compound Types"></a>Building Compound Types</h2><h3 id="基础类型和复合类型"><a href="#基础类型和复合类型" class="headerlink" title="基础类型和复合类型"></a>基础类型和复合类型</h3><p>基础类型是“原子”的类型，无法继续分解。</p>
+<p>复合类型例如列表、元组和 Option。</p>
+<h3 id="构造复合类型的通用方法"><a href="#构造复合类型的通用方法" class="headerlink" title="构造复合类型的通用方法"></a>构造复合类型的通用方法</h3><p>复合类型都可以由三种方式组合地构造出：</p>
+<ul>
+<li><strong>Each of</strong>：包括全部的可选类型</li>
+<li><strong>One of</strong>：包含若干个可选类型之一</li>
+<li><strong>Self reference</strong>：包含自己这个类型</li>
+</ul>
+<p>例如元组就是 Each of 形式的，Option 就是 One of 形式的，列表是三种形式的组合：一个 <code>int list</code> 可以为空（One of），也可以为一个 <code>int</code> 加上一个 <code>int list</code>（Self reference 和 One of）。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1688,347 +1980,11 @@ Self reference：包含自己这个类型
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 2 Section 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-06 00:01:58" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:58+08:00">2019-02-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Section 1ML Variable Bindings and Expressions一些语法(* this is a comment *)val x = 1;                          (* variable binding *)val y = if x &gt; 0 then x else 0 - x; (* condition expression *)val z = abs y;                      (* function call *)val w = abs(z);                     (* another sty
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 1 Introduction</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-06 00:01:41" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:41+08:00">2019-02-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>
-              Introduction感谢 Coursera。
-
-This is a challenging course that we hope will change the way you look at programming forever.
-
-Welcome InformationWelcome本节没有问题。
-What the Course is About / Initial Motivation这门课主要是通过 Standard ML、Racket 和 Ruby 展示各种编程语言中的基本概念以及它们如何相互关联，并非学习这三门语言。
-Recommended Background本节没有问题
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2070,7 +2026,7 @@ Recommended Background本节没有问题
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2134,6 +2090,32 @@ Recommended Background本节没有问题
           
 
           
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
 
           
 
@@ -2183,7 +2165,7 @@ Recommended Background本节没有问题
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -2272,6 +2254,7 @@ Recommended Background本节没有问题
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

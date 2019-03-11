@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="关系模型之关系演算什么是关系元组演算关系运算分为关系代数（见上次的笔记）与关系演算。关系演算是以谓词演算为基础的，按照谓词变量不同分为 元组演算 和 域演算。从名字可以看出一个是针对行，一个是针对列。 后面可以看到在一定的条件下，关系代数和关系演算是可以相互转化的。  元组演算也是用来找出某个关系中的记录的。这里的“元组”就是记录的意思，但是名字听起来让人不爽。 元组演算和一般形式是：  \{t|">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T03:34:08.913Z">
+<meta property="og:updated_time" content="2019-03-11T07:31:45.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 5 关系模型之关系演算">
 <meta name="twitter:description" content="关系模型之关系演算什么是关系元组演算关系运算分为关系代数（见上次的笔记）与关系演算。关系演算是以谓词演算为基础的，按照谓词变量不同分为 元组演算 和 域演算。从名字可以看出一个是针对行，一个是针对列。 后面可以看到在一定的条件下，关系代数和关系演算是可以相互转化的。  元组演算也是用来找出某个关系中的记录的。这里的“元组”就是记录的意思，但是名字听起来让人不爽。 元组演算和一般形式是：  \{t|">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-11 11:34:08" itemprop="dateModified" datetime="2019-03-11T11:34:08+08:00">2019-03-11</time>
+                <time title="修改时间：2019-03-11 15:31:45" itemprop="dateModified" datetime="2019-03-11T15:31:45+08:00">2019-03-11</time>
               
             
           </span>
@@ -445,6 +445,7 @@
 </ul>
 <p>其它所有形式都不是。</p>
 <p>语义上，这个表达式会选择出所有符合 $P(t)​$ 的所有 $t​$。为了实用，基本上所有的 $P(t)​$ 都会以 $t\in R​$ 开头来限制 $t​$ 的取值范围。</p>
+<a id="more"></a>
 <h2 id="简单运用元组演算公式"><a href="#简单运用元组演算公式" class="headerlink" title="简单运用元组演算公式"></a>简单运用元组演算公式</h2><h3 id="Schema"><a href="#Schema" class="headerlink" title="Schema"></a>Schema</h3><p>这一讲中的所有例子都是基于以下 Schema：</p>
 <ul>
 <li>Student 表：包括 SNum，Sname，Ssex，Sage，DNum，Sclass</li>
@@ -467,21 +468,21 @@
 </blockquote>
 <h2 id="等价变换"><a href="#等价变换" class="headerlink" title="等价变换"></a>等价变换</h2><p>这一节讲的是逻辑运算的等价性，比如摩根律这种。没什么好记的。复习一下下面两个：</p>
 <ul>
-<li>$\exist(P[t])(Q[t])​$ 等价于 $\lnot\forall(P[t])(\lnot Q[t])​$</li>
-<li>$\forall(P[t])(Q[t])$ 等价于 $\lnot\exist(P[t])(\lnot Q[t])$</li>
+<li>$\exists(P[t])(Q[t])​$ 等价于 $\lnot\forall(P[t])(\lnot Q[t])​$</li>
+<li>$\forall(P[t])(Q[t])$ 等价于 $\lnot\exists(P[t])(\lnot Q[t])$</li>
 </ul>
-<p>至于为啥量词后面可以跟一个命题，因为 $\exist(P[t])(Q[t])$ 和 $\exists(t)(P[t]\to Q[t])$，而后者可以使用与或非转换出。</p>
+<p>至于为啥量词后面可以跟一个命题，因为 $\exists(P[t])(Q[t])$ 和 $\exists(t)(P[t]\to Q[t])$，而后者可以使用与或非转换出。</p>
 <h2 id="四个典型示例"><a href="#四个典型示例" class="headerlink" title="四个典型示例"></a>四个典型示例</h2><p>本节主要是元组演算的几个较为复杂的示例，同时使用关系代数作了比较。摘录一个：找出 Alice 老师教的所有课程的所有学生。</p>
 <ul>
 <li><strong>关系代数</strong>：$\pi_{Sname}(\pi_{Sname, CNum}(\text{Student}\bowtie\text{SC}\bowtie\text{Course})\div\pi_{CNum}(\sigma_{Tname=Alice}(\text{Course})))$</li>
-<li><strong>元组演算</strong>：$\{t|t\in\text{Student}\land \forall(u\in\text{Course}\land u[\text{Tname}]=\text{Alice})(\exist (v\in\text{SC})(v[SNum]=t[SNum]\land v[CNum]=u[CNum]))\}$</li>
+<li><strong>元组演算</strong>：$\{t|t\in\text{Student}\land \forall(u\in\text{Course}\land u[\text{Tname}]=\text{Alice})(\exists (v\in\text{SC})(v[SNum]=t[SNum]\land v[CNum]=u[CNum]))\}$</li>
 </ul>
 <h2 id="用元组演算实现关系代数操作"><a href="#用元组演算实现关系代数操作" class="headerlink" title="用元组演算实现关系代数操作"></a>用元组演算实现关系代数操作</h2><p>可以看到关系代数是以关系作为基本单位的，元组演算是以元组作为基本单位的，不过得到的依然是集合。</p>
 <p>后者可以对前者进行模拟。例如 $\sigma_{cond}(R)$ 可以使用 $\{t|t\in R\land cond(t)\}$ 完成。</p>
 <h2 id="什么是域演算"><a href="#什么是域演算" class="headerlink" title="什么是域演算"></a>什么是域演算</h2><p>域演算和元组演算很相似，不同的是它的粒度更细。元组演算每次操作一个元组，而域演算操作的是其中的一个域。但是二者是等价的。形式上，域演算也是使用集合，并且短竖线右端也是和元组演算相同的格式。</p>
 <p>从例子来看，找出所有不是 03 系的学生的记录：$\{\langle a, b, c, d,e, f\rangle|\langle a, b, c, d,e, f\rangle\in\text{Student}\land e\neq 03\}​$。可以看到域演算相当于 unpack 了的元组演算。</p>
 <p>如果希望不查询所有的域，套路是将其它域移到短竖线后面的存在量词中。</p>
-<p>假设上面的例子中我们只对名字感兴趣：$\{b|\exist(a, c, d, e, f)(\langle a, b, c, d,e, f\rangle\in\text{Student}\land e\neq 03)\}$</p>
+<p>假设上面的例子中我们只对名字感兴趣：$\{b|\exists(a, c, d, e, f)(\langle a, b, c, d,e, f\rangle\in\text{Student}\land e\neq 03)\}$</p>
 <h2 id="什么是按按示例查询-QBE"><a href="#什么是按按示例查询-QBE" class="headerlink" title="什么是按按示例查询-QBE"></a>什么是按按示例查询-QBE</h2><p>QBE（Query by example）是一种非过程化的查询语言。使用域演算实现，适合终端用户使用。</p>
 <p>QBE 中有四种操作：Print、Update、Insert、Delete。QBE 在一张表格上进行操作，这张表格中用来填写条件。表格的每一列是对应关系中的一个属性，每一行是要进行的 QBE 操作。例如找到所有小于 17 岁的女生，表格应该这样填写：</p>
 <div class="table-container">
@@ -556,7 +557,7 @@
 <p>满足以下条件的元组演算 $\{t|\phi(t)\}$ 是安全的：</p>
 <ul>
 <li>如果 $\phi(t)$ 为真，$t$ 的每个分量都在 $DOM(\phi)$ 中。（集合不能产出无限的元素，这条性质避免掉了无限关系。）</li>
-<li>对于 $\phi(t)$ 中的存在量词子句 $\exist u(\omega(u))$，只要 $\omega(u)$ 为真，$u$ 的每个分量都在 $DOM(\phi)$ 中。</li>
+<li>对于 $\phi(t)$ 中的存在量词子句 $\exists u(\omega(u))$，只要 $\omega(u)$ 为真，$u$ 的每个分量都在 $DOM(\phi)$ 中。</li>
 <li>对于 $\phi(t)$ 中的全称量词子句 $\forall u(\omega(u))$，只要 $\omega(u)$ 为假，$u$ 的每个分量都在 $DOM(\phi)$ 中。（量词子句本质上会得到一个布尔值，通过这些约束可以让判定的时候只用从一个有限集合中找是否存在、不存在即可，避免掉了无穷验证。）</li>
 </ul>
 <h3 id="域演算的安全化"><a href="#域演算的安全化" class="headerlink" title="域演算的安全化"></a>域演算的安全化</h3><p>上面是元组演算的安全化，对域演算有类似定义。</p>
@@ -680,7 +681,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -743,6 +744,32 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -810,7 +837,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -899,6 +926,7 @@
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="CS184.1X 计算机图形学学习笔记 (1)变换——数学基础基本变换缩放二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp;amp; 0 \\ 0 &amp;amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp;amp; 0 \\ 0 &amp;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:21:39.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CS184.1X 计算机图形学学习笔记 (1)">
 <meta name="twitter:description" content="CS184.1X 计算机图形学学习笔记 (1)变换——数学基础基本变换缩放二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp;amp; 0 \\ 0 &amp;amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp;amp; 0 \\ 0 &amp;">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:21:39" itemprop="dateModified" datetime="2019-03-11T15:21:39+08:00">2019-03-11</time>
               
             
           </span>
@@ -433,6 +433,7 @@
       
         <h1 id="CS184-1X-计算机图形学学习笔记-1"><a href="#CS184-1X-计算机图形学学习笔记-1" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (1)"></a>CS184.1X 计算机图形学学习笔记 (1)</h1><h2 id="变换——数学基础"><a href="#变换——数学基础" class="headerlink" title="变换——数学基础"></a>变换——数学基础</h2><h3 id="基本变换"><a href="#基本变换" class="headerlink" title="基本变换"></a>基本变换</h3><h4 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h4><p>二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp; 0 \\<br> 0 &amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp; 0 \\<br> 0 &amp; s_y^{-1} \end{array}\right]}$，其中 $s_x, s_y$ 表示不同轴方向上的缩放系数。</p>
 <p>三维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}s_x &amp; 0 &amp; 0 \\<br> 0 &amp; s_y &amp; 0 \\<br> 0 &amp; 0 &amp; s_z\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}s_x^{-1} &amp; 0 &amp; 0 \\<br> 0 &amp; s_y^{-1} &amp; 0 \\<br> 0 &amp; 0 &amp; s_z^{-1} \end{array}\right]}$，其中 $s_x, s_y, s_z$ 表示不同轴方向上的缩放系数。</p>
+<a id="more"></a>
 <h4 id="错切"><a href="#错切" class="headerlink" title="错切"></a>错切</h4><p>二维错切变换矩阵为 $\displaystyle{\left[\begin{array}{cc}1 &amp; a \\<br> 0 &amp; 1\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}1 &amp; -a \\<br> 0 &amp; 1\end{array}\right]}$，其中 $a$ 表示错切量。一条竖直的线在错切后会成为一条倾斜的线，顺时针旋转的角度的正切即为 $a$。</p>
 <h4 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h4><p>二维旋转变换矩阵为 $\displaystyle{\left[\begin{array}{cc}\cos\theta &amp; -\sin\theta \\<br> \sin\theta &amp; \cos\theta\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}\cos(-\theta) &amp; -\sin(-\theta) \\<br> \sin(-\theta) &amp; \cos(-\theta)\end{array}\right]}$，其中 $\theta$ 表示逆时针旋转的角度。二维的旋转具有交换性。</p>
 <p>三维旋转变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}\vec u_x &amp; \vec u_y &amp; \vec u_z \\<br> \vec v_x &amp; \vec v_y &amp; \vec v_z \\<br> \vec w_x &amp; \vec w_y &amp; \vec w_z\end{array}\right]}$，其中 $\vec u, \vec v, \vec w$ 是三个正交的单位向量，代表一个坐标系。通过将这个变换矩阵乘一个向量我们会得到一个新的向量，这个新向量就是原向量在新坐标系下的坐标。如果将这个坐标运用到原始的坐标系中就会发现原始的物体发生了三维旋转。这个变换矩阵是一个正交矩阵，记这个矩阵为 $\mathbf{R}$，则在原坐标系中为 $\vec{m}$ 的向量在新坐标系中为 $\mathbf{R}\vec{m}$，在新坐标系中为 $\vec{n}$ 的向量在原坐标系中为 $\mathbf{R}^T\vec{n}$。</p>
@@ -565,7 +566,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -628,6 +629,32 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -695,7 +722,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -784,6 +811,7 @@
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

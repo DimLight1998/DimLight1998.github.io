@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Section 6Datatype-Programming in Racket Without Structs在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 &amp;#39; 开头的字符串，例如 &amp;#39;foo，symbol 之间用 eq? 判断相等。 以下是一个移植的例子： 1234datatype exp = Cons">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:27:50.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Programming Languages (Part B) 笔记 3 Section 6">
 <meta name="twitter:description" content="Section 6Datatype-Programming in Racket Without Structs在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 &amp;#39; 开头的字符串，例如 &amp;#39;foo，symbol 之间用 eq? 判断相等。 以下是一个移植的例子： 1234datatype exp = Cons">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:27:50" itemprop="dateModified" datetime="2019-03-11T15:27:50+08:00">2019-03-11</time>
               
             
           </span>
@@ -436,6 +436,7 @@
 <figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> exp = <span class="type">Const</span> <span class="keyword">of</span> <span class="built_in">int</span></span><br><span class="line">             | <span class="type">Negate</span> <span class="keyword">of</span> exp</span><br><span class="line">             | <span class="type">Add</span> <span class="keyword">of</span> exp * exp</span><br><span class="line">             | <span class="type">Multiply</span> <span class="keyword">of</span> exp * exp</span><br></pre></td></tr></table></figure>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Const</span> i) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Const</span> i))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Negate</span> e) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Negate</span> e))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Add</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Add</span> e1 e2))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Multiply</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Multiply</span> e1 e2))</span><br></pre></td></tr></table></figure>
 <p>针对于 <code>exp</code> 类型的 ML 函数都可以使用 Racket 写出，模式匹配功能可以用 cond 进行模拟，通过对列表的第一个元素进行比较确定它到底是哪种类型即可。</p>
+<a id="more"></a>
 <h2 id="Datatype-Programming-in-Racket-With-Structs"><a href="#Datatype-Programming-in-Racket-With-Structs" class="headerlink" title="Datatype-Programming in Racket With Structs"></a>Datatype-Programming in Racket With Structs</h2><p>Racket 中可以通过定义表达式的类型的方式更好的完成上一节的任务。通用的语法是</p>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">struct</span> foo (<span class="name">bar</span> baz quux) #:transparent)</span><br></pre></td></tr></table></figure>
 <p>结尾的 <code>#:transparent</code> 属性用来在 REPL 中更好地打印这个结构。完成定义以后，会免费得到以下函数：</p>
@@ -620,7 +621,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -683,6 +684,32 @@
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -750,7 +777,7 @@
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -839,6 +866,7 @@
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 

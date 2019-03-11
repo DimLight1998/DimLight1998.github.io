@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -72,7 +72,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Mist',
     version: '7.0.1',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
@@ -106,7 +106,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Shallow Neural NetworksShallow Neural NetworksNeural Networks Overview在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z =">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-03-11T07:24:09.230Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Neural Networks and Deep Learning 笔记 3 Shallow Neural Networks">
 <meta name="twitter:description" content="Shallow Neural NetworksShallow Neural NetworksNeural Networks Overview在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z =">
@@ -397,7 +397,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+                <time title="修改时间：2019-03-11 15:24:09" itemprop="dateModified" datetime="2019-03-11T15:24:09+08:00">2019-03-11</time>
               
             
           </span>
@@ -438,6 +438,7 @@
 \vec z^{[1]} &= W^{[1]}x + \vec b^{[1]} \\
 \vec a^{[1]} &= \sigma(\vec z^{[1]})
 \end{aligned}</script><p>（使用中括号是为了和表达第 $i$ 个样本的时候使用圆括号区别。）</p>
+<a id="more"></a>
 <h3 id="Neural-Network-Representation"><a href="#Neural-Network-Representation" class="headerlink" title="Neural Network Representation"></a>Neural Network Representation</h3><p>关于神经网络如何数层数，对于一个要计算两次激活函数的神经网络，它有两层。输入、<strong>隐藏层</strong>、<strong>输出层</strong>。尽管输入可以看成是一个层但是一般不这么做。在这个两层的神经网络中，输入 $\vec x$ 可以看作是 $\vec a^{[0]}$。如果输出层只有一个神经元，则有：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
@@ -619,7 +620,7 @@ A^{[2]} &= \sigma(Z^{[2]}) \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-count">91</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -682,6 +683,32 @@ A^{[2]} &= \sigma(Z^{[2]}) \\
 
           
 
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
           
 
           
@@ -749,7 +776,7 @@ A^{[2]} &= \sigma(Z^{[2]}) \\
 
 
 
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
 
@@ -838,6 +865,7 @@ A^{[2]} &= \sigma(Z^{[2]}) \\
 
 
   <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
 
 
 
