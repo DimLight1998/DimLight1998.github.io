@@ -1895,7 +1895,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8accff;
+  background: #ff3edb;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2862,4 +2862,8 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.MathJax_Display {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
 }
