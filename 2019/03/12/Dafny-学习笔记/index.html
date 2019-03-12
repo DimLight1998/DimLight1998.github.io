@@ -117,25 +117,25 @@
 
 
 
-  <meta name="description" content="Optimization algorithmsOptimization algorithmsMini-batch gradient descent如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降）">
-<meta name="keywords" content="机器学习,深度学习">
+  <meta name="description" content="Dafny 学习笔记GuideIntroductionDafny use annotations to write programs with no bugs. The annotation below means all elements in a are positive: 1forall k: int :: 0 &amp;lt;= k &amp;lt; a.Length ==&amp;gt; 0 &amp;lt; a[k]">
+<meta name="keywords" content="形式化验证">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Improving Deep Neural Networks 笔记 2 Optimization algorithms">
-<meta property="og:url" content="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/index.html">
+<meta property="og:title" content="Dafny 学习笔记">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/03/12/Dafny-学习笔记/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
-<meta property="og:description" content="Optimization algorithmsOptimization algorithmsMini-batch gradient descent如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降）">
+<meta property="og:description" content="Dafny 学习笔记GuideIntroductionDafny use annotations to write programs with no bugs. The annotation below means all elements in a are positive: 1forall k: int :: 0 &amp;lt;= k &amp;lt; a.Length ==&amp;gt; 0 &amp;lt; a[k]">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T07:22:21.247Z">
+<meta property="og:updated_time" content="2019-03-12T16:29:06.524Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Improving Deep Neural Networks 笔记 2 Optimization algorithms">
-<meta name="twitter:description" content="Optimization algorithmsOptimization algorithmsMini-batch gradient descent如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降）">
+<meta name="twitter:title" content="Dafny 学习笔记">
+<meta name="twitter:description" content="Dafny 学习笔记GuideIntroductionDafny use annotations to write programs with no bugs. The annotation below means all elements in a are positive: 1forall k: int :: 0 &amp;lt;= k &amp;lt; a.Length ==&amp;gt; 0 &amp;lt; a[k]">
 
 
 
 
 
 
-  <link rel="canonical" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/">
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/03/12/Dafny-学习笔记/">
 
 
 
@@ -145,7 +145,7 @@
   };
 </script>
 
-  <title>Improving Deep Neural Networks 笔记 2 Optimization algorithms | Computation & Design</title>
+  <title>Dafny 学习笔记 | Computation & Design</title>
   
 
 
@@ -356,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/12/Dafny-学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -373,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Improving Deep Neural Networks 笔记 2 Optimization algorithms
+          <h1 class="post-title" itemprop="name headline">Dafny 学习笔记
 
               
             
@@ -399,7 +399,7 @@
                 
               
 
-              <time title="创建时间：2019-02-12 19:14:04" itemprop="dateCreated datePublished" datetime="2019-02-12T19:14:04+08:00">2019-02-12</time>
+              <time title="创建时间：2019-03-12 14:45:23" itemprop="dateCreated datePublished" datetime="2019-03-12T14:45:23+08:00">2019-03-12</time>
             
 
             
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-11 15:22:21" itemprop="dateModified" datetime="2019-03-11T15:22:21+08:00">2019-03-11</time>
+                <time title="修改时间：2019-03-13 00:29:06" itemprop="dateModified" datetime="2019-03-13T00:29:06+08:00">2019-03-13</time>
               
             
           </span>
@@ -450,83 +450,69 @@
       
 
       
-        <h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="Optimization-algorithms-1"><a href="#Optimization-algorithms-1" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h2><h3 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h3><p>如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。</p>
-<p>记号上，例如数据集用 $X$ 表示，mini-batch 的大小选择为 $\displaystyle{k}$，那么 $X^{(1)}, \dots, X^{(k)}$ 将作为第一个 mini-batch，记作 $\displaystyle{X^{\{1\}}}$。用这 $\displaystyle{k}$ 个样本向量化地进行前向传播和反向传播并更新参数，然后换一个 mini-batch 再跑一次，以此类推。</p>
-<p>小批量梯度下降比梯度下降快得多。小批量梯度下降中每遍历一次数据集成为一个 epoch（遍历），一次遍历需要多个 mini-batch。</p>
-<a id="more"></a>
-<h3 id="Understanding-mini-batch-gradient-descent"><a href="#Understanding-mini-batch-gradient-descent" class="headerlink" title="Understanding mini-batch gradient descent"></a>Understanding mini-batch gradient descent</h3><p>使用批量梯度下降时，代价函数随着训练时间是严格单调下降的。但是使用小批量梯度下降时，代价函数会发生震荡，不过整体趋势依然是随训练时间下降的。</p>
-<p>如果小批量的大小为整个数据集的大小会退化为批量梯度下降，此时一轮训练耗费的时间很长，但效果稳定；如果小批量的大小为 1，算法退化为 stochastic gradient descent（随机梯度下降），此时失去了向量化优势，因此训练时间也变长，并且震荡严重；合适的小批量大小是这两种极端情况的平衡，具有较快的速度同时震荡程度也被控制。</p>
-<p>当整个数据集较小时可以采用批量梯度下降。当数据集较大时最好用小批量梯度下降，由于内存访问的关系，小批量的大小最好设为 2 的整数次幂，常用的值为从 64 到 512 的各个 2 的整数次幂。</p>
-<h3 id="Exponentially-weighted-averages"><a href="#Exponentially-weighted-averages" class="headerlink" title="Exponentially weighted averages"></a>Exponentially weighted averages</h3><p>对于一个序列 $\displaystyle{a}$，使用指数加权平均可以将其变得平滑，得到另一个序列 $\displaystyle{b}$，方法如下：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-b_0 &= 0 \\
-b_1 &= (1 - \beta) a_1 + \beta b_0 \\
-b_2 &= (1 - \beta) a_2 + \beta b_1 \\
-b_3 &= (1 - \beta) a_3 + \beta b_2 \\
-\vdots \\
-b_k &= (1 - \beta) a_k + \beta b_{k - 1}
-\end{aligned}</script><p>可以将 $b$ 中的值粗略看作是对 $\displaystyle{a}$ 中过去 $\displaystyle{\frac{1}{1 - \beta}}$ 个值的加权平均，越近的值权值越大。其中 $\displaystyle{0&lt; \beta&lt; 1}$ 是超参数。</p>
+        <h1 id="Dafny-学习笔记"><a href="#Dafny-学习笔记" class="headerlink" title="Dafny 学习笔记"></a>Dafny 学习笔记</h1><h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Dafny use annotations to write programs with no bugs. The annotation below means all elements in <code>a</code> are positive:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forall k: int :: 0 &lt;= k &lt; a.Length ==&gt; 0 &lt; a[k]</span><br></pre></td></tr></table></figure>
+<p>Now you turn the task of <strong><em>writing bug-free programs</em></strong> into <strong><em>writing bug-free annotations</em></strong>.</p>
+<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><p>Use <code>method</code> to declare a method. Methods are different from functions in Dafny. <strong>Syntax example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">method MultipleReturns(x: int, y: int) returns (more: int, less: int)</span><br><span class="line">&#123;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>A method can return multiple values, and each value has a name. They can be assigned inside the method body. Use <code>return</code> with no argument to return early from the method. <strong>Parameters are read-only.</strong></p>
+<hr>
 <ul>
-<li>$\displaystyle{\beta}$ 越小，平滑程度越弱，但是 $\displaystyle{b}$ 随着 $\displaystyle{a}$ 改变得更快。</li>
-<li>$\displaystyle{\beta}$ 越大，平滑程度越强，但是 $\displaystyle{a}$ 改变后 $\displaystyle{b}$ 的改变要更加滞后。</li>
+<li>Use <code>:=</code> for variable assignments.</li>
+<li>Braces are required in <code>if</code> <strong>statements</strong> even if the branch has only one statement. Otherwise it will be a <strong>expression</strong>.</li>
 </ul>
-<h3 id="Understanding-exponentially-weighted-averages"><a href="#Understanding-exponentially-weighted-averages" class="headerlink" title="Understanding exponentially weighted averages"></a>Understanding exponentially weighted averages</h3><p>如果序列足够长，可以看到</p>
-<script type="math/tex; mode=display">
-b_n = (1 - \beta)\beta^0 a_n + (1 - \beta)\beta^1a_{n - 1} + (1 - \beta)\beta^2a_{n - 2} + \cdots</script><p>所以 $\displaystyle{a}$ 中的权的确是指数减少的。</p>
-<p>至于为什么 $\displaystyle{b}$ 中的值可以看作是 $\displaystyle{a}$ 中的过去 $\displaystyle{\frac{1}{1 - \beta}}$ 个值的平均，因为有 $\displaystyle{\lim_{\epsilon \to 0}(1 -\epsilon)^\frac{1}{\epsilon} = \frac{1}{e}}$，当 $\displaystyle{\beta}$ 足够接近 1 时，将 $\displaystyle{\epsilon}$ 视作 $\displaystyle{1 - \beta}$ 可知 $\displaystyle{\beta^{\frac{1}{1 - \beta}}}$ 将会接近 $\displaystyle{\frac{1}{e}}$，表明在这里的时候 $\displaystyle{a}$ 中的元素的权值已经低于 $\displaystyle{\frac{1}{3}}$，这个值已经足够小了。</p>
-<p>使用指数加权平均实现的好处是，即时窗口很大也只用在内存中维护几个值。但是如果使用对窗口中的值进行算术平均，这样效果更好，但是要在内存中维护整个窗口。</p>
-<h3 id="Bias-correction-in-exponentially-weighted-averages"><a href="#Bias-correction-in-exponentially-weighted-averages" class="headerlink" title="Bias correction in exponentially weighted averages"></a>Bias correction in exponentially weighted averages</h3><p>使用指数加权平均时，初始阶段 $\displaystyle{b}$ 的值会有异常，和 $\displaystyle{a}$ 相距较大，这是因为 $\displaystyle{b_0 =0}$。可以使用偏差修正的方式解决这个问题，它将 $\displaystyle{b}$ 中的每个数额外地进行扩大：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-b_0 &= 0 \\
-b_k &=\frac{ (1 - \beta)a_k + \beta b_{k - 1}}{1 - \beta^k}
-\end{aligned}</script><p>这样在初始阶段，$\displaystyle{k}$ 较小，扩大效果明显；在后来分母接近于 1，因此和之前的公式类似。</p>
-<p>如果比较在意初始阶段的平滑效果的话可以考虑使用这个方法。</p>
-<h3 id="Gradient-descent-with-momentum"><a href="#Gradient-descent-with-momentum" class="headerlink" title="Gradient descent with momentum"></a>Gradient descent with momentum</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>由于小批量梯度下降时会产生震荡，而指数加权平均可以减小震荡，因此二者结合起来即可对训练加速。在这个应用中，要平滑的序列是代价函数对各参数的梯度。假设有个权值 $w$，在训练过程中各轮得到的梯度为 $\displaystyle{d^{\{1\}}, d^{\{2\}}, \cdots}$，通过使用指数加权平均后会得到新的序列 $\displaystyle{v^{\{1\}}, v^{\{2\}}, \cdots}$，更新参数时以这个新的序列为准，即 $w’ = w - \alpha v^{\{i\}}$。</p>
-<h4 id="直观理解"><a href="#直观理解" class="headerlink" title="直观理解"></a>直观理解</h4><p>直观的一个例子是，如果梯度在一个方向上震荡，另一个正交方向上不震荡，那么使用指数加权平均后就会发现基本只剩下了不震荡的那个方向，这样训练就会变得更快，梯度的整体震荡程度也变小。另一个直观的理解是在 $v^{\{i\}} = (1- \beta)d^{\{i\}} + \beta v^{\{i - 1\}}$ 中，可以将 $(1- \beta)d^{\{i\}}$ 视作是加速度，$\beta v^{\{i - 1\}}$ 视作是速度。在发生震荡时即时有较大的加速度，对速度的影响也要之后一段时间才能表现出来。如果加速度方向经常反向，速度的方向就会大体稳定。</p>
-<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>实现上不用考虑偏差修正的问题，并且 $\displaystyle{\beta}$ 的值一般取 0.9。此外有些实现中进行平滑时忽略了 $b_k = (1 - \beta) a_k + \beta b_{k - 1}$ 中的 $\displaystyle{(1 - \beta)}$ 项，此时调整 $\displaystyle{\beta}$ 会影响到学习率 $\displaystyle{\alpha}$ 的选取，因此不推荐这种实现。</p>
-<h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>RMSprop 中的 RMS 指的是 root mean square。它的思路是对梯度的平方进行平滑。</p>
-<h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><p>假设有权值 $w$，在训练过程中各轮得到的梯度为 $\displaystyle{d^{\{1\}}, d^{\{2\}}, \cdots}$。对这些梯度的平方进行指数加权平均：</p>
-<script type="math/tex; mode=display">
-s^{\{i\}} = \beta s^{\{i - 1\}} + (1 - \beta) (d^{\{i\}})^2</script><p>随后在更新参数的时候按照如下公式：</p>
-<script type="math/tex; mode=display">
-w' = w - \alpha\frac{d^{\{i\}}}{\sqrt{s^{\{i\}}}}</script><p>经过这样的操作后可以减少震荡，加快训练。</p>
-<h4 id="直观理解-1"><a href="#直观理解-1" class="headerlink" title="直观理解"></a>直观理解</h4><p>这样做可以看作是对梯度变化的快慢做了补偿。如果梯度在一个方向上震荡，那么其梯度变化较快，对应的 $\displaystyle{s}$ 会比较大，而 $\displaystyle{s}$ 在分母中，因此更新时这个方向更新较慢；不震荡的方向上 $\displaystyle{s}$ 较小，因此更新较快。</p>
-<h4 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h4><ul>
-<li>尽管各个梯度都可能是一个向量，但是各种运算都是逐元素的运算。</li>
-<li><p>将 $\displaystyle{s}$ 的初始值赋为 0 即可，不用考虑偏差修正。</p>
-</li>
-<li><p>为了防止分母为零导致的数值稳定性问题，可以在分母上加上 $\epsilon$，即 $\displaystyle{w’ = w - \alpha\frac{d^{\{i\}}}{\sqrt{s^{\{i\}}} + \epsilon}}$，其中 $\epsilon$ 典型值为 $\displaystyle{10^{-8}}$。</p>
-</li>
-</ul>
-<h3 id="Adam-optimization-algorithm"><a href="#Adam-optimization-algorithm" class="headerlink" title="Adam optimization algorithm"></a>Adam optimization algorithm</h3><p>Adam 指的是 adaptive moment estimation。它的思路是将 momentum 和 RMSprop 结合起来。</p>
-<h4 id="思路-2"><a href="#思路-2" class="headerlink" title="思路"></a>思路</h4><p>由于 momentum 和 RMSprop 集合起来了，将来自 momentum 的超参数 $\displaystyle{\beta}$ 记作 $\displaystyle{\beta_1}$，将来自 RMSprop 的超参数 $\displaystyle{\beta}$ 记作 $\displaystyle{\beta_2}$。</p>
-<p>假设有权值 $w$，在训练过程中各轮得到的梯度为 $\displaystyle{d^{\{1\}}, d^{\{2\}}, \cdots}$。同时对这些梯度以及它们的平方进行指数加权平均：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-v^{\{i\}} &= \beta_1 v^{\{i - 1\}} + (1 - \beta_1)d^{\{i\}} \\
-s^{\{i\}} &= \beta_2 s^{\{i - 1\}} + (1 - \beta_2)(d^{\{i\}}) ^ 2
-\end{aligned}</script><p>然后同时利用这两个序列更新参数：</p>
-<script type="math/tex; mode=display">
-w' = w - \alpha\frac{v^{\{i\}}}{\sqrt{s^{\{i\}}}+ \epsilon}</script><p>经过这样的操作后可以减少震荡，加快训练。Adam 是一个比较通用的方法，很多问题都可以使用这种优化算法。</p>
-<h4 id="实现-2"><a href="#实现-2" class="headerlink" title="实现"></a>实现</h4><ul>
-<li><strong>使用 Adam 时需要考虑到偏差修正，使用上述提到的算法即可。</strong></li>
-<li>$\displaystyle{\beta_1}$ 典型值为 0.9，$\displaystyle{\beta_2}$ 典型值为 0.999，$\displaystyle{\epsilon}$ 典型值同之前。这些值基本不用变动。</li>
-</ul>
-<h3 id="Learning-rate-decay"><a href="#Learning-rate-decay" class="headerlink" title="Learning rate decay"></a>Learning rate decay</h3><h4 id="思路-3"><a href="#思路-3" class="headerlink" title="思路"></a>思路</h4><p>学习率衰减是考虑到在接近最优解时，存在由于学习率依然较大，而训练数据中总是有噪声，导致难以找到最优解的情况。如果能够随着训练深入使得学习率变小就比较好。</p>
-<h4 id="实现-3"><a href="#实现-3" class="headerlink" title="实现"></a>实现</h4><p>需要给定初始学习率 $\displaystyle{\alpha_0}$ 和衰减率（暂记作 $\displaystyle{\gamma}$）。</p>
-<p>学习率的递减一般是按照 epoch 进行递减的，假设目前进行到第 $k$ 个 epoch，有如下几种常用形式：</p>
+<h3 id="Pre-and-Postconditions"><a href="#Pre-and-Postconditions" class="headerlink" title="Pre- and Postconditions"></a>Pre- and Postconditions</h3><h4 id="Simple-Usage"><a href="#Simple-Usage" class="headerlink" title="Simple Usage"></a>Simple Usage</h4><p>Use <code>requires</code> for preconditions and <code>ensures</code> for postconditions. Preconditions must be held before calling the method, and postconditions will be held after the method returns from any points. <strong>Syntax example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">method MultipleReturns(x: int, y: int) returns (more: int, less: int)</span><br><span class="line">   requires 0 &lt; y</span><br><span class="line">   ensures less &lt; x &lt; more</span><br><span class="line">&#123;</span><br><span class="line">   more := x + y;</span><br><span class="line">   less := x - y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>One method can have multiple preconditions and/or postconditions.</p>
+<h4 id="With-Conditions"><a href="#With-Conditions" class="headerlink" title="With Conditions"></a>With Conditions</h4><p>pre- and postconditions can have conditions with implication operator <code>==&gt;</code>, for example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">method Abs(x: int) returns (y: int)</span><br><span class="line">   ensures 0 &lt;= y</span><br><span class="line">   ensures 0 &lt;= x ==&gt; x == y</span><br><span class="line">   ensures x &lt; 0 ==&gt; y == -x</span><br><span class="line">&#123;</span><br><span class="line">   // body as before</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Dafny won’t see the method body except for the current one when making proofs, it only uses method annotations. However the behavior is described both in the postconditions and the method body, <strong><em>that’s why Dafny has functions</em></strong>.</p>
+<hr>
 <ul>
-<li>$\displaystyle{\alpha = \frac{1}{1 + \gamma k}\alpha_0}$</li>
-<li>$\displaystyle{\alpha = \gamma^k\alpha_0}$</li>
-<li>$\displaystyle{\alpha = \frac{C}{\sqrt k}\alpha_0}$（也可以把 $\displaystyle{k}$ 替换为已进行的 mini-batch 数）</li>
-<li>离散的指数递减：经过若干个 epoch 后将学习率减半</li>
+<li>Dafny supports chain operator syntax: <code>less &lt; x &lt; more</code>.</li>
 </ul>
-<p>当计算出了新的学习率后，在下一轮训练中使用新学习率更新参数。</p>
-<p>学习率衰减作用实际上不是很大。</p>
-<h3 id="The-problem-of-local-optima"><a href="#The-problem-of-local-optima" class="headerlink" title="The problem of local optima"></a>The problem of local optima</h3><h4 id="局部最优其实比较少"><a href="#局部最优其实比较少" class="headerlink" title="局部最优其实比较少"></a>局部最优其实比较少</h4><p>在低维空间中寻找全局最优时，很可能陷入局部最优中，局部最优的情况是比较多的。但是高维空间中寻找全局最优时局部最优的比例比较少，就是说如果找到了一个梯度为 0 的点，这个点大概率是个鞍点而不是极值点。直观的想法是，如果这个点要是极值点，它必须在所有的维度的方向上都是极值点，但只要一个维度不符合它就会成为鞍点，所以鞍点比极值点多很多。</p>
-<h4 id="寻找全局最优的问题"><a href="#寻找全局最优的问题" class="headerlink" title="寻找全局最优的问题"></a>寻找全局最优的问题</h4><p>既然大部分梯度为零的点是鞍点，因此使用深度学习时问题主要在于碰上了很大一片梯度很小的区域时怎么办。这种区域称为“plateau”（高原）。如果使用普通的梯度下降，在高原地区时学习进度会很缓慢，这就是为什么使用基于指数加权平均的方法后学习会快很多，效果会好上不少。</p>
+<h3 id="Assertions"><a href="#Assertions" class="headerlink" title="Assertions"></a>Assertions</h3><p>Use <code>assert</code> to make assertions in the method body. <strong>Syntax example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">method Testing()</span><br><span class="line">&#123;</span><br><span class="line">   var v := Abs(3);</span><br><span class="line">   assert 0 &lt;= v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>Use <code>var</code> with optional type declaration to declare local variables: <code>var v := 3;</code> or <code>var v: int := 3;</code>. Types will be inferred when omitted.</li>
+</ul>
+<h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><h4 id="What-are-Functions"><a href="#What-are-Functions" class="headerlink" title="What are Functions"></a>What are Functions</h4><p>Use <code>function</code> to define a function. The syntax is almost the same as method definition, except for the keyword.</p>
+<p><strong>Function must contain only one expression</strong>, for example, the <code>fib</code> function below uses an <code>if</code> expression:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function fib(n: nat): nat</span><br><span class="line">&#123;</span><br><span class="line">   if n == 0 then 0 else</span><br><span class="line">   if n == 1 then 1 else</span><br><span class="line">                  fib(n - 1) + fib(n - 2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When Dafny make proofs, functions will be expanded, so you can write <code>assert 2 == fib(3)</code> directly without annotations in <code>fib</code>. However, <strong>functions can not be called from methods</strong>, they are only used for verification.</p>
+<blockquote>
+<p><code>nat</code> is a type for natural numbers.</p>
+</blockquote>
+<h4 id="Function-Method"><a href="#Function-Method" class="headerlink" title="Function Method"></a>Function Method</h4><p>Use <code>function method</code> to declare a function method. A function method is a function, and it can be called from methods.</p>
+<h3 id="Loop-Invariants"><a href="#Loop-Invariants" class="headerlink" title="Loop Invariants"></a>Loop Invariants</h3><p>Use <code>invariant</code> to declare loop invariants in <code>while</code> loops. <strong>Syntax example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">method ComputeFib(n: nat) returns (b: nat)</span><br><span class="line">   ensures b == fib(n)</span><br><span class="line">&#123;</span><br><span class="line">   if n == 0 &#123; return 0; &#125;</span><br><span class="line">   var i: int := 1;</span><br><span class="line">   var a := 0;</span><br><span class="line">       b := 1;</span><br><span class="line">   while i &lt; n</span><br><span class="line">      invariant 0 &lt; i &lt;= n</span><br><span class="line">      invariant a == fib(i - 1)</span><br><span class="line">      invariant b == fib(i)</span><br><span class="line">   &#123;</span><br><span class="line">      a, b := b, a + b;</span><br><span class="line">      i := i + 1;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Loop invariants must be held <strong>before</strong> and <strong>after</strong> the loop body. Therefore, before the first execution and after the last execution of the loop body, those invariants are held.</p>
+<p><strong><em>Loop invariants are necessary because Dafny doesn’t know how many times a loop will be executed.</em></strong></p>
+<hr>
+<ul>
+<li>Dafny has parallel assignments: <code>a, b = b, a</code>.</li>
+</ul>
+<h3 id="Termination"><a href="#Termination" class="headerlink" title="Termination"></a>Termination</h3><p>There are circumstances where we want Dafny to proof the program will terminate: <strong>loops</strong> and <strong>recursive calls</strong>. In both cases, use <code>decreases</code> to annotate an expression will get lower and is bounded by zero after each execution. <strong>Syntax example for loops:</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while 0 &lt; i</span><br><span class="line">   invariant 0 &lt;= i</span><br><span class="line">   decreases i</span><br><span class="line">&#123;</span><br><span class="line">   i := i - 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Quantifiers"><a href="#Quantifiers" class="headerlink" title="Quantifiers"></a>Quantifiers</h3><p>Use <code>forall</code> to make conditions on a set. The set can be infinite:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">assert forall k :: k &lt; k + 1;</span><br></pre></td></tr></table></figure>
+<p>But typically finite. <code>forall</code> usually appears in <code>requires</code>, <code>ensures</code> and <code>assert</code>s. A full example:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">method Find(a: array&lt;int&gt;, key: int) returns (index: int)</span><br><span class="line">   ensures 0 &lt;= index ==&gt; index &lt; a.Length &amp;&amp; a[index] == key</span><br><span class="line">   ensures index &lt; 0 ==&gt; forall k :: 0 &lt;= k &lt; a.Length ==&gt; a[k] != key</span><br><span class="line">&#123;</span><br><span class="line">   index := 0;</span><br><span class="line">   while index &lt; a.Length</span><br><span class="line">      invariant 0 &lt;= index &lt;= a.Length</span><br><span class="line">      invariant forall k :: 0 &lt;= k &lt; index ==&gt; a[k] != key</span><br><span class="line">   &#123;</span><br><span class="line">      if a[index] == key &#123; return; &#125;</span><br><span class="line">      index := index + 1;</span><br><span class="line">   &#125;</span><br><span class="line">   index := -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Predicates"><a href="#Predicates" class="headerlink" title="Predicates"></a>Predicates</h3><p>Predicates are only syntactical sugar for functions returning booleans. Use <code>predicate</code> to define them. <strong>Syntax example (indication only):</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">predicate sorted(a: array&lt;int&gt;)</span><br><span class="line">   requires a != null</span><br><span class="line">&#123;</span><br><span class="line">   forall j, k :: 0 &lt;= j &lt; k &lt; a.Length ==&gt; a[j] &lt;= a[k]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>There is no return type because the type is always a boolean. <strong><em>Recall that functions can not be called, so the <code>forall</code> statement is also inside a condition.</em></strong></p>
+<h3 id="Framing"><a href="#Framing" class="headerlink" title="Framing"></a>Framing</h3><p>For some reasons, if a function needs to access some data on the <strong>heap</strong>, a <code>read</code> annotation is required:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">predicate sorted(a: array&lt;int&gt;)</span><br><span class="line">   requires a != null</span><br><span class="line">   read a</span><br><span class="line">&#123;</span><br><span class="line">   forall j, k :: 0 &lt;= j &lt; k &lt; a.Length ==&gt; a[j] &lt;= a[k]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Binary-Search"><a href="#Binary-Search" class="headerlink" title="Binary Search"></a>Binary Search</h3><p>Combining all we have learned, we have a <code>BinarySearch</code> method:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">predicate sorted(a: array&lt;int&gt;)</span><br><span class="line">   requires a != null</span><br><span class="line">   reads a</span><br><span class="line">&#123;</span><br><span class="line">   forall j, k :: 0 &lt;= j &lt; k &lt; a.Length ==&gt; a[j] &lt;= a[k]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">method BinarySearch(a: array&lt;int&gt;, value: int) returns (index: int)</span><br><span class="line">   requires a != null &amp;&amp; 0 &lt;= a.Length &amp;&amp; sorted(a)</span><br><span class="line">   ensures 0 &lt;= index ==&gt; index &lt; a.Length &amp;&amp; a[index] == value</span><br><span class="line">   ensures index &lt; 0 ==&gt; forall k :: 0 &lt;= k &lt; a.Length ==&gt; a[k] != value</span><br><span class="line">&#123;</span><br><span class="line">   var low, high := 0, a.Length;</span><br><span class="line">   while low &lt; high</span><br><span class="line">      invariant 0 &lt;= low &lt;= high &lt;= a.Length</span><br><span class="line">      invariant forall i ::</span><br><span class="line">         0 &lt;= i &lt; a.Length &amp;&amp; !(low &lt;= i &lt; high) ==&gt; a[i] != value</span><br><span class="line">   &#123;</span><br><span class="line">      var mid := (low + high) / 2;</span><br><span class="line">      if a[mid] &lt; value</span><br><span class="line">      &#123;</span><br><span class="line">         low := mid + 1;</span><br><span class="line">      &#125;</span><br><span class="line">      else if value &lt; a[mid]</span><br><span class="line">      &#123;</span><br><span class="line">         high := mid;</span><br><span class="line">      &#125;</span><br><span class="line">      else</span><br><span class="line">      &#123;</span><br><span class="line">         return mid;</span><br><span class="line">      &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><blockquote>
+<p>Nothing to note for this section.</p>
+</blockquote>
+<h2 id="Termination-1"><a href="#Termination-1" class="headerlink" title="Termination"></a>Termination</h2><p>==todo==</p>
+<h2 id="Sets"><a href="#Sets" class="headerlink" title="Sets"></a>Sets</h2><h2 id="Sequences"><a href="#Sequences" class="headerlink" title="Sequences"></a>Sequences</h2><h2 id="Collections"><a href="#Collections" class="headerlink" title="Collections"></a>Collections</h2><h2 id="Lemmas"><a href="#Lemmas" class="headerlink" title="Lemmas"></a>Lemmas</h2><h2 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ul>
+<li><a href="https://rise4fun.com/Dafny/tutorial" target="_blank" rel="noopener">https://rise4fun.com/Dafny/tutorial</a></li>
+</ul>
 
       
     </div>
@@ -550,9 +536,7 @@ w' = w - \alpha\frac{v^{\{i\}}}{\sqrt{s^{\{i\}}}+ \epsilon}</script><p>经过这
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
-          
-            <a href="/tags/深度学习/" rel="tag"># 深度学习</a>
+            <a href="/tags/形式化验证/" rel="tag"># 形式化验证</a>
           
         </div>
       
@@ -565,8 +549,8 @@ w' = w - \alpha\frac{v^{\{i\}}}{\sqrt{s^{\{i\}}}+ \epsilon}</script><p>经过这
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/" rel="next" title="Improving Deep Neural Networks 笔记 1 Practical aspects of Deep Learning">
-                <i class="fa fa-chevron-left"></i> Improving Deep Neural Networks 笔记 1 Practical aspects of Deep Learning
+              <a href="/2019/03/11/形式化验证课程笔记-3/" rel="next" title="形式化验证课程笔记 3">
+                <i class="fa fa-chevron-left"></i> 形式化验证课程笔记 3
               </a>
             
           </div>
@@ -574,10 +558,6 @@ w' = w - \alpha\frac{v^{\{i\}}}{\sqrt{s^{\{i\}}}+ \epsilon}</script><p>经过这
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" rel="prev" title="Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks">
-                Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -761,7 +741,7 @@ w' = w - \alpha\frac{v^{\{i\}}}{\sqrt{s^{\{i\}}}+ \epsilon}</script><p>经过这
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimization-algorithms"><span class="nav-number">1.</span> <span class="nav-text">Optimization algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization-algorithms-1"><span class="nav-number">1.1.</span> <span class="nav-text">Optimization algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-gradient-descent"><span class="nav-number">1.1.1.</span> <span class="nav-text">Mini-batch gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Understanding-mini-batch-gradient-descent"><span class="nav-number">1.1.2.</span> <span class="nav-text">Understanding mini-batch gradient descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Exponentially-weighted-averages"><span class="nav-number">1.1.3.</span> <span class="nav-text">Exponentially weighted averages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Understanding-exponentially-weighted-averages"><span class="nav-number">1.1.4.</span> <span class="nav-text">Understanding exponentially weighted averages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bias-correction-in-exponentially-weighted-averages"><span class="nav-number">1.1.5.</span> <span class="nav-text">Bias correction in exponentially weighted averages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gradient-descent-with-momentum"><span class="nav-number">1.1.6.</span> <span class="nav-text">Gradient descent with momentum</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直观理解"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">直观理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RMSprop"><span class="nav-number">1.1.7.</span> <span class="nav-text">RMSprop</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-1"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#直观理解-1"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">直观理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">1.1.7.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Adam-optimization-algorithm"><span class="nav-number">1.1.8.</span> <span class="nav-text">Adam optimization algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-2"><span class="nav-number">1.1.8.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-2"><span class="nav-number">1.1.8.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Learning-rate-decay"><span class="nav-number">1.1.9.</span> <span class="nav-text">Learning rate decay</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路-3"><span class="nav-number">1.1.9.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-3"><span class="nav-number">1.1.9.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#The-problem-of-local-optima"><span class="nav-number">1.1.10.</span> <span class="nav-text">The problem of local optima</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#局部最优其实比较少"><span class="nav-number">1.1.10.1.</span> <span class="nav-text">局部最优其实比较少</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#寻找全局最优的问题"><span class="nav-number">1.1.10.2.</span> <span class="nav-text">寻找全局最优的问题</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Dafny-学习笔记"><span class="nav-number">1.</span> <span class="nav-text">Dafny 学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Guide"><span class="nav-number">1.1.</span> <span class="nav-text">Guide</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Methods"><span class="nav-number">1.1.2.</span> <span class="nav-text">Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pre-and-Postconditions"><span class="nav-number">1.1.3.</span> <span class="nav-text">Pre- and Postconditions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Simple-Usage"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">Simple Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#With-Conditions"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">With Conditions</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Assertions"><span class="nav-number">1.1.4.</span> <span class="nav-text">Assertions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Functions"><span class="nav-number">1.1.5.</span> <span class="nav-text">Functions</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#What-are-Functions"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">What are Functions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Function-Method"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">Function Method</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Loop-Invariants"><span class="nav-number">1.1.6.</span> <span class="nav-text">Loop Invariants</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Termination"><span class="nav-number">1.1.7.</span> <span class="nav-text">Termination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Quantifiers"><span class="nav-number">1.1.8.</span> <span class="nav-text">Quantifiers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Predicates"><span class="nav-number">1.1.9.</span> <span class="nav-text">Predicates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Framing"><span class="nav-number">1.1.10.</span> <span class="nav-text">Framing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binary-Search"><span class="nav-number">1.1.11.</span> <span class="nav-text">Binary Search</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">1.1.12.</span> <span class="nav-text">Conclusion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Termination-1"><span class="nav-number">1.2.</span> <span class="nav-text">Termination</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sets"><span class="nav-number">1.3.</span> <span class="nav-text">Sets</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sequences"><span class="nav-number">1.4.</span> <span class="nav-text">Sequences</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections"><span class="nav-number">1.5.</span> <span class="nav-text">Collections</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lemmas"><span class="nav-number">1.6.</span> <span class="nav-text">Lemmas</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Modules"><span class="nav-number">1.7.</span> <span class="nav-text">Modules</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.8.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
             
 
           </div>

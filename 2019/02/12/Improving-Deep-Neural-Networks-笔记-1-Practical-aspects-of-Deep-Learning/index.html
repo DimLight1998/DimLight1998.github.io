@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Practical aspects of Deep LearningSetting up your Machine Learning ApplicationTrain / Dev / Test sets数据应当被分为三个集合：  Train 集合用来对神经网络进行训练； Dev 集合用来在开发时评估网络的性能，挑选出最佳的网络； Test 集合用来测试这个最佳网络的性能。  传统的做法是，如果只打">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T07:22:11.231Z">
+<meta property="og:updated_time" content="2019-03-12T02:23:18.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Improving Deep Neural Networks 笔记 1 Practical aspects of Deep Learning">
 <meta name="twitter:description" content="Practical aspects of Deep LearningSetting up your Machine Learning ApplicationTrain / Dev / Test sets数据应当被分为三个集合：  Train 集合用来对神经网络进行训练； Dev 集合用来在开发时评估网络的性能，挑选出最佳的网络； Test 集合用来测试这个最佳网络的性能。  传统的做法是，如果只打">
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-11 15:22:11" itemprop="dateModified" datetime="2019-03-11T15:22:11+08:00">2019-03-11</time>
+                <time title="修改时间：2019-03-12 10:23:18" itemprop="dateModified" datetime="2019-03-12T10:23:18+08:00">2019-03-12</time>
               
             
           </span>
@@ -500,6 +500,10 @@ W^{[l]} &= W^{[l]} - \alpha (p +\frac{\lambda}{m}W^{[l]}) \\
 <h3 id="Dropout-Regularization"><a href="#Dropout-Regularization" class="headerlink" title="Dropout Regularization"></a>Dropout Regularization</h3><p>Dropout（随机失活）指的是每层神经元的输出以一定的概率被置为 0，以达到正规化目的。随机失活是另一种正规化手段。直观来看，这种方法会迫使大型的网络在训练时变得像较小的网络一样。</p>
 <p>实现上，一般采用 inverted dropout 的方法。给定概率 $p$ 表示激活概率，对于第 $l$ 层网络，其输出规模是 $n^{[l]}\times m$ 的，构建一个同规模的矩阵，其中元素以 $p$ 的概率被置为 1，$(1 - p)$ 的概率被置为 0；将这个矩阵与输出矩阵 $A$ 作逐元素乘积，会得到新矩阵 $A’$，将新矩阵的每个元素除以 $p$ 作为新的输出，这个新输出将作为下一层的输入。</p>
 <p>采用上述实现时，即使是同时训练多个样本，每个样本的神经元失活情况也不一样。另外 $A’$ 的每个元素需要除以 $p$，这是为了防止在最后应用模型的时候出现 scale 的问题（否则可能要在测试时引入进行 scale 的过程），毕竟输出被随机失活后每个样本对应的输出 scale 被改变了。</p>
+<blockquote>
+<p>在处理反向传播的时候，计算出 $\displaystyle{\frac{\partial J}{\partial A}}$ 后，使用 <strong>同样的</strong> 矩阵进行 dropout（因此需要将当时的矩阵记下来），然后再除以 $p$ 以保持 $\displaystyle{\frac{\partial J}{\partial A}}$ 的 scale。将得到的新矩阵当做 $\displaystyle{\left(\frac{\partial J}{\partial A}\right)’}$ 继续进行反向传播和权值更新。</p>
+<p>随机失活只在训练时使用，在测试和实际应用时不应当使用。</p>
+</blockquote>
 <h3 id="Understanding-Dropout"><a href="#Understanding-Dropout" class="headerlink" title="Understanding Dropout"></a>Understanding Dropout</h3><h4 id="随机失活的直观理解"><a href="#随机失活的直观理解" class="headerlink" title="随机失活的直观理解"></a>随机失活的直观理解</h4><p>每个神经元的输入是前层各个神经元输出的加权和。直观来看，采用了随机失活后，因为这些输出的每个维度都有变成 0 的可能，这就要求该层的神经元不要特别依赖于前层输出中某一维度的特性。因此该层神经元在分配权值时会倾向于对前层的每个神经元分配相近的权值。在 scale 不变的情况下，这么做会导致权值矩阵的范数减小，因此随机失活也可以看作某种形式的对权值的正规化。</p>
 <h4 id="每层设置不同的失活率"><a href="#每层设置不同的失活率" class="headerlink" title="每层设置不同的失活率"></a>每层设置不同的失活率</h4><p>可以对每层设置不同的失活率，例如对神经元较多的层设置大的失活率，而对神经元少的层设置较小的失活率。</p>
 <p>也可以对输入层设置失活率，不过一般不这么做。</p>
@@ -519,12 +523,13 @@ W^{[l]} &= W^{[l]} - \alpha (p +\frac{\lambda}{m}W^{[l]}) \\
 <p>这种情况下，最终的输出值会比较异常，导致难以训练。这里谈论的是输出值的情况，梯度方面也会发生类似的情况（梯度变得很大或很小，称为梯度爆炸和梯度消失），导致网络难以训练。</p>
 <h3 id="Weight-Initialization-for-Deep-Networks"><a href="#Weight-Initialization-for-Deep-Networks" class="headerlink" title="Weight Initialization for Deep Networks"></a>Weight Initialization for Deep Networks</h3><p>对权值仔细地随机化可以部分解决上一节的问题。</p>
 <p>想法是，对于第 $l$ 层网络中的某个神经元，其输出为 $\displaystyle{z^{[l]} = \sum\limits_{i = 1}^{n^{[l - 1]}}w^{[l]}_i a^{[l - 1]}+b^{[l]}}$。如果希望将 $\displaystyle{z^{[l]}}$ 控制在一个小范围内，可以将 $w^{[l]}$ 的方差设为 $\displaystyle{\frac{1}{n^{[l - 1]}}}$。</p>
-<p>实现上，可以对每个权值标量单独赋权。典型做法是在 0 到 1 上均匀取值，然后乘以 $\displaystyle{\sqrt{\frac{1}{n^{[l - 1]}}}}$。一些变种：</p>
+<p>实现上，可以对每个权值标量单独赋权。典型做法是在 0 到 1 上均匀取值，然后乘以 $\displaystyle{\sqrt{\frac{1}{n^{[l - 1]}}}}$。这样以来前层神经元越多，权值就越小，在下一层上的输入就会比较小而容易优化。一些变种：</p>
 <ul>
 <li>如果使用 ReLU 激活函数，就乘 $\displaystyle{\sqrt{\frac{2}{n^{[l - 1]}}}}$。</li>
-<li>如果使用 Tanh 激活函数，就乘 $\displaystyle{\sqrt{\frac{1}{n^{[l - 1]}}}}$，成为 Xavier 初始化。</li>
+<li>如果使用 Tanh 激活函数，就乘 $\displaystyle{\sqrt{\frac{1}{n^{[l - 1]}}}}$，称为 Xavier 初始化。</li>
 <li>可以尝试一下 $\displaystyle{\sqrt{\frac{1}{n^{[l - 1]} + n^{[l]}}}}$。</li>
 </ul>
+<p>不要让权值变得过大，尽量使用较小的权值。</p>
 <hr>
 <p>采用了这些方法后上面的问题会减轻，但是依然存在。直观来看，经过每层网络后输出的均值和方差和输入大致是同规模的，因此在网络层数较深的时候梯度爆炸/消失不会有随便初始化那么严重。</p>
 <h3 id="Numerical-approximation-of-gradients"><a href="#Numerical-approximation-of-gradients" class="headerlink" title="Numerical approximation of gradients"></a>Numerical approximation of gradients</h3><p>在使用数值的方法计算导数的时候，用 $\displaystyle{\frac{f(x + \epsilon) - f(x - \epsilon)}{2\epsilon}}$ 要比 $\displaystyle{\frac{f(x + \epsilon) - f(x)}{\epsilon}}$ 精度要更好，尽管前者的计算量是后者两倍。这是因为泰勒展开后可以知道前者的误差是 $\displaystyle{O(\epsilon^2)}$ 的，后者只有 $O(\epsilon)$。</p>
@@ -657,7 +662,7 @@ W^{[l]} &= W^{[l]} - \alpha (p +\frac{\lambda}{m}W^{[l]}) \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">91</span>
+                    <span class="site-state-item-count">92</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
