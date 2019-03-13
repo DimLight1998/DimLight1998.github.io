@@ -485,8 +485,8 @@
 <h3 id="产生式的项目"><a href="#产生式的项目" class="headerlink" title="产生式的项目"></a>产生式的项目</h3><p>前面提到句柄是逐渐产生的，对于每一个产生式，为了标记出当前这个产生式的解析状态，可以生成若干个 <strong>项目</strong>。对于有 $k$ 个元素的产生式，可以定义出 $k + 1$ 个项目。使用 $\cdot$ 来进行标记，例如 $A\rightarrow \alpha B\beta$ 可以产生 $A\rightarrow\cdot \alpha B\beta$、$A\rightarrow\alpha\cdot  B\beta$、$A\rightarrow \alpha B\cdot \beta$ 以及 $A\rightarrow\alpha B\beta\cdot$ 这四个项目。此外，对于空产生式也会产生一个项目。</p>
 <p>根据圆点的位置和圆点后面是终结符还是非终结符可以将项目进行分类。如果后面是终结符，称为 <strong>移进项目</strong>；后面是非终结符称为 <strong>待约项目</strong>；后面没有符号（圆点在最后一个）符号后面称为 <strong>归约项目</strong>。</p>
 <p>一个项目如果是另一个项目在接收一个符号后得到的，称后者为前者的 <strong>后继项目</strong>。</p>
-<h3 id="增广文法"><a href="#增广文法" class="headerlink" title="增广文法"></a>增广文法</h3><p>对于一个文法 $G$，如果它的初始符号是 $S$，那么增加一个产生式 $S’\rightarrow S$ 并将这个 $S’$ 作为新的初始符号，得到的文法 $G’$ 称为增广文法。这种文法的初始符号只有一个产生式。</p>
-<p>对于增广文法，$S’\rightarrow \cdot S$ 称为 <strong>初始项目</strong>，$S’\rightarrow S\cdot$ 称为 <strong>接收项目</strong>。</p>
+<h3 id="增广文法"><a href="#增广文法" class="headerlink" title="增广文法"></a>增广文法</h3><p>对于一个文法 $G$，如果它的初始符号是 $S$，那么增加一个产生式 $S&#39;\rightarrow S$ 并将这个 $S&#39;$ 作为新的初始符号，得到的文法 $G&#39;$ 称为增广文法。这种文法的初始符号只有一个产生式。</p>
+<p>对于增广文法，$S&#39;\rightarrow \cdot S$ 称为 <strong>初始项目</strong>，$S&#39;\rightarrow S\cdot$ 称为 <strong>接收项目</strong>。</p>
 <h3 id="LR-0-自动机"><a href="#LR-0-自动机" class="headerlink" title="$LR(0)$ 自动机"></a>$LR(0)$ 自动机</h3><p>对于一个文法，在得到了增广文法后可以构造出所有产生式对应的所有项目。这些项目中有些是等价的（严格来说不是等价，因为不满足等价的三个条件，这里不严谨）。按照等价关系可以将这些项目划分为组，称作 <strong>项目集闭包</strong>（因为不严谨，实际上这个组并不是等价类），对于有 m 个产生式的文法可能只有不到 m 个项目集闭包。</p>
 <p>所谓等价指的是，例如有两个产生式 $A\rightarrow B, B\rightarrow \alpha C$，由于解析到 $B$ 前时相当于解析到 $\alpha C$ 前，因此 $A\rightarrow\cdot B$ 和 $B\rightarrow\cdot \alpha C$ 实际上是等价的。</p>
 <p>当得到了各个项目集闭包之后，实际上这个文法会对应一个自动机，自动机的状态就是这些项目集闭包，自动机的字符集就是所有的终结符与非终结符。（实际上也不是一个自动机，因为状态可以以非迁移的方式改变。）</p>
@@ -502,8 +502,8 @@
 <li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
 <li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
 <li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
-<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in V_T\cup\{$\}, \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
-<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S&#39;\mbox{ then }\forall a\in V_T\cup\{$\}, \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S&#39;\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
 <li>其它所有情况都设为 $err$</li>
 </ul>
 </li>

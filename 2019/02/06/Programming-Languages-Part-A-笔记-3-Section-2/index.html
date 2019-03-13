@@ -586,7 +586,7 @@
 <ul>
 <li>$\texttt{fun f p = e}$ 中的尾区域包括 $\texttt{e}$，不包括其它。</li>
 <li>$\texttt{if e1 then e2 else e3}$ 中的尾区域包括 $\texttt{e2}$ 和 $\texttt{e3}$，不包括其它。</li>
-<li>$\texttt{let b1 b2 … bn in e end}$ 中的尾区域包括 $\texttt{e}$，不包括其它。</li>
+<li>$\texttt{let b1 b2 ... bn in e end}$ 中的尾区域包括 $\texttt{e}$，不包括其它。</li>
 </ul>
 <p>给定了各个表达式的尾区域中，有一个规则：<strong>如果一个表达式不在尾区域中，那么它的任意子表达式也在尾区域中。</strong>递归地应用这些定义可以得到相对于每个表达式的尾区域。</p>
 <p><strong>尾调用指的是位于尾区域中的调用。</strong>（这个说法中的尾区域是相对于某个表达式而言的，因为如果再深入看一点进入更小的子表达式，这个尾区域中的一个子集才是尾区域。）</p>

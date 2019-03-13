@@ -477,8 +477,8 @@ B_n \rightarrow & \gamma_n\cdot \\
 <li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
 <li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
 <li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
-<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S’\mbox{ then }\forall a\in \mbox{Follow}(A), \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
-<li>$\mbox{if }S’\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S&#39;\mbox{ then }\forall a\in \mbox{Follow}(A), \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S&#39;\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
 <li>其它所有情况都设为 $err$</li>
 </ul>
 </li>
@@ -497,7 +497,7 @@ B_n \rightarrow & \gamma_n\cdot \\
 <h3 id="Closure，Goto-以及项集族的计算"><a href="#Closure，Goto-以及项集族的计算" class="headerlink" title="Closure，Goto 以及项集族的计算"></a>Closure，Goto 以及项集族的计算</h3><ul>
 <li>Closure 的计算变成 $\mbox{Closure}(I) = I\cup\{[B\rightarrow\cdot\gamma, b]|[A\rightarrow a\cdot B\beta, a]\in\mbox{Closure}(I), B\rightarrow\gamma\in P, b\in\mbox{First}(\beta a)\}$</li>
 <li>Goto 的计算变成 $\mbox{Goto}(I, X) = \mbox{Closure}(\{[A\rightarrow\alpha X\cdot \beta, a]|[A\rightarrow\alpha\cdot X \beta, a]\in I\})$</li>
-<li>计算 $LR(1)$ 的项集族时初始状态为 $\mbox{Closure}([S’\rightarrow\cdot S, $])$</li>
+<li>计算 $LR(1)$ 的项集族时初始状态为 $\mbox{Closure}([S&#39;\rightarrow\cdot S, $])$</li>
 </ul>
 <h3 id="分析表构造"><a href="#分析表构造" class="headerlink" title="分析表构造"></a>分析表构造</h3><p>这段从 $LR(0)$ 分析表构造过程修改而来，区别在于 3 的第三条中对 $a$ 的来源有了更加严格的限制。</p>
 <p>对一个文法构造对应的 $LR(1)$ 分析表：</p>
@@ -507,8 +507,8 @@ B_n \rightarrow & \gamma_n\cdot \\
 <li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
 <li>$\mbox{if }[A\rightarrow\alpha\cdot a\beta, b]\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
 <li>$\mbox{if }[A\rightarrow\alpha\cdot B\beta, b]\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
-<li>$\mbox{if }[A\rightarrow\alpha\cdot, a]\in I_i\mbox{ and }A\neq S’\mbox{ then }\mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号</li>
-<li>$\mbox{if }[S’\rightarrow S\cdot, $]\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot, a]\in I_i\mbox{ and }A\neq S&#39;\mbox{ then }\mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号</li>
+<li>$\mbox{if }[S&#39;\rightarrow S\cdot, $]\in I_i \mbox{ then Action}[i, $]=acc$</li>
 <li>其它所有情况都设为 $err$</li>
 </ul>
 </li>

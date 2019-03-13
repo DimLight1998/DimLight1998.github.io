@@ -498,10 +498,10 @@ W^{[l]} &= W^{[l]} - \alpha (p +\frac{\lambda}{m}W^{[l]}) \\
 <h3 id="Why-regularization-reduces-overfitting"><a href="#Why-regularization-reduces-overfitting" class="headerlink" title="Why regularization reduces overfitting?"></a>Why regularization reduces overfitting?</h3><p>使用正规化可以让每层网络中的输出值变得较小。这样相当于把一个复杂的网络简化成了相对简单的网络。一种直观的理解方式是通过正规化可以让一部分神经元输出为零，不过实际上是每个神经元都被使用到了，但是它们对整个结果的影响能力被削弱了。</p>
 <p>另一个角度看，使用正规化可以让神经元变得更加“线性”。极端的例子是，考虑 tanh 激活函数，以及较大的 $\lambda$ 值，此时所有神经元的输入被限制在很小的范围内，距离 0 的距离很近，所以输入位于 tanh 的线性区，整个网络表现为一个线性的网络，因此会出现欠拟合。但是不加正规项时会出现过拟合，因此较小的正规项系数即可将过拟合的网络变得更“线性”。</p>
 <h3 id="Dropout-Regularization"><a href="#Dropout-Regularization" class="headerlink" title="Dropout Regularization"></a>Dropout Regularization</h3><p>Dropout（随机失活）指的是每层神经元的输出以一定的概率被置为 0，以达到正规化目的。随机失活是另一种正规化手段。直观来看，这种方法会迫使大型的网络在训练时变得像较小的网络一样。</p>
-<p>实现上，一般采用 inverted dropout 的方法。给定概率 $p$ 表示激活概率，对于第 $l$ 层网络，其输出规模是 $n^{[l]}\times m$ 的，构建一个同规模的矩阵，其中元素以 $p$ 的概率被置为 1，$(1 - p)$ 的概率被置为 0；将这个矩阵与输出矩阵 $A$ 作逐元素乘积，会得到新矩阵 $A’$，将新矩阵的每个元素除以 $p$ 作为新的输出，这个新输出将作为下一层的输入。</p>
-<p>采用上述实现时，即使是同时训练多个样本，每个样本的神经元失活情况也不一样。另外 $A’$ 的每个元素需要除以 $p$，这是为了防止在最后应用模型的时候出现 scale 的问题（否则可能要在测试时引入进行 scale 的过程），毕竟输出被随机失活后每个样本对应的输出 scale 被改变了。</p>
+<p>实现上，一般采用 inverted dropout 的方法。给定概率 $p$ 表示激活概率，对于第 $l$ 层网络，其输出规模是 $n^{[l]}\times m$ 的，构建一个同规模的矩阵，其中元素以 $p$ 的概率被置为 1，$(1 - p)$ 的概率被置为 0；将这个矩阵与输出矩阵 $A$ 作逐元素乘积，会得到新矩阵 $A&#39;$，将新矩阵的每个元素除以 $p$ 作为新的输出，这个新输出将作为下一层的输入。</p>
+<p>采用上述实现时，即使是同时训练多个样本，每个样本的神经元失活情况也不一样。另外 $A&#39;$ 的每个元素需要除以 $p$，这是为了防止在最后应用模型的时候出现 scale 的问题（否则可能要在测试时引入进行 scale 的过程），毕竟输出被随机失活后每个样本对应的输出 scale 被改变了。</p>
 <blockquote>
-<p>在处理反向传播的时候，计算出 $\displaystyle{\frac{\partial J}{\partial A}}$ 后，使用 <strong>同样的</strong> 矩阵进行 dropout（因此需要将当时的矩阵记下来），然后再除以 $p$ 以保持 $\displaystyle{\frac{\partial J}{\partial A}}$ 的 scale。将得到的新矩阵当做 $\displaystyle{\left(\frac{\partial J}{\partial A}\right)’}$ 继续进行反向传播和权值更新。</p>
+<p>在处理反向传播的时候，计算出 $\displaystyle{\frac{\partial J}{\partial A}}$ 后，使用 <strong>同样的</strong> 矩阵进行 dropout（因此需要将当时的矩阵记下来），然后再除以 $p$ 以保持 $\displaystyle{\frac{\partial J}{\partial A}}$ 的 scale。将得到的新矩阵当做 $\displaystyle{\left(\frac{\partial J}{\partial A}\right)&#39;}$ 继续进行反向传播和权值更新。</p>
 <p>随机失活只在训练时使用，在测试和实际应用时不应当使用。</p>
 </blockquote>
 <h3 id="Understanding-Dropout"><a href="#Understanding-Dropout" class="headerlink" title="Understanding Dropout"></a>Understanding Dropout</h3><h4 id="随机失活的直观理解"><a href="#随机失活的直观理解" class="headerlink" title="随机失活的直观理解"></a>随机失活的直观理解</h4><p>每个神经元的输入是前层各个神经元输出的加权和。直观来看，采用了随机失活后，因为这些输出的每个维度都有变成 0 的可能，这就要求该层的神经元不要特别依赖于前层输出中某一维度的特性。因此该层神经元在分配权值时会倾向于对前层的每个神经元分配相近的权值。在 scale 不变的情况下，这么做会导致权值矩阵的范数减小，因此随机失活也可以看作某种形式的对权值的正规化。</p>
@@ -513,7 +513,7 @@ W^{[l]} &= W^{[l]} - \alpha (p +\frac{\lambda}{m}W^{[l]}) \\
 <p>这个方法的原理的直观理解是，初始化权值时会导致权值接近 0，但是随着训练进行，权值会越来越大，越来越依赖于 test 集的特性。通过 early stopping 可以让权值没有变得过大之前就停下来。</p>
 <p>这个方法的坏处是，<strong>最小化代价函数</strong> 和 <strong>防止过拟合</strong> 原本是两个正交的任务，在完成各任务时可以完全不理会另一个，但是采用这种方式会导致两个任务被耦合。不过，相对于使用 L2 正规化，使用 early stopping 时超参数的搜索空间更小。</p>
 <h2 id="Setting-up-your-optimization-problem"><a href="#Setting-up-your-optimization-problem" class="headerlink" title="Setting up your optimization problem"></a>Setting up your optimization problem</h2><h3 id="Normalizing-inputs"><a href="#Normalizing-inputs" class="headerlink" title="Normalizing inputs"></a>Normalizing inputs</h3><p>通过对输入进行 normalize（标准化）可以加速训练。</p>
-<p>标准化指将数据线性变换到均值为 0 方差为 1。实现上对于一组数据 $\vec x$，计算出均值 $\mu$ 和标准差 $\sigma$ 后令 $\displaystyle{x’ = \frac{\vec x - \mu}{\sigma}}$ 即可。</p>
+<p>标准化指将数据线性变换到均值为 0 方差为 1。实现上对于一组数据 $\vec x$，计算出均值 $\mu$ 和标准差 $\sigma$ 后令 $\displaystyle{x&#39; = \frac{\vec x - \mu}{\sigma}}$ 即可。</p>
 <p>直观来看，如果原始数据每个维度的 scale 不一样，那么代价函数会比较“扁长”。如果将代价函数的等高线作出来，会发现从很多点开始时都要经过一个震荡的过程才能到局部最优（例如扁长的椭圆）。标准化后代价函数会比较好看，例如变成了一个比较圆的椭圆。这样的话通过梯度下降找到局部最优会较快。</p>
 <h3 id="Vanishing-Exploding-gradients"><a href="#Vanishing-Exploding-gradients" class="headerlink" title="Vanishing / Exploding gradients"></a>Vanishing / Exploding gradients</h3><p>设想有一个层数很多的网络，采用线性激活函数，只有权值没有偏置，并且每层神经元数目相同（因此每层的权值矩阵是方阵）：</p>
 <ul>

@@ -519,7 +519,7 @@
 </ul>
 <p>这一步中没有任何求值发生。随后可以对 <code>foo</code> 进行 <code>eval</code>：</p>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> bar (<span class="name"><span class="builtin-name">eval</span></span> foo))</span><br></pre></td></tr></table></figure>
-<p>屏幕会打印 “hi” 并且 <code>bar</code> 会绑定为 6，此时就运行了代码。</p>
+<p>屏幕会打印 &quot;hi&quot; 并且 <code>bar</code> 会绑定为 6，此时就运行了代码。</p>
 <p>对于函数都要写单引号比较麻烦，<code>quote</code> 可以 <strong>将程序当作数据</strong>，是 <code>eval</code> 的反过程：</p>
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> foo (<span class="name"><span class="builtin-name">quote</span></span> begin (<span class="name">print</span> <span class="string">"hi"</span>) (<span class="name"><span class="builtin-name">+</span></span> <span class="number">4</span> <span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
 <p>这和上面的定义是等价的。这个过程中 <code>list</code> 被省去了。可以在 <code>quote</code> 中使用quasiquoting 概念来引入一个需要计算的表达式，有点类似其它接受字符串的语言中，对这个字符串本身进行插值。</p>

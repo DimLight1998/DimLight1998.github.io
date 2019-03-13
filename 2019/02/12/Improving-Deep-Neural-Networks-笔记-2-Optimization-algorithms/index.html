@@ -483,7 +483,7 @@ b_0 &= 0 \\
 b_k &=\frac{ (1 - \beta)a_k + \beta b_{k - 1}}{1 - \beta^k}
 \end{aligned}</script><p>这样在初始阶段，$\displaystyle{k}$ 较小，扩大效果明显；在后来分母接近于 1，因此和之前的公式类似。</p>
 <p>如果比较在意初始阶段的平滑效果的话可以考虑使用这个方法。</p>
-<h3 id="Gradient-descent-with-momentum"><a href="#Gradient-descent-with-momentum" class="headerlink" title="Gradient descent with momentum"></a>Gradient descent with momentum</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>由于小批量梯度下降时会产生震荡，而指数加权平均可以减小震荡，因此二者结合起来即可对训练加速。在这个应用中，要平滑的序列是代价函数对各参数的梯度。假设有个权值 $w$，在训练过程中各轮得到的梯度为 $\displaystyle{d^{\{1\}}, d^{\{2\}}, \cdots}$，通过使用指数加权平均后会得到新的序列 $\displaystyle{v^{\{1\}}, v^{\{2\}}, \cdots}$，更新参数时以这个新的序列为准，即 $w’ = w - \alpha v^{\{i\}}$。</p>
+<h3 id="Gradient-descent-with-momentum"><a href="#Gradient-descent-with-momentum" class="headerlink" title="Gradient descent with momentum"></a>Gradient descent with momentum</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><p>由于小批量梯度下降时会产生震荡，而指数加权平均可以减小震荡，因此二者结合起来即可对训练加速。在这个应用中，要平滑的序列是代价函数对各参数的梯度。假设有个权值 $w$，在训练过程中各轮得到的梯度为 $\displaystyle{d^{\{1\}}, d^{\{2\}}, \cdots}$，通过使用指数加权平均后会得到新的序列 $\displaystyle{v^{\{1\}}, v^{\{2\}}, \cdots}$，更新参数时以这个新的序列为准，即 $w&#39; = w - \alpha v^{\{i\}}$。</p>
 <h4 id="直观理解"><a href="#直观理解" class="headerlink" title="直观理解"></a>直观理解</h4><p>直观的一个例子是，如果梯度在一个方向上震荡，另一个正交方向上不震荡，那么使用指数加权平均后就会发现基本只剩下了不震荡的那个方向，这样训练就会变得更快，梯度的整体震荡程度也变小。另一个直观的理解是在 $v^{\{i\}} = (1- \beta)d^{\{i\}} + \beta v^{\{i - 1\}}$ 中，可以将 $(1- \beta)d^{\{i\}}$ 视作是加速度，$\beta v^{\{i - 1\}}$ 视作是速度。在发生震荡时即时有较大的加速度，对速度的影响也要之后一段时间才能表现出来。如果加速度方向经常反向，速度的方向就会大体稳定。</p>
 <h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>实现上不用考虑偏差修正的问题，并且 $\displaystyle{\beta}$ 的值一般取 0.9。此外有些实现中进行平滑时忽略了 $b_k = (1 - \beta) a_k + \beta b_{k - 1}$ 中的 $\displaystyle{(1 - \beta)}$ 项，此时调整 $\displaystyle{\beta}$ 会影响到学习率 $\displaystyle{\alpha}$ 的选取，因此不推荐这种实现。</p>
 <h3 id="RMSprop"><a href="#RMSprop" class="headerlink" title="RMSprop"></a>RMSprop</h3><p>RMSprop 中的 RMS 指的是 root mean square。它的思路是对梯度的平方进行平滑。</p>
@@ -497,7 +497,7 @@ w' = w - \alpha\frac{d^{\{i\}}}{\sqrt{s^{\{i\}}}}</script><p>经过这样的操�
 <li>尽管各个梯度都可能是一个向量，但是各种运算都是逐元素的运算。</li>
 <li><p>将 $\displaystyle{s}$ 的初始值赋为 0 即可，不用考虑偏差修正。</p>
 </li>
-<li><p>为了防止分母为零导致的数值稳定性问题，可以在分母上加上 $\epsilon$，即 $\displaystyle{w’ = w - \alpha\frac{d^{\{i\}}}{\sqrt{s^{\{i\}}} + \epsilon}}$，其中 $\epsilon$ 典型值为 $\displaystyle{10^{-8}}$。</p>
+<li><p>为了防止分母为零导致的数值稳定性问题，可以在分母上加上 $\epsilon$，即 $\displaystyle{w&#39; = w - \alpha\frac{d^{\{i\}}}{\sqrt{s^{\{i\}}} + \epsilon}}$，其中 $\epsilon$ 典型值为 $\displaystyle{10^{-8}}$。</p>
 </li>
 </ul>
 <h3 id="Adam-optimization-algorithm"><a href="#Adam-optimization-algorithm" class="headerlink" title="Adam optimization algorithm"></a>Adam optimization algorithm</h3><p>Adam 指的是 adaptive moment estimation。它的思路是将 momentum 和 RMSprop 结合起来。</p>

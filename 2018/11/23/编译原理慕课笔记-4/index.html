@@ -475,7 +475,7 @@ A\rightarrow \alpha\beta_1|\alpha\beta_2|\cdots|\alpha\beta_n|\gamma_1|\gamma_2|
 <script type="math/tex; mode=display">
 A\rightarrow \alpha A'|\gamma_1|\gamma_2|\cdots|\gamma_m \\
 A'\rightarrow \beta_1|\beta_2|\cdots|\beta_n</script><h3 id="消除左递归文法"><a href="#消除左递归文法" class="headerlink" title="消除左递归文法"></a>消除左递归文法</h3><p>所谓的左递归文法指的是存在一个串 $\alpha$ 使得 $A\rightarrow^+ A\alpha$，也仅是经过若干步推导后，$A$ 可以推导出一个以自己开头的句型。如果这个推导过程一步就可以完成，那么称为是 <strong>直接左递归</strong>，否则如果需要多步推导是称为 <strong>间接左递归</strong>（零步推导是平凡的，不考虑）。</p>
-<p><strong>对于一个简单的直接左递归产生式</strong>，可以将它转化成右递归产生式。对于产生式 $A\rightarrow A\alpha|\beta$，如果 $\alpha\neq\epsilon$ 且 $\beta$ 不以 $A$ 开头，那么这个产生式实际上等价于 $A\rightarrow\beta A’;A’\rightarrow\alpha A’|\epsilon$。</p>
+<p><strong>对于一个简单的直接左递归产生式</strong>，可以将它转化成右递归产生式。对于产生式 $A\rightarrow A\alpha|\beta$，如果 $\alpha\neq\epsilon$ 且 $\beta$ 不以 $A$ 开头，那么这个产生式实际上等价于 $A\rightarrow\beta A&#39;;A&#39;\rightarrow\alpha A&#39;|\epsilon$。</p>
 <p>更加一般的形式是：</p>
 <script type="math/tex; mode=display">
 A\rightarrow A\alpha_1|A\alpha_2|\cdots|A\alpha_n|\beta_1|\beta_2|\cdots|\beta_m(\alpha_i\neq\epsilon, A\ \mbox{is not prefix of}\ \beta_j)</script><p>等价于</p>
