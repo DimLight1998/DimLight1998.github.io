@@ -352,6 +352,745 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-1/" class="post-title-link" itemprop="url">编译原理慕课笔记 1</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:15:29" itemprop="dateCreated datePublished" datetime="2018-11-23T16:15:29+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>感谢 <a href="https://www.icourse163.org/course/HIT-1002123007?tid=1003246005" target="_blank" rel="noopener">中国大学 MOOC</a>。</p>
+<h2 id="什么是编译"><a href="#什么是编译" class="headerlink" title="什么是编译"></a>什么是编译</h2><p>计算机语言分成 <strong>高级语言</strong>、<strong>汇编语言</strong> 和 <strong>机器语言</strong>。计算机只能执行机器语言。从汇编语言到机器语言的过程叫 <strong>汇编</strong>，从高级语言到汇编语言或直接到机器语言的过程叫 <strong>编译</strong>。</p>
+<p>将高级语言写的源程序转换成可以运行的进程要经历 <strong>语言处理系统</strong>，编译器只是这个系统中的一环。语言处理系统的典型工作流程为</p>
+<ol>
+<li><strong>预处理器</strong> 将不同文件中源文件聚合到一起，并对宏进行操作；</li>
+<li><strong>编译器</strong> 将处理后的源文件编译为汇编语言程序；</li>
+<li><strong>汇编器</strong> 从汇编语言程序生成可重定位的机器代码（可重定位指在内存中的位置不固定）；</li>
+<li><strong>链接器</strong> 会将多个可重定位程序和库连接起来，并处理外部地址（跨文件的引用）；</li>
+<li><strong>加载器</strong> 会处理可重定位的地址，变成真实的地址，并将程序装入内存中。</li>
+</ol>
+<h2 id="编译系统的结构"><a href="#编译系统的结构" class="headerlink" title="编译系统的结构"></a>编译系统的结构</h2><p><strong>编译的本质是翻译，将源语言翻译到目标语言。</strong></p>
+<p>假定我们要将一个句子中英文翻译到中文，我们会先尝试了解这个句子的意思，这个意思是独立于任何自然语言的，专业点来说这个叫做 <strong>中间语言表示</strong>。在这个例子中，为了得到中间语言表示我们需要进行 <strong>语义分析</strong>；为了进行语义分析需要知道句子中每个短语的成分，这个过程为 <strong>语法分析</strong>；为了进行语法分析还需要知道每个词的词性，这个过程为 <strong>词法分析</strong>。</p>
+<p>一个典型的编译器的结构可以分成前端和后端。前端与源语言相关，将源语言翻译为中间表示；后端语言与目标语言相关，将中间表示翻译为目标语言。</p>
+<h2 id="词法分析概述"><a href="#词法分析概述" class="headerlink" title="词法分析概述"></a>词法分析概述</h2><p>词法分析一般是编译的第一个阶段。</p>
+<p>词法分析的主要任务是从左到右扫描扫描源程序字符，识别出各个单词，确定单词的类型，将它们转化成统一的内部表示 <strong>词法单元（token）</strong>。</p>
+<p>每个 token 是一个二元组（种别码，属性值）。其中种别码用来表示这个 token 的类型，属性值作为额外数据进一步表明这个 token 的值。</p>
+<p>扫描的过程中可能碰到五类 token，分别为</p>
+<ul>
+<li><strong>关键词</strong>，例如 <code>while</code>、<code>for</code> 这样的。它们的总量是可以枚举的，因此每个关键词都会得到一个种别码，并且属性值可以为空。例如 <code>while</code> 的 token 可能为 <code>&lt;WHILE, NONE&gt;</code>。</li>
+<li>变量名、函数名等<strong>标识符</strong>，这种标识符的总量不可枚举。所有的标识符都是一种种别，例如一个变量 <code>arr</code> 的 token 可能为 <code>&lt;IDENTIFIER, a&gt;</code>（最简单的实现中，属性值的取值就是变量名）。</li>
+<li><strong>常量</strong>，由于扫描的时候就可以确定常量的类型，尽管常量的取值不可枚举，但是可以按照常量的类型进行分类，并将常量的值作为属性。例如 <code>0.123</code> 的 token 可能为 <code>&lt;FLOAT, 0.123&gt;</code>。</li>
+<li><strong>运算符</strong>，这个比较简单，和关键词类似，每个运算符都可以分配一个种别码，例如 <code>+</code> 的 token 可能为 <code>&lt;ADD, NONE&gt;</code>。</li>
+<li><strong>界定符</strong>，这种符号一般是括号、花括号、等号这种作为语句的边界的符号，和运算符的处理类似，不需要属性值。</li>
+</ul>
+<p>进行了扫描后，字符流就可以转化为 token 流。</p>
+<h2 id="语法分析概述"><a href="#语法分析概述" class="headerlink" title="语法分析概述"></a>语法分析概述</h2><p>语法分析一般是编译的第二个阶段。</p>
+<p>语法分析的主要任务是根据词法分析器输出的 token 流识别出各类短语，构造 <strong>语法分析树（parse tree）</strong>。</p>
+<p>语法分析树是一棵树，叶结点是各个 token，非叶结点表示的是短语的类型。token 组合起来会形成短语，短语组合起来会形成更大的短语，因此形成了树的形式。</p>
+<p>语法分析的过程需要使用到语言的 <strong>文法</strong>，因为语法分析树的每棵子树中，子树的根结点和它的所有直接子结点正好对应文法中的一个生成式。</p>
+<p>进行了语法分析后，token 流就被转化成了多棵语法分析树。</p>
+<h2 id="语义分析概述"><a href="#语义分析概述" class="headerlink" title="语义分析概述"></a>语义分析概述</h2><p>语义分析的主要任务是收集语义相关的信息。这么说比较抽象，例子是高级语言的语句大多可以分成声明语句和命令语句，对于声明语句，语义分析的任务是收集标识符的属性信息，包括</p>
+<ul>
+<li><strong>种属</strong>：简单变量、符合变量（数组、结构体等）、函数等</li>
+<li><strong>类型</strong>：整型、布尔型等</li>
+<li><strong>存储的位置和长度</strong></li>
+<li>如果是变量的话，变量的 <strong>值</strong></li>
+<li><strong>作用域</strong></li>
+<li>如果是函数的话，<strong>参数和返回值类型</strong></li>
+</ul>
+<p>这个过程中标识符会被存放到符号表中，符号表中维护了这些标识符的名称以及上述属性信息。</p>
+<p>对于命令语句，语义分析可能会进行一些语义检查，例如</p>
+<ul>
+<li>变量或过程未定义就使用、或被重复定义</li>
+<li>运算分量类型不匹配（数组与过程相加这样的错误）</li>
+<li>操作符和操作数之间类型不匹配，例如<ul>
+<li>数组下标不是整数</li>
+<li>使用数组访问操作符访问非数组、使用过程调用操作符调用非过程</li>
+<li>过程调用的参数类型或数目不匹配，或者返回值的类型错误</li>
+</ul>
+</li>
+</ul>
+<h2 id="中间代码生成及编译器后端概述"><a href="#中间代码生成及编译器后端概述" class="headerlink" title="中间代码生成及编译器后端概述"></a>中间代码生成及编译器后端概述</h2><h3 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h3><p>常用的中间表示有 <strong>三地址代码</strong> 和 <strong>语法结构树（syntax tree）</strong>。</p>
+<p><em>语法结构树和前面提到的 parse tree 不是同一个概念。parse tree 是分析树，在语法分析过程后得到，而 syntax tree 是结构树，是一种中间表示。</em></p>
+<h3 id="三地址码"><a href="#三地址码" class="headerlink" title="三地址码"></a>三地址码</h3><p>三地址码由类似汇编语言的指令序列构成，每个语句最多只包含三个操作数。</p>
+<p>常用的三地址运算符有赋值、复制、条件跳转、无条件跳转、参数传递（类似汇编的 <code>push</code>）、过程调用（类似汇编的 <code>call</code>）、过程返回（类似汇编的 <code>ret</code>）、数组引用、数组赋值、地址及指针的操作等。</p>
+<p>三地址码的表示有 <strong>四元式</strong>、<strong>三元式</strong> 和 <strong>间接三元式</strong>。</p>
+<p>在四元式中，第一个分量指定语句类型，后三个分量分别是三个操作数，例如 <code>x = y + z</code> 的四元式为 <code>(+, y, z, x)</code>。</p>
+<p>因为一句三地址码只能干一件事情，所以 <strong>三地址码序列唯一确定了程序的完成顺序</strong>。把一个三地址码的序列写出来的话，看上去的效果就跟汇编代码差不多。</p>
+<h3 id="编译器后端"><a href="#编译器后端" class="headerlink" title="编译器后端"></a>编译器后端</h3><p>编译器在 <strong>目标代码生成</strong> 阶段会将中间表示翻译到目标语言，这个过程中的一个重要任务就是为变量分配合适的寄存器。</p>
+<p>编译器可能会进行一些优化，优化可以在两个时间进行</p>
+<ul>
+<li><strong>机器无关代码优化</strong>，这个优化针对中间表示进行，在目标代码生成过程前完成</li>
+<li><strong>机器相关代码优化</strong>，这个优化针对目标机器语言进行，在目标代码生成过程后完成</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/10/Rust-学习笔记/" class="post-title-link" itemprop="url">Rust 学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-10 16:48:43" itemprop="dateCreated datePublished" datetime="2018-11-10T16:48:43+08:00">2018-11-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:29:09" itemprop="dateModified" datetime="2019-03-11T15:29:09+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Rust-学习笔记"><a href="#Rust-学习笔记" class="headerlink" title="Rust 学习笔记"></a>Rust 学习笔记</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rustc --version</span></span><br><span class="line">rustc 1.30.0 (da5f414c2 2018-10-24)</span><br></pre></td></tr></table></figure>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><p>Rust 使用 cargo 进行项目管理。</p>
+<ul>
+<li>使用 <code>cargo</code> 建立一个新项目：<code>cargo new project_name --bin</code>。</li>
+<li>使用 <code>cargo</code> 建立一个新模块：<code>cargo new module_name --lib</code>。</li>
+<li>编译并运行： <code>cargo run</code>。</li>
+<li>只编译：<code>cargo build</code>。</li>
+<li>只检查是否能够通过编译：<code>cargo check</code>。</li>
+<li>更新依赖：<code>cargo update</code>。</li>
+<li>运行测试：<code>cargo test</code>。</li>
+</ul>
+<h3 id="变量与可变性"><a href="#变量与可变性" class="headerlink" title="变量与可变性"></a>变量与可变性</h3><ul>
+<li>Rust 使用 <code>let</code> 声明变量，建议使用 <code>snake_case</code> 命名。</li>
+<li>Rust 使用 <code>const</code> 声明常量，建议使用 <code>SCREAMING_SNAKE_CASE</code> 命名。</li>
+<li>Rust 变量默认不可变，如果需要可变的话，需要加上 <code>mut</code>。</li>
+</ul>
+<p>Rust 具有 Shadowing 的特性，可以将声明一个与同作用域已经声明的变量名称相同的变量名。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/20/软件工程课程项目博客-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/20/软件工程课程项目博客-3/" class="post-title-link" itemprop="url">软件工程课程项目博客-集成与测试</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-20 20:10:15" itemprop="dateCreated datePublished" datetime="2018-10-20T20:10:15+08:00">2018-10-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:31:04" itemprop="dateModified" datetime="2019-03-11T15:31:04+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="软件工程课程项目博客-集成与测试"><a href="#软件工程课程项目博客-集成与测试" class="headerlink" title="软件工程课程项目博客-集成与测试"></a>软件工程课程项目博客-集成与测试</h1><p>这是对一个为期一周的开发活动的个人总结。这个开发活动的主要目的是让我们熟悉持续集成以及了解一些基本的测试的概念并进行实践。</p>
+<h2 id="关于测试"><a href="#关于测试" class="headerlink" title="关于测试"></a>关于测试</h2><ul>
+<li><strong>单元测试</strong>：单元测试是对程序中的最小单元的功能正确性的验证。使用 Python 的话最小单元就是函数，单元测试要检测的就是这些函数。就我的感觉而言，通过单元测试我们可以预先定义出这个函数的正确行为应该是什么，于是在以后对这个函数进行的改动都可以保证正确，这会在以后的改动过程中让我们更有信心。不过，因为这次的作业时间确实较短而且逻辑不复杂，这个效果可能不是很明显。</li>
+<li><strong>功能测试</strong>：按我的理解，单元测试更多的是站在代码的角度上说的，而功能测试更多是站在业务的角度上说的。单元测试是检查负责抢票的处理函数在一个人在已经抢过的情况下再次抢票能够正确处理，而功能测试则直接要求一个人只能抢一张票，至于背后的实现它是不关心的。通过功能测试我们可以保证自己的系统能够满足用户的需求，而不仅仅是“能够正确地工作”。</li>
+<li><strong>性能测试</strong>：性能测试就是对服务器处理能力的考验。抢票这个功能从名称上看来就是需要服务器在某些情况下能够处理大量数据的。通过使用性能测试我们能够知道服务器最大能够处理多大量的数据，这样在应对一些极端情况之前我们就能知道能不能扛得住从而提前做决定，减小损失。</li>
+</ul>
+<p>通过这些测试我们就拥有了一个评价代码质量的标准，能够让自己对代码的表现有更加精确的预期。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/20/软件工程课程项目博客-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/09/手写汇编器-2/" class="post-title-link" itemprop="url">汇编课程大作业博客——编码 x86 指令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-09 10:50:13" itemprop="dateCreated datePublished" datetime="2018-10-09T10:50:13+08:00">2018-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:29" itemprop="dateModified" datetime="2019-03-11T15:30:29+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="汇编课程大作业博客——编码-x86-指令"><a href="#汇编课程大作业博客——编码-x86-指令" class="headerlink" title="汇编课程大作业博客——编码 x86 指令"></a>汇编课程大作业博客——编码 x86 指令</h1><p>在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。</p>
+<p><a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">Encoding Real x86 Instructions</a> 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。</p>
+<h2 id="x86-机器码的整体结构"><a href="#x86-机器码的整体结构" class="headerlink" title="x86 机器码的整体结构"></a>x86 机器码的整体结构</h2><p>一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。</p>
+<p>回到将所有可选部分写到一起那一步，这十六个字节的结构如下：</p>
+<ul>
+<li><strong>最高四个字节</strong>：Prefix Bytes，实际可能有零到四个字节，这些前缀会影响操作的结果。</li>
+<li><strong>次高四个字节</strong>：这四个字节编码了指令以及指令的工作方式（opcode + Mod-Reg-R/M + SIB，后面会写）。</li>
+<li><strong>次低四个字节</strong>：这四个字节编码了 displacement [<a href="https://stackoverflow.com/questions/13329611/x86-x64-add-displacement-addressing" target="_blank" rel="noopener">1</a>]，displacement 用于寻址。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+<li><strong>最低四个字节</strong>：这四个字节编码了 immediate data。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+</ul>
+<p>对于次高四个字节，还可以进一步细分：</p>
+<ul>
+<li>最高的两个字节，编码 opcode，可能会使用其中的一个或两个字节。</li>
+<li>接下来的一个字节称为 <em>Mod-Reg-R/M</em> 字节，这个字节指明了寻址模式和操作数的大小。只有指令需要寄存器或者内存的操作数的时候才会使用这个字节。</li>
+<li>接下来的一个字节称为 SIB（Scaled Indexed Byte）。如果指令使用了 scaled indexed memory addressing，就会用到这个字节。具体是什么后面会写。</li>
+</ul>
+<p>不是所有的字节都会被用到（实际上大部分字节都不会被用到）。我们会先了解次高四个字节。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1432,777 +2171,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/01/计算几何学习笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/09/01/计算几何学习笔记-2/" class="post-title-link" itemprop="url">计算几何学习笔记 2</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-01 18:22:27" itemprop="dateCreated datePublished" datetime="2018-09-01T18:22:27+08:00">2018-09-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算几何学习笔记——几何求交问题"><a href="#计算几何学习笔记——几何求交问题" class="headerlink" title="计算几何学习笔记——几何求交问题"></a>计算几何学习笔记——几何求交问题</h1><p>这一篇的内容是几何求交。</p>
-<h2 id="基础算法和理论"><a href="#基础算法和理论" class="headerlink" title="基础算法和理论"></a>基础算法和理论</h2><h3 id="Element-Uniqueness-问题"><a href="#Element-Uniqueness-问题" class="headerlink" title="Element Uniqueness 问题"></a>Element Uniqueness 问题</h3><p>给定若干个实数，它们之中有没有重复的元素？一个直观的想法是先对其排序然后做一个线性的判定，这会耗费 $O(n\log n)$ 的时间。可以证明，这个时间已经是这个问题的最好能达到的时间了。</p>
-<h3 id="Integer-Element-Uniqueness-问题"><a href="#Integer-Element-Uniqueness-问题" class="headerlink" title="Integer Element Uniqueness 问题"></a>Integer Element Uniqueness 问题</h3><p>即使将 Element Uniqueness 问题中的实数换成整数，最优时间不会发生改变。</p>
-<h3 id="Minimal-Gap-问题"><a href="#Minimal-Gap-问题" class="headerlink" title="Minimal Gap 问题"></a>Minimal Gap 问题</h3><p>给定若干个实数（未排序），求这些实数中间隔最小的两个实数的间隔是多少。直观的想法是排序然后线性判定，复杂度是 $O(n\log n)$，实际上这也是最优的解法，因为 Element Uniqueness 问题可以归约到这个问题。</p>
-<h3 id="Maximal-Gap-问题"><a href="#Maximal-Gap-问题" class="headerlink" title="Maximal Gap 问题"></a>Maximal Gap 问题</h3><p>给定若干个实数（未排序），求这些实数中间隔最大的两个实数的间隔是多少（这两个实数中不能再含有其它实数）。与上面的问题不同，通过使用哈希可以让这个问题的复杂度仅为 $O(n)$。</p>
-<h3 id="判定两个线段是否相交"><a href="#判定两个线段是否相交" class="headerlink" title="判定两个线段是否相交"></a>判定两个线段是否相交</h3><p>给定平面上的两个线段，它们是相交的当且仅当对于任意个线段，另一个线段都的两个端点都在这个线段的异侧。因此只要运行四次 <code>ToLeftTest</code> 就可以判定两个线段是否相交。注意之运行两次是不够的，因为可能会遇到一条线段的延长线交于另一条线段，但是线段本身不相交的情况。</p>
-<h2 id="区间相交判定"><a href="#区间相交判定" class="headerlink" title="区间相交判定"></a>区间相交判定</h2><p>给定一些一维的区间，判定它们两两之间是否有交。暴力做法是 $O(n^2)$ 的，但是这个不是下界。</p>
-<p>将所有区间的左端染成一种颜色，再将右端染成另一种颜色，然后对所有的端点进行排序。排序完成后，从左到右检查各个点的颜色，如果出现了连续两个点颜色一样的情况说明某两个区间相交了，否则它们必定没有相交。（因为没有出现这种情况一定是 LRLRLRLR 这样的模式，对于第一个 R 它只能和第一个 L 配对，如此递推下去即可。）复杂度取决于排序复杂度，为 $O(n\log n)​$。</p>
-<p>Integer Element Uniqueness 可以归约到这个问题，所以最好只能做到 $O(n\log n)$。</p>
-<h2 id="线段相交判定与枚举"><a href="#线段相交判定与枚举" class="headerlink" title="线段相交判定与枚举"></a>线段相交判定与枚举</h2><p>这里只考虑线段相交枚举的情形。在给定 $n$ 条线段后，枚举出所有相交线段对的时间为 $O(n\log n + I)$，其中 $I$ 是交点的个数（输出敏感性）。Element Uniqueness 问题可以归约到这个问题，所以线段相交判定的时间复杂度最好只能做到 $O(n\log n)$，但是 $I$ 最高可以到 $\Theta(n^2)$，所以综合时间复杂度最好是 $O(n\log n + I)$。</p>
-<h3 id="暴力算法"><a href="#暴力算法" class="headerlink" title="暴力算法"></a>暴力算法</h3><p>逐对枚举线段，检查相交情况。时间复杂度 $O(n^2)$。</p>
-<h3 id="Bentley–Ottmann-算法（BO-算法）"><a href="#Bentley–Ottmann-算法（BO-算法）" class="headerlink" title="Bentley–Ottmann 算法（BO 算法）"></a>Bentley–Ottmann 算法（BO 算法）</h3><p>$O(n\log n + I)$ 是最好的情况，但是实现起来较复杂。BO 算法是一个简单的但是性能足够好的算法。</p>
-<p>设想所有的线段已经给定，然后使用一条竖直的扫描线从左到右扫描这些线段来判定交点。在扫描的过程中有些地方是比较重要的，分别是：</p>
-<ul>
-<li>某条线段的左端点位于此竖直线上（线段开始）</li>
-<li>某条线段的右端点位于此竖直线上（线段结束）</li>
-<li>某两条线段的交点位于此竖直线上（线段相交）</li>
-</ul>
-<p>实际上只有这些地方是重要的，其它所有地方都不会对算法产生任何本质的影响，因此扫描实际上只用扫描这么多个有限点即可，这些点的数量是 $O(n^2 + I)$。</p>
-<p>不过实际中我们只知道线段的左端点和右端点，线段的交点是不知道的，需要在扫描的过程中求出。可以注意到这样一个事实：每在扫描线处于某个地方时，它会和若干条线段相交，此时这些线段可以依照和扫描线的交点的高度进行排序。每次两个线段的交点出现前的一个小区间中，这两个线段在按照与扫描线交点排序的时候是相邻的。根据这个性质，我们就可以描述 BO 算法了。</p>
-<p>首先需要一个队列用来维护那些需要让扫描线停下来重点检查的地方，因为交点未知，所以需要能够动态地插入元素到这个队列中，因此应该是一个优先队列。然后需要一个词典维护扫描线在某处时，按照相交纵坐标排序的那些线段，考虑到有时候会在某个位置插入一条线（线段开始），或者发生两条线段的调换（线段相交），这个结构应该使用有序的 map 结构，比如平衡二叉搜索树。</p>
-<p>算法描述如下：</p>
-<ol>
-<li>使用所有线段的左端点和右端点初始化优先队列（横坐标越小的，越靠左）</li>
-<li>只要优先队列不为空：<ol>
-<li>从优先队列中取出第一个元素</li>
-<li>找到与这个元素关联的线段，在扫描线状态中更新相关的信息，具体地：<ul>
-<li>如果是线段开始，则将对应线段插入扫描线状态中</li>
-<li>如果是线段结束，则将对应线段移出扫描线状态</li>
-<li>如果是线段相交，则交换两条对应线段的位置</li>
-</ul>
-</li>
-<li>当完成了上一步之后，某些线段的相邻关系发生了改变。只要是原来不相邻，而现在相邻了的，都做一下这两条线段的相交检测。如果相交了，就计算出交点，并将这个交点加入到优先队列中</li>
-</ol>
-</li>
-<li>此时所有相交情况已检测到</li>
-</ol>
-<p>复杂度的分析：优先队列的最大需要处理的量是 $O(n\log n + I)$，每次处理耗费 $O(\log S)$ 的时间，其中 $S$ 是优先队列的大小。而 $S \leq n\log n + I$，于是 $O(\log S) = O(\log(n\log n + I)) = O(\log(n\log n + n^2)) = O(\log n)$。平衡二叉树的每一步的操作总是 $O(\log n)$ 的。总的来看，时间复杂度是 $O((n\log n + I)\log n)$。在某些极端的情况下这个算法可能比暴力算法还要差，但是这种情况一般不会发生；当交点数比较少的时候，算法的性能还不错。</p>
-<h2 id="凸多边形相交判定——Dobkin-and-Kirkpatrick-算法"><a href="#凸多边形相交判定——Dobkin-and-Kirkpatrick-算法" class="headerlink" title="凸多边形相交判定——Dobkin and Kirkpatrick 算法"></a>凸多边形相交判定——Dobkin and Kirkpatrick 算法</h2><p>Dobkin and Kirkpatrick 算法能在 $O(\log n)$ 时间内判定给定的两个凸多边形是否有相交。这个算法的论文在 <a href="https://www.sciencedirect.com/science/article/pii/0304397582901207" target="_blank" rel="noopener">这里</a>。如果一个多边形严格位于另一个多边形内部，也认为它们相交了。</p>
-<p>这个算法思路可以描述如下：对于任意的一个凸多边形，总是可以找到它的最上的点和最下的点。这两个点将多边形的所有边分成两部分，一部分向在左边并向左凸，另一部分在右边并向右凸，分别将其成为 <em>左链</em> 和 <em>右链</em>。对于左链，从其最高点和最低点向右引两条射线；对于右链，从其最高点和最低点向左引两条射线；仍保持左链和右链的名称不变。在后面的叙述中，所有的左链和右链都是包含两个无穷射线的。</p>
-<p>对于任意给定的两个凸多边形 $P_1$ 和 $P_2$，它们相交当且仅当 $P_1$ 的左链和 $P_2$ 的右链相交，并且 $P_1$ 的右链和 $P_2$ 的左链相交。其它所有的情况都是两个多边形不相交的，因此如果有算法对于给定的一条左链和一条右链判定它们是否有交点的话就能解决凸多边形相交判定的问题。</p>
-<p>这个算法采取减而治之的策略。首先先找到左链和右链两者中间的那一根线段，然后根据这两条线段的位置关系决定下一步：</p>
-<ul>
-<li>如果这两条线段本身就是相交的，那么两条链自然也是相交的；</li>
-<li>如果两条线段自身不相交，那么就求出它们的交点。根据两条线段和交点的位置关系，可以将两条链中的一条或者两条去掉一半（就是说可以安全地忽略掉这中间的一半，而不影响最后结论），去掉之后再补上缺失的射线，随后递归地进行两条链的相交判定。</li>
-</ul>
-<p>上面的内容只是对思路的描述。经过这样的处理之后问题规模至多为原来的 $\frac{3}{4}$，于是复杂度应为 $T(n) = T(\frac{3}{4}n) + O(1) \Rightarrow T(n) = \log n$。在不断缩减问题的规模之后，会退化到比较平凡的情况，这种情况下可以直接求解。</p>
-<p>问题在于如何根据交点和线段的相对位置决定忽略掉哪条链的哪一部分。按照论文的描述，这个事情是这样完成的：</p>
-<p>首先选取两条链的中间的线段，并将它们延长。它们会交于一点（不幸平行的话，换一条线段）。假设左链选出的中间线段是左上右下倾斜的，右链选出的中间线段是右上左下倾斜的，那么延长线会将平面划分成是个区域：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">\                       /</span><br><span class="line"> \                     /</span><br><span class="line">  \                   /</span><br><span class="line">   \                 /</span><br><span class="line">    \       LR      /</span><br><span class="line">     \             /</span><br><span class="line">      \           /</span><br><span class="line">       \         /</span><br><span class="line">        \       /</span><br><span class="line">         \     /</span><br><span class="line">          \   /</span><br><span class="line">           \ /</span><br><span class="line">    R       /      L</span><br><span class="line">           / \</span><br><span class="line">          /   \</span><br><span class="line">         /     \</span><br><span class="line">        /       \</span><br><span class="line">       /         \</span><br><span class="line">      /           \</span><br><span class="line">     /             \</span><br><span class="line">    /               \</span><br><span class="line">   /      Empty      \</span><br><span class="line">  /                   \</span><br><span class="line"> /                     \</span><br><span class="line">/                       \</span><br></pre></td></tr></table></figure>
-<p>（这张图和论文中的记号不一样，左右和它定义是反的。）其中，左链只可能在 L 区和 LR 区，右链只可能出现在 R 区和 LR 区，因此两个链是否相交只取决于它们在 LR 区中是否相交。将左链选出的中间线段记作 $l$，右链选出的中间线段记作 $r$，左链中保留 $l$ 上端点以上的部分，并补充从 $l$ 上端点开始向右的射线，将这个新的左链记作 $L&#39;$，同理得到 $R&#39;$。</p>
-<ul>
-<li>如果 $l$ 上端点不在 LR 区中，那么左链与右链相交当且仅当 $L&#39;$ 与右链相交；</li>
-<li>如果 $r$ 上端点不在 LR 区中，那么左链与右链相交当且仅当 $R&#39;$ 与左链相交；</li>
-<li>如果 $l,r$ 的 <strong>两个端点</strong> 都在 LR 区中，但是 $r$ 下端点比 $l$ 下端点要低，那么左链与右链相交当且仅当左链与 $R&#39;$ 和 $r$ 并起来之后的链相交，这里的“并”会去掉中间补充的射线。</li>
-</ul>
-<p>这样就能每次稳定地去掉一部分了。</p>
-<h2 id="凸多边形相交区域构造"><a href="#凸多边形相交区域构造" class="headerlink" title="凸多边形相交区域构造"></a>凸多边形相交区域构造</h2><p>给定两个凸多边形，如何构造出它们相交的部分？按照凸性对交运算的封闭性，相交部分应该也是凸的。</p>
-<h3 id="边追赶算法"><a href="#边追赶算法" class="headerlink" title="边追赶算法"></a>边追赶算法</h3><p>边追赶算法首先从两个多边形中取出两条边，然后让这两条边沿着多边形的某个方向前进，相互追赶。边的前进指的是让这条边的后继替代当前这条边成为正在研究的边。一个直观的算法描述如下：</p>
-<p>先找到两条已经相交的边，让它们成为正在研究的边。让其中一条边前进，直到与另一条正在研究的边相交；此时让另一条正在研究的边前进，直到与之前正在研究的边相交。如此交替进行，直到找到所有的交点。</p>
-<p>然而实际上具体要前进哪一条边貌似没这么简单……具体说来要根据两条边的末尾的端点在两条边的左右侧的信息以及两条边的叉乘在纸面内还是纸面外这两个信息决定具体推进哪一条边。</p>
-<h3 id="扫描线算法"><a href="#扫描线算法" class="headerlink" title="扫描线算法"></a>扫描线算法</h3><p>使用与之前类似的扫描线的算法也能解决这个问题。本质上我们是要找到所有线段的交点，使用扫描线时问题可以大幅简化，这是因为一个凸多边形和一条直线最多只能有 2 个交点，所以同一时刻扫描线只会和四个线段有交。另外优先队列也可以省掉（然而我并不知道是怎么做到的，似乎只用维持几个事件点就可以了？），每处理一个交点只要 $O(1)$ 的时间。</p>
-<hr>
-<p>以上两个算法的时间复杂度都是 $O(m + n)$ 的，其中 $m$ 和 $n$ 分别是两个多边形的边数。</p>
-<h2 id="半平面求交问题"><a href="#半平面求交问题" class="headerlink" title="半平面求交问题"></a>半平面求交问题</h2><p>给定了若干个半平面，如何求出它们的交？排序问题可以归约到这个问题上，所以这个问题的复杂度最好只能做到 $O(n\log n)$。这个问题的求解可以使用分治来做，即先求出两个一半的问题然后求这两个广义凸多边形的交（广义凸多边形指某条边可先外无限延伸，两个广义凸多边形的交可以使用前述算法得出）。复杂度是 $T(n) = 2T(\frac{n}{2}) + O(n)$ 即 $T(n) = O(n\log n)$。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/31/计算几何学习笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/31/计算几何学习笔记-1/" class="post-title-link" itemprop="url">计算几何学习笔记 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-31 18:09:17" itemprop="dateCreated datePublished" datetime="2018-08-31T18:09:17+08:00">2018-08-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算几何学习笔记——平面凸包问题"><a href="#计算几何学习笔记——平面凸包问题" class="headerlink" title="计算几何学习笔记——平面凸包问题"></a>计算几何学习笔记——平面凸包问题</h1><p>基本来自学堂在线上的 <a href="http://www.xuetangx.com/courses/course-v1:TsinghuaX+70240183x_1+sp/about" target="_blank" rel="noopener">计算几何慕课</a>。这一篇的内容是平面凸包问题。</p>
-<h2 id="基础算法和理论"><a href="#基础算法和理论" class="headerlink" title="基础算法和理论"></a>基础算法和理论</h2><h3 id="判定平面上一个点在有向直线的左边还是右边（ToLeftTest）"><a href="#判定平面上一个点在有向直线的左边还是右边（ToLeftTest）" class="headerlink" title="判定平面上一个点在有向直线的左边还是右边（ToLeftTest）"></a>判定平面上一个点在有向直线的左边还是右边（<code>ToLeftTest</code>）</h3><p>使用矢量叉乘，如果有向直线的向量为 $\overrightarrow{AB}$，要判定的点是 $C$，则可以通过 $\overrightarrow{AB}\times\overrightarrow{AC}$ 的竖坐标符号来确定 $C$ 在 $\overrightarrow{AB}$ 的哪一侧。这个叉乘可以写成 $\left|\begin{array}{ccc}<br>\vec i &amp; \vec j &amp; \vec k \\<br>x_B - x_A &amp; y_B - y_A &amp; z_B - z_A \\<br>x_C - x_A &amp; y_C - y_A &amp; z_C - z_A \\<br>\end{array}\right|$，但目前只关心其结果竖坐标的值，并且知道 $z_A = z_B = z_C = 0$，即只关心 $\left|\begin{array}{ccc}<br>0 &amp; 0 &amp; 1 \\<br>x_B - x_A &amp; y_B - y_A &amp; 0 \\<br>x_C - x_A &amp; y_C - y_A &amp; 0 \\<br>\end{array}\right| = \left|\begin{array}{cc}<br>x_B - x_A &amp; y_B - y_A \\<br>x_C - x_A &amp; y_C - y_A \\<br>\end{array}\right| = \left|\begin{array}{ccc}<br>x_A &amp; y_A &amp; 1 \\<br>x_B &amp; y_B &amp; 1 \\<br>x_C &amp; y_C &amp; 1 \\<br>\end{array}\right|$ 这个行列式。如果这个行列式为正表示 $C$ 在 $\overrightarrow{AB}$ 坐标，反之在右边；如果为零，三点共线。</p>
-<h3 id="判定平面上一个点是否在给定的三角形中（InTriangleTest）"><a href="#判定平面上一个点是否在给定的三角形中（InTriangleTest）" class="headerlink" title="判定平面上一个点是否在给定的三角形中（InTriangleTest）"></a>判定平面上一个点是否在给定的三角形中（<code>InTriangleTest</code>）</h3><p>连续三次调用 <code>ToLeftTest</code>，如果上次三次返回的结果都相同则表示在其中，否则不在其中。这种情况下，三条边的调用顺序可以是任意的。</p>
-<h3 id="判定平面上一个点是否在给定的凸多边形中（InConvexPolygonTest）"><a href="#判定平面上一个点是否在给定的凸多边形中（InConvexPolygonTest）" class="headerlink" title="判定平面上一个点是否在给定的凸多边形中（InConvexPolygonTest）"></a>判定平面上一个点是否在给定的凸多边形中（<code>InConvexPolygonTest</code>）</h3><p>思路和 <code>InTriangleTest</code> 类似，如果是凸 n 边形就连续调用 n 次 <code>ToLeftTest</code>，看每次调用的结果是不是都是相同的。</p>
-<h2 id="极点算法"><a href="#极点算法" class="headerlink" title="极点算法"></a>极点算法</h2><p>构成凸包的顶点称作极点。极点算法基于这样的事实：所有的极点都满足一个性质，即可以找到经过这个极点的一条直线，使所有的点都位于这条直线的同侧。一个等价的描述是，任取三个点围成一个三角形，如果某个点在这个三角形内部，则这个点必然不是极点。</p>
-<p>极点算法操作是：</p>
-<ol>
-<li>将所有点标记为潜在极点</li>
-<li>遍历所有的三角形，对于每一个三角形：<ol>
-<li>遍历所有不构成这个三角形的潜在极点</li>
-<li>判断潜在极点是否在这个三角形内，如果在，移除其潜在极点身份</li>
-</ol>
-</li>
-<li>所有剩下的潜在极点即为真实极点</li>
-</ol>
-<p>遍历三角形的复杂度是 $O(n^3)$ 的，整个算法的复杂度是 $O(n^4)$ 的。</p>
-<h2 id="极边算法"><a href="#极边算法" class="headerlink" title="极边算法"></a>极边算法</h2><p>构成凸包的边称作极边。极边算法基于这样的事实：所有的点都位于某条边的同侧，当且仅当这条边为极边。</p>
-<p>极边算法的操作是：</p>
-<ol>
-<li>将所有的点标记为潜在非极点</li>
-<li>遍历两两点之间的所有连线，对于每一条这样的连线：<ol>
-<li>遍历每个不属于这两个端点之外的点，判定在这条连线的左边还是右边</li>
-<li>如果在上一步中，所有的结果都是相同的，则表明这条连线是极边，选取的两个端点是极点，将它们标记</li>
-</ol>
-</li>
-<li>所有被标记为极点的点即为真实极点</li>
-</ol>
-<p>遍历连线的复杂度是 $O(n^2)$，整体复杂度 $O(n^3)$。</p>
-<h2 id="增量扩展极点算法"><a href="#增量扩展极点算法" class="headerlink" title="增量扩展极点算法"></a>增量扩展极点算法</h2><p>这个算法通过不断修改已知极点集合来得到最后的真实极点集合，策略是减而治之。</p>
-<p>给定了若干个点后，如果已经知道了其中前 $n$ 个点对应的凸包 $C$，那么前 $n + 1$ 个点对应的凸包可以在 $C$ 的基础上得出。首先要知道第 $n$ 个点 $P$ 是在 $C$ 内还是在 $C$ 外；如果在 $C$ 外则表示要修改凸包，即修改极点集，要知道需要删去哪些点，增加哪些点。这两种情况可以统一处理。增量式修改凸包的过程中新增的极边称作切边，切边中处于原始凸包上的极点成为切点。</p>
-<p>凸包的边总是环状的，由此可以将当前的极点按照逆时针方向排序（这个操作不用实际进行，因为可以维护这个序列）。这样对于每个点都有一个前驱，一个后继。研究 $P$ 和 $C$ 的关系的时候，只要对极点序列中每个极点 $Q$，以及其前驱 $Q_p$ 和后继 $Q_n$ 进行如下检测：连接 $P,Q$ 得到 $PQ$（注意有方向），判定 $Q_p$ 和 $Q_n$ 在 $PQ$ 的左边还是右边，不考虑退化到共线的情况，可能的组合只有四种：</p>
-<ul>
-<li>左-左：$Q$ 点是一个切点（保留）</li>
-<li>左-右：$Q$ 点应该被抛弃</li>
-<li>右-左：$Q$ 点应该被保留</li>
-<li>右-右：$Q$ 点是一个切点（保留）</li>
-</ul>
-<p>增量扩增极点的算法可以描述如下：初始时构建一个简单的凸包，随后对于每个没有被考虑过的点应用上面判定过程。如果判定过程中没有检测到切点，表明这个点处于已知凸包内部，可以继续考虑下一个；如果出现的切点，则根据判定知道的保留与舍弃情况，更新极点集合即可。</p>
-<p>每扩增一个新的点复杂度都是和当前凸包的大小有关的，不会超过 $O(n)$，总体复杂度为 $O(n^2)$。</p>
-<h2 id="增量扩展极边算法"><a href="#增量扩展极边算法" class="headerlink" title="增量扩展极边算法"></a>增量扩展极边算法</h2><p>这个算法又称 Jarvis March 算法，同属于减而治之。它的思路是不断扩展出新的极边（真实的）直到形成闭环。首先确定一个真实的极点，然后沿着逆时针的方向，找到下一个极点，连成极边，再找到下一个极点，连成极边。以此类推，直到最后形成闭环。</p>
-<p>第一件事是要找到一个极点，实际上将这些点投影到一条直线上后，位于最外端的点总是极点。如果投影后有重合，则将这些某方向上投影重合的点投影到正交的方向上，此时位于外端的点必然是极点了。依据这种搞法，可以找到初始的极点。</p>
-<p>第二件事是已知一个极点，要找到下一个极点。为此，遍历除了自己（记作 $P$）之外的所有点，我们希望找到一个“右转角度最大”的点（注意此时在逆时针寻找），设当前的候选点是 $Q$，如果找到一个点发现它在 $PQ$ 右边，则用它取代 $Q$，一直做下去，知道所有点都遍历完，此时的 $Q$ 就是下一个极点。如果这个点和最开始找到的初始极点相同，这产生闭环，算法结束。</p>
-<p>每扩展一条极边，复杂度为 $O(n)$，设最后的凸包一共有 $m$ 条极边，这总的复杂度是 $O(mn)$。这个复杂度具有输出敏感性，因此大多数情况下会比 $O(n^2)$ 性能要好。</p>
-<h2 id="Graham-Scan-算法"><a href="#Graham-Scan-算法" class="headerlink" title="Graham Scan 算法"></a>Graham Scan 算法</h2><p>平面凸包的问题复杂度存在下界。排序问题可以归约到平面凸包的问题上，因此平面图包问题的复杂度最好只能做到 $O(n\log n)$。Graham Scan 就是这样的复杂度的算法。</p>
-<p>Graham 算法的过程如下：首先选择一个极点（选取方式同前），然后选取一个极轴，并保证这个极轴是一条极边，这一步需要线性的时间。然后对于所有的点，按照对这个极点的极角从小到大进行排序，这一步需要 $O(n\log n)$ 的时间，由于极轴的选取，所有的极角应该都是小于 $\pi$ 的。</p>
-<p>现在已经获得了一个顶点的顺序，然后维护一个潜在的极点序列（按照逆时针方向排布的），初始情况下这个序列中只有两个元素：初始的极点和极角最小的那个点。然后：</p>
-<ol>
-<li>从排好序的顶点中取出第一个；</li>
-<li>查看选出的顶点是否在潜在极点序列中的倒数第二个、最后一个连成的有向直线的左边。如果是，则将其加入潜在极点序列中；否则，不断退出潜在极点序列中的最后一个元素，直到前述性质符合。</li>
-</ol>
-<p>当没有可取的顶点时，潜在的极点序列即为按照逆时针方向排布的真实极点序列。尽管看起来算法的复杂度是 $O(n^2)$ 的，因为可能要退出元素，但是可以证明最后总的复杂度依然是线性的。所以 Graham 算法复杂度主要在排序上，整体复杂度 $O(n \log n)$。</p>
-<p>Graham 算法有一个变种。Graham 的瓶颈在于排序，如果给定的数据已经按照某个方向排序好了的话，就可以做到线性的时间复杂度。不妨假定说给的数据已经按照 x 轴坐标排好了，那么在 +y 轴无限远的地方假定出一个点来，将这个点与给定的所有顶点连线，应该会得到一系列的向上的平行线。因为数据已经按照 x 轴排好序了，所以可以认为它们按对虚拟点的极角排好序了。只要跑一遍 Graham 算法就能得到一个包含了上虚拟点的凸包，去掉上虚拟点后得到的实际是所谓的“下凸”。类似地，在 -y 轴无穷远处假定一个下虚拟点，干一样的事情，就能得到“上凸”。上凸和下凸合并起来就是最后的凸包。</p>
-<h2 id="基于分治的凸包算法——合并线性不可分凸包"><a href="#基于分治的凸包算法——合并线性不可分凸包" class="headerlink" title="基于分治的凸包算法——合并线性不可分凸包"></a>基于分治的凸包算法——合并线性不可分凸包</h2><p>凸包问题可以使用基于分治的算法求解。设想要求的是一些点的凸包，如果将这些点随机分成两组，各自求出自己的凸包然后合并成大凸包就可以了。设要合并的两个凸包分别为 $C_1$ 和 $C_2$，并且有它们按照逆时针方向排列的极点序列。首先在 $C_1$ 内部随机选出一个点 $P$，这个点的可以通过在 $C_1$ 中随机找出一个由极点构成的三角形取重心得到，用时 $O(1)$。然后判断一下 $P$ 点是否在 $C_2$ 中。</p>
-<p>如果 $P$ 在 $C_2$ 中，那么使用二路归并将两个按照逆时针方向排列的极点序列归并起来即可，归并完成后使用 Graham 生成新的凸包。这种情况下时间为 $O(n + m)$，其中 $n$ 是 $C_1$ 的极点数，$m$ 是 $C_2$ 的极点数。</p>
-<p>如果 $P$ 不在 $C_2$ 中，那么问题就是 $C_2$ 中的已经排好序的极点对 $P$ 来说没有排好序，此时模仿“增量扩展极点算法”，找到它对 $C_2$ 的切线并割掉一定不会出现在追踪的凸包中的那些点，此时剩下的点对于 $P$ 来说就是排好序的了，仿照上面的情况生成凸包即可。时间也是线性的。</p>
-<p>总时间满足 $T(n) = 2T(\frac{n}{2}) + \Theta(n)$，于是 $T(n) = O(n\log n)$。</p>
-<h2 id="基于分治的凸包算法——合并线性可分凸包"><a href="#基于分治的凸包算法——合并线性可分凸包" class="headerlink" title="基于分治的凸包算法——合并线性可分凸包"></a>基于分治的凸包算法——合并线性可分凸包</h2><p>除了上面一种分治方法外还有一种分治方法，两种方法的差异在于如何进行分割，对应地，合并的时候的策略不同。如果要合并的两个凸包是线性可分的，那么合并时有一个简单的方法。实际操作时，不妨先对所有点按照 x 轴坐标进行排序（如果已经排好了就可以省略这一步），然后求出左一半的凸包和右一半的凸包（递归进行），另外还需要维护每个凸包的最左点和最右点。然后只要合并这两个小凸包即可。</p>
-<p>两个小凸包应该存在两条公切线，一条在上一条在下。可以如下求解：</p>
-<ol>
-<li>将左边小凸包的最右点和右边小凸包的最左点连接起来，称这个连线为“桥”。</li>
-<li>以桥的左端为轴，不断提升右边，直到检测到切线。（仿照增量扩展极点算法中的检测思路）</li>
-<li>再以桥的右端为轴，不断提升左边，直到检测到切线。（仿照增量扩展极点算法中的检测思路）</li>
-<li>反复重复以上两步，直到两边都不能提升。此时的桥即为上公切线。类似地，可以求出下公切线。</li>
-</ol>
-<p>去掉位于公切线中的点即得到新的凸包的极点序列。</p>
-<hr>
-<p>总结下来，平面凸包问题的复杂度最好是 $O(n\log n)$，如果有一些特殊情况的话还可以进一步降到 $O(n)$。有些算法结合了上面一些算法的优点，例如有一个自适应的算法可以在保证性能不低于 Graham Scan 的同时还存在对输出的敏感性，在好的情况下能像 Jarvis March 一样快。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/28/CS184-1X-计算机图形学学习笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (3)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-28 13:17:41" itemprop="dateCreated datePublished" datetime="2018-08-28T13:17:41+08:00">2018-08-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:51" itemprop="dateModified" datetime="2019-03-11T15:21:51+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-3"><a href="#CS184-1X-计算机图形学学习笔记-3" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (3)"></a>CS184.1X 计算机图形学学习笔记 (3)</h1><p>光线追踪及其实现。</p>
-<h2 id="光线追踪算法"><a href="#光线追踪算法" class="headerlink" title="光线追踪算法"></a>光线追踪算法</h2><p>如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。</p>
-<p>另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显示的像素，利用光路可逆的性质从摄像机向这个像素发出一条光线，这条光线打到物体上后根据物体的相关物理性质决定出光线的颜色，如有必要，对反射光线继续进行追踪，最后叠加它们的颜色。光线追踪算法易于实现，能够容易地表现倒影、阴影等效果（所谓的全局光照），但是效率不如光栅化，一般拿来做离线渲染。</p>
-<p>这里写一个简单的光线追踪的纯 CSharp 实现，主要参考了 <a href="http://www.cnblogs.com/miloyip/archive/2010/03/29/1698953.html" target="_blank" rel="noopener">光线追踪入门</a> 这篇博客。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/22/CS184-1X-计算机图形学学习笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (2)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-22 13:49:23" itemprop="dateCreated datePublished" datetime="2018-08-22T13:49:23+08:00">2018-08-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:45" itemprop="dateModified" datetime="2019-03-11T15:21:45+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-2"><a href="#CS184-1X-计算机图形学学习笔记-2" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (2)"></a>CS184.1X 计算机图形学学习笔记 (2)</h1><p>主要是 OpenGL 的一些概念。学习资料主要来自 <a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">LearnOpenGL CN</a>。</p>
-<h2 id="各种矩阵"><a href="#各种矩阵" class="headerlink" title="各种矩阵"></a>各种矩阵</h2><ul>
-<li><strong>模型（model）矩阵</strong>：比如一个模型是存放在文件中的，要描述这个模型，每个顶点的坐标应该是一个相对于某个中心的相对坐标。例如一个人体模型中，头的坐标可能是以相对于人体重心的形式给出的。当要将这个人体加载到世界中时需要使用一个矩阵左乘所有模型中的坐标得到世界坐标，这个矩阵就是模型矩阵。</li>
-<li><strong>观察（view）矩阵</strong>：世界空间中，所有的点都是相对于世界的原点给出坐标的；摄像机空间中所有的点都是相对摄像机给出坐标的，即摄像机是原点。OpenGL 中我们希望能通过移动世界的方式来实现移动画面的移动，故使用一个矩阵左乘世界中所有点的坐标得到摄像机空间中的坐标，这个矩阵就是观察矩阵。在 glm 中可以使用 <code>glm::lookAt</code> 生成一个观察矩阵。</li>
-<li><strong>投影（projection）矩阵</strong>：在摄像机空间中并不是所有的东西都会被显示出来，只有位于一个特定的空间体中的物体会被显示（例如，在透视投影中，是一个四棱台）。如果将这个空间体称为“可视区域”，则通过用一个矩阵左乘摄像机空间中的所有物体，可以将“可视区域”归一化成位于中心的所有棱的范围都是 -1 到 1 的小正方体，这个矩阵就是投影矩阵。此后便可以方便地进行显示。在 glm 中可以使用 <code>glm::perspective</code> 生成一个透视投影的投影矩阵，使用 <code>glm::ortho</code> 生成一个正交投影的投影矩阵。在使用了投影矩阵后可以生成与长宽比无关的符合直觉的图像。</li>
-</ul>
-<p>从描述中可以看到正确的应用顺序是：模型矩阵、观察矩阵、投影矩阵。只要使用矩阵乘法连乘起来即可，会得到 <strong>模型观察投影矩阵</strong>。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2249,7 +2217,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2302,7 +2270,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

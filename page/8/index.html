@@ -352,6 +352,726 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-11/" class="post-title-link" itemprop="url">编译原理慕课笔记 11</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:56" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:56+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="中间代码生成-1"><a href="#中间代码生成-1" class="headerlink" title="中间代码生成-1"></a>中间代码生成-1</h1><p>中间代码生成重点在于各种语句如何进行翻译。下面两节面向的是声明语句的翻译。个人感觉这附近都是在说语法制导翻译的具体应用形式，没有多少理论上的东西了。</p>
+<h2 id="类型表达式"><a href="#类型表达式" class="headerlink" title="类型表达式"></a>类型表达式</h2><p>为了知道声明语句如何翻译，需要搞清楚类型和类型表达式。</p>
+<p>类型表达式实际上表示的就是一个特定的类型。平时在高级语言里面写的 <code>int a[50]</code> 这种实际上是一种语法糖，<code>a</code> 的类型是 <code>int[50]</code>，类型表达式就是要让 <code>int[50]</code> 这种表述更加底层。</p>
+<p>基本类型都是类型表达式，也就是说 <code>int</code> 和 <code>void</code> 这种就是一个完整的类型表达式。</p>
+<p>复合类型可以通过更加基础的类型表达式通过 <strong>类型构造符</strong> 得到，几个常用的类型构造符如下：</p>
+<ul>
+<li><strong>数组构造符</strong>：例如 <code>int[50][20]</code> 实际上对应着一个类型表达式 $array(50, array(50, int))$。</li>
+<li><strong>指针构造符</strong>：例如 <code>int**</code> 实际上对应着一个类型表达式 $pointer(pointer(int))$。</li>
+<li><strong>笛卡儿积构造符</strong>：我觉得这个构造符用于某些语言中的匿名元组，例如 <code>(int, bool)</code> 对应着 $int\times bool$，注意这个构造符在这里是中缀的。</li>
+<li><strong>函数构造符</strong>：这个构造符接收两个类型表达式，得到一个新的类型表达式表示函数。比如 <code>function&lt;int(bool)&gt;</code> 对应着 $bool\rightarrow int$，如果有多个参数的话可以使用笛卡儿积打包。</li>
+<li><strong>记录构造符</strong>：实际上就是结构体的构造符，使用若干笛卡儿积记录每个记录中域的名称和类型（不知道为什么要单独列出来）。</li>
+</ul>
+<p>通过这些构造符和基本类型基本上可以构造出语言中出现得了的类型了。</p>
+<h2 id="声明语句的翻译"><a href="#声明语句的翻译" class="headerlink" title="声明语句的翻译"></a>声明语句的翻译</h2><p>对于声明语句，语义分析的目的就是找到声明的变量的名字、类型、宽度，并将这些信息存放到符号表中。在语义分析过程中还能够为这些声明出的变量提供相对地址，相对地址也存放在符号表中。</p>
+<p>每当语义分析过程中发现了一个新的变量的时候就可以在符号表中分配新的入口了，这个分配过程可以看作是某种副作用。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-10/" class="post-title-link" itemprop="url">编译原理慕课笔记 10</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:54" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:54+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法制导翻译-3"><a href="#语法制导翻译-3" class="headerlink" title="语法制导翻译-3"></a>语法制导翻译-3</h1><p>以下两节讨论的是如何实现 L-SDD 对应的翻译过程。</p>
+<h2 id="在递归的预测分析过程中进行翻译"><a href="#在递归的预测分析过程中进行翻译" class="headerlink" title="在递归的预测分析过程中进行翻译"></a>在递归的预测分析过程中进行翻译</h2><p>在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：</p>
+<ul>
+<li><p>对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合属性。在之前的笔记中已经指出继承属性在非终结符分析前得出，综合属性在非终结符分析后得出，这么做是合理的。</p>
+</li>
+<li><p>在每个非终结符对应的过程内部，会以局部变量的形式维护要用到的所有属性（不管是不是自己的）。例如对于这个嵌入代码的产生式 $T\rightarrow F\{K.inh = F.val\}K\{T.val = K.syn\}$（其中 inh 表示继承属性，syn 表示综合属性，val 表示计算出的属性），转换为 $T$ 对应的过程就应该是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">T(state) -&gt; Tval:</span><br><span class="line">    Fval = F(state)</span><br><span class="line">    Kinh = Fval</span><br><span class="line"></span><br><span class="line">    state_update(state)</span><br><span class="line"></span><br><span class="line">    Ksyn = K(state, Kinh)</span><br><span class="line">    Tval = Ksyn</span><br><span class="line"></span><br><span class="line">    state_update(state)</span><br><span class="line">    <span class="keyword">return</span> Tval</span><br></pre></td></tr></table></figure>
+<p><code>state</code> 中存放的是当前的解析进度，可以看到这种实现方式几乎是在翻译 SDT，很直观。</p>
+</li>
+<li><p>在主函数中，解析初始符号得到初始符号对应的综合属性即可。此时翻译过程完成。</p>
+</li>
+</ul>
+<p>这种实现方式还比较优雅。</p>
+<h2 id="L-属性定义的自底向上翻译"><a href="#L-属性定义的自底向上翻译" class="headerlink" title="L-属性定义的自底向上翻译"></a>L-属性定义的自底向上翻译</h2><p>这里涉及的是如何使用 LR 分析技术解决 LL 文法对应的语言，因为自底向上翻译一般处理的是 LR 文法。</p>
+<p>在 S-SDD 中使用自底向上翻译时，对应的状态栈和符号栈旁边会有一个属性栈。对于 L-SDD，也是如此。</p>
+<p>对于一个 L-SDD，可以通过如下的转换使得所有的语义动作都位于产生式的末尾，这个过程会改写文法。例如对于 $A\rightarrow \{a_1\}B\{a_2\}$，引入产生式 $M\rightarrow \epsilon \{a_1&#39;\}$ 即可将原来的产生式变换到 $A\rightarrow MB \{a_2\}$。这个产生式的语义动作实际上完成了它替换掉的那个语义动作要做的事情。这样引入的非终结符称为 <strong>标记非终结符</strong>。当然想想就知道变化完了之后肯定不是 S-SDD，这是因为 $a_1&#39;$ 能够处理的操作比 $a_1$ 要少，$a_1$ 要处理的可能是计算 $B$ 的某个继承属性，但是变化完成后 $a_1&#39;$ 逻辑上不能访问到 $B$，它只能计算出 $M$ 的综合属性。但是因为这个产生式被专用，所以实现上可以让 $a_1&#39;$ 能够访问到 $B$，只不过不太干净罢了。</p>
+<p>形式上来讲所有的语义动作都位于产生式的末尾了，就可以像 S-SDD 中那样操作，<strong>每次归约时执行语义动作</strong>。变换完成后，对于每个产生式都可以静态地（不依赖于具体的语言组成）写出每个产生式对应的执行过程（可以实际执行的对栈的操作）。需要注意的是，对于引入的标记非终结符，它对应的那个语义动作，会将该标记非终结符左边的那些符号的属性复制一下作为为自己的继承属性，并计算出一个综合属性。这个综合属性实际上就是标记非终结符右边的那个符号 $B$ 想要将计算的继承属性。因此如果后续的处理过程中需要用到 $B$ 的继承属性的话要找的是标记非终结符的综合属性。问题是每次是否都能找到呢？实际上 $M$ 就在 $B$ 的左边，因此实际实现和运行中这个综合属性一定能够轻松找到。</p>
+<p>由于引入的标记非终结符推导出空串，所以标记非终结符进行归约是每次都是往栈里面压入了一个新的元素。实际上可以将这个压入的元素看作是某种存放了它右边那个符号的继承属性的特殊元素容器，当后面的符号要引用前面的符号的属性时，不管是继承属性（此时是对应标记非终结符的综合属性）还是综合属性（此时就是对应符号的综合属性）都能够找到。这样说就比较说得通了。</p>
+<p>这一节因为没有看到代码实现，所以自己实际上只有概念和方法上的了解。一些细节的地方估计有疏漏。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-9/" class="post-title-link" itemprop="url">编译原理慕课笔记 9</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:52" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:52+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法制导翻译-2"><a href="#语法制导翻译-2" class="headerlink" title="语法制导翻译-2"></a>语法制导翻译-2</h1><h2 id="语法制导翻译方案-SDT"><a href="#语法制导翻译方案-SDT" class="headerlink" title="语法制导翻译方案 SDT"></a>语法制导翻译方案 SDT</h2><p>语法制导翻译方案是在产生式右部嵌入了程序片段（语义动作）的 CFG。</p>
+<p>S-SDD 和 L-SDD 可以在以下两种情况中轻易地使用 SDT 实现：</p>
+<ul>
+<li>文法可以使用 LR 分析技术，SDD 是 S 属性的</li>
+<li>文法可以使用 LL 分析技术，SDD 是 L 属性的</li>
+</ul>
+<h3 id="使用-SDT-实现-S-SDD"><a href="#使用-SDT-实现-S-SDD" class="headerlink" title="使用 SDT 实现 S-SDD"></a>使用 SDT 实现 S-SDD</h3><p>S-SDD 使用的属性都是综合属性，对于每个产生式计算属性都是在计算产生式左部的符号的属性，只要将计算过程嵌入到整个产生式最右部即可。</p>
+<p>例如对产生式 $T\rightarrow T_1\ast F$ 以及对应的语义规则 $T.val = T_1.val \times F.val$，在 SDT 中这个规则就是 $T\rightarrow T_1\ast F\{T.val = T_1.val \times F.val\}$。</p>
+<p>使用 SDT 实现 S-SDD 时，如果对应的文法使用 LR 分析进行了语法分析，那么对应的语义属性的计算可以在语法分析过程中完成。使用 LR 分析时使用到了符号栈和状态栈，可以设置一个平行的 <strong>属性栈</strong> 用来存放符号栈中对应位置的符号的综合属性。因为 S-SDD 的特性，可以在语法分析过程中发生归约时计算处归约到的符号的综合属性，查看对应的语义规则，将属性栈中位于顶层的若干属性弹出，计算完毕后压入栈中即可。<strong>属性栈、符号栈、状态栈中的元素数目一般情况下是相同的。</strong></p>
+<h3 id="使用-SDT-实现-L-SDD"><a href="#使用-SDT-实现-L-SDD" class="headerlink" title="使用 SDT 实现 L-SDD"></a>使用 SDT 实现 L-SDD</h3><p>L-SDD 使用的属性是综合属性或者受限的继承属性，对于每个产生式计算属性都是在计算产生式左部的符号的综合属性或者右部符号的继承属性，只要将计算过程嵌入到整个产生式右部相应位置即可。</p>
+<p>如果这个语义规则计算的是产生式左部符号综合属性，就把语义规则嵌入到产生式末尾；如果这个语义规则计算的是右部某个符号 $A$ 的继承属性，那么它会依赖于产生式右部中位于该符号左边的符号的属性，因此可以将语义规则嵌入到 $A$ 的左边并紧邻 $A$。由于这个计算过程中可能还要依赖自己的属性，所以嵌入的时候要按照某种拓扑序进行嵌入。</p>
+<p>例如对产生式 $T\rightarrow FT&#39;$ 和语义规则 $T&#39;.inh = F.val; T.val = T&#39;.syn$，在 SDT 中这个规则就是 $T\rightarrow F\{T&#39;.inh = F.val\}T&#39;\{T.val = T&#39;.syn\}$。</p>
+<p>如果 L-SDD 的文法可以使用 LL 分析技术，那么它的 SDT 可以在 LL 语法分析过程或 LR 语法分析过程中实现。对应地有三种实现方式：</p>
+<ul>
+<li>在非递归的预测分析法中继行语义翻译</li>
+<li>在递归的预测分析法中继行语义翻译</li>
+<li>在 LR 分析过程中实现语义翻译</li>
+</ul>
+<h2 id="在非递归的预测分析过程中进行翻译"><a href="#在非递归的预测分析过程中进行翻译" class="headerlink" title="在非递归的预测分析过程中进行翻译"></a>在非递归的预测分析过程中进行翻译</h2><p>预测分析就是说在 LL 分析过程中往前看若干个符号就知道要使用哪个产生式。非递归的实现使用到了一个存放终结符和非终结符的栈。</p>
+<p>为了使用非递归的预测分析技术实现 L-SDD，需要在栈中引入更多种类的元素，分别是 <strong>表示语义动作的元素</strong> 和 <strong>表示综合属性</strong> 的元素；此外，对于每个元素还需要一个结构来维护它的属性信息。对于以下的嵌有语义动作的产生式 $A\rightarrow\{a_1\}\beta_1\{a_2\}\beta_2\{a_3\}\beta_3\{a_4\}$，其中 $a_i$ 是动作，根据前面的原则，$a_1\cdots a_3$ 计算的是各自右边的符号的继承属性，而 $a_4$ 计算的是 $A$ 的综合属性。</p>
+<p>现在假设栈顶存放的元素就是 $A$，并且根据预测分析，要使用的产生式就是上面的产生式，那么应该有这些元素被压入栈中（左边栈顶）：$\{a_1\}\rightarrow \beta_1\rightarrow \beta_{1,syn}\rightarrow\{a_2\} \rightarrow \beta_2\rightarrow \beta_{2, syn} \rightarrow \{a_3\} \rightarrow \beta_3\rightarrow \beta_{3, syn} \rightarrow \{a_4\}$。其中 $\beta_{i, syn}$ 表示计算 $\beta_i$ 的综合属性（如果需要的话），因为对于一个符号来讲它的综合属性应该是在解析完成后被求出，而继承属性应该在开始解析前被求出（它的解析过程中以它为左部的产生式会用到它的继承属性），这个顺序是科学的。</p>
+<p>大体的思路其实和非递归预测分析的算法差不多，不同之处在于：</p>
+<ul>
+<li>当栈顶的符号是表示语义动作的元素时（如 $\{a_1\}$），执行这个语义动作然后弹出该元素。一个典型的动作会计算其它元素的属性。通过一些适当的设置可以让这个元素存放的是指向某个函数的指针从而让代码可以直接被执行，函数中会直接访问栈。</li>
+<li>当栈顶的符号是表示综合属性的元素时（如 $\beta_{2, syn}$），弹出这个综合属性。<strong>但是</strong>，有些属性的计算会使用到这个综合属性，因此弹出前需要先把它的属性备份到那些语义动作元素中，这些语义动作元素应该位于栈中。具体是要备份到哪些语义动作元素中其实是静态的，它只依赖于这个符号被压入栈中时是随着哪一条产生式被压入的。例如，如果当前的栈顶符号是 $\beta_{2, syn}$ 并且正要出栈，那么会用到它的语义动作元素只可能是 $\{a_3\}$ 或者 $\{a_4\}$，把 $\beta_{2, syn}$ 对应的信息给它们就行了。这就使得这些表示综合属性的元素自己也存放某种策略性的东西来制导它们该如何退栈。</li>
+<li>当栈顶符号是非终结符时（如 $A$），原来的操作是将它退栈并将要使用的产生式右部的符号压栈。但是右部符号中某些属性的计算可能依赖于这个退栈的非终结符的继承属性，因此需要和上一点一样做一些备份。不同的是需要将这个继承属性备份到还没有压入栈中的元素，也就是说可能需要某种压栈完成后再执行备份功能的机制。这个决策过程依然是静态的。</li>
+<li>当栈顶符号是终结符时，正常操作。另外，其实如果产生式中有终结符，压栈的时候可以不压入对应的终结符对应的综合属性的元素，不过我觉得为了统一性可以这么搞。</li>
+</ul>
+<p>上面所说的静态，指的是给定了 SDT 后实际上就已经可以对于每个产生式（含嵌入代码）中的每个符号得到它出栈的时候应该执行的动作，和运行时得到的语言输入无关。</p>
+<p>我觉得这个算法不太优雅，为啥一个栈里面会有几种不同元素还得动态改变操作的？希望剩下两个算法看着舒服点。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-8/" class="post-title-link" itemprop="url">编译原理慕课笔记 8</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:50" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:50+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法制导翻译-1"><a href="#语法制导翻译-1" class="headerlink" title="语法制导翻译-1"></a>语法制导翻译-1</h1><h2 id="语法制导翻译概述"><a href="#语法制导翻译概述" class="headerlink" title="语法制导翻译概述"></a>语法制导翻译概述</h2><h3 id="语法制导翻译思路"><a href="#语法制导翻译思路" class="headerlink" title="语法制导翻译思路"></a>语法制导翻译思路</h3><p>编译过程中经过词法分析、语法分析、语义分析、中间代码生成、代码优化、目标代码生成这些步骤。语义分析完成后需要某种中间表示作为中间代码生成的输入，如果这种中间表示就是中间代码的话，这两步可以合成一步叫做 <strong>语义翻译</strong>；语法分析的结果需要写成某种中间表示作为语义翻译的输入，如果这两步合成一起的话就叫做 <strong>语法制导翻译</strong>。</p>
+<p>其实最关键的问题在于如何表示语义。语法制导翻译使用 CFG 引导对语言的翻译。CFG 中的每个文法符号（终结符和非终结符）都会有自己的 <strong>语义属性</strong>，这个属性实际上就是一种对语义的表示。语义属性的计算需要用到 <strong>语义规则</strong>，语义规则往往和产生式（这里有个牛逼名字叫 <strong>语法规则</strong>）关联在一起。</p>
+<p>如果需要得到一个词法单元流的语义信息，应该先构建它的语法分析树，然后按照各个产生式对应的语义规则计算出每个结点中对应的符号的语义属性，这样做的话实际上每个结点都会具有自己的语义属性。</p>
+<h3 id="语法制导定义和语法制导翻译方案简介"><a href="#语法制导定义和语法制导翻译方案简介" class="headerlink" title="语法制导定义和语法制导翻译方案简介"></a>语法制导定义和语法制导翻译方案简介</h3><p>语法制导定义（Syntax-Directed Definitions，SDD）是一套语法制导翻译的规则，它如上面描述的一样：</p>
+<ul>
+<li>对文法每个符号关联了若干个语义属性</li>
+<li>对文法的每个产生式（语法规则）关联了若干个语义规则，这些语义规则将用来计算对应的产生式中符号的各个语义属性。</li>
+</ul>
+<p>表示上，对于一个符号 $X$ 的属性 $a$，使用 $X.a$ 来表示这个符号的属性。一个产生式中如果有多个同名符号会加下标以示区别。</p>
+<p>一个示例是如下的文法以及对应的语义属性和语义规则（声明多个变量）：</p>
+<script type="math/tex; mode=display">
+\begin{array}{cccc}
+\begin{aligned}
+D\rightarrow & TL             & L.type   & = T.type        \\
+T\rightarrow & \texttt{int}   & T.type   & = \texttt{int}  \\
+T\rightarrow & \texttt{real}  & T.type   & = \texttt{real} \\
+L\rightarrow & L_1, \mbox{id} & L_1.type & =  L.type
+\end{aligned}
+\end{array}</script><p>可以看到语法制导定义以一种 <strong>定义的形式</strong> 给出了各个符号的语义属性和这些属性的计算规则，但是具体怎么实现并没有说明。语法制导翻译方案（Syntax-Directed Translation Scheme，SDT）更进一步，在 SDD 的基础上将何时计算语义属性和计算方式以程序片段伪码（称作 <strong>语义动作</strong>）形式嵌入到了产生式中，使得 SDD 的实现方式被显式指明。</p>
+<h2 id="语法制导定义-SDD"><a href="#语法制导定义-SDD" class="headerlink" title="语法制导定义 SDD"></a>语法制导定义 SDD</h2><h3 id="综合属性与继承属性"><a href="#综合属性与继承属性" class="headerlink" title="综合属性与继承属性"></a>综合属性与继承属性</h3><p>对于每个符号，在处于语法分析树上的某个结点时，它的属性的计算有可能会依赖于其它结点的属性或者自己的其它属性。</p>
+<p>对于一个非终结符，在语法分析树上，如果它的某个属性的计算只依赖于它本身的属性值以及它的子结点的属性值，这样的属性称作 <strong>综合属性</strong>。终结符也可以有综合属性，但是这种综合属性是由词法分析器提供的，不是由语义规则计算得出。</p>
+<p>对于一个非终结符，在语法分析树上，如果它的某个属性的计算只依赖于它本身的属性值以及它的父结点和兄弟结点的属性值，这样的属性称作 <strong>继承属性</strong>。终结符没有继承属性值，因为它所有的属性都是综合属性。</p>
+<p>注意按照上面的定义一个属性不可能同时为综合属性和继承属性。综合属性和继承属性都是对结点说的，而不是对符号说的。</p>
+<h3 id="其它一些定义"><a href="#其它一些定义" class="headerlink" title="其它一些定义"></a>其它一些定义</h3><p>在 SDD 中，语义规则可能含有 <strong>副作用</strong>，例如修改符号表或者打印了一些内容，不是纯粹的赋值计算语句。如果一个 SDD 的任意语义规则没有副作用，这个 SDD 称作是 <strong>属性文法</strong>。属性文法中的语法规则只使用其它的语义属性和常量来计算语义属性。</p>
+<p>当使用 SDD 时，第一步先建立了语法分析树，如果这个时候将每个结点的语义属性计算出来直接写到语法分析树的结点上，此时的语法分析树就变成了 <strong>注释分析树</strong>，即结点带有语义属性的分析树。</p>
+<h2 id="SDD-的求值顺序"><a href="#SDD-的求值顺序" class="headerlink" title="SDD 的求值顺序"></a>SDD 的求值顺序</h2><p>SDD 对文法中的符号定义了语义属性，对产生式关联了语义规则。如何使用这些语义规则计算语义属性？</p>
+<p>如果将一个语法分析树上的所有结点的所有语义属性列出来，会得到很多的语义属性。它们之间的依赖关系会形成一张有向图，称作 <strong>依赖图</strong>。对这个图进行拓扑排序，如果排序存在的话按照这个顺序对语义属性进行计算即可。</p>
+<p>特别地，如果所有的属性都是综合属性，可以自底向上依次计算。</p>
+<p>依赖图的拓扑排序可能不存在。即使一个 SDD 的所有属性都是综合属性或者继承属性，拓扑排序也可能不存在。拓扑排序存在的充要条件是图中没有环。</p>
+<p>对于一个给定的 SDD，难以确定这个 SDD 是否会在某种情况下产生有环的依赖图。但是通过适当设计 SDD 中的语义规则可以保证依赖图无环，并且还可以使语义属性的计算过程和语法分析结合在一起高效完成。这样的例子是 <strong>S-属性</strong> 和 <strong>L-属性</strong>。</p>
+<h2 id="S-属性定义和-L-属性定义"><a href="#S-属性定义和-L-属性定义" class="headerlink" title="S-属性定义和 L-属性定义"></a>S-属性定义和 L-属性定义</h2><h3 id="S-属性定义"><a href="#S-属性定义" class="headerlink" title="S-属性定义"></a>S-属性定义</h3><p>如果一个 SDD 中所有的属性都是综合属性，这样的 SDD 称作是 S-SDD。S-SDD 中语义属性的计算可以自底向上计算得到，并且很容易在自底向上语法分析过程中实现。</p>
+<h3 id="L-属性定义"><a href="#L-属性定义" class="headerlink" title="L-属性定义"></a>L-属性定义</h3><p>如果一个 SDD 中的每个属性要么是综合属性，要么是 <strong>受限的</strong> 的继承属性（下面会写具体限制），则这个 SDD 称作 L-SDD。限制条件为：</p>
+<ul>
+<li>可以依赖父结点属性，但是只能依赖父结点的继承属性而不能是其它属性。</li>
+<li>可以依赖兄弟结点的属性，但是只能依赖产生式中位于自己左边的那些符号的属性。</li>
+<li>可以依赖自己的属性，但是自己的属性不能产生循环依赖。</li>
+</ul>
+<p>其中不能依赖父结点的综合属性是因为父结点的综合属性会依赖子结点的属性，这可能造成循环依赖。</p>
+<hr>
+<p>这两种属性都可以保证依赖图中没有环出现。S-属性是特殊的 L-属性。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1618,745 +2338,6 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-1/" class="post-title-link" itemprop="url">编译原理慕课笔记 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:15:29" itemprop="dateCreated datePublished" datetime="2018-11-23T16:15:29+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h1><p>感谢 <a href="https://www.icourse163.org/course/HIT-1002123007?tid=1003246005" target="_blank" rel="noopener">中国大学 MOOC</a>。</p>
-<h2 id="什么是编译"><a href="#什么是编译" class="headerlink" title="什么是编译"></a>什么是编译</h2><p>计算机语言分成 <strong>高级语言</strong>、<strong>汇编语言</strong> 和 <strong>机器语言</strong>。计算机只能执行机器语言。从汇编语言到机器语言的过程叫 <strong>汇编</strong>，从高级语言到汇编语言或直接到机器语言的过程叫 <strong>编译</strong>。</p>
-<p>将高级语言写的源程序转换成可以运行的进程要经历 <strong>语言处理系统</strong>，编译器只是这个系统中的一环。语言处理系统的典型工作流程为</p>
-<ol>
-<li><strong>预处理器</strong> 将不同文件中源文件聚合到一起，并对宏进行操作；</li>
-<li><strong>编译器</strong> 将处理后的源文件编译为汇编语言程序；</li>
-<li><strong>汇编器</strong> 从汇编语言程序生成可重定位的机器代码（可重定位指在内存中的位置不固定）；</li>
-<li><strong>链接器</strong> 会将多个可重定位程序和库连接起来，并处理外部地址（跨文件的引用）；</li>
-<li><strong>加载器</strong> 会处理可重定位的地址，变成真实的地址，并将程序装入内存中。</li>
-</ol>
-<h2 id="编译系统的结构"><a href="#编译系统的结构" class="headerlink" title="编译系统的结构"></a>编译系统的结构</h2><p><strong>编译的本质是翻译，将源语言翻译到目标语言。</strong></p>
-<p>假定我们要将一个句子中英文翻译到中文，我们会先尝试了解这个句子的意思，这个意思是独立于任何自然语言的，专业点来说这个叫做 <strong>中间语言表示</strong>。在这个例子中，为了得到中间语言表示我们需要进行 <strong>语义分析</strong>；为了进行语义分析需要知道句子中每个短语的成分，这个过程为 <strong>语法分析</strong>；为了进行语法分析还需要知道每个词的词性，这个过程为 <strong>词法分析</strong>。</p>
-<p>一个典型的编译器的结构可以分成前端和后端。前端与源语言相关，将源语言翻译为中间表示；后端语言与目标语言相关，将中间表示翻译为目标语言。</p>
-<h2 id="词法分析概述"><a href="#词法分析概述" class="headerlink" title="词法分析概述"></a>词法分析概述</h2><p>词法分析一般是编译的第一个阶段。</p>
-<p>词法分析的主要任务是从左到右扫描扫描源程序字符，识别出各个单词，确定单词的类型，将它们转化成统一的内部表示 <strong>词法单元（token）</strong>。</p>
-<p>每个 token 是一个二元组（种别码，属性值）。其中种别码用来表示这个 token 的类型，属性值作为额外数据进一步表明这个 token 的值。</p>
-<p>扫描的过程中可能碰到五类 token，分别为</p>
-<ul>
-<li><strong>关键词</strong>，例如 <code>while</code>、<code>for</code> 这样的。它们的总量是可以枚举的，因此每个关键词都会得到一个种别码，并且属性值可以为空。例如 <code>while</code> 的 token 可能为 <code>&lt;WHILE, NONE&gt;</code>。</li>
-<li>变量名、函数名等<strong>标识符</strong>，这种标识符的总量不可枚举。所有的标识符都是一种种别，例如一个变量 <code>arr</code> 的 token 可能为 <code>&lt;IDENTIFIER, a&gt;</code>（最简单的实现中，属性值的取值就是变量名）。</li>
-<li><strong>常量</strong>，由于扫描的时候就可以确定常量的类型，尽管常量的取值不可枚举，但是可以按照常量的类型进行分类，并将常量的值作为属性。例如 <code>0.123</code> 的 token 可能为 <code>&lt;FLOAT, 0.123&gt;</code>。</li>
-<li><strong>运算符</strong>，这个比较简单，和关键词类似，每个运算符都可以分配一个种别码，例如 <code>+</code> 的 token 可能为 <code>&lt;ADD, NONE&gt;</code>。</li>
-<li><strong>界定符</strong>，这种符号一般是括号、花括号、等号这种作为语句的边界的符号，和运算符的处理类似，不需要属性值。</li>
-</ul>
-<p>进行了扫描后，字符流就可以转化为 token 流。</p>
-<h2 id="语法分析概述"><a href="#语法分析概述" class="headerlink" title="语法分析概述"></a>语法分析概述</h2><p>语法分析一般是编译的第二个阶段。</p>
-<p>语法分析的主要任务是根据词法分析器输出的 token 流识别出各类短语，构造 <strong>语法分析树（parse tree）</strong>。</p>
-<p>语法分析树是一棵树，叶结点是各个 token，非叶结点表示的是短语的类型。token 组合起来会形成短语，短语组合起来会形成更大的短语，因此形成了树的形式。</p>
-<p>语法分析的过程需要使用到语言的 <strong>文法</strong>，因为语法分析树的每棵子树中，子树的根结点和它的所有直接子结点正好对应文法中的一个生成式。</p>
-<p>进行了语法分析后，token 流就被转化成了多棵语法分析树。</p>
-<h2 id="语义分析概述"><a href="#语义分析概述" class="headerlink" title="语义分析概述"></a>语义分析概述</h2><p>语义分析的主要任务是收集语义相关的信息。这么说比较抽象，例子是高级语言的语句大多可以分成声明语句和命令语句，对于声明语句，语义分析的任务是收集标识符的属性信息，包括</p>
-<ul>
-<li><strong>种属</strong>：简单变量、符合变量（数组、结构体等）、函数等</li>
-<li><strong>类型</strong>：整型、布尔型等</li>
-<li><strong>存储的位置和长度</strong></li>
-<li>如果是变量的话，变量的 <strong>值</strong></li>
-<li><strong>作用域</strong></li>
-<li>如果是函数的话，<strong>参数和返回值类型</strong></li>
-</ul>
-<p>这个过程中标识符会被存放到符号表中，符号表中维护了这些标识符的名称以及上述属性信息。</p>
-<p>对于命令语句，语义分析可能会进行一些语义检查，例如</p>
-<ul>
-<li>变量或过程未定义就使用、或被重复定义</li>
-<li>运算分量类型不匹配（数组与过程相加这样的错误）</li>
-<li>操作符和操作数之间类型不匹配，例如<ul>
-<li>数组下标不是整数</li>
-<li>使用数组访问操作符访问非数组、使用过程调用操作符调用非过程</li>
-<li>过程调用的参数类型或数目不匹配，或者返回值的类型错误</li>
-</ul>
-</li>
-</ul>
-<h2 id="中间代码生成及编译器后端概述"><a href="#中间代码生成及编译器后端概述" class="headerlink" title="中间代码生成及编译器后端概述"></a>中间代码生成及编译器后端概述</h2><h3 id="中间代码生成"><a href="#中间代码生成" class="headerlink" title="中间代码生成"></a>中间代码生成</h3><p>常用的中间表示有 <strong>三地址代码</strong> 和 <strong>语法结构树（syntax tree）</strong>。</p>
-<p><em>语法结构树和前面提到的 parse tree 不是同一个概念。parse tree 是分析树，在语法分析过程后得到，而 syntax tree 是结构树，是一种中间表示。</em></p>
-<h3 id="三地址码"><a href="#三地址码" class="headerlink" title="三地址码"></a>三地址码</h3><p>三地址码由类似汇编语言的指令序列构成，每个语句最多只包含三个操作数。</p>
-<p>常用的三地址运算符有赋值、复制、条件跳转、无条件跳转、参数传递（类似汇编的 <code>push</code>）、过程调用（类似汇编的 <code>call</code>）、过程返回（类似汇编的 <code>ret</code>）、数组引用、数组赋值、地址及指针的操作等。</p>
-<p>三地址码的表示有 <strong>四元式</strong>、<strong>三元式</strong> 和 <strong>间接三元式</strong>。</p>
-<p>在四元式中，第一个分量指定语句类型，后三个分量分别是三个操作数，例如 <code>x = y + z</code> 的四元式为 <code>(+, y, z, x)</code>。</p>
-<p>因为一句三地址码只能干一件事情，所以 <strong>三地址码序列唯一确定了程序的完成顺序</strong>。把一个三地址码的序列写出来的话，看上去的效果就跟汇编代码差不多。</p>
-<h3 id="编译器后端"><a href="#编译器后端" class="headerlink" title="编译器后端"></a>编译器后端</h3><p>编译器在 <strong>目标代码生成</strong> 阶段会将中间表示翻译到目标语言，这个过程中的一个重要任务就是为变量分配合适的寄存器。</p>
-<p>编译器可能会进行一些优化，优化可以在两个时间进行</p>
-<ul>
-<li><strong>机器无关代码优化</strong>，这个优化针对中间表示进行，在目标代码生成过程前完成</li>
-<li><strong>机器相关代码优化</strong>，这个优化针对目标机器语言进行，在目标代码生成过程后完成</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/10/Rust-学习笔记/" class="post-title-link" itemprop="url">Rust 学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-10 16:48:43" itemprop="dateCreated datePublished" datetime="2018-11-10T16:48:43+08:00">2018-11-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:29:09" itemprop="dateModified" datetime="2019-03-11T15:29:09+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Rust-学习笔记"><a href="#Rust-学习笔记" class="headerlink" title="Rust 学习笔记"></a>Rust 学习笔记</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rustc --version</span></span><br><span class="line">rustc 1.30.0 (da5f414c2 2018-10-24)</span><br></pre></td></tr></table></figure>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><p>Rust 使用 cargo 进行项目管理。</p>
-<ul>
-<li>使用 <code>cargo</code> 建立一个新项目：<code>cargo new project_name --bin</code>。</li>
-<li>使用 <code>cargo</code> 建立一个新模块：<code>cargo new module_name --lib</code>。</li>
-<li>编译并运行： <code>cargo run</code>。</li>
-<li>只编译：<code>cargo build</code>。</li>
-<li>只检查是否能够通过编译：<code>cargo check</code>。</li>
-<li>更新依赖：<code>cargo update</code>。</li>
-<li>运行测试：<code>cargo test</code>。</li>
-</ul>
-<h3 id="变量与可变性"><a href="#变量与可变性" class="headerlink" title="变量与可变性"></a>变量与可变性</h3><ul>
-<li>Rust 使用 <code>let</code> 声明变量，建议使用 <code>snake_case</code> 命名。</li>
-<li>Rust 使用 <code>const</code> 声明常量，建议使用 <code>SCREAMING_SNAKE_CASE</code> 命名。</li>
-<li>Rust 变量默认不可变，如果需要可变的话，需要加上 <code>mut</code>。</li>
-</ul>
-<p>Rust 具有 Shadowing 的特性，可以将声明一个与同作用域已经声明的变量名称相同的变量名。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/20/软件工程课程项目博客-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/20/软件工程课程项目博客-3/" class="post-title-link" itemprop="url">软件工程课程项目博客-集成与测试</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-20 20:10:15" itemprop="dateCreated datePublished" datetime="2018-10-20T20:10:15+08:00">2018-10-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:31:04" itemprop="dateModified" datetime="2019-03-11T15:31:04+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="软件工程课程项目博客-集成与测试"><a href="#软件工程课程项目博客-集成与测试" class="headerlink" title="软件工程课程项目博客-集成与测试"></a>软件工程课程项目博客-集成与测试</h1><p>这是对一个为期一周的开发活动的个人总结。这个开发活动的主要目的是让我们熟悉持续集成以及了解一些基本的测试的概念并进行实践。</p>
-<h2 id="关于测试"><a href="#关于测试" class="headerlink" title="关于测试"></a>关于测试</h2><ul>
-<li><strong>单元测试</strong>：单元测试是对程序中的最小单元的功能正确性的验证。使用 Python 的话最小单元就是函数，单元测试要检测的就是这些函数。就我的感觉而言，通过单元测试我们可以预先定义出这个函数的正确行为应该是什么，于是在以后对这个函数进行的改动都可以保证正确，这会在以后的改动过程中让我们更有信心。不过，因为这次的作业时间确实较短而且逻辑不复杂，这个效果可能不是很明显。</li>
-<li><strong>功能测试</strong>：按我的理解，单元测试更多的是站在代码的角度上说的，而功能测试更多是站在业务的角度上说的。单元测试是检查负责抢票的处理函数在一个人在已经抢过的情况下再次抢票能够正确处理，而功能测试则直接要求一个人只能抢一张票，至于背后的实现它是不关心的。通过功能测试我们可以保证自己的系统能够满足用户的需求，而不仅仅是“能够正确地工作”。</li>
-<li><strong>性能测试</strong>：性能测试就是对服务器处理能力的考验。抢票这个功能从名称上看来就是需要服务器在某些情况下能够处理大量数据的。通过使用性能测试我们能够知道服务器最大能够处理多大量的数据，这样在应对一些极端情况之前我们就能知道能不能扛得住从而提前做决定，减小损失。</li>
-</ul>
-<p>通过这些测试我们就拥有了一个评价代码质量的标准，能够让自己对代码的表现有更加精确的预期。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/20/软件工程课程项目博客-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/09/手写汇编器-2/" class="post-title-link" itemprop="url">汇编课程大作业博客——编码 x86 指令</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-09 10:50:13" itemprop="dateCreated datePublished" datetime="2018-10-09T10:50:13+08:00">2018-10-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:30:29" itemprop="dateModified" datetime="2019-03-11T15:30:29+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="汇编课程大作业博客——编码-x86-指令"><a href="#汇编课程大作业博客——编码-x86-指令" class="headerlink" title="汇编课程大作业博客——编码 x86 指令"></a>汇编课程大作业博客——编码 x86 指令</h1><p>在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。</p>
-<p><a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">Encoding Real x86 Instructions</a> 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。</p>
-<h2 id="x86-机器码的整体结构"><a href="#x86-机器码的整体结构" class="headerlink" title="x86 机器码的整体结构"></a>x86 机器码的整体结构</h2><p>一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。</p>
-<p>回到将所有可选部分写到一起那一步，这十六个字节的结构如下：</p>
-<ul>
-<li><strong>最高四个字节</strong>：Prefix Bytes，实际可能有零到四个字节，这些前缀会影响操作的结果。</li>
-<li><strong>次高四个字节</strong>：这四个字节编码了指令以及指令的工作方式（opcode + Mod-Reg-R/M + SIB，后面会写）。</li>
-<li><strong>次低四个字节</strong>：这四个字节编码了 displacement [<a href="https://stackoverflow.com/questions/13329611/x86-x64-add-displacement-addressing" target="_blank" rel="noopener">1</a>]，displacement 用于寻址。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
-<li><strong>最低四个字节</strong>：这四个字节编码了 immediate data。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
-</ul>
-<p>对于次高四个字节，还可以进一步细分：</p>
-<ul>
-<li>最高的两个字节，编码 opcode，可能会使用其中的一个或两个字节。</li>
-<li>接下来的一个字节称为 <em>Mod-Reg-R/M</em> 字节，这个字节指明了寻址模式和操作数的大小。只有指令需要寄存器或者内存的操作数的时候才会使用这个字节。</li>
-<li>接下来的一个字节称为 SIB（Scaled Indexed Byte）。如果指令使用了 scaled indexed memory addressing，就会用到这个字节。具体是什么后面会写。</li>
-</ul>
-<p>不是所有的字节都会被用到（实际上大部分字节都不会被用到）。我们会先了解次高四个字节。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2403,7 +2384,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2456,7 +2437,9 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -125,10 +125,13 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="SQL 语言之复杂查询与视图In 子查询子查询子查询存在是为了应对查询中和集合有关的查询，例如元素是否属于某集合、集合是否为空等。 子查询返回的是一个集合。 In 子查询判断一个集合是否在给定子查询中：$$Expression [not] in $$SubQuery。一般在 where 子句中出现。 在有子查询的情况下，查询可以分为外层查询和内层查询。如果内层查询不依赖外层查询（不使用外层查询的信">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-14T07:44:04.543Z">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-7-SQL-语言之复杂查询与视图/DeepinScreenshot_select-area_20190314145407.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-7-SQL-语言之复杂查询与视图/DeepinScreenshot_select-area_20190314154254.png">
+<meta property="og:updated_time" content="2019-03-14T08:01:30.477Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 7 SQL 语言之复杂查询与视图">
 <meta name="twitter:description" content="SQL 语言之复杂查询与视图In 子查询子查询子查询存在是为了应对查询中和集合有关的查询，例如元素是否属于某集合、集合是否为空等。 子查询返回的是一个集合。 In 子查询判断一个集合是否在给定子查询中：$$Expression [not] in $$SubQuery。一般在 where 子句中出现。 在有子查询的情况下，查询可以分为外层查询和内层查询。如果内层查询不依赖外层查询（不使用外层查询的信">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-7-SQL-语言之复杂查询与视图/DeepinScreenshot_select-area_20190314145407.png">
 
 
 
@@ -416,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-14 15:44:04" itemprop="dateModified" datetime="2019-03-14T15:44:04+08:00">2019-03-14</time>
+                <time title="修改时间：2019-03-14 16:01:30" itemprop="dateModified" datetime="2019-03-14T16:01:30+08:00">2019-03-14</time>
               
             
           </span>
@@ -459,8 +462,9 @@
 <li><code>$$Expression in $$SubQuery</code> 可以看做是 <code>$$Expression = some $$SubQuery</code>。</li>
 <li><code>$$Expression not in $$SubQuery</code> 可以看作是 <code>$$Expression &lt;&gt; all $$SubQuery</code>。</li>
 </ul>
+<a id="more"></a>
 <h2 id="Exists-子查询"><a href="#Exists-子查询" class="headerlink" title="Exists 子查询"></a>Exists 子查询</h2><p>这个查询主要判断集合是否为空。语法是 <code>[not] exists $$SubQuery</code>。它一般出现在 <code>where</code> 中。一般的使用方式是使用相关子查询，这样子查询就会包括外层的信息，于是 exists 查询就有用了。例如下面例子中的 <code>S#</code> 来自外层查询：</p>
-
+<img src="/2019/03/01/数据库系统（上）：模型与语言-笔记-7-SQL-语言之复杂查询与视图/DeepinScreenshot_select-area_20190314145407.png">
 <p>有时候将一个查询转换为等价的两个“不存在”的查询可能是有用的。</p>
 <h2 id="结果计算与聚集计算"><a href="#结果计算与聚集计算" class="headerlink" title="结果计算与聚集计算"></a>结果计算与聚集计算</h2><p>在 <code>select</code> 后面不一定跟一个属性名，也可以跟一个表达式或者聚集函数。</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> $$Expression <span class="keyword">from</span> ... <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
@@ -497,7 +501,7 @@
 <p>其中 <code>$$CheckOption</code> 表示用户对视图进行修改时应当满足的条件。</p>
 <h3 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h3><p>当视图定义好后，可以像一张表一样使用这个视图。对视图的查询在实现上被转换为了对表的查询。</p>
 <h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p>视图没有保存数据，因此更新视图比较复杂。不是所有的列都能更新，需按照以下规则：</p>
-
+<img src="/2019/03/01/数据库系统（上）：模型与语言-笔记-7-SQL-语言之复杂查询与视图/DeepinScreenshot_select-area_20190314154254.png">
 <h3 id="撤销视图"><a href="#撤销视图" class="headerlink" title="撤销视图"></a>撤销视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> $ViewName;</span><br></pre></td></tr></table></figure>
 
       
@@ -616,7 +620,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">92</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -669,7 +673,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">17</span>
+                      
+                    
+                    <span class="site-state-item-count">18</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
