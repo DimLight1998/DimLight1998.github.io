@@ -539,12 +539,24 @@
                 
               
 
-              <time title="创建时间：2019-03-01 13:10:45 / 修改时间：17:01:03" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:45+08:00">2019-03-01</time>
+              <time title="创建时间：2019-03-01 13:10:45" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:45+08:00">2019-03-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-14 15:44:04" itemprop="dateModified" datetime="2019-03-14T15:44:04+08:00">2019-03-14</time>
               
             
           </span>
@@ -580,7 +592,56 @@
       
         
           
-            
+            <h1 id="SQL-语言之复杂查询与视图"><a href="#SQL-语言之复杂查询与视图" class="headerlink" title="SQL 语言之复杂查询与视图"></a>SQL 语言之复杂查询与视图</h1><h2 id="In-子查询"><a href="#In-子查询" class="headerlink" title="In 子查询"></a>In 子查询</h2><h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>子查询存在是为了应对查询中和集合有关的查询，例如元素是否属于某集合、集合是否为空等。</p>
+<p>子查询返回的是一个集合。</p>
+<h3 id="In-子查询-1"><a href="#In-子查询-1" class="headerlink" title="In 子查询"></a>In 子查询</h3><p>判断一个集合是否在给定子查询中：<code>$$Expression [not] in $$SubQuery</code>。一般在 <code>where</code> 子句中出现。</p>
+<p>在有子查询的情况下，查询可以分为外层查询和内层查询。如果内层查询不依赖外层查询（不使用外层查询的信息），称为 <strong>非相关子查询</strong>，否则是相关的。<strong>相关子查询中，信息只能从外层向内层传递，不能反过来。</strong></p>
+<h2 id="Theta-Some-All-子查询"><a href="#Theta-Some-All-子查询" class="headerlink" title="Theta Some/All 子查询"></a>Theta Some/All 子查询</h2><p>这个查询主要判断集合之间的包含关系。假设 θ 表示一个二元比较关系，例如等于、大于、小于等于等。那么有两种 theta 查询：<code>$$Expression θ some $$SubQuery</code> 和 <code>$$Expression θ all $$SubQuery</code>。前者在子查询中某个值满足 θ 关系时就能成立，后者需要在子查询的所有值都满足关系的时候才成立。一般在 <code>where</code> 子句中出现。</p>
+<ul>
+<li><code>$$Expression in $$SubQuery</code> 可以看做是 <code>$$Expression = some $$SubQuery</code>。</li>
+<li><code>$$Expression not in $$SubQuery</code> 可以看作是 <code>$$Expression &lt;&gt; all $$SubQuery</code>。</li>
+</ul>
+<h2 id="Exists-子查询"><a href="#Exists-子查询" class="headerlink" title="Exists 子查询"></a>Exists 子查询</h2><p>这个查询主要判断集合是否为空。语法是 <code>[not] exists $$SubQuery</code>。它一般出现在 <code>where</code> 中。一般的使用方式是使用相关子查询，这样子查询就会包括外层的信息，于是 exists 查询就有用了。例如下面例子中的 <code>S#</code> 来自外层查询：</p>
+
+<p>有时候将一个查询转换为等价的两个“不存在”的查询可能是有用的。</p>
+<h2 id="结果计算与聚集计算"><a href="#结果计算与聚集计算" class="headerlink" title="结果计算与聚集计算"></a>结果计算与聚集计算</h2><p>在 <code>select</code> 后面不一定跟一个属性名，也可以跟一个表达式或者聚集函数。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> $$Expression <span class="keyword">from</span> ... <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> $$AggregateFunction <span class="keyword">from</span> ... <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
+<p>SQL 标准的聚集函数包括 <code>count</code>、<code>sum</code>、<code>avg</code>、<code>max</code>、<code>min</code>。</p>
+<h2 id="分组聚集计算与分组过滤"><a href="#分组聚集计算与分组过滤" class="headerlink" title="分组聚集计算与分组过滤"></a>分组聚集计算与分组过滤</h2><p>分组查询用于将所有记录划分为多个集合，对每个集合单独进行计算或者聚集。分组过滤会去掉其中不希望出现的分组。</p>
+<p>分组聚集：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span> ... <span class="keyword">where</span> ... <span class="keyword">group</span> <span class="keyword">by</span> $$GroupingCondition;</span><br></pre></td></tr></table></figure>
+<p>如果需要过滤掉分组是不能使用 <code>where</code> 子句的，它只能对单条记录过滤，应该使用：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span> ... <span class="keyword">where</span> ... <span class="keyword">group</span> <span class="keyword">by</span> $$GroupingCondition <span class="keyword">having</span> $$FilterCondition;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>$$FilterCondition</code> 中可以使用聚集函数。</p>
+<h2 id="用-SQL-表达并较差操作"><a href="#用-SQL-表达并较差操作" class="headerlink" title="用 SQL 表达并较差操作"></a>用 SQL 表达并较差操作</h2><p>子查询之间可以进行集合运算：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$$SubQuery1 &lt;union | intersect | except&gt; [all] $$SubQuery2</span><br></pre></td></tr></table></figure>
+<p>分别进行并、交、差运算。如果不加 <code>all</code> 的话，会去掉重复记录。如果加上 <code>all</code> 的话重复记录会被保留。</p>
+<h2 id="用-SQL-处理空值"><a href="#用-SQL-处理空值" class="headerlink" title="用 SQL 处理空值"></a>用 SQL 处理空值</h2><p>在有空值的情况下会影响到聚集函数的语义。</p>
+<p> SQL 中可以使用 <code>is [not] null</code> 来判定一个值是否为空。</p>
+<p>空值的处理：</p>
+<ul>
+<li>空值不满足任何查找条件，除了 <code>is null</code>。</li>
+<li>参与算术表达式时表达式结果为空值。</li>
+<li>参与比较运算时总是返回 false。</li>
+<li>除了 <code>count(*)</code> 之外的所有聚集函数都忽略空值所在记录。</li>
+</ul>
+<h2 id="用-SQL-表达连接与外连接操作"><a href="#用-SQL-表达连接与外连接操作" class="headerlink" title="用 SQL 表达连接与外连接操作"></a>用 SQL 表达连接与外连接操作</h2><p>连接类型有四种：内连接、左外连接、右外连接和全外连接，分别是 <code>inner join</code>、<code>left outer join</code>、<code>right outer join</code>、<code>full outer join</code>。</p>
+<p>连接方式有三种：自动的自然连接、带条件的连接和指定属性的自然连接。自动自然连接就是数学含义上的自然连接，所有属性名相同并且值相同就会发生连接；待条件的连接需要给出两个关系中不同记录需要满足什么条件才会连接；指定属性的自然连接也是自然连接，但是属性不是所有属性，而是用户指定的。</p>
+<p>语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span> $Table1 <span class="keyword">natural</span> JOIN_TYPE $Table2 <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span> $Table1 JOIN_TYPE $Table2 <span class="keyword">on</span> $$Condition <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ... <span class="keyword">from</span> $Table1 JOIN_TYPE $Table2 <span class="keyword">using</span> ($AttributeName1, ...) <span class="keyword">where</span> ...;</span><br></pre></td></tr></table></figure>
+<h2 id="SQL-SELECT-小结"><a href="#SQL-SELECT-小结" class="headerlink" title="SQL-SELECT 小结"></a>SQL-SELECT 小结</h2><p>基本 SQL 中子查询只能出现在 <code>where</code> 子句中。而面向对象的数据库查询语言 OQL 则可以允许子查询出现在任何可以使用聚集函数的地方。OQL 中，<code>select</code>、<code>from</code> 后面也可以加子查询。</p>
+<h2 id="SQL-视图"><a href="#SQL-视图" class="headerlink" title="SQL 视图"></a>SQL 视图</h2><p>上面写的所有东西在三层模型中都属于中间的逻辑层次，而不是用户层次。</p>
+<p>SQL 使用 <strong>视图</strong> 包括了用户层次以及 C-E 映射。视图没有直接被存储。</p>
+<h3 id="定义视图"><a href="#定义视图" class="headerlink" title="定义视图"></a>定义视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> $ViewName ($ColName1, ...) <span class="keyword">as</span> $$SubQuery [$$CheckOption];</span><br></pre></td></tr></table></figure>
+<p>其中 <code>$$CheckOption</code> 表示用户对视图进行修改时应当满足的条件。</p>
+<h3 id="使用视图"><a href="#使用视图" class="headerlink" title="使用视图"></a>使用视图</h3><p>当视图定义好后，可以像一张表一样使用这个视图。对视图的查询在实现上被转换为了对表的查询。</p>
+<h3 id="更新视图"><a href="#更新视图" class="headerlink" title="更新视图"></a>更新视图</h3><p>视图没有保存数据，因此更新视图比较复杂。不是所有的列都能更新，需按照以下规则：</p>
+
+<h3 id="撤销视图"><a href="#撤销视图" class="headerlink" title="撤销视图"></a>撤销视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> $ViewName;</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -847,6 +908,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-01 13:10:43" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:31:40" itemprop="dateModified" datetime="2019-03-11T15:31:40+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="关系模型之关系代数"><a href="#关系模型之关系代数" class="headerlink" title="关系模型之关系代数"></a>关系模型之关系代数</h1><p>关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。</p>
+<p>下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。</p>
+<h2 id="什么是关系代数"><a href="#什么是关系代数" class="headerlink" title="什么是关系代数"></a>什么是关系代数</h2><p>关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。</p>
+<p>关系代数可以分成 <strong>集合操作</strong>（并交差积） 和 <strong>纯关系操作</strong>（投影、选择、连接、除）。</p>
+<p>DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操作的序列。这样，只要实现了基本的一些关系代数操作就可以实现一个 DBMS 了。</p>
+<h2 id="并相容性的概念"><a href="#并相容性的概念" class="headerlink" title="并相容性的概念"></a>并相容性的概念</h2><p>两个关系是并相容的，如果它们的属性数目相同，相同位置上的属性的类型也相同。</p>
+<p>简单来说，两个关系并相容，表示可以把一个关系纵向拼接到另一个关系下面形成更大的关系。</p>
+<p><strong>并相容性是其它很多操作的基础。</strong></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -962,174 +1191,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-5-关系模型之关系演算/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/" class="post-title-link" itemprop="url">数据库系统（上）：模型与语言 笔记 4 关系模型之关系代数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-01 13:10:43" itemprop="dateCreated datePublished" datetime="2019-03-01T13:10:43+08:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:31:40" itemprop="dateModified" datetime="2019-03-11T15:31:40+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="关系模型之关系代数"><a href="#关系模型之关系代数" class="headerlink" title="关系模型之关系代数"></a>关系模型之关系代数</h1><p>关系代数都是对集合进行操作的：输入和输出都是集合，从已有集合得到想要的集合。</p>
-<p>下面的操作按照难度递增，分别是基本操作、扩展操作和复杂扩展操作。</p>
-<h2 id="什么是关系代数"><a href="#什么是关系代数" class="headerlink" title="什么是关系代数"></a>什么是关系代数</h2><p>关系代数通常以一个或多个关系作为输入，结果是新的关系。关系代数是一种抽象的语言。</p>
-<p>关系代数可以分成 <strong>集合操作</strong>（并交差积） 和 <strong>纯关系操作</strong>（投影、选择、连接、除）。</p>
-<p>DBMS 可以先解析 SQL 语言，将其翻译为多个关系代数操作的序列。这样，只要实现了基本的一些关系代数操作就可以实现一个 DBMS 了。</p>
-<h2 id="并相容性的概念"><a href="#并相容性的概念" class="headerlink" title="并相容性的概念"></a>并相容性的概念</h2><p>两个关系是并相容的，如果它们的属性数目相同，相同位置上的属性的类型也相同。</p>
-<p>简单来说，两个关系并相容，表示可以把一个关系纵向拼接到另一个关系下面形成更大的关系。</p>
-<p><strong>并相容性是其它很多操作的基础。</strong></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/01/数据库系统（上）：模型与语言-笔记-4-关系模型之关系代数/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
