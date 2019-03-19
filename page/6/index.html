@@ -352,6 +352,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-12 19:14:37" itemprop="dateCreated datePublished" datetime="2019-02-12T19:14:37+08:00">2019-02-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:23:07" itemprop="dateModified" datetime="2019-03-11T15:23:07+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks"><a href="#Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks" class="headerlink" title="Hyperparameter tuning, Batch Normalization and Programming Frameworks"></a>Hyperparameter tuning, Batch Normalization and Programming Frameworks</h1><h2 id="Hyperparameter-tuning"><a href="#Hyperparameter-tuning" class="headerlink" title="Hyperparameter tuning"></a>Hyperparameter tuning</h2><h3 id="Tuning-process"><a href="#Tuning-process" class="headerlink" title="Tuning process"></a>Tuning process</h3><p>经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。</p>
+<p>因为各个超参数的重要程度不一样，有多个超参数需要调节的时候 <strong>不要进行 grid search</strong>。所谓 grid search 就是每个超参数选取若干个值，然后不同超参数就用这些值的组合，类似于控制变量法。推荐的做法是直接在整个所有超参数可选的值构成的空间中随机选取。这么做的理由是在 grid search 的情况下，如果某个超参数实际上对结果影响不大，那么针对它的调节几乎都是无效的，这就参数调节工作中只有一部分是有效的。而在随机选取的情况下，不论各个超参数对结果影响如何，影响较显著的那些超参数都被取了很多个不同的值，这些值都是有用的。</p>
+<p>当找到了效果最好的那些点之后，如果这些点在空间上分布较密集，则可以对那一个较小的超参数空间进行更加密集的搜索。更密集的搜索也应采用随机选取的策略，依此类推。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1835,176 +1998,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 2 Neural Networks Basics</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-01 21:49:49" itemprop="dateCreated datePublished" datetime="2019-02-01T21:49:49+08:00">2019-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:23:36" itemprop="dateModified" datetime="2019-03-11T15:23:36+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Neural-Networks-Basics"><a href="#Neural-Networks-Basics" class="headerlink" title="Neural Networks Basics"></a>Neural Networks Basics</h1><h2 id="Logistic-Regression-as-a-Neural-Network"><a href="#Logistic-Regression-as-a-Neural-Network" class="headerlink" title="Logistic Regression as a Neural Network"></a>Logistic Regression as a Neural Network</h2><h3 id="Binary-Classification"><a href="#Binary-Classification" class="headerlink" title="Binary Classification"></a>Binary Classification</h3><p>课程中使用的符号：</p>
-<ul>
-<li>$m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。</li>
-<li><p>$n$ 表示每个样本的特征向量的维数。</p>
-</li>
-<li><p>$X$ 表示整个训练集，<strong>每一列表示一个样本</strong>，相当于样本按照列进行堆叠，因此 $X$ 的规模是 $n\times m$ 的，据说这样表示更简单。</p>
-</li>
-<li>$Y$ 表示所有的标签，每一列表示一个样本，因此 $Y$ 的规模是 $1 \times m$ 的。</li>
-</ul>
-<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><p>对于一个样本特征，逻辑回归用于得到这个样本对应的输出，不过这个输出被限制在了 0 到 1 的范围内，因此可以用来做一些类似二分类的事情。比如现在要对某个特征向量 $\vec x$ 进行二分类，希望得到一个输出 $\hat y$ 表示在当前特征为 $\vec x$ 的情况下真实输出为 1 的概率（二分类时这个输出是离散的，只有 0 和 1 两种情况，但是概率是连续的），可以选择 $\hat y = \vec w^T\vec x + b$ 这个模型（这时是线性回归），但是这样得到的值不一定在 0 到 1 之间，因此可以套上一个 sigmoid 函数 $\displaystyle{\sigma(x) = \frac{1}{1 + e^{-x}}}$，选择模型 $\hat y = \sigma(\vec w^T\vec x + b)$，此时为逻辑回归。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2051,7 +2044,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

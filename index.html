@@ -352,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/18/形式化验证课程笔记-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -372,7 +372,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 3 Object detection</a>
+                <a href="/2019/03/18/形式化验证课程笔记-4/" class="post-title-link" itemprop="url">形式化验证课程笔记 4</a>
               
             
           </h1>
@@ -397,7 +397,7 @@
                 
               
 
-              <time title="创建时间：2019-03-14 15:50:24 / 修改时间：15:58:38" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-18 13:30:41 / 修改时间：14:29:02" itemprop="dateCreated datePublished" datetime="2019-03-18T13:30:41+08:00">2019-03-18</time>
             
 
             
@@ -437,9 +437,31 @@
 
       
         
+          <h1 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>一阶逻辑是半可判定的，希望限制其表达能力让它是可判定的。实际上，一阶逻辑的表达能力已经远超于人们需要的强度，因此对其表达能力的削弱是可以接受的。削弱后的一阶逻辑称为 first-order theory。</p>
+<h2 id="Defining-a-First-Order-Theory"><a href="#Defining-a-First-Order-Theory" class="headerlink" title="Defining a First-Order Theory"></a>Defining a First-Order Theory</h2><p>一个 first-order theory 由两部分构成：</p>
+<ul>
+<li>非逻辑符号的集合 $\Sigma$</li>
+<li>$\Sigma$ 上的 closed 的公理集合 $\mathcal {A}$（所谓 closed 可以认为是每个变量都有定义）</li>
+</ul>
+<p>在一阶逻辑中存在函数，而函数可以写成各种形式，不一定就是 $f(\dots)$，例如 $a = b$ 可以看做一种函数。函数属于一阶逻辑的非逻辑部分，可以被限制。</p>
+<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
+<li>T-interpretation: A tuple of domain and interpretation $(D, I)$ satisfying $\forall A\in \mathcal A, (D, I)\vDash A$.</li>
+<li>T-satisfaction: ==todo==</li>
+<li>A theory is <strong>complete</strong></li>
+<li>A theory is <strong>consistent</strong></li>
+<li>A theory is <strong>decidable</strong></li>
+<li><strong>Fragment</strong> of the theory</li>
+<li><strong>Fragment decidability</strong></li>
+</ul>
+          <!--noindex-->
           
-            <h1 id="Object-detection"><a href="#Object-detection" class="headerlink" title="Object detection"></a>Object detection</h1><h2 id="Detection-algorithms"><a href="#Detection-algorithms" class="headerlink" title="Detection algorithms"></a>Detection algorithms</h2><h3 id="Object-Localization"><a href="#Object-Localization" class="headerlink" title="Object Localization"></a>Object Localization</h3><h3 id="Landmark-Detection"><a href="#Landmark-Detection" class="headerlink" title="Landmark Detection"></a>Landmark Detection</h3><h3 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h3><h3 id="Convolutional-Implementation-of-Sliding-Windows"><a href="#Convolutional-Implementation-of-Sliding-Windows" class="headerlink" title="Convolutional Implementation of Sliding Windows"></a>Convolutional Implementation of Sliding Windows</h3><h3 id="Bounding-Box-Predictions"><a href="#Bounding-Box-Predictions" class="headerlink" title="Bounding Box Predictions"></a>Bounding Box Predictions</h3><h3 id="Intersection-Over-Union"><a href="#Intersection-Over-Union" class="headerlink" title="Intersection Over Union"></a>Intersection Over Union</h3><h3 id="Non-max-Suppression"><a href="#Non-max-Suppression" class="headerlink" title="Non-max Suppression"></a>Non-max Suppression</h3><h3 id="Anchor-Boxes"><a href="#Anchor-Boxes" class="headerlink" title="Anchor Boxes"></a>Anchor Boxes</h3><h3 id="YOLO-Algorithm"><a href="#YOLO-Algorithm" class="headerlink" title="YOLO Algorithm"></a>YOLO Algorithm</h3><h3 id="Optional-Region-Proposals"><a href="#Optional-Region-Proposals" class="headerlink" title="(Optional) Region Proposals"></a>(Optional) Region Proposals</h3>
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/18/形式化验证课程笔记-4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -636,6 +658,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 3 Object detection</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 15:50:24 / 修改时间：15:58:38" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Object-detection"><a href="#Object-detection" class="headerlink" title="Object detection"></a>Object detection</h1><h2 id="Detection-algorithms"><a href="#Detection-algorithms" class="headerlink" title="Detection algorithms"></a>Detection algorithms</h2><h3 id="Object-Localization"><a href="#Object-Localization" class="headerlink" title="Object Localization"></a>Object Localization</h3><h3 id="Landmark-Detection"><a href="#Landmark-Detection" class="headerlink" title="Landmark Detection"></a>Landmark Detection</h3><h3 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h3><h3 id="Convolutional-Implementation-of-Sliding-Windows"><a href="#Convolutional-Implementation-of-Sliding-Windows" class="headerlink" title="Convolutional Implementation of Sliding Windows"></a>Convolutional Implementation of Sliding Windows</h3><h3 id="Bounding-Box-Predictions"><a href="#Bounding-Box-Predictions" class="headerlink" title="Bounding Box Predictions"></a>Bounding Box Predictions</h3><h3 id="Intersection-Over-Union"><a href="#Intersection-Over-Union" class="headerlink" title="Intersection Over Union"></a>Intersection Over Union</h3><h3 id="Non-max-Suppression"><a href="#Non-max-Suppression" class="headerlink" title="Non-max Suppression"></a>Non-max Suppression</h3><h3 id="Anchor-Boxes"><a href="#Anchor-Boxes" class="headerlink" title="Anchor Boxes"></a>Anchor Boxes</h3><h3 id="YOLO-Algorithm"><a href="#YOLO-Algorithm" class="headerlink" title="YOLO Algorithm"></a>YOLO Algorithm</h3><h3 id="Optional-Region-Proposals"><a href="#Optional-Region-Proposals" class="headerlink" title="(Optional) Region Proposals"></a>(Optional) Region Proposals</h3>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -681,12 +845,24 @@
                 
               
 
-              <time title="创建时间：2019-03-14 15:50:23 / 修改时间：15:57:13" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:23+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-14 15:50:23" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:23+08:00">2019-03-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-19 21:34:58" itemprop="dateModified" datetime="2019-03-19T21:34:58+08:00">2019-03-19</time>
               
             
           </span>
@@ -721,9 +897,20 @@
 
       
         
+          <h1 id="Deep-convolutional-models-case-studies"><a href="#Deep-convolutional-models-case-studies" class="headerlink" title="Deep convolutional models: case studies"></a>Deep convolutional models: case studies</h1><h2 id="Case-studies"><a href="#Case-studies" class="headerlink" title="Case studies"></a>Case studies</h2><h3 id="Why-look-at-case-studies"><a href="#Why-look-at-case-studies" class="headerlink" title="Why look at case studies?"></a>Why look at case studies?</h3><p>CNN 中很多东西都是模块化的，学习一些 case 有助于自己写出能用的网络。</p>
+<p>本讲会学习到 LeNet-5、AlexNet、VGG、ResNet 和 Inception。</p>
+<h3 id="Classic-Networks"><a href="#Classic-Networks" class="headerlink" title="Classic Networks"></a>Classic Networks</h3><p>LeNet-5 使用小卷积核（$\displaystyle{3\times 3}$），卷积层后面跟着平均池化层（当时流行平均池化）。卷积层后面跟着池化层是一个常见的模式，重复几次后变被压平，然后进入几层全连接的网络。</p>
+<p>AlexNet 比 LeNet-5 要大，但是整体结构基本相似。不同之处在于 AlexNet 中使用了较大的卷积核（$\displaystyle{11\times 11}$），但是随后几层中卷积核大小又慢慢变小了。</p>
+<p>VGG 又称 VGG-16，通过小卷积核（全部是 $\displaystyle{3\times3}$，使用 same 填充策略）和窗口大小与步长都为 2 的最大池化提取特征。每层会将高宽缩小一半，通道增加一倍；最后通过几个全连接层。VGG 是一个相对较大的网络，但是结构简单。一个变种是 VGG-19，它是一个更大的网络。</p>
+          <!--noindex-->
           
-            <h1 id="Deep-convolutional-models-case-studies"><a href="#Deep-convolutional-models-case-studies" class="headerlink" title="Deep convolutional models: case studies"></a>Deep convolutional models: case studies</h1><h2 id="Case-studies"><a href="#Case-studies" class="headerlink" title="Case studies"></a>Case studies</h2><h3 id="Why-look-at-case-studies"><a href="#Why-look-at-case-studies" class="headerlink" title="Why look at case studies?"></a>Why look at case studies?</h3><h3 id="Classic-Networks"><a href="#Classic-Networks" class="headerlink" title="Classic Networks"></a>Classic Networks</h3><h3 id="ResNets"><a href="#ResNets" class="headerlink" title="ResNets"></a>ResNets</h3><h3 id="Why-ResNets-Work"><a href="#Why-ResNets-Work" class="headerlink" title="Why ResNets Work"></a>Why ResNets Work</h3><h3 id="Networks-in-Networks-and-1x1-Convolutions"><a href="#Networks-in-Networks-and-1x1-Convolutions" class="headerlink" title="Networks in Networks and 1x1 Convolutions"></a>Networks in Networks and 1x1 Convolutions</h3><h3 id="Inception-Network-Motivation"><a href="#Inception-Network-Motivation" class="headerlink" title="Inception Network Motivation"></a>Inception Network Motivation</h3><h3 id="Inception-Network"><a href="#Inception-Network" class="headerlink" title="Inception Network"></a>Inception Network</h3><h2 id="Practical-advices-for-using-ConvNets"><a href="#Practical-advices-for-using-ConvNets" class="headerlink" title="Practical advices for using ConvNets"></a>Practical advices for using ConvNets</h2><h3 id="Using-Open-Source-Implementation"><a href="#Using-Open-Source-Implementation" class="headerlink" title="Using Open-Source Implementation"></a>Using Open-Source Implementation</h3><h3 id="Transfer-Learning"><a href="#Transfer-Learning" class="headerlink" title="Transfer Learning"></a>Transfer Learning</h3><h3 id="Data-Augmentation"><a href="#Data-Augmentation" class="headerlink" title="Data Augmentation"></a>Data Augmentation</h3><h3 id="State-of-Computer-Vision"><a href="#State-of-Computer-Vision" class="headerlink" title="State of Computer Vision"></a>State of Computer Vision</h3>
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -823,7 +1010,7 @@
                 
               
 
-              <time title="创建时间：2019-03-14 15:50:22 / 修改时间：15:55:08" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:22+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-14 15:50:22 / 修改时间：21:22:00" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:22+08:00">2019-03-14</time>
             
 
             
@@ -863,9 +1050,35 @@
 
       
         
+          <h1 id="Foundations-of-Convolutional-Neural"><a href="#Foundations-of-Convolutional-Neural" class="headerlink" title="Foundations of Convolutional Neural"></a>Foundations of Convolutional Neural</h1><p>来源 <a href="https://www.coursera.org/learn/convolutional-neural-networks" target="_blank" rel="noopener">Coursera</a>。</p>
+<h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><h3 id="Computer-Vision"><a href="#Computer-Vision" class="headerlink" title="Computer Vision"></a>Computer Vision</h3><p>一些应用：</p>
+<ul>
+<li>Image classfication</li>
+<li>Object detection</li>
+<li>Neural style transfer</li>
+</ul>
+<p>Computer vision 的一大挑战在与每个输入样本都非常大。例如一张图片就可能有数百万的输入特征。</p>
+<h3 id="Edge-Detection-Example"><a href="#Edge-Detection-Example" class="headerlink" title="Edge Detection Example"></a>Edge Detection Example</h3><p>这节讲的是卷积操作如何工作。对于给定的代表图像的矩阵 $\displaystyle{\mathbf{A}}$，以及一个卷积核（filter 或者 kernel）$\displaystyle{\mathbf B}$，二者的卷积是一个新的矩阵 $\displaystyle{\mathbf C}$。若 $\displaystyle{\mathbf A\in\mathbb{R}^{m_A\times n_A}, \mathbf{B}\in \mathbb{R}^{m_B\times n_B}}$，一般有 $\displaystyle{m_B &lt; m_A, n_B &lt; n_A}$。则 $\displaystyle{\mathbf{C}\in\mathbb{R}^{(m_A - m_B + 1)\times(n_A - n_B + 1)}}$ 且</p>
+<script type="math/tex; mode=display">
+\mathbf{C}[i, j] = \sum\left((\mathbf{A}[i:i + m_B][j:j + n_B])\odot\mathbf{B}\right)</script><p>可以想成 $\mathbf{B}$ 在 $\displaystyle{\mathbf A}$ 上滑动，每次滑动一步，并且不断做着 Hadamard 乘积来得到矩阵 $\displaystyle{\mathbf C}$。</p>
+<p>矩阵卷积一般记作 $\displaystyle{\mathbf C = \mathbf A\ast\mathbf B}$。</p>
+<hr>
+<p>卷积在图像处理中有实际应用，例如</p>
+<script type="math/tex; mode=display">
+\begin{bmatrix}
+1 & 0 & -1 \\
+1 & 0 & -1 \\
+1 & 0 & -1 \\
+\end{bmatrix}</script><p>这个卷积核可以用来识别图像中的竖直方向的明暗边界。</p>
+          <!--noindex-->
           
-            <h1 id="Foundations-of-Convolutional-Neural"><a href="#Foundations-of-Convolutional-Neural" class="headerlink" title="Foundations of Convolutional Neural"></a>Foundations of Convolutional Neural</h1><h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><h3 id="Computer-Vision"><a href="#Computer-Vision" class="headerlink" title="Computer Vision"></a>Computer Vision</h3><h3 id="Edge-Detection-Example"><a href="#Edge-Detection-Example" class="headerlink" title="Edge Detection Example"></a>Edge Detection Example</h3><h3 id="More-Edge-Detection"><a href="#More-Edge-Detection" class="headerlink" title="More Edge Detection"></a>More Edge Detection</h3><h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><h3 id="Strided-Convolutions"><a href="#Strided-Convolutions" class="headerlink" title="Strided Convolutions"></a>Strided Convolutions</h3><h3 id="Convolutions-Over-Volume"><a href="#Convolutions-Over-Volume" class="headerlink" title="Convolutions Over Volume"></a>Convolutions Over Volume</h3><h3 id="One-Layer-of-a-Convolutional-Network"><a href="#One-Layer-of-a-Convolutional-Network" class="headerlink" title="One Layer of a Convolutional Network"></a>One Layer of a Convolutional Network</h3><h3 id="Simple-Convolutional-Network-Example"><a href="#Simple-Convolutional-Network-Example" class="headerlink" title="Simple Convolutional Network Example"></a>Simple Convolutional Network Example</h3><h3 id="Pooling-Layers"><a href="#Pooling-Layers" class="headerlink" title="Pooling Layers"></a>Pooling Layers</h3><h3 id="CNN-Example"><a href="#CNN-Example" class="headerlink" title="CNN Example"></a>CNN Example</h3><h3 id="Why-Convolutions"><a href="#Why-Convolutions" class="headerlink" title="Why Convolutions?"></a>Why Convolutions?</h3>
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-1-Foundations-of-Convolutional-Neural-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1740,148 +1953,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 7 数据库事务处理技术之故障恢复</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-01 13:16:41 / 修改时间：17:01:28" itemprop="dateCreated datePublished" datetime="2019-03-01T13:16:41+08:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1928,7 +1999,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">96</span>
+                    <span class="site-state-item-count">97</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
