@@ -117,18 +117,27 @@
 
 
 
-  <meta name="description" content="第四周Motivation一阶逻辑是半可判定的，希望限制其表达能力让它是可判定的。实际上，一阶逻辑的表达能力已经远超于人们需要的强度，因此对其表达能力的削弱是可以接受的。削弱后的一阶逻辑称为 first-order theory。 Defining a First-Order Theory一个 first-order theory 由两部分构成：  非逻辑符号的集合 $\Sigma$ $\Sigm">
+  <meta name="description" content="第四周Review FOLLogical Symbols and Non-logical Symbols Logical symbols: propositional connectives, variables, quantifiers.  Non-logical symbols: constant symbols, function symbols, predicate symbols.">
 <meta name="keywords" content="形式化验证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="形式化验证课程笔记 4">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/03/18/形式化验证课程笔记-4/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
-<meta property="og:description" content="第四周Motivation一阶逻辑是半可判定的，希望限制其表达能力让它是可判定的。实际上，一阶逻辑的表达能力已经远超于人们需要的强度，因此对其表达能力的削弱是可以接受的。削弱后的一阶逻辑称为 first-order theory。 Defining a First-Order Theory一个 first-order theory 由两部分构成：  非逻辑符号的集合 $\Sigma$ $\Sigm">
+<meta property="og:description" content="第四周Review FOLLogical Symbols and Non-logical Symbols Logical symbols: propositional connectives, variables, quantifiers.  Non-logical symbols: constant symbols, function symbols, predicate symbols.">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-18T06:29:02.195Z">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321204753.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321205853.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321205918.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321210026.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211100.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211108.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211435.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211609.png">
+<meta property="og:updated_time" content="2019-03-21T13:22:28.478Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式化验证课程笔记 4">
-<meta name="twitter:description" content="第四周Motivation一阶逻辑是半可判定的，希望限制其表达能力让它是可判定的。实际上，一阶逻辑的表达能力已经远超于人们需要的强度，因此对其表达能力的削弱是可以接受的。削弱后的一阶逻辑称为 first-order theory。 Defining a First-Order Theory一个 first-order theory 由两部分构成：  非逻辑符号的集合 $\Sigma$ $\Sigm">
+<meta name="twitter:description" content="第四周Review FOLLogical Symbols and Non-logical Symbols Logical symbols: propositional connectives, variables, quantifiers.  Non-logical symbols: constant symbols, function symbols, predicate symbols.">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321204753.png">
 
 
 
@@ -399,12 +408,24 @@
                 
               
 
-              <time title="创建时间：2019-03-18 13:30:41 / 修改时间：14:29:02" itemprop="dateCreated datePublished" datetime="2019-03-18T13:30:41+08:00">2019-03-18</time>
+              <time title="创建时间：2019-03-18 13:30:41" itemprop="dateCreated datePublished" datetime="2019-03-18T13:30:41+08:00">2019-03-18</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-21 21:22:28" itemprop="dateModified" datetime="2019-03-21T21:22:28+08:00">2019-03-21</time>
               
             
           </span>
@@ -438,34 +459,66 @@
       
 
       
-        <h1 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>一阶逻辑是半可判定的，希望限制其表达能力让它是可判定的。实际上，一阶逻辑的表达能力已经远超于人们需要的强度，因此对其表达能力的削弱是可以接受的。削弱后的一阶逻辑称为 first-order theory。</p>
-<h2 id="Defining-a-First-Order-Theory"><a href="#Defining-a-First-Order-Theory" class="headerlink" title="Defining a First-Order Theory"></a>Defining a First-Order Theory</h2><p>一个 first-order theory 由两部分构成：</p>
-<ul>
-<li>非逻辑符号的集合 $\Sigma$</li>
-<li>$\Sigma$ 上的 closed 的公理集合 $\mathcal {A}$（所谓 closed 可以认为是每个变量都有定义）</li>
-</ul>
-<p>在一阶逻辑中存在函数，而函数可以写成各种形式，不一定就是 $f(\dots)$，例如 $a = b$ 可以看做一种函数。函数属于一阶逻辑的非逻辑部分，可以被限制。</p>
-<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
-<li>T-interpretation: A tuple of domain and interpretation $(D, I)$ satisfying $\forall A\in \mathcal A, (D, I)\vDash A$.</li>
-<li>T-satisfaction: ==todo==</li>
-<li>A theory is <strong>complete</strong></li>
-<li>A theory is <strong>consistent</strong></li>
-<li>A theory is <strong>decidable</strong></li>
-<li><strong>Fragment</strong> of the theory</li>
-<li><strong>Fragment decidability</strong></li>
-</ul>
-<a id="more"></a>
-<h2 id="Theory-of-Equality"><a href="#Theory-of-Equality" class="headerlink" title="Theory of Equality"></a>Theory of Equality</h2><ul>
-<li>Signature: $\Sigma_E = \{=, a, b, \dots, p, q, r, \dots\}$</li>
-<li>Axioms: <ul>
-<li>Reflexivity</li>
-<li>Symmetry</li>
-<li>Transitivity</li>
-<li>Function congruence</li>
-<li>Predicate congruence</li>
-</ul>
+        <h1 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h1><h2 id="Review-FOL"><a href="#Review-FOL" class="headerlink" title="Review FOL"></a>Review FOL</h2><h3 id="Logical-Symbols-and-Non-logical-Symbols"><a href="#Logical-Symbols-and-Non-logical-Symbols" class="headerlink" title="Logical Symbols and Non-logical Symbols"></a>Logical Symbols and Non-logical Symbols</h3><ul>
+<li><p>Logical symbols: propositional connectives, variables, quantifiers.</p>
+</li>
+<li><p>Non-logical symbols: constant symbols, function symbols, predicate symbols.</p>
 </li>
 </ul>
+<h3 id="Interpretation-and-Assignment"><a href="#Interpretation-and-Assignment" class="headerlink" title="Interpretation and Assignment"></a>Interpretation and Assignment</h3><ul>
+<li>Interpretation fixes values for constants.</li>
+<li>Assignment fixes values for variables.</li>
+</ul>
+<h2 id="First-Order-Theory-Motivation"><a href="#First-Order-Theory-Motivation" class="headerlink" title="First-Order Theory: Motivation"></a>First-Order Theory: Motivation</h2><p>First-order logic is very general but undecidable. By limiting the non-logical symbols, we can have something stronger then propositional logic but still decidable, which is first-order theory. First-order theory is weaker then FOL.</p>
+<h2 id="Defining-a-First-Order-Theory"><a href="#Defining-a-First-Order-Theory" class="headerlink" title="Defining a First-Order Theory"></a>Defining a First-Order Theory</h2><p>A first-order logic contains:</p>
+<ul>
+<li><strong>Signature</strong> $\Sigma$,  a set of non-logic symbols</li>
+<li><strong>Axioms</strong> $\mathcal{A}$, a set of closed formulas over $\Sigma$</li>
+</ul>
+<p><strong>$\Sigma$ limits the symbols and $\mathcal A$ gives them semantics.</strong></p>
+<p>Formula only containing symbols from $\Sigma$ is called $\Sigma​$-formula.</p>
+<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
+<li><strong>T-interpretation/T-model</strong>: A tuple of domain and interpretation $(D, I)$ satisfying $\forall A\in \mathcal A, (D, I)\vDash A$. (Domain and interpretation satisfying all axioms.)</li>
+<li><strong>T-satisfaction</strong>: $F$ is T-satisfiable if you can find a T-model $T$ and an assignment $\alpha$ such that $T, \alpha\vDash F$.</li>
+<li><strong>T-validity</strong>: Similar as above, but asks for all T-models and assignments. Written as $T\vDash F$. <strong>A theory is the set of all closed formulas that are T-valid.</strong></li>
+<li><strong>T-entailment</strong>: $F_1$ T-entails $F_2$ if $T\vDash F_1\rightarrow F_2$.</li>
+<li><strong>T-equivalence</strong>: Similar as above but asks for $F_1\leftrightarrow F_2$.</li>
+</ul>
+<a id="more"></a>
+<p>Copying from materials:</p>
+<img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321204753.png">
+<hr>
+<p>Below are some examples of first-order theories.</p>
+<h2 id="Proving"><a href="#Proving" class="headerlink" title="Proving"></a>Proving</h2><p>If you want to prove validity of some formula of a first-order theory, you can use FOL rules and axioms from the theory.</p>
+<h2 id="Theory-of-Equality-T-E"><a href="#Theory-of-Equality-T-E" class="headerlink" title="Theory of Equality $T_E$"></a>Theory of Equality $T_E$</h2><ul>
+<li>Signature: $\Sigma_E = \{=, a, b, \dots, p, q, r, \dots\}​$</li>
+<li>Axioms:<ul>
+<li><strong>Reflexivity</strong>: $\forall x :: x = x​$</li>
+<li><strong>Symmetry</strong>: $\forall x, y::x = y\rightarrow y = x​$</li>
+<li><strong>Transitivity</strong>: $\forall x, y, z:: x= y\land y - z\rightarrow x = z​$</li>
+<li><strong>Function congruence</strong>:$\forall \vec x, \vec y::\vec x_i =\vec y_i \rightarrow f(\vec x) = f(\vec y)​$</li>
+<li><strong>Predicate congruence</strong>:$\forall \vec x, \vec y::\vec x_i =\vec y_i \rightarrow (p(\vec x) \leftrightarrow p(\vec y))$</li>
+</ul>
+</li>
+<li><p><strong>Not decidable.</strong> FOL is not weaker than $T_E$.</p>
+</li>
+<li><p>Quantifier free fragment of $T_E$ is decidable.</p>
+</li>
+</ul>
+<h2 id="Peano-Arithmetic-T-PA"><a href="#Peano-Arithmetic-T-PA" class="headerlink" title="Peano Arithmetic $T_{PA}$"></a>Peano Arithmetic $T_{PA}$</h2><h3 id="Signature"><a href="#Signature" class="headerlink" title="Signature"></a>Signature</h3><img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321205853.png">
+<h3 id="Axioms"><a href="#Axioms" class="headerlink" title="Axioms"></a>Axioms</h3><img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321205918.png">
+<img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321210026.png">
+<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><p>Satisfiability and validity are undecidable. Also incomplete. Quantifier-free fragment undecidable.</p>
+<h2 id="Presburger-Arithmetic-T-mathbb-N"><a href="#Presburger-Arithmetic-T-mathbb-N" class="headerlink" title="Presburger Arithmetic $T_\mathbb{N}$"></a>Presburger Arithmetic $T_\mathbb{N}$</h2><h3 id="Signature-and-Axioms"><a href="#Signature-and-Axioms" class="headerlink" title="Signature and Axioms"></a>Signature and Axioms</h3><p>Almost the same with $T_{PA}$ but removes all things about multiplication.</p>
+<h3 id="Properties-1"><a href="#Properties-1" class="headerlink" title="Properties"></a>Properties</h3><p>Decidable and complete.</p>
+<h2 id="Linear-Integer-Arithmetic-T-mathbb-Z"><a href="#Linear-Integer-Arithmetic-T-mathbb-Z" class="headerlink" title="Linear-Integer Arithmetic $T_\mathbb{Z}$"></a>Linear-Integer Arithmetic $T_\mathbb{Z}$</h2><img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211100.png">
+<img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211108.png">
+<p><strong>$T_\mathbb{Z}$ only support multiplying a variable with a constant number!</strong></p>
+<h2 id="Theory-of-Arrays-T-A"><a href="#Theory-of-Arrays-T-A" class="headerlink" title="Theory of Arrays $T_A$"></a>Theory of Arrays $T_A$</h2><h3 id="Signature-1"><a href="#Signature-1" class="headerlink" title="Signature"></a>Signature</h3><img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211435.png">
+<p><strong>Logic is static, so read and write won&#39;t modifies the array, but create a modified copy version of the array.</strong></p>
+<h3 id="Axioms-1"><a href="#Axioms-1" class="headerlink" title="Axioms"></a>Axioms</h3><img src="/2019/03/18/形式化验证课程笔记-4/DeepinScreenshot_select-area_20190321211609.png">
+<p><strong>We didn&#39;t define equality over arrays, only over array elements.</strong></p>
+<h3 id="Properties-2"><a href="#Properties-2" class="headerlink" title="Properties"></a>Properties</h3><p>Undecidable. Quantifier-free fragment decidable.</p>
 
       
     </div>
@@ -502,8 +555,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" rel="next" title="Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer">
-                <i class="fa fa-chevron-left"></i> Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer
+              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/" rel="next" title="Convolutional Neural Networks 笔记 3 Object detection">
+                <i class="fa fa-chevron-left"></i> Convolutional Neural Networks 笔记 3 Object detection
               </a>
             
           </div>
@@ -696,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四周"><span class="nav-number">1.</span> <span class="nav-text">第四周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Defining-a-First-Order-Theory"><span class="nav-number">1.2.</span> <span class="nav-text">Defining a First-Order Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminology"><span class="nav-number">1.3.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory-of-Equality"><span class="nav-number">1.4.</span> <span class="nav-text">Theory of Equality</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四周"><span class="nav-number">1.</span> <span class="nav-text">第四周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Review-FOL"><span class="nav-number">1.1.</span> <span class="nav-text">Review FOL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Logical-Symbols-and-Non-logical-Symbols"><span class="nav-number">1.1.1.</span> <span class="nav-text">Logical Symbols and Non-logical Symbols</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Interpretation-and-Assignment"><span class="nav-number">1.1.2.</span> <span class="nav-text">Interpretation and Assignment</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#First-Order-Theory-Motivation"><span class="nav-number">1.2.</span> <span class="nav-text">First-Order Theory: Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Defining-a-First-Order-Theory"><span class="nav-number">1.3.</span> <span class="nav-text">Defining a First-Order Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Terminology"><span class="nav-number">1.4.</span> <span class="nav-text">Terminology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Proving"><span class="nav-number">1.5.</span> <span class="nav-text">Proving</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory-of-Equality-T-E"><span class="nav-number">1.6.</span> <span class="nav-text">Theory of Equality $T_E$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Peano-Arithmetic-T-PA"><span class="nav-number">1.7.</span> <span class="nav-text">Peano Arithmetic $T_{PA}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Signature"><span class="nav-number">1.7.1.</span> <span class="nav-text">Signature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Axioms"><span class="nav-number">1.7.2.</span> <span class="nav-text">Axioms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties"><span class="nav-number">1.7.3.</span> <span class="nav-text">Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Presburger-Arithmetic-T-mathbb-N"><span class="nav-number">1.8.</span> <span class="nav-text">Presburger Arithmetic $T_\mathbb{N}$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Signature-and-Axioms"><span class="nav-number">1.8.1.</span> <span class="nav-text">Signature and Axioms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties-1"><span class="nav-number">1.8.2.</span> <span class="nav-text">Properties</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linear-Integer-Arithmetic-T-mathbb-Z"><span class="nav-number">1.9.</span> <span class="nav-text">Linear-Integer Arithmetic $T_\mathbb{Z}$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Theory-of-Arrays-T-A"><span class="nav-number">1.10.</span> <span class="nav-text">Theory of Arrays $T_A$</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Signature-1"><span class="nav-number">1.10.1.</span> <span class="nav-text">Signature</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Axioms-1"><span class="nav-number">1.10.2.</span> <span class="nav-text">Axioms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Properties-2"><span class="nav-number">1.10.3.</span> <span class="nav-text">Properties</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
