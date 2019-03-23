@@ -126,7 +126,7 @@
 <meta property="og:description" content="Object detectionDetection algorithmsObject Localization图像输入的任务对于图像输入，常见的任务有以下几种：  Image classification（分类）：对图像进行分类。 Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。 Detection（目标检测">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/snipaste_20190323_161336.png">
-<meta property="og:updated_time" content="2019-03-23T09:27:13.000Z">
+<meta property="og:updated_time" content="2019-03-23T09:37:20.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convolutional Neural Networks 笔记 3 Object detection">
 <meta name="twitter:description" content="Object detectionDetection algorithmsObject Localization图像输入的任务对于图像输入，常见的任务有以下几种：  Image classification（分类）：对图像进行分类。 Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。 Detection（目标检测">
@@ -418,7 +418,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-23 17:27:13" itemprop="dateModified" datetime="2019-03-23T17:27:13+08:00">2019-03-23</time>
+                <time title="修改时间：2019-03-23 17:37:20" itemprop="dateModified" datetime="2019-03-23T17:37:20+08:00">2019-03-23</time>
               
             
           </span>
@@ -465,6 +465,7 @@
 <li>对于后面的四个分量 $\displaystyle{b_x, b_y, b_h, b_w}$，它们的值介于 0 到 1 之间。其中 $\displaystyle{b_x, b_y}$ 指示目标中心点的位置；$\displaystyle{b_h, b_w}$ 指示目标的高度和宽度。位置和长度都是以图片作为基准单位的，图片左上角坐标为 $\displaystyle{(0, 0)}$，右下角为 $\displaystyle{(1, 1)}$；图片的长和宽都定为 1。</li>
 </ul>
 <p>在计算损失函数时，一般在 $\displaystyle{p_c = 1}$ 时采用均方误差，$\displaystyle{p_c = 0}$ 时只看算法是否预测对了图像中没有目标。也可以将代表分类的那几个分量单独取出做交叉熵。</p>
+<a id="more"></a>
 <h3 id="Landmark-Detection"><a href="#Landmark-Detection" class="headerlink" title="Landmark Detection"></a>Landmark Detection</h3><p>Landmark detection 可以用来识别图片中的关键点，例如人脸的眼角、身躯的骨骼等。在 AR 领域有应用。它和上一节的不同之处在于 landmark detection 只用给出点的位置，而不需要大小。</p>
 <p>对于一类图片可以给出多个 landmark，每个 landmark 占用两个分量来表示坐标。此外，还需要一个额外的分量来表示给定的图片到底是不是存在可以判定的对象（实际上就是二分类 CNN 的输出）。如果要给出多个 landmark，那么一个网络的输出中每个 landmark 的顺序必须是固定的：例如要识别身躯的头部，头部是第一个 landmark，那么网络给出的所有输出中，第一组坐标对应的都是头部。</p>
 <h3 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h3><p>现在考虑目标检测任务，可以搞出下面这个非常垃圾的实现。</p>
@@ -552,8 +553,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/" rel="next" title="Convolutional Neural Networks 笔记 2 Deep convolutional models: case studies">
-                <i class="fa fa-chevron-left"></i> Convolutional Neural Networks 笔记 2 Deep convolutional models: case studies
+              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" rel="next" title="Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer">
+                <i class="fa fa-chevron-left"></i> Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer
               </a>
             
           </div>
@@ -562,8 +563,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" rel="prev" title="Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer">
-                Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/18/形式化验证课程笔记-4/" rel="prev" title="形式化验证课程笔记 4">
+                形式化验证课程笔记 4 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
