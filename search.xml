@@ -4,6 +4,55 @@
   
     
     <entry>
+      <title>Sequence Models 笔记 3 Sequence models &amp; Attention mechanism</title>
+      <link href="/2019/03/23/Sequence-Models-%E7%AC%94%E8%AE%B0-3-Sequence-models-Attention-mechanism/"/>
+      <url>/2019/03/23/Sequence-Models-%E7%AC%94%E8%AE%B0-3-Sequence-models-Attention-mechanism/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Sequence-models-amp-Attention-mechanism"><a href="#Sequence-models-amp-Attention-mechanism" class="headerlink" title="Sequence models &amp; Attention mechanism"></a>Sequence models &amp; Attention mechanism</h1><h2 id="Various-sequence-to-sequence-architectures"><a href="#Various-sequence-to-sequence-architectures" class="headerlink" title="Various sequence to sequence architectures"></a>Various sequence to sequence architectures</h2><h3 id="Basic-Models"><a href="#Basic-Models" class="headerlink" title="Basic Models"></a>Basic Models</h3><h3 id="Picking-the-most-likely-sentence"><a href="#Picking-the-most-likely-sentence" class="headerlink" title="Picking the most likely sentence"></a>Picking the most likely sentence</h3><a id="more"></a><h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><h3 id="Refinements-to-Beam-Search"><a href="#Refinements-to-Beam-Search" class="headerlink" title="Refinements to Beam Search"></a>Refinements to Beam Search</h3><h3 id="Error-analysis-in-beam-search"><a href="#Error-analysis-in-beam-search" class="headerlink" title="Error analysis in beam search"></a>Error analysis in beam search</h3><h3 id="Bleu-Score"><a href="#Bleu-Score" class="headerlink" title="Bleu Score"></a>Bleu Score</h3><h3 id="Attention-Model-Intuition"><a href="#Attention-Model-Intuition" class="headerlink" title="Attention Model Intuition"></a>Attention Model Intuition</h3><h3 id="Attention-Model"><a href="#Attention-Model" class="headerlink" title="Attention Model"></a>Attention Model</h3><h2 id="Speech-recognition-Audio-data"><a href="#Speech-recognition-Audio-data" class="headerlink" title="Speech recognition - Audio data"></a>Speech recognition - Audio data</h2><h3 id="Speech-recognition"><a href="#Speech-recognition" class="headerlink" title="Speech recognition"></a>Speech recognition</h3><h3 id="Trigger-Word-Detection"><a href="#Trigger-Word-Detection" class="headerlink" title="Trigger Word Detection"></a>Trigger Word Detection</h3><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><h3 id="Conclusion-and-thank-you"><a href="#Conclusion-and-thank-you" class="headerlink" title="Conclusion and thank you"></a>Conclusion and thank you</h3>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Sequence Models 笔记 2 Natural Language Processing &amp; Word Embeddings</title>
+      <link href="/2019/03/23/Sequence-Models-%E7%AC%94%E8%AE%B0-2-Natural-Language-Processing-Word-Embeddings/"/>
+      <url>/2019/03/23/Sequence-Models-%E7%AC%94%E8%AE%B0-2-Natural-Language-Processing-Word-Embeddings/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Natural-Language-Processing-amp-Word-Embeddings"><a href="#Natural-Language-Processing-amp-Word-Embeddings" class="headerlink" title="Natural Language Processing &amp; Word Embeddings"></a>Natural Language Processing &amp; Word Embeddings</h1><h2 id="Introduction-to-Word-Embeddings"><a href="#Introduction-to-Word-Embeddings" class="headerlink" title="Introduction to Word Embeddings"></a>Introduction to Word Embeddings</h2><h3 id="Word-Representation"><a href="#Word-Representation" class="headerlink" title="Word Representation"></a>Word Representation</h3><h3 id="Using-word-embeddings"><a href="#Using-word-embeddings" class="headerlink" title="Using word embeddings"></a>Using word embeddings</h3><a id="more"></a><h3 id="Properties-of-word-embeddings"><a href="#Properties-of-word-embeddings" class="headerlink" title="Properties of word embeddings"></a>Properties of word embeddings</h3><h3 id="Embedding-matrix"><a href="#Embedding-matrix" class="headerlink" title="Embedding matrix"></a>Embedding matrix</h3><h2 id="Learning-Word-Embeddings-Word2vec-amp-GloVe"><a href="#Learning-Word-Embeddings-Word2vec-amp-GloVe" class="headerlink" title="Learning Word Embeddings: Word2vec &amp; GloVe"></a>Learning Word Embeddings: Word2vec &amp; GloVe</h2><h3 id="Learning-word-embeddings"><a href="#Learning-word-embeddings" class="headerlink" title="Learning word embeddings"></a>Learning word embeddings</h3><h3 id="Word2Vec"><a href="#Word2Vec" class="headerlink" title="Word2Vec"></a>Word2Vec</h3><h3 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h3><h3 id="GloVe-word-vectors"><a href="#GloVe-word-vectors" class="headerlink" title="GloVe word vectors"></a>GloVe word vectors</h3><h2 id="Applications-using-Word-Embeddings"><a href="#Applications-using-Word-Embeddings" class="headerlink" title="Applications using Word Embeddings"></a>Applications using Word Embeddings</h2><h3 id="Sentiment-Classification"><a href="#Sentiment-Classification" class="headerlink" title="Sentiment Classification"></a>Sentiment Classification</h3><h3 id="Debiasing-word-embeddings"><a href="#Debiasing-word-embeddings" class="headerlink" title="Debiasing word embeddings"></a>Debiasing word embeddings</h3>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Sequence Models 笔记 1 Recurrent Neural Networks</title>
+      <link href="/2019/03/23/Sequence-Models-%E7%AC%94%E8%AE%B0-1-Recurrent-Neural-Networks/"/>
+      <url>/2019/03/23/Sequence-Models-%E7%AC%94%E8%AE%B0-1-Recurrent-Neural-Networks/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><h2 id="Recurrent-Neural-Networks-1"><a href="#Recurrent-Neural-Networks-1" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h2><h3 id="Why-sequence-models"><a href="#Why-sequence-models" class="headerlink" title="Why sequence models"></a>Why sequence models</h3><h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><a id="more"></a><h3 id="Recurrent-Neural-Network-Model"><a href="#Recurrent-Neural-Network-Model" class="headerlink" title="Recurrent Neural Network Model"></a>Recurrent Neural Network Model</h3><h3 id="Backpropagation-through-time"><a href="#Backpropagation-through-time" class="headerlink" title="Backpropagation through time"></a>Backpropagation through time</h3><h3 id="Different-types-of-RNNs"><a href="#Different-types-of-RNNs" class="headerlink" title="Different types of RNNs"></a>Different types of RNNs</h3><h3 id="Language-model-and-sequence-generation"><a href="#Language-model-and-sequence-generation" class="headerlink" title="Language model and sequence generation"></a>Language model and sequence generation</h3><h3 id="Sampling-novel-sequences"><a href="#Sampling-novel-sequences" class="headerlink" title="Sampling novel sequences"></a>Sampling novel sequences</h3><h3 id="Vanishing-gradients-with-RNNs"><a href="#Vanishing-gradients-with-RNNs" class="headerlink" title="Vanishing gradients with RNNs"></a>Vanishing gradients with RNNs</h3><h3 id="Gated-Recurrent-Unit-GRU"><a href="#Gated-Recurrent-Unit-GRU" class="headerlink" title="Gated Recurrent Unit (GRU)"></a>Gated Recurrent Unit (GRU)</h3><h3 id="Long-Short-Term-Memory-LSTM"><a href="#Long-Short-Term-Memory-LSTM" class="headerlink" title="Long Short Term Memory (LSTM)"></a>Long Short Term Memory (LSTM)</h3><h3 id="Bidirectional-RNN"><a href="#Bidirectional-RNN" class="headerlink" title="Bidirectional RNN"></a>Bidirectional RNN</h3><h3 id="Deep-RNNs"><a href="#Deep-RNNs" class="headerlink" title="Deep RNNs"></a>Deep RNNs</h3>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 深度学习 </tag>
+            
+            <tag> RNN </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>形式化验证课程笔记 4</title>
       <link href="/2019/03/18/%E5%BD%A2%E5%BC%8F%E5%8C%96%E9%AA%8C%E8%AF%81%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-4/"/>
       <url>/2019/03/18/%E5%BD%A2%E5%BC%8F%E5%8C%96%E9%AA%8C%E8%AF%81%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-4/</url>

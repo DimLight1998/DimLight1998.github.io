@@ -352,6 +352,544 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-15/" class="post-title-link" itemprop="url">编译原理慕课笔记 15</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:20:04" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:04+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="运行存储分配"><a href="#运行存储分配" class="headerlink" title="运行存储分配"></a>运行存储分配</h1><h2 id="运行存储分配概述"><a href="#运行存储分配概述" class="headerlink" title="运行存储分配概述"></a>运行存储分配概述</h2><h3 id="分配策略"><a href="#分配策略" class="headerlink" title="分配策略"></a>分配策略</h3><p>在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 <strong>静态分配</strong>，如果在编译时无法完成分配，需要在运行时进行确定则称为 <strong>动态分配</strong>。在动态分配时，可以进行 <strong>栈式内存分配</strong> 或 <strong>堆式内存分配</strong>。</p>
+<h3 id="活动记录"><a href="#活动记录" class="headerlink" title="活动记录"></a>活动记录</h3><p>函数的每次执行称作一个 <strong>活动</strong>，<strong>活动记录</strong> 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。</p>
+<p>活动记录中会存放实参、返回值、控制链（指向调用者的活动记录）、访问链（指向其它活动记录，后面会用到）、保存的状态、局部变量和临时变量。</p>
+<p><strong>同一个函数的活动记录不一定是定长的</strong>，栈上也可以进行动态内存分配，此时一般要将变长数据放在最后面（栈顶）。这样分配的内存具有更好的 locality，并且清理的时候代价更小。</p>
+<h2 id="静态存储分配"><a href="#静态存储分配" class="headerlink" title="静态存储分配"></a>静态存储分配</h2><p>有些语言（BASIC 和 FORTRAN）可以完全使用静态存储分配，只要：</p>
+<ul>
+<li>数组定长</li>
+<li>过程无法递归调用（直接和间接都不行）</li>
+<li>不能动态建立数据实体</li>
+</ul>
+<h3 id="顺序分配法"><a href="#顺序分配法" class="headerlink" title="顺序分配法"></a>顺序分配法</h3><p>这种分配方法比较简单，就是对每个函数指定一个固定大小、固定位置的区域。这些区域彼此不会相交。在运行时如果这个函数被调用这个区域就会作为它的工作内存。</p>
+<h3 id="层次分配法"><a href="#层次分配法" class="headerlink" title="层次分配法"></a>层次分配法</h3><p>上面那种方法会有内存的浪费，这种分配方式需要分析出函数之间的调用关系，然后建立一棵调用树。因为禁止递归调用，所以这样的调用关系一定是无环的，可以形成一棵树。</p>
+<p>随后给对应的函数分配内存区域，但是不同的函数的内存区域会相交，相交的这些内存区域对应的函数不会出现调用关系即可。例如如果两个函数在调用树中都只出现了一次并且是兄弟结点，就可以重叠分配。</p>
+<h2 id="栈式存储分配"><a href="#栈式存储分配" class="headerlink" title="栈式存储分配"></a>栈式存储分配</h2><h3 id="活动树"><a href="#活动树" class="headerlink" title="活动树"></a>活动树</h3><p>活动树就是展示函数调用关系的树。</p>
+<hr>
+<p>在使用栈式存储分配的时候会有一个控制栈。运行时，每个活动在栈中都有自己的活动记录。大部分以函数为单位的语言都是这样进行分配的，例如 C。所以这里就不写栈式存储分配在运行时具体怎么操作的了。</p>
+<p>在这样的分配方式下，活动记录的设计一般有如下的原则：</p>
+<ul>
+<li>在调用者和被调用者之间的传递的值会尽可能靠近两个活动记录的边界</li>
+<li>固定长度的项目位于活动记录中间</li>
+<li>变长的项目位于活动记录的最后</li>
+<li>每个活动记录会有一个用来寻找该活动记录中局部变量的基指针，这个指针位于固定长度项目和变长项目边界上</li>
+</ul>
+<h2 id="调用序列和返回序列"><a href="#调用序列和返回序列" class="headerlink" title="调用序列和返回序列"></a>调用序列和返回序列</h2><p><strong>调用序列</strong> 是函数开始调用前进行的工作，<strong>返回序列</strong> 是函数调用完成后进行的收尾工作。这两种序列都是调用者和被调用者配合完成的。</p>
+<h3 id="调用序列"><a href="#调用序列" class="headerlink" title="调用序列"></a>调用序列</h3><p>向添加被调函数的活动记录。</p>
+<ul>
+<li>调用者计算实参</li>
+<li>调用者将返回地址放入被调函数保存的状态中、修改基址寄存器</li>
+<li>被调用者保存寄存器值和其他状态信息、初始化局部变量、开始执行</li>
+</ul>
+<p>此外调用序列会建立 <strong>访问链</strong>，见下文。</p>
+<h3 id="返回序列"><a href="#返回序列" class="headerlink" title="返回序列"></a>返回序列</h3><ul>
+<li>被调用者将返回值放入自己活动记录的指定位置</li>
+<li>被调用者恢复调用者的基址寄存器、通过返回地址返回到调用者</li>
+<li>调用者获取返回值，继续执行</li>
+</ul>
+<h2 id="非局部数据的访问"><a href="#非局部数据的访问" class="headerlink" title="非局部数据的访问"></a>非局部数据的访问</h2><h3 id="嵌套深度"><a href="#嵌套深度" class="headerlink" title="嵌套深度"></a>嵌套深度</h3><p>有些语言可以在函数中继续定义函数，例如 Pascal。这种语言中，在函数 f 内部定义的函数 g 可以访问 f 中的局部变量，对于 g 来说这些变量就像是全局的变量一样。</p>
+<p>对于最外层的函数，定义其嵌套深度为 1。如果 g 的定义在 f 中，则 g 的嵌套深度比 f 多 1。</p>
+<h3 id="无嵌套语言的存储分配"><a href="#无嵌套语言的存储分配" class="headerlink" title="无嵌套语言的存储分配"></a>无嵌套语言的存储分配</h3><p>这样的语言变量只有全局和局部两种，全局变量放静态区域，局部变量使用动态内存分配即可。全局变量通过静态的地址访问，局部变量通过运行时活动记录对应的基地址进行访问。</p>
+<h3 id="有嵌套语言的存储分配"><a href="#有嵌套语言的存储分配" class="headerlink" title="有嵌套语言的存储分配"></a>有嵌套语言的存储分配</h3><p>使用前面预留给每个活动记录的 <strong>访问链</strong> 可以实现过程嵌套的语言中内层函数对外层函数局部变量的访问。如果函数 f 内部定义了函数 g，则运行时，<strong>函数 g 的任意活动的访问链都指向最近的函数 f 的活动记录</strong>。</p>
+<h3 id="如何建立访问链"><a href="#如何建立访问链" class="headerlink" title="如何建立访问链"></a>如何建立访问链</h3><p>如果函数 f 调用函数 g，可能有三种情况：</p>
+<ul>
+<li>f 的嵌套深度比 g 小（相当于外层调内层）：此时函数 g 必然在 f 中直接定义，只要在调用 g 时，将 g 的访问链设置为指向上一个活动记录即可。</li>
+<li>f 的嵌套深度和 g 相同（同层函数或者直接递归）：此时直接复制访问链即可。</li>
+<li>f 的嵌套深度比 g 大（相当与内层调外层）：此时 g 的访问链的设置需要 <strong>沿着访问链</strong> 进行查找（注意不是在活动栈中进行查找）。如果 f 的嵌套深度是 a，g 的嵌套深度是 b，只要沿着访问链走 (b - a + 1) 步就可以到达直接定义了 g 的函数。</li>
+</ul>
+<h2 id="符号表"><a href="#符号表" class="headerlink" title="符号表"></a>符号表</h2><p>对于每个函数（也有可能是作用域）都需要建立一张单独的符号表。符号表中也可以存放指向这个函数中定义的其它函数的符号表的指针。符号表会有一个指针指向这个函数外部那个函数的符号表。</p>
+<p>在定义符号时，如果当前符号表中存在同名符号，表示符号重定义，否则可以正常定义；在使用符号时，如果当前符号表中存在则可正常使用，否则应该查找外部的那个符号表中是否有对应的符号，可以一直这样查找下去。</p>
+<h2 id="符号表的建立"><a href="#符号表的建立" class="headerlink" title="符号表的建立"></a>符号表的建立</h2><p>这个没什么好记录的，算法比较直接。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-14/" class="post-title-link" itemprop="url">编译原理慕课笔记 14</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:20:02" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:02+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="中间代码生成-4"><a href="#中间代码生成-4" class="headerlink" title="中间代码生成-4"></a>中间代码生成-4</h1><h2 id="布尔表达式的回填"><a href="#布尔表达式的回填" class="headerlink" title="布尔表达式的回填"></a>布尔表达式的回填</h2><p>回填指的是在生成跳转语句之类的语句的时候要跳转的目标暂时不能确定，此时会将“生成的跳转语句在哪里”这个信息记录下来，在后续的翻译过程中在适当的时候重新填入跳转目标。</p>
+<p><em>为什么会出现这样的技术，我个人的感觉是使用自底向上进行分析时对语法树的遍历实际上是一种后序遍历，这种遍历其实是不太灵活的（在写完了编译原理的作业后有了这种感觉，对于 ANTLR 来说显然 visitor 模式比 listener 模式具有更高的灵活性，如果采用 listener 模式的话估计也要用回填才能解决跳转目标的问题，但是使用 visitor 模式可以通过指定遍历顺序来避免掉这个问题）。为了能够在保证遍历顺序是一遍后序遍历的情况下生成正确的中间代码就需要引入这种看起来不太自然的技术。</em></p>
+<p>这一节讲的是如何生成复合的布尔表达式，<del>对于这种复合的布尔表达式居然不是使用算符优先级计算出最后的布尔值，而是通过各种跳转来到达最后的目的地址。不是很理解为什么需要使用这么诡异的方式</del> 使用各种跳转来完成计算是为了实现短路求值。</p>
+<p>对于布尔表达式中的每个子表达式，它都有两个综合属性 <code>FalseList</code> 和 <code>TrueList</code>，这是两个集合，元素分别是翻译过程中未填写跳转目标的那些语句的编号（<code>FalseList</code> 中存的是会往假出口跳转的那些语句的编号）。</p>
+<p>一些例子及其解释：</p>
+<ul>
+<li>$B\rightarrow E_1\mbox{relop} E_2\{a_1\}$，其中 $a_1$ 动作为生成两条跳转（不指定目标），第一条在条件为真时执行，放入 $B$ 的 <code>TrueList</code> 中；第二条在条件为假时执行，放入 <code>FalseList</code> 中。注意 $E_1\mbox{relop}E_2$ 已经是“原子性”的了，不会为复合布尔表达式的一部分。</li>
+<li>$B\rightarrow(B_1)\{a_1\}$，将 $B_1$ 的两个综合属性直接复制到 $B$ 中。</li>
+<li>$B\rightarrow B_1 \mbox{ or } MB_2\{a_1\}, M\rightarrow \epsilon\{a_2\}$，其中 $a_2$ 动作是将下一条要生成的语句（实际上就是 $B_2$ 的第一条语句）的编号放在 $M$ 的某个综合属性 <code>quad</code> 中；$a_1$ 动作是将 $M$ 的 <code>quad</code> 属性填入 $B_1$ 的 <code>FalseList</code> 中（这样的话 $B_1$ 为假就会开始判定 $B_2$，并将 $B_1$ 和 $B_2$ 的 <code>TrueList</code> 合并作为 $B$ 的 <code>TrueList</code>（如果两个任意一个满足应该会跳转到 $B$ 的真出口），随后将 $B_2$ 的 <code>FalseList</code> 作为 $B$ 的 <code>FalseList</code>（注意如果执行到了 $B_2$ 的 <code>FalseList</code> 中的某个元素，则必然 $B_1$ 为假）。</li>
+</ul>
+<p>其它情况略去，大致思想就是上面那样。</p>
+<h2 id="控制流语句的回填"><a href="#控制流语句的回填" class="headerlink" title="控制流语句的回填"></a>控制流语句的回填</h2><p>除了布尔表达式，凡是带有跳转的语句都可以使用到回填技术。</p>
+<p>为此，需要对每个语句 $S$（可能是复合语句）设置一个综合属性 <code>NextList</code>，它是一个集合，元素是这个语句翻译出的中间表示的那些跳转指令中，需要跳转到 $S$ 的后续第一条指令的那些跳转指令的编号。</p>
+<p>一些例子和解释：</p>
+<ul>
+<li>$S\rightarrow\mbox{if }B\mbox{ then }M_1S_1N\mbox{ else }M_2S_2\{a_1\}$，其中两个标记非终结符 $M$ 是将生成的下一条语句放入自己的 <code>quad</code> 综合属性中：这个是希望翻译条件跳转语句。$a_1$ 动作是将 $M_1$ 的 <code>quad</code> 填入 $B$ 的 <code>TrueList</code> 中，将 $M_2$ 的 <code>quad</code> 放入 $B$ 的 <code>FalseList</code> 中，将 $S_1,S_2,N$ 的 <code>NextList</code> 合并作为 $S$ 的 <code>NextList</code>。标记非终结符 $N$ 的动作是生成一条未指明目的的跳转语句，并放入自己的 <code>NextList</code> 中（防止 $S_1$ 运行完了之后又开始运行 $S_2$）。</li>
+<li>$S\rightarrow \mbox{while }M_1B\mbox{ do }M_2S_1\{a_1\}$，其中两个标记非终结符 $M$ 是将生成的下一条语句放入自己的 <code>quad</code> 综合属性中：这个是希望翻译循环语句。$a_1$ 动作是将 $M_1$ 的 <code>quad</code> 填入 $S_1$ 的 <code>NextList</code> 中，将 $M_2$ 的 <code>quad</code> 填入 $B$ 的 <code>TrueList</code> 中，将 $B$ 的 <code>FalseList</code> 赋给 $S$ 的 <code>NextList</code>，随后生成一条跳向 $M_1$ 的 <code>quad</code> 的跳转指令。</li>
+<li>$S\rightarrow S_1MS_2\{a_1\}$：两条语句如何进行操作，其实很简单的。$M$ 会生成一条语句放入自己的 <code>quad</code> 属性，$a_1$ 操作就是将 $M$ 的 <code>quad</code> 填入 $S_1$ 的 <code>NextList</code>，将 $S_2$ 的 <code>NextList</code> 作为 $S$ 的 <code>NextList</code>。</li>
+</ul>
+<h2 id="switch-语句的翻译"><a href="#switch-语句的翻译" class="headerlink" title="switch 语句的翻译"></a>switch 语句的翻译</h2><p>这节没什么新的地方，switch 语句的翻译有两种方案：</p>
+<ul>
+<li>逐个翻译各个 case。进入后依次判断各个 case 是否成立，如果成立的话就不跳转开始执行 case 对应的代码，否则跳转到下一个 case 进行判断。执行完对应的 case 后统一跳转到某个出口语句。</li>
+<li>也是逐个翻译各个 case。但是进入后向跳转到一个集中化的专门负责选择 case 的地方，这个地方对各个 case 进行匹配，如果匹配跳转到对应的 case 代码，否则不跳转，匹配下一个 case。这样做有利于生成更加高效的 case 选择指令。</li>
+</ul>
+<h2 id="过程调用语句的翻译"><a href="#过程调用语句的翻译" class="headerlink" title="过程调用语句的翻译"></a>过程调用语句的翻译</h2><p>这节主要讲的就是在进行过程调用的时候可以维护一个参数的队列。对于计算出的每个参数（参数可能是以表达式的形式给出的，因此需要额外的计算代码），将这个参数压入队列中。当所有参数计算完毕后，从队列中取出所有的已计算参数，然后执行过程调用。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-13/" class="post-title-link" itemprop="url">编译原理慕课笔记 13</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:20:00" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:00+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="中间代码生成-3"><a href="#中间代码生成-3" class="headerlink" title="中间代码生成-3"></a>中间代码生成-3</h1><h2 id="控制流语句及其-SDT"><a href="#控制流语句及其-SDT" class="headerlink" title="控制流语句及其 SDT"></a>控制流语句及其 SDT</h2><p>控制流语句分为顺序语句、条件语句和循环语句。条件语句有 <code>if a then b</code> 和 <code>if a then b else c</code> 两种，循环语句格式为 <code>while a b</code>。构造其 SDT 时需要在条件语句的条件中引入条件为真和条件为假时应该跳转的地址；在循环语句的条件中引入条件继续满足和不再满足时应当跳转的地址。</p>
+<h2 id="布尔表达式及其-SDT"><a href="#布尔表达式及其-SDT" class="headerlink" title="布尔表达式及其 SDT"></a>布尔表达式及其 SDT</h2><p>布尔表达式就是使用 <code>true</code>、<code>false</code>、两个表达式的比较和与或非以及括号构造出的表达式，最后的结果要么为真要么为假。如果布尔表达式只会被用于流程控制中，那么可以将整个表达式拆成多个运算过程，每个运算过程结束后都执行一次跳转。这样做会导致各种逻辑运算符不出现在翻译后的代码中，翻译后的代码使用小的条件语句来实现宏观的逻辑上的逻辑运算。<del>不过我觉得这种做法不好，它把布尔表达式和其它的算术表达式的统一性破坏掉了。</del> 这样处理的目的是实现短路求值，因此不能和普通的算术表达式作类似处理。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1666,653 +2204,6 @@ B_n \rightarrow & \gamma_n\cdot \\
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-5/" class="post-title-link" itemprop="url">编译原理慕课笔记 5</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:18:40" itemprop="dateCreated datePublished" datetime="2018-11-23T16:18:40+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="语法分析-2"><a href="#语法分析-2" class="headerlink" title="语法分析-2"></a>语法分析-2</h1><h2 id="First-集和-Follow-集的计算"><a href="#First-集和-Follow-集的计算" class="headerlink" title="First 集和 Follow 集的计算"></a>First 集和 Follow 集的计算</h2><h3 id="First-集的计算"><a href="#First-集的计算" class="headerlink" title="First 集的计算"></a>First 集的计算</h3><p>计算一个文法中各个非终结符的 First 集的方法是，<strong>不断应用以下规则，直到每个符号的 First 集稳定：</strong></p>
-<ul>
-<li><p>如果 $X$ 是终结符，则 $\mbox{First}(X) = \{X\}$。（引入这个的目的是方便后面的递归计算。）</p>
-</li>
-<li><p>如果 $X\rightarrow\epsilon$ 是 $X$ 的一个产生式，则 $\epsilon\in\mbox{First}(X)$。（为了计算的方便，这里是 $\rightarrow$ 而不是 $\Rightarrow$，也就是可以直接从生成式开始计算。）</p>
-</li>
-<li><p>如果 $X\rightarrow Y_1Y_2\cdots Y_n$ 是 $X$ 的一个产生式，则</p>
-<ul>
-<li>$\mbox{First}(Y_1)-\{\epsilon\}\subset\mbox{First}(X)$，去掉 $\epsilon$ 是因为后续的符号才能作为初始符号。</li>
-<li>若 $\epsilon\in \mbox{First}(Y_1)$，则 $\mbox{First}(Y_2)-\{\epsilon\}\subset\mbox{First}(X)$。</li>
-<li>若 $\epsilon\in \mbox{First}(Y_1)$ 且 $\epsilon \in \mbox{First}(Y_2)$，则 $\mbox{First}(Y_3)-\{\epsilon\}\subset\mbox{First}(X)$。</li>
-<li>同上类推。</li>
-</ul>
-<p>如果某个符号是 $Y_k$ 的初始符号，并且 $Y_k$ 之前的非终结符都可以生成空串，那么这个初始符号也是 $X$ 的初始符号。此外，如果所有的 $Y_k$ 都可以生成空串，则 $\epsilon$ 也是 $X$ 的初始符号。</p>
-<p>也可以单独为一个串 $X_1X_2\cdots X_n$ 计算 First 集，做法和为 $X\rightarrow Y_1Y_2\cdots Y_n$ 计算 First 集的方法类似。</p>
-</li>
-</ul>
-<h3 id="Follow-集的计算"><a href="#Follow-集的计算" class="headerlink" title="Follow 集的计算"></a>Follow 集的计算</h3><p>计算一个文法中各个非终结符的 Follow 集的方法是，<strong>不断应用以下规则，直到每个符号的 Follow 集稳定</strong>：</p>
-<ul>
-<li>对于初始符号 $S$，有 $$\in\mbox{Follow}(S)$。</li>
-<li>如果有产生式 $A\rightarrow \alpha B$，则 $\forall X\in \mbox{Follow}(A), X\in\mbox{Follow}(B)$。这是显然的。</li>
-<li>如果有产生式 $A\rightarrow \alpha B\beta$ 且 $\epsilon\in \mbox{First}(\beta)$，则 $\forall X\in \mbox{Follow}(A), X\in\mbox{Follow}(B)$。这是显然的，但是还不够，见下一条。</li>
-<li>如果有产生式 $A\rightarrow \alpha B\beta$，则 $\forall X\in \mbox{First}(\beta),X\neq\epsilon\Rightarrow X\in\mbox{Follow}(B)$。注意上一节已经定义了如何计算一个串的 First 集。</li>
-</ul>
-<h3 id="Select-集的计算"><a href="#Select-集的计算" class="headerlink" title="Select 集的计算"></a>Select 集的计算</h3><p>已在语法分析-1 中描述。</p>
-<ul>
-<li>$\epsilon \notin \mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=\mbox{First}(\alpha)$：如果一个串 $\alpha$ 无法推导出空串，那么当它作为产生式的右部时，只有这个串的串首终结符作为输入符号的时候才能考虑使用该产生式。</li>
-<li>$\epsilon\in\mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=(\mbox{First}(\alpha)-\{\epsilon\})\cup\mbox{Follow}(A)$：如果一个串 $\alpha$ 可以产生空串，那么当它作为产生式的右部时，它的串首终结符或者产生式的左部的后继符号集总的元素作为输入符号时都可以使用该产生式。</li>
-</ul>
-<hr>
-<p>在使用上面的算法进行计算的时候，Select 集依赖于 Follow 集，Follow 集依赖于 First 集。</p>
-<p>在完成了计算后，如果这是一个 $LL(1)$ 文法，那么可以在构建预测分析器的时候可以建立 <strong>预测分析表</strong>。这个表的每一行代表不同的非终结符，每一列代表不同的输入符号，表中的每个元素是一个产生式。当进行语法分析时，只要查一下当前的非终结符和输入符号就可以确定唯一的产生式，这是因为 $LL(1)$ 文法具有相同非终结符 Select 集不相交的性质。</p>
-<h2 id="递归的预测分析法"><a href="#递归的预测分析法" class="headerlink" title="递归的预测分析法"></a>递归的预测分析法</h2><p>递归的预测分析法在递归下降分析中通过使用预测分析表选择产生式。这个方法需要为每个非终结符根据产生式和预测分析表写一个方法。这里直接使用课件中用到的语言的文法：</p>
-<script type="math/tex; mode=display">
-\begin{array}{cc}
-\begin{align*}
-\mbox{Program} &\rightarrow \texttt{program}\mbox{ DecList : Type ; StList } \texttt{end}\\
-\mbox{DecList} &\rightarrow id\mbox{ DecListN} \\
-\mbox{DecListN} &\rightarrow \mbox{,}id\mbox{ DecListN} | \epsilon \\
-\mbox{StList} &\rightarrow s\mbox{ StListN} \\
-\mbox{StListN} &\rightarrow \mbox{;}s\mbox{ StListN} | \epsilon \\
-\mbox{Type} &\rightarrow \texttt{real} | \texttt{int}
-\end{align*}
-\end{array}</script><p>（我估计这个文法得到的程序看上去会怪怪的，下面构造一个试试。）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">program foo, bar : int;</span><br><span class="line">    foo += 1;</span><br><span class="line">    foo += bar;</span><br><span class="line">    bar ++;</span><br><span class="line">    foo + bar</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
-<p>嗯，这个语言看上去非常诡异，而且文法看着也不优雅。现在写一段 Python 程序作为例子，它可以检验一个 token 流是否能够被该文法生成（实际上检验完成后就可以给出分析树了）。</p>
-<p>首先需要对每个非终结符写一个过程，每个过程的参数是当前 token 流的位置，一般没有返回值。副作用是将解析位置移到 token 流中下一个正确的位置，也就是所，当这样的一个过程结束的时候，解析位置应该处于下一个该过程解析的 <strong>最后一个符号的下一个位置</strong>。这样做的好处后面会分析。</p>
-<p>首先定义一个 <code>TokenStatus</code> 类，记录处理进度：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TokenStatus</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, tokens: List[str])</span>:</span></span><br><span class="line">        self.tokens = tokens</span><br><span class="line">        self.position = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>这个文法一共有 6 个非终结符，每个终结符都会对应一个 <code>analyze_*</code> 函数，此外，整个分析过程会对应 <code>analyze</code> 函数。</p>
-<p>首先是 <code>analyze</code>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(tokens: List[str])</span>-&gt; bool:</span></span><br><span class="line">    token_status = TokenStatus(tokens)</span><br><span class="line">    analyze_program(token_status)</span><br><span class="line">    <span class="keyword">if</span> token_status.position != len(token_status.tokens):</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">    print(<span class="string">'Done.'</span>)</span><br></pre></td></tr></table></figure>
-<p>然后是各个分析函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_program</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">'program'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_dec_list(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">':'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_type(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">';'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_st_list(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">'end'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_dec_list</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    print(<span class="string">f'Get identifier "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_dec_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_dec_list_n</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] == <span class="string">','</span>:</span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        print(<span class="string">f'Get identifier "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        analyze_dec_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_st_list</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    print(<span class="string">f'Get statement "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_st_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_st_list_n</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] == <span class="string">';'</span>:</span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        print(<span class="string">f'Get statement "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        analyze_st_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_type</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    token = token_status.tokens[token_status.position]</span><br><span class="line">    <span class="keyword">if</span> token != <span class="string">'real'</span> <span class="keyword">and</span> token != <span class="string">'int'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">f'Get type "<span class="subst">&#123;token&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>最后是测试部分：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    tokens = [</span><br><span class="line">        <span class="string">'program'</span>,</span><br><span class="line">        <span class="string">'foo'</span>,</span><br><span class="line">        <span class="string">','</span>,</span><br><span class="line">        <span class="string">'bar'</span>,</span><br><span class="line">        <span class="string">':'</span>,</span><br><span class="line">        <span class="string">'int'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo += 1'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo += bar'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'bar ++'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo + bar'</span>,</span><br><span class="line">        <span class="string">'end'</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    analyze(tokens)</span><br></pre></td></tr></table></figure>
-<p>运行这个程序将会输出</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Get identifier &quot;foo&quot;.</span><br><span class="line">Get identifier &quot;bar&quot;.</span><br><span class="line">Get type &quot;int&quot;.</span><br><span class="line">Get statement &quot;foo += 1&quot;.</span><br><span class="line">Get statement &quot;foo += bar&quot;.</span><br><span class="line">Get statement &quot;bar ++&quot;.</span><br><span class="line">Get statement &quot;foo + bar&quot;.</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
-<p>课件中有一些实现上的细节没有说清楚，这里写一下：</p>
-<ul>
-<li>每个分析函数开始时，参数中的 <code>position</code> 应当对应处于该分析函数的串首终结符。</li>
-<li>每个分析函数开始时，<code>position</code> 应当被修改为最后一个终结符的下一个位置。这样设计的原因是做到了左闭右开，否则的话对于空串的情况就很麻烦。如果设计成移动到终结符的位置，那么调用这个分析函数的函数就会主动将位置加一，但是如果产生式是空串呢，就要在分析函数返回前将位置减一，这样做不太优雅。</li>
-<li>体现了 <strong>预测分析</strong> 的地方在于每个分析函数中会通过查看第一个非终结符决定具体调用哪个产生式，如果都没有的话会尝试调用 $\epsilon$ 产生式，还没有的话就报错了。</li>
-</ul>
-<p>总的来看整个程序写起来还是很套路的。</p>
-<h2 id="非递归的预测分析法"><a href="#非递归的预测分析法" class="headerlink" title="非递归的预测分析法"></a>非递归的预测分析法</h2><p>非递归的预测分析法也叫 <strong>表驱动的预测分析</strong>，使用下推自动机来完成分析过程。非确定下推自动机（NPDA）可以表达所有的上下文无关语言。</p>
-<p>尽管之前学的 NPDA 中会出现不能判定路径，但是因为此处可以“预览”一个 token，并且使用的是 $LL(1)$ 文法，所以实际上这个 NPDA 中状态的变迁是确定的。</p>
-<p>NPDA 会维护一个栈，这个栈中初始有两个元素：栈顶的开始符号和栈底的结束符号 $$$（使用的是空栈结束的 NPDA？）。每次读到一个元素的时候</p>
-<ul>
-<li>如果当前栈顶是终结符且该终结符与读入元素相同，出栈，移动读位置。</li>
-<li>如果当前元素是非终结符，根据读入元素选择出产生式，出栈，将产生式压入栈中（注意方向），不移动读位置（相当于预览）。</li>
-</ul>
-<p>依然使用上一节的文法，代码如下，先定义相关的数据结构：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SymbolType</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    TERMINAL = <span class="number">1</span></span><br><span class="line">    NONTERMINAL = <span class="number">2</span></span><br><span class="line">    VARIABLE = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TokenStatus</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, tokens: List[str])</span>:</span></span><br><span class="line">        self.tokens = tokens</span><br><span class="line">        self.position = <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>其中 <code>SymbolType</code> 的 <code>VARIABLE</code> 是为了通配类似符号名和语句这样的非固定字符串。</p>
-<p>预测分析函数：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(tokens: List[str])</span>:</span></span><br><span class="line">    token_status = TokenStatus(tokens)</span><br><span class="line">    analyze_table = &#123;</span><br><span class="line">        <span class="string">'program'</span>: &#123;</span><br><span class="line">            <span class="string">'program'</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">'program'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">':'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'type'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">';'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">'end'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'dec_list'</span>: &#123;</span><br><span class="line">            <span class="literal">None</span>: [</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'identifier'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list_n'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'dec_list_n'</span>: &#123;</span><br><span class="line">            <span class="string">','</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">','</span>),</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'identifier'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list_n'</span>)</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">':'</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'st_list'</span>: &#123;</span><br><span class="line">            <span class="literal">None</span>: [</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'statement'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list_n'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'st_list_n'</span>: &#123;</span><br><span class="line">            <span class="string">';'</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">';'</span>),</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'statement'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list_n'</span>)</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">'end'</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'type'</span>: &#123;</span><br><span class="line">            <span class="string">'real'</span>: [(SymbolType.TERMINAL, <span class="string">'real'</span>)],</span><br><span class="line">            <span class="string">'int'</span>: [(SymbolType.TERMINAL, <span class="string">'int'</span>)]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stack = [(SymbolType.TERMINAL, <span class="string">'$'</span>), (SymbolType.NONTERMINAL, <span class="string">'program'</span>)]</span><br><span class="line">    <span class="keyword">while</span> len(stack) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.TERMINAL <span class="keyword">and</span> stack[<span class="number">-1</span>][<span class="number">1</span>] == token_status.tokens[token_status.position]:</span><br><span class="line">            stack.pop()</span><br><span class="line">            token_status.position += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.TERMINAL:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.VARIABLE:</span><br><span class="line">            print(<span class="string">f'Get variable typed <span class="subst">&#123;stack[<span class="number">-1</span>][<span class="number">1</span>]&#125;</span> with value <span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>'</span>)</span><br><span class="line">            stack.pop()</span><br><span class="line">            token_status.position += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.NONTERMINAL:</span><br><span class="line">            nonterminal = stack[<span class="number">-1</span>][<span class="number">1</span>]</span><br><span class="line">            stack.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="literal">None</span> <span class="keyword">in</span> analyze_table[nonterminal]:</span><br><span class="line">                stack.extend(analyze_table[nonterminal][<span class="literal">None</span>][::<span class="number">-1</span>])</span><br><span class="line">            <span class="keyword">elif</span> token_status.tokens[token_status.position] <span class="keyword">not</span> <span class="keyword">in</span> analyze_table[nonterminal]:</span><br><span class="line">                <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                peek = token_status.tokens[token_status.position]</span><br><span class="line">                stack.extend(analyze_table[nonterminal][peek][::<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Unexpected type.'</span>)</span><br><span class="line">    print(<span class="string">'Done.'</span>)</span><br></pre></td></tr></table></figure>
-<p><code>analyze_table</code> 就是驱动整个程序的表，由文法得到。它是一个 <code>dict</code>，每个 key 都是文法中的非终结符，每个 value 又是一个 <code>dict</code>，这个 <code>dict</code> 的 key 是该终结符的所有产生式的 Select 集之并（根据不同的元素使用不同的产生式），每个 value 是一个 <code>list</code>。一个例外是 <code>None</code> 这个 key，因为要匹配的是非固定的字符串所以这里这样偷懒写了，实际中我估计要从 token 中取出相关的 token 类型信息，当然这里是没有的，不过因为 <code>dec_list</code> 和 <code>st_list</code> 的生成式唯一，这么搞也没 bug，意思到了就行。</p>
-<p>运行这个程序，得到的输出是</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Get variable typed identifier with value foo</span><br><span class="line">Get variable typed identifier with value bar</span><br><span class="line">Get variable typed statement with value foo += 1</span><br><span class="line">Get variable typed statement with value foo += bar</span><br><span class="line">Get variable typed statement with value bar ++</span><br><span class="line">Get variable typed statement with value foo + bar</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
-<hr>
-<p>递归的预测分析方法和非递归的预测分析方法进行比较的话，递归的预测分析方法更加直观，效率低，难以自动生成；非递归的预测分析方法因为使用了 NPDA 可能不直观，但是对计算机更加友好。</p>
-<p>使用预测分析进行语法分析的一般步骤：</p>
-<ol>
-<li>构造文法；</li>
-<li>改造文法（消除二义性、左递归和回溯情况）；</li>
-<li>求出各个生成式的 Select 集，这一步会需要先求出各个非终结符的 First 集和 Follow 集；</li>
-<li>如果做完了之后通过 Select 集发现是 $LL(1)$ 文法，就可以构造预测分析表并选择一种实现方式进行实现。</li>
-</ol>
-<h2 id="预测分析中的错误处理"><a href="#预测分析中的错误处理" class="headerlink" title="预测分析中的错误处理"></a>预测分析中的错误处理</h2><p>在预测分析过程中如果碰到分析错误，有些情况下不一定要直接终止掉整个程序的运行，而可以从错误中恢复。</p>
-<p>以下两种情况可以进行 <strong>错误检测</strong>：</p>
-<ul>
-<li>栈顶终结符与输入符号不匹配</li>
-<li>栈顶非终结符与当前输入符号在预测分析表中没有条目（输入符号不在任何一个生成式的 Select 集中）</li>
-</ul>
-<p><strong>错误恢复</strong> 是在检测到错误后继续进行分析，错误恢复的一个策略是 <strong>恐慌模式</strong>。对应上面的两种检测到错误的情况，</p>
-<ul>
-<li><p>如果栈顶的终结符和输入符号不匹配，就直接弹出栈顶的终结符，继续运行。</p>
-</li>
-<li><p>对于每个非终结符，都可以设计一个叫做 <strong>同步词法单元</strong> 的集合，这个集合中的元素是终结符。如果栈顶的非终结符和输入符号不匹配，那么就不断跳过 token 流中的 token，直到</p>
-<ul>
-<li>遇到了在同步词法单元集合中的 token，此时就可以进行 <strong>同步</strong>，将栈顶的非终结符弹出，继续运行。</li>
-<li>遇到了可以识别的 token，即该 token 与非终结符在预测分析表中对应的条目不为空，此时将继续运行分析过程，栈顶符号不出栈。</li>
-</ul>
-<p>这个方案的效果依赖于同步词法单元的选取，例如可以将该非终结符的 Follow 集中的元素作为同步词法单元的元素，在这个情况下，可以直观感受到这种错误恢复就是一致丢弃 token 直到可以进行下一个非终结符的分析。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-4/" class="post-title-link" itemprop="url">编译原理慕课笔记 4</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:16:28" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:28+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="语法分析-1"><a href="#语法分析-1" class="headerlink" title="语法分析-1"></a>语法分析-1</h1><h2 id="自顶向下分析概述"><a href="#自顶向下分析概述" class="headerlink" title="自顶向下分析概述"></a>自顶向下分析概述</h2><p>语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 <em>推导</em> 出这个词法单元串，另一个是找到这个词法单元串如何 <em>归约</em> 到初始符号，这两种做法分别叫做 <strong>自顶向下分析</strong> 和 <strong>自底向上分析</strong>。</p>
-<p>使用自顶向下分析时，每一步中都要做两个选择，一个是 <strong>替换当前句型中的哪个非终结符</strong>，另一个是 <strong>将这个非终结符替换为哪个候选式</strong>（一个非终结符的多个产生式称为它的 <strong>候选式</strong>）。</p>
-<h3 id="最左推导与最右推导"><a href="#最左推导与最右推导" class="headerlink" title="最左推导与最右推导"></a>最左推导与最右推导</h3><p>如果推导过程中总是将句型中最左边的非终结符替换为它的候选式，这样的推导过程称作是 <strong>最左推导</strong>，它的逆过程称为 <strong>最右归约</strong>（注意最右归约总是将最右边可以进行归约的部分进行归约）。一个文法通过最左推导得到的句型称为 <strong>最左句型</strong>。</p>
-<p>同样的，可以定义 <strong>最右推导</strong>、<strong>最左归约</strong> 以及 <strong>最右句型</strong>。</p>
-<p>当我们使用自底向上的分析时，会使用最左归约，因此最左归约过程又称为 <strong>规范归约</strong>，对应地，最右推导被称为是 <strong>规范推导</strong>。</p>
-<p>给定一个句型，它的最左推导和最右推导都是唯一的。</p>
-<h3 id="使用最左推导进行自顶向下分析"><a href="#使用最左推导进行自顶向下分析" class="headerlink" title="使用最左推导进行自顶向下分析"></a>使用最左推导进行自顶向下分析</h3><p>因为词法单元流是从左到右生成的，使用自顶向下分析时一般采用的是最左推导。工作方式如下</p>
-<ul>
-<li>使用最左推导，每次从当前的句型中选择最左边的非终结符进行推导（这解决了替换哪个终结符的问题）。</li>
-<li>通过查看右边的若干个词法单元（通常是 1 个）来确定要推导为哪个候选式（这解决了替换为哪个候选式的问题，注意不一定总是可以一次成功）。</li>
-<li>不断进行上述的过程，如果初始符号可以完全推导开，则表明语法分析成功，否则失败。当成功的时候得到的分析树就是需要的分析树。</li>
-</ul>
-<p>实现上要使用一个叫做 <strong>递归下降分析</strong> 的技术，这个技术叫这个名字估计就是因为分析树就是是以递归形式展开的，而展开的时候层数越多越往下。</p>
-<p>递归下降分析中，我们需要为每个非终结符定义一个对应的 <strong>过程</strong>。这个过程的一般套路是这样的（假设我们要当前的非终结符是 $A$）：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   	选择 A 的一个产生式 A -&gt; X_1 X_2 X_3 ... X_k;</span><br><span class="line">   	<span class="keyword">for</span> i in <span class="number">1.</span>.k &#123;</span><br><span class="line">        <span class="keyword">if</span> (X_i 是一个非终结符) &#123;</span><br><span class="line">            调用 X_i 对应的过程 X_i();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (X_i 等于当前的输入符号) &#123;</span><br><span class="line">            读取当前的输入符号;</span><br><span class="line">        &#125; esle &#123;</span><br><span class="line">            报错;</span><br><span class="line">        &#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过调用初始符号对应的过程就可以对整个程序进行语法分析。</p>
-<p>其中选择产生式这一步不一定正好就能一次选对。如果一次无法选对的话就需要进行 <strong>回溯</strong> 然后选择其它的候选式，这个过程会降低语法分析的效率。使用了回溯的分析器叫做不确定性分析器。</p>
-<p>我们可以通过设计合适的文法来避免使用回溯。<strong>预测分析</strong> 是递归下降技术的一个特例，它是确定性的，它通过在词法单元流中向后看 $k$ 个符号来选择当前 <strong>正确</strong> 的候选式。使用了预测分析后可以避免回溯（因为每次都选择了正确的候选式），对应的文法称作是 $LL(k)$ 文法。通常来说 $k = 1$。</p>
-<h2 id="文法转换"><a href="#文法转换" class="headerlink" title="文法转换"></a>文法转换</h2><p>有些文法在使用自顶向下分析时会遇到问题，有的问题来自于一个非终结符的候选式中存在前缀相同的候选式（导致如果向前看的个数少的话会不知道要选择哪个候选式），有的问题来自于 <strong>左递归的文法</strong> 会让分析器进入无限循环。</p>
-<h3 id="提取左公因子"><a href="#提取左公因子" class="headerlink" title="提取左公因子"></a>提取左公因子</h3><p>对于第一个问题我们可以 <strong>提取左公因子</strong>。提取左公因子的算法接收一个文法，输出的是不含左公因子的等价文法。这个算法很简单，就是对于每个非终结符，找到它的两个含有非平凡左公因子的候选式并求出最长左公因子，然后提取出来。重复进行下去，直到所有的产生式都没有公因子为止。通用的形式为：</p>
-<script type="math/tex; mode=display">
-A\rightarrow \alpha\beta_1|\alpha\beta_2|\cdots|\alpha\beta_n|\gamma_1|\gamma_2|\cdots|\gamma_m \\</script><p>被替换为</p>
-<script type="math/tex; mode=display">
-A\rightarrow \alpha A'|\gamma_1|\gamma_2|\cdots|\gamma_m \\
-A'\rightarrow \beta_1|\beta_2|\cdots|\beta_n</script><h3 id="消除左递归文法"><a href="#消除左递归文法" class="headerlink" title="消除左递归文法"></a>消除左递归文法</h3><p>所谓的左递归文法指的是存在一个串 $\alpha$ 使得 $A\rightarrow^+ A\alpha$，也仅是经过若干步推导后，$A$ 可以推导出一个以自己开头的句型。如果这个推导过程一步就可以完成，那么称为是 <strong>直接左递归</strong>，否则如果需要多步推导是称为 <strong>间接左递归</strong>（零步推导是平凡的，不考虑）。</p>
-<p><strong>对于一个简单的直接左递归产生式</strong>，可以将它转化成右递归产生式。对于产生式 $A\rightarrow A\alpha|\beta$，如果 $\alpha\neq\epsilon$ 且 $\beta$ 不以 $A$ 开头，那么这个产生式实际上等价于 $A\rightarrow\beta A&#39;;A&#39;\rightarrow\alpha A&#39;|\epsilon$。</p>
-<p>更加一般的形式是：</p>
-<script type="math/tex; mode=display">
-A\rightarrow A\alpha_1|A\alpha_2|\cdots|A\alpha_n|\beta_1|\beta_2|\cdots|\beta_m(\alpha_i\neq\epsilon, A\ \mbox{is not prefix of}\ \beta_j)</script><p>等价于</p>
-<script type="math/tex; mode=display">
-A \rightarrow \beta_1A'|\beta_2A'|\cdots|\beta_mA' \\
-A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于 <strong>间接左递归</strong> 的情况，可以考虑将一个产生式带入另一个产生式当中以破坏掉环形的产生式依赖关系，这样做了之后可以对其中一个产生式消除掉左递归，然后就不会有左递归出现了。</p>
-<p>消除左递归的代价是引入新的非终结符和 $\epsilon$ 产生式。</p>
-<h2 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="$LL(1)$ 文法"></a>$LL(1)$ 文法</h2><h3 id="S-文法"><a href="#S-文法" class="headerlink" title="S 文法"></a>S 文法</h3><p>S 文法又叫作 <strong>简单的确定性文法</strong>。它要求每个产生式必须以终结符开头，并且同一个非终结符的所有产生式的开头的终结符不能相同。S 文法的这个要求就使得 S 文法中的产生式不能包括 $\epsilon$ 产生式。S 文法可以很方便地构造出预测分析器。</p>
-<h3 id="含有-epsilon-产生式的文法"><a href="#含有-epsilon-产生式的文法" class="headerlink" title="含有 $\epsilon$ 产生式的文法"></a>含有 $\epsilon$ 产生式的文法</h3><p><strong>对于每个非终结符</strong>，可以给它定义一个 <strong>后继符号集</strong>。后继符号集是终极符的集合，一个终结符 $a$ 如果在 $A$ 的后继符号集中，就必然有从初始符号 $S$ 开始的某个推导，使得 $S\Rightarrow^\star \alpha Aa\beta$，即 $a$ 需要在某个合法的句型中为 $A$ 的直接后继。特别地，如果 $A$ 在某个句型中是最后一个符号（后面没有任何终极符或非终结符），则 $$$（表示句子的结尾）也在 $A$ 的后继符号集中。$A$ 的后继符号集记作是 $A$ 的 Follow 集。</p>
-<p><strong>对于每个产生式</strong>，可以定义产生式的 <strong>可选集</strong>。可选集是终极符或者非终结符的集合，一个符号 $x$ 如果在某个产生式的可选集当中，就表明如果当前正在从某个句型开始推导并且输入符号为 $x$，则可以选用这个产生式。可选集记作 Select 集。以下是两个例子：</p>
-<ul>
-<li>Select($A\rightarrow a\beta$) = $\{a\}$：只有在输入符号是 $a$ 的时候才可能选用这个产生式。</li>
-<li>Select($A\rightarrow\epsilon$) = Follow($A$)：只要输入符号在 $A$ 的 Follow 集中就可以使用这个产生式。</li>
-</ul>
-<p>再看定义，所谓的 <em>输入符号</em> 指的是当 $A$ 是最左的符号，需要选择一个产生式进行推导时，我们要看 $A$ 右边的终结符决定使用哪个产生式。对于 $A$ 的每个产生式，只有这个终结符位于该产生式的 Select 集中时，我们才可能使用这个产生式。</p>
-<p>通过引入这个概念可以方便引入含有 $\epsilon$ 产生式的文法，其中的一种叫做 <strong>q 文法</strong>，该文法要求每个产生式的右边要么是 $\epsilon$ 要么以不同的终极符开始；此外，同一个非终结符的所有产生式的 Select 集应该两两不交（这个好理解，如果某两个 Select 相交，那么对于交集中的某个元素，当它是输入符号时，就无法确定使用哪个产生式）。<strong>q 文法产生式不能以非终结符开始。</strong></p>
-<h3 id="产生式可以以非终结符开始的文法"><a href="#产生式可以以非终结符开始的文法" class="headerlink" title="产生式可以以非终结符开始的文法"></a>产生式可以以非终结符开始的文法</h3><p><strong>对于每个串</strong>（一个串一般是个句型），我们可以定义 <strong>串首终结符集合</strong>。这个集合是终结符的集合，一个终结符 $a$ 如果在 $\alpha$ 的串首终结符集中，那么有 $\alpha \Rightarrow ^\star a\beta$。特别地，如果 $\alpha\Rightarrow^\star\epsilon$，则 $\epsilon$ 也在这个集合中。串首终结符集合称为 $a$ 的 First 集。</p>
-<p>First 集、Follow 集和 Select 集的性质：</p>
-<ul>
-<li>$\epsilon \notin \mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=\mbox{First}(\alpha)$：如果一个串 $\alpha$ 无法推导出空串，那么当它作为产生式的右部时，只有这个串的串首终结符作为输入符号的时候才能考虑使用该产生式。</li>
-<li>$\epsilon\in\mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=(\mbox{First}(\alpha)-\{\epsilon\})\cup\mbox{Follow}(A)$：如果一个串 $\alpha$ 可以产生空串，那么当它作为产生式的右部时，它的串首终结符或者产生式的左部的后继符号集总的元素作为输入符号时都可以使用该产生式。</li>
-</ul>
-<p>这两个性质还比较显然，上述的两个性质也可以看作是 Select 集的定义。</p>
-<p>由此可以定义 $LL(1)$ 文法，其正式的定义如下。</p>
-<p>如果 $G$ 是 $LL(1)$ 文法，当且仅当 $G$ 中的任意具有两个相同左部的生成式 $A\rightarrow\alpha|\beta$，满足以下三者之一：</p>
-<ul>
-<li>$\epsilon\notin\mbox{First}(\alpha),\epsilon\notin\mbox{First}(\beta),\mbox{First}(\alpha)\cap\mbox{First}(\beta) =\varnothing$。解释：如果 $\alpha$ 和 $\beta$ 都不能推导出空串，那么它们的串首符号集不能相交，否则，无法决定相交元素为输入符号时选择哪个产生式。</li>
-<li>$\epsilon\in\mbox{First}(\alpha), \epsilon\notin\mbox{First}(\beta), \mbox{First}(\beta)\cap\mbox{Follow}(A)=\varnothing$。解释：如果 $\alpha$ 可以推导出空串，那么 $\beta$ 必须不能推导出空串。并且 $\beta$ 的串首符号集和 $A$ 的后继符号集不能相交，否则，当交集中的某个元素作为输入符号时，无法断决是使用 $\alpha$ 还是使用 $\beta$ 作为产生式。</li>
-<li>$\epsilon\in\mbox{First}(\beta), \epsilon\notin\mbox{First}(\alpha), \mbox{First}(\alpha)\cap\mbox{Follow}(A)=\varnothing$。这个与上面的对偶。</li>
-</ul>
-<p>不可能出现 $\alpha$ 和 $\beta$ 都能推导出空串的情况。</p>
-<p>$LL(1)$ 文法的同一个非终结符的多个产生式的 Select 集不会相交，因此还是可以构造出预测分析器。</p>
-<hr>
-<p>上面提到的三个文法都可以构造预测分析器，不过三个文法的方便程度依次增强。q 文法不支持产生式右部以非终结符开头，但是 $LL(1)$ 文法是可以的。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-3/" class="post-title-link" itemprop="url">编译原理慕课笔记 3</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:16:23" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:23+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h1><h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><p>正则表达式是正则文法的更加紧凑的一个定义。</p>
-<p>对于每个正则文法都能写出对应的正则表达式，反之亦然。</p>
-<p>该节具体内容已熟悉，此处略去。</p>
-<h2 id="正则定义"><a href="#正则定义" class="headerlink" title="正则定义"></a>正则定义</h2><p>所谓的正则定义是对一个正则表达式命名，方便后续的使用。</p>
-<p>例如需要写出 C 语言中变量命名的正则表达式，它可以这样写出</p>
-<script type="math/tex; mode=display">
-digit\rightarrow0|1|2|3|\cdots|8|9 \\
-letter\_\rightarrow a|b|c|\cdots|z|A|B|\cdots|Z|\_ \\
-symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则定义后更加简明了。</p>
-<h2 id="有穷自动机"><a href="#有穷自动机" class="headerlink" title="有穷自动机"></a>有穷自动机</h2><p>该节具体内容已熟悉，此处略去。</p>
-<h2 id="有穷自动机的分类"><a href="#有穷自动机的分类" class="headerlink" title="有穷自动机的分类"></a>有穷自动机的分类</h2><p>有穷自动机分为确定有穷自动机和非确定有穷自动机，其中非确定有穷自动机分为能够带有 $\epsilon$ 转移的和不能带有 $\epsilon$ 转移两种，但是表达能力相同。</p>
-<p>不论是哪种有穷自动机，它能够描述的语言总是正则语言。正则表达式、正则文法和有穷自动机的表达能力相同。</p>
-<p>有穷自动机的具体内容已熟悉，此处略去。</p>
-<h2 id="从正则表达式到有穷自动机"><a href="#从正则表达式到有穷自动机" class="headerlink" title="从正则表达式到有穷自动机"></a>从正则表达式到有穷自动机</h2><p>为了能够使用正则表达式，需要将它转化为确定有穷自动机（DFA），这个过程比较复杂，可以考虑先转化为非确定有穷自动机（NFA）。</p>
-<p>正则表达式转化为 NFA 的过程已熟悉，此处略去。</p>
-<h2 id="从-NFA-到-DFA-的转换"><a href="#从-NFA-到-DFA-的转换" class="headerlink" title="从 NFA 到 DFA 的转换"></a>从 NFA 到 DFA 的转换</h2><p>该节具体内容已熟悉，此处略去。转化方法可是使用 NFA 中集合的幂集的子集作为 DFA 的状态集合，这个方法叫做 <strong>子集构造法</strong>。</p>
-<h2 id="识别单词的-DFA"><a href="#识别单词的-DFA" class="headerlink" title="识别单词的 DFA"></a>识别单词的 DFA</h2><p>这一节主要是 DFA 的例子。</p>
-<p>在词法分析阶段使用到的工具可以就是 DFA。它可以进行错误检测。工作方式：让字符流通过这个 DFA，直到发生错误（慕课中的 DFA 不是每个状态都有所有的转移，和我学的 DFA 略有不同；一般来说 DFA 会有一个陷阱状态，发生错误指的就是进入了这个状态）。当发生了这个错误之后只能说明 DFA 解析出错，<strong>并不能说明程序本身有错</strong>。此时将读取字符的指针向前移动，一直定位到最后一个位于终止状态的字符，将这个字符以及它前面的所有字符判定为一个单词。不过，也有找不到这样的单词的情况，如果这发生了，就表明程序真的发生的错误，此时要进行 <strong>错误恢复</strong>。错误恢复的一个策略叫做 <strong>恐慌模式</strong>，这种模式将首先定位到上一个成功解析的单词的结尾，然后尝试不断跳过无法解析的字符，直到找到一个可以解析的字符为止，从此处开始解析。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2359,7 +2250,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2414,7 +2305,9 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                     
                       
                     
-                    <span class="site-state-item-count">18</span>
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
