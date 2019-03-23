@@ -117,18 +117,20 @@
 
 
 
-  <meta name="description" content="Object detectionDetection algorithmsObject LocalizationLandmark DetectionObject DetectionConvolutional Implementation of Sliding WindowsBounding Box PredictionsIntersection Over UnionNon-max Suppressi">
+  <meta name="description" content="Object detectionDetection algorithmsObject Localization图像输入的任务对于图像输入，常见的任务有以下几种：  Image classification（分类）：对图像进行分类。 Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。 Detection（目标检测">
 <meta name="keywords" content="机器学习,深度学习,CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Convolutional Neural Networks 笔记 3 Object detection">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
-<meta property="og:description" content="Object detectionDetection algorithmsObject LocalizationLandmark DetectionObject DetectionConvolutional Implementation of Sliding WindowsBounding Box PredictionsIntersection Over UnionNon-max Suppressi">
+<meta property="og:description" content="Object detectionDetection algorithmsObject Localization图像输入的任务对于图像输入，常见的任务有以下几种：  Image classification（分类）：对图像进行分类。 Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。 Detection（目标检测">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-14T07:58:38.002Z">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/snipaste_20190323_161336.png">
+<meta property="og:updated_time" content="2019-03-23T09:27:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convolutional Neural Networks 笔记 3 Object detection">
-<meta name="twitter:description" content="Object detectionDetection algorithmsObject LocalizationLandmark DetectionObject DetectionConvolutional Implementation of Sliding WindowsBounding Box PredictionsIntersection Over UnionNon-max Suppressi">
+<meta name="twitter:description" content="Object detectionDetection algorithmsObject Localization图像输入的任务对于图像输入，常见的任务有以下几种：  Image classification（分类）：对图像进行分类。 Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。 Detection（目标检测">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/snipaste_20190323_161336.png">
 
 
 
@@ -399,12 +401,24 @@
                 
               
 
-              <time title="创建时间：2019-03-14 15:50:24 / 修改时间：15:58:38" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-14 15:50:24" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-23 17:27:13" itemprop="dateModified" datetime="2019-03-23T17:27:13+08:00">2019-03-23</time>
               
             
           </span>
@@ -438,7 +452,67 @@
       
 
       
-        <h1 id="Object-detection"><a href="#Object-detection" class="headerlink" title="Object detection"></a>Object detection</h1><h2 id="Detection-algorithms"><a href="#Detection-algorithms" class="headerlink" title="Detection algorithms"></a>Detection algorithms</h2><h3 id="Object-Localization"><a href="#Object-Localization" class="headerlink" title="Object Localization"></a>Object Localization</h3><h3 id="Landmark-Detection"><a href="#Landmark-Detection" class="headerlink" title="Landmark Detection"></a>Landmark Detection</h3><h3 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h3><h3 id="Convolutional-Implementation-of-Sliding-Windows"><a href="#Convolutional-Implementation-of-Sliding-Windows" class="headerlink" title="Convolutional Implementation of Sliding Windows"></a>Convolutional Implementation of Sliding Windows</h3><h3 id="Bounding-Box-Predictions"><a href="#Bounding-Box-Predictions" class="headerlink" title="Bounding Box Predictions"></a>Bounding Box Predictions</h3><h3 id="Intersection-Over-Union"><a href="#Intersection-Over-Union" class="headerlink" title="Intersection Over Union"></a>Intersection Over Union</h3><h3 id="Non-max-Suppression"><a href="#Non-max-Suppression" class="headerlink" title="Non-max Suppression"></a>Non-max Suppression</h3><h3 id="Anchor-Boxes"><a href="#Anchor-Boxes" class="headerlink" title="Anchor Boxes"></a>Anchor Boxes</h3><h3 id="YOLO-Algorithm"><a href="#YOLO-Algorithm" class="headerlink" title="YOLO Algorithm"></a>YOLO Algorithm</h3><h3 id="Optional-Region-Proposals"><a href="#Optional-Region-Proposals" class="headerlink" title="(Optional) Region Proposals"></a>(Optional) Region Proposals</h3>
+        <h1 id="Object-detection"><a href="#Object-detection" class="headerlink" title="Object detection"></a>Object detection</h1><h2 id="Detection-algorithms"><a href="#Detection-algorithms" class="headerlink" title="Detection algorithms"></a>Detection algorithms</h2><h3 id="Object-Localization"><a href="#Object-Localization" class="headerlink" title="Object Localization"></a>Object Localization</h3><h4 id="图像输入的任务"><a href="#图像输入的任务" class="headerlink" title="图像输入的任务"></a>图像输入的任务</h4><p>对于图像输入，常见的任务有以下几种：</p>
+<ul>
+<li>Image classification（分类）：对图像进行分类。</li>
+<li>Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。</li>
+<li>Detection（目标检测）：对图像中的目标给出 bounding box。</li>
+</ul>
+<p>其中分类和带定位的分类都只有一个目标对象，而目标检测可能有多个目标对象。</p>
+<h4 id="输出的定义"><a href="#输出的定义" class="headerlink" title="输出的定义"></a>输出的定义</h4><p>对于带定位的分类，处理手段一般是将图片通过 CNN 然后提取出一个特征，该特征的构成如下：第一个分量 $\displaystyle{p_c}​$ 指示了图片中存在目标的概率（因为这种任务中输入可能是什么目标都没有）；随后的四个分量分别指出了目标在图片中的位置和 bounding box 大小；随后的若干个分量来自于一个 softmax 的输出，指示了目标的分类。因此，如果分类有 $n​$ 个，特征就有 $\displaystyle{n + 5}​$ 个分量。</p>
+<ul>
+<li>对于第一个分量，如果接近零表示无目标，此时后续分量没有意义。计算损失函数时记得考虑。</li>
+<li>对于后面的四个分量 $\displaystyle{b_x, b_y, b_h, b_w}$，它们的值介于 0 到 1 之间。其中 $\displaystyle{b_x, b_y}$ 指示目标中心点的位置；$\displaystyle{b_h, b_w}$ 指示目标的高度和宽度。位置和长度都是以图片作为基准单位的，图片左上角坐标为 $\displaystyle{(0, 0)}$，右下角为 $\displaystyle{(1, 1)}$；图片的长和宽都定为 1。</li>
+</ul>
+<p>在计算损失函数时，一般在 $\displaystyle{p_c = 1}$ 时采用均方误差，$\displaystyle{p_c = 0}$ 时只看算法是否预测对了图像中没有目标。也可以将代表分类的那几个分量单独取出做交叉熵。</p>
+<h3 id="Landmark-Detection"><a href="#Landmark-Detection" class="headerlink" title="Landmark Detection"></a>Landmark Detection</h3><p>Landmark detection 可以用来识别图片中的关键点，例如人脸的眼角、身躯的骨骼等。在 AR 领域有应用。它和上一节的不同之处在于 landmark detection 只用给出点的位置，而不需要大小。</p>
+<p>对于一类图片可以给出多个 landmark，每个 landmark 占用两个分量来表示坐标。此外，还需要一个额外的分量来表示给定的图片到底是不是存在可以判定的对象（实际上就是二分类 CNN 的输出）。如果要给出多个 landmark，那么一个网络的输出中每个 landmark 的顺序必须是固定的：例如要识别身躯的头部，头部是第一个 landmark，那么网络给出的所有输出中，第一组坐标对应的都是头部。</p>
+<h3 id="Object-Detection"><a href="#Object-Detection" class="headerlink" title="Object Detection"></a>Object Detection</h3><p>现在考虑目标检测任务，可以搞出下面这个非常垃圾的实现。</p>
+<ol>
+<li>首先准备一些训练样本图片，这些样本图片要么是几乎完全被目标占据的，要么就是没有目标的。然后训练出一个 CNN 让它能够将这两类样本分开。</li>
+<li>随后就可以开始进行目标检测了。这里使用滑窗算法，选择窗口大小和步长，在要进行目标检测的图片上滑动。滑动的结果送入 CNN 中判定是否是目标，如果是的话就标记为一个 bounding box。不断改变滑窗算法的参数即可。</li>
+</ol>
+<p>这么做的话，计算成本巨大。如果要减小成本就要使用更加粗糙的参数，导致性能较差。不过可以通过卷积的方式减小计算成本。</p>
+<h3 id="Convolutional-Implementation-of-Sliding-Windows"><a href="#Convolutional-Implementation-of-Sliding-Windows" class="headerlink" title="Convolutional Implementation of Sliding Windows"></a>Convolutional Implementation of Sliding Windows</h3><h4 id="使用卷积实现全连接"><a href="#使用卷积实现全连接" class="headerlink" title="使用卷积实现全连接"></a>使用卷积实现全连接</h4><p>全连接层可以使用卷积核大小为输入大小的卷积层实现。</p>
+<p>例如需要将 $\displaystyle{h\times w \times c}$ 的输入映射到 $\displaystyle{n}$ 维的输出。全连接的做法是向对原来的输入进行 reshape，变成 $\displaystyle{hwc}$ 维的向量，然后做线性变换到 $\displaystyle{n}$ 维后施加激活函数。而通过使用 $\displaystyle{n}$ 个卷积核大小为 $\displaystyle{h\times w}$ 的卷积操作（按照前面所讲，卷积操作将会在所有通道上用不同参数卷积），每个卷积核得到的是一个大小为 $\displaystyle{1\times 1\times 1}$ 的输出，加上偏置后施加激活函数。这样一来经过这种卷积得到的就是 $\displaystyle{1\times 1\times n}$ 的输出了。<strong>因此在数学上，使用卷积可以实现全连接。</strong></p>
+<h4 id="使用卷积实现滑窗算法"><a href="#使用卷积实现滑窗算法" class="headerlink" title="使用卷积实现滑窗算法"></a>使用卷积实现滑窗算法</h4><p>在上一节提出了一个垃圾实现，这里可以使用卷积优化运算量。</p>
+<ol>
+<li>首先，对于之前建立的那个进行二分类的 CNN，需要将其中的全连接层使用卷积层替换掉。根据上一小节的笔记，二者还是等价的。</li>
+<li>因为卷积操作的参数是不依赖于输入的规模的（如果输入变大的话输出也会跟着变大），直接将原来的算法应用于整个图像上，而不是窗口上。这么操作之后，整个算法的最终输出就发生了变化。如果原来的滑窗算法中，横向会取 $\displaystyle{n_1}$ 个窗口，纵向会取 $\displaystyle{n_2}$ 个窗口，那么如果原来的算法最终输出是 $\displaystyle{n}$ 维的，现在的算法的最终输出就是 $\displaystyle{n_1 \times n_2\times n}$ 维的，其中 $\displaystyle{n_1}$ 和 $\displaystyle{n_2}$ 所在的维度对应的那个 $\displaystyle{n}$ 维特征正好是原来对应窗口的特征。</li>
+</ol>
+<img src="/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/snipaste_20190323_161336.png">
+<p>如上图中，上一行是原始算法，下一行是卷积实现的滑窗。要处理的图片大小是 $\displaystyle{16\times 16}$ 的，窗口大小是 $\displaystyle{14\times 14}$，步长为 2。最后得到的 4 个输出分别对应原来的四个窗口。</p>
+<hr>
+<p>优化在于，原来的算法每次只能得到一个窗口对应的特征，现在一次就能得到多个窗口对应的特征，有很多计算结果都被重用了，因此效率提高了。不过，这么做不能依然给出精确的边界。</p>
+<h3 id="Bounding-Box-Predictions"><a href="#Bounding-Box-Predictions" class="headerlink" title="Bounding Box Predictions"></a>Bounding Box Predictions</h3><p>为了对多个目标进行检测，同时给出 bounding box，需要结合滑窗算法和带定位分类中使用到的输出。</p>
+<p>具体来说，首先对图片进行横向和纵向的切分，现在得到的是一个网格，格子之间没有重叠。每个格子都是一个窗口的取值，使用上一节的方法，将滑窗算法转化为一个单独的 CNN。至于输出，则使用带定位的分类中使用到的 $\displaystyle{n + 5}$ 风格的那种输出。</p>
+<p>对于图像中的每个目标，它都只会有唯一一个中心点，而这个中心点只会处于一个格子中。现在先不考虑一个格子中出现了多个目标的中心点的情况。</p>
+<ul>
+<li>对于这个格子，我们希望算法输出的特征是 $\displaystyle{p_c = 1}$，负责分类的向量给出了正确的分类，负责定位的分量给出了正确的定位，其中定位位置的分量位于 0 到 1 之间，给出的位置是相对这个格子的位置；负责高度和宽度的分量大于 0 即可，度量时以一个格子作为一个单位，长度可能大于一个单位（这里没想清楚算法是怎么知道除了自己负责的这个格子以外的情况的）。</li>
+<li>对于其它不含任何中心点的格子，我们希望算法输出的特征是 $\displaystyle{p_c = 0}$，这样就不必考虑后面的分量了（尽管这一般难以实现）。</li>
+</ul>
+<p>按照上面的规则，如果一个目标确实比较大而占据了多个格子，我们也只取它中心点所在的格子。至于其它格子的输出将 $\displaystyle{p_c}$ 输出为 1 会在后面进行修正。如此一来，只要格子划分得足够细密，就可以得到足够多的目标的精确边界。</p>
+<p>上面的算法是 YOLO 模型使用的算法的高度简化版本。</p>
+<hr>
+<p><em>存在的一个问题是，对单个格子进行处理的时候到底是怎么知道中心点位于这个格子内部的那个目标的长度和宽度的？</em></p>
+<h3 id="Intersection-Over-Union"><a href="#Intersection-Over-Union" class="headerlink" title="Intersection Over Union"></a>Intersection Over Union</h3><p>Intersection Over Union 简称 IoU，可以用来衡量两个矩形在位置和大小上的相似程度。IoU 的值等于这两个矩形的交的面积比上并的面积，越接近 1 表示相似度越大。</p>
+<p>可以使用 IoU 对 bounding box 的正确性进行度量。例如将阈值设置为 0.5，当算法确定的 bounding box 和真实数据 IoU 大于该阈值时，即可认为算法在这个输出上是正确的。</p>
+<h3 id="Non-max-Suppression"><a href="#Non-max-Suppression" class="headerlink" title="Non-max Suppression"></a>Non-max Suppression</h3><p>前面提到了，我们只希望一个格子中具有中心点，但是运行算法后往往有多个格子都认为自己有中心点。处理方法是这样的：</p>
+<ol>
+<li>找到 $\displaystyle{p_c}$ 最大的那个格子（$\displaystyle{p_c}$ 实际上是这个格子包含中心点的概率，不一定非 0 则 1）。</li>
+<li>找到这个格子对应的 bounding box，记作 $\displaystyle{b_1}$。</li>
+<li>对于其它格子预测出的 bounding box，如果这些 bounding box 和 $\displaystyle{b_1}$ 的 IoU 大于某个给定阈值，则认为两个实际上是同一个对象，忽略掉对应的 bounding box。</li>
+</ol>
+<p>重复这个算法，直到没有任何两个 bounding box 的 IoU 大于给定阈值。剩下来的 bounding box 每个对应一个目标。</p>
+<h3 id="Anchor-Boxes"><a href="#Anchor-Boxes" class="headerlink" title="Anchor Boxes"></a>Anchor Boxes</h3><p>前述算法依然可以改进的地方是，每个格子只能检测一个对象。通过引入锚框的概念，现在一个格子可以检测有限多个对象。</p>
+<p>锚框指的应该是固定高宽比的一个框。例如人的 bounding box 一般是高度大于宽度，而车的 bounding box 一般是宽度大于高度。因此可以确定针对人的锚框和针对车的锚框，它们的高宽比不一样。不过锚框只是一些矩形，它们和分类没有必然联系。在提取特征时，之前提取的是 $\displaystyle{n + 5}$ 维的特征，如果希望每个格子中最多可以包括两个对象的话，就将之前的方案重复两遍，得到 $\displaystyle{2\times (n + 5)}$ 的特征。</p>
+<p>现在运行算法。在训练时，$\displaystyle{2\times (n + 5)}$ 的特征中两组分别负责两个不同的锚框。它们之间的顺序是确定的；例如在设计标签时，可以将高度大于宽度的对象分配到第一组 $\displaystyle{n + 5}$ 维中，而宽度大于高度的分配到第二组中。在预测时，目标不仅会被分配到一个格子，还会被分配到一个锚框类型，这就提高了一个格子中可以检测的目标数量。例如，如果一个人和一辆车的中心点都位于某个格子中，而人被分到了高度大于宽度的锚框，车被分到了另一个，那么就成功在一个格子中检测到了两个对象。</p>
+<hr>
+<p>不过，这个算法并不能处理一个格子中的多个目标高宽比相同，以及一个格子中的目标数超过锚框数的情况。</p>
+<h3 id="YOLO-Algorithm"><a href="#YOLO-Algorithm" class="headerlink" title="YOLO Algorithm"></a>YOLO Algorithm</h3><p>这一节是对上面几节的综合。值得记录的一点是，在使用 non-max suppression 的时候，每个类别应该单独进行 non-max suppression。例如需要在图像中识别出行人和车辆两个类别，而算法得到了很多 bounding box，各个 bounding box 具有不同的种类，而同一个对象可能有多个 bounding box。此时要做的是，取出对应地被识别为行人的那些 bounding box 执行 non-max suppression，然后取出对应地被识别为车辆的那些 bounding box 执行 non-max suppression。</p>
+<h3 id="Region-Proposals"><a href="#Region-Proposals" class="headerlink" title="Region Proposals"></a>Region Proposals</h3><p>候选区域是目标检测的一种策略。在上述算法中，很多窗口中的内容应用传统的视觉处理手段就可以判定它基本上没有目标，但是使用 CNN 还是要提取特征，这比较浪费。一个处理手段是先对图像进行 segmentation 得到那些可能具有目标的区域，对这些区域的 bounding box 直接运行识别和分类的 CNN。这个算法称为 R-CNN。</p>
+<p>Fast R-CNN 对 R-CNN 作了改进，它使用卷积实现的滑窗操作对每个 bounding box 进行分类，在速度上有所改进。Faster R-CNN 在此基础上，使用 CNN 而非传统算法进行 segmentation。</p>
+
       
     </div>
 
@@ -478,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" rel="next" title="Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer">
-                <i class="fa fa-chevron-left"></i> Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer
+              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/" rel="next" title="Convolutional Neural Networks 笔记 2 Deep convolutional models: case studies">
+                <i class="fa fa-chevron-left"></i> Convolutional Neural Networks 笔记 2 Deep convolutional models: case studies
               </a>
             
           </div>
@@ -488,8 +562,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/18/形式化验证课程笔记-4/" rel="prev" title="形式化验证课程笔记 4">
-                形式化验证课程笔记 4 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" rel="prev" title="Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer">
+                Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -676,7 +750,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-detection"><span class="nav-number">1.</span> <span class="nav-text">Object detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Detection-algorithms"><span class="nav-number">1.1.</span> <span class="nav-text">Detection algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Localization"><span class="nav-number">1.1.1.</span> <span class="nav-text">Object Localization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Landmark-Detection"><span class="nav-number">1.1.2.</span> <span class="nav-text">Landmark Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Detection"><span class="nav-number">1.1.3.</span> <span class="nav-text">Object Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolutional-Implementation-of-Sliding-Windows"><span class="nav-number">1.1.4.</span> <span class="nav-text">Convolutional Implementation of Sliding Windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bounding-Box-Predictions"><span class="nav-number">1.1.5.</span> <span class="nav-text">Bounding Box Predictions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intersection-Over-Union"><span class="nav-number">1.1.6.</span> <span class="nav-text">Intersection Over Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-max-Suppression"><span class="nav-number">1.1.7.</span> <span class="nav-text">Non-max Suppression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anchor-Boxes"><span class="nav-number">1.1.8.</span> <span class="nav-text">Anchor Boxes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YOLO-Algorithm"><span class="nav-number">1.1.9.</span> <span class="nav-text">YOLO Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optional-Region-Proposals"><span class="nav-number">1.1.10.</span> <span class="nav-text">(Optional) Region Proposals</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Object-detection"><span class="nav-number">1.</span> <span class="nav-text">Object detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Detection-algorithms"><span class="nav-number">1.1.</span> <span class="nav-text">Detection algorithms</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Localization"><span class="nav-number">1.1.1.</span> <span class="nav-text">Object Localization</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图像输入的任务"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">图像输入的任务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出的定义"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">输出的定义</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Landmark-Detection"><span class="nav-number">1.1.2.</span> <span class="nav-text">Landmark Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-Detection"><span class="nav-number">1.1.3.</span> <span class="nav-text">Object Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolutional-Implementation-of-Sliding-Windows"><span class="nav-number">1.1.4.</span> <span class="nav-text">Convolutional Implementation of Sliding Windows</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用卷积实现全连接"><span class="nav-number">1.1.4.1.</span> <span class="nav-text">使用卷积实现全连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用卷积实现滑窗算法"><span class="nav-number">1.1.4.2.</span> <span class="nav-text">使用卷积实现滑窗算法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bounding-Box-Predictions"><span class="nav-number">1.1.5.</span> <span class="nav-text">Bounding Box Predictions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Intersection-Over-Union"><span class="nav-number">1.1.6.</span> <span class="nav-text">Intersection Over Union</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Non-max-Suppression"><span class="nav-number">1.1.7.</span> <span class="nav-text">Non-max Suppression</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Anchor-Boxes"><span class="nav-number">1.1.8.</span> <span class="nav-text">Anchor Boxes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YOLO-Algorithm"><span class="nav-number">1.1.9.</span> <span class="nav-text">YOLO Algorithm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Region-Proposals"><span class="nav-number">1.1.10.</span> <span class="nav-text">Region Proposals</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
