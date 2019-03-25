@@ -352,6 +352,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/25/形式化验证课程笔记-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/25/形式化验证课程笔记-5/" class="post-title-link" itemprop="url">形式化验证课程笔记 5</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-25 13:30:52 / 修改时间：16:05:18" itemprop="dateCreated datePublished" datetime="2019-03-25T13:30:52+08:00">2019-03-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第五周"><a href="#第五周" class="headerlink" title="第五周"></a>第五周</h1><h2 id="Theory-of-Equality-and-Uninterpreted-Functions"><a href="#Theory-of-Equality-and-Uninterpreted-Functions" class="headerlink" title="Theory of Equality and Uninterpreted Functions"></a>Theory of Equality and Uninterpreted Functions</h2><p>In $T_E$，$=$ is a predicate. Formulas in $T_E$ may contain other predicates, but they can be converted to $=$ using <strong>Theory of Equality and Uninterpreted Functions</strong> (EUF).</p>
+<p>Any predicate $p(x_1, x_2, \dots, x_n)$ other than $=$ can be converted to a function and the predicate $=$, where $f_p$ is a introduced function by $p$ and $\bullet$ is a constant.</p>
+<p>In EUF:</p>
+<ul>
+<li>$=$ is the only predicate.</li>
+<li>All atomic formulas are either equalities or inequalities.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<script type="math/tex; mode=display">
+p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be converted to:</p>
+<script type="math/tex; mode=display">
+(f_p(x) = \bullet)\land (f_q(x, y)=\bullet)\land (f_q(y, z)=\bullet)\rightarrow f_q(x, z)\neq\bullet</script><h2 id="Relations"><a href="#Relations" class="headerlink" title="Relations"></a>Relations</h2><ul>
+<li><p>A relation on $S$ is a subset of $S\times S$.</p>
+</li>
+<li><p>An <strong>equivalence relation</strong> should be reflexive, symmetric and transitive.</p>
+</li>
+<li><p>An <strong>congruence relation</strong> $R$ should be a equivalence relation, and obey the property that $\forall \mathbf s, \mathbf t\in S^n::(\land^n_{i = 1} \mathbf s_iR\mathbf t_i)\rightarrow f(\mathbf s)Rf(\mathbf t)$, where $f:S^n\mapsto S$ is <strong>not arbitrary</strong>. (A relation is a congruence relation relies on the function $f$.)</p>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/25/形式化验证课程笔记-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -861,7 +1028,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-21 21:22:28" itemprop="dateModified" datetime="2019-03-21T21:22:28+08:00">2019-03-21</time>
+                <time title="修改时间：2019-03-25 13:34:30" itemprop="dateModified" datetime="2019-03-25T13:34:30+08:00">2019-03-25</time>
               
             
           </span>
@@ -897,10 +1064,8 @@
       
         
           <h1 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h1><h2 id="Review-FOL"><a href="#Review-FOL" class="headerlink" title="Review FOL"></a>Review FOL</h2><h3 id="Logical-Symbols-and-Non-logical-Symbols"><a href="#Logical-Symbols-and-Non-logical-Symbols" class="headerlink" title="Logical Symbols and Non-logical Symbols"></a>Logical Symbols and Non-logical Symbols</h3><ul>
-<li><p>Logical symbols: propositional connectives, variables, quantifiers.</p>
-</li>
-<li><p>Non-logical symbols: constant symbols, function symbols, predicate symbols.</p>
-</li>
+<li>Logical symbols: propositional connectives, variables, quantifiers.</li>
+<li>Non-logical symbols: constant symbols, function symbols, predicate symbols.</li>
 </ul>
 <h3 id="Interpretation-and-Assignment"><a href="#Interpretation-and-Assignment" class="headerlink" title="Interpretation and Assignment"></a>Interpretation and Assignment</h3><ul>
 <li>Interpretation fixes values for constants.</li>
@@ -1817,175 +1982,11 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/11/形式化验证课程笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/11/形式化验证课程笔记-3/" class="post-title-link" itemprop="url">形式化验证课程笔记 3</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 13:23:35 / 修改时间：20:37:11" itemprop="dateCreated datePublished" datetime="2019-03-11T13:23:35+08:00">2019-03-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第三周"><a href="#第三周" class="headerlink" title="第三周"></a>第三周</h1><p>主题：一阶逻辑。</p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>命题逻辑表达能力有限。一阶逻辑可以表达无穷大的集合、对象之间的关系和各种量化关系。</p>
-<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><ul>
-<li><p>一阶逻辑的语法分为两部分——逻辑部分和非逻辑部分。逻辑部分包含逻辑连接词、变量和谓词。通过限制除了逻辑部分之外的部分即非逻辑部分，可以限制一阶逻辑的表达能力。</p>
-</li>
-<li><p>非逻辑中包括 <strong>函数</strong> 和 <strong>谓词</strong>，区别在于函数将对象映射到对象，谓词将对象映射到布尔值。常数可以看做零元常函数；变量可以看做零元谓词。</p>
-</li>
-<li><p>一阶逻辑中的对象称为 <strong>项</strong>，包括对象常量、变量和函数。</p>
-</li>
-<li>一阶逻辑中的求值为真值的东西称为 <strong>原子 </strong>，包括真值常量、变量和谓词。</li>
-<li>原子和它的反合称 <strong>文字</strong>。</li>
-<li><p>文字称为 <strong>公式</strong>；公式使用逻辑连接词连接后，或者被量词结合起来使用后也是公式。</p>
-</li>
-<li><p>在形如 $\forall x.F(x,y)$ 的公式中，$x$ 是 <strong>bound</strong> 的（被量词修饰），$y$ 是 <strong>free</strong> 的。$F(x, y)$ 是 $x$ 的 <strong>辖域</strong>（相当于作用域）。<br>没有 free 变量的公式是 <strong>closed</strong> 的，否则是 <strong>open</strong> 的；不包含变量的公式是 <strong>ground</strong> 的。</p>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/11/形式化验证课程笔记-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2027,7 +2028,7 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">101</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

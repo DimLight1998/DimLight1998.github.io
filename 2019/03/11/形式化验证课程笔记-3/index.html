@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="第三周主题：一阶逻辑。 Motivation命题逻辑表达能力有限。一阶逻辑可以表达无穷大的集合、对象之间的关系和各种量化关系。 Syntax 一阶逻辑的语法分为两部分——逻辑部分和非逻辑部分。逻辑部分包含逻辑连接词、变量和谓词。通过限制除了逻辑部分之外的部分即非逻辑部分，可以限制一阶逻辑的表达能力。  非逻辑中包括 函数 和 谓词，区别在于函数将对象映射到对象，谓词将对象映射到布尔值。常数可以看做">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T12:37:11.753Z">
+<meta property="og:updated_time" content="2019-03-25T05:40:45.455Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式化验证课程笔记 3">
 <meta name="twitter:description" content="第三周主题：一阶逻辑。 Motivation命题逻辑表达能力有限。一阶逻辑可以表达无穷大的集合、对象之间的关系和各种量化关系。 Syntax 一阶逻辑的语法分为两部分——逻辑部分和非逻辑部分。逻辑部分包含逻辑连接词、变量和谓词。通过限制除了逻辑部分之外的部分即非逻辑部分，可以限制一阶逻辑的表达能力。  非逻辑中包括 函数 和 谓词，区别在于函数将对象映射到对象，谓词将对象映射到布尔值。常数可以看做">
@@ -399,12 +399,24 @@
                 
               
 
-              <time title="创建时间：2019-03-11 13:23:35 / 修改时间：20:37:11" itemprop="dateCreated datePublished" datetime="2019-03-11T13:23:35+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-11 13:23:35" itemprop="dateCreated datePublished" datetime="2019-03-11T13:23:35+08:00">2019-03-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-25 13:40:45" itemprop="dateModified" datetime="2019-03-25T13:40:45+08:00">2019-03-25</time>
               
             
           </span>
@@ -467,7 +479,8 @@
 </ul>
 <p>和命题逻辑的解释不同，当完成了解释之后，真值是不确定的！<strong>因为只给常量赋了值，没有给变量赋值。</strong>对变量赋值的过程称为 <strong>assignment</strong>（指派，记作 $\alpha$）。指派完成后才能得到最后的真值。</p>
 <p>从这个角度上，命题逻辑中的原子可以看成是一阶逻辑中的常量，但不能看作是变量。</p>
-<p><em>什么是常量？什么是变量？我也不知道。形如 $x + y &gt; z\rightarrow x &gt;z - y$ 中，$x, y, z$ 都是常量而不是变量。</em></p>
+<p><del><em>什么是常量？什么是变量？我也不知道。形如 $x + y &gt; z\rightarrow x &gt;z - y$ 中，$x, y, z$ 都是常量而不是变量。</em></del></p>
+<p><em>常量指的应该是不被量词修饰的“字母”，而变量指的是被量词修饰的“字母”。</em></p>
 <h2 id="Evaluating-Terms"><a href="#Evaluating-Terms" class="headerlink" title="Evaluating Terms"></a>Evaluating Terms</h2><p>给定解释 $I$ 和指派 $\alpha$，可以对任意的项 $a$ 进行求值。</p>
 <ul>
 <li>$a$ 为常量：$\langle I, \alpha\rangle(a) = I(a)$</li>
@@ -628,7 +641,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">101</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

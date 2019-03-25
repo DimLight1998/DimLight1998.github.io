@@ -352,6 +352,222 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-6/" class="post-title-link" itemprop="url">编译原理慕课笔记 6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:46" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:46+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-3"><a href="#语法分析-3" class="headerlink" title="语法分析-3"></a>语法分析-3</h1><h2 id="自底向上分析概述"><a href="#自底向上分析概述" class="headerlink" title="自底向上分析概述"></a>自底向上分析概述</h2><p>自底向上分析是从句型归约到开始符号，也是一种从句型得到分析树的方法。</p>
+<p>自底向上分析一般采用最左归约的方式，此时对应的是最右推导。自底向上分析的通用框架是 <strong>移入-归约</strong> 分析。它的工作方式如下：</p>
+<ol>
+<li>首先对于要解析的词法单元流，维护了一个栈。</li>
+<li>从左至右扫描输入串，将扫描到的元素逐个压入栈中。</li>
+<li>如果在某个时刻，栈顶的若干个元素是某个产生式的右部，则可以进行一次归约。将这些元素弹出，替换为产生式的左部，然后重新压回栈中。然后重新运行这个检查，直到无法归约为止。这一步中被归约的符号串称作 <strong>句柄</strong>。<strong>句柄实际上是句型中的最左直接短语。</strong></li>
+<li>如果串扫描完成后，栈中恰好剩下初始符号，则归约完成。</li>
+</ol>
+<p>这个方法实际上有问题，如果某两个产生式的右部存在后缀关系，就有可能选出错误的句柄。因此需要研究如何正确选择句柄。</p>
+<h2 id="LR-分析法概述"><a href="#LR-分析法概述" class="headerlink" title="$LR$ 分析法概述"></a>$LR$ 分析法概述</h2><p>自底向上分析可以使用 $LR$ 文法，$LR$ 文法是最大的能够构造相应移入-归约语法分析器的文法类。$LR(k)$ 分析表示在最左归约过程中需要向前看 $k$ 个符号的归约方式。一般 $k = 1$ 或 $k = 0$。</p>
+<p>在使用移入-归约技术时，句柄是逐步形成的，这可以使用一系列的整数来表示某种 <strong>状态</strong>。</p>
+<h3 id="LR-分析表"><a href="#LR-分析表" class="headerlink" title="$LR$ 分析表"></a>$LR$ 分析表</h3><p>为了进行 $LR$ 分析需要使用 $LR$ 分析表，$LR$ 分析表的每一行代表一个状态（怎么确定见后面），每一列是一个符号（终结符、非终结符以及 $$$ 符号）。这张表会被拆分成两部分：列为终结符和 $$$ 时为 <strong>Action 表</strong>，列为非终结符时为 <strong>Goto 表</strong>。</p>
+<p>进行 $LR$ 分析时要维护两个栈：状态栈和符号栈。</p>
+<p>在 Goto 表中，每个元素是一个整数代表状态；在 Action 表中，每个元素是以下四种之一：</p>
+<ul>
+<li><code>acc</code>：表示解析完成且正确。</li>
+<li><code>err</code>：解析出错。</li>
+<li><code>sn</code>：表示应该执行 shift 动作，将扫描的当前单元压入符号栈中，将 <code>n</code> 压入状态栈中。</li>
+<li><code>rn</code>：表示应该执行 reduce 动作，使用第 <code>n</code> 条产生式对当前符号栈的顶部进行归约，如果归约了 m 个符号就弹出 m 个状态。</li>
+</ul>
+<p>$LR$ 分析表的构造可使用 $LR(0)$ 分析、$SLR$ 分析、$LR(1)$ 分析或 $LALR$ 分析。</p>
+<h3 id="LR-分析器的工作过程"><a href="#LR-分析器的工作过程" class="headerlink" title="$LR$ 分析器的工作过程"></a>$LR$ 分析器的工作过程</h3><p>正常情况下，符号栈中的元素个数和状态栈中相同。一般情况是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">status stack: st_0 st_1 st_2 st_3</span><br><span class="line">symbol stack: sy_$ sy_0 sy_1 sy_2</span><br><span class="line">token buffer: a_1 a_2 ... $</span><br></pre></td></tr></table></figure>
+<p>初始情况下符号栈中只有 <code>sy_$</code>，状态栈中只有 <code>st_0</code>，输入串为完整的输入串加上 $$$ 符号，也符合上述情况。</p>
+<p>根据当前状态栈栈顶，和输入串第一个元素在 Action 表中找到对应的元素，重复以下过程：</p>
+<ul>
+<li>若为接受或者拒绝则执行相应动作，退出循环。</li>
+<li>若为移入操作则移入该元素并压入对应状态。</li>
+<li>若为归约操作则进行归约，不要移入元素。弹出和归约符号数相同数目的状态。完成后，符号栈会比状态栈少一个元素，此时根据状态栈栈顶和符号栈栈顶在 Goto 表中找到对应的状态，将这个状态压入到状态栈中。（这个时候还能顺带着打一条产生式。）</li>
+</ul>
+<p>上述过程中将始终保持符号栈中的元素个数和状态栈中相同的性质。</p>
+<h2 id="LR-0-分析"><a href="#LR-0-分析" class="headerlink" title="$LR(0)$ 分析"></a>$LR(0)$ 分析</h2><p>$LR(0)$ 分析是一种构造分析表的技术。</p>
+<h3 id="产生式的项目"><a href="#产生式的项目" class="headerlink" title="产生式的项目"></a>产生式的项目</h3><p>前面提到句柄是逐渐产生的，对于每一个产生式，为了标记出当前这个产生式的解析状态，可以生成若干个 <strong>项目</strong>。对于有 $k$ 个元素的产生式，可以定义出 $k + 1$ 个项目。使用 $\cdot$ 来进行标记，例如 $A\rightarrow \alpha B\beta$ 可以产生 $A\rightarrow\cdot \alpha B\beta$、$A\rightarrow\alpha\cdot  B\beta$、$A\rightarrow \alpha B\cdot \beta$ 以及 $A\rightarrow\alpha B\beta\cdot$ 这四个项目。此外，对于空产生式也会产生一个项目。</p>
+<p>根据圆点的位置和圆点后面是终结符还是非终结符可以将项目进行分类。如果后面是终结符，称为 <strong>移进项目</strong>；后面是非终结符称为 <strong>待约项目</strong>；后面没有符号（圆点在最后一个）符号后面称为 <strong>归约项目</strong>。</p>
+<p>一个项目如果是另一个项目在接收一个符号后得到的，称后者为前者的 <strong>后继项目</strong>。</p>
+<h3 id="增广文法"><a href="#增广文法" class="headerlink" title="增广文法"></a>增广文法</h3><p>对于一个文法 $G$，如果它的初始符号是 $S$，那么增加一个产生式 $S&#39;\rightarrow S$ 并将这个 $S&#39;$ 作为新的初始符号，得到的文法 $G&#39;$ 称为增广文法。这种文法的初始符号只有一个产生式。</p>
+<p>对于增广文法，$S&#39;\rightarrow \cdot S$ 称为 <strong>初始项目</strong>，$S&#39;\rightarrow S\cdot$ 称为 <strong>接收项目</strong>。</p>
+<h3 id="LR-0-自动机"><a href="#LR-0-自动机" class="headerlink" title="$LR(0)$ 自动机"></a>$LR(0)$ 自动机</h3><p>对于一个文法，在得到了增广文法后可以构造出所有产生式对应的所有项目。这些项目中有些是等价的（严格来说不是等价，因为不满足等价的三个条件，这里不严谨）。按照等价关系可以将这些项目划分为组，称作 <strong>项目集闭包</strong>（因为不严谨，实际上这个组并不是等价类），对于有 m 个产生式的文法可能只有不到 m 个项目集闭包。</p>
+<p>所谓等价指的是，例如有两个产生式 $A\rightarrow B, B\rightarrow \alpha C$，由于解析到 $B$ 前时相当于解析到 $\alpha C$ 前，因此 $A\rightarrow\cdot B$ 和 $B\rightarrow\cdot \alpha C$ 实际上是等价的。</p>
+<p>当得到了各个项目集闭包之后，实际上这个文法会对应一个自动机，自动机的状态就是这些项目集闭包，自动机的字符集就是所有的终结符与非终结符。（实际上也不是一个自动机，因为状态可以以非迁移的方式改变。）</p>
+<h2 id="LR-0-分析表构造算法"><a href="#LR-0-分析表构造算法" class="headerlink" title="$LR(0)$ 分析表构造算法"></a>$LR(0)$ 分析表构造算法</h2><h3 id="计算项目集的-Closure-集"><a href="#计算项目集的-Closure-集" class="headerlink" title="计算项目集的 Closure 集"></a>计算项目集的 Closure 集</h3><p>一个项目集的 Closure 集指的是和它等价的所有项目的集合（这里的等价依然不严谨），实际上就是这个项目集的项目集闭包。</p>
+<p>定义为 $\mbox{Closure}(I) = I\cup\{B\rightarrow\cdot\gamma|A\rightarrow\alpha\cdot B\beta\in\mbox{Closure}(I), B\rightarrow\gamma\in P\}$，其中 $P$ 是产生式集合。重复这个计算公式直到稳定，就算出了一个项目集的 Closure 集。</p>
+<h3 id="计算项目集的-Goto-集"><a href="#计算项目集的-Goto-集" class="headerlink" title="计算项目集的 Goto 集"></a>计算项目集的 Goto 集</h3><p>前面说到 $LR(0)$ 对应的是一个自动机，这个自动机的一个状态对应一个项目集闭包，字符集是所有的符号。如何在知道一个状态和输入符号的情况下知道进入了哪个状态？手动计算的方法是该项目集闭包的每个项目，如果它的 $\cdot$ 后面跟的是输入符号的话，就计算处它的后继状态。所有的这样的后继状态并起来取一次闭包就行了。</p>
+<p>定义为 $\mbox{Goto}(I, X) = \mbox{Closure}(\{A\rightarrow\alpha X\cdot\beta|A\rightarrow\alpha\cdot X\beta\in I\})$，其中 $I$ 为当前项目集闭包，$X$ 为输入符号。重复直到稳定。</p>
+<h3 id="规范-LR-0-项集族"><a href="#规范-LR-0-项集族" class="headerlink" title="规范 $LR(0)$ 项集族"></a>规范 $LR(0)$ 项集族</h3><p>这个听起来很牛逼的名字实际上就是一个文法对应的自动机中所有可能出现的项目集闭包的集合。它代表了自动机可能有哪些状态。可以使用初始项目集闭包不断计算 Goto 集得到。</p>
+<h3 id="分析表构造算法"><a href="#分析表构造算法" class="headerlink" title="分析表构造算法"></a>分析表构造算法</h3><p>对一个文法构造对应的 $LR(0)$ 分析表：</p>
+<ol>
+<li>构造增广文法 $G$</li>
+<li>得到 $G$ 的规范 $LR(0)$ 项集族 $C$</li>
+<li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
+<li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S&#39;\mbox{ then }\forall a\in V_T\cup\{$\}, \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S&#39;\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>其它所有情况都设为 $err$</li>
+</ul>
+</li>
+</ol>
+<h3 id="LR-0-分析中的冲突"><a href="#LR-0-分析中的冲突" class="headerlink" title="$LR(0)$ 分析中的冲突"></a>$LR(0)$ 分析中的冲突</h3><p>冲突指的是在自动机的某个状态中，读入下一个符号后有多种选择的情况。反映到分析表中就是某个状态对应的符号不只有一个条目。</p>
+<p><strong>移入-归约冲突</strong>：在读入一个符号后，既可以选择移入也可以选择归约，例如某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$，在读入 $a$ 后就有问题。</p>
+<p><strong>归约-归约冲突</strong>：在读入一个符号后需要归约，但是有多条可供选择的产生式。</p>
+<p><strong>如果一个文法构造完 $LR(0)$ 分析表后无冲突，称为 $LR(0)$ 文法。</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2068,191 +2284,11 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/06/手写汇编器-1/" class="post-title-link" itemprop="url">汇编课程大作业博客——熟悉 PE 格式</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-06 13:26:23" itemprop="dateCreated datePublished" datetime="2018-10-06T13:26:23+08:00">2018-10-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:30:23" itemprop="dateModified" datetime="2019-03-11T15:30:23+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="汇编课程大作业博客——熟悉-PE-格式"><a href="#汇编课程大作业博客——熟悉-PE-格式" class="headerlink" title="汇编课程大作业博客——熟悉 PE 格式"></a>汇编课程大作业博客——熟悉 PE 格式</h1><p>汇编的大作业选题是拿汇编写一个汇编器。我们希望得到的结果是输入一个 asm 文件能够编译出来一个直接能运行的 exe 文件，支持一些简单的语法就可以了，没必要搞得很复杂（比如支持宏之类的）。</p>
-<p>Windows 下能直接运行的文件格式为 exe，exe 又能细分为几种：</p>
-<blockquote>
-<p>EXE 是在 OS/2、MS-DOS 和 Windows 系统中通用的可执行文件的扩展名，包括以下几种主要的文件格式：</p>
-<ul>
-<li><p>DOS 可执行文件：最简单的可执行文件格式，可以在 DOS 和 Windows 中运行。它通过在文件头添加 ASCII 字符串 “MZ”（16 进制中表示为 4D5A）来标识。“MZ” 是 MS-DOS 开发者之一的马克 · 茨柏克沃斯基（Mark Zbikowski）的姓名首字母缩写。</p>
-</li>
-<li><p>16 位新可执行文件：通过在文件头添加 ASCII 字符串 “NE” 来标识。它只能运行在 Windows 和 OS/2 系统，而不能在 DOS 下运行。</p>
-</li>
-<li><p>16/32 位混合式线性可执行文件：通过在文件头添加 ASCII 字符串 “LE” 来标识。它仅用来在 Windows 3.x 和 Windows 9x 中替代 VxD 驱动。</p>
-</li>
-<li><p>32 位线性可执行文件：通过在文件头添加 ASCII 字符串 “LX” 来标识。运行在 OS/2 2.0 以及更高版本中，也可用于某些 DOS 扩展。</p>
-</li>
-<li><p>32 位可执行文件：这是最复杂也是目前最流行的可执行文件格式，通过在文件头添加 ASCII 字符串 “PE” 来标识。它主要运行于 Windows 95 和 Windows NT 以及更高版本的 Windows 中，也可在 BeOS R3 中运行。在文件头部可见字符串 “PE..L”（hex code: 504500004C）。</p>
-</li>
-<li><p>64 位可执行文件：与前一种类似，但使用支持 64 位的中央处理器。因此它仅能在 64 位的 Windows 系统中运行，譬如 Windows XP 64-Bit Edition 和 Windows Server 2003 64-Bit Edition。在文件头部可见字符串 “PE..d†”（hex code: 504500006486）。</p>
-</li>
-</ul>
-</blockquote>
-<p>我们要做的是倒数第二种，这种格式称作 PE（Portable Executable）格式。因为只要做一个简单的汇编器就可以了，也没有必要对 PE 格式了解太深，够用就行。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/06/手写汇编器-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2294,7 +2330,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">101</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
