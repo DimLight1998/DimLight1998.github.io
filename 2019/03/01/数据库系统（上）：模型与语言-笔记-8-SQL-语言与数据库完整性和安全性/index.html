@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="SQL 语言与数据库完整性和安全性数据库是概念，SQL 是实现。二者不是同一个抽象层上的东西，看的时候注意这一点。 数据库完整性概念及完整性约束规则数据库完整性DBMS 应当保证数据库始终具有某种性质，这种性质一般和正确性、有效性和一致性有关。 完整性涉及到语义上的完整性和数据库实现上的完整性。 为什么会引发完整性问题语义相关：错误数据输入、操作失误 实现相关：程序处理失误 DBMS 应当防止这些">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-28T03:11:19.450Z">
+<meta property="og:updated_time" content="2019-03-28T07:19:33.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（上）：模型与语言 笔记 8 SQL 语言与数据库完整性和安全性">
 <meta name="twitter:description" content="SQL 语言与数据库完整性和安全性数据库是概念，SQL 是实现。二者不是同一个抽象层上的东西，看的时候注意这一点。 数据库完整性概念及完整性约束规则数据库完整性DBMS 应当保证数据库始终具有某种性质，这种性质一般和正确性、有效性和一致性有关。 完整性涉及到语义上的完整性和数据库实现上的完整性。 为什么会引发完整性问题语义相关：错误数据输入、操作失误 实现相关：程序处理失误 DBMS 应当防止这些">
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-28 11:11:19" itemprop="dateModified" datetime="2019-03-28T11:11:19+08:00">2019-03-28</time>
+                <time title="修改时间：2019-03-28 15:19:33" itemprop="dateModified" datetime="2019-03-28T15:19:33+08:00">2019-03-28</time>
               
             
           </span>
@@ -470,6 +470,7 @@
 <li><strong>静态约束</strong>：数据在任意时刻都应该满足的约束。</li>
 <li><strong>动态约束</strong>：数据在进行修改时应当满足的约束。例如约束某一列的值只能升不能降。</li>
 </ul>
+<a id="more"></a>
 <h2 id="SQL-表完整性与列完整性"><a href="#SQL-表完整性与列完整性" class="headerlink" title="SQL 表完整性与列完整性"></a>SQL 表完整性与列完整性</h2><p>SQL 使用 schema 进行静态约束，使用触发器进行动态约束。</p>
 <p>定义 schema 时可以对列进行约束，也可以对表进行约束。</p>
 <ul>
