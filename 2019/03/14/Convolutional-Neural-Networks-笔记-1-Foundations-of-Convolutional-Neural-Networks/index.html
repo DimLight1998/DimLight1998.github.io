@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Foundations of Convolutional Neural来源 Coursera。 Convolutional Neural NetworksComputer Vision一些应用：  Image classfication Object detection Neural style transfer  Computer vision 的一大挑战在与每个输入样本都非常大。例如一张图片就">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-14T13:22:00.000Z">
+<meta property="og:updated_time" content="2019-03-29T16:40:01.427Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convolutional Neural Networks 笔记 1 Foundations of Convolutional Neural Networks">
 <meta name="twitter:description" content="Foundations of Convolutional Neural来源 Coursera。 Convolutional Neural NetworksComputer Vision一些应用：  Image classfication Object detection Neural style transfer  Computer vision 的一大挑战在与每个输入样本都非常大。例如一张图片就">
@@ -399,12 +399,24 @@
                 
               
 
-              <time title="创建时间：2019-03-14 15:50:22 / 修改时间：21:22:00" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:22+08:00">2019-03-14</time>
+              <time title="创建时间：2019-03-14 15:50:22" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:22+08:00">2019-03-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-30 00:40:01" itemprop="dateModified" datetime="2019-03-30T00:40:01+08:00">2019-03-30</time>
               
             
           </span>
@@ -466,7 +478,7 @@
 <p>常用的 padding 策略有两种：</p>
 <ul>
 <li><strong>Valid</strong>：其实就是不进行 padding。</li>
-<li><strong>Same</strong>：选择 padding 的规模让卷积完成后得到的 $\displaystyle{\mathbf C}$ 和原来的 $\displaystyle{\mathbf A}$ 规模一致。</li>
+<li><strong>Same</strong>：选择 padding 的规模让卷积完成后得到的 $\displaystyle{\mathbf C}$ 和原来的 $\displaystyle{\mathbf A}$ 除了通道数外，在考虑步长（见下一节）的情况下规模一致。（例如选择步长为 2 的话，$\mathbf{C}$ 的长宽应该刚好是 $\mathbf A$ 的一半。）特殊地，在步长为 1 的情况下，$\mathbf C$ 和 $\mathbf A$ 的长宽应当相同。</li>
 </ul>
 <p>当然其它策略也是可以的。</p>
 <hr>
@@ -500,6 +512,19 @@
 <ul>
 <li>Parameter sharing：一个卷积核一般可以用来提取某种特征。这是某种共性的提取特征的手段，它应当能在图像的不同区域发挥作用。因此使用卷积可以得到这种相对普适的特征提取过程，在样本的各个位置共享卷积参数。</li>
 <li>Sparsity of connections：卷积得到的矩阵中，每个元素只取决于原始矩阵中的一小部分（窗口大小的一部分）。这造成了卷积得到的矩阵和原始矩阵是稀疏连接的，使得它在一定程度上比较鲁棒。另外，卷积操作可以学习到 translation invariance，即使原始矩阵存在平移，卷积操作也能够得到和不平移情况下相似的特征。</li>
+</ul>
+<hr>
+<h2 id="关于-CNN-的反向传播"><a href="#关于-CNN-的反向传播" class="headerlink" title="关于 CNN 的反向传播"></a>关于 CNN 的反向传播</h2><p>这一节的内容来自作业。反向传播的公式没有给出推导，只有结论。另外这里的公式都只是示意，很多细节（比如关于通道的）被省去了。</p>
+<h3 id="卷积操作的反向传播"><a href="#卷积操作的反向传播" class="headerlink" title="卷积操作的反向传播"></a>卷积操作的反向传播</h3><p>假设输入是 $A​$，经过卷积后得到的是 $Z​$。损失函数是 $J​$。则</p>
+<ul>
+<li>对于给定的卷积核 $W_c​$，计算损失函数对 $A​$ 的的导数：$\displaystyle{\frac{\partial J}{\partial A} = \sum\limits_{h = 0}^{n_H}\sum\limits_{w = 0}^{n_W}}W_c\times \frac{\partial J}{\partial Z_{hw}}​$。符号上这个式子不是很严谨。可以想成在计算 $\displaystyle{\frac{\partial J}{\partial A}}​$ 时，先初始化一个和 $A​$ 等大的矩阵 $X​$；然后对于 $Z​$ 中的每个元素 $Z_{hw}​$，找到 $A​$ 中参与计算 $Z_{hw}​$ 的那个子矩阵的位置，将 $W_c​$ 乘以 $\displaystyle{ \frac{\partial J}{\partial Z_{hw}}}​$ 后加到 $X​$ 对应的位置上。遍历了 $Z​$ 的每个元素后就计算出了 $\displaystyle{\frac{\partial J}{\partial A}}​$。</li>
+<li>对于给定的卷积核 $W_c$，计算损失函数对该卷积核的导数：$\displaystyle{\frac{\partial J}{\partial W_c} = \sum\limits_{h = 0}^{n_H}\sum\limits_{w = 0}^{n_W}S_{hw}\times\frac{\partial J}{\partial Z_{hw}}}$。其中 $S_{hw}$ 是一个和卷积核大小相等的 $A$ 的一部分，它正是产生 $Z_{hw}$ 的那个子矩阵。</li>
+<li>对于给定的卷积核，损失函数对其偏置的导数满足 $\displaystyle{\frac{\partial J}{\partial b} = \sum_h\sum_w\frac{\partial J}{\partial Z_{hw}}}$。</li>
+</ul>
+<h3 id="池化操作的反向传播"><a href="#池化操作的反向传播" class="headerlink" title="池化操作的反向传播"></a>池化操作的反向传播</h3><p>池化可以看作是特殊的卷积。它没有偏置，并且计算损失函数对卷积核的导数是没有意义的，因此只用考虑在知道对 $Z$ 的导数的情况下如何计算对 $A$ 的导数：</p>
+<ul>
+<li><strong>最大池化</strong>：$\displaystyle{\frac{\partial J}{\partial A} = \sum\limits_{h = 0}^{n_H}\sum\limits_{w = 0}^{n_W}}W_{hw}\times \frac{\partial J}{\partial Z_{hw}}​$，其中 $W_{hw}​$ 是一个 mask 矩阵，它只有一个元素是 1，其余元素是 0。该矩阵对应的是产生 $Z_{hw}​$ 的 $A​$ 的子矩阵，其中 1 的位置对应的是子矩阵最大值所在位置。</li>
+<li><strong>平均池化</strong>：$\displaystyle{\frac{\partial J}{\partial A} = \sum\limits_{h = 0}^{n_H}\sum\limits_{w = 0}^{n_W}}W\times \frac{\partial J}{\partial Z_{hw}}$，其中 $W$ 大小和卷积核相同，所有元素都相等并且加起来为 1。</li>
 </ul>
 
       
@@ -741,7 +766,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Foundations-of-Convolutional-Neural"><span class="nav-number">1.</span> <span class="nav-text">Foundations of Convolutional Neural</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-Neural-Networks"><span class="nav-number">1.1.</span> <span class="nav-text">Convolutional Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Computer-Vision"><span class="nav-number">1.1.1.</span> <span class="nav-text">Computer Vision</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edge-Detection-Example"><span class="nav-number">1.1.2.</span> <span class="nav-text">Edge Detection Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-Edge-Detection"><span class="nav-number">1.1.3.</span> <span class="nav-text">More Edge Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Padding"><span class="nav-number">1.1.4.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strided-Convolutions"><span class="nav-number">1.1.5.</span> <span class="nav-text">Strided Convolutions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolutions-Over-Volume"><span class="nav-number">1.1.6.</span> <span class="nav-text">Convolutions Over Volume</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-Layer-of-a-Convolutional-Network"><span class="nav-number">1.1.7.</span> <span class="nav-text">One Layer of a Convolutional Network</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积的偏置与激活函数"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">卷积的偏置与激活函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#记号说明"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">记号说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Convolutional-Network-Example"><span class="nav-number">1.1.8.</span> <span class="nav-text">Simple Convolutional Network Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-Layers"><span class="nav-number">1.1.9.</span> <span class="nav-text">Pooling Layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNN-Example"><span class="nav-number">1.1.10.</span> <span class="nav-text">CNN Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Convolutions"><span class="nav-number">1.1.11.</span> <span class="nav-text">Why Convolutions?</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Foundations-of-Convolutional-Neural"><span class="nav-number">1.</span> <span class="nav-text">Foundations of Convolutional Neural</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Convolutional-Neural-Networks"><span class="nav-number">1.1.</span> <span class="nav-text">Convolutional Neural Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Computer-Vision"><span class="nav-number">1.1.1.</span> <span class="nav-text">Computer Vision</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Edge-Detection-Example"><span class="nav-number">1.1.2.</span> <span class="nav-text">Edge Detection Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#More-Edge-Detection"><span class="nav-number">1.1.3.</span> <span class="nav-text">More Edge Detection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Padding"><span class="nav-number">1.1.4.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Strided-Convolutions"><span class="nav-number">1.1.5.</span> <span class="nav-text">Strided Convolutions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolutions-Over-Volume"><span class="nav-number">1.1.6.</span> <span class="nav-text">Convolutions Over Volume</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-Layer-of-a-Convolutional-Network"><span class="nav-number">1.1.7.</span> <span class="nav-text">One Layer of a Convolutional Network</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#卷积的偏置与激活函数"><span class="nav-number">1.1.7.1.</span> <span class="nav-text">卷积的偏置与激活函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#记号说明"><span class="nav-number">1.1.7.2.</span> <span class="nav-text">记号说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Simple-Convolutional-Network-Example"><span class="nav-number">1.1.8.</span> <span class="nav-text">Simple Convolutional Network Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling-Layers"><span class="nav-number">1.1.9.</span> <span class="nav-text">Pooling Layers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CNN-Example"><span class="nav-number">1.1.10.</span> <span class="nav-text">CNN Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Why-Convolutions"><span class="nav-number">1.1.11.</span> <span class="nav-text">Why Convolutions?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-CNN-的反向传播"><span class="nav-number">1.2.</span> <span class="nav-text">关于 CNN 的反向传播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积操作的反向传播"><span class="nav-number">1.2.1.</span> <span class="nav-text">卷积操作的反向传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#池化操作的反向传播"><span class="nav-number">1.2.2.</span> <span class="nav-text">池化操作的反向传播</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

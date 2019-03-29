@@ -125,10 +125,12 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Recurrent Neural Networks来源 Coursera-Sequence Models. Recurrent Neural NetworksWhy sequence models一些序列模型的应用：  Speech recognition Music generation Sentiment classfication DNA Sequence analysis Machine">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/DeepinScreenshot_select-area_20190328210024.png">
 <meta property="og:updated_time" content="2019-03-28T13:13:26.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sequence Models 笔记 1 Recurrent Neural Networks">
 <meta name="twitter:description" content="Recurrent Neural Networks来源 Coursera-Sequence Models. Recurrent Neural NetworksWhy sequence models一些序列模型的应用：  Speech recognition Music generation Sentiment classfication DNA Sequence analysis Machine">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/DeepinScreenshot_select-area_20190328210024.png">
 
 
 
@@ -567,7 +569,7 @@ y^{\langle t\rangle } &= g_3(W_{y}a^{\langle t\rangle } + b_y)
 <h3 id="Bidirectional-RNN"><a href="#Bidirectional-RNN" class="headerlink" title="Bidirectional RNN"></a>Bidirectional RNN</h3><p>上面的所有内容都是单向的 RNN。这种 RNN 在处理序列中的元素时，无法利用后面的元素的信息。使用双向的 RNN 可以解决这个问题。</p>
 <p>想法：如果序列不是一个无限长的流，那么它总是有限的。用 RNN 正向处理一遍这个序列，会生成一个序列；如果反向处理一遍这个序列又可以生成一个序列。这两个序列结合起来得到的序列就是最终生成的序列。在最终的序列中，每个元素即受到了序列中在它前面的元素的影响，也受到了在它后面的元素的影响。</p>
 <p>直观来看：</p>
-
+<img src="/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/DeepinScreenshot_select-area_20190328210024.png">
 <p>注意即使正向反向都搞了一遍，整个图还是无环的。生成 $\hat y^{\langle t \rangle}$ 的方法可以使用 $\hat y^{\langle t \rangle} = W_y[\overrightarrow a^{\langle t \rangle}, \overleftarrow a^{\langle t \rangle}] + b_y$来计算。</p>
 <p>在 NLP 任务中常用的套路是双向 LSTM。</p>
 <h3 id="Deep-RNNs"><a href="#Deep-RNNs" class="headerlink" title="Deep RNNs"></a>Deep RNNs</h3><p>一层 RNN 可以将一个序列映射到另一个序列，得到的序列可以继续通过新的 RNN。这样做就可以将多层 RNN 叠起来得到一个复杂的网络。</p>
