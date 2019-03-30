@@ -903,7 +903,7 @@ p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be conve
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-28 21:13:26" itemprop="dateModified" datetime="2019-03-28T21:13:26+08:00">2019-03-28</time>
+                <time title="修改时间：2019-03-30 16:21:22" itemprop="dateModified" datetime="2019-03-30T16:21:22+08:00">2019-03-30</time>
               
             
           </span>
@@ -961,17 +961,7 @@ p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be conve
 <p>对于元素 $x^{\langle t\rangle }$，它对应的 $\hat y^{\langle t\rangle }$ 既取决于输入 $x^{\langle t\rangle }$ 也取决于上次的激活值 $a^{\langle t- 1\rangle }$。在计算过程中，$x^{\langle t\rangle }$ 既产生预测值 $\hat y^{\langle t\rangle }$ 也产生激活值 $a^{\langle t\rangle }$。初始时的 $a^{\langle 0\rangle }$ 可以是零向量，也可以是某个随机值。</p>
 <h4 id="简单递归神经网络的问题"><a href="#简单递归神经网络的问题" class="headerlink" title="简单递归神经网络的问题"></a>简单递归神经网络的问题</h4><p>上述 RNN 的问题在于对于序列中的某个元素只能利用序列中该元素前的信息，而不能利用后续信息。这在一些应用中是不利的，但是有解决方案。</p>
 <h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>RNN 中的一个模块需要维护三个权值和两个偏置：$W_{aa}, W_{ax}, W_{ya}, b_a, b_y$。<em>命名方式：第一个角标指示用来计算什么，第二个角标如果存在依据什么计算。</em></p>
-<p>对于上次的激活值 $a^{\langle t - 1\rangle }$ 以及这次的输入 $x^{\langle t\rangle }$，有</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a^{\langle t\rangle } &= g_1(W_{aa}a^{\langle t-1\rangle } + W_{ax}x^{\langle t\rangle } + b_a) \\
-y^{\langle t\rangle } &= g_2(W_{ya}a^{\langle t\rangle } + b_y)
-\end{aligned}</script><p>可以进一步简化这个符号。如果将 $W_{aa}$ 和 $W_{ax}$ 横向拼接起来得到 $W_a$，将 $W_{ya}$ 记作 $W_y$，将 $a^{\langle t - 1\rangle }$ 和 $x^{\langle t\rangle }$ 纵向拼接起来得到 $[a^{\langle t - 1\rangle }, x^{\langle t\rangle }]$，那么有</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a^{\langle t\rangle } &= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\
-y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
-\end{aligned}</script><p>现在只要维护两个权值和偏置即可。<strong>再次注意对同一个序列而言，各元素计算时使用的参数是相同且共享的。</strong></p>
+<p>对于上次的激活值 $a^{\langle t - 1\rangle }$ 以及这次的输入 $x^{\langle t\rangle }$，有<br>$\displaystyle{<br>\begin{aligned}<br>a^{\langle t\rangle } &amp;= g_1(W_{aa}a^{\langle t-1\rangle } + W_{ax}x^{\langle t\rangle } + b_a) \\<br>y^{\langle t\rangle } &amp;= g_2(W_{ya}a^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{<br>可以进一步简化这个符号。如果将 $W_{aa}$ 和 $W_{ax}$ 横向拼接起来得到 $W_a$，将 $W_{ya}$ 记作 $W_y$，将 $a^{\langle t - 1\rangle }$ 和 $x^{\langle t\rangle }$ 纵向拼接起来得到 $[a^{\langle t - 1\rangle }, x^{\langle t\rangle }]$，那么有<br>$\displaystyle{<br>\begin{aligned}<br>a^{\langle t\rangle } &amp;= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\<br>y^{\langle t\rangle } &amp;= g_2(W_{y}a^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{<br>现在只要维护两个权值和偏置即可。<strong>再次注意对同一个序列而言，各元素计算时使用的参数是相同且共享的。</strong></p>
           <!--noindex-->
           
             <div class="post-button text-center">
