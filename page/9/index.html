@@ -352,6 +352,243 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-7/" class="post-title-link" itemprop="url">编译原理慕课笔记 7</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:48" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:48+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-4"><a href="#语法分析-4" class="headerlink" title="语法分析-4"></a>语法分析-4</h1><h2 id="SLR-分析"><a href="#SLR-分析" class="headerlink" title="$SLR$ 分析"></a>$SLR$ 分析</h2><p>$SLR$ 分析是一种 $LR$ 语法的分析方式，相对于 $LR(0)$ 语法分析主要是多考虑了一个 Follow 集的问题从而避免掉了一部分的冲突。在 $LR(0)$ 分析中有可能出现这样的情况，某个状态中有两个项目 $E\rightarrow T\cdot$ 和 $T\rightarrow T\cdot a F$ 并且压入的符号是 $a$，这个时候产生了移入-归约冲突。但是 $LR(0)$ 分析并没有往前看符号，如果这个文法中， $a$ 不在 $E$ 的 Follow 集中，那么显然使用第一个产生式是没有意义的（因为归约后的 $E$ 后面不可能是 $a$），$SLR$ 分析改进了这一点，使得类似这样的冲突得以消解。</p>
+<h3 id="SLR-分析的核心思路"><a href="#SLR-分析的核心思路" class="headerlink" title="$SLR$ 分析的核心思路"></a>$SLR$ 分析的核心思路</h3><p>对于一个状态集，如果有状态</p>
+<script type="math/tex; mode=display">
+\begin{array}{cc}
+\begin{align}
+A_1 \rightarrow & \alpha_1\cdot a_1 \beta_1 \\
+\vdots \\
+A_m \rightarrow & \alpha_m\cdot a_m \beta_m \\
+B_1 \rightarrow & \gamma_1\cdot \\
+\vdots \\
+B_n \rightarrow & \gamma_n\cdot \\
+\end{align}
+\end{array}</script><p>并且已知 $\{a_1,\cdots,a_m\}, \mbox{Follow}(B_1), \cdots, \mbox{Follow}(B_n)$ 两两不交，那么对于输入的符号：</p>
+<ul>
+<li>若在 $\{a_1,\cdots,a_m\}$ 中，则可以进行相关的 <strong>移入操作</strong>。</li>
+<li>若在 $\mbox{Follow}(B_k)$ 中，则可以进行相关的 <strong>归约操作</strong>。</li>
+<li>否则报错。</li>
+</ul>
+<p>这个修改听上去简直就是废话，不过它解决了一部分的移入归约冲突。</p>
+<h3 id="SLR-分析表构造过程"><a href="#SLR-分析表构造过程" class="headerlink" title="$SLR$ 分析表构造过程"></a>$SLR$ 分析表构造过程</h3><p>这段从 $LR(0)$ 分析表构造过程修改而来，区别在于 3 的第三条中对 $a$ 的来源有了更加严格的限制。</p>
+<p>对一个文法构造对应的 $SLR$ 分析表：</p>
+<ol>
+<li>构造增广文法 $G$</li>
+<li>得到 $G$ 的规范 $LR(0)$ 项集族 $C$</li>
+<li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
+<li>$\mbox{if }A\rightarrow\alpha\cdot a\beta\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot B\beta\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
+<li>$\mbox{if }A\rightarrow\alpha\cdot\in I_i\mbox{ and }A\neq S&#39;\mbox{ then }\forall a\in \mbox{Follow}(A), \mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号，$V_T$ 是所有终结符</li>
+<li>$\mbox{if }S&#39;\rightarrow S\cdot\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>其它所有情况都设为 $err$</li>
+</ul>
+</li>
+</ol>
+<p><strong>如果一个文法构造完 $SLR$ 分析表后无冲突，称为 $SLR$ 文法。</strong></p>
+<h2 id="LR-1-分析"><a href="#LR-1-分析" class="headerlink" title="$LR(1)$ 分析"></a>$LR(1)$ 分析</h2><p>如果仔细研究 $SLR$ 的处理方式就会发现它实际上是将可以归约的情况作了一些限制，使得有时移入-归约冲突被消除了，但是这种限制加上后之后依然是某种必要条件而不是充分条件（对于一个产生式，只有下一个符号是产生式左部符号的 Follow 集中的元素时才能进行归约，但是实际上这种归约也不一定正确）。实际上可以观察到在分析的过程中，某些条件下进行归约时，这个符号不仅需要在产生符号的 Follow 集中，而且要在某个特定的子集中。</p>
+<p>$LR(1)$ 分析对这种情况做了改进。使用 $LR(1)$ 分析时每个项目还要加上一个额外的 <strong>展望符</strong>。例如对于 $A\rightarrow\alpha \cdot$ 这个项目加上了展望符 $b$，完整的产生式是 $A\rightarrow\alpha\cdot, b$，表示如果希望在下一步中进行归约，那么未移入的第一个终结符需要是 $b$。<strong>展望符是产生式左部符号 Follow 集的子集（一般是真子集）。</strong>一个 $LR(1)$ 符号的形式为 $A\rightarrow\alpha\cdot\beta, a$，其中 $a$ 是个终结符或者结束符 $$$，表示的是 <strong>当前状态下</strong> $A$ 后面需要紧跟的终结符（因为项目总是在一个项目集中，一个项目集对应自动机的一个状态，所以一个项目会有一个当前状态）。一些注解：</p>
+<ul>
+<li>$LR(n)$ 指的是展望符的长度为 $n$，不过一般 1 就够用了。</li>
+<li>如果 $\beta\neq\epsilon$，那么展望符没有意义。</li>
+<li>如果 $\beta=\epsilon$，那么只有在下一个符号是 $a$ 的时候才能进行归约。</li>
+</ul>
+<h3 id="LR-1-项目的等价性"><a href="#LR-1-项目的等价性" class="headerlink" title="$LR(1)$ 项目的等价性"></a>$LR(1)$ 项目的等价性</h3><p>对于一个待约项目 $A\rightarrow \alpha\cdot B\beta, a$，并且已经知道产生式 $B\rightarrow\gamma$，则项目的一个等价项目是 $B\rightarrow\cdot\gamma, b$，其中 $b\in\mbox{First}(\beta a)$。</p>
+<p>其中展望符产生的原因是 $\beta\Rightarrow^\star\epsilon$ 时展望符应该为 $a$（这种情况下叫 <strong>继承</strong> 的展望符），否则应为 $\mbox{First}(\beta)$（<strong>自生</strong> 的展望符）。</p>
+<p>如果两个项目集中除去展望符部分后相同，则这两个项目集是 <strong>同心</strong> 的。</p>
+<h3 id="Closure，Goto-以及项集族的计算"><a href="#Closure，Goto-以及项集族的计算" class="headerlink" title="Closure，Goto 以及项集族的计算"></a>Closure，Goto 以及项集族的计算</h3><ul>
+<li>Closure 的计算变成 $\mbox{Closure}(I) = I\cup\{[B\rightarrow\cdot\gamma, b]|[A\rightarrow a\cdot B\beta, a]\in\mbox{Closure}(I), B\rightarrow\gamma\in P, b\in\mbox{First}(\beta a)\}$</li>
+<li>Goto 的计算变成 $\mbox{Goto}(I, X) = \mbox{Closure}(\{[A\rightarrow\alpha X\cdot \beta, a]|[A\rightarrow\alpha\cdot X \beta, a]\in I\})$</li>
+<li>计算 $LR(1)$ 的项集族时初始状态为 $\mbox{Closure}([S&#39;\rightarrow\cdot S, $])$</li>
+</ul>
+<h3 id="分析表构造"><a href="#分析表构造" class="headerlink" title="分析表构造"></a>分析表构造</h3><p>这段从 $LR(0)$ 分析表构造过程修改而来，区别在于 3 的第三条中对 $a$ 的来源有了更加严格的限制。</p>
+<p>对一个文法构造对应的 $LR(1)$ 分析表：</p>
+<ol>
+<li>构造增广文法 $G$</li>
+<li>得到 $G$ 的规范 $LR(1)$ 项集族 $C$</li>
+<li>$C$ 中的每个项目集闭包就是自动机的一个状态 $I_i$，按如下规则求分析表：<ul>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot a\beta, b]\in I_i\mbox{ and Goto}(I_i, a)=I_j\mbox{ then Action}[i, a]=\mbox{s}_j$</li>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot B\beta, b]\in I_i\mbox{ and Goto}(I_i, B)=I_j\mbox{ then Goto}[i, B]=j$</li>
+<li>$\mbox{if }[A\rightarrow\alpha\cdot, a]\in I_i\mbox{ and }A\neq S&#39;\mbox{ then }\mbox{Action}[i, a]=\mbox{r}_j$，其中 $j$ 是产生式 $A\rightarrow\alpha$ 的编号</li>
+<li>$\mbox{if }[S&#39;\rightarrow S\cdot, $]\in I_i \mbox{ then Action}[i, $]=acc$</li>
+<li>其它所有情况都设为 $err$</li>
+</ul>
+</li>
+</ol>
+<p><strong>如果一个文法构造完 $LR(1)$ 分析表后无冲突，称为 $LR(1)$ 文法。</strong></p>
+<h2 id="LALR-分析"><a href="#LALR-分析" class="headerlink" title="$LALR$ 分析"></a>$LALR$ 分析</h2><p>$LR(1)$ 分析法构造出来的状态太多，为了解决这个问题可以考虑将同心的项目集进行合并，这是 $LALR$ 分析法的由来。</p>
+<p>合并了状态之后的自动机和 $LR(0)/SLR$ 分析法得到的自动机状态数相同，但是分析能力依然比它们要强。</p>
+<p>具体操作过程是，如果经过 $LR(1)$ 分析后有两个状态是同心的，那么这两个状态会合并成一个状态（新的状态中的项是原有项的并），这个操作会递归进行下去，直到不可继续合并为止。一些注解：</p>
+<ul>
+<li>对状态进行了合并后，原来可能没有归约-归约冲突，但是合并后有可能产生。</li>
+<li>对状态进行合并不会产生新的归约-移进冲突。</li>
+<li>$LALR$ 分析可能会作多余的归约动作，但是不会产生错误的移进操作。</li>
+<li>$LALR$ 分析得到的自动机和 $LR(0)$ 分析得到的自动机具有相同的形式（都具有展望符），同时和 $SLR$ 分析得到的自动机具有相同的大小。</li>
+</ul>
+<p>如果 $LALR$ 得到的自动机没有冲突，则文法称为 $LALR$ 文法。它的分析能力介于 $LR(1)$ 和 $SLR$ 之间。</p>
+<h2 id="二义性文法的-LR-分析"><a href="#二义性文法的-LR-分析" class="headerlink" title="二义性文法的 $LR$ 分析"></a>二义性文法的 $LR$ 分析</h2><p>二义性文法不是 $LR$ 文法，但是这种文法表示简单，可以使用 $LR$ 分析技术进行分析。</p>
+<p>构造出自动机后有些状态会出现冲突，会有多个产生式可以使用，此时如果通过结合性和优先级的限制可以选定使用哪个产生式。</p>
+<p>例如在构造文法 $S\rightarrow iS|iSeS|a$ 的自动机（实际上这是个 if-else 的文法）时有个状态是 $S\rightarrow iS\cdot$ 与 $S\rightarrow iS\cdot eS$，此时如果读入 $e$ 就有移入-归约冲突，但是如果限制所有的 $e$ 都和最近的 $i$ 配对就可以解决这个问题，总是选择第二个产生式。</p>
+<p>又如在构造四则运算的文法时如果出现某个状态是 $E\rightarrow E+E\cdot$ ，$E\rightarrow E\cdot +E$ 以及 $E\rightarrow E\cdot \ast E$，在读入加号或者乘号的时候有移入-归约冲突。如果限制乘号优先级大于加号、加号是左结合的，就可以在读入加号的时候总是选择第一个产生式，在读入乘号的时候总是选择第三个产生式。</p>
+<p>尽管二义性文法可以使用 $LR$ 分析，但是应当节制使用。</p>
+<h2 id="LR-分析中的错误处理"><a href="#LR-分析中的错误处理" class="headerlink" title="$LR$ 分析中的错误处理"></a>$LR$ 分析中的错误处理</h2><p>$LR$ 分析中有两种错误处理策略。</p>
+<h3 id="恐慌模式错误恢复"><a href="#恐慌模式错误恢复" class="headerlink" title="恐慌模式错误恢复"></a>恐慌模式错误恢复</h3><p>在当前的状态下，如果发现读入的符号不能前往下一个状态，就表明出现了错误。此时在 <strong>状态栈</strong> 中从栈顶开始向下扫描，找到第一个在 Goto 表中有对应表项的状态 $s$，并从 Goto 表中选择一个表项。此时得到了一个非终结符 $A$，可以假装认为当前的错误如果没有发生的话，最后会归约到 $A$，因此此时可以将两个栈中后面的元素全部弹出，一直到栈顶为 $s$ 为止，并且使得两个栈中元素数目相同；随后不断扫描输入串，舍弃其中的符号，直到输入串中第一个符号在 Follow($A$) 中，此时认为 $A$ 已经归约完毕，将 $A$ 压入符号栈，并将 Goto($s$, $A$) 压入状态栈，然后继续处理。</p>
+<h3 id="短语层次错误恢复"><a href="#短语层次错误恢复" class="headerlink" title="短语层次错误恢复"></a>短语层次错误恢复</h3><p>对于 Action 表中所有的 err 项，都建立一个独立的错误处理程序。此时已经细化到了在什么情况下出错，因此这些程序中可以提示具体的出错原因然后尝试修复这个错误。</p>
+<p>在解析过程中，整个 Action 表中所有的情况都有对应的处理方式。对于非 err 的情况按照之前的方式处理即可，对于 err 的情况就执行对应的错误处理程序修复错误（一般是修改了两个栈）后继续进行语法分析。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2120,170 +2357,6 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/08/软件工程课程项目博客-2/" class="post-title-link" itemprop="url">软件工程课程大作业博客——数据传输方式的选取</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-08 10:01:49" itemprop="dateCreated datePublished" datetime="2018-10-08T10:01:49+08:00">2018-10-08</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:30:59" itemprop="dateModified" datetime="2019-03-11T15:30:59+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="软件工程课程大作业博客——数据传输方式的选取"><a href="#软件工程课程大作业博客——数据传输方式的选取" class="headerlink" title="软件工程课程大作业博客——数据传输方式的选取"></a>软件工程课程大作业博客——数据传输方式的选取</h1><p><strong>一些考虑</strong>：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。</p>
-<p>目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。</p>
-<p>比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html，但是上面没有任何数据，这个文件中的 js 会根据当前的 url 发起第二次请求，url 可能为 /api/contests/2/comments/4，这次请求会返回实际数据。</p>
-<p>数据传输的方式可以采用某种应用层上的协议来简化开发。目前备选的方案有 REST、GraphQL 和 gRPC。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/08/软件工程课程项目博客-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2330,7 +2403,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">101</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

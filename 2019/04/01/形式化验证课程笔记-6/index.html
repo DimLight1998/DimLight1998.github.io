@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="第六周Combination TheoriesCombined TheoryFor theory $T_1, T_2$, if $T_1\cap T_2 = \{=\}$, then the combined theory $T_1\cup T_2$ has signature $\Sigma_1\cup\Sigma_2$ and axioms $A_1\cup A_2$. Nelson-Oppe">
+<meta name="keywords" content="形式化验证">
+<meta property="og:type" content="article">
+<meta property="og:title" content="形式化验证课程笔记 6">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/04/01/形式化验证课程笔记-6/index.html">
+<meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="第六周Combination TheoriesCombined TheoryFor theory $T_1, T_2$, if $T_1\cap T_2 = \{=\}$, then the combined theory $T_1\cup T_2$ has signature $\Sigma_1\cup\Sigma_2$ and axioms $A_1\cup A_2$. Nelson-Oppe">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/04/01/形式化验证课程笔记-6/DeepinScreenshot_select-area_20190402134523.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/04/01/形式化验证课程笔记-6/DeepinScreenshot_select-area_20190402134538.png">
+<meta property="og:updated_time" content="2019-04-02T05:52:55.612Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="形式化验证课程笔记 6">
+<meta name="twitter:description" content="第六周Combination TheoriesCombined TheoryFor theory $T_1, T_2$, if $T_1\cap T_2 = \{=\}$, then the combined theory $T_1\cup T_2$ has signature $\Sigma_1\cup\Sigma_2$ and axioms $A_1\cup A_2$. Nelson-Oppe">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/04/01/形式化验证课程笔记-6/DeepinScreenshot_select-area_20190402134523.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/04/01/形式化验证课程笔记-6/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>形式化验证课程笔记 6 | Computation & Design</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Computation & Design</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/01/形式化验证课程笔记-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">形式化验证课程笔记 6
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 13:27:26" itemprop="dateCreated datePublished" datetime="2019-04-01T13:27:26+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-02 13:52:55" itemprop="dateModified" datetime="2019-04-02T13:52:55+08:00">2019-04-02</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第六周"><a href="#第六周" class="headerlink" title="第六周"></a>第六周</h1><h2 id="Combination-Theories"><a href="#Combination-Theories" class="headerlink" title="Combination Theories"></a>Combination Theories</h2><h3 id="Combined-Theory"><a href="#Combined-Theory" class="headerlink" title="Combined Theory"></a>Combined Theory</h3><p>For theory $T_1, T_2$, if $T_1\cap T_2 = \{=\}$, then the combined theory $T_1\cup T_2$ has signature $\Sigma_1\cup\Sigma_2$ and axioms $A_1\cup A_2$.</p>
+<h3 id="Nelson-Oppen-Combination-Method"><a href="#Nelson-Oppen-Combination-Method" class="headerlink" title="Nelson-Oppen Combination Method"></a>Nelson-Oppen Combination Method</h3><p>$T_1\cup T_2$ is decidable if both $T_1$ and $T_2$ are <strong>quantifier-free</strong>, <strong>conjunctive</strong> fragments which are <strong>decidable</strong> and <strong>stably-infinite</strong> (see below).</p>
+<h2 id="Stably-Infinite-Theories"><a href="#Stably-Infinite-Theories" class="headerlink" title="Stably-Infinite Theories"></a>Stably-Infinite Theories</h2><p>A theory $T$ with signature $\Sigma$ is <strong>stably infinite</strong> if for every quantifier-free $T$-satisfiable $\Sigma$-formula $F$, there is a satisfiable $T$-interpretation with domain of infinite cardinality.</p>
+<p>$T_E$, $T_A$ and $T_Z$ are stably infinite.</p>
+<h2 id="Nelson-Oppen-Procedure"><a href="#Nelson-Oppen-Procedure" class="headerlink" title="Nelson-Oppen Procedure"></a>Nelson-Oppen Procedure</h2><p>This procedure takes a formula $F$ in combined theory $T_1\cup T_2$, and returns an equisatisfiable formula $F_1\land F_2$ where $F_1$ is a $T_1$-formula and $F_2$ is a $T_2$-formula.</p>
+<p><em>In short, the procedure can separate a formula in a combined theory into two formulas in each theory.</em></p>
+<h3 id="Step-1-Variable-Abstraction"><a href="#Step-1-Variable-Abstraction" class="headerlink" title="Step 1. Variable Abstraction"></a>Step 1. Variable Abstraction</h3><h4 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h4><p>In this step, our goal is to make every literal in $F$ belongs to either $T_1$ or $T_2$.</p>
+<p>A function or a predict is a literal, so:</p>
+<ul>
+<li>If function $f(\dots, t, \dots)$ is in $F$, where $f$ in $\Sigma_1$ but $t$ in $\Sigma_2$, then we introduce a new variable $w$ and replace $t$ with w, then conjoin $t = w$.</li>
+<li>If predict $p(\dots, t, \dots)$ is in $F$, where $p$ in $\Sigma_1$ but $t$ in $\Sigma_2$, we introduce a new variable $w$ and replace $t$ with w, then conjoin $t = w$.</li>
+</ul>
+<p><em>Note that a variable is a logic symbol</em>. When finished, every literal in $F$ belows to either $T_1$ or $T_2$. Note the $=$ cannot be viewed as a predict here.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>The following formula is in $T_\mathbb Z\cup T_E$:</p>
+<script type="math/tex; mode=display">
+1 \le x \land x\le 2 \land f(x)\ne f(1) \land f(x)\ne f(2)</script><p>Also the formula can be thought as only in $T_E​$, we introduce axioms in $T_\mathbb Z​$ here. Therefore the formula is not only in $T_E​$.</p>
+<ol>
+<li><p>All symbols are $1$, $2$, $f(\cdot)$, $x$, $\le$, $=$, $\lnot$, $\land$, where $x$, $\lnot$ and $\land$ are logical symbols.</p>
+</li>
+<li><p>For non-logical symbols, $f(\cdot)$ and $=$ are in $T_E$, while $1$, $2$, $=$ and $\le$ are in $T_\mathbb Z$.</p>
+</li>
+<li><p>For literal $f(1)$, $f$ is in $T_E$ but $1$ is in $T_\mathbb Z$, so we introduce variable $m$ to replace $1$ in $f(1)$, then conjoin it to the formula. Do this for $f(2)$ too. Then we get</p>
+<script type="math/tex; mode=display">
+1 \le x \land x\le 2 \land f(x)\ne f(m) \land f(x)\ne f(n)\land m=1 \land n = 2</script></li>
+<li><p>Now $f(x)\ne f(m)\land f(x)\ne f(n)​$ is in $T_E​$, while $1\le x \land x \le 2 \land m = 1\land n = 2​$ is in $T_\mathbb Z​$.</p>
+</li>
+</ol>
+<h3 id="Step-2-Guess-And-Check"><a href="#Step-2-Guess-And-Check" class="headerlink" title="Step 2. Guess And Check"></a>Step 2. Guess And Check</h3><h4 id="Procedure-1"><a href="#Procedure-1" class="headerlink" title="Procedure"></a>Procedure</h4><p>In this step, our goal is to decide whether the original formula is satisfiable.</p>
+<ol>
+<li><p>For given formula $F_1$ and $F_2$, we can find their <strong>shared variables</strong> $V = free(F_1)\cap free(F_2)$, where $free(F)$ means all free variables in $F​$.</p>
+</li>
+<li><p>Build an equivalence relation $E$ on $V$, and build a formula $\alpha(V, E)$ which depends on $V$ and $E$:</p>
+<script type="math/tex; mode=display">
+\alpha(V, E) = \bigwedge\limits_{u, v\in V.uEv} u=v\land \bigwedge\limits_{u, v\in V.\lnot(uEv)}u\ne v</script></li>
+<li><p>$F_1\cup F_2$ is $T_1\cup T_2$-satisfiable if and only if there exists an $\alpha(V, E)$ and:</p>
+<ul>
+<li>$F_1\land \alpha(V, E)$ is $T_1$-satisfiable.</li>
+<li>$F_2\land \alpha(V, E)$ is $T_2$-satisfiable.</li>
+</ul>
+</li>
+</ol>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><p>(Follows the example in step 1.)</p>
+<ol>
+<li>$F_1$ (which in $T_E$) is $f(x)\ne f(m)\land f(x)\ne f(n)$, and $F_2$ (which in $T_\mathbb Z$) is $1\le x \land x \le 2 \land m = 1\land n = 2$.</li>
+<li>Shared variables are $V = \{x, m, n\}$.</li>
+<li>For every possible partition on $V$, we can construct an equivalence relation. There are five possibilities.<ul>
+<li>$\{\{x\}, \{m\}, \{n\}\}$: No, because $F_2\land x\ne m \land x \ne n$ is not $T_\mathbb Z$-satisfiable. (Some items are omitted.)</li>
+<li>$\{\{x\}, \{m =n\}\}$: No, because $F_2\land m=n$ is not $T_\mathbb Z$-satisfiable.</li>
+<li>$\{\{x, m\}, \{n\}\}$: No, because $F_1\land x  = m$ is not $T_E$-satisfiable.</li>
+<li>Same for the remaining two possibilities.</li>
+</ul>
+</li>
+<li>As all possibilities cannot ensure $F_1\land \alpha(V, E)$ is $T_E$-satisfiable and $F_2 \land \alpha(V, E)$ is $T_\mathbb Z$-satisfiable, the original formula $F$ is not $T_E\cup T_\mathbb Z$-satisfiable.</li>
+</ol>
+<h4 id="Efficiency-Issue"><a href="#Efficiency-Issue" class="headerlink" title="Efficiency Issue"></a>Efficiency Issue</h4><p>The method above is impractical as we need to construct too many partitions.</p>
+<a id="more"></a>
+<h2 id="Convex-Theory"><a href="#Convex-Theory" class="headerlink" title="Convex Theory"></a>Convex Theory</h2><p>A theory is <strong>convex</strong> if for any quantifier-free, conjunctive formula $F$:</p>
+<script type="math/tex; mode=display">
+F\rightarrow \bigvee\limits_{i =1}^n u_i = v_i \Rightarrow F\rightarrow u_i= v_i \text{ for some } i\in \{1, \dots, n\}</script><ul>
+<li>$T_A$ and $T_\mathbb Z$ are not convex.</li>
+<li>$T_E$ and $T_\mathbb Q$ are convex.</li>
+</ul>
+<hr>
+<p>$T_\mathbb Z$ is not convex, for example, for formula $F:1 \le x\le 2 \land u=1 \land v = 2 $, we have $F\rightarrow x=u\lor x=v$ is true, but both $F\rightarrow x=u$ and $F\rightarrow x = v$ are false.</p>
+<h2 id="Optimized-Step-2-Equality-Propagation"><a href="#Optimized-Step-2-Equality-Propagation" class="headerlink" title="Optimized Step 2: Equality Propagation"></a>Optimized Step 2: Equality Propagation</h2><h3 id="Procedure-2"><a href="#Procedure-2" class="headerlink" title="Procedure"></a>Procedure</h3><p>In this step, our goal is to decide whether the original formula is satisfiable, but with a more efficient algorithm than the step 2 above.</p>
+<ol>
+<li>For given formula $F_1$ and $F_2$, we can find their <strong>shared variables</strong> $V = free(F_1)\cap free(F_2)$, where $free(F)$ means all free variables in $F$.</li>
+<li>Construct a set $E$ containing all equations shared between $T_1$ and $T_2$. Initially the set is empty.</li>
+<li>Ask the decision procedure of $T_1$ to report newly implied equalities between shared variables. If $T_1$ is convex, you will get one equality, and you should add this equality to $E$; if $T_1$ is not convex, you will get a disjunction of equalities, and you should split the search procedure into multiple branches and add each equality into one branch.</li>
+<li>Repeat step 3, but replace $T_1$ with $T_2$ and use information stores in $E$.</li>
+<li>Repeat step 3 and step 4, until<ul>
+<li>If any branch of the search ends with a full arrangement, the original formula is <strong>satisfiable</strong>.</li>
+<li>If all branches end with contradiction, the original formula is <strong>unsatisfiable</strong>.</li>
+<li>If all branches cannot discover new equalities, the original formula is <strong>satisfiable</strong>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h3><p>Formula $F$ is in $T_E\cup T_\mathbb Q$:</p>
+<script type="math/tex; mode=display">
+f(f(x) - f(y))\ne f(z) \land x \le y \land y + z \le x \land 0 \le z</script><p>Divide it into two formulas:</p>
+<ul>
+<li>$F_E: f(w) \ne f(z) \land u=f(x)\land v =f(y)$</li>
+<li>$F_\mathbb Q: x\le y \land y + z \le x \land 0 \le z \land w = u - v$</li>
+<li>$V = \{x, y, z, u, v, w\}$</li>
+</ul>
+<p><em>If we use the procedure in the above section by constructing $E$ on all partitions of $V$, it is impractical.</em></p>
+<p><em>Note that both $T_E$ and $T_\mathbb Q$ are convex.</em></p>
+<ol>
+<li>Construct known equivalence relation $E​$ on $V​$, but initially the set is empty.</li>
+<li>With $F_\mathbb Q$ and $E=\{\}$, we now know $x = y$. Add this equation to $E$. (Although we know $z=0$, $0$ is not in $T_E$, so we cannot add this equation to $E$. We only concern about the equality on shared variables.)</li>
+<li>With $F_E$ and $E=\{x = y\}$, we now know $u=v$. Add this equation to $E$.</li>
+<li>With $F_\mathbb Q$ and $E = \{x = y, u = v\}$, we now know $z = w$. Add this equation to $E$.</li>
+<li>With $F_E$ and $E$ we get a contradiction, hence the original formula is $T_E\cup T_\mathbb Q$-unsatisfiable.</li>
+</ol>
+<p><strong>How to construct an assignment</strong>: if the formula is satisfiable, you can construct an assignment by defining equivalence relations on $V$: if two variables are equal according to $E$, they are equal; otherwise they are not equal.</p>
+<h3 id="Another-Example"><a href="#Another-Example" class="headerlink" title="Another Example"></a>Another Example</h3><p>Formula $F$ is in $T_E\cup T_\mathbb Z$:</p>
+<script type="math/tex; mode=display">
+1 \le x\land x \le 2\land f(x)\ne f(1)\land f(x)\ne f(2)</script><p>Divide $F$ into two formulas:</p>
+<ul>
+<li>$F_E: f(x)\ne f(w_1)\land f(x)\ne f(w_2)$</li>
+<li>$F_\mathbb Z: 1\le x \land x \le 2 \land w_1 = 1 \land w_2 = 2$</li>
+<li>$V = \{x, w_1, w_2\}$</li>
+</ul>
+<p><em>Note that $T_\mathbb Z​$ is not convex.</em></p>
+<ol>
+<li>Construct known equivalence relation $E$ on $V$, but initially the set is empty.</li>
+<li>With $F_\mathbb Z$ and $E = \{\}$, we now know $x  = w_1\lor x = w_2$, and we have two path here: $E_1 = \{x =  w_1\}$ and $E_2 = \{x = w_2\}$.</li>
+<li>With $F_E​$ and $E_1 = \{x = w_1\}​$ we get a contradiction, hence this path is not satisfiable.</li>
+<li>With $F_E​$ and $E_2 = \{x = w_2\}​$ we get a contradiction, hence this path is not satisfiable.</li>
+<li>Therefore the original formula is not $T_E\cup T_\mathbb Z$-satisfiable.</li>
+</ol>
+<hr>
+<h2 id="Bring-Back-Quantifiers"><a href="#Bring-Back-Quantifiers" class="headerlink" title="Bring Back Quantifiers"></a>Bring Back Quantifiers</h2><p>Quantifier-free fragments are not expressive, for example, we cannot say two arrays are equal in $T_{A}$.</p>
+<h2 id="Array-Properties"><a href="#Array-Properties" class="headerlink" title="Array Properties"></a>Array Properties</h2><p>Introduce quantifiers into $T_A$, but limit the variable to array indices.</p>
+<p>An <strong>array property</strong> is a $\Sigma_A$-formula of the form $\forall i::F[i]\rightarrow G[i]$, where $F[i]$ is <strong>index guard</strong>, $G[i]$ is <strong>value constraint</strong>.</p>
+<h3 id="Syntax-of-Index-Guard"><a href="#Syntax-of-Index-Guard" class="headerlink" title="Syntax of Index Guard"></a>Syntax of Index Guard</h3><img src="/2019/04/01/形式化验证课程笔记-6/DeepinScreenshot_select-area_20190402134523.png">
+<h3 id="Syntax-of-Value-Constraint"><a href="#Syntax-of-Value-Constraint" class="headerlink" title="Syntax of Value Constraint"></a>Syntax of Value Constraint</h3><img src="/2019/04/01/形式化验证课程笔记-6/DeepinScreenshot_select-area_20190402134538.png">
+<h2 id="Array-Property-Fragment"><a href="#Array-Property-Fragment" class="headerlink" title="Array Property Fragment"></a>Array Property Fragment</h2><p>The <strong>array property fragment</strong> is a logical combination of <strong>quantifier-free $\Sigma_A$-formulas</strong> and <strong>array properties</strong>.</p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><ul>
+<li>$\forall i::a[i] = b[i]$</li>
+<li>$\forall j::i\ne j\rightarrow a\langle i\triangleleft v\rangle[j] = a[j]$</li>
+</ul>
+<h2 id="Deciding-Array-Property-Fragment"><a href="#Deciding-Array-Property-Fragment" class="headerlink" title="Deciding Array Property Fragment"></a>Deciding Array Property Fragment</h2><p>Semantically, $\forall i::F[i]$ is equal to $\bigwedge\limits_\beta \beta (F)$ where $\beta$ ranges over all substitutions of $i$.</p>
+<p>The idea is to replace $\forall i::F[i]$ with a <strong>finite</strong> conjunction $\bigwedge\limits_{i = 1}^n F[t_i]$. In this conjunctive, $t_i$ are called the <strong>index terms</strong>, and all index terms necessary should be considered.</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/形式化验证/" rel="tag"># 形式化验证</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/形式化验证课程笔记-5/" rel="next" title="形式化验证课程笔记 5">
+                <i class="fa fa-chevron-left"></i> 形式化验证课程笔记 5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第六周"><span class="nav-number">1.</span> <span class="nav-text">第六周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Combination-Theories"><span class="nav-number">1.1.</span> <span class="nav-text">Combination Theories</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Combined-Theory"><span class="nav-number">1.1.1.</span> <span class="nav-text">Combined Theory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nelson-Oppen-Combination-Method"><span class="nav-number">1.1.2.</span> <span class="nav-text">Nelson-Oppen Combination Method</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stably-Infinite-Theories"><span class="nav-number">1.2.</span> <span class="nav-text">Stably-Infinite Theories</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nelson-Oppen-Procedure"><span class="nav-number">1.3.</span> <span class="nav-text">Nelson-Oppen Procedure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-Variable-Abstraction"><span class="nav-number">1.3.1.</span> <span class="nav-text">Step 1. Variable Abstraction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Procedure"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">Procedure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-Guess-And-Check"><span class="nav-number">1.3.2.</span> <span class="nav-text">Step 2. Guess And Check</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Procedure-1"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">Procedure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Efficiency-Issue"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">Efficiency Issue</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Convex-Theory"><span class="nav-number">1.4.</span> <span class="nav-text">Convex Theory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimized-Step-2-Equality-Propagation"><span class="nav-number">1.5.</span> <span class="nav-text">Optimized Step 2: Equality Propagation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Procedure-2"><span class="nav-number">1.5.1.</span> <span class="nav-text">Procedure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-number">1.5.2.</span> <span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Another-Example"><span class="nav-number">1.5.3.</span> <span class="nav-text">Another Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bring-Back-Quantifiers"><span class="nav-number">1.6.</span> <span class="nav-text">Bring Back Quantifiers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-Properties"><span class="nav-number">1.7.</span> <span class="nav-text">Array Properties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax-of-Index-Guard"><span class="nav-number">1.7.1.</span> <span class="nav-text">Syntax of Index Guard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Syntax-of-Value-Constraint"><span class="nav-number">1.7.2.</span> <span class="nav-text">Syntax of Value Constraint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-Property-Fragment"><span class="nav-number">1.8.</span> <span class="nav-text">Array Property Fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Examples"><span class="nav-number">1.8.1.</span> <span class="nav-text">Examples</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deciding-Array-Property-Fragment"><span class="nav-number">1.9.</span> <span class="nav-text">Deciding Array Property Fragment</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
