@@ -279,6 +279,25 @@
     
     
     <entry>
+      <title>数据库系统（中）：建模与设计 笔记 2 数据建模：工程化方法及案例分析</title>
+      <link href="/2019/03/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%AD%EF%BC%89%EF%BC%9A%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0-2-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/"/>
+      <url>/2019/03/11/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%AD%EF%BC%89%EF%BC%9A%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0-2-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/</url>
+      
+        <content type="html"><![CDATA[<h1 id="数据建模：工程化方法及案例分析"><a href="#数据建模：工程化方法及案例分析" class="headerlink" title="数据建模：工程化方法及案例分析"></a>数据建模：工程化方法及案例分析</h1><h2 id="什么是IDEF1X"><a href="#什么是IDEF1X" class="headerlink" title="什么是IDEF1X"></a>什么是IDEF1X</h2><p>IDEF1X 是 E-R 图的一种细化。例如实体被细分为独立实体、从属实体；其它概念也有所细化。</p><p>可以将 IDEF1X 看作是除了 Chen 和 Crow&#39;s foot 之外的第三种表达方法。</p><h2 id="独立实体和从属实体"><a href="#独立实体和从属实体" class="headerlink" title="独立实体和从属实体"></a>独立实体和从属实体</h2><p>独立实体又称 <strong>强实体</strong>，从属实体又称 <strong>弱实体</strong>。</p><ul><li><strong>独立实体</strong> 的实例的唯一标识不依赖于它与其它实体的联系。主关键字没有外键。</li><li><strong>从属实体</strong> 的实例的唯一标识依赖于这个实体与其它实体的联系。从属实体的主关键字继承自其它实体的属性。主关键字有外键。从属实体的实例的存在依赖于其它实体的存在。</li></ul><p>IDEF1X 中还有其它各种限制和要求，这里略去。</p><h2 id="标定联系和非标定联系"><a href="#标定联系和非标定联系" class="headerlink" title="标定联系和非标定联系"></a>标定联系和非标定联系</h2><ul><li><strong>标定联系</strong>：父实体的主关键字是子实体的主关键字的一部分时，子实体和父实体之间的联系为 <strong>标定联系</strong>。此时子实体是从属实体。</li><li><strong>非标定联系</strong>：不是标定联系的联系。尽管父实体的主关键字可能是子实体的某个属性，但是子实体的唯一标识不需要靠这个属性。</li></ul><h2 id="非确定联系与相交实体"><a href="#非确定联系与相交实体" class="headerlink" title="非确定联系与相交实体"></a>非确定联系与相交实体</h2><p><strong>非确定联系</strong>：实体之间多对多的联系。</p><p>非确定联系需要分解为若干个多对一的联系进行表达。非确定联系的表达需要引入 <strong>相交实体</strong> 作为中介进行表达，例如两个实体之间的多对多的联系可以通过引入相交实体变成两个多对一的联系。</p><hr><p>确定性联系通过属性继承实现实体之间的联系；非确定性联系通过引入相交实体实现实体之间的联系。</p><h2 id="分类联系与分类实体"><a href="#分类联系与分类实体" class="headerlink" title="分类联系与分类实体"></a>分类联系与分类实体</h2><p>分类实体的概念类似于 OOP 中的继承。在 IDEF1X 中“超类”实体称为 <strong>一般实体</strong>，“子类”实体称为 <strong>分类实体</strong>。从一般实体到分类实体的过程称为 <strong>特化</strong>，反之称为 <strong>泛化</strong>。</p><p>分类实体和一般实体具有相同的主关键字。</p><p>分类实体和一般实体之间的联系称为 <strong>分类联系</strong>。<strong>完全分类联系</strong> 指的是一般实体的实例必然是某个分类实体的实例，反之为 <strong>非完全分类联系</strong>，即存在不是任意分类实体实例的一般实体的实例（一般实体的范围比分类实体的范围的并集要更大）。</p><a id="more"></a><h2 id="IDEF1X案例讲解之一-四个建模小例子"><a href="#IDEF1X案例讲解之一-四个建模小例子" class="headerlink" title="IDEF1X案例讲解之一-四个建模小例子"></a>IDEF1X案例讲解之一-四个建模小例子</h2><blockquote><p>本节无笔记。</p></blockquote><h2 id="IDEF1X案例讲解之二-仓储系统建模"><a href="#IDEF1X案例讲解之二-仓储系统建模" class="headerlink" title="IDEF1X案例讲解之二-仓储系统建模"></a>IDEF1X案例讲解之二-仓储系统建模</h2><blockquote><p>本节无笔记。</p></blockquote><h2 id="IDEF1X案例讲解之三-物料系统建模"><a href="#IDEF1X案例讲解之三-物料系统建模" class="headerlink" title="IDEF1X案例讲解之三-物料系统建模"></a>IDEF1X案例讲解之三-物料系统建模</h2><blockquote><p>本节无笔记。</p></blockquote><h2 id="IDEF1X案例讲解之四-六个模型示例点评"><a href="#IDEF1X案例讲解之四-六个模型示例点评" class="headerlink" title="IDEF1X案例讲解之四-六个模型示例点评"></a>IDEF1X案例讲解之四-六个模型示例点评</h2><blockquote><p>本节无笔记。</p></blockquote><h2 id="IDEF1X案例讲解之五-联赛管理系统建模"><a href="#IDEF1X案例讲解之五-联赛管理系统建模" class="headerlink" title="IDEF1X案例讲解之五-联赛管理系统建模"></a>IDEF1X案例讲解之五-联赛管理系统建模</h2><blockquote><p>本节无笔记。</p></blockquote>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 数据库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Happy 与 Parsec 学习笔记</title>
       <link href="/2019/03/05/Happy-%E4%B8%8E-Parsec-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2019/03/05/Happy-%E4%B8%8E-Parsec-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
@@ -515,26 +534,7 @@
       <link href="/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%AD%EF%BC%89%EF%BC%9A%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B/"/>
       <url>/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%AD%EF%BC%89%EF%BC%9A%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0-3-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B/</url>
       
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 数据库 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>数据库系统（中）：建模与设计 笔记 2 数据建模：工程化方法及案例分析</title>
-      <link href="/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%AD%EF%BC%89%EF%BC%9A%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0-2-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/"/>
-      <url>/2019/03/01/%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%EF%BC%88%E4%B8%AD%EF%BC%89%EF%BC%9A%E5%BB%BA%E6%A8%A1%E4%B8%8E%E8%AE%BE%E8%AE%A1-%E7%AC%94%E8%AE%B0-2-%E6%95%B0%E6%8D%AE%E5%BB%BA%E6%A8%A1%EF%BC%9A%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B9%E6%B3%95%E5%8F%8A%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90/</url>
-      
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="数据库设计过程"><a href="#数据库设计过程" class="headerlink" title="数据库设计过程"></a>数据库设计过程</h1><p>数据库设计的过程：</p><ol><li><strong>需求分析</strong></li><li><strong>概念数据库</strong> 设计：得到概念模型，例如 E-R 图</li><li><strong>逻辑数据库</strong> 设计：建立关系模型，得到三层抽象中的外模式</li><li><strong>物理数据库</strong> 设计：依赖于具体的 DBMS 组织物理数据</li></ol><h2 id="如何做需求分析"><a href="#如何做需求分析" class="headerlink" title="如何做需求分析"></a>如何做需求分析</h2><p>需求分析最后要提交 <strong>需求分析报告</strong>。</p><h2 id="如何做概念数据库设计"><a href="#如何做概念数据库设计" class="headerlink" title="如何做概念数据库设计"></a>如何做概念数据库设计</h2><p>概念数据库设计最后要提交 <strong>概念数据库设计报告</strong>。应当清晰地包含：</p><ul><li>实体的发现、划分、定义</li><li>实体属性的发现、划分、定义</li><li>实体联系的发现、划分、定义</li><li>外部视图和概念视图的定义</li></ul><p>并且使用规范的表达方法表达出来（例如 E-R 图）。</p><h2 id="如何做逻辑数据库设计"><a href="#如何做逻辑数据库设计" class="headerlink" title="如何做逻辑数据库设计"></a>如何做逻辑数据库设计</h2><p>逻辑数据库设计最后要提交 <strong>逻辑数据库设计报告</strong>。应当包含数据库的逻辑设计。</p><h3 id="E-R-图向关系模式的转换"><a href="#E-R-图向关系模式的转换" class="headerlink" title="E-R 图向关系模式的转换"></a>E-R 图向关系模式的转换</h3><ul><li>E-R 图的实体转换为关系</li><li>E-R 图的属性转换为属性</li><li>E-R 图的关键字转换为主键</li><li>E-R 图的复合属性应当分解成多个属性或者合并车一个关系</li><li>E-R 图的多值属性应当和主键一起 <strong>形成一个新的关系</strong></li><li>一对一联系，且双方都是部分参与时，可以将联系定义为新的关系，属性为双方的主键</li><li>一对一联系，且一方是全部参与时，可以将另一方（可能是全部参与或者部分参与）作为全部参与的这一方的属性</li><li>多对一联系，将单方参与实体的主键作为多方参与实体的属性</li><li>多对多联系，应当新建一个关系，其属性为双方的主键</li><li>弱实体的主键应当包含依赖的强实体的主键</li><li>分类实体对应的关系应包含一般实体的主键</li><li>如果分类是完全的，则可以不建立一般实体对应的关系</li><li>对于多元联系（一个联系关联多个实体），可以<ul><li>引入新的关系表示这个联系，关系应继承各个实体的主键，将其作为主键</li><li>引入新的关系，并使用自己独立的 ID 作为主键，然后引入关联的各个实体的主键作为普通的属性</li><li>转换为多个二元联系</li></ul></li></ul><a id="more"></a><h2 id="逻辑数据库设计会出现什么问题"><a href="#逻辑数据库设计会出现什么问题" class="headerlink" title="逻辑数据库设计会出现什么问题"></a>逻辑数据库设计会出现什么问题</h2><ul><li>数据库中可能存在冗余。</li><li>在插入数据和删除数据时可能出现异常。</li></ul><p>通过数据库设计理论（包括数据依赖理论、关系范式理论和模式分解理论）可以在一定程度上避免掉上述问题。</p><h2 id="如何做物理数据库设计"><a href="#如何做物理数据库设计" class="headerlink" title="如何做物理数据库设计"></a>如何做物理数据库设计</h2><p>物理数据库设计最后要提交 <strong>物理数据库设计报告</strong>。应当包含：</p><ul><li>DBMS 选型</li><li>数据库的存储结构</li><li>设置触发器</li><li>设置安全性控制</li><li>其它一些设计</li></ul>]]></content>
       
       
       
