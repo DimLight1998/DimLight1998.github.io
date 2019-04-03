@@ -125,10 +125,21 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="模式分解存在什么问题当关系模式不满足前面提到的若干范式的时候就应当进行分解。 模式分解存在的问题什么是模式分解一个关系模式可以分解为几个更小的关系模式。这几个更小的关系模式的属性集的并应当是原来的关系模式的属性集，并且彼此之间互相不包含。 给定了一个关系模式的分解 $\displaystyle{\rho}$。对于一个关系 R，将它按照方案分解后得到的多个子关系自然连接起来，会得到另一个关系 $\d">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-03T07:53:53.595Z">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143255.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143247.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143316.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143527.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403150301.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403151528.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403151820.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403152723.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403154219.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403154258.png">
+<meta property="og:updated_time" content="2019-04-03T07:56:56.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（中）：建模与设计 笔记 6 模式分解存在什么问题">
 <meta name="twitter:description" content="模式分解存在什么问题当关系模式不满足前面提到的若干范式的时候就应当进行分解。 模式分解存在的问题什么是模式分解一个关系模式可以分解为几个更小的关系模式。这几个更小的关系模式的属性集的并应当是原来的关系模式的属性集，并且彼此之间互相不包含。 给定了一个关系模式的分解 $\displaystyle{\rho}$。对于一个关系 R，将它按照方案分解后得到的多个子关系自然连接起来，会得到另一个关系 $\d">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143255.png">
 
 
 
@@ -416,7 +427,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-03 15:53:53" itemprop="dateModified" datetime="2019-04-03T15:53:53+08:00">2019-04-03</time>
+                <time title="修改时间：2019-04-03 15:56:56" itemprop="dateModified" datetime="2019-04-03T15:56:56+08:00">2019-04-03</time>
               
             
           </span>
@@ -466,12 +477,12 @@
 </ul>
 <h2 id="无损连接分解及其检验算法"><a href="#无损连接分解及其检验算法" class="headerlink" title="无损连接分解及其检验算法"></a>无损连接分解及其检验算法</h2><h3 id="什么是无损连接分解"><a href="#什么是无损连接分解" class="headerlink" title="什么是无损连接分解"></a>什么是无损连接分解</h3><p>对于关系模式 R 的任意关系 r，以及给定的分解方案 $\displaystyle{\rho}$，如果  $\displaystyle{m_\rho(r) = r}$，则称分解是无损连接分解。</p>
 <h3 id="无损连接分解的判定"><a href="#无损连接分解的判定" class="headerlink" title="无损连接分解的判定"></a>无损连接分解的判定</h3><p>直接 copy 课件上的算法：</p>
-
-
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143255.png">
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143247.png">
 <p>例子：</p>
-
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143316.png">
 <p>下面这张图中的步骤可以继续进行下去</p>
-
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403143527.png">
 <p>如果在进行过程中发现某一行全部为 a，则表明分解是无损连接分解；否则是有损连接分解。</p>
 <a id="more"></a>
 <h3 id="简单版无损连接分解的判定"><a href="#简单版无损连接分解的判定" class="headerlink" title="简单版无损连接分解的判定"></a>简单版无损连接分解的判定</h3><p>很多时候只要将一个关系模式拆分成两个关系模式，此时判定会很简单。如果将 R 分解为 $\displaystyle{R_1}$ 和 $\displaystyle{R_2}$，则分解是无损的当且仅当 $\displaystyle{R_1\cap R_2\rightarrow R_1 - R_2\lor R_1\cap R_2\rightarrow R_2 - R_1}$。</p>
@@ -489,23 +500,23 @@
 </ul>
 <h3 id="判定分解是否保持依赖"><a href="#判定分解是否保持依赖" class="headerlink" title="判定分解是否保持依赖"></a>判定分解是否保持依赖</h3><p>直接按照上述定义进行判断即可。在将依赖关系集的投影并起来后，记作 G。现在只要判定 G 是否和 F 等价。为此，就转化为了判定两个依赖关系集是否等价的问题。</p>
 <p>对于 F 中的每个依赖关系 $\displaystyle{X\rightarrow Y}$，求出 X 在 G 下的属性闭包，检查是否包含 Y 即可。但是在求这个属性闭包的时候应当在分解后的小关系模式中进行。课件上的算法表述如下：</p>
-
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403150301.png">
 <h2 id="模式分解成-BCNF-及第三范式的算法"><a href="#模式分解成-BCNF-及第三范式的算法" class="headerlink" title="模式分解成 BCNF 及第三范式的算法"></a>模式分解成 BCNF 及第三范式的算法</h2><p>BCNF 指的就是 Boyce-Codd 范式。</p>
 <h3 id="将关系模式分解为-BCNF"><a href="#将关系模式分解为-BCNF" class="headerlink" title="将关系模式分解为 BCNF"></a>将关系模式分解为 BCNF</h3><p><strong>注意</strong>：这个算法不能保证分解保持依赖。</p>
-
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403151528.png">
 <h3 id="将关系模式分解为第三范式"><a href="#将关系模式分解为第三范式" class="headerlink" title="将关系模式分解为第三范式"></a>将关系模式分解为第三范式</h3><p>由于第三范式比 BCNF 更弱，所以这个分解可以同事做到无损连接以及保持依赖。</p>
-
-
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403151820.png">
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403152723.png">
 <h2 id="连接依赖与第五范式"><a href="#连接依赖与第五范式" class="headerlink" title="连接依赖与第五范式"></a>连接依赖与第五范式</h2><h3 id="连接依赖"><a href="#连接依赖" class="headerlink" title="连接依赖"></a>连接依赖</h3><p>连接依赖是形式最一般的依赖。多值依赖是连接依赖的特例。</p>
 <p>看起来很复杂，我不打算弄清楚了。</p>
-
-<h3 id="第五范式"><a href="#第五范式" class="headerlink" title="第五范式"></a>第五范式</h3>
+<img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403154219.png">
+<h3 id="第五范式"><a href="#第五范式" class="headerlink" title="第五范式"></a>第五范式</h3><img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-6-模式分解存在什么问题/DeepinScreenshot_select-area_20190403154258.png">
 <h2 id="数据库设计需要知道的"><a href="#数据库设计需要知道的" class="headerlink" title="数据库设计需要知道的"></a>数据库设计需要知道的</h2><p>整理一下包含这一讲在内的三讲，内容依次是 <em>数据依赖理论</em>、<em>关系范式理论</em> 和 <em>模式分解理论</em>。</p>
 <p>数据依赖理论用来发现关系中的函数依赖（这一讲主要在玩定义），进而可以判断是否满足某种范式；关系范式理论给出了一些范式（1NF、2NF、3NF、BCNF 等）；模式分解理论给出了在不满足关系范式的情况下如何对关系进行分解，并且保证正确性（无损连接、保持依赖）。</p>
 <p>范式要求的严格程度按照 1NF、2NF、3NF、BCNF、4NF、5NF 递增。但是 4NF 和 5NF 实在是太严格了，一般分解到满足 3NF 或者 BCNF 就可以了。</p>
 <hr>
 <p>分不分解需要进行折中。按照上面这些理论会得到一些小关系模式，它们不会存在冗余、插入和删除异常。但是查询时需要大量的连接操作。</p>
-<p>实际操作中设计的关系模式符合 BCNF 一般就够了。</p>
+<p>实际操作中设计的关系模式符合 BCNF 一般就够了（如果有依赖，依赖的属性组必须包含候选键）。</p>
 <hr>
 <p>至此已经结束了逻辑数据库的设计。</p>
 
