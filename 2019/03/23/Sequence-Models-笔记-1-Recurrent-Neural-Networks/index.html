@@ -126,7 +126,7 @@
 <meta property="og:description" content="Recurrent Neural Networks来源 Coursera-Sequence Models. Recurrent Neural NetworksWhy sequence models一些序列模型的应用：  Speech recognition Music generation Sentiment classfication DNA Sequence analysis Machine">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/DeepinScreenshot_select-area_20190328210024.png">
-<meta property="og:updated_time" content="2019-03-30T08:21:22.024Z">
+<meta property="og:updated_time" content="2019-04-03T03:12:31.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sequence Models 笔记 1 Recurrent Neural Networks">
 <meta name="twitter:description" content="Recurrent Neural Networks来源 Coursera-Sequence Models. Recurrent Neural NetworksWhy sequence models一些序列模型的应用：  Speech recognition Music generation Sentiment classfication DNA Sequence analysis Machine">
@@ -418,7 +418,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-30 16:21:22" itemprop="dateModified" datetime="2019-03-30T16:21:22+08:00">2019-03-30</time>
+                <time title="修改时间：2019-04-03 11:12:31" itemprop="dateModified" datetime="2019-04-03T11:12:31+08:00">2019-04-03</time>
               
             
           </span>
@@ -475,7 +475,17 @@
 <p>对于元素 $x^{\langle t\rangle }$，它对应的 $\hat y^{\langle t\rangle }$ 既取决于输入 $x^{\langle t\rangle }$ 也取决于上次的激活值 $a^{\langle t- 1\rangle }$。在计算过程中，$x^{\langle t\rangle }$ 既产生预测值 $\hat y^{\langle t\rangle }$ 也产生激活值 $a^{\langle t\rangle }$。初始时的 $a^{\langle 0\rangle }$ 可以是零向量，也可以是某个随机值。</p>
 <h4 id="简单递归神经网络的问题"><a href="#简单递归神经网络的问题" class="headerlink" title="简单递归神经网络的问题"></a>简单递归神经网络的问题</h4><p>上述 RNN 的问题在于对于序列中的某个元素只能利用序列中该元素前的信息，而不能利用后续信息。这在一些应用中是不利的，但是有解决方案。</p>
 <h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>RNN 中的一个模块需要维护三个权值和两个偏置：$W_{aa}, W_{ax}, W_{ya}, b_a, b_y$。<em>命名方式：第一个角标指示用来计算什么，第二个角标如果存在依据什么计算。</em></p>
-<p>对于上次的激活值 $a^{\langle t - 1\rangle }$ 以及这次的输入 $x^{\langle t\rangle }$，有<br>$\displaystyle{<br>\begin{aligned}<br>a^{\langle t\rangle } &amp;= g_1(W_{aa}a^{\langle t-1\rangle } + W_{ax}x^{\langle t\rangle } + b_a) \\<br>y^{\langle t\rangle } &amp;= g_2(W_{ya}a^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{<br>可以进一步简化这个符号。如果将 $W_{aa}$ 和 $W_{ax}$ 横向拼接起来得到 $W_a$，将 $W_{ya}$ 记作 $W_y$，将 $a^{\langle t - 1\rangle }$ 和 $x^{\langle t\rangle }$ 纵向拼接起来得到 $[a^{\langle t - 1\rangle }, x^{\langle t\rangle }]$，那么有<br>$\displaystyle{<br>\begin{aligned}<br>a^{\langle t\rangle } &amp;= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\<br>y^{\langle t\rangle } &amp;= g_2(W_{y}a^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{<br>现在只要维护两个权值和偏置即可。<strong>再次注意对同一个序列而言，各元素计算时使用的参数是相同且共享的。</strong></p>
+<p>对于上次的激活值 $a^{\langle t - 1\rangle }$ 以及这次的输入 $x^{\langle t\rangle }$，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a^{\langle t\rangle } &= g_1(W_{aa}a^{\langle t-1\rangle } + W_{ax}x^{\langle t\rangle } + b_a) \\
+y^{\langle t\rangle } &= g_2(W_{ya}a^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>可以进一步简化这个符号。如果将 $W_{aa}$ 和 $W_{ax}$ 横向拼接起来得到 $W_a$，将 $W_{ya}$ 记作 $W_y$，将 $a^{\langle t - 1\rangle }$ 和 $x^{\langle t\rangle }$ 纵向拼接起来得到 $[a^{\langle t - 1\rangle }, x^{\langle t\rangle }]$，那么有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a^{\langle t\rangle } &= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\
+y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>现在只要维护两个权值和偏置即可。<strong>再次注意对同一个序列而言，各元素计算时使用的参数是相同且共享的。</strong></p>
 <a id="more"></a>
 <h3 id="Backpropagation-through-time"><a href="#Backpropagation-through-time" class="headerlink" title="Backpropagation through time"></a>Backpropagation through time</h3><h4 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h4><p>对于序列中的每个元素的输出可以定义损失函数 $\mathcal L(\hat y^{\langle t\rangle }, y^{\langle t\rangle })​$，将每个元素的损失函数加起来就得到了序列的损失函数 $\mathcal L(\hat y, y) = \sum\limits_{t = 1}^{T_y}\mathcal L(\hat y^{\langle t\rangle }, y^{\langle t\rangle })​$。</p>
 <h4 id="反向传播"><a href="#反向传播" class="headerlink" title="反向传播"></a>反向传播</h4><p>对于一个序列，如果将计算过程中各个值的依赖关系有有向图表示出来，会得到一张 DAG。其中输入包括 $a^{\langle 0\rangle }, W_a, b_a, W_y, b_y, x^{\langle 1\rangle }, x^{\langle 2\rangle }, \dots, x^{\langle T_x\rangle }$，输出只有 $\mathcal L(\hat y, y)$。理论上，只要是 DAG 就可以对变量 $W_a, b_a, W_y, b_y$（或者包括 $a^{\langle 0\rangle }$）求导，然后梯度下降更新；实现上也没太大难度。</p>
@@ -501,20 +511,34 @@
 <h4 id="梯度爆炸的解决方案"><a href="#梯度爆炸的解决方案" class="headerlink" title="梯度爆炸的解决方案"></a>梯度爆炸的解决方案</h4><p>对于梯度爆炸有个简单的解决方案，就是预先设定一个阈值。如果梯度绝对值大于该阈值就在此将其截断，使得梯度绝对值总是不会超过阈值。</p>
 <h3 id="Gated-Recurrent-Unit-GRU"><a href="#Gated-Recurrent-Unit-GRU" class="headerlink" title="Gated Recurrent Unit (GRU)"></a>Gated Recurrent Unit (GRU)</h3><p>GRU 通过在网络中引入负责记忆的单元来解决长距离的依赖问题。想法是在计算 $a^{\langle t \rangle}$ 的过程中，有时候适当保存 $a^{\langle t \rangle}$ 中的若干分量，在处理接下来的一些元素时保持这些分量不变，直到某个特定的时刻再允许其变动。此时的 $a^{\langle t \rangle}$ 在处理同一个序列的不同元素的过程中变成了某种像寄存器一样的东西，因此使用新的记号 $c^{\langle t \rangle}$ 来表示它（c 代表 cell）。此外，还需要引入一个量控制 $c^{\langle t \rangle}$ 是否不变，这个量为 $\Gamma_u$（u 代表 update）。</p>
 <h4 id="简化版-GRU"><a href="#简化版-GRU" class="headerlink" title="简化版 GRU"></a>简化版 GRU</h4><p>在简单的 RNN 中，有：</p>
-<p>$\displaystyle{<br>\begin{aligned}<br>a^{\langle t\rangle } &amp;= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\<br>y^{\langle t\rangle } &amp;= g_2(W_{y}a^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{</p>
-<p>进行如下的改造：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a^{\langle t\rangle } &= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\
+y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>进行如下的改造：</p>
 <ul>
 <li>用 $c^{\langle t \rangle}$ 替换 $a^{\langle t \rangle}$。</li>
 <li>在计算 $c^{\langle t \rangle}$ 时，首先计算出候选值 $\tilde{c}^{\langle t \rangle}$，同时更新 $\Gamma_u$ 的值。</li>
 <li>使用 $\Gamma_u$ 决定 $c^{\langle t \rangle}$ 是被保持还是被候选值替代。</li>
 </ul>
 <p>公式变成：</p>
-<p>$\displaystyle{<br>\begin{aligned}<br>\tilde c^{\langle t\rangle } &amp;= g_1(W_{c}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_c) \\<br>\Gamma_u &amp;= \sigma(W_{u}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_u) \\<br>c^{\langle t\rangle } &amp;= \Gamma_u\ast \tilde{ c}^{\langle t \rangle} + (1 - \Gamma_u)\ast c^{\langle t - 1 \rangle} \\<br>y^{\langle t\rangle } &amp;= g_2(W_{y}c^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{</p>
-<p>因为 $\Gamma_u$ 是经过 sigmoid 后得到的，因此大部分元素都接近 0 或者 1。$\Gamma_u$ 的大小和 $c^{\langle t \rangle}$ 是相同的，在第三个式子中，$\ast$ 进行的是逐元素乘法。考虑到 $\Gamma_u$ 的性质，它表示的意思就是让 $c^{\langle t - 1 \rangle}$ 中一部分元素更新为新的值，一部分元素保持原有值不变。从第二个式子可以看到每次计算 $\Gamma_u$ 时，只取决于上次的记忆单元的值和正在处理的元素，还比较合理。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\tilde c^{\langle t\rangle } &= g_1(W_{c}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_c) \\
+\Gamma_u &= \sigma(W_{u}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_u) \\
+c^{\langle t\rangle } &= \Gamma_u\ast \tilde{ c}^{\langle t \rangle} + (1 - \Gamma_u)\ast c^{\langle t - 1 \rangle} \\
+y^{\langle t\rangle } &= g_2(W_{y}c^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>因为 $\Gamma_u$ 是经过 sigmoid 后得到的，因此大部分元素都接近 0 或者 1。$\Gamma_u$ 的大小和 $c^{\langle t \rangle}$ 是相同的，在第三个式子中，$\ast$ 进行的是逐元素乘法。考虑到 $\Gamma_u$ 的性质，它表示的意思就是让 $c^{\langle t - 1 \rangle}$ 中一部分元素更新为新的值，一部分元素保持原有值不变。从第二个式子可以看到每次计算 $\Gamma_u$ 时，只取决于上次的记忆单元的值和正在处理的元素，还比较合理。</p>
 <p>这样建模的话，网络在处理序列中元素的过程中，每个序列中的元素都会更新一下 $c^{\langle t \rangle}$，但是因为 GRU 的机制，并非 $c^{\langle t \rangle}$ 的所有分量都被更新了，一个分量是否更新取决于它自己的值和读入的序列元素。这样一来，$c^{\langle t \rangle}$ 的某些分量就有可能在长序列中始终保持不变从而实现将信息存储起来，在经过了长序列后，这段序列前的一些重要信息依然得以保留，便实现了在长距离上的依赖关系。$\Gamma_u$ 可以看作是是否更新的“门”。$c^{\langle t \rangle}$ 中的每个分量可以看作是一个能够存储一个标量的寄存器，什么时候打开，什么时候关闭取决于 $c^{\langle t \rangle}$ 的内容和输入内容。</p>
 <h4 id="完整版-GRU"><a href="#完整版-GRU" class="headerlink" title="完整版 GRU"></a>完整版 GRU</h4><p>上述 GRU 是一个简化版本。实际在计算候选值 $\tilde{c}^{\langle t \rangle}$ 时，我们还引入了一个控制 $c^{\langle t - 1 \rangle}$ 中的哪些分量会影响 $\tilde{c}^{\langle t \rangle}$ 的门 $\Gamma_r$（r 表示 relevance）。完整的 GRU 的公式为：</p>
-<p>$\displaystyle{<br>\begin{aligned}<br>\Gamma_r &amp;= \sigma(W_{r}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_r) \\<br>\tilde c^{\langle t\rangle } &amp;= g_1(W_{c}[\Gamma_r \ast c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_c) \\<br>\Gamma_u &amp;= \sigma(W_{u}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_u) \\<br>c^{\langle t\rangle } &amp;= \Gamma_u\ast \tilde{ c}^{\langle t \rangle} + (1 - \Gamma_u)\ast c^{\langle t - 1 \rangle} \\<br>y^{\langle t\rangle } &amp;= g_2(W_{y}c^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{</p>
-<p>这样一来，一个完整的 GRU 单元需要维护 4 个权值和 4 个偏置。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Gamma_r &= \sigma(W_{r}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_r) \\
+\tilde c^{\langle t\rangle } &= g_1(W_{c}[\Gamma_r \ast c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_c) \\
+\Gamma_u &= \sigma(W_{u}[c^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_u) \\
+c^{\langle t\rangle } &= \Gamma_u\ast \tilde{ c}^{\langle t \rangle} + (1 - \Gamma_u)\ast c^{\langle t - 1 \rangle} \\
+y^{\langle t\rangle } &= g_2(W_{y}c^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>这样一来，一个完整的 GRU 单元需要维护 4 个权值和 4 个偏置。</p>
 <h3 id="Long-Short-Term-Memory-LSTM"><a href="#Long-Short-Term-Memory-LSTM" class="headerlink" title="Long Short Term Memory (LSTM)"></a>Long Short Term Memory (LSTM)</h3><h4 id="常见版-LSTM"><a href="#常见版-LSTM" class="headerlink" title="常见版 LSTM"></a>常见版 LSTM</h4><p>常见版本的 LSTM 在 GRU 基础上的改动：</p>
 <ul>
 <li>GRU 中的记忆单元 $c^{\langle t \rangle}$ 和激活值是同一个量，但是 LSTM 将它们分开了。现在激活值就是激活值，不再负责存储；$c^{\langle t \rangle}$ 专门负责存储。</li>
@@ -522,8 +546,16 @@
 <li>引入了两个新的门 $\Gamma_f$（forget）和 $\Gamma_o$（output）。</li>
 </ul>
 <p>公式如下：</p>
-<p>$\displaystyle{<br>\begin{aligned}<br>\tilde c^{\langle t\rangle } &amp;= g_1(W_{c}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_c) \\<br>\Gamma_u &amp;= \sigma(W_{u}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_u) \\<br>\Gamma_f &amp;= \sigma(W_{f}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_f) \\<br>\Gamma_o &amp;= \sigma(W_{o}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_o) \\<br>c^{\langle t\rangle } &amp;= \Gamma_u\ast \tilde{ c}^{\langle t \rangle} + \Gamma_f\ast c^{\langle t - 1 \rangle} \\<br>a^{\langle t \rangle} &amp;= \Gamma_o\ast g_2(c^{\langle t \rangle}) \\<br>y^{\langle t\rangle } &amp;= g_3(W_{y}a^{\langle t\rangle } + b_y)<br>\end{aligned}<br>$\displaystyle{</p>
-<p>逐行解释：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\tilde c^{\langle t\rangle } &= g_1(W_{c}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_c) \\
+\Gamma_u &= \sigma(W_{u}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_u) \\
+\Gamma_f &= \sigma(W_{f}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_f) \\
+\Gamma_o &= \sigma(W_{o}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_o) \\
+c^{\langle t\rangle } &= \Gamma_u\ast \tilde{ c}^{\langle t \rangle} + \Gamma_f\ast c^{\langle t - 1 \rangle} \\
+a^{\langle t \rangle} &= \Gamma_o\ast g_2(c^{\langle t \rangle}) \\
+y^{\langle t\rangle } &= g_3(W_{y}a^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>逐行解释：</p>
 <ul>
 <li>根据上次的激活输出、这次的序列输入决定候选的记忆单元值。</li>
 <li>根绝上次的激活输出、这次的序列输入决定 $\Gamma_u, \Gamma_f, \Gamma_o$。</li>
