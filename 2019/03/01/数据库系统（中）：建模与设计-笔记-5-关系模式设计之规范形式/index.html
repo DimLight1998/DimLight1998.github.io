@@ -125,10 +125,12 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="关系模式设计之规范形式下面的范式都是针对 关系模式 而言的。就是说你可以通过一张表来判定这张表是否符合某个范式。 什么是第一范式如果关系模式中关系的每个属性都是原子而不可分的，这种关系模式符合 第一范式。 第一范式不允许复合属性和多值属性。 不符合第一范式时的处理手段第一种办法是转换为符合第一范式的关系模式。  对于多值属性，可以将该属性和主键一起新建一个关系。 对于复合属性，要么将其打包在一起得">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-5-关系模式设计之规范形式/DeepinScreenshot_select-area_20190403135328.png">
 <meta property="og:updated_time" content="2019-04-03T05:55:04.435Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（中）：建模与设计 笔记 5 关系模式设计之规范形式">
 <meta name="twitter:description" content="关系模式设计之规范形式下面的范式都是针对 关系模式 而言的。就是说你可以通过一张表来判定这张表是否符合某个范式。 什么是第一范式如果关系模式中关系的每个属性都是原子而不可分的，这种关系模式符合 第一范式。 第一范式不允许复合属性和多值属性。 不符合第一范式时的处理手段第一种办法是转换为符合第一范式的关系模式。  对于多值属性，可以将该属性和主键一起新建一个关系。 对于复合属性，要么将其打包在一起得">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（中）：建模与设计-笔记-5-关系模式设计之规范形式/DeepinScreenshot_select-area_20190403135328.png">
 
 
 
@@ -491,7 +493,7 @@
 <h3 id="第四范式"><a href="#第四范式" class="headerlink" title="第四范式"></a>第四范式</h3><p>符合第一范式的关系模式中，任意一组依赖 $\displaystyle{X\rightarrow\rightarrow Y}$ 中，如果 $\displaystyle{Y\ne\varnothing, Y\nsubseteq X, XY\ne U}$，能够得到 X 一定为超键，则称该关系模式满足 <em>第四范式</em>。</p>
 <p>直观来看，满足第四范式的关系模式中，依赖不能依赖于候选键以外的属性。</p>
 <p>满足第四范式一定满足 Boyce-Codd 范式。在只有函数依赖的情况下，满足 Boyce-Codd 方式便一定满足第四范式。</p>
-<h2 id="关于多值依赖的-Armstrong-公理"><a href="#关于多值依赖的-Armstrong-公理" class="headerlink" title="关于多值依赖的 Armstrong 公理"></a>关于多值依赖的 Armstrong 公理</h2>
+<h2 id="关于多值依赖的-Armstrong-公理"><a href="#关于多值依赖的-Armstrong-公理" class="headerlink" title="关于多值依赖的 Armstrong 公理"></a>关于多值依赖的 Armstrong 公理</h2><img src="/2019/03/01/数据库系统（中）：建模与设计-笔记-5-关系模式设计之规范形式/DeepinScreenshot_select-area_20190403135328.png">
 <p>这些公理可以被证明。</p>
 
       
