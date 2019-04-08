@@ -130,7 +130,7 @@
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/DeepinScreenshot_select-area_20190323205217.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/DeepinScreenshot_select-area_20190323205226.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/DeepinScreenshot_select-area_20190323205238.png">
-<meta property="og:updated_time" content="2019-03-23T13:41:09.957Z">
+<meta property="og:updated_time" content="2019-04-06T07:52:54.868Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Convolutional Neural Networks 笔记 4 Special applications: Face recognition &amp; Neural style transfer">
 <meta name="twitter:description" content="Face recognition &amp;amp; Neural style transferFace RecognitionWhat is face recognition?两个不同任务：  Face verification：给定一张图片，判定这张图片是否是某个人 Face recognition：给定一张图片和具有很多个人的数据库，判定这张图片是否属于任意一个人并给出是哪个人  显然 recogn">
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-23 21:41:09" itemprop="dateModified" datetime="2019-03-23T21:41:09+08:00">2019-03-23</time>
+                <time title="修改时间：2019-04-06 15:52:54" itemprop="dateModified" datetime="2019-04-06T15:52:54+08:00">2019-04-06</time>
               
             
           </span>
@@ -510,7 +510,7 @@ J(C, S, G) = \alpha J_{content}(C, G) + \beta J_{style}(S, G)</script><p>其中 
 <p>首先选择一个预训练好的 CNN，以及一个合适的层数 $l$（不能太浅也不能太深）。将 $G$ 和 $C$ 作为 CNN 的输入传入。使用它们在 $l$ 层激活后的输出即可定义</p>
 <script type="math/tex; mode=display">
 J_{content}(C, G) = \frac{1}{2}||\mathbf a^{[l](C)} - \mathbf a^{[l](G)}||^2</script><h3 id="Style-Cost-Function"><a href="#Style-Cost-Function" class="headerlink" title="Style Cost Function"></a>Style Cost Function</h3><p>$J_{style}$ 的定义相对复杂。</p>
-<p>首先选择一个预训练好的 CNN，以及一个合适的层数 $l$。将 $G$ 和 $S$ 作为 CNN 的输入传入。考虑它们在第 $l$ 层的激活后的输出 $\mathbf a^{<a href="S">l</a>}$ 和 $\mathbf a^{<a href="G">l</a>}$。每个输出都有若干个通道，不同通道之间的相关性可以用来衡量“风格”的相近程度。假设第 $l$ 层的输出规模是 $n_h^{[l]}\times n_w^{[l]}\times n_c^{[l]}$ 的，对于每个激活输出 $\mathbf a$，可以定义风格矩阵 $\mathbf G$：</p>
+<p>首先选择一个预训练好的 CNN，以及一个合适的层数 $l​$。将 $G​$ 和 $S​$ 作为 CNN 的输入传入。考虑它们在第 $l​$ 层的激活后的输出 $\mathbf a^{[l]{}(S)}​$ 和 $\mathbf a^{[l]{}(G)}​$。每个输出都有若干个通道，不同通道之间的相关性可以用来衡量“风格”的相近程度。假设第 $l​$ 层的输出规模是 $n_h^{[l]}\times n_w^{[l]}\times n_c^{[l]}​$ 的，对于每个激活输出 $\mathbf a​$，可以定义风格矩阵 $\mathbf G​$：</p>
 <script type="math/tex; mode=display">
 \mathbf G_{rs} = \sum\limits_{i = 1}^{n_h^{[l]}}\sum\limits_{j = 1}^{n_w^{[l]}}\mathbf a_{ijr}\mathbf a_{ijs}</script><p>其中 $r,s$ 是 $\mathbf G$ 的下标。如果两个通道相关性很高，那么这个分量就比较大，否则接近 0。从 CNN 中间层的可视化结果可以看到使用这种度量是相对合理的。如果两张图片的 $\mathbf G$ 接近的话，就表明它们在风格上接近。</p>
 <p>对于第 $l$ 层，可以定义这一层的 $J_{style}$ 为</p>
@@ -645,7 +645,7 @@ J_{style}(S, G) = \sum\limits_{l} J_{style}^{[l]}(S, G)</script><h3 id="1D-and-3
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">102</span>
+                    <span class="site-state-item-count">103</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
