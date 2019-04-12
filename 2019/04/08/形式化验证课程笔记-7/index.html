@@ -118,13 +118,14 @@
 
 
   <meta name="description" content="第七周Decision Procedure for Array Property FragmentFirstly, we need to do some conversions. Step 1. Put $F$ in NNFFor any formula $F$ of array property fragments, it should be converted into NNF form. I">
+<meta name="keywords" content="形式化验证">
 <meta property="og:type" content="article">
 <meta property="og:title" content="形式化验证课程笔记 7">
 <meta property="og:url" content="http://DimLight1998.github.io/2019/04/08/形式化验证课程笔记-7/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="第七周Decision Procedure for Array Property FragmentFirstly, we need to do some conversions. Step 1. Put $F$ in NNFFor any formula $F$ of array property fragments, it should be converted into NNF form. I">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-08T08:05:13.295Z">
+<meta property="og:updated_time" content="2019-04-12T02:44:33.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="形式化验证课程笔记 7">
 <meta name="twitter:description" content="第七周Decision Procedure for Array Property FragmentFirstly, we need to do some conversions. Step 1. Put $F$ in NNFFor any formula $F$ of array property fragments, it should be converted into NNF form. I">
@@ -398,12 +399,24 @@
                 
               
 
-              <time title="创建时间：2019-04-08 13:28:42 / 修改时间：16:05:13" itemprop="dateCreated datePublished" datetime="2019-04-08T13:28:42+08:00">2019-04-08</time>
+              <time title="创建时间：2019-04-08 13:28:42" itemprop="dateCreated datePublished" datetime="2019-04-08T13:28:42+08:00">2019-04-08</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-12 10:44:33" itemprop="dateModified" datetime="2019-04-12T10:44:33+08:00">2019-04-12</time>
               
             
           </span>
@@ -503,7 +516,7 @@ a'[i] = v \land (\forall j::j\ne i\rightarrow a[j]  = a'[j])</script><h3 id="Ste
 <h2 id="Enhancement-1-Integrating-with-DPLL-DPLL-T"><a href="#Enhancement-1-Integrating-with-DPLL-DPLL-T" class="headerlink" title="Enhancement 1: Integrating with DPLL: DPLL($T$)"></a>Enhancement 1: Integrating with DPLL: DPLL($T$)</h2><p>Sometimes using SAT solver can cause efficiency issue. This can be alleviated by using DPLL as the solver.</p>
 <p>The idea is to query $T$-solver incrementally. After constructing $C$ in step 4, use DPLL and <strong>unit propagation</strong> to get the value of some variables. Then construct $F&#39;$ on known literals, and query $T$-solver to get some conclusions. This is called <strong><em>theory propagation</em></strong>. Those conclusions can fix the value of some other variables (or cause a backjump for DPLL), and accelerate the decision procedure for the boolean abstraction.</p>
 <p>Theory propagation can speed up the decision of $C$. However, theory propagation is slow.</p>
-<h2 id="Enhancement-2-Unsat-Core"><a href="#Enhancement-2-Unsat-Core" class="headerlink" title="Enhancement 2: Unsat Core"></a>Enhancement 2: Unsat Core</h2><p>An unsat core $C^\ast$ is a subset of $C$ where $C^\ast$ is unsatisfiable, but dropping any element of $C^\ast$ will make it satisfiable.</p>
+<h2 id="Enhancement-2-Unsat-Core"><a href="#Enhancement-2-Unsat-Core" class="headerlink" title="Enhancement 2: Unsat Core"></a>Enhancement 2: Unsat Core</h2><p>An unsat core $C^\ast$ is a subset of $C$ where $C^\ast$ is unsatisfiable, but dropping any element of $C^\ast$ will make it satisfiable. Whether $C^\ast$ is satisfiable needs to query $T$-solver.</p>
 <p>A naive algorithm to compute $C^\ast$ can be by deleting elements from $C$ repeatedly. This can get a unsat core, but it can&#39;t be guaranteed the unsat core is optimal.</p>
 <p>When in step 7, we added $\lnot C$ into the $F_\mathcal B$. After getting the unsat core $C^\ast$, we can add $\lnot C^\ast$ instead of $\lnot C$. This can shrink the searching space of DPLL tighter then adding $\lnot C$ as $C^\ast$ is more &quot;general&quot;, hence it can speed up the searching procedure of DPLL too.</p>
 
@@ -527,6 +540,12 @@ a'[i] = v \land (\forall j::j\ne i\rightarrow a[j]  = a'[j])</script><h3 id="Ste
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/形式化验证/" rel="tag"># 形式化验证</a>
+          
+        </div>
+      
 
       
       
@@ -545,6 +564,10 @@ a'[i] = v \land (\forall j::j\ne i\rightarrow a[j]  = a'[j])</script><h3 id="Ste
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/09/Z3-学习笔记/" rel="prev" title="Z3 学习笔记">
+                Z3 学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -613,7 +636,7 @@ a'[i] = v \land (\forall j::j\ne i\rightarrow a[j]  = a'[j])</script><h3 id="Ste
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-count">104</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
