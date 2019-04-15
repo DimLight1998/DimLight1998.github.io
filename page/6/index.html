@@ -352,6 +352,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/" class="post-title-link" itemprop="url">Programming Languages (Part C) 笔记 4 Section 10</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-23 09:45:01" itemprop="dateCreated datePublished" datetime="2019-02-23T09:45:01+08:00">2019-02-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:29:01" itemprop="dateModified" datetime="2019-03-11T15:29:01+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-10"><a href="#Section-10" class="headerlink" title="Section 10"></a>Section 10</h1><h2 id="Subtyping-From-the-Beginning"><a href="#Subtyping-From-the-Beginning" class="headerlink" title="Subtyping From the Beginning"></a>Subtyping From the Beginning</h2><p>接下来的几节中使用了作者自己定义的语言。语言中的记录类型和 ML 很类似，并且是 mutable 的。语法：</p>
+<ul>
+<li><strong>字面量</strong>：<code>e = {f1=e1, f2=e2, ..., fn=en}</code></li>
+<li><strong>读写</strong>：<code>e.f1 = e1</code></li>
+<li><strong>类型标注</strong>：<code>{f1: t1, f2: t2, ..., fn: tn}</code></li>
+</ul>
+<p>这个语言可以建立简单的类型系统，该系统的规则和直觉一致。</p>
+<h3 id="为何引入-subtyping"><a href="#为何引入-subtyping" class="headerlink" title="为何引入 subtyping"></a>为何引入 subtyping</h3><p>假设有这个函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fun distance_to_origin(point: &#123;x: real, y: real&#125;) =</span><br><span class="line">	Math.sqrt(point.x * point.x + point.y * point.y)</span><br></pre></td></tr></table></figure>
+<p>当传入 <code>{x=3.0, y=4.0}</code> 时可以通过类型检查，但是假设没有 subtyping，传入 <code>{x=3.0, y=4.0, color=&#39;red&#39;}</code> 不能通过类型检查，但是这样的输入明显是合理的。</p>
+<p>引入 subtyping 就是为了解决这种问题，为静态类型系统提供更高的灵活性。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-3-Section-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1870,174 +2041,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 1 Practical aspects of Deep Learning</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-12 19:13:34" itemprop="dateCreated datePublished" datetime="2019-02-12T19:13:34+08:00">2019-02-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-12 10:23:18" itemprop="dateModified" datetime="2019-03-12T10:23:18+08:00">2019-03-12</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Practical-aspects-of-Deep-Learning"><a href="#Practical-aspects-of-Deep-Learning" class="headerlink" title="Practical aspects of Deep Learning"></a>Practical aspects of Deep Learning</h1><h2 id="Setting-up-your-Machine-Learning-Application"><a href="#Setting-up-your-Machine-Learning-Application" class="headerlink" title="Setting up your Machine Learning Application"></a>Setting up your Machine Learning Application</h2><h3 id="Train-Dev-Test-sets"><a href="#Train-Dev-Test-sets" class="headerlink" title="Train / Dev / Test sets"></a>Train / Dev / Test sets</h3><p>数据应当被分为三个集合：</p>
-<ul>
-<li>Train 集合用来对神经网络进行训练；</li>
-<li>Dev 集合用来在开发时评估网络的性能，挑选出最佳的网络；</li>
-<li>Test 集合用来测试这个最佳网络的性能。</li>
-</ul>
-<p>传统的做法是，如果只打算分出 Train/Dev，用 $70:30$ 的比例，如果三者兼顾，用 $60:20:20$。但是近年来各种问题数据量很大，而评估只需要部分数据即可，所以倾向于将大量数据设为 Train，其它设为 Dev/Test。</p>
-<p>Dev 和 Test 二者分布最好相同。没有 Test 集合也是可以的。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2084,7 +2087,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

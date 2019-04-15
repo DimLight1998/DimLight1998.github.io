@@ -352,6 +352,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 15:50:24" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-06 15:52:54" itemprop="dateModified" datetime="2019-04-06T15:52:54+08:00">2019-04-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Face-recognition-amp-Neural-style-transfer"><a href="#Face-recognition-amp-Neural-style-transfer" class="headerlink" title="Face recognition &amp; Neural style transfer"></a>Face recognition &amp; Neural style transfer</h1><h2 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a>Face Recognition</h2><h3 id="What-is-face-recognition"><a href="#What-is-face-recognition" class="headerlink" title="What is face recognition?"></a>What is face recognition?</h3><p>两个不同任务：</p>
+<ul>
+<li>Face verification：给定一张图片，判定这张图片是否是某个人</li>
+<li>Face recognition：给定一张图片和具有很多个人的数据库，判定这张图片是否属于任意一个人并给出是哪个人</li>
+</ul>
+<p>显然 recognition 比 verification 要难。</p>
+<h3 id="One-Shot-Learning"><a href="#One-Shot-Learning" class="headerlink" title="One Shot Learning"></a>One Shot Learning</h3><p>实际系统的 face recognition 的主要挑战在于每个人的照片很少，没法像用来分类的网络那样在很多样本上进行训练。这个问题被称为 one shot learning problem。很多时候每类的样本可能只有一个。此外，如果使用普通的 CNN 分类网络，要向数据库中增加一个人就要重新训练整个 CNN，这是不可接受的。</p>
+<p>为了解决这个问题需要网络学习一个 similarity function。这个函数接受两张图片并返回它们的相似程度（越低表示越相似）。低于某个阈值时即可认为两张图片上是同一个人。</p>
+<h3 id="Siamese-Network"><a href="#Siamese-Network" class="headerlink" title="Siamese Network"></a>Siamese Network</h3><p>一种定义相似函数的方式是使用 Siamese 网络架构。首先构建一个 CNN 网络，它将一张图片转换到一个向量表示的特征上。将输入记作 $\vec x$，输出记作 $f(\vec x)​$，相似函数可以定义为</p>
+<script type="math/tex; mode=display">
+d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script><p>现在，只要对于相似的输入，$d(\vec x^{(1)}, \vec x^{(2)})$ 较小而对于不相似的输入，该值较大即可。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1850,148 +2021,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-6-数据库事务处理技术之并发控制/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 6 数据库事务处理技术之并发控制</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-01 13:16:40 / 修改时间：17:01:25" itemprop="dateCreated datePublished" datetime="2019-03-01T13:16:40+08:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2038,7 +2067,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

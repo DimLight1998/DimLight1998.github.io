@@ -352,6 +352,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/15/形式化验证课程笔记-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/15/形式化验证课程笔记-8/" class="post-title-link" itemprop="url">形式化验证课程笔记 8</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-15 13:31:18 / 修改时间：16:24:50" itemprop="dateCreated datePublished" datetime="2019-04-15T13:31:18+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h1><h2 id="程序语义描述方法"><a href="#程序语义描述方法" class="headerlink" title="程序语义描述方法"></a>程序语义描述方法</h2><ul>
+<li><strong>操作语义</strong>：描述程序执行过程中状态的改变，与语言的实现联系紧密。</li>
+<li><strong>指称语义</strong>：只关心执行效果，不关心实现。</li>
+<li><strong>公理语义</strong>：使用相关方法进行对语义建模，使用数学方法进行研究。</li>
+</ul>
+<h2 id="一个示例语言"><a href="#一个示例语言" class="headerlink" title="一个示例语言"></a>一个示例语言</h2><p>这个语言称为 while 语言，包括：</p>
+<ul>
+<li>来自数字集合 Num 的数字 n</li>
+<li>来自变量集合 Var 的变量 v</li>
+<li>来自算术表达式集合 Aexp 的算术表达式 a</li>
+<li>来自布尔表达式集合 Bexp 的布尔表达式 b</li>
+<li>来自语句集合 Stm 的语句 S（这个是大写）</li>
+</ul>
+<p>注意 <strong>程序可以看作是语句的序列</strong>。</p>
+<p>语法：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a &::= n | v | a_1 + a_2 | a_1 \ast a_2|a_1 - a_2 \\
+b &::= \text{true} | \text{false} | a_1 = a_2 | a_1 \le a_2 | \lnot b | b_1\land b_2 \\
+S &::= v:= a | \text{skip} | S_1; S_2 | \text{if }b\text{ then } S_1\text{ else } S_2 | \text{while }b\text{ do }S
+\end{aligned}</script><h2 id="表达式的语义"><a href="#表达式的语义" class="headerlink" title="表达式的语义"></a>表达式的语义</h2><h3 id="数字的语义"><a href="#数字的语义" class="headerlink" title="数字的语义"></a>数字的语义</h3><p>假设 while 语言中数字使用二进制进行表示，那么数字的语义实际上是一个 Num 到 $\displaystyle{\mathcal Z}$ 的映射 $\displaystyle{\mathcal N:\text{Num}\to\mathcal Z}$。其定义省略。</p>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>状态指的是一个变量集合到整数集合的映射。可以将其看作是对某个变量集合的 assignment。</p>
+<p>例如一个可能的状态是 $s=[x\mapsto 5, y\mapsto 7]$。一个状态可以在另一个状态的基础上进行修改：$s&#39;=s[x\mapsto 9]$，这仅会改变 $x$ 的值。</p>
+<h3 id="算术表达式的语义"><a href="#算术表达式的语义" class="headerlink" title="算术表达式的语义"></a>算术表达式的语义</h3><p>算术表达式的语义被语义函数 $\mathcal A$ 定义，该函数接受一个算术表达式和一个状态，返回该状态下对表达式求值的结果（不严谨，还要弄一下柯里化）：$\displaystyle{\mathcal A: \text{Aexp}\to (\text{State}\to \mathcal Z)}$。</p>
+<p>一个性质：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal A [\![ a[y\mapsto a_0] ]\!] s = \mathcal A [\![ a ]\!] (s[y\mapsto \mathcal A [\![ a_0 ]\!] s])
+\end{aligned}</script><p>其中 $a[y\mapsto a_0]$ 表示将表达式 $\displaystyle{a}$ 中的所有 $\displaystyle{y}$ 全部替换为表达式 $\displaystyle{a_0}$。$\displaystyle{\mathcal A [![ \cdot ]!] \cdot}$ 表示使用语义函数的结果对某表达式求值。</p>
+<h3 id="布尔表达式的语义"><a href="#布尔表达式的语义" class="headerlink" title="布尔表达式的语义"></a>布尔表达式的语义</h3><p>与算术表达式类似，语义函数为 $\mathcal B:\text{Bexp}\to(\text{State}\to \mathcal T)$，其中 $\displaystyle{\mathcal T = \{\text{true}, \text{false}\}}$。</p>
+<h3 id="表达式语义的性质"><a href="#表达式语义的性质" class="headerlink" title="表达式语义的性质"></a>表达式语义的性质</h3><p>算数表达式 $a$ 中出现的变量 $v$ 称为 $a$ 的自由变量；算数表达式的所有自由变量记作 $FV(a)$。对于布尔表达式可以作类似的定义。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/15/形式化验证课程笔记-8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/09/Z3-学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -414,7 +593,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-11 20:51:00" itemprop="dateModified" datetime="2019-04-11T20:51:00+08:00">2019-04-11</time>
+                <time title="修改时间：2019-04-15 10:44:56" itemprop="dateModified" datetime="2019-04-15T10:44:56+08:00">2019-04-15</time>
               
             
           </span>
@@ -1186,7 +1365,7 @@ p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be conve
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-28 21:16:40" itemprop="dateModified" datetime="2019-03-28T21:16:40+08:00">2019-03-28</time>
+                <time title="修改时间：2019-04-15 20:04:59" itemprop="dateModified" datetime="2019-04-15T20:04:59+08:00">2019-04-15</time>
               
             
           </span>
@@ -1221,7 +1400,30 @@ p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be conve
 
       
         
-          <h1 id="Sequence-models-amp-Attention-mechanism"><a href="#Sequence-models-amp-Attention-mechanism" class="headerlink" title="Sequence models &amp; Attention mechanism"></a>Sequence models &amp; Attention mechanism</h1><h2 id="Various-sequence-to-sequence-architectures"><a href="#Various-sequence-to-sequence-architectures" class="headerlink" title="Various sequence to sequence architectures"></a>Various sequence to sequence architectures</h2><h3 id="Basic-Models"><a href="#Basic-Models" class="headerlink" title="Basic Models"></a>Basic Models</h3><h3 id="Picking-the-most-likely-sentence"><a href="#Picking-the-most-likely-sentence" class="headerlink" title="Picking the most likely sentence"></a>Picking the most likely sentence</h3>
+          <h1 id="Sequence-models-amp-Attention-mechanism"><a href="#Sequence-models-amp-Attention-mechanism" class="headerlink" title="Sequence models &amp; Attention mechanism"></a>Sequence models &amp; Attention mechanism</h1><h2 id="Various-sequence-to-sequence-architectures"><a href="#Various-sequence-to-sequence-architectures" class="headerlink" title="Various sequence to sequence architectures"></a>Various sequence to sequence architectures</h2><h3 id="Basic-Models"><a href="#Basic-Models" class="headerlink" title="Basic Models"></a>Basic Models</h3><p>Sequence to Sequence 结构可以将一个序列转换到另一个序列。一个简单的模型是使用 many-to-one 的 RNN 作为 encoder 提取出序列的特征，然后使用 one-to-many 的 RNN 作为 decoder 将特征再次变换到序列。</p>
+<p>另一个应用是 image captioning，即给定一张图片要求网络输出对这张图片的描述。此时可以先使用一个 CNN 提取特征，然后使用 RNN 产生文本。</p>
+<h3 id="Picking-the-most-likely-sentence"><a href="#Picking-the-most-likely-sentence" class="headerlink" title="Picking the most likely sentence"></a>Picking the most likely sentence</h3><p>以 Sequence to Sequence 中的机器翻译为例。机器翻译可以看作是带有条件的 <strong>语言模型</strong>，语言模型可以对给定的句子估计出它出现在语言中的概率，也可以用来产生一些句子，而机器翻译则可以看作是其对应的“条件概率”版本——给定源句子作为条件，机器翻译模型可以对任意的目标语言的句子的概率进行评估，也可以用来生成源语言对应的目标语言。语言模型的初始输入是一个全零的向量，而机器翻译中完成翻译的 decoder 部分的初始输入是 encoder 得到的特征。</p>
+<p>在生成的过程中，我们希望能够直接得到最优的句子。因此不像语言模型中每次选词的时候按照概率进行选择，机器翻译要求选出的词的序列尽可能好，这就需要某种搜索策略。</p>
+<p>较简单的搜索策略就是贪心搜索，每次都选取概率最高的那个词。但是这种策略工作得并不好，通过使用 <em>beam search</em> （中文为 <em>集束搜索</em>）可以获得更好的结果。</p>
+<h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><p>集束搜索是贪心搜索的泛化版本。它有一个参数用来控制搜索的宽度 $B$。</p>
+<p>在使用集束搜索进行目标语言的生成时，首先选定第一个词。Decoder 会给出第一个词的概率分布，选出概率最大的 $B$ 个词，记录下来。然后生成第二个词，对于之前记录下的 $B$ 个词，每个都进入网络作为输入再生成 $B$ 个词，此时一共有 $B^2$ 个短序列，每个序列有两个词，同时关联了自己的概率。此时从这 $B^2$ 个短序列中选出 $B$ 个最优的即可。然后选择第三个词。依此类推。</p>
+<p>可以看到集束搜索本质上还是一种贪心算法，不过它在每一步时考虑了一定的分支情况。它得到的结果一般会比普通的贪心算法好很多。</p>
+<p>当 $B = 1$ 时，集束搜索会退化到贪心算法。</p>
+<h3 id="Refinements-to-Beam-Search"><a href="#Refinements-to-Beam-Search" class="headerlink" title="Refinements to Beam Search"></a>Refinements to Beam Search</h3><h4 id="Avoid-underflow"><a href="#Avoid-underflow" class="headerlink" title="Avoid underflow"></a>Avoid underflow</h4><p>按照贝叶斯公式，集束搜索中需要求的是 $\displaystyle{\arg\max\limits_y\prod\limits_{t = 1}^{T_y}P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })}$。但是，随着序列的增长，这个值可能很小以至于下溢出，因此常常通过取对数解决这个问题：$\displaystyle{\arg\max\limits_y\sum\limits_{t = 1}^{T_y}\log P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })}$。</p>
+<h4 id="Length-normalization"><a href="#Length-normalization" class="headerlink" title="Length normalization"></a>Length normalization</h4><p>如果按照上述公式进行计算，那么较短的句子出现在语言中的概率要比那些更长的句子要高。因为每增加一个词，整体的概率就会乘以一个在 0 到 1 之间的值。在使用语言模型进行文本生成时，结束生产的条件是得到了 <code>&lt;EOS&gt;</code>，因此这个问题是无所谓的。但是在集束搜索中因为要使用这个概率来选择“较好”的那些句子，所以会产生问题，算法会倾向于选择那些更短的句子。</p>
+<p>这可以通过对句子的长度进行归一化来缓解，使用修正后的概率对句子出现的可能性进行度量：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\arg\max\limits_y\frac{1}{|T_y|^\alpha}\sum\limits_{t = 1}^{T_y}\log P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })
+\end{aligned}</script><p>其中 $\displaystyle{\alpha}$ 是超参数，一般选择 0.7。</p>
+<h4 id="Choose-parameters"><a href="#Choose-parameters" class="headerlink" title="Choose parameters"></a>Choose parameters</h4><p>在集束搜索中，$B$ 的选择会导致算法在结果和性能上的差异。$B$ 越高，结果越好，但是计算时间越长。</p>
+<p>通常使用 10 到 50 之间的 $B$ 值。随着 $B$ 的增长，计算时间是线性增长的，但是效果变好的趋势会越来越缓慢。</p>
+<h3 id="Error-analysis-in-beam-search"><a href="#Error-analysis-in-beam-search" class="headerlink" title="Error analysis in beam search"></a>Error analysis in beam search</h3><p>当机器翻译的模型效果较差时，这种情况可能是集束搜索造成的，也可能是 RNN 本身的问题。前者可以通过增加搜索宽度解决，后者可以通过增加网络的复杂程度解决。如何知道到底是什么造成的问题？</p>
+<p>对于单条训练数据，设源文本是 $x$，人工翻译的文本是 $y^\ast$（一个相当好的结果），机器翻译得到的结果是 $\hat y$。在机器翻译中，RNN 可以对给定了 $x$ 后的任意目标语言序列进行概率评估，而集束搜索则找到了其中概率较高（但不一定是最高）的一个序列。现在，只要让 RNN 在给定 $\displaystyle{x}$ 的情况下对 $\displaystyle{y^\ast}$ 和 $\displaystyle{\hat y}$ 求概率。如果发现 $\displaystyle{P(y^\ast|x)&gt; P(\hat y|x)}$，说明集束搜索没有找出最好的翻译，因此是集束搜索的问题；如果发现 $\displaystyle{P(y^\ast|x) &lt; P(\hat y|x)}$，说明 RNN 认为人工翻译的结果较差，因此是 RNN 的问题。</p>
+<p>单条数据就可以确定导致这个数据差的是搜索的问题还是 RNN 的问题。对所有数据全部执行一遍就能知道主要是搜索的问题还是 RNN 的问题，然后针对性优化。</p>
+<h3 id="Bleu-Score"><a href="#Bleu-Score" class="headerlink" title="Bleu Score"></a>Bleu Score</h3><p>Bleu Score 可以给翻译结果打分。</p>
+<p>对于一个句子的翻译结果，假设已经有了若干个人工翻译结果作为参考，可以通过以下方式计算 $p_n$，其中角标 $n$ 表示考虑的序列（n-gram）的长度，例如 $p_2$ 表示考虑的都是连续两个词的 bigram。$p_n$ 是一个商，其中分母是机器翻译结果中 n-gram 的个数，分子是每个独特的 n-gram 在每个标准翻译中出现的最大次数的和。 $p_n$ 的值介于 0 到 1 之间，分数越高，翻译质量越高。</p>
+<p>最后，Bleu Score 是 $B_P\exp(p_1 + p_2 + p_3 + p_4)$，其中 $B_P$ 是一个惩罚项（翻译结果短的话 $p_n$ 会比较高），如果翻译结果比参考翻译长，$B_P = 1$，否则，设参考翻译结果长度为 $l_0$，机器翻译结果长度 $l_1$，则 $BP = \exp(1 - l_1/l_0)$。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
@@ -1347,7 +1549,7 @@ p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be conve
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-12 11:48:23" itemprop="dateModified" datetime="2019-04-12T11:48:23+08:00">2019-04-12</time>
+                <time title="修改时间：2019-04-12 12:18:29" itemprop="dateModified" datetime="2019-04-12T12:18:29+08:00">2019-04-12</time>
               
             
           </span>
@@ -1991,177 +2193,6 @@ y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 15:50:24" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-06 15:52:54" itemprop="dateModified" datetime="2019-04-06T15:52:54+08:00">2019-04-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Face-recognition-amp-Neural-style-transfer"><a href="#Face-recognition-amp-Neural-style-transfer" class="headerlink" title="Face recognition &amp; Neural style transfer"></a>Face recognition &amp; Neural style transfer</h1><h2 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a>Face Recognition</h2><h3 id="What-is-face-recognition"><a href="#What-is-face-recognition" class="headerlink" title="What is face recognition?"></a>What is face recognition?</h3><p>两个不同任务：</p>
-<ul>
-<li>Face verification：给定一张图片，判定这张图片是否是某个人</li>
-<li>Face recognition：给定一张图片和具有很多个人的数据库，判定这张图片是否属于任意一个人并给出是哪个人</li>
-</ul>
-<p>显然 recognition 比 verification 要难。</p>
-<h3 id="One-Shot-Learning"><a href="#One-Shot-Learning" class="headerlink" title="One Shot Learning"></a>One Shot Learning</h3><p>实际系统的 face recognition 的主要挑战在于每个人的照片很少，没法像用来分类的网络那样在很多样本上进行训练。这个问题被称为 one shot learning problem。很多时候每类的样本可能只有一个。此外，如果使用普通的 CNN 分类网络，要向数据库中增加一个人就要重新训练整个 CNN，这是不可接受的。</p>
-<p>为了解决这个问题需要网络学习一个 similarity function。这个函数接受两张图片并返回它们的相似程度（越低表示越相似）。低于某个阈值时即可认为两张图片上是同一个人。</p>
-<h3 id="Siamese-Network"><a href="#Siamese-Network" class="headerlink" title="Siamese Network"></a>Siamese Network</h3><p>一种定义相似函数的方式是使用 Siamese 网络架构。首先构建一个 CNN 网络，它将一张图片转换到一个向量表示的特征上。将输入记作 $\vec x$，输出记作 $f(\vec x)​$，相似函数可以定义为</p>
-<script type="math/tex; mode=display">
-d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script><p>现在，只要对于相似的输入，$d(\vec x^{(1)}, \vec x^{(2)})$ 较小而对于不相似的输入，该值较大即可。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2208,7 +2239,7 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">104</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
