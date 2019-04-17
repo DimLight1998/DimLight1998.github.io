@@ -352,6 +352,1000 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 4 Section 7</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:14:23" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:23+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:43" itemprop="dateModified" datetime="2019-03-11T15:27:43+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-7"><a href="#Section-7" class="headerlink" title="Section 7"></a>Section 7</h1><h2 id="ML-Versus-Racket"><a href="#ML-Versus-Racket" class="headerlink" title="ML Versus Racket"></a>ML Versus Racket</h2><p>ML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。</p>
+<p>它们可以互相实现对方的类型系统。</p>
+<h3 id="Racket-实现-ML"><a href="#Racket-实现-ML" class="headerlink" title="Racket 实现 ML"></a>Racket 实现 ML</h3><p>在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部分符合 ML 类型系统要求的程序能够通过 ML 编译器（忽略语法差异），这种限制使得程序的一些潜在 bug 被提前检查出来，但是同时一些本来可以正常运行的程序也被拒绝了。例如以下程序在 Racket 中合法但是在 ML 中不合法：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">f</span> x) (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&gt;</span></span> x <span class="number">0</span>) <span class="literal">#t</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span>)))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> xs (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="literal">#t</span> <span class="string">"hi"</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> y (<span class="name">f</span> (<span class="name"><span class="builtin-name">car</span></span> xs)))</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 3 Section 6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:14:17" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:17+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:50" itemprop="dateModified" datetime="2019-03-11T15:27:50+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-6"><a href="#Section-6" class="headerlink" title="Section 6"></a>Section 6</h1><h2 id="Datatype-Programming-in-Racket-Without-Structs"><a href="#Datatype-Programming-in-Racket-Without-Structs" class="headerlink" title="Datatype-Programming in Racket Without Structs"></a>Datatype-Programming in Racket Without Structs</h2><p>在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 <code>&#39;</code> 开头的字符串，例如 <code>&#39;foo</code>，symbol 之间用 <code>eq?</code> 判断相等。</p>
+<p>以下是一个移植的例子：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> exp = <span class="type">Const</span> <span class="keyword">of</span> <span class="built_in">int</span></span><br><span class="line">             | <span class="type">Negate</span> <span class="keyword">of</span> exp</span><br><span class="line">             | <span class="type">Add</span> <span class="keyword">of</span> exp * exp</span><br><span class="line">             | <span class="type">Multiply</span> <span class="keyword">of</span> exp * exp</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Const</span> i) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Const</span> i))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Negate</span> e) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Negate</span> e))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Add</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Add</span> e1 e2))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Multiply</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Multiply</span> e1 e2))</span><br></pre></td></tr></table></figure>
+<p>针对于 <code>exp</code> 类型的 ML 函数都可以使用 Racket 写出，模式匹配功能可以用 cond 进行模拟，通过对列表的第一个元素进行比较确定它到底是哪种类型即可。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 2 Section 5</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:14:10" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:10+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:56" itemprop="dateModified" datetime="2019-03-11T15:27:56+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-5"><a href="#Section-5" class="headerlink" title="Section 5"></a>Section 5</h1><h2 id="Introduction-to-Racket"><a href="#Introduction-to-Racket" class="headerlink" title="Introduction to Racket"></a>Introduction to Racket</h2><p>Racket 和 ML 最大的区别在于 Racket 是动态类型的。</p>
+<p>Racket 和 Scheme 是很相似的语言，Racket 更加实用和现代。</p>
+<p>一个简单的 Racket 程序：</p>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; this is a comment</span></span><br><span class="line"></span><br><span class="line">#lang racket ; tell the language</span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">provide</span></span> (<span class="name">all-defined-out</span>)) <span class="comment">; make all things visible</span></span><br><span class="line"></span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> s <span class="string">"hello"</span>)</span><br></pre></td></tr></table></figure>
+<p>其中 <code>#lang racket</code> 是告诉 DrRacket 使用的是何种语言，因为 DrRacket 可以解释其它语言，所以必须在第一句话指出。<code>(provide (all-defined-out))</code> 是为了在其他文件中直接使用该文件的顶层定义，因为 Racket 的类型系统将每个文件单独试做一个模块，顶层定义默认不可见。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 1 Introduction</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:13:59" itemprop="dateCreated datePublished" datetime="2019-02-17T12:13:59+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:28:08" itemprop="dateModified" datetime="2019-03-11T15:28:08+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>感谢 <a href="https://www.coursera.org/learn/programming-languages-part-b" target="_blank" rel="noopener">Coursera</a>。</p>
+<h2 id="Course-Information-and-Overview"><a href="#Course-Information-and-Overview" class="headerlink" title="Course Information and Overview"></a>Course Information and Overview</h2><h3 id="Welcome-to-Part-B"><a href="#Welcome-to-Part-B" class="headerlink" title="Welcome to Part B"></a>Welcome to Part B</h3><p><em>本节没有问题。</em></p>
+<h3 id="Overview-of-Part-B-Concepts"><a href="#Overview-of-Part-B-Concepts" class="headerlink" title="Overview of Part B Concepts"></a>Overview of Part B Concepts</h3><h4 id="Section-5"><a href="#Section-5" class="headerlink" title="Section 5"></a>Section 5</h4><ul>
+<li>Racket 是动态类型的。</li>
+<li>Racket 可以实现 delaying evaluation（就是惰性求值）。</li>
+<li>Racket 具有优秀的宏系统。宏可以让程序员扩展语言的语法，同时不改变语言实现。</li>
+</ul>
+<h4 id="Section-6"><a href="#Section-6" class="headerlink" title="Section 6"></a>Section 6</h4><ul>
+<li>Racket 的类型系统。</li>
+<li>如何实现一个解释器。</li>
+</ul>
+<h4 id="Section-7"><a href="#Section-7" class="headerlink" title="Section 7"></a>Section 7</h4><ul>
+<li>静态类型系统、动态类型系统及其比较。</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-1-Introduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 3 Hyperparameter tuning, Batch Normalization and Programming Frameworks</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-12 19:14:37" itemprop="dateCreated datePublished" datetime="2019-02-12T19:14:37+08:00">2019-02-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:23:07" itemprop="dateModified" datetime="2019-03-11T15:23:07+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks"><a href="#Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks" class="headerlink" title="Hyperparameter tuning, Batch Normalization and Programming Frameworks"></a>Hyperparameter tuning, Batch Normalization and Programming Frameworks</h1><h2 id="Hyperparameter-tuning"><a href="#Hyperparameter-tuning" class="headerlink" title="Hyperparameter tuning"></a>Hyperparameter tuning</h2><h3 id="Tuning-process"><a href="#Tuning-process" class="headerlink" title="Tuning process"></a>Tuning process</h3><p>经验上，学习率 $\displaystyle{\alpha}$ 是最重要的超参数；其次是 Momentum 等优化方法中的 $\displaystyle{\beta}$、网络的神经元数目以及小批量的大小；最后是网络的层数和学习衰减率。</p>
+<p>因为各个超参数的重要程度不一样，有多个超参数需要调节的时候 <strong>不要进行 grid search</strong>。所谓 grid search 就是每个超参数选取若干个值，然后不同超参数就用这些值的组合，类似于控制变量法。推荐的做法是直接在整个所有超参数可选的值构成的空间中随机选取。这么做的理由是在 grid search 的情况下，如果某个超参数实际上对结果影响不大，那么针对它的调节几乎都是无效的，这就参数调节工作中只有一部分是有效的。而在随机选取的情况下，不论各个超参数对结果影响如何，影响较显著的那些超参数都被取了很多个不同的值，这些值都是有用的。</p>
+<p>当找到了效果最好的那些点之后，如果这些点在空间上分布较密集，则可以对那一个较小的超参数空间进行更加密集的搜索。更密集的搜索也应采用随机选取的策略，依此类推。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-3-Hyperparameter-tuning-Batch-Normalization-and-Programming-Frameworks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 2 Optimization algorithms</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-12 19:14:04" itemprop="dateCreated datePublished" datetime="2019-02-12T19:14:04+08:00">2019-02-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-14 14:46:03" itemprop="dateModified" datetime="2019-03-14T14:46:03+08:00">2019-03-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="Optimization-algorithms-1"><a href="#Optimization-algorithms-1" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h2><h3 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h3><p>如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。</p>
+<p>记号上，例如数据集用 $X$ 表示，mini-batch 的大小选择为 $\displaystyle{k}$，那么 $X^{(1)}, \dots, X^{(k)}$ 将作为第一个 mini-batch，记作 $\displaystyle{X^{\{1\}}}$。用这 $\displaystyle{k}$ 个样本向量化地进行前向传播和反向传播并更新参数，然后换一个 mini-batch 再跑一次，以此类推。</p>
+<p>小批量梯度下降比梯度下降快得多。小批量梯度下降中每遍历一次数据集成为一个 epoch（遍历），一次遍历需要多个 mini-batch。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-1-Practical-aspects-of-Deep-Learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1005,1014 +1999,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 2 Section 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-06 00:01:58" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:58+08:00">2019-02-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:25:40" itemprop="dateModified" datetime="2019-03-11T15:25:40+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Section-1"><a href="#Section-1" class="headerlink" title="Section 1"></a>Section 1</h1><h2 id="ML-Variable-Bindings-and-Expressions"><a href="#ML-Variable-Bindings-and-Expressions" class="headerlink" title="ML Variable Bindings and Expressions"></a>ML Variable Bindings and Expressions</h2><h3 id="一些语法"><a href="#一些语法" class="headerlink" title="一些语法"></a>一些语法</h3><figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">(* this is a comment *)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> x = <span class="number">1</span>;                          <span class="comment">(* variable binding *)</span></span><br><span class="line"><span class="keyword">val</span> y = <span class="keyword">if</span> x &gt; <span class="number">0</span> <span class="keyword">then</span> x <span class="keyword">else</span> <span class="number">0</span> - x; <span class="comment">(* condition expression *)</span></span><br><span class="line"><span class="keyword">val</span> z = abs y;                      <span class="comment">(* function call *)</span></span><br><span class="line"><span class="keyword">val</span> w = abs(z);                     <span class="comment">(* another style of function call *)</span></span><br></pre></td></tr></table></figure>
-<p>注释和 variable binding 的语法如上。</p>
-<h3 id="关于语言的知识"><a href="#关于语言的知识" class="headerlink" title="关于语言的知识"></a>关于语言的知识</h3><p>ML 中的每句 variable binding 都维护了一个 <strong>静态环境</strong>（不用运行）和一个 <strong>动态环境</strong>（需要运行）。</p>
-<p>静态环境中有各个变量和表达式的类型的信息，动态环境中有它们的值的信息。静态环境的内容可以通过类型检查在运行前就得到，但是动态环境需要运行。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-2-Section-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 1 Introduction</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-06 00:01:41" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:41+08:00">2019-02-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:27:12" itemprop="dateModified" datetime="2019-03-11T15:27:12+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>感谢 <a href="https://www.coursera.org/learn/programming-languages" target="_blank" rel="noopener">Coursera</a>。</p>
-<blockquote>
-<p>This is a challenging course that we hope will change the way you look at programming forever.</p>
-</blockquote>
-<h2 id="Welcome-Information"><a href="#Welcome-Information" class="headerlink" title="Welcome Information"></a>Welcome Information</h2><h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p><em>本节没有问题。</em></p>
-<h3 id="What-the-Course-is-About-Initial-Motivation"><a href="#What-the-Course-is-About-Initial-Motivation" class="headerlink" title="What the Course is About / Initial Motivation"></a>What the Course is About / Initial Motivation</h3><p>这门课主要是通过 Standard ML、Racket 和 Ruby 展示各种编程语言中的基本概念以及它们如何相互关联，并非学习这三门语言。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 4 Deep Neural Networks</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-01 21:50:06" itemprop="dateCreated datePublished" datetime="2019-02-01T21:50:06+08:00">2019-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:24:14" itemprop="dateModified" datetime="2019-03-11T15:24:14+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h1><h2 id="Deep-Neural-Networks-1"><a href="#Deep-Neural-Networks-1" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Deep-L-layer-neural-network"><a href="#Deep-L-layer-neural-network" class="headerlink" title="Deep L-layer neural network"></a>Deep L-layer neural network</h3><p>将网络层数加深，具有 $L$ 层的神经网络称为 L-layer 神经网络。输入层是第 0 层，但是计算层数的时候不计入总层数。一些记号如下（和之前的大致相同）：</p>
-<ul>
-<li>$n^{[k]}$ 是第 $k$ 层的神经元数目，故 $n^{[0]}$ 即样本的特征维数，对于二分类问题 $n^{[l]} = 1$。</li>
-<li>$z^{[k]}$ 是第 $k$ 层神经元输出的未经过激活函数的值，多样本时为 $Z^{[k]}$。</li>
-<li>$a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的值，特别地 $a^{[0]}$ 是样本的特征，二分类问题中 $a^{[l]}$ 是 $\hat y$，多样本时为 $A^{[k]}$。</li>
-<li>$g^{[k]}(x)$ 是第 $k$ 层的激活函数。</li>
-<li>$W^{[k]}$ 是第 $k$ 层的权值，$b^{[k]}$ 是第 $k$ 层的偏移。</li>
-</ul>
-<h3 id="Forward-Propagation-in-a-Deep-Network"><a href="#Forward-Propagation-in-a-Deep-Network" class="headerlink" title="Forward Propagation in a Deep Network"></a>Forward Propagation in a Deep Network</h3><p>这节讲的东西和之前将正向传播几乎一致，没有什么好记录的。</p>
-<p>不同层之间的计算无法完成并行化，如果一个网络层数很深也只能一层一层地算。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 3 Shallow Neural Networks</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-01 21:49:57" itemprop="dateCreated datePublished" datetime="2019-02-01T21:49:57+08:00">2019-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:24:09" itemprop="dateModified" datetime="2019-03-11T15:24:09+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Shallow-Neural-Networks"><a href="#Shallow-Neural-Networks" class="headerlink" title="Shallow Neural Networks"></a>Shallow Neural Networks</h1><h2 id="Shallow-Neural-Networks-1"><a href="#Shallow-Neural-Networks-1" class="headerlink" title="Shallow Neural Networks"></a>Shallow Neural Networks</h2><h3 id="Neural-Networks-Overview"><a href="#Neural-Networks-Overview" class="headerlink" title="Neural Networks Overview"></a>Neural Networks Overview</h3><p>在逻辑回归中，有 $z = \vec w^T \vec x + b$ 以及 $\hat y = a = \sigma(z)$（我猜 $a$ 表示 activation）。如果将得到的 $a$ 作为新的输入再进行类似的计算就可以得到更复杂的结果。如果在 $z = \vec w^T\vec x + b$ 中有多个 $\vec w$ 以及 $b$ 就可以得到一个向量作为输出，此时可以表示为 $\vec z = W\vec x + \vec b$。如果希望得到 $k$ 维的输出，只要 $W$ 的规模是 $k\times n$，$\vec b$ 的规模是 $k\times 1$ 即可。</p>
-<p>在有多层的情况下实际上和全连接的神经网络比较类似了，记号上将第 $i​$ 层的参数用中括号括起来放在上标上，例如第一层的情况下就是：</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-\vec z^{[1]} &= W^{[1]}x + \vec b^{[1]} \\
-\vec a^{[1]} &= \sigma(\vec z^{[1]})
-\end{aligned}</script><p>（使用中括号是为了和表达第 $i$ 个样本的时候使用圆括号区别。）</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 2 Neural Networks Basics</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-01 21:49:49" itemprop="dateCreated datePublished" datetime="2019-02-01T21:49:49+08:00">2019-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:23:36" itemprop="dateModified" datetime="2019-03-11T15:23:36+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Neural-Networks-Basics"><a href="#Neural-Networks-Basics" class="headerlink" title="Neural Networks Basics"></a>Neural Networks Basics</h1><h2 id="Logistic-Regression-as-a-Neural-Network"><a href="#Logistic-Regression-as-a-Neural-Network" class="headerlink" title="Logistic Regression as a Neural Network"></a>Logistic Regression as a Neural Network</h2><h3 id="Binary-Classification"><a href="#Binary-Classification" class="headerlink" title="Binary Classification"></a>Binary Classification</h3><p>课程中使用的符号：</p>
-<ul>
-<li>$m$ 表示数据集大小，$m_{train}$ 和 $m_{test}$ 分别表示训练集和测试集的大小。</li>
-<li><p>$n$ 表示每个样本的特征向量的维数。</p>
-</li>
-<li><p>$X$ 表示整个训练集，<strong>每一列表示一个样本</strong>，相当于样本按照列进行堆叠，因此 $X$ 的规模是 $n\times m$ 的，据说这样表示更简单。</p>
-</li>
-<li>$Y$ 表示所有的标签，每一列表示一个样本，因此 $Y$ 的规模是 $1 \times m$ 的。</li>
-</ul>
-<h3 id="Logistic-Regression"><a href="#Logistic-Regression" class="headerlink" title="Logistic Regression"></a>Logistic Regression</h3><p>对于一个样本特征，逻辑回归用于得到这个样本对应的输出，不过这个输出被限制在了 0 到 1 的范围内，因此可以用来做一些类似二分类的事情。比如现在要对某个特征向量 $\vec x$ 进行二分类，希望得到一个输出 $\hat y$ 表示在当前特征为 $\vec x$ 的情况下真实输出为 1 的概率（二分类时这个输出是离散的，只有 0 和 1 两种情况，但是概率是连续的），可以选择 $\hat y = \vec w^T\vec x + b$ 这个模型（这时是线性回归），但是这样得到的值不一定在 0 到 1 之间，因此可以套上一个 sigmoid 函数 $\displaystyle{\sigma(x) = \frac{1}{1 + e^{-x}}}$，选择模型 $\hat y = \sigma(\vec w^T\vec x + b)$，此时为逻辑回归。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-2-Neural-Networks-Basics/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 1 Introduction to Deep Learning</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-01 21:49:40" itemprop="dateCreated datePublished" datetime="2019-02-01T21:49:40+08:00">2019-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:23:23" itemprop="dateModified" datetime="2019-03-11T15:23:23+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Introduction-to-Deep-Learning"><a href="#Introduction-to-Deep-Learning" class="headerlink" title="Introduction to Deep Learning"></a>Introduction to Deep Learning</h1><p>感谢 <a href="https://www.coursera.org/learn/neural-networks-deep-learning" target="_blank" rel="noopener">Coursera</a>。</p>
-<h2 id="Welcome-to-the-Deep-Learning-Specialization"><a href="#Welcome-to-the-Deep-Learning-Specialization" class="headerlink" title="Welcome to the Deep Learning Specialization"></a>Welcome to the Deep Learning Specialization</h2><h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p><em>本节没有问题。</em></p>
-<h2 id="Introduction-to-Deep-Learning-1"><a href="#Introduction-to-Deep-Learning-1" class="headerlink" title="Introduction to Deep Learning"></a>Introduction to Deep Learning</h2><h3 id="What-is-a-neural-network"><a href="#What-is-a-neural-network" class="headerlink" title="What is a neural network?"></a>What is a neural network?</h3><p>对于有输入的特征以及输出的大量样本，神经网络可以很好地学习到其中的映射关系。</p>
-<h3 id="Supervised-Learning-with-Neural-Networks"><a href="#Supervised-Learning-with-Neural-Networks" class="headerlink" title="Supervised Learning with Neural Networks"></a>Supervised Learning with Neural Networks</h3><p>监督学习是给定输入特征和输出，要求找到二者之间的对应关系。</p>
-<p>卷积神经网络常用于图像数据，循环神经网络常用于序列数据。对于更复杂的数据可能要使用自定义的混合结构。</p>
-<p><strong>结构化的数据</strong> 是基于数据库的数据，这种数据一般已经将每个样本的特征写成一个向量，其中每个分量的含义都是显然的，人类可理解的。<strong>非结构化的数据</strong> 例如图像、声音序列和文本序列，人类对这些数据的处理能力很强，但是计算机只有最近才逐渐有了较强的理解能力。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-1-Introduction-to-Deep-Learning/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2054,7 +2045,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-count">111</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2111,7 +2102,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

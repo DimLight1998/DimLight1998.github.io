@@ -352,6 +352,1078 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/25/形式化验证课程笔记-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/25/形式化验证课程笔记-5/" class="post-title-link" itemprop="url">形式化验证课程笔记 5</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-25 13:30:52 / 修改时间：16:05:18" itemprop="dateCreated datePublished" datetime="2019-03-25T13:30:52+08:00">2019-03-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第五周"><a href="#第五周" class="headerlink" title="第五周"></a>第五周</h1><h2 id="Theory-of-Equality-and-Uninterpreted-Functions"><a href="#Theory-of-Equality-and-Uninterpreted-Functions" class="headerlink" title="Theory of Equality and Uninterpreted Functions"></a>Theory of Equality and Uninterpreted Functions</h2><p>In $T_E$，$=$ is a predicate. Formulas in $T_E$ may contain other predicates, but they can be converted to $=$ using <strong>Theory of Equality and Uninterpreted Functions</strong> (EUF).</p>
+<p>Any predicate $p(x_1, x_2, \dots, x_n)$ other than $=$ can be converted to a function and the predicate $=$, where $f_p$ is a introduced function by $p$ and $\bullet$ is a constant.</p>
+<p>In EUF:</p>
+<ul>
+<li>$=$ is the only predicate.</li>
+<li>All atomic formulas are either equalities or inequalities.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<script type="math/tex; mode=display">
+p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be converted to:</p>
+<script type="math/tex; mode=display">
+(f_p(x) = \bullet)\land (f_q(x, y)=\bullet)\land (f_q(y, z)=\bullet)\rightarrow f_q(x, z)\neq\bullet</script><h2 id="Relations"><a href="#Relations" class="headerlink" title="Relations"></a>Relations</h2><ul>
+<li><p>A relation on $S$ is a subset of $S\times S$.</p>
+</li>
+<li><p>An <strong>equivalence relation</strong> should be reflexive, symmetric and transitive.</p>
+</li>
+<li><p>An <strong>congruence relation</strong> $R$ should be a equivalence relation, and obey the property that $\forall \mathbf s, \mathbf t\in S^n::(\land^n_{i = 1} \mathbf s_iR\mathbf t_i)\rightarrow f(\mathbf s)Rf(\mathbf t)$, where $f:S^n\mapsto S$ is <strong>not arbitrary</strong>. (A relation is a congruence relation relies on the function $f$.)</p>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/25/形式化验证课程笔记-5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/" class="post-title-link" itemprop="url">Sequence Models 笔记 3 Sequence models & Attention mechanism</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-23 23:44:22" itemprop="dateCreated datePublished" datetime="2019-03-23T23:44:22+08:00">2019-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-15 20:04:59" itemprop="dateModified" datetime="2019-04-15T20:04:59+08:00">2019-04-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Sequence-models-amp-Attention-mechanism"><a href="#Sequence-models-amp-Attention-mechanism" class="headerlink" title="Sequence models &amp; Attention mechanism"></a>Sequence models &amp; Attention mechanism</h1><h2 id="Various-sequence-to-sequence-architectures"><a href="#Various-sequence-to-sequence-architectures" class="headerlink" title="Various sequence to sequence architectures"></a>Various sequence to sequence architectures</h2><h3 id="Basic-Models"><a href="#Basic-Models" class="headerlink" title="Basic Models"></a>Basic Models</h3><p>Sequence to Sequence 结构可以将一个序列转换到另一个序列。一个简单的模型是使用 many-to-one 的 RNN 作为 encoder 提取出序列的特征，然后使用 one-to-many 的 RNN 作为 decoder 将特征再次变换到序列。</p>
+<p>另一个应用是 image captioning，即给定一张图片要求网络输出对这张图片的描述。此时可以先使用一个 CNN 提取特征，然后使用 RNN 产生文本。</p>
+<h3 id="Picking-the-most-likely-sentence"><a href="#Picking-the-most-likely-sentence" class="headerlink" title="Picking the most likely sentence"></a>Picking the most likely sentence</h3><p>以 Sequence to Sequence 中的机器翻译为例。机器翻译可以看作是带有条件的 <strong>语言模型</strong>，语言模型可以对给定的句子估计出它出现在语言中的概率，也可以用来产生一些句子，而机器翻译则可以看作是其对应的“条件概率”版本——给定源句子作为条件，机器翻译模型可以对任意的目标语言的句子的概率进行评估，也可以用来生成源语言对应的目标语言。语言模型的初始输入是一个全零的向量，而机器翻译中完成翻译的 decoder 部分的初始输入是 encoder 得到的特征。</p>
+<p>在生成的过程中，我们希望能够直接得到最优的句子。因此不像语言模型中每次选词的时候按照概率进行选择，机器翻译要求选出的词的序列尽可能好，这就需要某种搜索策略。</p>
+<p>较简单的搜索策略就是贪心搜索，每次都选取概率最高的那个词。但是这种策略工作得并不好，通过使用 <em>beam search</em> （中文为 <em>集束搜索</em>）可以获得更好的结果。</p>
+<h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><p>集束搜索是贪心搜索的泛化版本。它有一个参数用来控制搜索的宽度 $B$。</p>
+<p>在使用集束搜索进行目标语言的生成时，首先选定第一个词。Decoder 会给出第一个词的概率分布，选出概率最大的 $B$ 个词，记录下来。然后生成第二个词，对于之前记录下的 $B$ 个词，每个都进入网络作为输入再生成 $B$ 个词，此时一共有 $B^2$ 个短序列，每个序列有两个词，同时关联了自己的概率。此时从这 $B^2$ 个短序列中选出 $B$ 个最优的即可。然后选择第三个词。依此类推。</p>
+<p>可以看到集束搜索本质上还是一种贪心算法，不过它在每一步时考虑了一定的分支情况。它得到的结果一般会比普通的贪心算法好很多。</p>
+<p>当 $B = 1$ 时，集束搜索会退化到贪心算法。</p>
+<h3 id="Refinements-to-Beam-Search"><a href="#Refinements-to-Beam-Search" class="headerlink" title="Refinements to Beam Search"></a>Refinements to Beam Search</h3><h4 id="Avoid-underflow"><a href="#Avoid-underflow" class="headerlink" title="Avoid underflow"></a>Avoid underflow</h4><p>按照贝叶斯公式，集束搜索中需要求的是 $\displaystyle{\arg\max\limits_y\prod\limits_{t = 1}^{T_y}P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })}$。但是，随着序列的增长，这个值可能很小以至于下溢出，因此常常通过取对数解决这个问题：$\displaystyle{\arg\max\limits_y\sum\limits_{t = 1}^{T_y}\log P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })}$。</p>
+<h4 id="Length-normalization"><a href="#Length-normalization" class="headerlink" title="Length normalization"></a>Length normalization</h4><p>如果按照上述公式进行计算，那么较短的句子出现在语言中的概率要比那些更长的句子要高。因为每增加一个词，整体的概率就会乘以一个在 0 到 1 之间的值。在使用语言模型进行文本生成时，结束生产的条件是得到了 <code>&lt;EOS&gt;</code>，因此这个问题是无所谓的。但是在集束搜索中因为要使用这个概率来选择“较好”的那些句子，所以会产生问题，算法会倾向于选择那些更短的句子。</p>
+<p>这可以通过对句子的长度进行归一化来缓解，使用修正后的概率对句子出现的可能性进行度量：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\arg\max\limits_y\frac{1}{|T_y|^\alpha}\sum\limits_{t = 1}^{T_y}\log P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })
+\end{aligned}</script><p>其中 $\displaystyle{\alpha}$ 是超参数，一般选择 0.7。</p>
+<h4 id="Choose-parameters"><a href="#Choose-parameters" class="headerlink" title="Choose parameters"></a>Choose parameters</h4><p>在集束搜索中，$B$ 的选择会导致算法在结果和性能上的差异。$B$ 越高，结果越好，但是计算时间越长。</p>
+<p>通常使用 10 到 50 之间的 $B$ 值。随着 $B$ 的增长，计算时间是线性增长的，但是效果变好的趋势会越来越缓慢。</p>
+<h3 id="Error-analysis-in-beam-search"><a href="#Error-analysis-in-beam-search" class="headerlink" title="Error analysis in beam search"></a>Error analysis in beam search</h3><p>当机器翻译的模型效果较差时，这种情况可能是集束搜索造成的，也可能是 RNN 本身的问题。前者可以通过增加搜索宽度解决，后者可以通过增加网络的复杂程度解决。如何知道到底是什么造成的问题？</p>
+<p>对于单条训练数据，设源文本是 $x$，人工翻译的文本是 $y^\ast$（一个相当好的结果），机器翻译得到的结果是 $\hat y$。在机器翻译中，RNN 可以对给定了 $x$ 后的任意目标语言序列进行概率评估，而集束搜索则找到了其中概率较高（但不一定是最高）的一个序列。现在，只要让 RNN 在给定 $\displaystyle{x}$ 的情况下对 $\displaystyle{y^\ast}$ 和 $\displaystyle{\hat y}$ 求概率。如果发现 $\displaystyle{P(y^\ast|x)&gt; P(\hat y|x)}$，说明集束搜索没有找出最好的翻译，因此是集束搜索的问题；如果发现 $\displaystyle{P(y^\ast|x) &lt; P(\hat y|x)}$，说明 RNN 认为人工翻译的结果较差，因此是 RNN 的问题。</p>
+<p>单条数据就可以确定导致这个数据差的是搜索的问题还是 RNN 的问题。对所有数据全部执行一遍就能知道主要是搜索的问题还是 RNN 的问题，然后针对性优化。</p>
+<h3 id="Bleu-Score"><a href="#Bleu-Score" class="headerlink" title="Bleu Score"></a>Bleu Score</h3><p>Bleu Score 可以给翻译结果打分。</p>
+<p>对于一个句子的翻译结果，假设已经有了若干个人工翻译结果作为参考，可以通过以下方式计算 $p_n$，其中角标 $n$ 表示考虑的序列（n-gram）的长度，例如 $p_2$ 表示考虑的都是连续两个词的 bigram。$p_n$ 是一个商，其中分母是机器翻译结果中 n-gram 的个数，分子是每个独特的 n-gram 在每个标准翻译中出现的最大次数的和。 $p_n$ 的值介于 0 到 1 之间，分数越高，翻译质量越高。</p>
+<p>最后，Bleu Score 是 $B_P\exp(p_1 + p_2 + p_3 + p_4)$，其中 $B_P$ 是一个惩罚项（翻译结果短的话 $p_n$ 会比较高），如果翻译结果比参考翻译长，$B_P = 1$，否则，设参考翻译结果长度为 $l_0$，机器翻译结果长度 $l_1$，则 $BP = \exp(1 - l_1/l_0)$。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-2-Natural-Language-Processing-Word-Embeddings/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/23/Sequence-Models-笔记-2-Natural-Language-Processing-Word-Embeddings/" class="post-title-link" itemprop="url">Sequence Models 笔记 2 Natural Language Processing & Word Embeddings</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-23 23:44:07" itemprop="dateCreated datePublished" datetime="2019-03-23T23:44:07+08:00">2019-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-12 12:18:29" itemprop="dateModified" datetime="2019-04-12T12:18:29+08:00">2019-04-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Natural-Language-Processing-amp-Word-Embeddings"><a href="#Natural-Language-Processing-amp-Word-Embeddings" class="headerlink" title="Natural Language Processing &amp; Word Embeddings"></a>Natural Language Processing &amp; Word Embeddings</h1><h2 id="Introduction-to-Word-Embeddings"><a href="#Introduction-to-Word-Embeddings" class="headerlink" title="Introduction to Word Embeddings"></a>Introduction to Word Embeddings</h2><h3 id="Word-Representation"><a href="#Word-Representation" class="headerlink" title="Word Representation"></a>Word Representation</h3><p>在上一讲中使用了 one-hot 向量对单词进行编码。这样做的弊端是任意两个词之间的距离都是一样的，所有的词都是平权的，实际上并不好。解决的方法是使用高维向量来表示一个词（称为 <em>嵌入</em>），每个分量的取值都可以是一个实数。<strong>语义上</strong> 接近的单词应当在高维空间中的距离较短。这种嵌入方式可以使用相对于 one-hot 向量更低的维数进行编码，因此被称作是 dense 的。</p>
+<p>在理想的情况下，用来表示单词的高维向量的分量应该是具有意义的。例如，第一个分量可以用来指明这个单词是名词的程度，第二个分量可以用来指明这个单词表示一个人类的程度。不过，一般使用高维向量表示单词时每个分量的含义没有这么明确，而是难以解释的。</p>
+<p>如果使用了合适的表示手段将词 <em>嵌入</em> 到了高维空间中，然后使用一些降维算法（例如 t-SNE）将其可视化，就可以发现语义上相近的词的分布会更加集中。</p>
+<h3 id="Using-word-embeddings"><a href="#Using-word-embeddings" class="headerlink" title="Using word embeddings"></a>Using word embeddings</h3><p>词嵌入经常和迁移学习结合起来使用。</p>
+<p>一般的应用流程是从网上下载已经训练好的词嵌入结果（也可以自己训练），然后将这个嵌入方案应用到新的任务上。此后还可以对嵌入方案进行微调。</p>
+<p>词嵌入和将图像编码为向量的思路很类似。区别在于图像的编码对任意图像都可以进行，但是词嵌入只能对词典中存在的词进行。</p>
+<h3 id="Properties-of-word-embeddings"><a href="#Properties-of-word-embeddings" class="headerlink" title="Properties of word embeddings"></a>Properties of word embeddings</h3><p>词嵌入的一个应用是 analogy reasoning，这和词嵌入的属性有关。</p>
+<p>在训练得到词的嵌入方案的过程中可以让词嵌入具有一定的性质。假设要构建这样的一个应用，它可以回答诸如“man 相对于 women 相当于 king 相对于什么”这样的问题。下面使用 $\displaystyle{e_{w}}$ 来表示单词 $\displaystyle{w}$ 的嵌入。要构建的应用相当于找出一个词 d，使得 a 相对于 b 相当于 c 相对于 d，只要让嵌入方案大致满足 $\displaystyle{e_a - e_b \approx e_c - e_d}$ 即可。这样，在给出了 a，b 和 c 后只要求出 $\displaystyle{\arg\max\limits_d\text{similarity}(e_d, e_c + e_b - e_a)}$。</p>
+<p>相似性的度量最常用的是使用余弦相似度。度量时应当在进行嵌入的空间中进行度量。使用了 t-SNE 进行降维后的空间中再进行度量时会出问题，因为这种降维破坏了线性性。</p>
+<h3 id="Embedding-matrix"><a href="#Embedding-matrix" class="headerlink" title="Embedding matrix"></a>Embedding matrix</h3><p>词嵌入学习到的结果可以表示为一个矩阵 $\displaystyle{\mathbf E}$，行数为嵌入的向量长度，列数为词典大小。每一列是对应词的嵌入结果。</p>
+<p>可以使用某个词对应的 one hot 向量 $\displaystyle{\vec o}$ 来取出这个词的嵌入结果，只要计算 $\displaystyle{\mathbf E \vec o}$ 即可。尽管实现上这么做不是高效的。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/23/Sequence-Models-笔记-2-Natural-Language-Processing-Word-Embeddings/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/" class="post-title-link" itemprop="url">Sequence Models 笔记 1 Recurrent Neural Networks</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-23 23:43:52" itemprop="dateCreated datePublished" datetime="2019-03-23T23:43:52+08:00">2019-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-03 11:12:31" itemprop="dateModified" datetime="2019-04-03T11:12:31+08:00">2019-04-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><p>来源 <a href="https://www.coursera.org/learn/nlp-sequence-models" target="_blank" rel="noopener">Coursera-Sequence Models</a>.</p>
+<h2 id="Recurrent-Neural-Networks-1"><a href="#Recurrent-Neural-Networks-1" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h2><h3 id="Why-sequence-models"><a href="#Why-sequence-models" class="headerlink" title="Why sequence models"></a>Why sequence models</h3><p>一些序列模型的应用：</p>
+<ul>
+<li>Speech recognition</li>
+<li>Music generation</li>
+<li>Sentiment classfication</li>
+<li>DNA Sequence analysis</li>
+<li>Machine translation</li>
+<li>Video activity recognition</li>
+<li>Name entity recognition（从文本序列中标记出表示名称的单词，例如人名）</li>
+</ul>
+<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><h4 id="序列相关的记号"><a href="#序列相关的记号" class="headerlink" title="序列相关的记号"></a>序列相关的记号</h4><p>因为小括号、中括号和大括号都被占用了，这里使用尖括号对序列中的元素进行索引。如果 $x$ 是一个样本，它是一个序列，那么它的第 $t$ 个元素是 $x^{\langle k\rangle }$。</p>
+<p>使用 $T_x$ 表示 $x$ 的长度。</p>
+<h4 id="序列的表示"><a href="#序列的表示" class="headerlink" title="序列的表示"></a>序列的表示</h4><p>以文本序列为例，首先准备一个词典，其中包含 <code>&lt;UNK&gt;</code> 表示不在词典中的所有词。每个词都有自己的唯一序号。对于一个序列 $x$，将其中的每个单词都编码为一个 one hot 的向量，其中只有单词在词典中的序号对应的位置是 1，其余位置是零。这样就把一个单词序列编码为了 one hot 向量的序列。</p>
+<h3 id="Recurrent-Neural-Network-Model"><a href="#Recurrent-Neural-Network-Model" class="headerlink" title="Recurrent Neural Network Model"></a>Recurrent Neural Network Model</h3><h4 id="为何不使用普通网络"><a href="#为何不使用普通网络" class="headerlink" title="为何不使用普通网络"></a>为何不使用普通网络</h4><ul>
+<li>普通神经网络在处理序列问题时无法考虑到时间上的局部信息，序列中的每个元素在其看来是平权的。</li>
+<li>出于和引入 CNN 一样的原因，使用 RNN 可以学习到如何对临近的元素提取信息，并可以减小参数数目。</li>
+<li>序列的长度不是固定的，普通神经网络无法处理这个问题。</li>
+</ul>
+<h4 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h4><p>RNN 可以将一个序列映射到另一个序列。<strong>在整个序列映射过程中，网络参数保持不变。</strong></p>
+<p>对于元素 $x^{\langle t\rangle }$，它对应的 $\hat y^{\langle t\rangle }$ 既取决于输入 $x^{\langle t\rangle }$ 也取决于上次的激活值 $a^{\langle t- 1\rangle }$。在计算过程中，$x^{\langle t\rangle }$ 既产生预测值 $\hat y^{\langle t\rangle }$ 也产生激活值 $a^{\langle t\rangle }$。初始时的 $a^{\langle 0\rangle }$ 可以是零向量，也可以是某个随机值。</p>
+<h4 id="简单递归神经网络的问题"><a href="#简单递归神经网络的问题" class="headerlink" title="简单递归神经网络的问题"></a>简单递归神经网络的问题</h4><p>上述 RNN 的问题在于对于序列中的某个元素只能利用序列中该元素前的信息，而不能利用后续信息。这在一些应用中是不利的，但是有解决方案。</p>
+<h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>RNN 中的一个模块需要维护三个权值和两个偏置：$W_{aa}, W_{ax}, W_{ya}, b_a, b_y$。<em>命名方式：第一个角标指示用来计算什么，第二个角标如果存在依据什么计算。</em></p>
+<p>对于上次的激活值 $a^{\langle t - 1\rangle }$ 以及这次的输入 $x^{\langle t\rangle }$，有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a^{\langle t\rangle } &= g_1(W_{aa}a^{\langle t-1\rangle } + W_{ax}x^{\langle t\rangle } + b_a) \\
+y^{\langle t\rangle } &= g_2(W_{ya}a^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>可以进一步简化这个符号。如果将 $W_{aa}$ 和 $W_{ax}$ 横向拼接起来得到 $W_a$，将 $W_{ya}$ 记作 $W_y$，将 $a^{\langle t - 1\rangle }$ 和 $x^{\langle t\rangle }$ 纵向拼接起来得到 $[a^{\langle t - 1\rangle }, x^{\langle t\rangle }]$，那么有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a^{\langle t\rangle } &= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\
+y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
+\end{aligned}</script><p>现在只要维护两个权值和偏置即可。<strong>再次注意对同一个序列而言，各元素计算时使用的参数是相同且共享的。</strong></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/18/形式化验证课程笔记-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/18/形式化验证课程笔记-4/" class="post-title-link" itemprop="url">形式化验证课程笔记 4</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-18 13:30:41" itemprop="dateCreated datePublished" datetime="2019-03-18T13:30:41+08:00">2019-03-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-25 13:34:30" itemprop="dateModified" datetime="2019-03-25T13:34:30+08:00">2019-03-25</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h1><h2 id="Review-FOL"><a href="#Review-FOL" class="headerlink" title="Review FOL"></a>Review FOL</h2><h3 id="Logical-Symbols-and-Non-logical-Symbols"><a href="#Logical-Symbols-and-Non-logical-Symbols" class="headerlink" title="Logical Symbols and Non-logical Symbols"></a>Logical Symbols and Non-logical Symbols</h3><ul>
+<li>Logical symbols: propositional connectives, variables, quantifiers.</li>
+<li>Non-logical symbols: constant symbols, function symbols, predicate symbols.</li>
+</ul>
+<h3 id="Interpretation-and-Assignment"><a href="#Interpretation-and-Assignment" class="headerlink" title="Interpretation and Assignment"></a>Interpretation and Assignment</h3><ul>
+<li>Interpretation fixes values for constants.</li>
+<li>Assignment fixes values for variables.</li>
+</ul>
+<h2 id="First-Order-Theory-Motivation"><a href="#First-Order-Theory-Motivation" class="headerlink" title="First-Order Theory: Motivation"></a>First-Order Theory: Motivation</h2><p>First-order logic is very general but undecidable. By limiting the non-logical symbols, we can have something stronger then propositional logic but still decidable, which is first-order theory. First-order theory is weaker then FOL.</p>
+<h2 id="Defining-a-First-Order-Theory"><a href="#Defining-a-First-Order-Theory" class="headerlink" title="Defining a First-Order Theory"></a>Defining a First-Order Theory</h2><p>A first-order logic contains:</p>
+<ul>
+<li><strong>Signature</strong> $\Sigma$,  a set of non-logic symbols</li>
+<li><strong>Axioms</strong> $\mathcal{A}$, a set of closed formulas over $\Sigma$</li>
+</ul>
+<p><strong>$\Sigma$ limits the symbols and $\mathcal A$ gives them semantics.</strong></p>
+<p>Formula only containing symbols from $\Sigma$ is called $\Sigma​$-formula.</p>
+<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
+<li><strong>T-interpretation/T-model</strong>: A tuple of domain and interpretation $(D, I)$ satisfying $\forall A\in \mathcal A, (D, I)\vDash A$. (Domain and interpretation satisfying all axioms.)</li>
+<li><strong>T-satisfaction</strong>: $F$ is T-satisfiable if you can find a T-model $T$ and an assignment $\alpha$ such that $T, \alpha\vDash F$.</li>
+<li><strong>T-validity</strong>: Similar as above, but asks for all T-models and assignments. Written as $T\vDash F$. <strong>A theory is the set of all closed formulas that are T-valid.</strong></li>
+<li><strong>T-entailment</strong>: $F_1$ T-entails $F_2$ if $T\vDash F_1\rightarrow F_2$.</li>
+<li><strong>T-equivalence</strong>: Similar as above but asks for $F_1\leftrightarrow F_2$.</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/18/形式化验证课程笔记-4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 3 Object detection</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 15:50:24" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-23 17:37:20" itemprop="dateModified" datetime="2019-03-23T17:37:20+08:00">2019-03-23</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Object-detection"><a href="#Object-detection" class="headerlink" title="Object detection"></a>Object detection</h1><h2 id="Detection-algorithms"><a href="#Detection-algorithms" class="headerlink" title="Detection algorithms"></a>Detection algorithms</h2><h3 id="Object-Localization"><a href="#Object-Localization" class="headerlink" title="Object Localization"></a>Object Localization</h3><h4 id="图像输入的任务"><a href="#图像输入的任务" class="headerlink" title="图像输入的任务"></a>图像输入的任务</h4><p>对于图像输入，常见的任务有以下几种：</p>
+<ul>
+<li>Image classification（分类）：对图像进行分类。</li>
+<li>Classification with localization（带定位的分类）：对图像进行分类并且给出目标的 bounding box。</li>
+<li>Detection（目标检测）：对图像中的目标给出 bounding box。</li>
+</ul>
+<p>其中分类和带定位的分类都只有一个目标对象，而目标检测可能有多个目标对象。</p>
+<h4 id="输出的定义"><a href="#输出的定义" class="headerlink" title="输出的定义"></a>输出的定义</h4><p>对于带定位的分类，处理手段一般是将图片通过 CNN 然后提取出一个特征，该特征的构成如下：第一个分量 $\displaystyle{p_c}​$ 指示了图片中存在目标的概率（因为这种任务中输入可能是什么目标都没有）；随后的四个分量分别指出了目标在图片中的位置和 bounding box 大小；随后的若干个分量来自于一个 softmax 的输出，指示了目标的分类。因此，如果分类有 $n​$ 个，特征就有 $\displaystyle{n + 5}​$ 个分量。</p>
+<ul>
+<li>对于第一个分量，如果接近零表示无目标，此时后续分量没有意义。计算损失函数时记得考虑。</li>
+<li>对于后面的四个分量 $\displaystyle{b_x, b_y, b_h, b_w}$，它们的值介于 0 到 1 之间。其中 $\displaystyle{b_x, b_y}$ 指示目标中心点的位置；$\displaystyle{b_h, b_w}$ 指示目标的高度和宽度。位置和长度都是以图片作为基准单位的，图片左上角坐标为 $\displaystyle{(0, 0)}$，右下角为 $\displaystyle{(1, 1)}$；图片的长和宽都定为 1。</li>
+</ul>
+<p>在计算损失函数时，一般在 $\displaystyle{p_c = 1}$ 时采用均方误差，$\displaystyle{p_c = 0}$ 时只看算法是否预测对了图像中没有目标。也可以将代表分类的那几个分量单独取出做交叉熵。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-3-Object-detection/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1024,1008 +2096,11 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/11/形式化验证课程笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/11/形式化验证课程笔记-3/" class="post-title-link" itemprop="url">形式化验证课程笔记 3</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 13:23:35" itemprop="dateCreated datePublished" datetime="2019-03-11T13:23:35+08:00">2019-03-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-25 13:40:45" itemprop="dateModified" datetime="2019-03-25T13:40:45+08:00">2019-03-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第三周"><a href="#第三周" class="headerlink" title="第三周"></a>第三周</h1><p>主题：一阶逻辑。</p>
-<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>命题逻辑表达能力有限。一阶逻辑可以表达无穷大的集合、对象之间的关系和各种量化关系。</p>
-<h2 id="Syntax"><a href="#Syntax" class="headerlink" title="Syntax"></a>Syntax</h2><ul>
-<li><p>一阶逻辑的语法分为两部分——逻辑部分和非逻辑部分。逻辑部分包含逻辑连接词、变量和谓词。通过限制除了逻辑部分之外的部分即非逻辑部分，可以限制一阶逻辑的表达能力。</p>
-</li>
-<li><p>非逻辑中包括 <strong>函数</strong> 和 <strong>谓词</strong>，区别在于函数将对象映射到对象，谓词将对象映射到布尔值。常数可以看做零元常函数；变量可以看做零元谓词。</p>
-</li>
-<li><p>一阶逻辑中的对象称为 <strong>项</strong>，包括对象常量、变量和函数。</p>
-</li>
-<li>一阶逻辑中的求值为真值的东西称为 <strong>原子 </strong>，包括真值常量、变量和谓词。</li>
-<li>原子和它的反合称 <strong>文字</strong>。</li>
-<li><p>文字称为 <strong>公式</strong>；公式使用逻辑连接词连接后，或者被量词结合起来使用后也是公式。</p>
-</li>
-<li><p>在形如 $\forall x.F(x,y)$ 的公式中，$x$ 是 <strong>bound</strong> 的（被量词修饰），$y$ 是 <strong>free</strong> 的。$F(x, y)$ 是 $x$ 的 <strong>辖域</strong>（相当于作用域）。<br>没有 free 变量的公式是 <strong>closed</strong> 的，否则是 <strong>open</strong> 的；不包含变量的公式是 <strong>ground</strong> 的。</p>
-</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/11/形式化验证课程笔记-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/11/形式化验证课程笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/11/形式化验证课程笔记-2/" class="post-title-link" itemprop="url">形式化验证课程笔记 2</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 11:43:36 / 修改时间：21:11:12" itemprop="dateCreated datePublished" datetime="2019-03-11T11:43:36+08:00">2019-03-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h1><p>主要内容：SAT 问题求解。</p>
-<p>约定 $F$ 表示公式，$C$ 表示从句。</p>
-<h2 id="Satisfiability-Problem"><a href="#Satisfiability-Problem" class="headerlink" title="Satisfiability Problem"></a>Satisfiability Problem</h2><ul>
-<li><strong>SAT 问题</strong>：给定命题，问是否存在一个解释使得命题成立。</li>
-<li><strong>2-SAT 问题</strong>：给定 CNF 形式的命题，每个从句最多只有两个文字的 SAT 问题，可在多项式时间内求解。</li>
-<li><strong>3-SAT 问题</strong>：给定 CNF 形式的命题，每个从句最多只有三个文字的 SAT 问题。NPC 难度。</li>
-</ul>
-<h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>对于一个 CNF，可以将它写成集合的集合的形式，例如：</p>
-<script type="math/tex; mode=display">
-(P\lor Q)\land(Q\to \lnot P)</script><p>相当于</p>
-<script type="math/tex; mode=display">
-\{\{P, Q\}, \{\lnot Q, \lnot P\}\}</script><p>用 $C[P]$ 表示文字 $P$ 在从句 $C$ 中出现，用 $C\{P\mapsto Q\}$ 表示在从句 $C$ 中使用 $Q$ 替换掉 $P$。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/11/形式化验证课程笔记-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/11/数据库系统（中）：建模与设计-笔记-2-数据建模：工程化方法及案例分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/11/数据库系统（中）：建模与设计-笔记-2-数据建模：工程化方法及案例分析/" class="post-title-link" itemprop="url">数据库系统（中）：建模与设计 笔记 2 数据建模：工程化方法及案例分析</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 10:50:15" itemprop="dateCreated datePublished" datetime="2019-03-11T10:50:15+08:00">2019-03-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-02 23:35:50" itemprop="dateModified" datetime="2019-04-02T23:35:50+08:00">2019-04-02</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="数据建模：工程化方法及案例分析"><a href="#数据建模：工程化方法及案例分析" class="headerlink" title="数据建模：工程化方法及案例分析"></a>数据建模：工程化方法及案例分析</h1><h2 id="什么是IDEF1X"><a href="#什么是IDEF1X" class="headerlink" title="什么是IDEF1X"></a>什么是IDEF1X</h2><p>IDEF1X 是 E-R 图的一种细化。例如实体被细分为独立实体、从属实体；其它概念也有所细化。</p>
-<p>可以将 IDEF1X 看作是除了 Chen 和 Crow&#39;s foot 之外的第三种表达方法。</p>
-<h2 id="独立实体和从属实体"><a href="#独立实体和从属实体" class="headerlink" title="独立实体和从属实体"></a>独立实体和从属实体</h2><p>独立实体又称 <strong>强实体</strong>，从属实体又称 <strong>弱实体</strong>。</p>
-<ul>
-<li><strong>独立实体</strong> 的实例的唯一标识不依赖于它与其它实体的联系。主关键字没有外键。</li>
-<li><strong>从属实体</strong> 的实例的唯一标识依赖于这个实体与其它实体的联系。从属实体的主关键字继承自其它实体的属性。主关键字有外键。从属实体的实例的存在依赖于其它实体的存在。</li>
-</ul>
-<p>IDEF1X 中还有其它各种限制和要求，这里略去。</p>
-<h2 id="标定联系和非标定联系"><a href="#标定联系和非标定联系" class="headerlink" title="标定联系和非标定联系"></a>标定联系和非标定联系</h2><ul>
-<li><strong>标定联系</strong>：父实体的主关键字是子实体的主关键字的一部分时，子实体和父实体之间的联系为 <strong>标定联系</strong>。此时子实体是从属实体。</li>
-<li><strong>非标定联系</strong>：不是标定联系的联系。尽管父实体的主关键字可能是子实体的某个属性，但是子实体的唯一标识不需要靠这个属性。</li>
-</ul>
-<h2 id="非确定联系与相交实体"><a href="#非确定联系与相交实体" class="headerlink" title="非确定联系与相交实体"></a>非确定联系与相交实体</h2><p><strong>非确定联系</strong>：实体之间多对多的联系。</p>
-<p>非确定联系需要分解为若干个多对一的联系进行表达。非确定联系的表达需要引入 <strong>相交实体</strong> 作为中介进行表达，例如两个实体之间的多对多的联系可以通过引入相交实体变成两个多对一的联系。</p>
-<hr>
-<p>确定性联系通过属性继承实现实体之间的联系；非确定性联系通过引入相交实体实现实体之间的联系。</p>
-<h2 id="分类联系与分类实体"><a href="#分类联系与分类实体" class="headerlink" title="分类联系与分类实体"></a>分类联系与分类实体</h2><p>分类实体的概念类似于 OOP 中的继承。在 IDEF1X 中“超类”实体称为 <strong>一般实体</strong>，“子类”实体称为 <strong>分类实体</strong>。从一般实体到分类实体的过程称为 <strong>特化</strong>，反之称为 <strong>泛化</strong>。</p>
-<p>分类实体和一般实体具有相同的主关键字。</p>
-<p>分类实体和一般实体之间的联系称为 <strong>分类联系</strong>。<strong>完全分类联系</strong> 指的是一般实体的实例必然是某个分类实体的实例，反之为 <strong>非完全分类联系</strong>，即存在不是任意分类实体实例的一般实体的实例（一般实体的范围比分类实体的范围的并集要更大）。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/11/数据库系统（中）：建模与设计-笔记-2-数据建模：工程化方法及案例分析/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/05/Happy-与-Parsec-学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/05/Happy-与-Parsec-学习笔记/" class="post-title-link" itemprop="url">Happy 与 Parsec 学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-05 09:01:10" itemprop="dateCreated datePublished" datetime="2019-03-05T09:01:10+08:00">2019-03-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:16:57" itemprop="dateModified" datetime="2019-03-11T15:16:57+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Happy-与-Parsec-学习笔记"><a href="#Happy-与-Parsec-学习笔记" class="headerlink" title="Happy 与 Parsec 学习笔记"></a>Happy 与 Parsec 学习笔记</h1><h2 id="Parser-Generator-与-Parser-Combinator"><a href="#Parser-Generator-与-Parser-Combinator" class="headerlink" title="Parser Generator 与 Parser Combinator"></a>Parser Generator 与 Parser Combinator</h2><p>Parser 有两种——Generator 和 combinator。</p>
-<ul>
-<li><p>Generator 接受语法规则，然后生成语法分析程序。例如 ANTLR 就是典型的 parser generator。</p>
-</li>
-<li><p>Combinator 将一些小的语法分析函数组合起来，形成功能更复杂的语法分析函数。</p>
-</li>
-</ul>
-<p>Happy 和 Parsec 是 Haskell 的两个包，前者是 parser generator，后者是 parser combinator。</p>
-<p>作为例子，这篇文章会使用两种不同的策略对 json 文件进行语法分析。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/05/Happy-与-Parsec-学习笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/04/形式化验证课程笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/04/形式化验证课程笔记-1/" class="post-title-link" itemprop="url">形式化验证课程笔记 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 17:43:30" itemprop="dateCreated datePublished" datetime="2019-03-04T17:43:30+08:00">2019-03-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:30:00" itemprop="dateModified" datetime="2019-03-11T15:30:00+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h1><p>这些笔记是对课程 <em>软件系统建模与验证（1）</em>的记录。</p>
-<p>这周讲的主要是命题逻辑。</p>
-<h2 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h2><ul>
-<li><strong>原子</strong>：取值为真或假的不可分割的断言。</li>
-<li><strong>文字</strong>：原子或者它的反。</li>
-<li><strong>公式</strong>：使用逻辑联结词连接的文字。</li>
-<li><strong>解释</strong>：将公式中的每个原子映射到一个真值上的映射。确定了解释之后，公式的真值就知道了。</li>
-<li><strong>满足</strong>：解释 $I$ 使公式 $F$ 为真，记作 $I\vDash F$。不满足记作 $I \nvDash F$。</li>
-<li><strong>从句</strong>：合取范式和析取范式中由文字和逻辑连接词构成的语法单元。</li>
-</ul>
-<p>解释在记号上可以看做词典，原子 $P$ 在解释 $I$ 下的真值为 $I[P]$。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/04/形式化验证课程笔记-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/01/数据库系统（下）：管理与技术-笔记-7-数据库事务处理技术之故障恢复/" class="post-title-link" itemprop="url">数据库系统（下）：管理与技术 笔记 7 数据库事务处理技术之故障恢复</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-01 13:16:41 / 修改时间：17:01:28" itemprop="dateCreated datePublished" datetime="2019-03-01T13:16:41+08:00">2019-03-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2067,7 +2142,7 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-count">111</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2124,7 +2199,9 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

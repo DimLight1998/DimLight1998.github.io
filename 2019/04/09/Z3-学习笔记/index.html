@@ -124,7 +124,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Z3 学习笔记IntroductionZ3 is a theorem prover which can be used to check the satisfiability of logical formulas over theories. Basic CommandsA Z3 script is a sequence of commands defined by SMT-LIB 2.0 st">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-15T02:44:56.829Z">
+<meta property="og:updated_time" content="2019-04-16T02:43:01.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Z3 学习笔记">
 <meta name="twitter:description" content="Z3 学习笔记IntroductionZ3 is a theorem prover which can be used to check the satisfiability of logical formulas over theories. Basic CommandsA Z3 script is a sequence of commands defined by SMT-LIB 2.0 st">
@@ -415,7 +415,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-15 10:44:56" itemprop="dateModified" datetime="2019-04-15T10:44:56+08:00">2019-04-15</time>
+                <time title="修改时间：2019-04-16 10:43:01" itemprop="dateModified" datetime="2019-04-16T10:43:01+08:00">2019-04-16</time>
               
             
           </span>
@@ -549,9 +549,9 @@
 <figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T</span>) ((<span class="name">Tree</span> leaf (<span class="name">node</span> (<span class="name">value</span> T) (<span class="name">children</span> TreeList)))</span><br><span class="line">                        (<span class="name">TreeList</span> nil (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name"><span class="builtin-name">car</span></span> Tree) (<span class="name"><span class="builtin-name">cdr</span></span> TreeList)))))</span><br></pre></td></tr></table></figure>
 <p>In this example, you can use <code>is-leaf</code> to check whether a <code>Tree</code> instance is a <code>leaf</code> or a <code>node</code>.</p>
 <h2 id="Quantifiers"><a href="#Quantifiers" class="headerlink" title="Quantifiers"></a>Quantifiers</h2><h3 id="Modeling-with-Quantifiers"><a href="#Modeling-with-Quantifiers" class="headerlink" title="Modeling with Quantifiers"></a>Modeling with Quantifiers</h3><p>Use <code>forall</code> for a universal quantifier statement.</p>
-<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><p>A pattern is an expression which contains variables bound by a quantifier. During the searching, the pattern will be instantiated.</p>
+<h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><p>A pattern is an expression which contains variables bound by a quantifier. During the searching, the quantifier will be instantiated whenever the pattern is created.</p>
 <blockquote>
-<p><strong>TBD</strong></p>
+<p><strong>This section is skipped.</strong></p>
 </blockquote>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Z3 is usually used from programmatic APIs.</p>
 
@@ -665,7 +665,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">105</span>
+                    <span class="site-state-item-count">111</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -722,7 +722,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">19</span>
+                      
+                    
+                    <span class="site-state-item-count">20</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

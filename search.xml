@@ -4,6 +4,132 @@
   
     
     <entry>
+      <title>Functional Programming Principles in Scala 笔记 4 Types and Pattern Matching</title>
+      <link href="/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-4-Types-and-Pattern-Matching/"/>
+      <url>/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-4-Types-and-Pattern-Matching/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Functional Programming Principles in Scala 笔记 6 Collections</title>
+      <link href="/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-6-Collections/"/>
+      <url>/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-6-Collections/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Functional Programming Principles in Scala 笔记 5 Lists</title>
+      <link href="/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-5-Lists/"/>
+      <url>/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-5-Lists/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Functional Programming Principles in Scala 笔记 3 Data and Abstraction</title>
+      <link href="/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-3-Data-and-Abstraction/"/>
+      <url>/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-3-Data-and-Abstraction/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Functional Programming Principles in Scala 笔记 2 Higher Order Functions</title>
+      <link href="/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-2-Higher-Order-Functions/"/>
+      <url>/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-2-Higher-Order-Functions/</url>
+      
+        <content type="html"><![CDATA[<a id="more"></a>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Functional Programming Principles in Scala 笔记 1 Functions &amp; Evaluation</title>
+      <link href="/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-1-Functions-Evaluation/"/>
+      <url>/2019/04/17/Functional-Programming-Principles-in-Scala-%E7%AC%94%E8%AE%B0-1-Functions-Evaluation/</url>
+      
+        <content type="html"><![CDATA[<p>课程来源 <a href="https://www.coursera.org/learn/progfun1/" target="_blank" rel="noopener">Coursera</a>。</p><h2 id="求值策略"><a href="#求值策略" class="headerlink" title="求值策略"></a>求值策略</h2><h3 id="Call-by-Value-与-Call-by-Name"><a href="#Call-by-Value-与-Call-by-Name" class="headerlink" title="Call by Value 与 Call by Name"></a>Call by Value 与 Call by Name</h3><p>程序对函数调用的求值策略有 call by value 和 call by name 两种。</p><ul><li>前者在函数调用前先对参数求值，然后将参数的值代入函数体中。</li><li>后者直接将参数的表达式代入到函数体中，然后对函数体求值。</li></ul><p>两种方式各有优点。前者不会对参数重复求值，后者不会对不被使用的参数求值。根据 lambda 运算理论，只要整个求值过程中没有副作用，并且两个过程都能终止，那么最后的结果总是相同的。</p><hr><p>另一个常被提及的是 call by reference。然而这是一种传递参数的策略，而不是求值策略。为了防止混淆，我把按值传递和按引用传递叫做 pass by value 与 pass by reference。</p><h3 id="不同求值策略的终止性"><a href="#不同求值策略的终止性" class="headerlink" title="不同求值策略的终止性"></a>不同求值策略的终止性</h3><p>根据相关理论，如果 call by value 可以终止，那么 call by name 也可以终止，反之不成立。但是一般的语言（包括 Scala）总是默认 call by value，因为这样效率更高。</p><p>Scala 允许让函数对某个参数运用 call by name 的策略，只要在函数签名中参数的类型声明前加上箭头：</p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">constOne</span></span>(x: <span class="type">Int</span>, y: =&gt; <span class="type">Int</span>) = <span class="number">1</span></span><br></pre></td></tr></table></figure><p>上面的函数省略了返回类型，Scala 会自己推导；不过它推导不出自递归函数的返回类型。语法上看胖箭头也是函数类型的一部分，我感觉这么做实际上是对 <code>y</code> 传了一个函数进去。</p><p>它可以让你用函数实现逻辑表达式的短路求值效果：</p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">and</span></span>(x: <span class="type">Boolean</span>, y: =&gt; <span class="type">Boolean</span>) = <span class="keyword">if</span> (x) y <span class="keyword">else</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">or</span></span>(x: <span class="type">Boolean</span>, y: =&gt; <span class="type">Boolean</span>) = <span class="keyword">if</span> (x) <span class="literal">true</span> <span class="keyword">else</span> y</span><br></pre></td></tr></table></figure><p>现在，即使对 <code>y</code> 的求值无法终止，<code>and</code> 和 <code>or</code> 在某些情况下也可以终止。</p><h2 id="def-与-val"><a href="#def-与-val" class="headerlink" title="def 与 val"></a><code>def</code> 与 <code>val</code></h2><p><code>def</code> 用来定义变量（以及函数），而 <code>val</code> 用来求值。它们可以分别看做是 call by name 和 call by value 的声明版本。</p><p>首先定义一个无法终止的函数：</p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loop</span></span>: <span class="type">Int</span> = loop</span><br></pre></td></tr></table></figure><p>对于</p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">a</span> </span>= loop</span><br><span class="line"><span class="keyword">val</span> b = loop</span><br></pre></td></tr></table></figure><p>两条语句，前者可以终止，而后者会将 <code>loop</code> 的值求出后再赋给 <code>b</code>，因此无法终止。</p><a id="more"></a><h2 id="Blocks"><a href="#Blocks" class="headerlink" title="Blocks"></a>Blocks</h2><p>Scala 中可以使用 blocks 来构建语句或者表达式的序列：</p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> x = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span></span>(y: <span class="type">Int</span>) = y +<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> result = &#123;</span><br><span class="line">  <span class="keyword">val</span> x = f(<span class="number">3</span>);</span><br><span class="line">  x * x</span><br><span class="line">&#125; + x</span><br></pre></td></tr></table></figure><p>Block 中定义的东西只有该 block 可见；并且会 shadow 掉外面的定义。</p><p>Block 中定义的函数的函数体可以直接访问 block 中的变量：</p><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span></span>(x: <span class="type">Int</span>) = &#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">g</span></span>(y: <span class="type">Int</span>) = x + y</span><br><span class="line">    g(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h2><p>Scala 中只有自己调用自己的尾调用被自动优化了。可以在函数定义前加上 <code>@tailrec</code> 来表示这个函数是尾递归的。这相当于作了一个 assertion，如果函数实际上不是尾递归的则会触发错误。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 函数式编程 </tag>
+            
+            <tag> Scala </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>形式化验证课程笔记 8</title>
       <link href="/2019/04/15/%E5%BD%A2%E5%BC%8F%E5%8C%96%E9%AA%8C%E8%AF%81%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-8/"/>
       <url>/2019/04/15/%E5%BD%A2%E5%BC%8F%E5%8C%96%E9%AA%8C%E8%AF%81%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0-8/</url>
@@ -27,7 +153,7 @@
       <link href="/2019/04/09/Z3-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2019/04/09/Z3-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
       
-        <content type="html"><![CDATA[<h1 id="Z3-学习笔记"><a href="#Z3-学习笔记" class="headerlink" title="Z3 学习笔记"></a>Z3 学习笔记</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Z3 is a theorem prover which can be used to check the satisfiability of logical formulas over theories.</p><h2 id="Basic-Commands"><a href="#Basic-Commands" class="headerlink" title="Basic Commands"></a>Basic Commands</h2><p>A Z3 script is a sequence of commands defined by SMT-LIB 2.0 standard.</p><p>The syntax is like Racket.</p><ul><li><code>echo</code> to print something.</li><li><code>declare-const</code> to declare a constant. (No value needed.)</li><li><code>declare-fun</code> to declare a function. (No definition needed.)</li><li><code>assert</code> to make assertions, which will be used to check satisfiability.</li><li><code>check-sat</code> to check the satisfiability of all assertions.</li><li><code>get-model</code> to get the assignment if all assertions are satisfiable.</li></ul><p>The result of <code>get-model</code> uses <code>define-fun</code> to define functions.</p><p>An <code>ite</code> expression stands for an if-then-else branch.</p><h3 id="Using-Scopes"><a href="#Using-Scopes" class="headerlink" title="Using Scopes"></a>Using Scopes</h3><p>Z3 uses a global stack to store all declarations. This is useful if you want to prove multiple independent theories using some common declarations.</p><p>Use <code>push</code> to enter a new stack frame and use <code>pop</code> to exit the current stack frame.</p><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>Use <code>set-option</code> to configure Z3. Use <code>reset</code> to remove all configurations and assertions.</p><p>Some parameters for <code>set-option</code>:</p><ul><li><code>:print-success</code> will toggle printing <code>success</code> for commands.</li><li><code>:produce-unsat-cores</code> will toggle generation of unsat cores.</li><li><code>:produce-models</code> will toggle model generation.</li><li><code>:produce-proofs</code> will toggle proof generation.</li></ul><h3 id="Additional-Commands"><a href="#Additional-Commands" class="headerlink" title="Additional Commands"></a>Additional Commands</h3><ul><li><code>display</code> to pretty print an expression.</li><li><code>simplify</code> to simplify an expression. Many options are available.</li><li><code>define-sort</code> to define a new type. The type can be parameterized.</li></ul><p>You may need <code>as</code> as something like type annotations when dealing with parameterized types.</p><h2 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h2><p>Use <code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>, <code>=&gt;</code> (for $\rightarrow$) and <code>=</code> (for $\leftrightarrow$) for logical connectives.</p><h3 id="Satisfiability-and-Validity"><a href="#Satisfiability-and-Validity" class="headerlink" title="Satisfiability and Validity"></a>Satisfiability and Validity</h3><p>If you want to prove $F$ is valid, you can ask Z3 to prove $\lnot F$ is unsatisfiable.</p><h2 id="Uninterpreted-Functions-and-Constants"><a href="#Uninterpreted-Functions-and-Constants" class="headerlink" title="Uninterpreted Functions and Constants"></a>Uninterpreted Functions and Constants</h2><p><strong>Constants are function taking no parameters, so everything are functions.</strong></p><p>Functions in first-order logic should be pure and total.</p><p>Use <code>declare-sort</code> to declare a unspecified type.</p><h2 id="Arithmetic"><a href="#Arithmetic" class="headerlink" title="Arithmetic"></a>Arithmetic</h2><p>Z3 supports integers and real numbers.</p><h3 id="Nonlinear-Arithmetic"><a href="#Nonlinear-Arithmetic" class="headerlink" title="Nonlinear Arithmetic"></a>Nonlinear Arithmetic</h3><p>A formula with expression <code>* m n</code> where <code>m</code> and <code>n</code> are neither numbers is called <strong><em>nonlinear</em></strong>. Nonlinear integer arithmetic is <strong>undecidable</strong>.</p><p>Z3 can only solve some of the nonlinear arithmetic problems.</p><h3 id="Division"><a href="#Division" class="headerlink" title="Division"></a>Division</h3><p>Z3 support real number division <code>/</code>, integer division <code>div</code>, modulo <code>mod</code> and remainder <code>rem</code>.</p><p>The result of division by zero is not specified due to all functions need to be total. It can be any result if Z3 wants. You may need a wrapper to avoid this.</p><a id="more"></a><h2 id="Bitvectors"><a href="#Bitvectors" class="headerlink" title="Bitvectors"></a>Bitvectors</h2><p>Bitvector theory is a theory for modeling the semantics of unsigned and signed arithmetic in the computer.</p><p>The type of bitvector with length $n$ is <code>(_ BitVec n)</code>.</p><p>Supported operations:</p><p><strong>Arithmetic</strong>:</p><ul><li><code>bvadd</code> addition</li><li><code>bvsub</code> subtraction</li><li><code>bvneg</code> negation</li><li><code>bvmul</code> multiplication</li><li><code>bvurem</code> unsigned remainder</li><li><code>bvsrem</code> signed remainder</li><li><code>bvsmod</code> signed modulo</li><li><code>bvshl</code> shift left</li><li><code>bvlshr</code> logical shift right</li><li><code>bvashr</code> arithmetic shift right</li></ul><p><strong>Bitwise</strong>:</p><ul><li><code>bvor</code></li><li><code>bvand</code></li><li><code>bvnot</code></li><li><code>bvnand</code></li><li><code>bvnor</code></li><li><code>bvxor</code></li></ul><p><strong>Predicate</strong>:</p><p><code>u</code> means unsigned while <code>s</code> means signed. <code>le</code> means less than or equal to, others are similar.</p><ul><li><code>bvule</code></li><li><code>bvult</code></li><li><code>bvuge</code></li><li><code>bvugt</code></li><li><code>bvsle</code></li><li><code>bvslt</code></li><li><code>bvsge</code></li><li><code>bvsgt</code></li></ul><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>Z3 supports array select (array read), array store (array write). It also supports array equality.</p><h3 id="Select-and-Store"><a href="#Select-and-Store" class="headerlink" title="Select and Store"></a>Select and Store</h3><p>Use <code>select</code> for array read and <code>store</code> for array write.</p><p>Array write will return a new array with the certain element is replaced.</p><h3 id="Constant-Arrays"><a href="#Constant-Arrays" class="headerlink" title="Constant Arrays"></a>Constant Arrays</h3><p>A constant array is an array of which all elements are the same constant.</p><p>It can be created as <code>(as const (Array Int Int)) 1</code>.</p><h3 id="Array-Models"><a href="#Array-Models" class="headerlink" title="Array Models"></a>Array Models</h3><p>Z3 uses constructor <code>(_ as-array f)</code> to give an interpretation for an array.</p><h3 id="Mapping-Functions-on-Arrays"><a href="#Mapping-Functions-on-Arrays" class="headerlink" title="Mapping Functions on Arrays"></a>Mapping Functions on Arrays</h3><p>You can do <code>map</code> operation on arrays.</p><h3 id="Bags-as-Arrays"><a href="#Bags-as-Arrays" class="headerlink" title="Bags as Arrays"></a>Bags as Arrays</h3><p>A bag is a data structure like multisets. It keeps the number of each element.</p><p>Bags can be implemented in Z3 with arrays.</p><h2 id="Datatypes"><a href="#Datatypes" class="headerlink" title="Datatypes"></a>Datatypes</h2><p>Use <code>declare-datatypes</code> for datatype declaration.</p><h3 id="Records"><a href="#Records" class="headerlink" title="Records"></a>Records</h3><p>Z3 supports records like:</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T1</span> T2) ((<span class="name">Pair</span> (<span class="name">mk-pair</span> (<span class="name">first</span> T1) (<span class="name">second</span> T2)))))</span><br></pre></td></tr></table></figure><p>You can use <code>mk-pair</code> as the constructor, <code>first</code> and <code>second</code> as the accessors.</p><h3 id="Scalars-Enumeration"><a href="#Scalars-Enumeration" class="headerlink" title="Scalars (Enumeration)"></a>Scalars (Enumeration)</h3><p>Z3 supports enumerations like:</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> () ((<span class="name">S</span> A B C)))</span><br></pre></td></tr></table></figure><p>Now <code>S</code> is a type having possible value <code>A</code>, <code>B</code> and <code>C</code>.</p><h3 id="Recursive-Datatypes"><a href="#Recursive-Datatypes" class="headerlink" title="Recursive Datatypes"></a>Recursive Datatypes</h3><p>Z3 supports recursive datatype, like list:</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T</span>) ((<span class="name">Lst</span> nil (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name">hd</span> T) (<span class="name">tl</span> Lst)))))</span><br></pre></td></tr></table></figure><p><code>List</code> is built-in supported by Z3. Possible operations are <code>nil</code> (for empty list), <code>head</code> and <code>tail</code>, and <code>insert</code> to insert values into the list.</p><h3 id="Mutually-Recursive-Datatypes"><a href="#Mutually-Recursive-Datatypes" class="headerlink" title="Mutually Recursive Datatypes"></a>Mutually Recursive Datatypes</h3><p>Z3 supports mutually recursive datatypes like</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T</span>) ((<span class="name">Tree</span> leaf (<span class="name">node</span> (<span class="name">value</span> T) (<span class="name">children</span> TreeList)))</span><br><span class="line">                        (<span class="name">TreeList</span> nil (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name"><span class="builtin-name">car</span></span> Tree) (<span class="name"><span class="builtin-name">cdr</span></span> TreeList)))))</span><br></pre></td></tr></table></figure><p>In this example, you can use <code>is-leaf</code> to check whether a <code>Tree</code> instance is a <code>leaf</code> or a <code>node</code>.</p><h2 id="Quantifiers"><a href="#Quantifiers" class="headerlink" title="Quantifiers"></a>Quantifiers</h2><h3 id="Modeling-with-Quantifiers"><a href="#Modeling-with-Quantifiers" class="headerlink" title="Modeling with Quantifiers"></a>Modeling with Quantifiers</h3><p>Use <code>forall</code> for a universal quantifier statement.</p><h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><p>A pattern is an expression which contains variables bound by a quantifier. During the searching, the pattern will be instantiated.</p><blockquote><p><strong>TBD</strong></p></blockquote><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Z3 is usually used from programmatic APIs.</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="Z3-学习笔记"><a href="#Z3-学习笔记" class="headerlink" title="Z3 学习笔记"></a>Z3 学习笔记</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Z3 is a theorem prover which can be used to check the satisfiability of logical formulas over theories.</p><h2 id="Basic-Commands"><a href="#Basic-Commands" class="headerlink" title="Basic Commands"></a>Basic Commands</h2><p>A Z3 script is a sequence of commands defined by SMT-LIB 2.0 standard.</p><p>The syntax is like Racket.</p><ul><li><code>echo</code> to print something.</li><li><code>declare-const</code> to declare a constant. (No value needed.)</li><li><code>declare-fun</code> to declare a function. (No definition needed.)</li><li><code>assert</code> to make assertions, which will be used to check satisfiability.</li><li><code>check-sat</code> to check the satisfiability of all assertions.</li><li><code>get-model</code> to get the assignment if all assertions are satisfiable.</li></ul><p>The result of <code>get-model</code> uses <code>define-fun</code> to define functions.</p><p>An <code>ite</code> expression stands for an if-then-else branch.</p><h3 id="Using-Scopes"><a href="#Using-Scopes" class="headerlink" title="Using Scopes"></a>Using Scopes</h3><p>Z3 uses a global stack to store all declarations. This is useful if you want to prove multiple independent theories using some common declarations.</p><p>Use <code>push</code> to enter a new stack frame and use <code>pop</code> to exit the current stack frame.</p><h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>Use <code>set-option</code> to configure Z3. Use <code>reset</code> to remove all configurations and assertions.</p><p>Some parameters for <code>set-option</code>:</p><ul><li><code>:print-success</code> will toggle printing <code>success</code> for commands.</li><li><code>:produce-unsat-cores</code> will toggle generation of unsat cores.</li><li><code>:produce-models</code> will toggle model generation.</li><li><code>:produce-proofs</code> will toggle proof generation.</li></ul><h3 id="Additional-Commands"><a href="#Additional-Commands" class="headerlink" title="Additional Commands"></a>Additional Commands</h3><ul><li><code>display</code> to pretty print an expression.</li><li><code>simplify</code> to simplify an expression. Many options are available.</li><li><code>define-sort</code> to define a new type. The type can be parameterized.</li></ul><p>You may need <code>as</code> as something like type annotations when dealing with parameterized types.</p><h2 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h2><p>Use <code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>, <code>=&gt;</code> (for $\rightarrow$) and <code>=</code> (for $\leftrightarrow$) for logical connectives.</p><h3 id="Satisfiability-and-Validity"><a href="#Satisfiability-and-Validity" class="headerlink" title="Satisfiability and Validity"></a>Satisfiability and Validity</h3><p>If you want to prove $F$ is valid, you can ask Z3 to prove $\lnot F$ is unsatisfiable.</p><h2 id="Uninterpreted-Functions-and-Constants"><a href="#Uninterpreted-Functions-and-Constants" class="headerlink" title="Uninterpreted Functions and Constants"></a>Uninterpreted Functions and Constants</h2><p><strong>Constants are function taking no parameters, so everything are functions.</strong></p><p>Functions in first-order logic should be pure and total.</p><p>Use <code>declare-sort</code> to declare a unspecified type.</p><h2 id="Arithmetic"><a href="#Arithmetic" class="headerlink" title="Arithmetic"></a>Arithmetic</h2><p>Z3 supports integers and real numbers.</p><h3 id="Nonlinear-Arithmetic"><a href="#Nonlinear-Arithmetic" class="headerlink" title="Nonlinear Arithmetic"></a>Nonlinear Arithmetic</h3><p>A formula with expression <code>* m n</code> where <code>m</code> and <code>n</code> are neither numbers is called <strong><em>nonlinear</em></strong>. Nonlinear integer arithmetic is <strong>undecidable</strong>.</p><p>Z3 can only solve some of the nonlinear arithmetic problems.</p><h3 id="Division"><a href="#Division" class="headerlink" title="Division"></a>Division</h3><p>Z3 support real number division <code>/</code>, integer division <code>div</code>, modulo <code>mod</code> and remainder <code>rem</code>.</p><p>The result of division by zero is not specified due to all functions need to be total. It can be any result if Z3 wants. You may need a wrapper to avoid this.</p><a id="more"></a><h2 id="Bitvectors"><a href="#Bitvectors" class="headerlink" title="Bitvectors"></a>Bitvectors</h2><p>Bitvector theory is a theory for modeling the semantics of unsigned and signed arithmetic in the computer.</p><p>The type of bitvector with length $n$ is <code>(_ BitVec n)</code>.</p><p>Supported operations:</p><p><strong>Arithmetic</strong>:</p><ul><li><code>bvadd</code> addition</li><li><code>bvsub</code> subtraction</li><li><code>bvneg</code> negation</li><li><code>bvmul</code> multiplication</li><li><code>bvurem</code> unsigned remainder</li><li><code>bvsrem</code> signed remainder</li><li><code>bvsmod</code> signed modulo</li><li><code>bvshl</code> shift left</li><li><code>bvlshr</code> logical shift right</li><li><code>bvashr</code> arithmetic shift right</li></ul><p><strong>Bitwise</strong>:</p><ul><li><code>bvor</code></li><li><code>bvand</code></li><li><code>bvnot</code></li><li><code>bvnand</code></li><li><code>bvnor</code></li><li><code>bvxor</code></li></ul><p><strong>Predicate</strong>:</p><p><code>u</code> means unsigned while <code>s</code> means signed. <code>le</code> means less than or equal to, others are similar.</p><ul><li><code>bvule</code></li><li><code>bvult</code></li><li><code>bvuge</code></li><li><code>bvugt</code></li><li><code>bvsle</code></li><li><code>bvslt</code></li><li><code>bvsge</code></li><li><code>bvsgt</code></li></ul><h2 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h2><p>Z3 supports array select (array read), array store (array write). It also supports array equality.</p><h3 id="Select-and-Store"><a href="#Select-and-Store" class="headerlink" title="Select and Store"></a>Select and Store</h3><p>Use <code>select</code> for array read and <code>store</code> for array write.</p><p>Array write will return a new array with the certain element is replaced.</p><h3 id="Constant-Arrays"><a href="#Constant-Arrays" class="headerlink" title="Constant Arrays"></a>Constant Arrays</h3><p>A constant array is an array of which all elements are the same constant.</p><p>It can be created as <code>(as const (Array Int Int)) 1</code>.</p><h3 id="Array-Models"><a href="#Array-Models" class="headerlink" title="Array Models"></a>Array Models</h3><p>Z3 uses constructor <code>(_ as-array f)</code> to give an interpretation for an array.</p><h3 id="Mapping-Functions-on-Arrays"><a href="#Mapping-Functions-on-Arrays" class="headerlink" title="Mapping Functions on Arrays"></a>Mapping Functions on Arrays</h3><p>You can do <code>map</code> operation on arrays.</p><h3 id="Bags-as-Arrays"><a href="#Bags-as-Arrays" class="headerlink" title="Bags as Arrays"></a>Bags as Arrays</h3><p>A bag is a data structure like multisets. It keeps the number of each element.</p><p>Bags can be implemented in Z3 with arrays.</p><h2 id="Datatypes"><a href="#Datatypes" class="headerlink" title="Datatypes"></a>Datatypes</h2><p>Use <code>declare-datatypes</code> for datatype declaration.</p><h3 id="Records"><a href="#Records" class="headerlink" title="Records"></a>Records</h3><p>Z3 supports records like:</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T1</span> T2) ((<span class="name">Pair</span> (<span class="name">mk-pair</span> (<span class="name">first</span> T1) (<span class="name">second</span> T2)))))</span><br></pre></td></tr></table></figure><p>You can use <code>mk-pair</code> as the constructor, <code>first</code> and <code>second</code> as the accessors.</p><h3 id="Scalars-Enumeration"><a href="#Scalars-Enumeration" class="headerlink" title="Scalars (Enumeration)"></a>Scalars (Enumeration)</h3><p>Z3 supports enumerations like:</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> () ((<span class="name">S</span> A B C)))</span><br></pre></td></tr></table></figure><p>Now <code>S</code> is a type having possible value <code>A</code>, <code>B</code> and <code>C</code>.</p><h3 id="Recursive-Datatypes"><a href="#Recursive-Datatypes" class="headerlink" title="Recursive Datatypes"></a>Recursive Datatypes</h3><p>Z3 supports recursive datatype, like list:</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T</span>) ((<span class="name">Lst</span> nil (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name">hd</span> T) (<span class="name">tl</span> Lst)))))</span><br></pre></td></tr></table></figure><p><code>List</code> is built-in supported by Z3. Possible operations are <code>nil</code> (for empty list), <code>head</code> and <code>tail</code>, and <code>insert</code> to insert values into the list.</p><h3 id="Mutually-Recursive-Datatypes"><a href="#Mutually-Recursive-Datatypes" class="headerlink" title="Mutually Recursive Datatypes"></a>Mutually Recursive Datatypes</h3><p>Z3 supports mutually recursive datatypes like</p><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name">declare-datatypes</span> (<span class="name">T</span>) ((<span class="name">Tree</span> leaf (<span class="name">node</span> (<span class="name">value</span> T) (<span class="name">children</span> TreeList)))</span><br><span class="line">                        (<span class="name">TreeList</span> nil (<span class="name"><span class="builtin-name">cons</span></span> (<span class="name"><span class="builtin-name">car</span></span> Tree) (<span class="name"><span class="builtin-name">cdr</span></span> TreeList)))))</span><br></pre></td></tr></table></figure><p>In this example, you can use <code>is-leaf</code> to check whether a <code>Tree</code> instance is a <code>leaf</code> or a <code>node</code>.</p><h2 id="Quantifiers"><a href="#Quantifiers" class="headerlink" title="Quantifiers"></a>Quantifiers</h2><h3 id="Modeling-with-Quantifiers"><a href="#Modeling-with-Quantifiers" class="headerlink" title="Modeling with Quantifiers"></a>Modeling with Quantifiers</h3><p>Use <code>forall</code> for a universal quantifier statement.</p><h3 id="Patterns"><a href="#Patterns" class="headerlink" title="Patterns"></a>Patterns</h3><p>A pattern is an expression which contains variables bound by a quantifier. During the searching, the quantifier will be instantiated whenever the pattern is created.</p><blockquote><p><strong>This section is skipped.</strong></p></blockquote><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>Z3 is usually used from programmatic APIs.</p>]]></content>
       
       
       
@@ -1100,9 +1226,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1121,9 +1247,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1142,9 +1268,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1163,9 +1289,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1247,9 +1373,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1268,9 +1394,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1289,9 +1415,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1310,9 +1436,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
@@ -1331,9 +1457,9 @@
       
         <tags>
             
-            <tag> 编程语言理论 </tag>
-            
             <tag> 函数式编程 </tag>
+            
+            <tag> 编程语言理论 </tag>
             
         </tags>
       
