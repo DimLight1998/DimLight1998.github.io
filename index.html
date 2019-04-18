@@ -1034,7 +1034,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-18 00:15:18" itemprop="dateModified" datetime="2019-04-18T00:15:18+08:00">2019-04-18</time>
+                <time title="修改时间：2019-04-18 12:00:34" itemprop="dateModified" datetime="2019-04-18T12:00:34+08:00">2019-04-18</time>
               
             
           </span>
@@ -1069,10 +1069,39 @@
 
       
         
+          <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>高阶函数是参数或者返回值是函数的函数。语法：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(f: <span class="type">Int</span> =&gt; <span class="type">Int</span>, a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> =</span><br><span class="line">  <span class="keyword">if</span> (a &gt; b) <span class="number">0</span></span><br><span class="line">  <span class="keyword">else</span> f(a) + sum(f, a + <span class="number">1</span>, b)</span><br></pre></td></tr></table></figure>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>Scala 中的匿名函数的语法为</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>, y: <span class="type">Int</span>) =&gt; x + y</span><br></pre></td></tr></table></figure>
+<p>如果参数的类型可以被编译器推断，那么它们也是可以省略的。</p>
+<h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>Scala 中定义柯里化的函数只需要在定义和使用时在函数名后面用多个括号：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mapInt</span></span>(f: <span class="type">Int</span> =&gt; <span class="type">Int</span>)(xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] =</span><br><span class="line">  <span class="keyword">if</span> (xs.isEmpty) <span class="type">List</span>() <span class="keyword">else</span> f(xs.head) :: mapInt(f)(xs.tail)</span><br></pre></td></tr></table></figure>
+<p>出于某些我现在不知道的原因，把偏函数赋给变量时要在不带参数的部分写上 <code>_</code>：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> doubler = mapInt(x =&gt; <span class="number">2</span> * x) _</span><br></pre></td></tr></table></figure>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>仿照如下的例子定义一个类：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p>此时会得到类型 <code>Rational</code> 和对应的构造函数 <code>Rational</code>。二者名字相同，但是 Scala 会自己加以区分。</p>
+<p>使用</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>来构造类的 object。</p>
+<p>不过，无法通过 <code>a.x</code> 来访问构造时传入的参数。</p>
+<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p>扩展上面的例子，加入两个成员：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以使用这些成员了，它们实际上是不带参数的函数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">print(a.numer)</span><br><span class="line">print(a.denom)</span><br></pre></td></tr></table></figure>
+<p>实际上将前面定义中的 <code>def</code> 换成 <code>val</code> 也是可以的。</p>
+<p>自然，类里面是可以定义带参数的方法的：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(that: <span class="type">Rational</span>) = <span class="keyword">new</span> <span class="type">Rational</span>(</span><br><span class="line">    numer * that.denom + that.numer * denom, denom * that.denom</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类中可以通过访问 <code>this</code> 来获取当前实例。</p>
+          <!--noindex-->
           
-            <a id="more"></a>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
