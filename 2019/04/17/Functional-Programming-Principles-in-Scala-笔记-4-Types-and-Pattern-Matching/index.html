@@ -125,7 +125,7 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="Scala 是纯 OOP 的吗值类型可以被 OOP 实现纯 OOP 语言指的是这种语言中所有的东西都是基于类和对象的。Java 不是纯 OOP 语言，因为其中的 primitive types 不是基于类或者对象的。 Scala 是纯 OOP 的，尽管它也有像 Java 中的 primitive types，但是 逻辑上 这些类型都是用 OOP 实现的。在编译时，编译器会特殊地对待这些类型，将其转">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-18T13:52:23.024Z">
+<meta property="og:updated_time" content="2019-04-18T16:53:41.763Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Functional Programming Principles in Scala 笔记 4 Types and Pattern Matching">
 <meta name="twitter:description" content="Scala 是纯 OOP 的吗值类型可以被 OOP 实现纯 OOP 语言指的是这种语言中所有的东西都是基于类和对象的。Java 不是纯 OOP 语言，因为其中的 primitive types 不是基于类或者对象的。 Scala 是纯 OOP 的，尽管它也有像 Java 中的 primitive types，但是 逻辑上 这些类型都是用 OOP 实现的。在编译时，编译器会特殊地对待这些类型，将其转">
@@ -416,7 +416,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-18 21:52:23" itemprop="dateModified" datetime="2019-04-18T21:52:23+08:00">2019-04-18</time>
+                <time title="修改时间：2019-04-19 00:53:41" itemprop="dateModified" datetime="2019-04-19T00:53:41+08:00">2019-04-19</time>
               
             
           </span>
@@ -506,12 +506,31 @@
 <p>搞完这些事情后，你就可以把 <code>List</code> 设计成协变的，同时没有各种因为协变引起的 bug 了。</p>
 <h2 id="对问题的解耦"><a href="#对问题的解耦" class="headerlink" title="对问题的解耦"></a>对问题的解耦</h2><p>在 Programming Languages 中学过 FP 和 OOP 是两种对问题的解耦策略。如果用 FP 解决问题较方便时，确实可以使用 OOP 搞出来，但是会比较丑陋。可能需要用到 <a href="#类型转换">类型转换</a>。</p>
 <p>用 FP 解决问题的一大工具就是模式匹配。</p>
-<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><blockquote>
-<p>TBD</p>
-</blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><blockquote>
-<p>TBD</p>
-</blockquote>
+<h2 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h2><h3 id="Case-Class"><a href="#Case-Class" class="headerlink" title="Case Class"></a>Case Class</h3><p>为了使用模式匹配，需要用到 case class。只要在普通的类定义前加上 <code>case</code> 修饰符即可：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Expr</span></span></span><br><span class="line"><span class="class"><span class="title">case</span> <span class="title">class</span> <span class="title">Number</span>(<span class="params">n: <span class="type">Int</span></span>) <span class="keyword">extends</span> <span class="title">Expr</span></span></span><br><span class="line"><span class="class"><span class="title">case</span> <span class="title">class</span> <span class="title">Sum</span>(<span class="params">e1: <span class="type">Expr</span>, e2: <span class="type">Expr</span></span>) <span class="keyword">extends</span> <span class="title">Expr</span></span></span><br></pre></td></tr></table></figure>
+<p>此时 Scala 会自动生成两个 object，方便你在不写 <code>new</code> 的情况下构造出对应的对象：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Number</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(n: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">Number</span>(n)</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Sum</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(e1: <span class="type">Expr</span>, e2: <span class="type">Expr</span>) = <span class="keyword">new</span> <span class="type">Sum</span>(e1, e2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，在要构造对象的时候可以只写 <code>Number(42)</code>，不用加 <code>new</code>。</p>
+<p>随后就可以使用模式匹配了：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">eval</span></span>(e: <span class="type">Expr</span>): <span class="type">Int</span> = e <span class="keyword">match</span> &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="type">Number</span>(n) =&gt; n</span><br><span class="line">  <span class="keyword">case</span> <span class="type">Sum</span>(e1, e2) =&gt; eval(e1) + eval(e2)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>Scala 的模式匹配的模式中可以包括常量。Scala 对模式的格式有些限制，包括：</p>
+<ul>
+<li>常量必须首字母大写，除了 <code>null</code>，<code>true</code> 和 <code>false</code></li>
+<li>变量必须首字母小写</li>
+<li>同一个用作变量的标识符不能出现多次</li>
+<li>使用 <code>_</code> 进行匹配，但是不绑定值</li>
+</ul>
+<h3 id="在父类中使用模式匹配"><a href="#在父类中使用模式匹配" class="headerlink" title="在父类中使用模式匹配"></a>在父类中使用模式匹配</h3><p>一种使用模式匹配的方法是在父类中使用：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Expr</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">eval</span></span>: <span class="type">Int</span> = <span class="keyword">this</span> <span class="keyword">match</span> &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Number</span>(n) =&gt; n</span><br><span class="line">    <span class="keyword">case</span> <span class="type">Sum</span>(e1, e2) =&gt; e1.eval + e2.eval</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>和前面的模式匹配的差别在于一个是过程式的，一个是 OOP 式的。</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>此处讨论的是 Scala 自带的数据结构。</p>
+<ul>
+<li>构造列表只需要使用 <code>List(x1, x2, x3, ..., xn)</code>，或者可以使用 <code>::</code> 和 <code>Nil</code> 进行构造。此处的语法详见 <a href="右结合的操作符">右结合的操作符</a>。</li>
+<li>列表和数组的区别：列表是不可变的，数组可变；列表是递归的，数组是 flat 的。</li>
+<li>常用方法有 <code>isEmpty</code>，<code>head</code>，和 <code>tail</code>。</li>
+<li>列表常和模式匹配结合。模式甚至可以直接是 <code>List(x1, x2, x3, ..., xn)</code></li>
+</ul>
 <h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><h3 id="匿名类"><a href="#匿名类" class="headerlink" title="匿名类"></a>匿名类</h3><p>Scala 支持匿名类：如果要定义某个类的子类，但是只使用它一次的话。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> square = <span class="keyword">new</span> <span class="type">Function1</span>[<span class="type">Int</span>, <span class="type">Int</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = x * x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>Scala 可以判定一个对象是否是某个类的实例，并且可以进行转换：</p>
@@ -520,7 +539,11 @@
 <li><code>x.asInstanceOf[A]</code></li>
 </ul>
 <p>但是这么做是不被推荐的。其中第二个方法如果无法完成转换会抛异常，因此需要被第一个方法包装一下。</p>
-
+<h3 id="右结合的操作符"><a href="#右结合的操作符" class="headerlink" title="右结合的操作符"></a>右结合的操作符</h3><p>Scala 中的一个 convention 是，以 <code>:</code> 结尾的操作符的结合性一般是右结合的。</p>
+<p>但是这是如何实现的呢？Scala 中的二元操作符本质上只是一个接受一个参数的方法。Scala 规定以 <code>:</code> 结尾的操作符中，操作符右边是具有方法的对象，左边是参数。和正常的操作符刚好反过来。因此：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> :: <span class="number">2</span> :: <span class="number">3</span> :: <span class="number">4</span> :: <span class="type">Nil</span></span><br></pre></td></tr></table></figure>
+<p>实际上是：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Nil</span>.::(<span class="number">4</span>).::(<span class="number">3</span>).::(<span class="number">2</span>).::(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -567,10 +590,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/18/target/scala-2.12/resolution-cache/reports/ivy-report/" rel="prev" title>
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -639,7 +658,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">112</span>
+                    <span class="site-state-item-count">111</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -760,7 +779,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scala-是纯-OOP-的吗"><span class="nav-number">1.</span> <span class="nav-text">Scala 是纯 OOP 的吗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值类型可以被-OOP-实现"><span class="nav-number">1.1.</span> <span class="nav-text">值类型可以被 OOP 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数类型可以被-OOP-实现"><span class="nav-number">1.2.</span> <span class="nav-text">函数类型可以被 OOP 实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymorphism-中的-Bound-和-Variance"><span class="nav-number">2.</span> <span class="nav-text">Polymorphism 中的 Bound 和 Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bound"><span class="nav-number">2.1.</span> <span class="nav-text">Bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variance"><span class="nav-number">2.2.</span> <span class="nav-text">Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-数组的问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">Java 数组的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scala-的设计"><span class="nav-number">2.2.2.</span> <span class="nav-text">Scala 的设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variance-进阶"><span class="nav-number">3.</span> <span class="nav-text">Variance 进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala-泛型类的协变逆变约束"><span class="nav-number">3.1.</span> <span class="nav-text">Scala 泛型类的协变逆变约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的协变与逆变"><span class="nav-number">3.2.</span> <span class="nav-text">函数的协变与逆变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala-对-Variance-的检查"><span class="nav-number">3.3.</span> <span class="nav-text">Scala 对 Variance 的检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-与协变逆变"><span class="nav-number">3.4.</span> <span class="nav-text">Object 与协变逆变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Bound"><span class="nav-number">3.5.</span> <span class="nav-text">使用 Bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对问题的解耦"><span class="nav-number">4.</span> <span class="nav-text">对问题的解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式匹配"><span class="nav-number">5.</span> <span class="nav-text">模式匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">6.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">7.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名类"><span class="nav-number">7.1.</span> <span class="nav-text">匿名类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">7.2.</span> <span class="nav-text">类型转换</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scala-是纯-OOP-的吗"><span class="nav-number">1.</span> <span class="nav-text">Scala 是纯 OOP 的吗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#值类型可以被-OOP-实现"><span class="nav-number">1.1.</span> <span class="nav-text">值类型可以被 OOP 实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数类型可以被-OOP-实现"><span class="nav-number">1.2.</span> <span class="nav-text">函数类型可以被 OOP 实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polymorphism-中的-Bound-和-Variance"><span class="nav-number">2.</span> <span class="nav-text">Polymorphism 中的 Bound 和 Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Bound"><span class="nav-number">2.1.</span> <span class="nav-text">Bound</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Variance"><span class="nav-number">2.2.</span> <span class="nav-text">Variance</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Java-数组的问题"><span class="nav-number">2.2.1.</span> <span class="nav-text">Java 数组的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scala-的设计"><span class="nav-number">2.2.2.</span> <span class="nav-text">Scala 的设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Variance-进阶"><span class="nav-number">3.</span> <span class="nav-text">Variance 进阶</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala-泛型类的协变逆变约束"><span class="nav-number">3.1.</span> <span class="nav-text">Scala 泛型类的协变逆变约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的协变与逆变"><span class="nav-number">3.2.</span> <span class="nav-text">函数的协变与逆变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scala-对-Variance-的检查"><span class="nav-number">3.3.</span> <span class="nav-text">Scala 对 Variance 的检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-与协变逆变"><span class="nav-number">3.4.</span> <span class="nav-text">Object 与协变逆变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Bound"><span class="nav-number">3.5.</span> <span class="nav-text">使用 Bound</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对问题的解耦"><span class="nav-number">4.</span> <span class="nav-text">对问题的解耦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模式匹配"><span class="nav-number">5.</span> <span class="nav-text">模式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Case-Class"><span class="nav-number">5.1.</span> <span class="nav-text">Case Class</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在父类中使用模式匹配"><span class="nav-number">5.2.</span> <span class="nav-text">在父类中使用模式匹配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">6.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它"><span class="nav-number">7.</span> <span class="nav-text">其它</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名类"><span class="nav-number">7.1.</span> <span class="nav-text">匿名类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类型转换"><span class="nav-number">7.2.</span> <span class="nav-text">类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#右结合的操作符"><span class="nav-number">7.3.</span> <span class="nav-text">右结合的操作符</span></a></li></ol></li></ol></div>
             
 
           </div>
