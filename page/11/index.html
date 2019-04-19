@@ -352,6 +352,691 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/10/Rust-学习笔记/" class="post-title-link" itemprop="url">Rust 学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-10 16:48:43" itemprop="dateCreated datePublished" datetime="2018-11-10T16:48:43+08:00">2018-11-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:29:09" itemprop="dateModified" datetime="2019-03-11T15:29:09+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Rust-学习笔记"><a href="#Rust-学习笔记" class="headerlink" title="Rust 学习笔记"></a>Rust 学习笔记</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rustc --version</span></span><br><span class="line">rustc 1.30.0 (da5f414c2 2018-10-24)</span><br></pre></td></tr></table></figure>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><p>Rust 使用 cargo 进行项目管理。</p>
+<ul>
+<li>使用 <code>cargo</code> 建立一个新项目：<code>cargo new project_name --bin</code>。</li>
+<li>使用 <code>cargo</code> 建立一个新模块：<code>cargo new module_name --lib</code>。</li>
+<li>编译并运行： <code>cargo run</code>。</li>
+<li>只编译：<code>cargo build</code>。</li>
+<li>只检查是否能够通过编译：<code>cargo check</code>。</li>
+<li>更新依赖：<code>cargo update</code>。</li>
+<li>运行测试：<code>cargo test</code>。</li>
+</ul>
+<h3 id="变量与可变性"><a href="#变量与可变性" class="headerlink" title="变量与可变性"></a>变量与可变性</h3><ul>
+<li>Rust 使用 <code>let</code> 声明变量，建议使用 <code>snake_case</code> 命名。</li>
+<li>Rust 使用 <code>const</code> 声明常量，建议使用 <code>SCREAMING_SNAKE_CASE</code> 命名。</li>
+<li>Rust 变量默认不可变，如果需要可变的话，需要加上 <code>mut</code>。</li>
+</ul>
+<p>Rust 具有 Shadowing 的特性，可以将声明一个与同作用域已经声明的变量名称相同的变量名。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/20/软件工程课程项目博客-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/20/软件工程课程项目博客-3/" class="post-title-link" itemprop="url">软件工程课程项目博客-集成与测试</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-20 20:10:15" itemprop="dateCreated datePublished" datetime="2018-10-20T20:10:15+08:00">2018-10-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:31:04" itemprop="dateModified" datetime="2019-03-11T15:31:04+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="软件工程课程项目博客-集成与测试"><a href="#软件工程课程项目博客-集成与测试" class="headerlink" title="软件工程课程项目博客-集成与测试"></a>软件工程课程项目博客-集成与测试</h1><p>这是对一个为期一周的开发活动的个人总结。这个开发活动的主要目的是让我们熟悉持续集成以及了解一些基本的测试的概念并进行实践。</p>
+<h2 id="关于测试"><a href="#关于测试" class="headerlink" title="关于测试"></a>关于测试</h2><ul>
+<li><strong>单元测试</strong>：单元测试是对程序中的最小单元的功能正确性的验证。使用 Python 的话最小单元就是函数，单元测试要检测的就是这些函数。就我的感觉而言，通过单元测试我们可以预先定义出这个函数的正确行为应该是什么，于是在以后对这个函数进行的改动都可以保证正确，这会在以后的改动过程中让我们更有信心。不过，因为这次的作业时间确实较短而且逻辑不复杂，这个效果可能不是很明显。</li>
+<li><strong>功能测试</strong>：按我的理解，单元测试更多的是站在代码的角度上说的，而功能测试更多是站在业务的角度上说的。单元测试是检查负责抢票的处理函数在一个人在已经抢过的情况下再次抢票能够正确处理，而功能测试则直接要求一个人只能抢一张票，至于背后的实现它是不关心的。通过功能测试我们可以保证自己的系统能够满足用户的需求，而不仅仅是“能够正确地工作”。</li>
+<li><strong>性能测试</strong>：性能测试就是对服务器处理能力的考验。抢票这个功能从名称上看来就是需要服务器在某些情况下能够处理大量数据的。通过使用性能测试我们能够知道服务器最大能够处理多大量的数据，这样在应对一些极端情况之前我们就能知道能不能扛得住从而提前做决定，减小损失。</li>
+</ul>
+<p>通过这些测试我们就拥有了一个评价代码质量的标准，能够让自己对代码的表现有更加精确的预期。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/20/软件工程课程项目博客-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/09/手写汇编器-2/" class="post-title-link" itemprop="url">汇编课程大作业博客——编码 x86 指令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-09 10:50:13" itemprop="dateCreated datePublished" datetime="2018-10-09T10:50:13+08:00">2018-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:29" itemprop="dateModified" datetime="2019-03-11T15:30:29+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="汇编课程大作业博客——编码-x86-指令"><a href="#汇编课程大作业博客——编码-x86-指令" class="headerlink" title="汇编课程大作业博客——编码 x86 指令"></a>汇编课程大作业博客——编码 x86 指令</h1><p>在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。</p>
+<p><a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">Encoding Real x86 Instructions</a> 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。</p>
+<h2 id="x86-机器码的整体结构"><a href="#x86-机器码的整体结构" class="headerlink" title="x86 机器码的整体结构"></a>x86 机器码的整体结构</h2><p>一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。</p>
+<p>回到将所有可选部分写到一起那一步，这十六个字节的结构如下：</p>
+<ul>
+<li><strong>最高四个字节</strong>：Prefix Bytes，实际可能有零到四个字节，这些前缀会影响操作的结果。</li>
+<li><strong>次高四个字节</strong>：这四个字节编码了指令以及指令的工作方式（opcode + Mod-Reg-R/M + SIB，后面会写）。</li>
+<li><strong>次低四个字节</strong>：这四个字节编码了 displacement [<a href="https://stackoverflow.com/questions/13329611/x86-x64-add-displacement-addressing" target="_blank" rel="noopener">1</a>]，displacement 用于寻址。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+<li><strong>最低四个字节</strong>：这四个字节编码了 immediate data。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+</ul>
+<p>对于次高四个字节，还可以进一步细分：</p>
+<ul>
+<li>最高的两个字节，编码 opcode，可能会使用其中的一个或两个字节。</li>
+<li>接下来的一个字节称为 <em>Mod-Reg-R/M</em> 字节，这个字节指明了寻址模式和操作数的大小。只有指令需要寄存器或者内存的操作数的时候才会使用这个字节。</li>
+<li>接下来的一个字节称为 SIB（Scaled Indexed Byte）。如果指令使用了 scaled indexed memory addressing，就会用到这个字节。具体是什么后面会写。</li>
+</ul>
+<p>不是所有的字节都会被用到（实际上大部分字节都不会被用到）。我们会先了解次高四个字节。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/08/软件工程课程项目博客-2/" class="post-title-link" itemprop="url">软件工程课程大作业博客——数据传输方式的选取</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-08 10:01:49" itemprop="dateCreated datePublished" datetime="2018-10-08T10:01:49+08:00">2018-10-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:59" itemprop="dateModified" datetime="2019-03-11T15:30:59+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="软件工程课程大作业博客——数据传输方式的选取"><a href="#软件工程课程大作业博客——数据传输方式的选取" class="headerlink" title="软件工程课程大作业博客——数据传输方式的选取"></a>软件工程课程大作业博客——数据传输方式的选取</h1><p><strong>一些考虑</strong>：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。</p>
+<p>目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。</p>
+<p>比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html，但是上面没有任何数据，这个文件中的 js 会根据当前的 url 发起第二次请求，url 可能为 /api/contests/2/comments/4，这次请求会返回实际数据。</p>
+<p>数据传输的方式可以采用某种应用层上的协议来简化开发。目前备选的方案有 REST、GraphQL 和 gRPC。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/08/软件工程课程项目博客-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1487,720 +2172,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/31/计算几何学习笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/31/计算几何学习笔记-1/" class="post-title-link" itemprop="url">计算几何学习笔记 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-31 18:09:17" itemprop="dateCreated datePublished" datetime="2018-08-31T18:09:17+08:00">2018-08-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="计算几何学习笔记——平面凸包问题"><a href="#计算几何学习笔记——平面凸包问题" class="headerlink" title="计算几何学习笔记——平面凸包问题"></a>计算几何学习笔记——平面凸包问题</h1><p>基本来自学堂在线上的 <a href="http://www.xuetangx.com/courses/course-v1:TsinghuaX+70240183x_1+sp/about" target="_blank" rel="noopener">计算几何慕课</a>。这一篇的内容是平面凸包问题。</p>
-<h2 id="基础算法和理论"><a href="#基础算法和理论" class="headerlink" title="基础算法和理论"></a>基础算法和理论</h2><h3 id="判定平面上一个点在有向直线的左边还是右边（ToLeftTest）"><a href="#判定平面上一个点在有向直线的左边还是右边（ToLeftTest）" class="headerlink" title="判定平面上一个点在有向直线的左边还是右边（ToLeftTest）"></a>判定平面上一个点在有向直线的左边还是右边（<code>ToLeftTest</code>）</h3><p>使用矢量叉乘，如果有向直线的向量为 $\overrightarrow{AB}$，要判定的点是 $C$，则可以通过 $\overrightarrow{AB}\times\overrightarrow{AC}$ 的竖坐标符号来确定 $C$ 在 $\overrightarrow{AB}$ 的哪一侧。这个叉乘可以写成 $\left|\begin{array}{ccc}<br>\vec i &amp; \vec j &amp; \vec k \\<br>x_B - x_A &amp; y_B - y_A &amp; z_B - z_A \\<br>x_C - x_A &amp; y_C - y_A &amp; z_C - z_A \\<br>\end{array}\right|$，但目前只关心其结果竖坐标的值，并且知道 $z_A = z_B = z_C = 0$，即只关心 $\left|\begin{array}{ccc}<br>0 &amp; 0 &amp; 1 \\<br>x_B - x_A &amp; y_B - y_A &amp; 0 \\<br>x_C - x_A &amp; y_C - y_A &amp; 0 \\<br>\end{array}\right| = \left|\begin{array}{cc}<br>x_B - x_A &amp; y_B - y_A \\<br>x_C - x_A &amp; y_C - y_A \\<br>\end{array}\right| = \left|\begin{array}{ccc}<br>x_A &amp; y_A &amp; 1 \\<br>x_B &amp; y_B &amp; 1 \\<br>x_C &amp; y_C &amp; 1 \\<br>\end{array}\right|$ 这个行列式。如果这个行列式为正表示 $C$ 在 $\overrightarrow{AB}$ 坐标，反之在右边；如果为零，三点共线。</p>
-<h3 id="判定平面上一个点是否在给定的三角形中（InTriangleTest）"><a href="#判定平面上一个点是否在给定的三角形中（InTriangleTest）" class="headerlink" title="判定平面上一个点是否在给定的三角形中（InTriangleTest）"></a>判定平面上一个点是否在给定的三角形中（<code>InTriangleTest</code>）</h3><p>连续三次调用 <code>ToLeftTest</code>，如果上次三次返回的结果都相同则表示在其中，否则不在其中。这种情况下，三条边的调用顺序可以是任意的。</p>
-<h3 id="判定平面上一个点是否在给定的凸多边形中（InConvexPolygonTest）"><a href="#判定平面上一个点是否在给定的凸多边形中（InConvexPolygonTest）" class="headerlink" title="判定平面上一个点是否在给定的凸多边形中（InConvexPolygonTest）"></a>判定平面上一个点是否在给定的凸多边形中（<code>InConvexPolygonTest</code>）</h3><p>思路和 <code>InTriangleTest</code> 类似，如果是凸 n 边形就连续调用 n 次 <code>ToLeftTest</code>，看每次调用的结果是不是都是相同的。</p>
-<h2 id="极点算法"><a href="#极点算法" class="headerlink" title="极点算法"></a>极点算法</h2><p>构成凸包的顶点称作极点。极点算法基于这样的事实：所有的极点都满足一个性质，即可以找到经过这个极点的一条直线，使所有的点都位于这条直线的同侧。一个等价的描述是，任取三个点围成一个三角形，如果某个点在这个三角形内部，则这个点必然不是极点。</p>
-<p>极点算法操作是：</p>
-<ol>
-<li>将所有点标记为潜在极点</li>
-<li>遍历所有的三角形，对于每一个三角形：<ol>
-<li>遍历所有不构成这个三角形的潜在极点</li>
-<li>判断潜在极点是否在这个三角形内，如果在，移除其潜在极点身份</li>
-</ol>
-</li>
-<li>所有剩下的潜在极点即为真实极点</li>
-</ol>
-<p>遍历三角形的复杂度是 $O(n^3)$ 的，整个算法的复杂度是 $O(n^4)$ 的。</p>
-<h2 id="极边算法"><a href="#极边算法" class="headerlink" title="极边算法"></a>极边算法</h2><p>构成凸包的边称作极边。极边算法基于这样的事实：所有的点都位于某条边的同侧，当且仅当这条边为极边。</p>
-<p>极边算法的操作是：</p>
-<ol>
-<li>将所有的点标记为潜在非极点</li>
-<li>遍历两两点之间的所有连线，对于每一条这样的连线：<ol>
-<li>遍历每个不属于这两个端点之外的点，判定在这条连线的左边还是右边</li>
-<li>如果在上一步中，所有的结果都是相同的，则表明这条连线是极边，选取的两个端点是极点，将它们标记</li>
-</ol>
-</li>
-<li>所有被标记为极点的点即为真实极点</li>
-</ol>
-<p>遍历连线的复杂度是 $O(n^2)$，整体复杂度 $O(n^3)$。</p>
-<h2 id="增量扩展极点算法"><a href="#增量扩展极点算法" class="headerlink" title="增量扩展极点算法"></a>增量扩展极点算法</h2><p>这个算法通过不断修改已知极点集合来得到最后的真实极点集合，策略是减而治之。</p>
-<p>给定了若干个点后，如果已经知道了其中前 $n$ 个点对应的凸包 $C$，那么前 $n + 1$ 个点对应的凸包可以在 $C$ 的基础上得出。首先要知道第 $n$ 个点 $P$ 是在 $C$ 内还是在 $C$ 外；如果在 $C$ 外则表示要修改凸包，即修改极点集，要知道需要删去哪些点，增加哪些点。这两种情况可以统一处理。增量式修改凸包的过程中新增的极边称作切边，切边中处于原始凸包上的极点成为切点。</p>
-<p>凸包的边总是环状的，由此可以将当前的极点按照逆时针方向排序（这个操作不用实际进行，因为可以维护这个序列）。这样对于每个点都有一个前驱，一个后继。研究 $P$ 和 $C$ 的关系的时候，只要对极点序列中每个极点 $Q$，以及其前驱 $Q_p$ 和后继 $Q_n$ 进行如下检测：连接 $P,Q$ 得到 $PQ$（注意有方向），判定 $Q_p$ 和 $Q_n$ 在 $PQ$ 的左边还是右边，不考虑退化到共线的情况，可能的组合只有四种：</p>
-<ul>
-<li>左-左：$Q$ 点是一个切点（保留）</li>
-<li>左-右：$Q$ 点应该被抛弃</li>
-<li>右-左：$Q$ 点应该被保留</li>
-<li>右-右：$Q$ 点是一个切点（保留）</li>
-</ul>
-<p>增量扩增极点的算法可以描述如下：初始时构建一个简单的凸包，随后对于每个没有被考虑过的点应用上面判定过程。如果判定过程中没有检测到切点，表明这个点处于已知凸包内部，可以继续考虑下一个；如果出现的切点，则根据判定知道的保留与舍弃情况，更新极点集合即可。</p>
-<p>每扩增一个新的点复杂度都是和当前凸包的大小有关的，不会超过 $O(n)$，总体复杂度为 $O(n^2)$。</p>
-<h2 id="增量扩展极边算法"><a href="#增量扩展极边算法" class="headerlink" title="增量扩展极边算法"></a>增量扩展极边算法</h2><p>这个算法又称 Jarvis March 算法，同属于减而治之。它的思路是不断扩展出新的极边（真实的）直到形成闭环。首先确定一个真实的极点，然后沿着逆时针的方向，找到下一个极点，连成极边，再找到下一个极点，连成极边。以此类推，直到最后形成闭环。</p>
-<p>第一件事是要找到一个极点，实际上将这些点投影到一条直线上后，位于最外端的点总是极点。如果投影后有重合，则将这些某方向上投影重合的点投影到正交的方向上，此时位于外端的点必然是极点了。依据这种搞法，可以找到初始的极点。</p>
-<p>第二件事是已知一个极点，要找到下一个极点。为此，遍历除了自己（记作 $P$）之外的所有点，我们希望找到一个“右转角度最大”的点（注意此时在逆时针寻找），设当前的候选点是 $Q$，如果找到一个点发现它在 $PQ$ 右边，则用它取代 $Q$，一直做下去，知道所有点都遍历完，此时的 $Q$ 就是下一个极点。如果这个点和最开始找到的初始极点相同，这产生闭环，算法结束。</p>
-<p>每扩展一条极边，复杂度为 $O(n)$，设最后的凸包一共有 $m$ 条极边，这总的复杂度是 $O(mn)$。这个复杂度具有输出敏感性，因此大多数情况下会比 $O(n^2)$ 性能要好。</p>
-<h2 id="Graham-Scan-算法"><a href="#Graham-Scan-算法" class="headerlink" title="Graham Scan 算法"></a>Graham Scan 算法</h2><p>平面凸包的问题复杂度存在下界。排序问题可以归约到平面凸包的问题上，因此平面图包问题的复杂度最好只能做到 $O(n\log n)$。Graham Scan 就是这样的复杂度的算法。</p>
-<p>Graham 算法的过程如下：首先选择一个极点（选取方式同前），然后选取一个极轴，并保证这个极轴是一条极边，这一步需要线性的时间。然后对于所有的点，按照对这个极点的极角从小到大进行排序，这一步需要 $O(n\log n)$ 的时间，由于极轴的选取，所有的极角应该都是小于 $\pi$ 的。</p>
-<p>现在已经获得了一个顶点的顺序，然后维护一个潜在的极点序列（按照逆时针方向排布的），初始情况下这个序列中只有两个元素：初始的极点和极角最小的那个点。然后：</p>
-<ol>
-<li>从排好序的顶点中取出第一个；</li>
-<li>查看选出的顶点是否在潜在极点序列中的倒数第二个、最后一个连成的有向直线的左边。如果是，则将其加入潜在极点序列中；否则，不断退出潜在极点序列中的最后一个元素，直到前述性质符合。</li>
-</ol>
-<p>当没有可取的顶点时，潜在的极点序列即为按照逆时针方向排布的真实极点序列。尽管看起来算法的复杂度是 $O(n^2)$ 的，因为可能要退出元素，但是可以证明最后总的复杂度依然是线性的。所以 Graham 算法复杂度主要在排序上，整体复杂度 $O(n \log n)$。</p>
-<p>Graham 算法有一个变种。Graham 的瓶颈在于排序，如果给定的数据已经按照某个方向排序好了的话，就可以做到线性的时间复杂度。不妨假定说给的数据已经按照 x 轴坐标排好了，那么在 +y 轴无限远的地方假定出一个点来，将这个点与给定的所有顶点连线，应该会得到一系列的向上的平行线。因为数据已经按照 x 轴排好序了，所以可以认为它们按对虚拟点的极角排好序了。只要跑一遍 Graham 算法就能得到一个包含了上虚拟点的凸包，去掉上虚拟点后得到的实际是所谓的“下凸”。类似地，在 -y 轴无穷远处假定一个下虚拟点，干一样的事情，就能得到“上凸”。上凸和下凸合并起来就是最后的凸包。</p>
-<h2 id="基于分治的凸包算法——合并线性不可分凸包"><a href="#基于分治的凸包算法——合并线性不可分凸包" class="headerlink" title="基于分治的凸包算法——合并线性不可分凸包"></a>基于分治的凸包算法——合并线性不可分凸包</h2><p>凸包问题可以使用基于分治的算法求解。设想要求的是一些点的凸包，如果将这些点随机分成两组，各自求出自己的凸包然后合并成大凸包就可以了。设要合并的两个凸包分别为 $C_1$ 和 $C_2$，并且有它们按照逆时针方向排列的极点序列。首先在 $C_1$ 内部随机选出一个点 $P$，这个点的可以通过在 $C_1$ 中随机找出一个由极点构成的三角形取重心得到，用时 $O(1)$。然后判断一下 $P$ 点是否在 $C_2$ 中。</p>
-<p>如果 $P$ 在 $C_2$ 中，那么使用二路归并将两个按照逆时针方向排列的极点序列归并起来即可，归并完成后使用 Graham 生成新的凸包。这种情况下时间为 $O(n + m)$，其中 $n$ 是 $C_1$ 的极点数，$m$ 是 $C_2$ 的极点数。</p>
-<p>如果 $P$ 不在 $C_2$ 中，那么问题就是 $C_2$ 中的已经排好序的极点对 $P$ 来说没有排好序，此时模仿“增量扩展极点算法”，找到它对 $C_2$ 的切线并割掉一定不会出现在追踪的凸包中的那些点，此时剩下的点对于 $P$ 来说就是排好序的了，仿照上面的情况生成凸包即可。时间也是线性的。</p>
-<p>总时间满足 $T(n) = 2T(\frac{n}{2}) + \Theta(n)$，于是 $T(n) = O(n\log n)$。</p>
-<h2 id="基于分治的凸包算法——合并线性可分凸包"><a href="#基于分治的凸包算法——合并线性可分凸包" class="headerlink" title="基于分治的凸包算法——合并线性可分凸包"></a>基于分治的凸包算法——合并线性可分凸包</h2><p>除了上面一种分治方法外还有一种分治方法，两种方法的差异在于如何进行分割，对应地，合并的时候的策略不同。如果要合并的两个凸包是线性可分的，那么合并时有一个简单的方法。实际操作时，不妨先对所有点按照 x 轴坐标进行排序（如果已经排好了就可以省略这一步），然后求出左一半的凸包和右一半的凸包（递归进行），另外还需要维护每个凸包的最左点和最右点。然后只要合并这两个小凸包即可。</p>
-<p>两个小凸包应该存在两条公切线，一条在上一条在下。可以如下求解：</p>
-<ol>
-<li>将左边小凸包的最右点和右边小凸包的最左点连接起来，称这个连线为“桥”。</li>
-<li>以桥的左端为轴，不断提升右边，直到检测到切线。（仿照增量扩展极点算法中的检测思路）</li>
-<li>再以桥的右端为轴，不断提升左边，直到检测到切线。（仿照增量扩展极点算法中的检测思路）</li>
-<li>反复重复以上两步，直到两边都不能提升。此时的桥即为上公切线。类似地，可以求出下公切线。</li>
-</ol>
-<p>去掉位于公切线中的点即得到新的凸包的极点序列。</p>
-<hr>
-<p>总结下来，平面凸包问题的复杂度最好是 $O(n\log n)$，如果有一些特殊情况的话还可以进一步降到 $O(n)$。有些算法结合了上面一些算法的优点，例如有一个自适应的算法可以在保证性能不低于 Graham Scan 的同时还存在对输出的敏感性，在好的情况下能像 Jarvis March 一样快。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/28/CS184-1X-计算机图形学学习笔记-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (3)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-28 13:17:41" itemprop="dateCreated datePublished" datetime="2018-08-28T13:17:41+08:00">2018-08-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:51" itemprop="dateModified" datetime="2019-03-11T15:21:51+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-3"><a href="#CS184-1X-计算机图形学学习笔记-3" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (3)"></a>CS184.1X 计算机图形学学习笔记 (3)</h1><p>光线追踪及其实现。</p>
-<h2 id="光线追踪算法"><a href="#光线追踪算法" class="headerlink" title="光线追踪算法"></a>光线追踪算法</h2><p>如果需要显示一些物体（比如三角形），可以使用光栅化的算法来显示：对于每个物体计算出该物体应该显示的位置，然后利用深度缓冲等手段来判断哪个物体显示在最前面，最后完成渲染。这是现在主流的实时渲染手段，不过因为其原理导致不同物体之间的相互影响比较难表现出来。</p>
-<p>另一种算法是光线追踪，它的思路不是遍历物体而是遍历像素。对于每个要显示的像素，利用光路可逆的性质从摄像机向这个像素发出一条光线，这条光线打到物体上后根据物体的相关物理性质决定出光线的颜色，如有必要，对反射光线继续进行追踪，最后叠加它们的颜色。光线追踪算法易于实现，能够容易地表现倒影、阴影等效果（所谓的全局光照），但是效率不如光栅化，一般拿来做离线渲染。</p>
-<p>这里写一个简单的光线追踪的纯 CSharp 实现，主要参考了 <a href="http://www.cnblogs.com/miloyip/archive/2010/03/29/1698953.html" target="_blank" rel="noopener">光线追踪入门</a> 这篇博客。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/28/CS184-1X-计算机图形学学习笔记-3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/22/CS184-1X-计算机图形学学习笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (2)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-22 13:49:23" itemprop="dateCreated datePublished" datetime="2018-08-22T13:49:23+08:00">2018-08-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:45" itemprop="dateModified" datetime="2019-03-11T15:21:45+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-2"><a href="#CS184-1X-计算机图形学学习笔记-2" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (2)"></a>CS184.1X 计算机图形学学习笔记 (2)</h1><p>主要是 OpenGL 的一些概念。学习资料主要来自 <a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">LearnOpenGL CN</a>。</p>
-<h2 id="各种矩阵"><a href="#各种矩阵" class="headerlink" title="各种矩阵"></a>各种矩阵</h2><ul>
-<li><strong>模型（model）矩阵</strong>：比如一个模型是存放在文件中的，要描述这个模型，每个顶点的坐标应该是一个相对于某个中心的相对坐标。例如一个人体模型中，头的坐标可能是以相对于人体重心的形式给出的。当要将这个人体加载到世界中时需要使用一个矩阵左乘所有模型中的坐标得到世界坐标，这个矩阵就是模型矩阵。</li>
-<li><strong>观察（view）矩阵</strong>：世界空间中，所有的点都是相对于世界的原点给出坐标的；摄像机空间中所有的点都是相对摄像机给出坐标的，即摄像机是原点。OpenGL 中我们希望能通过移动世界的方式来实现移动画面的移动，故使用一个矩阵左乘世界中所有点的坐标得到摄像机空间中的坐标，这个矩阵就是观察矩阵。在 glm 中可以使用 <code>glm::lookAt</code> 生成一个观察矩阵。</li>
-<li><strong>投影（projection）矩阵</strong>：在摄像机空间中并不是所有的东西都会被显示出来，只有位于一个特定的空间体中的物体会被显示（例如，在透视投影中，是一个四棱台）。如果将这个空间体称为“可视区域”，则通过用一个矩阵左乘摄像机空间中的所有物体，可以将“可视区域”归一化成位于中心的所有棱的范围都是 -1 到 1 的小正方体，这个矩阵就是投影矩阵。此后便可以方便地进行显示。在 glm 中可以使用 <code>glm::perspective</code> 生成一个透视投影的投影矩阵，使用 <code>glm::ortho</code> 生成一个正交投影的投影矩阵。在使用了投影矩阵后可以生成与长宽比无关的符合直觉的图像。</li>
-</ul>
-<p>从描述中可以看到正确的应用顺序是：模型矩阵、观察矩阵、投影矩阵。只要使用矩阵乘法连乘起来即可，会得到 <strong>模型观察投影矩阵</strong>。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/21/CS184-1X-计算机图形学学习笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (1)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-21 00:07:12" itemprop="dateCreated datePublished" datetime="2018-08-21T00:07:12+08:00">2018-08-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:39" itemprop="dateModified" datetime="2019-03-11T15:21:39+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-1"><a href="#CS184-1X-计算机图形学学习笔记-1" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (1)"></a>CS184.1X 计算机图形学学习笔记 (1)</h1><h2 id="变换——数学基础"><a href="#变换——数学基础" class="headerlink" title="变换——数学基础"></a>变换——数学基础</h2><h3 id="基本变换"><a href="#基本变换" class="headerlink" title="基本变换"></a>基本变换</h3><h4 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h4><p>二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp; 0 \\<br> 0 &amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp; 0 \\<br> 0 &amp; s_y^{-1} \end{array}\right]}$，其中 $s_x, s_y$ 表示不同轴方向上的缩放系数。</p>
-<p>三维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}s_x &amp; 0 &amp; 0 \\<br> 0 &amp; s_y &amp; 0 \\<br> 0 &amp; 0 &amp; s_z\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}s_x^{-1} &amp; 0 &amp; 0 \\<br> 0 &amp; s_y^{-1} &amp; 0 \\<br> 0 &amp; 0 &amp; s_z^{-1} \end{array}\right]}$，其中 $s_x, s_y, s_z$ 表示不同轴方向上的缩放系数。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2247,7 +2218,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">111</span>
+                    <span class="site-state-item-count">115</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

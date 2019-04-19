@@ -352,6 +352,790 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/15/形式化验证课程笔记-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/15/形式化验证课程笔记-8/" class="post-title-link" itemprop="url">形式化验证课程笔记 8</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-15 13:31:18 / 修改时间：16:24:50" itemprop="dateCreated datePublished" datetime="2019-04-15T13:31:18+08:00">2019-04-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第八周"><a href="#第八周" class="headerlink" title="第八周"></a>第八周</h1><h2 id="程序语义描述方法"><a href="#程序语义描述方法" class="headerlink" title="程序语义描述方法"></a>程序语义描述方法</h2><ul>
+<li><strong>操作语义</strong>：描述程序执行过程中状态的改变，与语言的实现联系紧密。</li>
+<li><strong>指称语义</strong>：只关心执行效果，不关心实现。</li>
+<li><strong>公理语义</strong>：使用相关方法进行对语义建模，使用数学方法进行研究。</li>
+</ul>
+<h2 id="一个示例语言"><a href="#一个示例语言" class="headerlink" title="一个示例语言"></a>一个示例语言</h2><p>这个语言称为 while 语言，包括：</p>
+<ul>
+<li>来自数字集合 Num 的数字 n</li>
+<li>来自变量集合 Var 的变量 v</li>
+<li>来自算术表达式集合 Aexp 的算术表达式 a</li>
+<li>来自布尔表达式集合 Bexp 的布尔表达式 b</li>
+<li>来自语句集合 Stm 的语句 S（这个是大写）</li>
+</ul>
+<p>注意 <strong>程序可以看作是语句的序列</strong>。</p>
+<p>语法：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+a &::= n | v | a_1 + a_2 | a_1 \ast a_2|a_1 - a_2 \\
+b &::= \text{true} | \text{false} | a_1 = a_2 | a_1 \le a_2 | \lnot b | b_1\land b_2 \\
+S &::= v:= a | \text{skip} | S_1; S_2 | \text{if }b\text{ then } S_1\text{ else } S_2 | \text{while }b\text{ do }S
+\end{aligned}</script><h2 id="表达式的语义"><a href="#表达式的语义" class="headerlink" title="表达式的语义"></a>表达式的语义</h2><h3 id="数字的语义"><a href="#数字的语义" class="headerlink" title="数字的语义"></a>数字的语义</h3><p>假设 while 语言中数字使用二进制进行表示，那么数字的语义实际上是一个 Num 到 $\displaystyle{\mathcal Z}$ 的映射 $\displaystyle{\mathcal N:\text{Num}\to\mathcal Z}$。其定义省略。</p>
+<h3 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h3><p>状态指的是一个变量集合到整数集合的映射。可以将其看作是对某个变量集合的 assignment。</p>
+<p>例如一个可能的状态是 $s=[x\mapsto 5, y\mapsto 7]$。一个状态可以在另一个状态的基础上进行修改：$s&#39;=s[x\mapsto 9]$，这仅会改变 $x$ 的值。</p>
+<h3 id="算术表达式的语义"><a href="#算术表达式的语义" class="headerlink" title="算术表达式的语义"></a>算术表达式的语义</h3><p>算术表达式的语义被语义函数 $\mathcal A$ 定义，该函数接受一个算术表达式和一个状态，返回该状态下对表达式求值的结果（不严谨，还要弄一下柯里化）：$\displaystyle{\mathcal A: \text{Aexp}\to (\text{State}\to \mathcal Z)}$。</p>
+<p>一个性质：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal A [\![ a[y\mapsto a_0] ]\!] s = \mathcal A [\![ a ]\!] (s[y\mapsto \mathcal A [\![ a_0 ]\!] s])
+\end{aligned}</script><p>其中 $a[y\mapsto a_0]$ 表示将表达式 $\displaystyle{a}$ 中的所有 $\displaystyle{y}$ 全部替换为表达式 $\displaystyle{a_0}$。$\displaystyle{\mathcal A [![ \cdot ]!] \cdot}$ 表示使用语义函数的结果对某表达式求值。</p>
+<h3 id="布尔表达式的语义"><a href="#布尔表达式的语义" class="headerlink" title="布尔表达式的语义"></a>布尔表达式的语义</h3><p>与算术表达式类似，语义函数为 $\mathcal B:\text{Bexp}\to(\text{State}\to \mathcal T)$，其中 $\displaystyle{\mathcal T = \{\text{true}, \text{false}\}}$。</p>
+<h3 id="表达式语义的性质"><a href="#表达式语义的性质" class="headerlink" title="表达式语义的性质"></a>表达式语义的性质</h3><p>算数表达式 $a$ 中出现的变量 $v$ 称为 $a$ 的自由变量；算数表达式的所有自由变量记作 $FV(a)$。对于布尔表达式可以作类似的定义。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/15/形式化验证课程笔记-8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/09/Z3-学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/09/Z3-学习笔记/" class="post-title-link" itemprop="url">Z3 学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-09 10:26:35" itemprop="dateCreated datePublished" datetime="2019-04-09T10:26:35+08:00">2019-04-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-16 10:43:01" itemprop="dateModified" datetime="2019-04-16T10:43:01+08:00">2019-04-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Z3-学习笔记"><a href="#Z3-学习笔记" class="headerlink" title="Z3 学习笔记"></a>Z3 学习笔记</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Z3 is a theorem prover which can be used to check the satisfiability of logical formulas over theories.</p>
+<h2 id="Basic-Commands"><a href="#Basic-Commands" class="headerlink" title="Basic Commands"></a>Basic Commands</h2><p>A Z3 script is a sequence of commands defined by SMT-LIB 2.0 standard.</p>
+<p>The syntax is like Racket.</p>
+<ul>
+<li><code>echo</code> to print something.</li>
+<li><code>declare-const</code> to declare a constant. (No value needed.)</li>
+<li><code>declare-fun</code> to declare a function. (No definition needed.)</li>
+<li><code>assert</code> to make assertions, which will be used to check satisfiability.</li>
+<li><code>check-sat</code> to check the satisfiability of all assertions.</li>
+<li><code>get-model</code> to get the assignment if all assertions are satisfiable.</li>
+</ul>
+<p>The result of <code>get-model</code> uses <code>define-fun</code> to define functions.</p>
+<p>An <code>ite</code> expression stands for an if-then-else branch.</p>
+<h3 id="Using-Scopes"><a href="#Using-Scopes" class="headerlink" title="Using Scopes"></a>Using Scopes</h3><p>Z3 uses a global stack to store all declarations. This is useful if you want to prove multiple independent theories using some common declarations.</p>
+<p>Use <code>push</code> to enter a new stack frame and use <code>pop</code> to exit the current stack frame.</p>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>Use <code>set-option</code> to configure Z3. Use <code>reset</code> to remove all configurations and assertions.</p>
+<p>Some parameters for <code>set-option</code>:</p>
+<ul>
+<li><code>:print-success</code> will toggle printing <code>success</code> for commands.</li>
+<li><code>:produce-unsat-cores</code> will toggle generation of unsat cores.</li>
+<li><code>:produce-models</code> will toggle model generation.</li>
+<li><code>:produce-proofs</code> will toggle proof generation.</li>
+</ul>
+<h3 id="Additional-Commands"><a href="#Additional-Commands" class="headerlink" title="Additional Commands"></a>Additional Commands</h3><ul>
+<li><code>display</code> to pretty print an expression.</li>
+<li><code>simplify</code> to simplify an expression. Many options are available.</li>
+<li><code>define-sort</code> to define a new type. The type can be parameterized.</li>
+</ul>
+<p>You may need <code>as</code> as something like type annotations when dealing with parameterized types.</p>
+<h2 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h2><p>Use <code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>, <code>=&gt;</code> (for $\rightarrow$) and <code>=</code> (for $\leftrightarrow$) for logical connectives.</p>
+<h3 id="Satisfiability-and-Validity"><a href="#Satisfiability-and-Validity" class="headerlink" title="Satisfiability and Validity"></a>Satisfiability and Validity</h3><p>If you want to prove $F$ is valid, you can ask Z3 to prove $\lnot F$ is unsatisfiable.</p>
+<h2 id="Uninterpreted-Functions-and-Constants"><a href="#Uninterpreted-Functions-and-Constants" class="headerlink" title="Uninterpreted Functions and Constants"></a>Uninterpreted Functions and Constants</h2><p><strong>Constants are function taking no parameters, so everything are functions.</strong></p>
+<p>Functions in first-order logic should be pure and total.</p>
+<p>Use <code>declare-sort</code> to declare a unspecified type.</p>
+<h2 id="Arithmetic"><a href="#Arithmetic" class="headerlink" title="Arithmetic"></a>Arithmetic</h2><p>Z3 supports integers and real numbers.</p>
+<h3 id="Nonlinear-Arithmetic"><a href="#Nonlinear-Arithmetic" class="headerlink" title="Nonlinear Arithmetic"></a>Nonlinear Arithmetic</h3><p>A formula with expression <code>* m n</code> where <code>m</code> and <code>n</code> are neither numbers is called <strong><em>nonlinear</em></strong>. Nonlinear integer arithmetic is <strong>undecidable</strong>.</p>
+<p>Z3 can only solve some of the nonlinear arithmetic problems.</p>
+<h3 id="Division"><a href="#Division" class="headerlink" title="Division"></a>Division</h3><p>Z3 support real number division <code>/</code>, integer division <code>div</code>, modulo <code>mod</code> and remainder <code>rem</code>.</p>
+<p>The result of division by zero is not specified due to all functions need to be total. It can be any result if Z3 wants. You may need a wrapper to avoid this.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/09/Z3-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/08/形式化验证课程笔记-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/08/形式化验证课程笔记-7/" class="post-title-link" itemprop="url">形式化验证课程笔记 7</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-08 13:28:42" itemprop="dateCreated datePublished" datetime="2019-04-08T13:28:42+08:00">2019-04-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-12 10:44:33" itemprop="dateModified" datetime="2019-04-12T10:44:33+08:00">2019-04-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第七周"><a href="#第七周" class="headerlink" title="第七周"></a>第七周</h1><h2 id="Decision-Procedure-for-Array-Property-Fragment"><a href="#Decision-Procedure-for-Array-Property-Fragment" class="headerlink" title="Decision Procedure for Array Property Fragment"></a>Decision Procedure for Array Property Fragment</h2><p>Firstly, we need to do some conversions.</p>
+<h3 id="Step-1-Put-F-in-NNF"><a href="#Step-1-Put-F-in-NNF" class="headerlink" title="Step 1. Put $F$ in NNF"></a>Step 1. Put $F$ in NNF</h3><p>For any formula $F$ of array property fragments, it should be converted into NNF form. In NNF, negation can only appear in literals, and logical connectives can only be $\land$ and $\lor$. <strong>Here, literals can be array properties.</strong></p>
+<h3 id="Step-2-Remove-All-Write-Terms"><a href="#Step-2-Remove-All-Write-Terms" class="headerlink" title="Step 2. Remove All Write Terms"></a>Step 2. Remove All Write Terms</h3><p>For any write term $a\langle i\triangleleft v\rangle$ in $F$, convert it to a fresh new array $a&#39;$ with the following condition conjoined to $F$:</p>
+<script type="math/tex; mode=display">
+a'[i] = v \land (\forall j::j\ne i\rightarrow a[j]  = a'[j])</script><h3 id="Step-3-Remove-Existential-Quantifiers"><a href="#Step-3-Remove-Existential-Quantifiers" class="headerlink" title="Step 3. Remove Existential Quantifiers"></a>Step 3. Remove Existential Quantifiers</h3><p>For any existential quantifier term $\exists i::G[i]$, replace it with $G[j]$ where $j$ is a fresh new variable.</p>
+<p>When talking about satisfiability, the two expressions above are equal.</p>
+<h3 id="Step-4-Select-the-Index-Terms"><a href="#Step-4-Select-the-Index-Terms" class="headerlink" title="Step 4. Select the Index Terms"></a>Step 4. Select the Index Terms</h3><p>In this step we want to remove universal quantifiers where the variable is used for array read.</p>
+<p>This can be done by considering all possible values of the variable.</p>
+<p>The following finite set should be considered (check all elements of the set):</p>
+<p>$\{\lambda\}\cup\{i | i \text{ is in a index guard and is a free variable}\}\cup\{i | i \text{ appears in an array read and is a free variable}\}$</p>
+<p>Where $\lambda$ stands for &quot;all values that are not special&quot;, and it is used for ensure completeness.</p>
+<p>The set defined above is annotated as index set $I$.</p>
+<h3 id="Step-5-Transform-forall-into-land"><a href="#Step-5-Transform-forall-into-land" class="headerlink" title="Step 5. Transform $\forall $ into $\land$"></a>Step 5. Transform $\forall $ into $\land$</h3><p>For any universal quantifier term $\forall i::G[i]\rightarrow H[i]$, replace it with $\bigwedge\limits_{i\in I}G[i]\rightarrow H[i]$.</p>
+<h3 id="Step-6-Ensure-the-Uniqueness-of-lambda"><a href="#Step-6-Ensure-the-Uniqueness-of-lambda" class="headerlink" title="Step 6. Ensure the Uniqueness of $\lambda$"></a>Step 6. Ensure the Uniqueness of $\lambda$</h3><p>After step 5, we need to conjoin the following formula with $F$ to ensure $\lambda$ is not the same with other elements in the index set:</p>
+<script type="math/tex; mode=display">
+\bigwedge_{i\in I-\{\lambda\}}\lambda \ne i</script><h3 id="Step-7-Decide-the-Formula"><a href="#Step-7-Decide-the-Formula" class="headerlink" title="Step 7. Decide the Formula"></a>Step 7. Decide the Formula</h3><p>Now the formula is not an array property anymore. It can be decided by $T_A\cup T_E$.</p>
+<p>The formula from those steps are <strong>equisatisfiable</strong> with the original formula.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>We want to know the satisfiability of:</p>
+<script type="math/tex; mode=display">
+(\forall i:: i\ne j \rightarrow a[i]=b[j])\land (\forall i::i\ne k\rightarrow a[i]\ne b[i])</script><ol>
+<li><p>Step 1, 2 and 3 are skipped.</p>
+</li>
+<li><p>The index set is $\{\lambda, j, k\}$.</p>
+</li>
+<li><p>After removing universal quantifiers, we get:</p>
+<script type="math/tex; mode=display">
+(\lambda \ne j \rightarrow a[\lambda]= b[\lambda]) \land (k \ne j \rightarrow a[k]= b[k]) \land\\
+(\lambda \ne k \rightarrow a[\lambda]\ne b[\lambda]) \land (j \ne k \rightarrow a[j]\ne b[j]) \land\\
+(\lambda \ne j) \land (\lambda \ne k)</script><p>Which can be decided by $T_A\cup T_E$.</p>
+</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/08/形式化验证课程笔记-7/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/01/形式化验证课程笔记-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/01/形式化验证课程笔记-6/" class="post-title-link" itemprop="url">形式化验证课程笔记 6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 13:27:26" itemprop="dateCreated datePublished" datetime="2019-04-01T13:27:26+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-03 11:41:55" itemprop="dateModified" datetime="2019-04-03T11:41:55+08:00">2019-04-03</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第六周"><a href="#第六周" class="headerlink" title="第六周"></a>第六周</h1><h2 id="Combination-Theories"><a href="#Combination-Theories" class="headerlink" title="Combination Theories"></a>Combination Theories</h2><h3 id="Combined-Theory"><a href="#Combined-Theory" class="headerlink" title="Combined Theory"></a>Combined Theory</h3><p>For theory $T_1, T_2$, if $T_1\cap T_2 = \{=\}$, then the combined theory $T_1\cup T_2$ has signature $\Sigma_1\cup\Sigma_2$ and axioms $A_1\cup A_2$.</p>
+<h3 id="Nelson-Oppen-Combination-Method"><a href="#Nelson-Oppen-Combination-Method" class="headerlink" title="Nelson-Oppen Combination Method"></a>Nelson-Oppen Combination Method</h3><p>$T_1\cup T_2$ is decidable if both $T_1$ and $T_2$ are <strong>quantifier-free</strong>, <strong>conjunctive</strong> fragments which are <strong>decidable</strong> and <strong>stably-infinite</strong> (see below).</p>
+<h2 id="Stably-Infinite-Theories"><a href="#Stably-Infinite-Theories" class="headerlink" title="Stably-Infinite Theories"></a>Stably-Infinite Theories</h2><p>A theory $T$ with signature $\Sigma$ is <strong>stably infinite</strong> if for every quantifier-free $T$-satisfiable $\Sigma$-formula $F$, there is a satisfiable $T$-interpretation with domain of infinite cardinality.</p>
+<p>$T_E$, $T_A$ and $T_Z$ are stably infinite.</p>
+<h2 id="Nelson-Oppen-Procedure"><a href="#Nelson-Oppen-Procedure" class="headerlink" title="Nelson-Oppen Procedure"></a>Nelson-Oppen Procedure</h2><p>This procedure takes a formula $F$ in combined theory $T_1\cup T_2$, and returns an equisatisfiable formula $F_1\land F_2$ where $F_1$ is a $T_1$-formula and $F_2$ is a $T_2$-formula.</p>
+<p><em>In short, the procedure can separate a formula in a combined theory into two formulas in each theory.</em></p>
+<h3 id="Step-1-Variable-Abstraction"><a href="#Step-1-Variable-Abstraction" class="headerlink" title="Step 1. Variable Abstraction"></a>Step 1. Variable Abstraction</h3><h4 id="Procedure"><a href="#Procedure" class="headerlink" title="Procedure"></a>Procedure</h4><p>In this step, our goal is to make every literal in $F$ belongs to either $T_1$ or $T_2$.</p>
+<p>A function or a predict is a literal, so:</p>
+<ul>
+<li>If function $f(\dots, t, \dots)$ is in $F$, where $f$ in $\Sigma_1$ but $t$ in $\Sigma_2$, then we introduce a new variable $w$ and replace $t$ with w, then conjoin $t = w$.</li>
+<li>If predicate $p(\dots, t, \dots)$ is in $F$, where $p$ in $\Sigma_1$ but $t$ in $\Sigma_2$, we introduce a new variable $w$ and replace $t$ with w, then conjoin $t = w$.</li>
+</ul>
+<p><em>Note that a variable is a logic symbol</em>. When finished, every literal in $F$ belows to either $T_1$ or $T_2$. Note the $=$ cannot be viewed as a predicate here.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><p>The following formula is in $T_\mathbb Z\cup T_E$:</p>
+<script type="math/tex; mode=display">
+1 \le x \land x\le 2 \land f(x)\ne f(1) \land f(x)\ne f(2)</script><p>Also the formula can be thought as only in $T_E​$, we introduce axioms in $T_\mathbb Z​$ here. Therefore the formula is not only in $T_E​$.</p>
+<ol>
+<li><p>All symbols are $1$, $2$, $f(\cdot)$, $x$, $\le$, $=$, $\lnot$, $\land$, where $x$, $\lnot$ and $\land$ are logical symbols.</p>
+</li>
+<li><p>For non-logical symbols, $f(\cdot)$ and $=$ are in $T_E$, while $1$, $2$, $=$ and $\le$ are in $T_\mathbb Z$.</p>
+</li>
+<li><p>For literal $f(1)$, $f$ is in $T_E$ but $1$ is in $T_\mathbb Z$, so we introduce variable $m$ to replace $1$ in $f(1)$, then conjoin it to the formula. Do this for $f(2)$ too. Then we get</p>
+<script type="math/tex; mode=display">
+1 \le x \land x\le 2 \land f(x)\ne f(m) \land f(x)\ne f(n)\land m=1 \land n = 2</script></li>
+<li><p>Now $f(x)\ne f(m)\land f(x)\ne f(n)​$ is in $T_E​$, while $1\le x \land x \le 2 \land m = 1\land n = 2​$ is in $T_\mathbb Z​$.</p>
+</li>
+</ol>
+<h3 id="Step-2-Guess-And-Check"><a href="#Step-2-Guess-And-Check" class="headerlink" title="Step 2. Guess And Check"></a>Step 2. Guess And Check</h3><h4 id="Procedure-1"><a href="#Procedure-1" class="headerlink" title="Procedure"></a>Procedure</h4><p>In this step, our goal is to decide whether the original formula is satisfiable.</p>
+<ol>
+<li><p>For given formula $F_1$ and $F_2$, we can find their <strong>shared variables</strong> $V = free(F_1)\cap free(F_2)$, where $free(F)$ means all free variables in $F​$.</p>
+</li>
+<li><p>Build an equivalence relation $E$ on $V$, and build a formula $\alpha(V, E)$ which depends on $V$ and $E$:</p>
+<script type="math/tex; mode=display">
+\alpha(V, E) = \bigwedge\limits_{u, v\in V.uEv} u=v\land \bigwedge\limits_{u, v\in V.\lnot(uEv)}u\ne v</script></li>
+<li><p>$F_1\cup F_2$ is $T_1\cup T_2$-satisfiable if and only if there exists an $\alpha(V, E)$ and:</p>
+<ul>
+<li>$F_1\land \alpha(V, E)$ is $T_1$-satisfiable.</li>
+<li>$F_2\land \alpha(V, E)$ is $T_2$-satisfiable.</li>
+</ul>
+</li>
+</ol>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><p>(Follows the example in step 1.)</p>
+<ol>
+<li>$F_1$ (which in $T_E$) is $f(x)\ne f(m)\land f(x)\ne f(n)$, and $F_2$ (which in $T_\mathbb Z$) is $1\le x \land x \le 2 \land m = 1\land n = 2$.</li>
+<li>Shared variables are $V = \{x, m, n\}$.</li>
+<li>For every possible partition on $V$, we can construct an equivalence relation. There are five possibilities.<ul>
+<li>$\{\{x\}, \{m\}, \{n\}\}$: No, because $F_2\land x\ne m \land x \ne n$ is not $T_\mathbb Z$-satisfiable. (Some items are omitted.)</li>
+<li>$\{\{x\}, \{m =n\}\}$: No, because $F_2\land m=n$ is not $T_\mathbb Z$-satisfiable.</li>
+<li>$\{\{x, m\}, \{n\}\}$: No, because $F_1\land x  = m$ is not $T_E$-satisfiable.</li>
+<li>Same for the remaining two possibilities.</li>
+</ul>
+</li>
+<li>As all possibilities cannot ensure $F_1\land \alpha(V, E)$ is $T_E$-satisfiable and $F_2 \land \alpha(V, E)$ is $T_\mathbb Z$-satisfiable, the original formula $F$ is not $T_E\cup T_\mathbb Z$-satisfiable.</li>
+</ol>
+<h4 id="Efficiency-Issue"><a href="#Efficiency-Issue" class="headerlink" title="Efficiency Issue"></a>Efficiency Issue</h4><p>The method above is impractical as we need to construct too many partitions.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/01/形式化验证课程笔记-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/25/形式化验证课程笔记-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1409,693 +2193,6 @@ y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 4 Special applications: Face recognition & Neural style transfer</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 15:50:24" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:24+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-06 15:52:54" itemprop="dateModified" datetime="2019-04-06T15:52:54+08:00">2019-04-06</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Face-recognition-amp-Neural-style-transfer"><a href="#Face-recognition-amp-Neural-style-transfer" class="headerlink" title="Face recognition &amp; Neural style transfer"></a>Face recognition &amp; Neural style transfer</h1><h2 id="Face-Recognition"><a href="#Face-Recognition" class="headerlink" title="Face Recognition"></a>Face Recognition</h2><h3 id="What-is-face-recognition"><a href="#What-is-face-recognition" class="headerlink" title="What is face recognition?"></a>What is face recognition?</h3><p>两个不同任务：</p>
-<ul>
-<li>Face verification：给定一张图片，判定这张图片是否是某个人</li>
-<li>Face recognition：给定一张图片和具有很多个人的数据库，判定这张图片是否属于任意一个人并给出是哪个人</li>
-</ul>
-<p>显然 recognition 比 verification 要难。</p>
-<h3 id="One-Shot-Learning"><a href="#One-Shot-Learning" class="headerlink" title="One Shot Learning"></a>One Shot Learning</h3><p>实际系统的 face recognition 的主要挑战在于每个人的照片很少，没法像用来分类的网络那样在很多样本上进行训练。这个问题被称为 one shot learning problem。很多时候每类的样本可能只有一个。此外，如果使用普通的 CNN 分类网络，要向数据库中增加一个人就要重新训练整个 CNN，这是不可接受的。</p>
-<p>为了解决这个问题需要网络学习一个 similarity function。这个函数接受两张图片并返回它们的相似程度（越低表示越相似）。低于某个阈值时即可认为两张图片上是同一个人。</p>
-<h3 id="Siamese-Network"><a href="#Siamese-Network" class="headerlink" title="Siamese Network"></a>Siamese Network</h3><p>一种定义相似函数的方式是使用 Siamese 网络架构。首先构建一个 CNN 网络，它将一张图片转换到一个向量表示的特征上。将输入记作 $\vec x$，输出记作 $f(\vec x)​$，相似函数可以定义为</p>
-<script type="math/tex; mode=display">
-d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script><p>现在，只要对于相似的输入，$d(\vec x^{(1)}, \vec x^{(2)})$ 较小而对于不相似的输入，该值较大即可。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-4-Special-applications-Face-recognition-Neural-style-transfer/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 2 Deep convolutional models: case studies</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 15:50:23" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:23+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-19 21:34:58" itemprop="dateModified" datetime="2019-03-19T21:34:58+08:00">2019-03-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Deep-convolutional-models-case-studies"><a href="#Deep-convolutional-models-case-studies" class="headerlink" title="Deep convolutional models: case studies"></a>Deep convolutional models: case studies</h1><h2 id="Case-studies"><a href="#Case-studies" class="headerlink" title="Case studies"></a>Case studies</h2><h3 id="Why-look-at-case-studies"><a href="#Why-look-at-case-studies" class="headerlink" title="Why look at case studies?"></a>Why look at case studies?</h3><p>CNN 中很多东西都是模块化的，学习一些 case 有助于自己写出能用的网络。</p>
-<p>本讲会学习到 LeNet-5、AlexNet、VGG、ResNet 和 Inception。</p>
-<h3 id="Classic-Networks"><a href="#Classic-Networks" class="headerlink" title="Classic Networks"></a>Classic Networks</h3><p>LeNet-5 使用小卷积核（$\displaystyle{3\times 3}$），卷积层后面跟着平均池化层（当时流行平均池化）。卷积层后面跟着池化层是一个常见的模式，重复几次后变被压平，然后进入几层全连接的网络。</p>
-<p>AlexNet 比 LeNet-5 要大，但是整体结构基本相似。不同之处在于 AlexNet 中使用了较大的卷积核（$\displaystyle{11\times 11}$），但是随后几层中卷积核大小又慢慢变小了。</p>
-<p>VGG 又称 VGG-16，通过小卷积核（全部是 $\displaystyle{3\times3}$，使用 same 填充策略）和窗口大小与步长都为 2 的最大池化提取特征。每层会将高宽缩小一半，通道增加一倍；最后通过几个全连接层。VGG 是一个相对较大的网络，但是结构简单。一个变种是 VGG-19，它是一个更大的网络。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-1-Foundations-of-Convolutional-Neural-Networks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-1-Foundations-of-Convolutional-Neural-Networks/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 1 Foundations of Convolutional Neural Networks</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 15:50:22" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:22+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-30 00:40:01" itemprop="dateModified" datetime="2019-03-30T00:40:01+08:00">2019-03-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Foundations-of-Convolutional-Neural"><a href="#Foundations-of-Convolutional-Neural" class="headerlink" title="Foundations of Convolutional Neural"></a>Foundations of Convolutional Neural</h1><p>来源 <a href="https://www.coursera.org/learn/convolutional-neural-networks" target="_blank" rel="noopener">Coursera</a>。</p>
-<h2 id="Convolutional-Neural-Networks"><a href="#Convolutional-Neural-Networks" class="headerlink" title="Convolutional Neural Networks"></a>Convolutional Neural Networks</h2><h3 id="Computer-Vision"><a href="#Computer-Vision" class="headerlink" title="Computer Vision"></a>Computer Vision</h3><p>一些应用：</p>
-<ul>
-<li>Image classfication</li>
-<li>Object detection</li>
-<li>Neural style transfer</li>
-</ul>
-<p>Computer vision 的一大挑战在与每个输入样本都非常大。例如一张图片就可能有数百万的输入特征。</p>
-<h3 id="Edge-Detection-Example"><a href="#Edge-Detection-Example" class="headerlink" title="Edge Detection Example"></a>Edge Detection Example</h3><p>这节讲的是卷积操作如何工作。对于给定的代表图像的矩阵 $\displaystyle{\mathbf{A}}$，以及一个卷积核（filter 或者 kernel）$\displaystyle{\mathbf B}$，二者的卷积是一个新的矩阵 $\displaystyle{\mathbf C}$。若 $\displaystyle{\mathbf A\in\mathbb{R}^{m_A\times n_A}, \mathbf{B}\in \mathbb{R}^{m_B\times n_B}}$，一般有 $\displaystyle{m_B &lt; m_A, n_B &lt; n_A}$。则 $\displaystyle{\mathbf{C}\in\mathbb{R}^{(m_A - m_B + 1)\times(n_A - n_B + 1)}}$ 且</p>
-<script type="math/tex; mode=display">
-\mathbf{C}[i, j] = \sum\left((\mathbf{A}[i:i + m_B][j:j + n_B])\odot\mathbf{B}\right)</script><p>可以想成 $\mathbf{B}$ 在 $\displaystyle{\mathbf A}$ 上滑动，每次滑动一步，并且不断做着 Hadamard 乘积来得到矩阵 $\displaystyle{\mathbf C}$。</p>
-<p>矩阵卷积一般记作 $\displaystyle{\mathbf C = \mathbf A\ast\mathbf B}$。</p>
-<hr>
-<p>卷积在图像处理中有实际应用，例如</p>
-<script type="math/tex; mode=display">
-\begin{bmatrix}
-1 & 0 & -1 \\
-1 & 0 & -1 \\
-1 & 0 & -1 \\
-\end{bmatrix}</script><p>这个卷积核可以用来识别图像中的竖直方向的明暗边界。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-1-Foundations-of-Convolutional-Neural-Networks/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/12/Dafny-学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/12/Dafny-学习笔记/" class="post-title-link" itemprop="url">Dafny 学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-12 14:45:23" itemprop="dateCreated datePublished" datetime="2019-03-12T14:45:23+08:00">2019-03-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-13 11:36:49" itemprop="dateModified" datetime="2019-03-13T11:36:49+08:00">2019-03-13</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Dafny-学习笔记"><a href="#Dafny-学习笔记" class="headerlink" title="Dafny 学习笔记"></a>Dafny 学习笔记</h1><h2 id="Guide"><a href="#Guide" class="headerlink" title="Guide"></a>Guide</h2><h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>Dafny use annotations to write programs with no bugs. The annotation below means all elements in <code>a</code> are positive:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forall k: int :: 0 &lt;= k &lt; a.Length ==&gt; 0 &lt; a[k]</span><br></pre></td></tr></table></figure>
-<p>Now you turn the task of <strong><em>writing bug-free programs</em></strong> into <strong><em>writing bug-free annotations</em></strong>.</p>
-<h3 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h3><p>Use <code>method</code> to declare a method. Methods are different from functions in Dafny. <strong>Syntax example:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">method MultipleReturns(x: int, y: int) returns (more: int, less: int)</span><br><span class="line">&#123;</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>A method can return multiple values, and each value has a name. They can be assigned inside the method body. Use <code>return</code> with no argument to return early from the method. <strong>Parameters are read-only.</strong></p>
-<hr>
-<ul>
-<li>Use <code>:=</code> for variable assignments.</li>
-<li>Braces are required in <code>if</code> <strong>statements</strong> even if the branch has only one statement. Otherwise it will be an <strong>expression</strong>.</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/12/Dafny-学习笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2142,7 +2239,7 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">111</span>
+                    <span class="site-state-item-count">115</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
