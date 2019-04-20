@@ -826,12 +826,24 @@
                 
               
 
-              <time title="创建时间：2019-04-19 20:20:50 / 修改时间：20:26:03" itemprop="dateCreated datePublished" datetime="2019-04-19T20:20:50+08:00">2019-04-19</time>
+              <time title="创建时间：2019-04-19 20:20:50" itemprop="dateCreated datePublished" datetime="2019-04-19T20:20:50+08:00">2019-04-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-21 01:03:01" itemprop="dateModified" datetime="2019-04-21T01:03:01+08:00">2019-04-21</time>
               
             
           </span>
@@ -866,10 +878,38 @@
 
       
         
+          <h2 id="一些复习"><a href="#一些复习" class="headerlink" title="一些复习"></a>一些复习</h2><p><code>Map</code> 和 <code>Seq</code> 的本质都是函数。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Map</span>[<span class="type">K</span>, <span class="type">V</span>] <span class="keyword">extends</span> (<span class="params"><span class="type">K</span> =&gt; <span class="type">V</span></span>)</span></span><br><span class="line"><span class="class"><span class="title">trait</span> <span class="title">Seq</span>[<span class="type">E</span>] <span class="keyword">extends</span> (<span class="params"><span class="type">Int</span> =&gt; <span class="type">E</span></span>)</span></span><br></pre></td></tr></table></figure>
+<h2 id="Partial-Function"><a href="#Partial-Function" class="headerlink" title="Partial Function"></a>Partial Function</h2><p>这里的 partial function 的意思和 Python 中的偏函数意思不一样；此处指的是和 total function 对立的，对于参数的定义域不一定是完备定义的。</p>
+<p>不像 SML，Scala 的模式匹配在没有完全匹配的时候不会有警告，因此可以写出这样的函数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span></span>: <span class="type">String</span> =&gt; <span class="type">String</span> = &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">"ping"</span> =&gt; <span class="string">"pong"</span></span><br><span class="line">  <span class="keyword">case</span> <span class="string">"pong"</span> =&gt; <span class="string">"ping"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>显然 <code>f</code> 不是对所有的字符串都有定义。一个更好的类型是 <code>PartialFunction[String, String]</code>，它是 <code>Function1[String, String]</code> 的子类型。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">PartialFunction</span>[-<span class="type">A</span>, +<span class="type">R</span>] <span class="keyword">extends</span> <span class="title">Function1</span>[-<span class="type">A</span>, +<span class="type">R</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">A</span>): <span class="type">R</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isDefinedAt</span></span>(x: <span class="type">A</span>): <span class="type">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果一个 <code>PartialFunction</code> 和例子一样，函数体就是一个模式匹配的话，编译器会自动生成 <code>isDefinedAt</code> 的定义（只要将函数体模式匹配的结果换成 <code>true</code>，在最后加一个通配并且返回 <code>false</code> 即可）。<code>isDefinedAt</code> 可以用来在应用 partial function 前先看下它是不是在对应位置上有定义。</p>
+<p>Partial function 只能处理外层模式匹配的情况。嵌套在内层的模式匹配如果不是完备的，使用 partial function 也没有用。</p>
+<h2 id="For-Expression-与模式匹配"><a href="#For-Expression-与模式匹配" class="headerlink" title="For Expression 与模式匹配"></a>For Expression 与模式匹配</h2><p>For expression 中，箭头左边可以是一个模式。当模式匹配不上的时候，这个元素会被跳过：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="type">Map</span>(<span class="number">1</span> -&gt; <span class="number">2</span>, <span class="number">3</span> -&gt; <span class="number">4</span>, <span class="number">5</span> -&gt; <span class="number">6</span>)</span><br><span class="line"><span class="keyword">for</span> &#123;(m, n) &lt;- a <span class="keyword">if</span> m &gt;= <span class="number">3</span>&#125; <span class="keyword">yield</span> (n, m)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> b = <span class="type">Map</span>(<span class="number">1</span> -&gt; <span class="literal">true</span>, <span class="number">2</span> -&gt; <span class="literal">false</span>, <span class="number">3</span> -&gt; <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">for</span> &#123;(m, <span class="literal">true</span>) &lt;- b&#125; <span class="keyword">yield</span> m</span><br></pre></td></tr></table></figure>
+<p>For expression 返回的类型与被迭代的类型上使用 <code>map</code> 函数得到的类型一致。因此 <code>List</code> 上使用 for expression 得到的是 <code>List</code>，而 <code>Map</code> 上使用 for expression 得到的是 <code>Map</code>。</p>
+<p>For expression 可以写得比较复杂，可以在花括号中穿插 <code>if</code>，<code>&lt;-</code> 和 <code>=</code>。</p>
+<p>Scala 中的 for expression 和 SQL 语言很类似。用得好的话可以在各种数据结构上拥有像 SQL 一样的查询体验。</p>
+<h2 id="For-Expression-的处理"><a href="#For-Expression-的处理" class="headerlink" title="For Expression 的处理"></a>For Expression 的处理</h2><p>首先可以注意到 <code>map</code>、<code>filter</code> 以及 <code>flatMap</code> 都可以由 for expression 加以实现。</p>
+<p>Scala 编译器则会反过来将代码中的 for expression 翻译回 <code>map</code>、<code>filter</code> 和 <code>flatMap</code>：</p>
+<ul>
+<li><code>for (x &lt;- e1) yield e2</code> 会被翻译为 <code>e1.map(x =&gt; e2)</code>；</li>
+<li><code>for (x &lt;- e1 if f; s) yield e2</code> 会被翻译为 <code>for (x &lt;- e1.withFilter(x =&gt; f); s) yield e2</code>，<code>withFilter</code> 是 <code>filter</code> 的 lazy 版本，如果 <code>filter</code> 后面要跟 <code>map</code> 或者 <code>flatMap</code> 操作的话这样做可以加速；</li>
+<li><code>for (x &lt;- e1; y &lt;- e2; s) yield e3</code> 会被翻译成 <code>e1.flatMap(x =&gt; for (y &lt;- e2; s) yield e3)</code>。</li>
+</ul>
+<p>根据上面的规则，可以把任意复杂的 for expression 分解为几个基础高阶函数操作。</p>
+<p>另外，只要自己定义的结构具有 <code>map</code>、<code>withFilter</code> 和 <code>flatMap</code> 方法，就可以使用 for expression。</p>
+          <!--noindex-->
           
-            <a id="more"></a>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-1-For-Expressions-and-Monads/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
