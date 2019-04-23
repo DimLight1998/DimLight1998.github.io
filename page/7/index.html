@@ -352,6 +352,178 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/" class="post-title-link" itemprop="url">Structuring Machine Learning Projects 笔记 1 ML Strategy (1)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-24 19:31:26" itemprop="dateCreated datePublished" datetime="2019-02-24T19:31:26+08:00">2019-02-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:29:27" itemprop="dateModified" datetime="2019-03-11T15:29:27+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="ML-Strategy-1"><a href="#ML-Strategy-1" class="headerlink" title="ML Strategy (1)"></a>ML Strategy (1)</h1><p>来源 <a href="https://www.coursera.org/learn/machine-learning-projects" target="_blank" rel="noopener">Coursera</a>。</p>
+<h2 id="Introduction-to-ML-Strategy"><a href="#Introduction-to-ML-Strategy" class="headerlink" title="Introduction to ML Strategy"></a>Introduction to ML Strategy</h2><h3 id="Why-ML-Strategy"><a href="#Why-ML-Strategy" class="headerlink" title="Why ML Strategy"></a>Why ML Strategy</h3><p>当有一个任务需要完成的时候，如果效果不好可能需要进行相关调整和修改。如何找到关键的影响因素需要知道 ML 中的策略。</p>
+<h3 id="Orthogonalization"><a href="#Orthogonalization" class="headerlink" title="Orthogonalization"></a>Orthogonalization</h3><p>如果任务有多个性能指标需要调整，同时有多个因素可以被调节，那么较好的情况是这些因素对结果的影响是正交的，对单个因素的调节应当只影响某个性能指标。</p>
+<p>ML 中的性能指标有：</p>
+<ul>
+<li>train 集上的表现</li>
+<li>dev 集上的表现</li>
+<li>test 集上的表现</li>
+<li>实际产品的表项</li>
+</ul>
+<p>对于第一个指标，可以调节网络规模、优化器选择等；对于第二个指标，可以调节正则化方法、使用更大的 train 集等；对于第三个指标，可以使用更大的 dev 集等；对于第四个指标，可以尝试修改代价函数（就是重新定义问题）。</p>
+<p><em>Early stop 是一个正交的反例——它同时影响了 train 和 test 集上的性能。</em></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/24/Structuring-Machine-Learning-Projects-笔记-1-ML-Strategy-1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/23/Programming-Languages-Part-C-笔记-4-Section-10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1878,169 +2050,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/" class="post-title-link" itemprop="url">Improving Deep Neural Networks 笔记 2 Optimization algorithms</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-12 19:14:04" itemprop="dateCreated datePublished" datetime="2019-02-12T19:14:04+08:00">2019-02-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-14 14:46:03" itemprop="dateModified" datetime="2019-03-14T14:46:03+08:00">2019-03-14</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Optimization-algorithms"><a href="#Optimization-algorithms" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h1><h2 id="Optimization-algorithms-1"><a href="#Optimization-algorithms-1" class="headerlink" title="Optimization algorithms"></a>Optimization algorithms</h2><h3 id="Mini-batch-gradient-descent"><a href="#Mini-batch-gradient-descent" class="headerlink" title="Mini-batch gradient descent"></a>Mini-batch gradient descent</h3><p>如果训练的时候采用向量化的方式，一次性将所有的数据全部用于训练，称为是 batch gradient descent（批量梯度下降）。但是硬件条件不满足或者追求速度的情况下可以考虑 mini-batch gradient descent（小批量梯度下降），这种训练方式是将整个数据集分成若干批，每次输入一小批。</p>
-<p>记号上，例如数据集用 $X$ 表示，mini-batch 的大小选择为 $\displaystyle{k}$，那么 $X^{(1)}, \dots, X^{(k)}$ 将作为第一个 mini-batch，记作 $\displaystyle{X^{\{1\}}}$。用这 $\displaystyle{k}$ 个样本向量化地进行前向传播和反向传播并更新参数，然后换一个 mini-batch 再跑一次，以此类推。</p>
-<p>小批量梯度下降比梯度下降快得多。小批量梯度下降中每遍历一次数据集成为一个 epoch（遍历），一次遍历需要多个 mini-batch。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/12/Improving-Deep-Neural-Networks-笔记-2-Optimization-algorithms/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2087,7 +2096,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-count">116</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

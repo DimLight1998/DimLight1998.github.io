@@ -117,25 +117,25 @@
 
 
 
-  <meta name="description" content="运行存储分配运行存储分配概述分配策略在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 静态分配，如果在编译时无法完成分配，需要在运行时进行确定则称为 动态分配。在动态分配时，可以进行 栈式内存分配 或 堆式内存分配。 活动记录函数的每次执行称作一个 活动，活动记录 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。 活">
-<meta name="keywords" content="编译原理">
+  <meta name="description" content="第九周Program SpecificationThe correctness of programs can be ensured by preconditions and postconditions, which are called program specifications. Program specifications should be:  Declarative Informat">
+<meta name="keywords" content="形式化验证">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编译原理慕课笔记 15">
-<meta property="og:url" content="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/index.html">
+<meta property="og:title" content="形式化验证课程笔记 9">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/04/22/形式化验证课程笔记-9/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
-<meta property="og:description" content="运行存储分配运行存储分配概述分配策略在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 静态分配，如果在编译时无法完成分配，需要在运行时进行确定则称为 动态分配。在动态分配时，可以进行 栈式内存分配 或 堆式内存分配。 活动记录函数的每次执行称作一个 活动，活动记录 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。 活">
+<meta property="og:description" content="第九周Program SpecificationThe correctness of programs can be ensured by preconditions and postconditions, which are called program specifications. Program specifications should be:  Declarative Informat">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-28T08:20:27.000Z">
+<meta property="og:updated_time" content="2019-04-22T07:52:18.682Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编译原理慕课笔记 15">
-<meta name="twitter:description" content="运行存储分配运行存储分配概述分配策略在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 静态分配，如果在编译时无法完成分配，需要在运行时进行确定则称为 动态分配。在动态分配时，可以进行 栈式内存分配 或 堆式内存分配。 活动记录函数的每次执行称作一个 活动，活动记录 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。 活">
+<meta name="twitter:title" content="形式化验证课程笔记 9">
+<meta name="twitter:description" content="第九周Program SpecificationThe correctness of programs can be ensured by preconditions and postconditions, which are called program specifications. Program specifications should be:  Declarative Informat">
 
 
 
 
 
 
-  <link rel="canonical" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/">
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/04/22/形式化验证课程笔记-9/">
 
 
 
@@ -145,7 +145,7 @@
   };
 </script>
 
-  <title>编译原理慕课笔记 15 | Computation & Design</title>
+  <title>形式化验证课程笔记 9 | Computation & Design</title>
   
 
 
@@ -356,7 +356,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-15/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/22/形式化验证课程笔记-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -373,7 +373,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">编译原理慕课笔记 15
+          <h1 class="post-title" itemprop="name headline">形式化验证课程笔记 9
 
               
             
@@ -399,24 +399,12 @@
                 
               
 
-              <time title="创建时间：2018-11-23 16:20:04" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:04+08:00">2018-11-23</time>
+              <time title="创建时间：2019-04-22 13:23:58 / 修改时间：15:52:18" itemprop="dateCreated datePublished" datetime="2019-04-22T13:23:58+08:00">2019-04-22</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
               
             
           </span>
@@ -450,55 +438,56 @@
       
 
       
-        <h1 id="运行存储分配"><a href="#运行存储分配" class="headerlink" title="运行存储分配"></a>运行存储分配</h1><h2 id="运行存储分配概述"><a href="#运行存储分配概述" class="headerlink" title="运行存储分配概述"></a>运行存储分配概述</h2><h3 id="分配策略"><a href="#分配策略" class="headerlink" title="分配策略"></a>分配策略</h3><p>在编译过程中需要对各种变量和结构进行内存的分配。如果这些结构的内存分配可以在编译阶段完成，这样的分配策略称为 <strong>静态分配</strong>，如果在编译时无法完成分配，需要在运行时进行确定则称为 <strong>动态分配</strong>。在动态分配时，可以进行 <strong>栈式内存分配</strong> 或 <strong>堆式内存分配</strong>。</p>
-<h3 id="活动记录"><a href="#活动记录" class="headerlink" title="活动记录"></a>活动记录</h3><p>函数的每次执行称作一个 <strong>活动</strong>，<strong>活动记录</strong> 指的是函数每次执行时对应被分配的内存区域。这个概念应该是对栈帧的抽象。</p>
-<p>活动记录中会存放实参、返回值、控制链（指向调用者的活动记录）、访问链（指向其它活动记录，后面会用到）、保存的状态、局部变量和临时变量。</p>
-<p><strong>同一个函数的活动记录不一定是定长的</strong>，栈上也可以进行动态内存分配，此时一般要将变长数据放在最后面（栈顶）。这样分配的内存具有更好的 locality，并且清理的时候代价更小。</p>
-<h2 id="静态存储分配"><a href="#静态存储分配" class="headerlink" title="静态存储分配"></a>静态存储分配</h2><p>有些语言（BASIC 和 FORTRAN）可以完全使用静态存储分配，只要：</p>
+        <h1 id="第九周"><a href="#第九周" class="headerlink" title="第九周"></a>第九周</h1><h2 id="Program-Specification"><a href="#Program-Specification" class="headerlink" title="Program Specification"></a>Program Specification</h2><p>The correctness of programs can be ensured by <strong>preconditions</strong> and <strong>postconditions</strong>, which are called <em>program specifications</em>.</p>
+<p>Program specifications should be:</p>
 <ul>
-<li>数组定长</li>
-<li>过程无法递归调用（直接和间接都不行）</li>
-<li>不能动态建立数据实体</li>
+<li>Declarative</li>
+<li>Informative</li>
+<li>Refutable</li>
 </ul>
-<h3 id="顺序分配法"><a href="#顺序分配法" class="headerlink" title="顺序分配法"></a>顺序分配法</h3><p>这种分配方法比较简单，就是对每个函数指定一个固定大小、固定位置的区域。这些区域彼此不会相交。在运行时如果这个函数被调用这个区域就会作为它的工作内存。</p>
-<h3 id="层次分配法"><a href="#层次分配法" class="headerlink" title="层次分配法"></a>层次分配法</h3><p>上面那种方法会有内存的浪费，这种分配方式需要分析出函数之间的调用关系，然后建立一棵调用树。因为禁止递归调用，所以这样的调用关系一定是无环的，可以形成一棵树。</p>
-<p>随后给对应的函数分配内存区域，但是不同的函数的内存区域会相交，相交的这些内存区域对应的函数不会出现调用关系即可。例如如果两个函数在调用树中都只出现了一次并且是兄弟结点，就可以重叠分配。</p>
-<h2 id="栈式存储分配"><a href="#栈式存储分配" class="headerlink" title="栈式存储分配"></a>栈式存储分配</h2><h3 id="活动树"><a href="#活动树" class="headerlink" title="活动树"></a>活动树</h3><p>活动树就是展示函数调用关系的树。</p>
-<hr>
-<p>在使用栈式存储分配的时候会有一个控制栈。运行时，每个活动在栈中都有自己的活动记录。大部分以函数为单位的语言都是这样进行分配的，例如 C。所以这里就不写栈式存储分配在运行时具体怎么操作的了。</p>
-<p>在这样的分配方式下，活动记录的设计一般有如下的原则：</p>
+<h2 id="Notions"><a href="#Notions" class="headerlink" title="Notions"></a>Notions</h2><ul>
+<li><strong>Environment</strong>: valuation of all variables in the program $\sigma$</li>
+<li><strong>Configuration</strong>: $\langle c, \sigma\rangle$, where $c$ is a statement</li>
+<li><strong>Small-step semantics</strong>: $\langle c, \sigma\rangle\rightarrow \langle c&#39;, \sigma&#39; \rangle$</li>
+<li><strong>Big-step semantics</strong>: $\displaystyle{\langle c, \sigma \rangle \Downarrow \sigma&#39;}$</li>
+</ul>
+<h2 id="Partial-Correctness"><a href="#Partial-Correctness" class="headerlink" title="Partial Correctness"></a>Partial Correctness</h2><h3 id="Hoare-Triples"><a href="#Hoare-Triples" class="headerlink" title="Hoare Triples"></a>Hoare Triples</h3><p>A <em>Hoare triple</em> is in the form of $\displaystyle{\{P\}c\{Q\}}$, where:</p>
 <ul>
-<li>在调用者和被调用者之间的传递的值会尽可能靠近两个活动记录的边界</li>
-<li>固定长度的项目位于活动记录中间</li>
-<li>变长的项目位于活动记录的最后</li>
-<li>每个活动记录会有一个用来寻找该活动记录中局部变量的基指针，这个指针位于固定长度项目和变长项目边界上</li>
+<li>$c$ is a program</li>
+<li>$\{P\}$ are the preconditions</li>
+<li>$\{Q\}$ are the postconditions</li>
+<li>assertions in $\{P\}$ and $\{Q\}$ are in a first-order theory</li>
 </ul>
-<h2 id="调用序列和返回序列"><a href="#调用序列和返回序列" class="headerlink" title="调用序列和返回序列"></a>调用序列和返回序列</h2><p><strong>调用序列</strong> 是函数开始调用前进行的工作，<strong>返回序列</strong> 是函数调用完成后进行的收尾工作。这两种序列都是调用者和被调用者配合完成的。</p>
-<h3 id="调用序列"><a href="#调用序列" class="headerlink" title="调用序列"></a>调用序列</h3><p>向添加被调函数的活动记录。</p>
+<h3 id="Meaning-of-Hoare-Triples"><a href="#Meaning-of-Hoare-Triples" class="headerlink" title="Meaning of Hoare Triples"></a>Meaning of Hoare Triples</h3><p>$\displaystyle{\{P\}c \{Q\}}$ is a predicate. If a program starts from an environment satisfying $P$, <strong>and if</strong> $c$ terminates, then the program will end in an environment satisfying $Q$.</p>
+<p>However, we don&#39;t know what will happen if the program starts from an environment not satisfying $P$ or $c$ doesn&#39;t terminate.</p>
+<h2 id="Total-Correctness"><a href="#Total-Correctness" class="headerlink" title="Total Correctness"></a>Total Correctness</h2><p>Total correctness id denoted as $[P]c[Q]$. It is stronger than partial correctness.</p>
+<p>$[P]c[Q]$ is a predicate. If a program starts from an environment satisfying $P$, <strong>then</strong> $c$ terminates, and the program will end in an environment satisfying $Q$.</p>
+<a id="more"></a>
+<h2 id="Semantics-of-Assertions"><a href="#Semantics-of-Assertions" class="headerlink" title="Semantics of Assertions"></a>Semantics of Assertions</h2><p>Assertions in $P$ or $Q$ are in a first-order theory(for exmaple, $\displaystyle{T_\mathbb Z\cup T_\mathbb A}$). There are three kinds of variables in $P$ of $Q$:</p>
 <ul>
-<li>调用者计算实参</li>
-<li>调用者将返回地址放入被调函数保存的状态中、修改基址寄存器</li>
-<li>被调用者保存寄存器值和其他状态信息、初始化局部变量、开始执行</li>
+<li>variables in $c$</li>
+<li>variables for quantifiers</li>
+<li>other logical variables</li>
 </ul>
-<p>此外调用序列会建立 <strong>访问链</strong>，见下文。</p>
-<h3 id="返回序列"><a href="#返回序列" class="headerlink" title="返回序列"></a>返回序列</h3><ul>
-<li>被调用者将返回值放入自己活动记录的指定位置</li>
-<li>被调用者恢复调用者的基址寄存器、通过返回地址返回到调用者</li>
-<li>调用者获取返回值，继续执行</li>
-</ul>
-<h2 id="非局部数据的访问"><a href="#非局部数据的访问" class="headerlink" title="非局部数据的访问"></a>非局部数据的访问</h2><h3 id="嵌套深度"><a href="#嵌套深度" class="headerlink" title="嵌套深度"></a>嵌套深度</h3><p>有些语言可以在函数中继续定义函数，例如 Pascal。这种语言中，在函数 f 内部定义的函数 g 可以访问 f 中的局部变量，对于 g 来说这些变量就像是全局的变量一样。</p>
-<p>对于最外层的函数，定义其嵌套深度为 1。如果 g 的定义在 f 中，则 g 的嵌套深度比 f 多 1。</p>
-<h3 id="无嵌套语言的存储分配"><a href="#无嵌套语言的存储分配" class="headerlink" title="无嵌套语言的存储分配"></a>无嵌套语言的存储分配</h3><p>这样的语言变量只有全局和局部两种，全局变量放静态区域，局部变量使用动态内存分配即可。全局变量通过静态的地址访问，局部变量通过运行时活动记录对应的基地址进行访问。</p>
-<h3 id="有嵌套语言的存储分配"><a href="#有嵌套语言的存储分配" class="headerlink" title="有嵌套语言的存储分配"></a>有嵌套语言的存储分配</h3><p>使用前面预留给每个活动记录的 <strong>访问链</strong> 可以实现过程嵌套的语言中内层函数对外层函数局部变量的访问。如果函数 f 内部定义了函数 g，则运行时，<strong>函数 g 的任意活动的访问链都指向最近的函数 f 的活动记录</strong>。</p>
-<h3 id="如何建立访问链"><a href="#如何建立访问链" class="headerlink" title="如何建立访问链"></a>如何建立访问链</h3><p>如果函数 f 调用函数 g，可能有三种情况：</p>
+<p>Because of <strong>other logical variables</strong>, $P$ or $Q$ cannot be evaluated just by $\sigma$, and we need to introduce assignment $\alpha$.</p>
+<h3 id="Semantics-of-Partial-Correctness"><a href="#Semantics-of-Partial-Correctness" class="headerlink" title="Semantics of Partial Correctness"></a>Semantics of Partial Correctness</h3><p>$\displaystyle{\sigma\vDash_\alpha \{P\}c \{Q \}  }$, if</p>
+<script type="math/tex; mode=display">
+\forall \sigma'::(\sigma\vDash_\alpha P\land \langle c, \sigma \rangle \Downarrow\sigma')\rightarrow \sigma'\vDash_\alpha Q</script><p>in which $\sigma\vDash_\alpha X$ means under environment $\sigma$ and assignment $\alpha$, $X$ is true.</p>
+<h2 id="Hoare-Logic"><a href="#Hoare-Logic" class="headerlink" title="Hoare Logic"></a>Hoare Logic</h2><h3 id="Rules"><a href="#Rules" class="headerlink" title="Rules"></a>Rules</h3><p>The language used in the rules below is the <em>while language</em>.</p>
 <ul>
-<li>f 的嵌套深度比 g 小（相当于外层调内层）：此时函数 g 必然在 f 中直接定义，只要在调用 g 时，将 g 的访问链设置为指向上一个活动记录即可。</li>
-<li>f 的嵌套深度和 g 相同（同层函数或者直接递归）：此时直接复制访问链即可。</li>
-<li>f 的嵌套深度比 g 大（相当与内层调外层）：此时 g 的访问链的设置需要 <strong>沿着访问链</strong> 进行查找（注意不是在活动栈中进行查找）。如果 f 的嵌套深度是 a，g 的嵌套深度是 b，只要沿着访问链走 (b - a + 1) 步就可以到达直接定义了 g 的函数。</li>
+<li><strong>Skip</strong>: $\displaystyle{\text{Skip}\frac{}{\{P \} \text{skip}\{ P\} }}$</li>
+<li><strong>Assignment</strong>: $\displaystyle{\text{Asgn}\frac{}{\{Q[a/x]\}x:=a \{Q \}}}$, where $Q[a/x]$ means $Q$ with $a$ substituted for $x$ (replace $x$ with $a$). Using this rule you can get $P$ in $\{P\}c\{Q\}$ given $c$ and $Q$.</li>
+<li><strong>Strengthening preconditions</strong>: $\displaystyle{\text{Pre}\frac{\vdash \{P&#39; \} c \{Q \}\ P\Rightarrow P&#39;}{\{P \} c \{Q \} }}$, if we can prove something, we can still prove it if we have stricter preconditions</li>
+<li><strong>Weakening postconditions</strong>: $\displaystyle{\text{Post}\frac{\vdash \{P \} c \{Q&#39; \} Q&#39;\Rightarrow Q}{\{P \} c \{Q \} }}$, if we can prove something, we can still prove a weaker conclusion with same preconditions</li>
+<li><strong>Consequence</strong>: this is the combination of two rules above $\displaystyle{\text{Conseq}\frac{P\Rightarrow P&#39;\ \vdash \{P&#39; \}c \{Q&#39; \}  \ Q&#39;\Rightarrow Q}{\vdash\{P \} c \{Q \} }}$</li>
+<li><strong>Sequence</strong>: $\displaystyle{\text{Seq}\frac{\{P \} c_1 \{P_1 \} \ \{P_1 \} c_2 \{Q \} }{\{P \} c_1;c_2 \{Q \} }}$</li>
+<li><strong>Conditional</strong>: $\displaystyle{\text{If}\frac{\{P\land b \} c_1 \{Q \}\ \{P\land \lnot b \} c_2 \{Q \}}{\{P\} \texttt{if }b\texttt{ then } c_1\texttt{ else }c_2 \{Q \} }}$</li>
+<li><strong>While loop</strong>: $\displaystyle{\text{While}\frac{\{P\land b \} c \{P \} }{\{P \} \texttt{while }b \texttt{ do }c \{P\land \lnot b \} }}$, in which $P$ is the <strong>loop invariant</strong>; we don&#39;t care the termination</li>
 </ul>
-<h2 id="符号表"><a href="#符号表" class="headerlink" title="符号表"></a>符号表</h2><p>对于每个函数（也有可能是作用域）都需要建立一张单独的符号表。符号表中也可以存放指向这个函数中定义的其它函数的符号表的指针。符号表会有一个指针指向这个函数外部那个函数的符号表。</p>
-<p>在定义符号时，如果当前符号表中存在同名符号，表示符号重定义，否则可以正常定义；在使用符号时，如果当前符号表中存在则可正常使用，否则应该查找外部的那个符号表中是否有对应的符号，可以一直这样查找下去。</p>
-<h2 id="符号表的建立"><a href="#符号表的建立" class="headerlink" title="符号表的建立"></a>符号表的建立</h2><p>这个没什么好记录的，算法比较直接。</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>You can prove the swapping program by applying rules above (use <em>assigment</em> for 3 times, and <em>sequence</em> for 2 times):</p>
+<script type="math/tex; mode=display">
+\{x = x', y = y' \} t:=x; x:= y; y:= t \{x = y', y = x' \}</script><h2 id="Soundness-and-Completeness-of-Hoare-Logic"><a href="#Soundness-and-Completeness-of-Hoare-Logic" class="headerlink" title="Soundness and Completeness of Hoare Logic"></a>Soundness and Completeness of Hoare Logic</h2><h3 id="Soundness"><a href="#Soundness" class="headerlink" title="Soundness"></a>Soundness</h3><p>Hoare logic for partial correctness is <strong>sound</strong>: if the triple can be derived using the rules, it must be valid.</p>
+<h3 id="Completeness"><a href="#Completeness" class="headerlink" title="Completeness"></a>Completeness</h3><p>Hoare logic can be completeness (for all valid triples they can be derived). However if the first-order logic is undecidable, Hoare logic is not completeness. So Hoare logic has <strong>relative completeness</strong>. It is complete for simple languages, but not for complex languages.</p>
 
       
     </div>
@@ -522,7 +511,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/编译原理/" rel="tag"># 编译原理</a>
+            <a href="/tags/形式化验证/" rel="tag"># 形式化验证</a>
           
         </div>
       
@@ -535,8 +524,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/23/编译原理慕课笔记-14/" rel="next" title="编译原理慕课笔记 14">
-                <i class="fa fa-chevron-left"></i> 编译原理慕课笔记 14
+              <a href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-4-Timely-Effects/" rel="next" title="Functional Program Design in Scala 笔记 4 Timely Effects">
+                <i class="fa fa-chevron-left"></i> Functional Program Design in Scala 笔记 4 Timely Effects
               </a>
             
           </div>
@@ -544,10 +533,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/23/编译原理慕课笔记-16/" rel="prev" title="编译原理慕课笔记 16">
-                编译原理慕课笔记 16 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -737,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运行存储分配"><span class="nav-number">1.</span> <span class="nav-text">运行存储分配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#运行存储分配概述"><span class="nav-number">1.1.</span> <span class="nav-text">运行存储分配概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分配策略"><span class="nav-number">1.1.1.</span> <span class="nav-text">分配策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#活动记录"><span class="nav-number">1.1.2.</span> <span class="nav-text">活动记录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#静态存储分配"><span class="nav-number">1.2.</span> <span class="nav-text">静态存储分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#顺序分配法"><span class="nav-number">1.2.1.</span> <span class="nav-text">顺序分配法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层次分配法"><span class="nav-number">1.2.2.</span> <span class="nav-text">层次分配法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#栈式存储分配"><span class="nav-number">1.3.</span> <span class="nav-text">栈式存储分配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#活动树"><span class="nav-number">1.3.1.</span> <span class="nav-text">活动树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用序列和返回序列"><span class="nav-number">1.4.</span> <span class="nav-text">调用序列和返回序列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#调用序列"><span class="nav-number">1.4.1.</span> <span class="nav-text">调用序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回序列"><span class="nav-number">1.4.2.</span> <span class="nav-text">返回序列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非局部数据的访问"><span class="nav-number">1.5.</span> <span class="nav-text">非局部数据的访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#嵌套深度"><span class="nav-number">1.5.1.</span> <span class="nav-text">嵌套深度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无嵌套语言的存储分配"><span class="nav-number">1.5.2.</span> <span class="nav-text">无嵌套语言的存储分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有嵌套语言的存储分配"><span class="nav-number">1.5.3.</span> <span class="nav-text">有嵌套语言的存储分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何建立访问链"><span class="nav-number">1.5.4.</span> <span class="nav-text">如何建立访问链</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号表"><span class="nav-number">1.6.</span> <span class="nav-text">符号表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#符号表的建立"><span class="nav-number">1.7.</span> <span class="nav-text">符号表的建立</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第九周"><span class="nav-number">1.</span> <span class="nav-text">第九周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Program-Specification"><span class="nav-number">1.1.</span> <span class="nav-text">Program Specification</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Notions"><span class="nav-number">1.2.</span> <span class="nav-text">Notions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Partial-Correctness"><span class="nav-number">1.3.</span> <span class="nav-text">Partial Correctness</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hoare-Triples"><span class="nav-number">1.3.1.</span> <span class="nav-text">Hoare Triples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meaning-of-Hoare-Triples"><span class="nav-number">1.3.2.</span> <span class="nav-text">Meaning of Hoare Triples</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Total-Correctness"><span class="nav-number">1.4.</span> <span class="nav-text">Total Correctness</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semantics-of-Assertions"><span class="nav-number">1.5.</span> <span class="nav-text">Semantics of Assertions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Semantics-of-Partial-Correctness"><span class="nav-number">1.5.1.</span> <span class="nav-text">Semantics of Partial Correctness</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hoare-Logic"><span class="nav-number">1.6.</span> <span class="nav-text">Hoare Logic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Rules"><span class="nav-number">1.6.1.</span> <span class="nav-text">Rules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-number">1.6.2.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Soundness-and-Completeness-of-Hoare-Logic"><span class="nav-number">1.7.</span> <span class="nav-text">Soundness and Completeness of Hoare Logic</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Soundness"><span class="nav-number">1.7.1.</span> <span class="nav-text">Soundness</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Completeness"><span class="nav-number">1.7.2.</span> <span class="nav-text">Completeness</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
