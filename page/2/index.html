@@ -352,6 +352,375 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-3-Data-and-Abstraction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-3-Data-and-Abstraction/" class="post-title-link" itemprop="url">Functional Programming Principles in Scala 笔记 3 Data and Abstraction</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-17 13:28:39" itemprop="dateCreated datePublished" datetime="2019-04-17T13:28:39+08:00">2019-04-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-18 16:18:33" itemprop="dateModified" datetime="2019-04-18T16:18:33+08:00">2019-04-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>抽象类使用 <code>abstract</code> 修饰，无须对方法进行定义，无法被实例化。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>): <span class="type">IntSet</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="继承与实现"><a href="#继承与实现" class="headerlink" title="继承与实现"></a>继承与实现</h2><p>使用 <code>extends</code> 继承其它类：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NonEmpty</span>(<span class="params">elem: <span class="type">Int</span>, left: <span class="type">IntSet</span>, right: <span class="type">IntSet</span></span>) <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) =</span><br><span class="line">    <span class="keyword">if</span> (x &lt; elem) left contains x</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; elem) right contains x</span><br><span class="line">    <span class="keyword">else</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) =</span><br><span class="line">    <span class="keyword">if</span> (x &lt; elem) <span class="keyword">new</span> <span class="type">NonEmpty</span>(elem, left include x, right)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; elem) <span class="keyword">new</span> <span class="type">NonEmpty</span>(elem, left, right include x)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="keyword">new</span> <span class="type">Empty</span>, <span class="keyword">new</span> <span class="type">Empty</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果没有指定继承哪个类，则继承自 <code>Object</code> 类。</p>
+<p>如果在子类中要定义的东西已经在父类中被定义了，则必须加上 <code>override</code> 修饰：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="keyword">new</span> <span class="type">Empty</span>, <span class="keyword">new</span> <span class="type">Empty</span>)</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span> </span>= <span class="string">"&#123;&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果要定义的东西在父类中是抽象的，那么加不加 <code>override</code> 都可以。</p>
+<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p>Scala 提供了 object 这种抽象，可以认为是在语言层面上直接提供了单例。比如上例中实际上只要全局有一个 <code>Empty</code> 就可以了。只要将 <code>class</code> 换成 <code>object</code>；此外，<code>object</code> 不支持 <code>new</code>，只要使用类型名就可以访问唯一的实例：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="type">Empty</span>, <span class="type">Empty</span>)</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span> </span>= <span class="string">"&#123;&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>如果建立了一个带有以下方法的 <code>object</code>：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = ???</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后可以直接使用 <code>scala Foo</code> 来将对应的 <code>main</code> 方法作为程序入口点。</p>
+<h2 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h2><p>使用 <code>package</code> 来声明一个包。</p>
+<p>外部要使用这个包中的内容时要写出类的完整路径。可以通过 <code>import</code> 语句避免掉这种麻烦。</p>
+<p><code>import</code> 时可以使用通配符 <code>_</code>，或者使用 <code>{..., ...}</code> 的语法一次导入多个类。</p>
+<p>Scala 程序中有些东西是自动导入的，包括：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala._</span><br><span class="line"><span class="keyword">import</span> java.lang._</span><br><span class="line"><span class="keyword">import</span> scala.<span class="type">Predef</span>._</span><br></pre></td></tr></table></figure>
+<p>这些包中包括 <code>require</code>，<code>assert</code> 等。</p>
+<h2 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h2><p>Scala 是单继承的。Scala 中的类只能继承自一个类，但是可以使用 <code>with</code> 继承多个 traits。相当于 Ruby 中的 mixin。</p>
+<p>实际上：</p>
+<blockquote>
+<p>If you have multiple classes or traits to inherit, the first one is always <code>extends</code>, and the following &gt;=0 <code>class</code>/<code>trait</code> to be <code>with</code>s.</p>
+</blockquote>
+<p>Java 中的接口和 Scala 中的 trait 类似，区别在于 trait 可以含有自己的状态以及具体的方法。Trait 比类弱的地方在于它本身不能单独被构造，没有构造参数。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-3-Data-and-Abstraction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/" class="post-title-link" itemprop="url">Functional Programming Principles in Scala 笔记 2 Higher Order Functions</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-17 13:28:30" itemprop="dateCreated datePublished" datetime="2019-04-17T13:28:30+08:00">2019-04-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-18 12:00:34" itemprop="dateModified" datetime="2019-04-18T12:00:34+08:00">2019-04-18</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>高阶函数是参数或者返回值是函数的函数。语法：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(f: <span class="type">Int</span> =&gt; <span class="type">Int</span>, a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> =</span><br><span class="line">  <span class="keyword">if</span> (a &gt; b) <span class="number">0</span></span><br><span class="line">  <span class="keyword">else</span> f(a) + sum(f, a + <span class="number">1</span>, b)</span><br></pre></td></tr></table></figure>
+<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>Scala 中的匿名函数的语法为</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>, y: <span class="type">Int</span>) =&gt; x + y</span><br></pre></td></tr></table></figure>
+<p>如果参数的类型可以被编译器推断，那么它们也是可以省略的。</p>
+<h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>Scala 中定义柯里化的函数只需要在定义和使用时在函数名后面用多个括号：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mapInt</span></span>(f: <span class="type">Int</span> =&gt; <span class="type">Int</span>)(xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] =</span><br><span class="line">  <span class="keyword">if</span> (xs.isEmpty) <span class="type">List</span>() <span class="keyword">else</span> f(xs.head) :: mapInt(f)(xs.tail)</span><br></pre></td></tr></table></figure>
+<p>出于某些我现在不知道的原因，把偏函数赋给变量时要在不带参数的部分写上 <code>_</code>：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> doubler = mapInt(x =&gt; <span class="number">2</span> * x) _</span><br></pre></td></tr></table></figure>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>仿照如下的例子定义一个类：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>)</span></span><br></pre></td></tr></table></figure>
+<p>此时会得到类型 <code>Rational</code> 和对应的构造函数 <code>Rational</code>。二者名字相同，但是 Scala 会自己加以区分。</p>
+<p>使用</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>来构造类的 object。</p>
+<p>不过，无法通过 <code>a.x</code> 来访问构造时传入的参数。</p>
+<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p>扩展上面的例子，加入两个成员：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在可以使用这些成员了，它们实际上是不带参数的函数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">print(a.numer)</span><br><span class="line">print(a.denom)</span><br></pre></td></tr></table></figure>
+<p>实际上将前面定义中的 <code>def</code> 换成 <code>val</code> 也是可以的。</p>
+<p>自然，类里面是可以定义带参数的方法的：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(that: <span class="type">Rational</span>) = <span class="keyword">new</span> <span class="type">Rational</span>(</span><br><span class="line">    numer * that.denom + that.numer * denom, denom * that.denom</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>类中可以通过访问 <code>this</code> 来获取当前实例。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-1-Functions-Evaluation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -579,12 +948,24 @@
                 
               
 
-              <time title="创建时间：2019-04-15 13:31:18 / 修改时间：16:24:50" itemprop="dateCreated datePublished" datetime="2019-04-15T13:31:18+08:00">2019-04-15</time>
+              <time title="创建时间：2019-04-15 13:31:18" itemprop="dateCreated datePublished" datetime="2019-04-15T13:31:18+08:00">2019-04-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-29 13:55:53" itemprop="dateModified" datetime="2019-04-29T13:55:53+08:00">2019-04-29</time>
               
             
           </span>
@@ -624,7 +1005,7 @@
 <li><strong>指称语义</strong>：只关心执行效果，不关心实现。</li>
 <li><strong>公理语义</strong>：使用相关方法进行对语义建模，使用数学方法进行研究。</li>
 </ul>
-<h2 id="一个示例语言"><a href="#一个示例语言" class="headerlink" title="一个示例语言"></a>一个示例语言</h2><p>这个语言称为 while 语言，包括：</p>
+<h2 id="一个示例语言"><a href="#一个示例语言" class="headerlink" title="一个示例语言"></a>一个示例语言</h2><p>这个语言称为 while 语言（又称 Imp 语言），包括：</p>
 <ul>
 <li>来自数字集合 Num 的数字 n</li>
 <li>来自变量集合 Var 的变量 v</li>
@@ -1825,383 +2206,6 @@ p(x)\land q(x, y)\land q(y, z) \rightarrow \lnot q(x, z)</script><p>can be conve
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/" class="post-title-link" itemprop="url">Sequence Models 笔记 1 Recurrent Neural Networks</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-23 23:43:52" itemprop="dateCreated datePublished" datetime="2019-03-23T23:43:52+08:00">2019-03-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-03 11:12:31" itemprop="dateModified" datetime="2019-04-03T11:12:31+08:00">2019-04-03</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Recurrent-Neural-Networks"><a href="#Recurrent-Neural-Networks" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h1><p>来源 <a href="https://www.coursera.org/learn/nlp-sequence-models" target="_blank" rel="noopener">Coursera-Sequence Models</a>.</p>
-<h2 id="Recurrent-Neural-Networks-1"><a href="#Recurrent-Neural-Networks-1" class="headerlink" title="Recurrent Neural Networks"></a>Recurrent Neural Networks</h2><h3 id="Why-sequence-models"><a href="#Why-sequence-models" class="headerlink" title="Why sequence models"></a>Why sequence models</h3><p>一些序列模型的应用：</p>
-<ul>
-<li>Speech recognition</li>
-<li>Music generation</li>
-<li>Sentiment classfication</li>
-<li>DNA Sequence analysis</li>
-<li>Machine translation</li>
-<li>Video activity recognition</li>
-<li>Name entity recognition（从文本序列中标记出表示名称的单词，例如人名）</li>
-</ul>
-<h3 id="Notation"><a href="#Notation" class="headerlink" title="Notation"></a>Notation</h3><h4 id="序列相关的记号"><a href="#序列相关的记号" class="headerlink" title="序列相关的记号"></a>序列相关的记号</h4><p>因为小括号、中括号和大括号都被占用了，这里使用尖括号对序列中的元素进行索引。如果 $x$ 是一个样本，它是一个序列，那么它的第 $t$ 个元素是 $x^{\langle k\rangle }$。</p>
-<p>使用 $T_x$ 表示 $x$ 的长度。</p>
-<h4 id="序列的表示"><a href="#序列的表示" class="headerlink" title="序列的表示"></a>序列的表示</h4><p>以文本序列为例，首先准备一个词典，其中包含 <code>&lt;UNK&gt;</code> 表示不在词典中的所有词。每个词都有自己的唯一序号。对于一个序列 $x$，将其中的每个单词都编码为一个 one hot 的向量，其中只有单词在词典中的序号对应的位置是 1，其余位置是零。这样就把一个单词序列编码为了 one hot 向量的序列。</p>
-<h3 id="Recurrent-Neural-Network-Model"><a href="#Recurrent-Neural-Network-Model" class="headerlink" title="Recurrent Neural Network Model"></a>Recurrent Neural Network Model</h3><h4 id="为何不使用普通网络"><a href="#为何不使用普通网络" class="headerlink" title="为何不使用普通网络"></a>为何不使用普通网络</h4><ul>
-<li>普通神经网络在处理序列问题时无法考虑到时间上的局部信息，序列中的每个元素在其看来是平权的。</li>
-<li>出于和引入 CNN 一样的原因，使用 RNN 可以学习到如何对临近的元素提取信息，并可以减小参数数目。</li>
-<li>序列的长度不是固定的，普通神经网络无法处理这个问题。</li>
-</ul>
-<h4 id="递归神经网络"><a href="#递归神经网络" class="headerlink" title="递归神经网络"></a>递归神经网络</h4><p>RNN 可以将一个序列映射到另一个序列。<strong>在整个序列映射过程中，网络参数保持不变。</strong></p>
-<p>对于元素 $x^{\langle t\rangle }$，它对应的 $\hat y^{\langle t\rangle }$ 既取决于输入 $x^{\langle t\rangle }$ 也取决于上次的激活值 $a^{\langle t- 1\rangle }$。在计算过程中，$x^{\langle t\rangle }$ 既产生预测值 $\hat y^{\langle t\rangle }$ 也产生激活值 $a^{\langle t\rangle }$。初始时的 $a^{\langle 0\rangle }$ 可以是零向量，也可以是某个随机值。</p>
-<h4 id="简单递归神经网络的问题"><a href="#简单递归神经网络的问题" class="headerlink" title="简单递归神经网络的问题"></a>简单递归神经网络的问题</h4><p>上述 RNN 的问题在于对于序列中的某个元素只能利用序列中该元素前的信息，而不能利用后续信息。这在一些应用中是不利的，但是有解决方案。</p>
-<h4 id="前向传播"><a href="#前向传播" class="headerlink" title="前向传播"></a>前向传播</h4><p>RNN 中的一个模块需要维护三个权值和两个偏置：$W_{aa}, W_{ax}, W_{ya}, b_a, b_y$。<em>命名方式：第一个角标指示用来计算什么，第二个角标如果存在依据什么计算。</em></p>
-<p>对于上次的激活值 $a^{\langle t - 1\rangle }$ 以及这次的输入 $x^{\langle t\rangle }$，有</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a^{\langle t\rangle } &= g_1(W_{aa}a^{\langle t-1\rangle } + W_{ax}x^{\langle t\rangle } + b_a) \\
-y^{\langle t\rangle } &= g_2(W_{ya}a^{\langle t\rangle } + b_y)
-\end{aligned}</script><p>可以进一步简化这个符号。如果将 $W_{aa}$ 和 $W_{ax}$ 横向拼接起来得到 $W_a$，将 $W_{ya}$ 记作 $W_y$，将 $a^{\langle t - 1\rangle }$ 和 $x^{\langle t\rangle }$ 纵向拼接起来得到 $[a^{\langle t - 1\rangle }, x^{\langle t\rangle }]$，那么有</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-a^{\langle t\rangle } &= g_1(W_{a}[a^{\langle t-1\rangle }, x^{\langle t\rangle }] + b_a) \\
-y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
-\end{aligned}</script><p>现在只要维护两个权值和偏置即可。<strong>再次注意对同一个序列而言，各元素计算时使用的参数是相同且共享的。</strong></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/23/Sequence-Models-笔记-1-Recurrent-Neural-Networks/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/18/形式化验证课程笔记-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/18/形式化验证课程笔记-4/" class="post-title-link" itemprop="url">形式化验证课程笔记 4</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-18 13:30:41" itemprop="dateCreated datePublished" datetime="2019-03-18T13:30:41+08:00">2019-03-18</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-25 13:34:30" itemprop="dateModified" datetime="2019-03-25T13:34:30+08:00">2019-03-25</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第四周"><a href="#第四周" class="headerlink" title="第四周"></a>第四周</h1><h2 id="Review-FOL"><a href="#Review-FOL" class="headerlink" title="Review FOL"></a>Review FOL</h2><h3 id="Logical-Symbols-and-Non-logical-Symbols"><a href="#Logical-Symbols-and-Non-logical-Symbols" class="headerlink" title="Logical Symbols and Non-logical Symbols"></a>Logical Symbols and Non-logical Symbols</h3><ul>
-<li>Logical symbols: propositional connectives, variables, quantifiers.</li>
-<li>Non-logical symbols: constant symbols, function symbols, predicate symbols.</li>
-</ul>
-<h3 id="Interpretation-and-Assignment"><a href="#Interpretation-and-Assignment" class="headerlink" title="Interpretation and Assignment"></a>Interpretation and Assignment</h3><ul>
-<li>Interpretation fixes values for constants.</li>
-<li>Assignment fixes values for variables.</li>
-</ul>
-<h2 id="First-Order-Theory-Motivation"><a href="#First-Order-Theory-Motivation" class="headerlink" title="First-Order Theory: Motivation"></a>First-Order Theory: Motivation</h2><p>First-order logic is very general but undecidable. By limiting the non-logical symbols, we can have something stronger then propositional logic but still decidable, which is first-order theory. First-order theory is weaker then FOL.</p>
-<h2 id="Defining-a-First-Order-Theory"><a href="#Defining-a-First-Order-Theory" class="headerlink" title="Defining a First-Order Theory"></a>Defining a First-Order Theory</h2><p>A first-order logic contains:</p>
-<ul>
-<li><strong>Signature</strong> $\Sigma$,  a set of non-logic symbols</li>
-<li><strong>Axioms</strong> $\mathcal{A}$, a set of closed formulas over $\Sigma$</li>
-</ul>
-<p><strong>$\Sigma$ limits the symbols and $\mathcal A$ gives them semantics.</strong></p>
-<p>Formula only containing symbols from $\Sigma$ is called $\Sigma​$-formula.</p>
-<h2 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h2><ul>
-<li><strong>T-interpretation/T-model</strong>: A tuple of domain and interpretation $(D, I)$ satisfying $\forall A\in \mathcal A, (D, I)\vDash A$. (Domain and interpretation satisfying all axioms.)</li>
-<li><strong>T-satisfaction</strong>: $F$ is T-satisfiable if you can find a T-model $T$ and an assignment $\alpha$ such that $T, \alpha\vDash F$.</li>
-<li><strong>T-validity</strong>: Similar as above, but asks for all T-models and assignments. Written as $T\vDash F$. <strong>A theory is the set of all closed formulas that are T-valid.</strong></li>
-<li><strong>T-entailment</strong>: $F_1$ T-entails $F_2$ if $T\vDash F_1\rightarrow F_2$.</li>
-<li><strong>T-equivalence</strong>: Similar as above but asks for $F_1\leftrightarrow F_2$.</li>
-</ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/18/形式化验证课程笔记-4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2248,7 +2252,7 @@ y^{\langle t\rangle } &= g_2(W_{y}a^{\langle t\rangle } + b_y)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">116</span>
+                    <span class="site-state-item-count">118</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -352,6 +352,367 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/06/形式化验证课程笔记-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/06/形式化验证课程笔记-11/" class="post-title-link" itemprop="url">形式化验证课程笔记 11</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-06 13:31:37 / 修改时间：16:14:34" itemprop="dateCreated datePublished" datetime="2019-05-06T13:31:37+08:00">2019-05-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第十一周"><a href="#第十一周" class="headerlink" title="第十一周"></a>第十一周</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>Prove total correctness.</p>
+<h2 id="Total-Correctness-Review"><a href="#Total-Correctness-Review" class="headerlink" title="Total Correctness Review"></a>Total Correctness Review</h2><p>$[P]c[Q]$ is valid if $P$ holds then $c$ terminates and $Q$ holds.</p>
+<h2 id="Well-Founded-Relations"><a href="#Well-Founded-Relations" class="headerlink" title="Well-Founded Relations"></a>Well-Founded Relations</h2><p>A binary relation $\prec$ on $R$ is <em>well-founded</em> if for any subset of $R$, there is a &quot;minimal&quot; element, and any &quot;decreasing&quot; sequence from a certain element is finite. (We call $a$ is less than $b$ if $a \prec b$.)</p>
+<h3 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h3><ul>
+<li><strong>less-than</strong> relation on $\mathbb N$ is well-founded, because for any element $n$ in $\mathbb N$, the decreasing sequence $n, n - 1, n - 2, \dots, 0$ is finite.</li>
+<li><strong>greater-than</strong> relation on $\mathbb N$ is not well-founded, because for any element $n$ in $\mathbb N$, there exists an infinite decreasing sequence $n, n + 1, n + 2, \dots$.</li>
+<li><strong>less-than</strong> relation on $\mathbb R^+$ is not well-founded.</li>
+</ul>
+<h2 id="Well-Founded-Induction"><a href="#Well-Founded-Induction" class="headerlink" title="Well-Founded Induction"></a>Well-Founded Induction</h2><p>If $\prec$ is a well-founded relation on $S$, then we have</p>
+<script type="math/tex; mode=display">
+(\forall n\in S::(\forall n'\in S::n'\prec n\Rightarrow F[n'])\Rightarrow F[n])\Rightarrow \forall n\in S::F[n]</script><h2 id="Lexicographic-Well-Founded-Relations"><a href="#Lexicographic-Well-Founded-Relations" class="headerlink" title="Lexicographic Well-Founded Relations"></a>Lexicographic Well-Founded Relations</h2><p>For $n$ sets $S_1, \dots, S_n$ and $n$ relations $\prec_1, \dots, \prec_n$ (not necessarily well-founded), we can derive a new relation on $S_1\times\dots\times S_n$:</p>
+<script type="math/tex; mode=display">
+(s_1, \dots, s_n)\prec(t_1, \dots, t_n)\Leftrightarrow\bigvee_{i = 1}^{n}\left(s_i\prec t_i\land \bigwedge_{j = 1}^{i - 1}s_j = t_j\right)</script><p>(Compared lexicographically.)</p>
+<h3 id="Conclusions"><a href="#Conclusions" class="headerlink" title="Conclusions"></a>Conclusions</h3><ul>
+<li>If $\prec_1, \dots, \prec_n$ are well-founded, $\prec$ is also well-founded.</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/06/形式化验证课程笔记-11/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/29/形式化验证课程笔记-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/29/形式化验证课程笔记-10/" class="post-title-link" itemprop="url">形式化验证课程笔记 10</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-29 13:32:36" itemprop="dateCreated datePublished" datetime="2019-04-29T13:32:36+08:00">2019-04-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-06 14:19:17" itemprop="dateModified" datetime="2019-05-06T14:19:17+08:00">2019-05-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第十周"><a href="#第十周" class="headerlink" title="第十周"></a>第十周</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>Given a program composed of many procedures with preconditions and postconditions annotations, how to prove the correctness of the program automatically?</p>
+<h2 id="VC-Generation-Predicate-Transformer"><a href="#VC-Generation-Predicate-Transformer" class="headerlink" title="VC Generation: Predicate Transformer"></a>VC Generation: Predicate Transformer</h2><p>Given an assertion $Q$ and a program $c$, a <em>predicate transformer</em> is a function that produces another assertion.</p>
+<p>Given an assertion $Q$ and a program $c$, we can construct a <em>weakest precondition</em> predicate transformer $wp(c, Q)$, such that:</p>
+<ul>
+<li>$[wp(c, Q)]c[Q]$ is valid</li>
+<li>for all $P$ such that $[P]c[Q]$ is valid, we have $P\Rightarrow wp(c, Q)$ (hence $wp(c, Q)$ is the weakest).</li>
+</ul>
+<p>Similarly we have <em>weakest liberal precondition</em> $wlp(c, Q)$, and it doesn&#39;t require termination.</p>
+<p>Similarly we have <em>strongest postcondition</em> $sp(c, Q)$.</p>
+<h2 id="Imp-Language-Array-Extension"><a href="#Imp-Language-Array-Extension" class="headerlink" title="Imp Language Array Extension"></a>Imp Language Array Extension</h2><p>Add array read $x[a]$ and array write $x[a_1]:=a_2$ to the Imp language. Array writing operation will return an updated new array, and the original array was not modified.</p>
+<h2 id="Defining-wlp"><a href="#Defining-wlp" class="headerlink" title="Defining $wlp$"></a>Defining $wlp$</h2><h3 id="Assignment"><a href="#Assignment" class="headerlink" title="Assignment"></a>Assignment</h3><p>The rule for assignment is $\displaystyle{\text{Asgn}\frac{}{\{Q[a/x] x:=a \{Q \} \} }}$, so the weakest liberal precondition for assignment is</p>
+<script type="math/tex; mode=display">
+wlp(x:=a, Q) = Q[a/x]</script><p>For example, for $\displaystyle{\{P \} y:=x + 1 \{(\forall x::x &lt; z\rightarrow x &lt; y)\rightarrow x + 1 \le y \}  }$, if it is valid, the weakest $P$ can be got by replacing all $y$ with $x + 1$. However, $x$ in the postcondition are &quot;overloaded&quot;, so we should rename the bounded $x$ to a fresh new name, such as $w$. Finally we get:</p>
+<script type="math/tex; mode=display">
+P = (\forall w::w<z\rightarrow w <x + 1)\rightarrow x + 1\le x + 1</script><h3 id="Assignment-for-Arrays"><a href="#Assignment-for-Arrays" class="headerlink" title="Assignment for Arrays"></a>Assignment for Arrays</h3><p>The rule is $\displaystyle{\text{ArrAsgn}\frac{}{\{Q[x \langle a_1\triangleleft a_2 \rangle /x] \} x[a_1] :=a_2 \{Q \} }}$, so</p>
+<script type="math/tex; mode=display">
+wlp(x[a_1] := a_2, Q) = Q[x \langle a_1\triangleleft a_2 \rangle /x]</script><p>For example, for program $b[n]:= x$, if we want the postcondition $\displaystyle{\forall i::1\le i &lt; n\rightarrow b[i]\le b[i + 1]}$, the weakest liberal precondition should be $\displaystyle{b[n - 1] &lt; x \land \forall i::1\le i &lt; n - 1\rightarrow b[i]\le b[i + 1]}$.</p>
+<h3 id="Sequence"><a href="#Sequence" class="headerlink" title="Sequence"></a>Sequence</h3><script type="math/tex; mode=display">
+wlp(c_1; c_2, Q) = wlp(c_1, wlp(c_2, Q))</script><h3 id="Conditional"><a href="#Conditional" class="headerlink" title="Conditional"></a>Conditional</h3><script type="math/tex; mode=display">
+wlp(\texttt{if }b\texttt{ then }c_2\texttt{ else }c_3, Q) = (b\rightarrow wlp(c_1, Q))\land (\lnot b\rightarrow wlp(c_2, Q))</script><h3 id="While-Loop"><a href="#While-Loop" class="headerlink" title="While Loop"></a>While Loop</h3><p>Review the rule: $\displaystyle{\text{While}\frac{\{P\land b\}c\{P\}}{\{P\}\texttt{while }b\text{ do }c \{P\land \lnot b\}}}$.</p>
+<p>The while loops satisfy $\texttt{while }b\texttt{ do }c\equiv\texttt{if }c\texttt{ then }c\texttt{;while }b\texttt{ do }c\texttt{ else skip}$.</p>
+<p>We cannot always compute $wlp$ for while loops, and we need loop invariants. Suppose the syntax is $\texttt{while }b\texttt{ do }\{I\}c$, where $\{I\}$ is the loop invariant, often provided by humans. Now we have</p>
+<script type="math/tex; mode=display">
+wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not be the weakest.</p>
+<hr>
+<p>These are not enough, and we need two additional <strong><em>verification conditions</em></strong>, called $vc(\texttt{while }b\texttt{ do }\{I\}c, Q)$:</p>
+<ul>
+<li>$\displaystyle{I\land \lnot b\rightarrow Q}$</li>
+<li>$\displaystyle{I\land b\rightarrow wlp(c, I)}$</li>
+</ul>
+<p>Finally, if we want a postcondition holds after a while loop, we need those three formulas to be valid.</p>
+<hr>
+<p>Other statements may contains loops, so we need to calculate $vc$ for all kinds of statements:</p>
+<ul>
+<li>$\displaystyle{vc(\texttt{if }b\texttt{ then }c_2\texttt{ else }c_3, Q) = vc(c_2, Q)\cup vc(c_3, Q)}$</li>
+<li>$\displaystyle{vc(c_1; c_2, Q) = vc(c_1, wlp(c_2, Q))\cup vc(c_2, Q)}$</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/29/形式化验证课程笔记-10/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/22/形式化验证课程笔记-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -569,12 +930,24 @@
                 
               
 
-              <time title="创建时间：2019-04-19 20:21:52 / 修改时间：20:25:52" itemprop="dateCreated datePublished" datetime="2019-04-19T20:21:52+08:00">2019-04-19</time>
+              <time title="创建时间：2019-04-19 20:21:52" itemprop="dateCreated datePublished" datetime="2019-04-19T20:21:52+08:00">2019-04-19</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-25 21:31:55" itemprop="dateModified" datetime="2019-04-25T21:31:55+08:00">2019-04-25</time>
               
             
           </span>
@@ -609,10 +982,21 @@
 
       
         
+          <h2 id="事件处理系统"><a href="#事件处理系统" class="headerlink" title="事件处理系统"></a>事件处理系统</h2><h3 id="命令式事件处理-观察者模式"><a href="#命令式事件处理-观察者模式" class="headerlink" title="命令式事件处理-观察者模式"></a>命令式事件处理-观察者模式</h3><p>命令式风格中一般使用观察者模式处理事件。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Publisher</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> subscribers: <span class="type">Set</span>[<span class="type">Subscriber</span>] = <span class="type">Set</span>()</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">subscribe</span></span>(subscriber: <span class="type">Subscriber</span>) = subscribers += subscriber</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">unsubscribe</span></span>(subscriber: <span class="type">Subscriber</span>) = subscribers -= subscriber</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">publish</span></span>() = subscribers foreach (_.handle(<span class="keyword">this</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Subscriber</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">handle</span></span>(publisher: <span class="type">Publisher</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="函数式事件处理-响应式编程"><a href="#函数式事件处理-响应式编程" class="headerlink" title="函数式事件处理-响应式编程"></a>函数式事件处理-响应式编程</h3><p>函数式风格中可以使用响应式编程（Functional Reactive Programming, FRP）的方式处理事件，替换掉命令式风格中的观察者模式。</p>
+<p>下面是一个不能跑的例子，用作示例。状态被一系列的 <code>Var</code> 来表示，<code>Var</code> 可以进行读取和更新（语法见 <a href="#Scala-中的-`update`-和-`apply`-调用">这里</a>）。课程中有个简单的 FRP 实现，没有笔记。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> v = <span class="keyword">new</span> <span class="type">Var</span>[<span class="type">Int</span>](<span class="number">0</span>)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">increase</span></span>(n: <span class="type">Int</span>) = &#123;</span><br><span class="line">    <span class="keyword">val</span> old = v()</span><br><span class="line">    v() = old + n</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SumOfNumbers</span>(<span class="params">numbers: <span class="type">List</span>[<span class="type">Number</span>]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> sum = <span class="keyword">new</span> <span class="type">Var</span>((numbers map (_())).sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Number</span></span><br><span class="line"><span class="keyword">val</span> b = <span class="keyword">new</span> <span class="type">Number</span></span><br><span class="line"><span class="keyword">val</span> s = <span class="keyword">new</span> <span class="type">SumOfNumbers</span>(<span class="type">List</span>(a, b))</span><br><span class="line"></span><br><span class="line">print(s.sum())</span><br><span class="line">a.increase(<span class="number">10</span>)</span><br><span class="line">print(s.sum())</span><br><span class="line">b.increase(<span class="number">20</span>)</span><br><span class="line">print(s.sum())</span><br></pre></td></tr></table></figure>
+<p><code>Var</code> 之间形成了某种依赖关系，当一个 <code>Var</code> 被更新后，所有依赖它的 <code>Var</code> 在读取时都会自动得到最新的值。这一点和观察者模式类似。因此上面的例子中，三次打印 <code>s.sum()</code> 的值是不一样的。FRP 框架会自动管理这中间的依赖关系。</p>
+          <!--noindex-->
           
-            <a id="more"></a>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-4-Timely-Effects/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
@@ -1786,375 +2170,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-3-Data-and-Abstraction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-3-Data-and-Abstraction/" class="post-title-link" itemprop="url">Functional Programming Principles in Scala 笔记 3 Data and Abstraction</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-17 13:28:39" itemprop="dateCreated datePublished" datetime="2019-04-17T13:28:39+08:00">2019-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-18 16:18:33" itemprop="dateModified" datetime="2019-04-18T16:18:33+08:00">2019-04-18</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p>抽象类使用 <code>abstract</code> 修饰，无须对方法进行定义，无法被实例化。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>): <span class="type">Boolean</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>): <span class="type">IntSet</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="继承与实现"><a href="#继承与实现" class="headerlink" title="继承与实现"></a>继承与实现</h2><p>使用 <code>extends</code> 继承其它类：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NonEmpty</span>(<span class="params">elem: <span class="type">Int</span>, left: <span class="type">IntSet</span>, right: <span class="type">IntSet</span></span>) <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) =</span><br><span class="line">    <span class="keyword">if</span> (x &lt; elem) left contains x</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; elem) right contains x</span><br><span class="line">    <span class="keyword">else</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) =</span><br><span class="line">    <span class="keyword">if</span> (x &lt; elem) <span class="keyword">new</span> <span class="type">NonEmpty</span>(elem, left include x, right)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (x &gt; elem) <span class="keyword">new</span> <span class="type">NonEmpty</span>(elem, left, right include x)</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="keyword">new</span> <span class="type">Empty</span>, <span class="keyword">new</span> <span class="type">Empty</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果没有指定继承哪个类，则继承自 <code>Object</code> 类。</p>
-<p>如果在子类中要定义的东西已经在父类中被定义了，则必须加上 <code>override</code> 修饰：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="keyword">new</span> <span class="type">Empty</span>, <span class="keyword">new</span> <span class="type">Empty</span>)</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span> </span>= <span class="string">"&#123;&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果要定义的东西在父类中是抽象的，那么加不加 <code>override</code> 都可以。</p>
-<h2 id="Object"><a href="#Object" class="headerlink" title="Object"></a>Object</h2><p>Scala 提供了 object 这种抽象，可以认为是在语言层面上直接提供了单例。比如上例中实际上只要全局有一个 <code>Empty</code> 就可以了。只要将 <code>class</code> 换成 <code>object</code>；此外，<code>object</code> 不支持 <code>new</code>，只要使用类型名就可以访问唯一的实例：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Empty</span> <span class="keyword">extends</span> <span class="title">IntSet</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">contains</span></span>(x: <span class="type">Int</span>) = <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">include</span></span>(x: <span class="type">Int</span>) = <span class="keyword">new</span> <span class="type">NonEmpty</span>(x, <span class="type">Empty</span>, <span class="type">Empty</span>)</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span> </span>= <span class="string">"&#123;&#125;"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="程序入口"><a href="#程序入口" class="headerlink" title="程序入口"></a>程序入口</h2><p>如果建立了一个带有以下方法的 <code>object</code>：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Foo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = ???</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译后可以直接使用 <code>scala Foo</code> 来将对应的 <code>main</code> 方法作为程序入口点。</p>
-<h2 id="模块系统"><a href="#模块系统" class="headerlink" title="模块系统"></a>模块系统</h2><p>使用 <code>package</code> 来声明一个包。</p>
-<p>外部要使用这个包中的内容时要写出类的完整路径。可以通过 <code>import</code> 语句避免掉这种麻烦。</p>
-<p><code>import</code> 时可以使用通配符 <code>_</code>，或者使用 <code>{..., ...}</code> 的语法一次导入多个类。</p>
-<p>Scala 程序中有些东西是自动导入的，包括：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scala._</span><br><span class="line"><span class="keyword">import</span> java.lang._</span><br><span class="line"><span class="keyword">import</span> scala.<span class="type">Predef</span>._</span><br></pre></td></tr></table></figure>
-<p>这些包中包括 <code>require</code>，<code>assert</code> 等。</p>
-<h2 id="Traits"><a href="#Traits" class="headerlink" title="Traits"></a>Traits</h2><p>Scala 是单继承的。Scala 中的类只能继承自一个类，但是可以使用 <code>with</code> 继承多个 traits。相当于 Ruby 中的 mixin。</p>
-<p>实际上：</p>
-<blockquote>
-<p>If you have multiple classes or traits to inherit, the first one is always <code>extends</code>, and the following &gt;=0 <code>class</code>/<code>trait</code> to be <code>with</code>s.</p>
-</blockquote>
-<p>Java 中的接口和 Scala 中的 trait 类似，区别在于 trait 可以含有自己的状态以及具体的方法。Trait 比类弱的地方在于它本身不能单独被构造，没有构造参数。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-3-Data-and-Abstraction/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/" class="post-title-link" itemprop="url">Functional Programming Principles in Scala 笔记 2 Higher Order Functions</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-17 13:28:30" itemprop="dateCreated datePublished" datetime="2019-04-17T13:28:30+08:00">2019-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-18 12:00:34" itemprop="dateModified" datetime="2019-04-18T12:00:34+08:00">2019-04-18</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>高阶函数是参数或者返回值是函数的函数。语法：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(f: <span class="type">Int</span> =&gt; <span class="type">Int</span>, a: <span class="type">Int</span>, b: <span class="type">Int</span>): <span class="type">Int</span> =</span><br><span class="line">  <span class="keyword">if</span> (a &gt; b) <span class="number">0</span></span><br><span class="line">  <span class="keyword">else</span> f(a) + sum(f, a + <span class="number">1</span>, b)</span><br></pre></td></tr></table></figure>
-<h2 id="匿名函数"><a href="#匿名函数" class="headerlink" title="匿名函数"></a>匿名函数</h2><p>Scala 中的匿名函数的语法为</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(x: <span class="type">Int</span>, y: <span class="type">Int</span>) =&gt; x + y</span><br></pre></td></tr></table></figure>
-<p>如果参数的类型可以被编译器推断，那么它们也是可以省略的。</p>
-<h2 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h2><p>Scala 中定义柯里化的函数只需要在定义和使用时在函数名后面用多个括号：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mapInt</span></span>(f: <span class="type">Int</span> =&gt; <span class="type">Int</span>)(xs: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">List</span>[<span class="type">Int</span>] =</span><br><span class="line">  <span class="keyword">if</span> (xs.isEmpty) <span class="type">List</span>() <span class="keyword">else</span> f(xs.head) :: mapInt(f)(xs.tail)</span><br></pre></td></tr></table></figure>
-<p>出于某些我现在不知道的原因，把偏函数赋给变量时要在不带参数的部分写上 <code>_</code>：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> doubler = mapInt(x =&gt; <span class="number">2</span> * x) _</span><br></pre></td></tr></table></figure>
-<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>仿照如下的例子定义一个类：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>)</span></span><br></pre></td></tr></table></figure>
-<p>此时会得到类型 <code>Rational</code> 和对应的构造函数 <code>Rational</code>。二者名字相同，但是 Scala 会自己加以区分。</p>
-<p>使用</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
-<p>来构造类的 object。</p>
-<p>不过，无法通过 <code>a.x</code> 来访问构造时传入的参数。</p>
-<h3 id="类的成员"><a href="#类的成员" class="headerlink" title="类的成员"></a>类的成员</h3><p>扩展上面的例子，加入两个成员：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>现在可以使用这些成员了，它们实际上是不带参数的函数：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Rational</span>(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">print(a.numer)</span><br><span class="line">print(a.denom)</span><br></pre></td></tr></table></figure>
-<p>实际上将前面定义中的 <code>def</code> 换成 <code>val</code> 也是可以的。</p>
-<p>自然，类里面是可以定义带参数的方法的：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Rational</span>(<span class="params">x: <span class="type">Int</span>, y: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">numer</span> </span>= x</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">denom</span> </span>= y</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span></span>(that: <span class="type">Rational</span>) = <span class="keyword">new</span> <span class="type">Rational</span>(</span><br><span class="line">    numer * that.denom + that.numer * denom, denom * that.denom</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>类中可以通过访问 <code>this</code> 来获取当前实例。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-2-Higher-Order-Functions/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2201,7 +2216,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">116</span>
+                    <span class="site-state-item-count">118</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
