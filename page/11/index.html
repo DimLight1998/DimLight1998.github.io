@@ -352,6 +352,220 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-4/" class="post-title-link" itemprop="url">编译原理慕课笔记 4</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:16:28" itemprop="dateCreated datePublished" datetime="2018-11-23T16:16:28+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-1"><a href="#语法分析-1" class="headerlink" title="语法分析-1"></a>语法分析-1</h1><h2 id="自顶向下分析概述"><a href="#自顶向下分析概述" class="headerlink" title="自顶向下分析概述"></a>自顶向下分析概述</h2><p>语法分析的目的就是根据已有的 token，在给定的文法下找到对应的分析树。我们至少有两个策略，一个是找到如何 <em>推导</em> 出这个词法单元串，另一个是找到这个词法单元串如何 <em>归约</em> 到初始符号，这两种做法分别叫做 <strong>自顶向下分析</strong> 和 <strong>自底向上分析</strong>。</p>
+<p>使用自顶向下分析时，每一步中都要做两个选择，一个是 <strong>替换当前句型中的哪个非终结符</strong>，另一个是 <strong>将这个非终结符替换为哪个候选式</strong>（一个非终结符的多个产生式称为它的 <strong>候选式</strong>）。</p>
+<h3 id="最左推导与最右推导"><a href="#最左推导与最右推导" class="headerlink" title="最左推导与最右推导"></a>最左推导与最右推导</h3><p>如果推导过程中总是将句型中最左边的非终结符替换为它的候选式，这样的推导过程称作是 <strong>最左推导</strong>，它的逆过程称为 <strong>最右归约</strong>（注意最右归约总是将最右边可以进行归约的部分进行归约）。一个文法通过最左推导得到的句型称为 <strong>最左句型</strong>。</p>
+<p>同样的，可以定义 <strong>最右推导</strong>、<strong>最左归约</strong> 以及 <strong>最右句型</strong>。</p>
+<p>当我们使用自底向上的分析时，会使用最左归约，因此最左归约过程又称为 <strong>规范归约</strong>，对应地，最右推导被称为是 <strong>规范推导</strong>。</p>
+<p>给定一个句型，它的最左推导和最右推导都是唯一的。</p>
+<h3 id="使用最左推导进行自顶向下分析"><a href="#使用最左推导进行自顶向下分析" class="headerlink" title="使用最左推导进行自顶向下分析"></a>使用最左推导进行自顶向下分析</h3><p>因为词法单元流是从左到右生成的，使用自顶向下分析时一般采用的是最左推导。工作方式如下</p>
+<ul>
+<li>使用最左推导，每次从当前的句型中选择最左边的非终结符进行推导（这解决了替换哪个终结符的问题）。</li>
+<li>通过查看右边的若干个词法单元（通常是 1 个）来确定要推导为哪个候选式（这解决了替换为哪个候选式的问题，注意不一定总是可以一次成功）。</li>
+<li>不断进行上述的过程，如果初始符号可以完全推导开，则表明语法分析成功，否则失败。当成功的时候得到的分析树就是需要的分析树。</li>
+</ul>
+<p>实现上要使用一个叫做 <strong>递归下降分析</strong> 的技术，这个技术叫这个名字估计就是因为分析树就是是以递归形式展开的，而展开的时候层数越多越往下。</p>
+<p>递归下降分析中，我们需要为每个非终结符定义一个对应的 <strong>过程</strong>。这个过程的一般套路是这样的（假设我们要当前的非终结符是 $A$）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">A</span><span class="params">()</span> </span>&#123;</span><br><span class="line">   	选择 A 的一个产生式 A -&gt; X_1 X_2 X_3 ... X_k;</span><br><span class="line">   	<span class="keyword">for</span> i in <span class="number">1.</span>.k &#123;</span><br><span class="line">        <span class="keyword">if</span> (X_i 是一个非终结符) &#123;</span><br><span class="line">            调用 X_i 对应的过程 X_i();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (X_i 等于当前的输入符号) &#123;</span><br><span class="line">            读取当前的输入符号;</span><br><span class="line">        &#125; esle &#123;</span><br><span class="line">            报错;</span><br><span class="line">        &#125;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过调用初始符号对应的过程就可以对整个程序进行语法分析。</p>
+<p>其中选择产生式这一步不一定正好就能一次选对。如果一次无法选对的话就需要进行 <strong>回溯</strong> 然后选择其它的候选式，这个过程会降低语法分析的效率。使用了回溯的分析器叫做不确定性分析器。</p>
+<p>我们可以通过设计合适的文法来避免使用回溯。<strong>预测分析</strong> 是递归下降技术的一个特例，它是确定性的，它通过在词法单元流中向后看 $k$ 个符号来选择当前 <strong>正确</strong> 的候选式。使用了预测分析后可以避免回溯（因为每次都选择了正确的候选式），对应的文法称作是 $LL(k)$ 文法。通常来说 $k = 1$。</p>
+<h2 id="文法转换"><a href="#文法转换" class="headerlink" title="文法转换"></a>文法转换</h2><p>有些文法在使用自顶向下分析时会遇到问题，有的问题来自于一个非终结符的候选式中存在前缀相同的候选式（导致如果向前看的个数少的话会不知道要选择哪个候选式），有的问题来自于 <strong>左递归的文法</strong> 会让分析器进入无限循环。</p>
+<h3 id="提取左公因子"><a href="#提取左公因子" class="headerlink" title="提取左公因子"></a>提取左公因子</h3><p>对于第一个问题我们可以 <strong>提取左公因子</strong>。提取左公因子的算法接收一个文法，输出的是不含左公因子的等价文法。这个算法很简单，就是对于每个非终结符，找到它的两个含有非平凡左公因子的候选式并求出最长左公因子，然后提取出来。重复进行下去，直到所有的产生式都没有公因子为止。通用的形式为：</p>
+<script type="math/tex; mode=display">
+A\rightarrow \alpha\beta_1|\alpha\beta_2|\cdots|\alpha\beta_n|\gamma_1|\gamma_2|\cdots|\gamma_m \\</script><p>被替换为</p>
+<script type="math/tex; mode=display">
+A\rightarrow \alpha A'|\gamma_1|\gamma_2|\cdots|\gamma_m \\
+A'\rightarrow \beta_1|\beta_2|\cdots|\beta_n</script><h3 id="消除左递归文法"><a href="#消除左递归文法" class="headerlink" title="消除左递归文法"></a>消除左递归文法</h3><p>所谓的左递归文法指的是存在一个串 $\alpha$ 使得 $A\rightarrow^+ A\alpha$，也仅是经过若干步推导后，$A$ 可以推导出一个以自己开头的句型。如果这个推导过程一步就可以完成，那么称为是 <strong>直接左递归</strong>，否则如果需要多步推导是称为 <strong>间接左递归</strong>（零步推导是平凡的，不考虑）。</p>
+<p><strong>对于一个简单的直接左递归产生式</strong>，可以将它转化成右递归产生式。对于产生式 $A\rightarrow A\alpha|\beta$，如果 $\alpha\neq\epsilon$ 且 $\beta$ 不以 $A$ 开头，那么这个产生式实际上等价于 $A\rightarrow\beta A&#39;;A&#39;\rightarrow\alpha A&#39;|\epsilon$。</p>
+<p>更加一般的形式是：</p>
+<script type="math/tex; mode=display">
+A\rightarrow A\alpha_1|A\alpha_2|\cdots|A\alpha_n|\beta_1|\beta_2|\cdots|\beta_m(\alpha_i\neq\epsilon, A\ \mbox{is not prefix of}\ \beta_j)</script><p>等价于</p>
+<script type="math/tex; mode=display">
+A \rightarrow \beta_1A'|\beta_2A'|\cdots|\beta_mA' \\
+A' \rightarrow\alpha_1A'|\alpha_2A'|\cdots|\alpha_nA'|\epsilon</script><p>对于 <strong>间接左递归</strong> 的情况，可以考虑将一个产生式带入另一个产生式当中以破坏掉环形的产生式依赖关系，这样做了之后可以对其中一个产生式消除掉左递归，然后就不会有左递归出现了。</p>
+<p>消除左递归的代价是引入新的非终结符和 $\epsilon$ 产生式。</p>
+<h2 id="LL-1-文法"><a href="#LL-1-文法" class="headerlink" title="$LL(1)$ 文法"></a>$LL(1)$ 文法</h2><h3 id="S-文法"><a href="#S-文法" class="headerlink" title="S 文法"></a>S 文法</h3><p>S 文法又叫作 <strong>简单的确定性文法</strong>。它要求每个产生式必须以终结符开头，并且同一个非终结符的所有产生式的开头的终结符不能相同。S 文法的这个要求就使得 S 文法中的产生式不能包括 $\epsilon$ 产生式。S 文法可以很方便地构造出预测分析器。</p>
+<h3 id="含有-epsilon-产生式的文法"><a href="#含有-epsilon-产生式的文法" class="headerlink" title="含有 $\epsilon$ 产生式的文法"></a>含有 $\epsilon$ 产生式的文法</h3><p><strong>对于每个非终结符</strong>，可以给它定义一个 <strong>后继符号集</strong>。后继符号集是终极符的集合，一个终结符 $a$ 如果在 $A$ 的后继符号集中，就必然有从初始符号 $S$ 开始的某个推导，使得 $S\Rightarrow^\star \alpha Aa\beta$，即 $a$ 需要在某个合法的句型中为 $A$ 的直接后继。特别地，如果 $A$ 在某个句型中是最后一个符号（后面没有任何终极符或非终结符），则 $$$（表示句子的结尾）也在 $A$ 的后继符号集中。$A$ 的后继符号集记作是 $A$ 的 Follow 集。</p>
+<p><strong>对于每个产生式</strong>，可以定义产生式的 <strong>可选集</strong>。可选集是终极符或者非终结符的集合，一个符号 $x$ 如果在某个产生式的可选集当中，就表明如果当前正在从某个句型开始推导并且输入符号为 $x$，则可以选用这个产生式。可选集记作 Select 集。以下是两个例子：</p>
+<ul>
+<li>Select($A\rightarrow a\beta$) = $\{a\}$：只有在输入符号是 $a$ 的时候才可能选用这个产生式。</li>
+<li>Select($A\rightarrow\epsilon$) = Follow($A$)：只要输入符号在 $A$ 的 Follow 集中就可以使用这个产生式。</li>
+</ul>
+<p>再看定义，所谓的 <em>输入符号</em> 指的是当 $A$ 是最左的符号，需要选择一个产生式进行推导时，我们要看 $A$ 右边的终结符决定使用哪个产生式。对于 $A$ 的每个产生式，只有这个终结符位于该产生式的 Select 集中时，我们才可能使用这个产生式。</p>
+<p>通过引入这个概念可以方便引入含有 $\epsilon$ 产生式的文法，其中的一种叫做 <strong>q 文法</strong>，该文法要求每个产生式的右边要么是 $\epsilon$ 要么以不同的终极符开始；此外，同一个非终结符的所有产生式的 Select 集应该两两不交（这个好理解，如果某两个 Select 相交，那么对于交集中的某个元素，当它是输入符号时，就无法确定使用哪个产生式）。<strong>q 文法产生式不能以非终结符开始。</strong></p>
+<h3 id="产生式可以以非终结符开始的文法"><a href="#产生式可以以非终结符开始的文法" class="headerlink" title="产生式可以以非终结符开始的文法"></a>产生式可以以非终结符开始的文法</h3><p><strong>对于每个串</strong>（一个串一般是个句型），我们可以定义 <strong>串首终结符集合</strong>。这个集合是终结符的集合，一个终结符 $a$ 如果在 $\alpha$ 的串首终结符集中，那么有 $\alpha \Rightarrow ^\star a\beta$。特别地，如果 $\alpha\Rightarrow^\star\epsilon$，则 $\epsilon$ 也在这个集合中。串首终结符集合称为 $a$ 的 First 集。</p>
+<p>First 集、Follow 集和 Select 集的性质：</p>
+<ul>
+<li>$\epsilon \notin \mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=\mbox{First}(\alpha)$：如果一个串 $\alpha$ 无法推导出空串，那么当它作为产生式的右部时，只有这个串的串首终结符作为输入符号的时候才能考虑使用该产生式。</li>
+<li>$\epsilon\in\mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=(\mbox{First}(\alpha)-\{\epsilon\})\cup\mbox{Follow}(A)$：如果一个串 $\alpha$ 可以产生空串，那么当它作为产生式的右部时，它的串首终结符或者产生式的左部的后继符号集总的元素作为输入符号时都可以使用该产生式。</li>
+</ul>
+<p>这两个性质还比较显然，上述的两个性质也可以看作是 Select 集的定义。</p>
+<p>由此可以定义 $LL(1)$ 文法，其正式的定义如下。</p>
+<p>如果 $G$ 是 $LL(1)$ 文法，当且仅当 $G$ 中的任意具有两个相同左部的生成式 $A\rightarrow\alpha|\beta$，满足以下三者之一：</p>
+<ul>
+<li>$\epsilon\notin\mbox{First}(\alpha),\epsilon\notin\mbox{First}(\beta),\mbox{First}(\alpha)\cap\mbox{First}(\beta) =\varnothing$。解释：如果 $\alpha$ 和 $\beta$ 都不能推导出空串，那么它们的串首符号集不能相交，否则，无法决定相交元素为输入符号时选择哪个产生式。</li>
+<li>$\epsilon\in\mbox{First}(\alpha), \epsilon\notin\mbox{First}(\beta), \mbox{First}(\beta)\cap\mbox{Follow}(A)=\varnothing$。解释：如果 $\alpha$ 可以推导出空串，那么 $\beta$ 必须不能推导出空串。并且 $\beta$ 的串首符号集和 $A$ 的后继符号集不能相交，否则，当交集中的某个元素作为输入符号时，无法断决是使用 $\alpha$ 还是使用 $\beta$ 作为产生式。</li>
+<li>$\epsilon\in\mbox{First}(\beta), \epsilon\notin\mbox{First}(\alpha), \mbox{First}(\alpha)\cap\mbox{Follow}(A)=\varnothing$。这个与上面的对偶。</li>
+</ul>
+<p>不可能出现 $\alpha$ 和 $\beta$ 都能推导出空串的情况。</p>
+<p>$LL(1)$ 文法的同一个非终结符的多个产生式的 Select 集不会相交，因此还是可以构造出预测分析器。</p>
+<hr>
+<p>上面提到的三个文法都可以构造预测分析器，不过三个文法的方便程度依次增强。q 文法不支持产生式右部以非终结符开头，但是 $LL(1)$ 文法是可以的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1936,179 +2150,6 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/06/从零开始搞懂异步/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/09/06/从零开始搞懂异步/" class="post-title-link" itemprop="url">从零开始搞懂异步</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-06 18:46:52" itemprop="dateCreated datePublished" datetime="2018-09-06T18:46:52+08:00">2018-09-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:29:40" itemprop="dateModified" datetime="2019-03-11T15:29:40+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="从零开始搞懂异步"><a href="#从零开始搞懂异步" class="headerlink" title="从零开始搞懂异步"></a>从零开始搞懂异步</h1><p>之前小学期学 NodeJS 的时候就被异步搞得很头疼，过几天的 Python 自学报告就打算写异步编程了。现在我打算从最基础的地方开始弄懂异步和与其相关的一些概念。</p>
-<h2 id="阻塞与非阻塞、同步与异步、并发与并行"><a href="#阻塞与非阻塞、同步与异步、并发与并行" class="headerlink" title="阻塞与非阻塞、同步与异步、并发与并行"></a>阻塞与非阻塞、同步与异步、并发与并行</h2><ul>
-<li><strong>阻塞</strong>：程序的某个线程进行了某个调用后如果这个线程要等着运行结果，则称为线程被阻塞。（虽然 CPU 可以把它换下来，但是这个线程依然是阻塞的。）</li>
-<li><strong>非阻塞</strong>：程序的某个线程进行了某个调用后不等结果出来继续运行，则称为非阻塞。</li>
-<li><strong>同步</strong>：进行了某个调用后，这个调用不是立即返回的，可能需要等一段时间，一旦调用返回就得到了希望得到的记过，则称这种情况为同步调用。</li>
-<li><strong>异步</strong>：进行了某个调用后，这个调用立即返回，但是返回值不是希望得到的内容的全部。过一段时间之后可能通过回调等方式处理了真正要得到的记过，这种情况称为异步调用。</li>
-<li><strong>并发</strong>：设计上能够有同时处理多件事情的能力，宏观上这些事情是同时在做的，但是实际不见得就是物理上同时处理的。</li>
-<li><strong>并行</strong>：物理上同时做多件事情。</li>
-</ul>
-<p>按我的理解，阻塞/非阻塞描述的是程序的状态，同步/异步描述的是接口的行为，并发是一种能力，并行是一种现象。</p>
-<p>只有同步阻塞、同步非阻塞（某种基于轮询的搞法）、异步这三种组合。</p>
-<p>另外我见到一个说法是同步是不同程序单元进行通信来协调一致的状态，异步是不同程序单元可以不通信就能完成任务的状态。为什么我们需要异步，因为异步可以实现非阻塞。</p>
-<p>深究这些定义可能没什么卵用。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/09/06/从零开始搞懂异步/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2155,7 +2196,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

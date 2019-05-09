@@ -352,6 +352,176 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/" class="post-title-link" itemprop="url">Neural Networks and Deep Learning 笔记 4 Deep Neural Networks</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-01 21:50:06" itemprop="dateCreated datePublished" datetime="2019-02-01T21:50:06+08:00">2019-02-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:24:14" itemprop="dateModified" datetime="2019-03-11T15:24:14+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h1><h2 id="Deep-Neural-Networks-1"><a href="#Deep-Neural-Networks-1" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h2><h3 id="Deep-L-layer-neural-network"><a href="#Deep-L-layer-neural-network" class="headerlink" title="Deep L-layer neural network"></a>Deep L-layer neural network</h3><p>将网络层数加深，具有 $L$ 层的神经网络称为 L-layer 神经网络。输入层是第 0 层，但是计算层数的时候不计入总层数。一些记号如下（和之前的大致相同）：</p>
+<ul>
+<li>$n^{[k]}$ 是第 $k$ 层的神经元数目，故 $n^{[0]}$ 即样本的特征维数，对于二分类问题 $n^{[l]} = 1$。</li>
+<li>$z^{[k]}$ 是第 $k$ 层神经元输出的未经过激活函数的值，多样本时为 $Z^{[k]}$。</li>
+<li>$a^{[k]}$ 是第 $k$ 层神经元输出的经过激活函数的值，特别地 $a^{[0]}$ 是样本的特征，二分类问题中 $a^{[l]}$ 是 $\hat y$，多样本时为 $A^{[k]}$。</li>
+<li>$g^{[k]}(x)$ 是第 $k$ 层的激活函数。</li>
+<li>$W^{[k]}$ 是第 $k$ 层的权值，$b^{[k]}$ 是第 $k$ 层的偏移。</li>
+</ul>
+<h3 id="Forward-Propagation-in-a-Deep-Network"><a href="#Forward-Propagation-in-a-Deep-Network" class="headerlink" title="Forward Propagation in a Deep Network"></a>Forward Propagation in a Deep Network</h3><p>这节讲的东西和之前将正向传播几乎一致，没有什么好记录的。</p>
+<p>不同层之间的计算无法完成并行化，如果一个网络层数很深也只能一层一层地算。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-4-Deep-Neural-Networks/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/01/Neural-Networks-and-Deep-Learning-笔记-3-Shallow-Neural-Networks/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2009,185 +2179,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-14/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/23/编译原理慕课笔记-14/" class="post-title-link" itemprop="url">编译原理慕课笔记 14</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-23 16:20:02" itemprop="dateCreated datePublished" datetime="2018-11-23T16:20:02+08:00">2018-11-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="中间代码生成-4"><a href="#中间代码生成-4" class="headerlink" title="中间代码生成-4"></a>中间代码生成-4</h1><h2 id="布尔表达式的回填"><a href="#布尔表达式的回填" class="headerlink" title="布尔表达式的回填"></a>布尔表达式的回填</h2><p>回填指的是在生成跳转语句之类的语句的时候要跳转的目标暂时不能确定，此时会将“生成的跳转语句在哪里”这个信息记录下来，在后续的翻译过程中在适当的时候重新填入跳转目标。</p>
-<p><em>为什么会出现这样的技术，我个人的感觉是使用自底向上进行分析时对语法树的遍历实际上是一种后序遍历，这种遍历其实是不太灵活的（在写完了编译原理的作业后有了这种感觉，对于 ANTLR 来说显然 visitor 模式比 listener 模式具有更高的灵活性，如果采用 listener 模式的话估计也要用回填才能解决跳转目标的问题，但是使用 visitor 模式可以通过指定遍历顺序来避免掉这个问题）。为了能够在保证遍历顺序是一遍后序遍历的情况下生成正确的中间代码就需要引入这种看起来不太自然的技术。</em></p>
-<p>这一节讲的是如何生成复合的布尔表达式，<del>对于这种复合的布尔表达式居然不是使用算符优先级计算出最后的布尔值，而是通过各种跳转来到达最后的目的地址。不是很理解为什么需要使用这么诡异的方式</del> 使用各种跳转来完成计算是为了实现短路求值。</p>
-<p>对于布尔表达式中的每个子表达式，它都有两个综合属性 <code>FalseList</code> 和 <code>TrueList</code>，这是两个集合，元素分别是翻译过程中未填写跳转目标的那些语句的编号（<code>FalseList</code> 中存的是会往假出口跳转的那些语句的编号）。</p>
-<p>一些例子及其解释：</p>
-<ul>
-<li>$B\rightarrow E_1\mbox{relop} E_2\{a_1\}$，其中 $a_1$ 动作为生成两条跳转（不指定目标），第一条在条件为真时执行，放入 $B$ 的 <code>TrueList</code> 中；第二条在条件为假时执行，放入 <code>FalseList</code> 中。注意 $E_1\mbox{relop}E_2$ 已经是“原子性”的了，不会为复合布尔表达式的一部分。</li>
-<li>$B\rightarrow(B_1)\{a_1\}$，将 $B_1$ 的两个综合属性直接复制到 $B$ 中。</li>
-<li>$B\rightarrow B_1 \mbox{ or } MB_2\{a_1\}, M\rightarrow \epsilon\{a_2\}$，其中 $a_2$ 动作是将下一条要生成的语句（实际上就是 $B_2$ 的第一条语句）的编号放在 $M$ 的某个综合属性 <code>quad</code> 中；$a_1$ 动作是将 $M$ 的 <code>quad</code> 属性填入 $B_1$ 的 <code>FalseList</code> 中（这样的话 $B_1$ 为假就会开始判定 $B_2$，并将 $B_1$ 和 $B_2$ 的 <code>TrueList</code> 合并作为 $B$ 的 <code>TrueList</code>（如果两个任意一个满足应该会跳转到 $B$ 的真出口），随后将 $B_2$ 的 <code>FalseList</code> 作为 $B$ 的 <code>FalseList</code>（注意如果执行到了 $B_2$ 的 <code>FalseList</code> 中的某个元素，则必然 $B_1$ 为假）。</li>
-</ul>
-<p>其它情况略去，大致思想就是上面那样。</p>
-<h2 id="控制流语句的回填"><a href="#控制流语句的回填" class="headerlink" title="控制流语句的回填"></a>控制流语句的回填</h2><p>除了布尔表达式，凡是带有跳转的语句都可以使用到回填技术。</p>
-<p>为此，需要对每个语句 $S$（可能是复合语句）设置一个综合属性 <code>NextList</code>，它是一个集合，元素是这个语句翻译出的中间表示的那些跳转指令中，需要跳转到 $S$ 的后续第一条指令的那些跳转指令的编号。</p>
-<p>一些例子和解释：</p>
-<ul>
-<li>$S\rightarrow\mbox{if }B\mbox{ then }M_1S_1N\mbox{ else }M_2S_2\{a_1\}$，其中两个标记非终结符 $M$ 是将生成的下一条语句放入自己的 <code>quad</code> 综合属性中：这个是希望翻译条件跳转语句。$a_1$ 动作是将 $M_1$ 的 <code>quad</code> 填入 $B$ 的 <code>TrueList</code> 中，将 $M_2$ 的 <code>quad</code> 放入 $B$ 的 <code>FalseList</code> 中，将 $S_1,S_2,N$ 的 <code>NextList</code> 合并作为 $S$ 的 <code>NextList</code>。标记非终结符 $N$ 的动作是生成一条未指明目的的跳转语句，并放入自己的 <code>NextList</code> 中（防止 $S_1$ 运行完了之后又开始运行 $S_2$）。</li>
-<li>$S\rightarrow \mbox{while }M_1B\mbox{ do }M_2S_1\{a_1\}$，其中两个标记非终结符 $M$ 是将生成的下一条语句放入自己的 <code>quad</code> 综合属性中：这个是希望翻译循环语句。$a_1$ 动作是将 $M_1$ 的 <code>quad</code> 填入 $S_1$ 的 <code>NextList</code> 中，将 $M_2$ 的 <code>quad</code> 填入 $B$ 的 <code>TrueList</code> 中，将 $B$ 的 <code>FalseList</code> 赋给 $S$ 的 <code>NextList</code>，随后生成一条跳向 $M_1$ 的 <code>quad</code> 的跳转指令。</li>
-<li>$S\rightarrow S_1MS_2\{a_1\}$：两条语句如何进行操作，其实很简单的。$M$ 会生成一条语句放入自己的 <code>quad</code> 属性，$a_1$ 操作就是将 $M$ 的 <code>quad</code> 填入 $S_1$ 的 <code>NextList</code>，将 $S_2$ 的 <code>NextList</code> 作为 $S$ 的 <code>NextList</code>。</li>
-</ul>
-<h2 id="switch-语句的翻译"><a href="#switch-语句的翻译" class="headerlink" title="switch 语句的翻译"></a>switch 语句的翻译</h2><p>这节没什么新的地方，switch 语句的翻译有两种方案：</p>
-<ul>
-<li>逐个翻译各个 case。进入后依次判断各个 case 是否成立，如果成立的话就不跳转开始执行 case 对应的代码，否则跳转到下一个 case 进行判断。执行完对应的 case 后统一跳转到某个出口语句。</li>
-<li>也是逐个翻译各个 case。但是进入后向跳转到一个集中化的专门负责选择 case 的地方，这个地方对各个 case 进行匹配，如果匹配跳转到对应的 case 代码，否则不跳转，匹配下一个 case。这样做有利于生成更加高效的 case 选择指令。</li>
-</ul>
-<h2 id="过程调用语句的翻译"><a href="#过程调用语句的翻译" class="headerlink" title="过程调用语句的翻译"></a>过程调用语句的翻译</h2><p>这节主要讲的就是在进行过程调用的时候可以维护一个参数的队列。对于计算出的每个参数（参数可能是以表达式的形式给出的，因此需要额外的计算代码），将这个参数压入队列中。当所有参数计算完毕后，从队列中取出所有的已计算参数，然后执行过程调用。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2234,7 +2225,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

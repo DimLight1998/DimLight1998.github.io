@@ -352,6 +352,187 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-1-Preparation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/08/TaPL-读书笔记-1-Preparation/" class="post-title-link" itemprop="url">TaPL 读书笔记 1 Preparation</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-08 15:39:34" itemprop="dateCreated datePublished" datetime="2019-05-08T15:39:34+08:00">2019-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-09 19:57:03" itemprop="dateModified" datetime="2019-05-09T19:57:03+08:00">2019-05-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p><strong>TaPL</strong>: Types and Programming Languages</p>
+<p>笔记对应原书 1-2 章。</p>
+</blockquote>
+<h2 id="类型系统"><a href="#类型系统" class="headerlink" title="类型系统"></a>类型系统</h2><h3 id="什么是类型系统"><a href="#什么是类型系统" class="headerlink" title="什么是类型系统"></a>什么是类型系统</h3><p>类型系统本质上是一个轻量级的 <a href="https://en.wikipedia.org/wiki/Formal_methods" target="_blank" rel="noopener">形式化方法</a>，用来拒绝一部分可能存在错误的程序。它不会引入很多复杂性，因此是轻量级的。具体要拒绝具有哪些性质的程序由语言的定义者定夺取舍。</p>
+<p>没有被拒绝的程序一定不会发生某些特定的错误，例如，如果类型系统要求加号两边都是数字，那么程序运行时不可能出现一个数字要加上字符串导致的错误，这种错误在编译阶段就被搞掉了。</p>
+<h3 id="使用类型系统的好处"><a href="#使用类型系统的好处" class="headerlink" title="使用类型系统的好处"></a>使用类型系统的好处</h3><ul>
+<li>检测潜在的错误。</li>
+<li>提高抽象度：使用类型系统会强迫程序员写出更加模块化的程序。</li>
+<li>作为永不过时的文档。</li>
+<li>保障语言安全：安全有各种定义。一个定义方式是程序产生错误的时候（比如数组越界）能够被检测到（Java 会抛异常，因此是安全的；C++ 会继续执行但是后果不确定，因此是危险的；两种分别叫做 <em>trapped error</em> 和 <em>untrapped error</em>）。使用类型系统可以在一定程度上提高语言的安全性，比如在提供了数组抽象的语言中都是通过语言的接口来“安全地”对底层的内存进行操作、提供了函数抽象的语言会帮程序员管理栈帧，而像汇编这种语言就要手动控制内存进行数组操作、函数的调用栈的控制，不安全。</li>
+<li>提高运行效率：例如使用静态类型系统能够在运行时不再操心对象的类型 tag，减少运行时的开销。</li>
+</ul>
+<h2 id="前置数学知识"><a href="#前置数学知识" class="headerlink" title="前置数学知识"></a>前置数学知识</h2><h3 id="集合与关系"><a href="#集合与关系" class="headerlink" title="集合与关系"></a>集合与关系</h3><p>关系是集合的笛卡尔积的子集。</p>
+<p><strong>集合上的谓词可以看作是一元关系 $P$</strong>，对于属于关系 $P$ 的元素，谓词返回真，否则返回假。</p>
+<p>很多东西都可以用关系来建模，例如 $\Gamma\vdash s: T$ 就可以看作是某个三元关系中的元组。</p>
+<p><strong>函数实际上是一个二元关系 $R: S\rightarrow T$</strong>，函数可以是 partial 的（定义域是 $S$ 的真子集）或者 total 的（定义域就是 $S$）。可以使用 $f(x)\uparrow$ 表示函数在 $x$ 上没有定义，用 $f(x)\downarrow$ 表示有定义。</p>
+<h3 id="序"><a href="#序" class="headerlink" title="序"></a>序</h3><p>关系可以有 reflexive，symmetric 和 transitive 性质，比较简单。</p>
+<p>Antisymmetric 说的是两个不同元素构成的二元组不会都满足 $R$：</p>
+<script type="math/tex; mode=display">
+s\ R\ t\land t\ R\ s \rightarrow s = t</script><ul>
+<li>如果一个关系是 reflexive 和 transitive 的，这个关系就是 <em>pre-order</em> 的；</li>
+<li>如果这个关系还是 antisymmetric 的，这个关系就是 <em>partial order</em> 的；</li>
+<li>如果任意两个元素都能进行比较，这个关系就是 <em>total order</em> 的。</li>
+</ul>
+<p>可以使用 $\le$ 和 $\lt$ 来描述 pre-order 关系中的元素，区别是元素能否相同。</p>
+<h3 id="数学归纳法"><a href="#数学归纳法" class="headerlink" title="数学归纳法"></a>数学归纳法</h3><p>数学归纳法不一定是对自然数进行归纳，也可以对由自然数形成的元组进行归纳。对于 <a href="https://zh.wikipedia.org/wiki/数学归纳法#超限归纳法" target="_blank" rel="noopener">超限归纳法</a> 这也是成立的。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/06/形式化验证课程笔记-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -397,12 +578,24 @@
                 
               
 
-              <time title="创建时间：2019-05-06 13:31:37 / 修改时间：16:14:34" itemprop="dateCreated datePublished" datetime="2019-05-06T13:31:37+08:00">2019-05-06</time>
+              <time title="创建时间：2019-05-06 13:31:37" itemprop="dateCreated datePublished" datetime="2019-05-06T13:31:37+08:00">2019-05-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-08 16:40:33" itemprop="dateModified" datetime="2019-05-08T16:40:33+08:00">2019-05-08</time>
               
             
           </span>
@@ -1974,202 +2167,6 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-5-Lists/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-5-Lists/" class="post-title-link" itemprop="url">Functional Programming Principles in Scala 笔记 5 Lists</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-17 13:28:57" itemprop="dateCreated datePublished" datetime="2019-04-17T13:28:57+08:00">2019-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-19 11:43:05" itemprop="dateModified" datetime="2019-04-19T11:43:05+08:00">2019-04-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="List-上的其它操作"><a href="#List-上的其它操作" class="headerlink" title="List 上的其它操作"></a><code>List</code> 上的其它操作</h2><h3 id="普通操作"><a href="#普通操作" class="headerlink" title="普通操作"></a>普通操作</h3><ul>
-<li><code>length</code>，<code>last</code>，<code>init</code>，<code>take</code>，<code>drop</code> 和字面意思一致。</li>
-<li><code>xs(n)</code> 可以取出 <code>xs</code> 的第 n 个元素。</li>
-<li><code>++</code> 连接列表。</li>
-<li><code>reverse</code> 翻转列表。</li>
-<li>用 <code>updated</code>：更新某个位置上的元素，返回一个新的列表。</li>
-<li>用 <code>indexOf</code> 和 <code>contains</code> 寻找元素。</li>
-</ul>
-<h3 id="高阶函数操作"><a href="#高阶函数操作" class="headerlink" title="高阶函数操作"></a>高阶函数操作</h3><p>除了常见的 <code>map</code>、<code>filter</code> 外：</p>
-<ul>
-<li>和 <code>filter</code> 相反的 <code>filterNot</code>。</li>
-<li><code>partition</code> 可以根据谓词将列表分成两部分。</li>
-<li><code>takeWhile</code> 和 <code>dropWhile</code>。</li>
-<li><code>span</code> 结合了 <code>takeWhile</code> 和 <code>dropWhile</code>，但是效率更高，只要一遍遍历。</li>
-</ul>
-<hr>
-<p>列表的 reduction 可以通过 <code>reduceLeft</code> 和 <code>reduceRight</code> 实现。这里可能可以用到 Scala 中的一个 <a href="#匿名函数语法糖">语法糖</a>。</p>
-<p>Reduce 操作不需要初始累加器，而 fold 操作需要。Fold 比 reduce 泛化抽象程度更高，因为 reduce 的累加器和列表的元素类型要相同。</p>
-<h2 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h2><p>Scala 中的元组用小括号进行构造。元组可以作为模式被匹配：<code>val (x, y) = (3, true)</code>。</p>
-<p>Scala 中的元组本质上是 <code>Tuplen[T1, T2, ..., Tn]</code> 的实例，表达式和模式也是类似的。它的实现可能是</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Tuple2</span>[<span class="type">T1</span>, <span class="type">T2</span>](<span class="params">_1: +<span class="type">T1</span>, _2: +<span class="type">T2</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">toString</span> </span>= <span class="string">"("</span> + _1 + <span class="string">","</span> + _2 + <span class="string">")"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因此索引使用的是 <code>_1</code> 和 <code>_2</code> 这种别扭的方式。可以看作是语法盐。</p>
-<h2 id="隐式参数"><a href="#隐式参数" class="headerlink" title="隐式参数"></a>隐式参数</h2><p><strong>这是其它语言中基本没有的规则。</strong>假如我们要写一个通用的 <code>max</code> 函数：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max</span></span>[<span class="type">T</span>](x: <span class="type">T</span>, y: <span class="type">T</span>) = <span class="keyword">if</span> (x &gt; y) x <span class="keyword">else</span> y</span><br></pre></td></tr></table></figure>
-<p>但这么做无法通过编译，因为 <code>&gt;</code> 不一定是 <code>x</code> 的成员（<code>x</code> 类型为 <code>T</code>）。也就是说 <code>T</code> 不一定是可比较的。为此我们要引入某种比较 <code>T</code> 的策略，标准库中的 <code>Ordering</code> trait 提供了这么一个功能：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max</span></span>[<span class="type">T</span>](x: <span class="type">T</span>, y: <span class="type">T</span>)(ord: <span class="type">Ordering</span>[<span class="type">T</span>]) = <span class="keyword">if</span> (ord.gt(x, y)) x <span class="keyword">else</span> y</span><br></pre></td></tr></table></figure>
-<p>现在可以通过编译了。如果想取整数的较大值，只要执行 <code>max(2, 3)(Ordering.Int)</code>；取字符串的较大值只要 <code>max(&quot;foo&quot;, &quot;bar&quot;)(Ordering.String)</code>。其中 <code>Ordering.Int</code> 是 <code>Ordering[Int]</code> 的实例，由标准库自带。</p>
-<p>但是这么做还是太麻烦了。通过使用 <em>隐式参数</em> 可以避免掉 <code>max</code> 的 <code>ord</code> 参数，只要改成：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max</span></span>[<span class="type">T</span>](x: <span class="type">T</span>, y: <span class="type">T</span>)(<span class="keyword">implicit</span> ord: <span class="type">Ordering</span>[<span class="type">T</span>]) = <span class="keyword">if</span> (ord.gt(x, y)) x <span class="keyword">else</span> y</span><br></pre></td></tr></table></figure>
-<p>在调用 <code>max</code> 时，Scala 会自己找一个合适的参数送进去。规则是：</p>
-<ul>
-<li>对应的参数也应该被标记为 <code>implicit</code></li>
-<li>二者类型兼容</li>
-<li>在调用 <code>max</code> 时对 <code>max</code> 是可见的</li>
-</ul>
-<p>如果找到了唯一的参数，则正常编译。如果没有找到或者有多个符合规则，则报错。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/17/Functional-Programming-Principles-in-Scala-笔记-5-Lists/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2216,7 +2213,7 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

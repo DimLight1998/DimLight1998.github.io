@@ -125,10 +125,13 @@
 <meta property="og:site_name" content="Computation &amp; Design">
 <meta property="og:description" content="数据库索引技术索引的概念和作用什么是索引及其特点索引用来在不用遍历所有记录的情况下快速定位所需记录在整个数据库中的位置。它是一种辅助结构，存在与否不改变数据表本身的组织。 索引由一系列 索引项 构成，每个索引项包括 索引字段（记录的被索引字段的值）和 行指针（指向记录的位置）。 存储索引项的文件称为 索引文件，数据库本身称为 主文件。 特点：  一张表上可以对多个不同属性（及其集合）建立多个不同的">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/DeepinScreenshot_select-area_20190423091855.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/DeepinScreenshot_select-area_20190423092724.png">
 <meta property="og:updated_time" content="2019-05-07T01:40:03.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库系统（下）：管理与技术 笔记 2 数据库索引技术">
 <meta name="twitter:description" content="数据库索引技术索引的概念和作用什么是索引及其特点索引用来在不用遍历所有记录的情况下快速定位所需记录在整个数据库中的位置。它是一种辅助结构，存在与否不改变数据表本身的组织。 索引由一系列 索引项 构成，每个索引项包括 索引字段（记录的被索引字段的值）和 行指针（指向记录的位置）。 存储索引项的文件称为 索引文件，数据库本身称为 主文件。 特点：  一张表上可以对多个不同属性（及其集合）建立多个不同的">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/DeepinScreenshot_select-area_20190423091855.png">
 
 
 
@@ -498,7 +501,7 @@
 <h2 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+ 树索引"></a>B+ 树索引</h2><h3 id="什么是-B-树索引"><a href="#什么是-B-树索引" class="headerlink" title="什么是 B+ 树索引"></a>什么是 B+ 树索引</h3><p>B+ 树是一种 <strong>多级索引</strong>：索引还可能是对其它索引的索引。</p>
 <p>B+ 树的每个结点存放 n 个值和 n + 1 个指针，一个结点应当正好放入一个磁盘块当中。</p>
 <p>B+ 树中非叶结点的所有指针都指向下一层的结点，叶结点的指针中，最后一个指针指向下一个叶结点，其它指针指向表中记录位置或者对应的块的位置。因此使用 B+ 树进行索引时，可以进行范围的查询。</p>
-
+<img src="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/DeepinScreenshot_select-area_20190423091855.png">
 <p>B+ 树索引不要求是索引码是排序码，尽管它可以进行范围查询。</p>
 <h3 id="使用-B-树进行索引"><a href="#使用-B-树进行索引" class="headerlink" title="使用 B+ 树进行索引"></a>使用 B+ 树进行索引</h3><p>B+ 树可以建立不同种类的索引，根据需求而定。</p>
 <ul>
@@ -507,7 +510,7 @@
 <li>索引码不是候选键，但是主文件按照索引码排序了。此时可以建立稠密索引。指针最终指向具有相同索引码的第一条记录。</li>
 <li>索引码不是候选键，主文件也没有按照索引码排序。此时可以建立稠密索引，但是要求 B+ 树结点中存储边界的那些值允许重复，就像这样：</li>
 </ul>
-
+<img src="/2019/03/01/数据库系统（下）：管理与技术-笔记-2-数据库索引技术/DeepinScreenshot_select-area_20190423092724.png">
 <h3 id="B-树"><a href="#B-树" class="headerlink" title="B 树"></a>B 树</h3><p>B 树与 B+ 树的区别是，B 树的非叶结点上也可能有指向记录或块的指针，同时索引字段的边界在整棵树中只出现一次（B+ 树则可能出现多次）。</p>
 <h2 id="B-树键值插入与删除-结点分裂与合并操作示例"><a href="#B-树键值插入与删除-结点分裂与合并操作示例" class="headerlink" title="B+ 树键值插入与删除-结点分裂与合并操作示例"></a>B+ 树键值插入与删除-结点分裂与合并操作示例</h2><blockquote>
 <p>本节无笔记，基本和数据结构里面的 B+ 树的内容差不多。</p>
@@ -637,7 +640,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

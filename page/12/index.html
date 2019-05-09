@@ -352,6 +352,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/06/从零开始搞懂异步/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/09/06/从零开始搞懂异步/" class="post-title-link" itemprop="url">从零开始搞懂异步</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-09-06 18:46:52" itemprop="dateCreated datePublished" datetime="2018-09-06T18:46:52+08:00">2018-09-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:29:40" itemprop="dateModified" datetime="2019-03-11T15:29:40+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="从零开始搞懂异步"><a href="#从零开始搞懂异步" class="headerlink" title="从零开始搞懂异步"></a>从零开始搞懂异步</h1><p>之前小学期学 NodeJS 的时候就被异步搞得很头疼，过几天的 Python 自学报告就打算写异步编程了。现在我打算从最基础的地方开始弄懂异步和与其相关的一些概念。</p>
+<h2 id="阻塞与非阻塞、同步与异步、并发与并行"><a href="#阻塞与非阻塞、同步与异步、并发与并行" class="headerlink" title="阻塞与非阻塞、同步与异步、并发与并行"></a>阻塞与非阻塞、同步与异步、并发与并行</h2><ul>
+<li><strong>阻塞</strong>：程序的某个线程进行了某个调用后如果这个线程要等着运行结果，则称为线程被阻塞。（虽然 CPU 可以把它换下来，但是这个线程依然是阻塞的。）</li>
+<li><strong>非阻塞</strong>：程序的某个线程进行了某个调用后不等结果出来继续运行，则称为非阻塞。</li>
+<li><strong>同步</strong>：进行了某个调用后，这个调用不是立即返回的，可能需要等一段时间，一旦调用返回就得到了希望得到的记过，则称这种情况为同步调用。</li>
+<li><strong>异步</strong>：进行了某个调用后，这个调用立即返回，但是返回值不是希望得到的内容的全部。过一段时间之后可能通过回调等方式处理了真正要得到的记过，这种情况称为异步调用。</li>
+<li><strong>并发</strong>：设计上能够有同时处理多件事情的能力，宏观上这些事情是同时在做的，但是实际不见得就是物理上同时处理的。</li>
+<li><strong>并行</strong>：物理上同时做多件事情。</li>
+</ul>
+<p>按我的理解，阻塞/非阻塞描述的是程序的状态，同步/异步描述的是接口的行为，并发是一种能力，并行是一种现象。</p>
+<p>只有同步阻塞、同步非阻塞（某种基于轮询的搞法）、异步这三种组合。</p>
+<p>另外我见到一个说法是同步是不同程序单元进行通信来协调一致的状态，异步是不同程序单元可以不通信就能完成任务的状态。为什么我们需要异步，因为异步可以实现非阻塞。</p>
+<p>深究这些定义可能没什么卵用。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/09/06/从零开始搞懂异步/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/09/03/计算几何学习笔记-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1893,7 +2066,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">118</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2483,6 +2656,8 @@
 
   
   
+    
+      
     
       
     
