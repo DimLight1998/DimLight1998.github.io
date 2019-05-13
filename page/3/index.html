@@ -352,6 +352,190 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/" class="post-title-link" itemprop="url">Sequence Models 笔记 3 Sequence models & Attention mechanism</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-23 23:44:22" itemprop="dateCreated datePublished" datetime="2019-03-23T23:44:22+08:00">2019-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-15 20:04:59" itemprop="dateModified" datetime="2019-04-15T20:04:59+08:00">2019-04-15</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Sequence-models-amp-Attention-mechanism"><a href="#Sequence-models-amp-Attention-mechanism" class="headerlink" title="Sequence models &amp; Attention mechanism"></a>Sequence models &amp; Attention mechanism</h1><h2 id="Various-sequence-to-sequence-architectures"><a href="#Various-sequence-to-sequence-architectures" class="headerlink" title="Various sequence to sequence architectures"></a>Various sequence to sequence architectures</h2><h3 id="Basic-Models"><a href="#Basic-Models" class="headerlink" title="Basic Models"></a>Basic Models</h3><p>Sequence to Sequence 结构可以将一个序列转换到另一个序列。一个简单的模型是使用 many-to-one 的 RNN 作为 encoder 提取出序列的特征，然后使用 one-to-many 的 RNN 作为 decoder 将特征再次变换到序列。</p>
+<p>另一个应用是 image captioning，即给定一张图片要求网络输出对这张图片的描述。此时可以先使用一个 CNN 提取特征，然后使用 RNN 产生文本。</p>
+<h3 id="Picking-the-most-likely-sentence"><a href="#Picking-the-most-likely-sentence" class="headerlink" title="Picking the most likely sentence"></a>Picking the most likely sentence</h3><p>以 Sequence to Sequence 中的机器翻译为例。机器翻译可以看作是带有条件的 <strong>语言模型</strong>，语言模型可以对给定的句子估计出它出现在语言中的概率，也可以用来产生一些句子，而机器翻译则可以看作是其对应的“条件概率”版本——给定源句子作为条件，机器翻译模型可以对任意的目标语言的句子的概率进行评估，也可以用来生成源语言对应的目标语言。语言模型的初始输入是一个全零的向量，而机器翻译中完成翻译的 decoder 部分的初始输入是 encoder 得到的特征。</p>
+<p>在生成的过程中，我们希望能够直接得到最优的句子。因此不像语言模型中每次选词的时候按照概率进行选择，机器翻译要求选出的词的序列尽可能好，这就需要某种搜索策略。</p>
+<p>较简单的搜索策略就是贪心搜索，每次都选取概率最高的那个词。但是这种策略工作得并不好，通过使用 <em>beam search</em> （中文为 <em>集束搜索</em>）可以获得更好的结果。</p>
+<h3 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h3><p>集束搜索是贪心搜索的泛化版本。它有一个参数用来控制搜索的宽度 $B$。</p>
+<p>在使用集束搜索进行目标语言的生成时，首先选定第一个词。Decoder 会给出第一个词的概率分布，选出概率最大的 $B$ 个词，记录下来。然后生成第二个词，对于之前记录下的 $B$ 个词，每个都进入网络作为输入再生成 $B$ 个词，此时一共有 $B^2$ 个短序列，每个序列有两个词，同时关联了自己的概率。此时从这 $B^2$ 个短序列中选出 $B$ 个最优的即可。然后选择第三个词。依此类推。</p>
+<p>可以看到集束搜索本质上还是一种贪心算法，不过它在每一步时考虑了一定的分支情况。它得到的结果一般会比普通的贪心算法好很多。</p>
+<p>当 $B = 1$ 时，集束搜索会退化到贪心算法。</p>
+<h3 id="Refinements-to-Beam-Search"><a href="#Refinements-to-Beam-Search" class="headerlink" title="Refinements to Beam Search"></a>Refinements to Beam Search</h3><h4 id="Avoid-underflow"><a href="#Avoid-underflow" class="headerlink" title="Avoid underflow"></a>Avoid underflow</h4><p>按照贝叶斯公式，集束搜索中需要求的是 $\displaystyle{\arg\max\limits_y\prod\limits_{t = 1}^{T_y}P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })}$。但是，随着序列的增长，这个值可能很小以至于下溢出，因此常常通过取对数解决这个问题：$\displaystyle{\arg\max\limits_y\sum\limits_{t = 1}^{T_y}\log P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })}$。</p>
+<h4 id="Length-normalization"><a href="#Length-normalization" class="headerlink" title="Length normalization"></a>Length normalization</h4><p>如果按照上述公式进行计算，那么较短的句子出现在语言中的概率要比那些更长的句子要高。因为每增加一个词，整体的概率就会乘以一个在 0 到 1 之间的值。在使用语言模型进行文本生成时，结束生产的条件是得到了 <code>&lt;EOS&gt;</code>，因此这个问题是无所谓的。但是在集束搜索中因为要使用这个概率来选择“较好”的那些句子，所以会产生问题，算法会倾向于选择那些更短的句子。</p>
+<p>这可以通过对句子的长度进行归一化来缓解，使用修正后的概率对句子出现的可能性进行度量：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\arg\max\limits_y\frac{1}{|T_y|^\alpha}\sum\limits_{t = 1}^{T_y}\log P(y^{\langle t \rangle} |x , y^{\langle 1 \rangle}, \dots, y^{\langle t - 1 \rangle })
+\end{aligned}</script><p>其中 $\displaystyle{\alpha}$ 是超参数，一般选择 0.7。</p>
+<h4 id="Choose-parameters"><a href="#Choose-parameters" class="headerlink" title="Choose parameters"></a>Choose parameters</h4><p>在集束搜索中，$B$ 的选择会导致算法在结果和性能上的差异。$B$ 越高，结果越好，但是计算时间越长。</p>
+<p>通常使用 10 到 50 之间的 $B$ 值。随着 $B$ 的增长，计算时间是线性增长的，但是效果变好的趋势会越来越缓慢。</p>
+<h3 id="Error-analysis-in-beam-search"><a href="#Error-analysis-in-beam-search" class="headerlink" title="Error analysis in beam search"></a>Error analysis in beam search</h3><p>当机器翻译的模型效果较差时，这种情况可能是集束搜索造成的，也可能是 RNN 本身的问题。前者可以通过增加搜索宽度解决，后者可以通过增加网络的复杂程度解决。如何知道到底是什么造成的问题？</p>
+<p>对于单条训练数据，设源文本是 $x$，人工翻译的文本是 $y^\ast$（一个相当好的结果），机器翻译得到的结果是 $\hat y$。在机器翻译中，RNN 可以对给定了 $x$ 后的任意目标语言序列进行概率评估，而集束搜索则找到了其中概率较高（但不一定是最高）的一个序列。现在，只要让 RNN 在给定 $\displaystyle{x}$ 的情况下对 $\displaystyle{y^\ast}$ 和 $\displaystyle{\hat y}$ 求概率。如果发现 $\displaystyle{P(y^\ast|x)&gt; P(\hat y|x)}$，说明集束搜索没有找出最好的翻译，因此是集束搜索的问题；如果发现 $\displaystyle{P(y^\ast|x) &lt; P(\hat y|x)}$，说明 RNN 认为人工翻译的结果较差，因此是 RNN 的问题。</p>
+<p>单条数据就可以确定导致这个数据差的是搜索的问题还是 RNN 的问题。对所有数据全部执行一遍就能知道主要是搜索的问题还是 RNN 的问题，然后针对性优化。</p>
+<h3 id="Bleu-Score"><a href="#Bleu-Score" class="headerlink" title="Bleu Score"></a>Bleu Score</h3><p>Bleu Score 可以给翻译结果打分。</p>
+<p>对于一个句子的翻译结果，假设已经有了若干个人工翻译结果作为参考，可以通过以下方式计算 $p_n$，其中角标 $n$ 表示考虑的序列（n-gram）的长度，例如 $p_2$ 表示考虑的都是连续两个词的 bigram。$p_n$ 是一个商，其中分母是机器翻译结果中 n-gram 的个数，分子是每个独特的 n-gram 在每个标准翻译中出现的最大次数的和。 $p_n$ 的值介于 0 到 1 之间，分数越高，翻译质量越高。</p>
+<p>最后，Bleu Score 是 $B_P\exp(p_1 + p_2 + p_3 + p_4)$，其中 $B_P$ 是一个惩罚项（翻译结果短的话 $p_n$ 会比较高），如果翻译结果比参考翻译长，$B_P = 1$，否则，设参考翻译结果长度为 $l_0$，机器翻译结果长度 $l_1$，则 $BP = \exp(1 - l_1/l_0)$。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/23/Sequence-Models-笔记-3-Sequence-models-Attention-mechanism/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/23/Sequence-Models-笔记-2-Natural-Language-Processing-Word-Embeddings/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1921,166 +2105,6 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/11/形式化验证课程笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/11/形式化验证课程笔记-2/" class="post-title-link" itemprop="url">形式化验证课程笔记 2</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-11 11:43:36 / 修改时间：21:11:12" itemprop="dateCreated datePublished" datetime="2019-03-11T11:43:36+08:00">2019-03-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h1><p>主要内容：SAT 问题求解。</p>
-<p>约定 $F$ 表示公式，$C$ 表示从句。</p>
-<h2 id="Satisfiability-Problem"><a href="#Satisfiability-Problem" class="headerlink" title="Satisfiability Problem"></a>Satisfiability Problem</h2><ul>
-<li><strong>SAT 问题</strong>：给定命题，问是否存在一个解释使得命题成立。</li>
-<li><strong>2-SAT 问题</strong>：给定 CNF 形式的命题，每个从句最多只有两个文字的 SAT 问题，可在多项式时间内求解。</li>
-<li><strong>3-SAT 问题</strong>：给定 CNF 形式的命题，每个从句最多只有三个文字的 SAT 问题。NPC 难度。</li>
-</ul>
-<h2 id="Resolution"><a href="#Resolution" class="headerlink" title="Resolution"></a>Resolution</h2><p>对于一个 CNF，可以将它写成集合的集合的形式，例如：</p>
-<script type="math/tex; mode=display">
-(P\lor Q)\land(Q\to \lnot P)</script><p>相当于</p>
-<script type="math/tex; mode=display">
-\{\{P, Q\}, \{\lnot Q, \lnot P\}\}</script><p>用 $C[P]$ 表示文字 $P$ 在从句 $C$ 中出现，用 $C\{P\mapsto Q\}$ 表示在从句 $C$ 中使用 $Q$ 替换掉 $P$。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/11/形式化验证课程笔记-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2127,7 +2151,7 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">120</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

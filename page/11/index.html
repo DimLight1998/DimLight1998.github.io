@@ -352,6 +352,267 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-5/" class="post-title-link" itemprop="url">编译原理慕课笔记 5</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:18:40" itemprop="dateCreated datePublished" datetime="2018-11-23T16:18:40+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法分析-2"><a href="#语法分析-2" class="headerlink" title="语法分析-2"></a>语法分析-2</h1><h2 id="First-集和-Follow-集的计算"><a href="#First-集和-Follow-集的计算" class="headerlink" title="First 集和 Follow 集的计算"></a>First 集和 Follow 集的计算</h2><h3 id="First-集的计算"><a href="#First-集的计算" class="headerlink" title="First 集的计算"></a>First 集的计算</h3><p>计算一个文法中各个非终结符的 First 集的方法是，<strong>不断应用以下规则，直到每个符号的 First 集稳定：</strong></p>
+<ul>
+<li><p>如果 $X$ 是终结符，则 $\mbox{First}(X) = \{X\}$。（引入这个的目的是方便后面的递归计算。）</p>
+</li>
+<li><p>如果 $X\rightarrow\epsilon$ 是 $X$ 的一个产生式，则 $\epsilon\in\mbox{First}(X)$。（为了计算的方便，这里是 $\rightarrow$ 而不是 $\Rightarrow$，也就是可以直接从生成式开始计算。）</p>
+</li>
+<li><p>如果 $X\rightarrow Y_1Y_2\cdots Y_n$ 是 $X$ 的一个产生式，则</p>
+<ul>
+<li>$\mbox{First}(Y_1)-\{\epsilon\}\subset\mbox{First}(X)$，去掉 $\epsilon$ 是因为后续的符号才能作为初始符号。</li>
+<li>若 $\epsilon\in \mbox{First}(Y_1)$，则 $\mbox{First}(Y_2)-\{\epsilon\}\subset\mbox{First}(X)$。</li>
+<li>若 $\epsilon\in \mbox{First}(Y_1)$ 且 $\epsilon \in \mbox{First}(Y_2)$，则 $\mbox{First}(Y_3)-\{\epsilon\}\subset\mbox{First}(X)$。</li>
+<li>同上类推。</li>
+</ul>
+<p>如果某个符号是 $Y_k$ 的初始符号，并且 $Y_k$ 之前的非终结符都可以生成空串，那么这个初始符号也是 $X$ 的初始符号。此外，如果所有的 $Y_k$ 都可以生成空串，则 $\epsilon$ 也是 $X$ 的初始符号。</p>
+<p>也可以单独为一个串 $X_1X_2\cdots X_n$ 计算 First 集，做法和为 $X\rightarrow Y_1Y_2\cdots Y_n$ 计算 First 集的方法类似。</p>
+</li>
+</ul>
+<h3 id="Follow-集的计算"><a href="#Follow-集的计算" class="headerlink" title="Follow 集的计算"></a>Follow 集的计算</h3><p>计算一个文法中各个非终结符的 Follow 集的方法是，<strong>不断应用以下规则，直到每个符号的 Follow 集稳定</strong>：</p>
+<ul>
+<li>对于初始符号 $S$，有 $$\in\mbox{Follow}(S)$。</li>
+<li>如果有产生式 $A\rightarrow \alpha B$，则 $\forall X\in \mbox{Follow}(A), X\in\mbox{Follow}(B)$。这是显然的。</li>
+<li>如果有产生式 $A\rightarrow \alpha B\beta$ 且 $\epsilon\in \mbox{First}(\beta)$，则 $\forall X\in \mbox{Follow}(A), X\in\mbox{Follow}(B)$。这是显然的，但是还不够，见下一条。</li>
+<li>如果有产生式 $A\rightarrow \alpha B\beta$，则 $\forall X\in \mbox{First}(\beta),X\neq\epsilon\Rightarrow X\in\mbox{Follow}(B)$。注意上一节已经定义了如何计算一个串的 First 集。</li>
+</ul>
+<h3 id="Select-集的计算"><a href="#Select-集的计算" class="headerlink" title="Select 集的计算"></a>Select 集的计算</h3><p>已在语法分析-1 中描述。</p>
+<ul>
+<li>$\epsilon \notin \mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=\mbox{First}(\alpha)$：如果一个串 $\alpha$ 无法推导出空串，那么当它作为产生式的右部时，只有这个串的串首终结符作为输入符号的时候才能考虑使用该产生式。</li>
+<li>$\epsilon\in\mbox{First}(\alpha)\Rightarrow\mbox{Select}(A\rightarrow\alpha)=(\mbox{First}(\alpha)-\{\epsilon\})\cup\mbox{Follow}(A)$：如果一个串 $\alpha$ 可以产生空串，那么当它作为产生式的右部时，它的串首终结符或者产生式的左部的后继符号集总的元素作为输入符号时都可以使用该产生式。</li>
+</ul>
+<hr>
+<p>在使用上面的算法进行计算的时候，Select 集依赖于 Follow 集，Follow 集依赖于 First 集。</p>
+<p>在完成了计算后，如果这是一个 $LL(1)$ 文法，那么可以在构建预测分析器的时候可以建立 <strong>预测分析表</strong>。这个表的每一行代表不同的非终结符，每一列代表不同的输入符号，表中的每个元素是一个产生式。当进行语法分析时，只要查一下当前的非终结符和输入符号就可以确定唯一的产生式，这是因为 $LL(1)$ 文法具有相同非终结符 Select 集不相交的性质。</p>
+<h2 id="递归的预测分析法"><a href="#递归的预测分析法" class="headerlink" title="递归的预测分析法"></a>递归的预测分析法</h2><p>递归的预测分析法在递归下降分析中通过使用预测分析表选择产生式。这个方法需要为每个非终结符根据产生式和预测分析表写一个方法。这里直接使用课件中用到的语言的文法：</p>
+<script type="math/tex; mode=display">
+\begin{array}{cc}
+\begin{align*}
+\mbox{Program} &\rightarrow \texttt{program}\mbox{ DecList : Type ; StList } \texttt{end}\\
+\mbox{DecList} &\rightarrow id\mbox{ DecListN} \\
+\mbox{DecListN} &\rightarrow \mbox{,}id\mbox{ DecListN} | \epsilon \\
+\mbox{StList} &\rightarrow s\mbox{ StListN} \\
+\mbox{StListN} &\rightarrow \mbox{;}s\mbox{ StListN} | \epsilon \\
+\mbox{Type} &\rightarrow \texttt{real} | \texttt{int}
+\end{align*}
+\end{array}</script><p>（我估计这个文法得到的程序看上去会怪怪的，下面构造一个试试。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">program foo, bar : int;</span><br><span class="line">    foo += 1;</span><br><span class="line">    foo += bar;</span><br><span class="line">    bar ++;</span><br><span class="line">    foo + bar</span><br><span class="line">end</span><br></pre></td></tr></table></figure>
+<p>嗯，这个语言看上去非常诡异，而且文法看着也不优雅。现在写一段 Python 程序作为例子，它可以检验一个 token 流是否能够被该文法生成（实际上检验完成后就可以给出分析树了）。</p>
+<p>首先需要对每个非终结符写一个过程，每个过程的参数是当前 token 流的位置，一般没有返回值。副作用是将解析位置移到 token 流中下一个正确的位置，也就是所，当这样的一个过程结束的时候，解析位置应该处于下一个该过程解析的 <strong>最后一个符号的下一个位置</strong>。这样做的好处后面会分析。</p>
+<p>首先定义一个 <code>TokenStatus</code> 类，记录处理进度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TokenStatus</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, tokens: List[str])</span>:</span></span><br><span class="line">        self.tokens = tokens</span><br><span class="line">        self.position = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>这个文法一共有 6 个非终结符，每个终结符都会对应一个 <code>analyze_*</code> 函数，此外，整个分析过程会对应 <code>analyze</code> 函数。</p>
+<p>首先是 <code>analyze</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(tokens: List[str])</span>-&gt; bool:</span></span><br><span class="line">    token_status = TokenStatus(tokens)</span><br><span class="line">    analyze_program(token_status)</span><br><span class="line">    <span class="keyword">if</span> token_status.position != len(token_status.tokens):</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">    print(<span class="string">'Done.'</span>)</span><br></pre></td></tr></table></figure>
+<p>然后是各个分析函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_program</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">'program'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_dec_list(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">':'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_type(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">';'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_st_list(token_status)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] != <span class="string">'end'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_dec_list</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    print(<span class="string">f'Get identifier "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_dec_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_dec_list_n</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] == <span class="string">','</span>:</span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        print(<span class="string">f'Get identifier "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        analyze_dec_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_st_list</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    print(<span class="string">f'Get statement "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br><span class="line">    analyze_st_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_st_list_n</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> token_status.tokens[token_status.position] == <span class="string">';'</span>:</span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        print(<span class="string">f'Get statement "<span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">        token_status.position += <span class="number">1</span></span><br><span class="line">        analyze_st_list_n(token_status)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze_type</span><span class="params">(token_status: TokenStatus)</span>:</span></span><br><span class="line">    token = token_status.tokens[token_status.position]</span><br><span class="line">    <span class="keyword">if</span> token != <span class="string">'real'</span> <span class="keyword">and</span> token != <span class="string">'int'</span>:</span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">f'Get type "<span class="subst">&#123;token&#125;</span>".'</span>)</span><br><span class="line"></span><br><span class="line">    token_status.position += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>最后是测试部分：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    tokens = [</span><br><span class="line">        <span class="string">'program'</span>,</span><br><span class="line">        <span class="string">'foo'</span>,</span><br><span class="line">        <span class="string">','</span>,</span><br><span class="line">        <span class="string">'bar'</span>,</span><br><span class="line">        <span class="string">':'</span>,</span><br><span class="line">        <span class="string">'int'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo += 1'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo += bar'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'bar ++'</span>,</span><br><span class="line">        <span class="string">';'</span>,</span><br><span class="line">        <span class="string">'foo + bar'</span>,</span><br><span class="line">        <span class="string">'end'</span></span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    analyze(tokens)</span><br></pre></td></tr></table></figure>
+<p>运行这个程序将会输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Get identifier &quot;foo&quot;.</span><br><span class="line">Get identifier &quot;bar&quot;.</span><br><span class="line">Get type &quot;int&quot;.</span><br><span class="line">Get statement &quot;foo += 1&quot;.</span><br><span class="line">Get statement &quot;foo += bar&quot;.</span><br><span class="line">Get statement &quot;bar ++&quot;.</span><br><span class="line">Get statement &quot;foo + bar&quot;.</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+<p>课件中有一些实现上的细节没有说清楚，这里写一下：</p>
+<ul>
+<li>每个分析函数开始时，参数中的 <code>position</code> 应当对应处于该分析函数的串首终结符。</li>
+<li>每个分析函数开始时，<code>position</code> 应当被修改为最后一个终结符的下一个位置。这样设计的原因是做到了左闭右开，否则的话对于空串的情况就很麻烦。如果设计成移动到终结符的位置，那么调用这个分析函数的函数就会主动将位置加一，但是如果产生式是空串呢，就要在分析函数返回前将位置减一，这样做不太优雅。</li>
+<li>体现了 <strong>预测分析</strong> 的地方在于每个分析函数中会通过查看第一个非终结符决定具体调用哪个产生式，如果都没有的话会尝试调用 $\epsilon$ 产生式，还没有的话就报错了。</li>
+</ul>
+<p>总的来看整个程序写起来还是很套路的。</p>
+<h2 id="非递归的预测分析法"><a href="#非递归的预测分析法" class="headerlink" title="非递归的预测分析法"></a>非递归的预测分析法</h2><p>非递归的预测分析法也叫 <strong>表驱动的预测分析</strong>，使用下推自动机来完成分析过程。非确定下推自动机（NPDA）可以表达所有的上下文无关语言。</p>
+<p>尽管之前学的 NPDA 中会出现不能判定路径，但是因为此处可以“预览”一个 token，并且使用的是 $LL(1)$ 文法，所以实际上这个 NPDA 中状态的变迁是确定的。</p>
+<p>NPDA 会维护一个栈，这个栈中初始有两个元素：栈顶的开始符号和栈底的结束符号 $$$（使用的是空栈结束的 NPDA？）。每次读到一个元素的时候</p>
+<ul>
+<li>如果当前栈顶是终结符且该终结符与读入元素相同，出栈，移动读位置。</li>
+<li>如果当前元素是非终结符，根据读入元素选择出产生式，出栈，将产生式压入栈中（注意方向），不移动读位置（相当于预览）。</li>
+</ul>
+<p>依然使用上一节的文法，代码如下，先定义相关的数据结构：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SymbolType</span><span class="params">(Enum)</span>:</span></span><br><span class="line">    TERMINAL = <span class="number">1</span></span><br><span class="line">    NONTERMINAL = <span class="number">2</span></span><br><span class="line">    VARIABLE = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TokenStatus</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, tokens: List[str])</span>:</span></span><br><span class="line">        self.tokens = tokens</span><br><span class="line">        self.position = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>SymbolType</code> 的 <code>VARIABLE</code> 是为了通配类似符号名和语句这样的非固定字符串。</p>
+<p>预测分析函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyze</span><span class="params">(tokens: List[str])</span>:</span></span><br><span class="line">    token_status = TokenStatus(tokens)</span><br><span class="line">    analyze_table = &#123;</span><br><span class="line">        <span class="string">'program'</span>: &#123;</span><br><span class="line">            <span class="string">'program'</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">'program'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">':'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'type'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">';'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list'</span>),</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">'end'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'dec_list'</span>: &#123;</span><br><span class="line">            <span class="literal">None</span>: [</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'identifier'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list_n'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'dec_list_n'</span>: &#123;</span><br><span class="line">            <span class="string">','</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">','</span>),</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'identifier'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'dec_list_n'</span>)</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">':'</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'st_list'</span>: &#123;</span><br><span class="line">            <span class="literal">None</span>: [</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'statement'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list_n'</span>)</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'st_list_n'</span>: &#123;</span><br><span class="line">            <span class="string">';'</span>: [</span><br><span class="line">                (SymbolType.TERMINAL, <span class="string">';'</span>),</span><br><span class="line">                (SymbolType.VARIABLE, <span class="string">'statement'</span>),</span><br><span class="line">                (SymbolType.NONTERMINAL, <span class="string">'st_list_n'</span>)</span><br><span class="line">            ],</span><br><span class="line">            <span class="string">'end'</span>: []</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">'type'</span>: &#123;</span><br><span class="line">            <span class="string">'real'</span>: [(SymbolType.TERMINAL, <span class="string">'real'</span>)],</span><br><span class="line">            <span class="string">'int'</span>: [(SymbolType.TERMINAL, <span class="string">'int'</span>)]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    stack = [(SymbolType.TERMINAL, <span class="string">'$'</span>), (SymbolType.NONTERMINAL, <span class="string">'program'</span>)]</span><br><span class="line">    <span class="keyword">while</span> len(stack) &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.TERMINAL <span class="keyword">and</span> stack[<span class="number">-1</span>][<span class="number">1</span>] == token_status.tokens[token_status.position]:</span><br><span class="line">            stack.pop()</span><br><span class="line">            token_status.position += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.TERMINAL:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.VARIABLE:</span><br><span class="line">            print(<span class="string">f'Get variable typed <span class="subst">&#123;stack[<span class="number">-1</span>][<span class="number">1</span>]&#125;</span> with value <span class="subst">&#123;token_status.tokens[token_status.position]&#125;</span>'</span>)</span><br><span class="line">            stack.pop()</span><br><span class="line">            token_status.position += <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> stack[<span class="number">-1</span>][<span class="number">0</span>] == SymbolType.NONTERMINAL:</span><br><span class="line">            nonterminal = stack[<span class="number">-1</span>][<span class="number">1</span>]</span><br><span class="line">            stack.pop()</span><br><span class="line">            <span class="keyword">if</span> <span class="literal">None</span> <span class="keyword">in</span> analyze_table[nonterminal]:</span><br><span class="line">                stack.extend(analyze_table[nonterminal][<span class="literal">None</span>][::<span class="number">-1</span>])</span><br><span class="line">            <span class="keyword">elif</span> token_status.tokens[token_status.position] <span class="keyword">not</span> <span class="keyword">in</span> analyze_table[nonterminal]:</span><br><span class="line">                <span class="keyword">raise</span> Exception(<span class="string">'Unexpected token.'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                peek = token_status.tokens[token_status.position]</span><br><span class="line">                stack.extend(analyze_table[nonterminal][peek][::<span class="number">-1</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">raise</span> Exception(<span class="string">'Unexpected type.'</span>)</span><br><span class="line">    print(<span class="string">'Done.'</span>)</span><br></pre></td></tr></table></figure>
+<p><code>analyze_table</code> 就是驱动整个程序的表，由文法得到。它是一个 <code>dict</code>，每个 key 都是文法中的非终结符，每个 value 又是一个 <code>dict</code>，这个 <code>dict</code> 的 key 是该终结符的所有产生式的 Select 集之并（根据不同的元素使用不同的产生式），每个 value 是一个 <code>list</code>。一个例外是 <code>None</code> 这个 key，因为要匹配的是非固定的字符串所以这里这样偷懒写了，实际中我估计要从 token 中取出相关的 token 类型信息，当然这里是没有的，不过因为 <code>dec_list</code> 和 <code>st_list</code> 的生成式唯一，这么搞也没 bug，意思到了就行。</p>
+<p>运行这个程序，得到的输出是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Get variable typed identifier with value foo</span><br><span class="line">Get variable typed identifier with value bar</span><br><span class="line">Get variable typed statement with value foo += 1</span><br><span class="line">Get variable typed statement with value foo += bar</span><br><span class="line">Get variable typed statement with value bar ++</span><br><span class="line">Get variable typed statement with value foo + bar</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+<hr>
+<p>递归的预测分析方法和非递归的预测分析方法进行比较的话，递归的预测分析方法更加直观，效率低，难以自动生成；非递归的预测分析方法因为使用了 NPDA 可能不直观，但是对计算机更加友好。</p>
+<p>使用预测分析进行语法分析的一般步骤：</p>
+<ol>
+<li>构造文法；</li>
+<li>改造文法（消除二义性、左递归和回溯情况）；</li>
+<li>求出各个生成式的 Select 集，这一步会需要先求出各个非终结符的 First 集和 Follow 集；</li>
+<li>如果做完了之后通过 Select 集发现是 $LL(1)$ 文法，就可以构造预测分析表并选择一种实现方式进行实现。</li>
+</ol>
+<h2 id="预测分析中的错误处理"><a href="#预测分析中的错误处理" class="headerlink" title="预测分析中的错误处理"></a>预测分析中的错误处理</h2><p>在预测分析过程中如果碰到分析错误，有些情况下不一定要直接终止掉整个程序的运行，而可以从错误中恢复。</p>
+<p>以下两种情况可以进行 <strong>错误检测</strong>：</p>
+<ul>
+<li>栈顶终结符与输入符号不匹配</li>
+<li>栈顶非终结符与当前输入符号在预测分析表中没有条目（输入符号不在任何一个生成式的 Select 集中）</li>
+</ul>
+<p><strong>错误恢复</strong> 是在检测到错误后继续进行分析，错误恢复的一个策略是 <strong>恐慌模式</strong>。对应上面的两种检测到错误的情况，</p>
+<ul>
+<li><p>如果栈顶的终结符和输入符号不匹配，就直接弹出栈顶的终结符，继续运行。</p>
+</li>
+<li><p>对于每个非终结符，都可以设计一个叫做 <strong>同步词法单元</strong> 的集合，这个集合中的元素是终结符。如果栈顶的非终结符和输入符号不匹配，那么就不断跳过 token 流中的 token，直到</p>
+<ul>
+<li>遇到了在同步词法单元集合中的 token，此时就可以进行 <strong>同步</strong>，将栈顶的非终结符弹出，继续运行。</li>
+<li>遇到了可以识别的 token，即该 token 与非终结符在预测分析表中对应的条目不为空，此时将继续运行分析过程，栈顶符号不出栈。</li>
+</ul>
+<p>这个方案的效果依赖于同步词法单元的选取，例如可以将该非终结符的 Follow 集中的元素作为同步词法单元的元素，在这个情况下，可以直观感受到这种错误恢复就是一致丢弃 token 直到可以进行下一个非终结符的分析。</p>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1987,169 +2248,6 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/02/软件工程课程项目博客-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/10/02/软件工程课程项目博客-1/" class="post-title-link" itemprop="url">软件工程课程大作业博客——后端技术的选取</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-10-02 11:08:05" itemprop="dateCreated datePublished" datetime="2018-10-02T11:08:05+08:00">2018-10-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:30:54" itemprop="dateModified" datetime="2019-03-11T15:30:54+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="软件工程课程大作业博客——后端技术的选取"><a href="#软件工程课程大作业博客——后端技术的选取" class="headerlink" title="软件工程课程大作业博客——后端技术的选取"></a>软件工程课程大作业博客——后端技术的选取</h1><h2 id="一些考虑"><a href="#一些考虑" class="headerlink" title="一些考虑"></a>一些考虑</h2><p>考虑到后端的生态丰富程度和开发速度，只能从 Python 和 NodeJS 中选择。为了有更强的类型系统决定使用 TypeScript。</p>
-<p>Web 框架打算使用 Koa，但是 Koa 本身还是比较底层，Egg.js 是对 Koa 的进一步封装，主要是引入了对 Koa 的自定义扩展的功能以及引入了一个更加强大的插件功能，暂时计划就用这个框架。</p>
-<h2 id="Egg-js-的一些概念"><a href="#Egg-js-的一些概念" class="headerlink" title="Egg.js 的一些概念"></a>Egg.js 的一些概念</h2><p>主要是对这个框架的一个 overview。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/10/02/软件工程课程项目博客-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2196,7 +2294,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">120</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

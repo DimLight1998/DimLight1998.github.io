@@ -352,6 +352,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" class="post-title-link" itemprop="url">Programming Languages (Part B) 笔记 3 Section 6</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-17 12:14:17" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:17+08:00">2019-02-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:27:50" itemprop="dateModified" datetime="2019-03-11T15:27:50+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Section-6"><a href="#Section-6" class="headerlink" title="Section 6"></a>Section 6</h1><h2 id="Datatype-Programming-in-Racket-Without-Structs"><a href="#Datatype-Programming-in-Racket-Without-Structs" class="headerlink" title="Datatype-Programming in Racket Without Structs"></a>Datatype-Programming in Racket Without Structs</h2><p>在 Racket 中使用列表和 symbol 可以模拟出 ML 中的 datatype。Racket 中的 symbol 是以 <code>&#39;</code> 开头的字符串，例如 <code>&#39;foo</code>，symbol 之间用 <code>eq?</code> 判断相等。</p>
+<p>以下是一个移植的例子：</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> exp = <span class="type">Const</span> <span class="keyword">of</span> <span class="built_in">int</span></span><br><span class="line">             | <span class="type">Negate</span> <span class="keyword">of</span> exp</span><br><span class="line">             | <span class="type">Add</span> <span class="keyword">of</span> exp * exp</span><br><span class="line">             | <span class="type">Multiply</span> <span class="keyword">of</span> exp * exp</span><br></pre></td></tr></table></figure>
+<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Const</span> i) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Const</span> i))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Negate</span> e) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Negate</span> e))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Add</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Add</span> e1 e2))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">Multiply</span> e1 e2) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'Multiply</span> e1 e2))</span><br></pre></td></tr></table></figure>
+<p>针对于 <code>exp</code> 类型的 ML 函数都可以使用 Racket 写出，模式匹配功能可以用 cond 进行模拟，通过对列表的第一个元素进行比较确定它到底是哪种类型即可。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-2-Section-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1834,172 +1999,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/" class="post-title-link" itemprop="url">Programming Languages (Part A) 笔记 1 Introduction</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-02-06 00:01:41" itemprop="dateCreated datePublished" datetime="2019-02-06T00:01:41+08:00">2019-02-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:27:12" itemprop="dateModified" datetime="2019-03-11T15:27:12+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>感谢 <a href="https://www.coursera.org/learn/programming-languages" target="_blank" rel="noopener">Coursera</a>。</p>
-<blockquote>
-<p>This is a challenging course that we hope will change the way you look at programming forever.</p>
-</blockquote>
-<h2 id="Welcome-Information"><a href="#Welcome-Information" class="headerlink" title="Welcome Information"></a>Welcome Information</h2><h3 id="Welcome"><a href="#Welcome" class="headerlink" title="Welcome"></a>Welcome</h3><p><em>本节没有问题。</em></p>
-<h3 id="What-the-Course-is-About-Initial-Motivation"><a href="#What-the-Course-is-About-Initial-Motivation" class="headerlink" title="What the Course is About / Initial Motivation"></a>What the Course is About / Initial Motivation</h3><p>这门课主要是通过 Standard ML、Racket 和 Ruby 展示各种编程语言中的基本概念以及它们如何相互关联，并非学习这三门语言。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/06/Programming-Languages-Part-A-笔记-1-Introduction/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2046,7 +2045,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">120</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

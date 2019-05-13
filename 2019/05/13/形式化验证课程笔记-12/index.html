@@ -117,25 +117,27 @@
 
 
 
-  <meta name="description" content="Section 7ML Versus RacketML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。 它们可以互相实现对方的类型系统。 Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部">
-<meta name="keywords" content="函数式编程,编程语言理论">
+  <meta name="description" content="第十二周抽象解释抽象解释 是对语义进行抽象分析的过程。它会将程序的解释从具体的空间映射到一个抽象空间中，可以用来搞静态分析。 数学基础偏序偏序关系是自反、传递、反对称的关系。 偏序集记作 $\displaystyle{(D, \sqsubseteq)}$。 格如果一个偏序集满足：  任意两个元素 $\displaystyle{a, b}$ 都可以导出一个最小上界 join：$\displaysty">
+<meta name="keywords" content="形式化验证">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Programming Languages (Part B) 笔记 4 Section 7">
-<meta property="og:url" content="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/index.html">
+<meta property="og:title" content="形式化验证课程笔记 12">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/05/13/形式化验证课程笔记-12/index.html">
 <meta property="og:site_name" content="Computation &amp; Design">
-<meta property="og:description" content="Section 7ML Versus RacketML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。 它们可以互相实现对方的类型系统。 Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部">
+<meta property="og:description" content="第十二周抽象解释抽象解释 是对语义进行抽象分析的过程。它会将程序的解释从具体的空间映射到一个抽象空间中，可以用来搞静态分析。 数学基础偏序偏序关系是自反、传递、反对称的关系。 偏序集记作 $\displaystyle{(D, \sqsubseteq)}$。 格如果一个偏序集满足：  任意两个元素 $\displaystyle{a, b}$ 都可以导出一个最小上界 join：$\displaysty">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T07:27:43.573Z">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/13/形式化验证课程笔记-12/DeepinScreenshot_select-area_20190513143521.png">
+<meta property="og:updated_time" content="2019-05-13T08:36:31.152Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Programming Languages (Part B) 笔记 4 Section 7">
-<meta name="twitter:description" content="Section 7ML Versus RacketML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。 它们可以互相实现对方的类型系统。 Racket 实现 ML在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部">
+<meta name="twitter:title" content="形式化验证课程笔记 12">
+<meta name="twitter:description" content="第十二周抽象解释抽象解释 是对语义进行抽象分析的过程。它会将程序的解释从具体的空间映射到一个抽象空间中，可以用来搞静态分析。 数学基础偏序偏序关系是自反、传递、反对称的关系。 偏序集记作 $\displaystyle{(D, \sqsubseteq)}$。 格如果一个偏序集满足：  任意两个元素 $\displaystyle{a, b}$ 都可以导出一个最小上界 join：$\displaysty">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/05/13/形式化验证课程笔记-12/DeepinScreenshot_select-area_20190513143521.png">
 
 
 
 
 
 
-  <link rel="canonical" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/">
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/05/13/形式化验证课程笔记-12/">
 
 
 
@@ -145,7 +147,7 @@
   };
 </script>
 
-  <title>Programming Languages (Part B) 笔记 4 Section 7 | Computation & Design</title>
+  <title>形式化验证课程笔记 12 | Computation & Design</title>
   
 
 
@@ -356,7 +358,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/02/17/Programming-Languages-Part-B-笔记-4-Section-7/">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/13/形式化验证课程笔记-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhang Yang">
@@ -373,7 +375,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Programming Languages (Part B) 笔记 4 Section 7
+          <h1 class="post-title" itemprop="name headline">形式化验证课程笔记 12
 
               
             
@@ -399,24 +401,12 @@
                 
               
 
-              <time title="创建时间：2019-02-17 12:14:23" itemprop="dateCreated datePublished" datetime="2019-02-17T12:14:23+08:00">2019-02-17</time>
+              <time title="创建时间：2019-05-13 13:29:19 / 修改时间：16:36:31" itemprop="dateCreated datePublished" datetime="2019-05-13T13:29:19+08:00">2019-05-13</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:27:43" itemprop="dateModified" datetime="2019-03-11T15:27:43+08:00">2019-03-11</time>
               
             
           </span>
@@ -450,85 +440,90 @@
       
 
       
-        <h1 id="Section-7"><a href="#Section-7" class="headerlink" title="Section 7"></a>Section 7</h1><h2 id="ML-Versus-Racket"><a href="#ML-Versus-Racket" class="headerlink" title="ML Versus Racket"></a>ML Versus Racket</h2><p>ML 和 Racket 最大的不同在于 ML 是静态类型而 Racket 是动态类型。采用静态类型可以在运行前的编译阶段检查出一系列错误，从而减少程序程序的潜在错误。</p>
-<p>它们可以互相实现对方的类型系统。</p>
-<h3 id="Racket-实现-ML"><a href="#Racket-实现-ML" class="headerlink" title="Racket 实现 ML"></a>Racket 实现 ML</h3><p>在 Racket 程序员看来，ML 是 Racket 的一个子集，只允许一部分合法的程序运行。Racket 程序中，只有一部分符合 ML 类型系统要求的程序能够通过 ML 编译器（忽略语法差异），这种限制使得程序的一些潜在 bug 被提前检查出来，但是同时一些本来可以正常运行的程序也被拒绝了。例如以下程序在 Racket 中合法但是在 ML 中不合法：</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> (<span class="name">f</span> x) (<span class="name"><span class="builtin-name">if</span></span> (<span class="name"><span class="builtin-name">&gt;</span></span> x <span class="number">0</span>) <span class="literal">#t</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="number">2</span>)))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> xs (<span class="name"><span class="builtin-name">list</span></span> <span class="number">1</span> <span class="literal">#t</span> <span class="string">"hi"</span>))</span><br><span class="line">(<span class="name"><span class="builtin-name">define</span></span> y (<span class="name">f</span> (<span class="name"><span class="builtin-name">car</span></span> xs)))</span><br></pre></td></tr></table></figure>
+        <h1 id="第十二周"><a href="#第十二周" class="headerlink" title="第十二周"></a>第十二周</h1><h2 id="抽象解释"><a href="#抽象解释" class="headerlink" title="抽象解释"></a>抽象解释</h2><p><strong><em>抽象解释</em></strong> 是对语义进行抽象分析的过程。它会将程序的解释从具体的空间映射到一个抽象空间中，可以用来搞静态分析。</p>
+<h2 id="数学基础"><a href="#数学基础" class="headerlink" title="数学基础"></a>数学基础</h2><h3 id="偏序"><a href="#偏序" class="headerlink" title="偏序"></a>偏序</h3><p>偏序关系是自反、传递、反对称的关系。</p>
+<p>偏序集记作 $\displaystyle{(D, \sqsubseteq)}$。</p>
+<h3 id="格"><a href="#格" class="headerlink" title="格"></a>格</h3><p>如果一个偏序集满足：</p>
+<ul>
+<li>任意两个元素 $\displaystyle{a, b}$ 都可以导出一个最小上界 join：$\displaystyle{a\sqcup b}$</li>
+<li>任意两个元素 $\displaystyle{a, b}$ 都可以导出一个最大下界 meet：$\displaystyle{a\sqcap b}$</li>
+</ul>
+<p>这样的偏序集，以及对应的 join 和 meet 定义构成了一个 <strong><em>格</em></strong>。</p>
+<blockquote>
+<p>是偏序但是不是格的例子，其中 a 和 b 找不到 join 和 meet</p>
+<img src="/2019/05/13/形式化验证课程笔记-12/DeepinScreenshot_select-area_20190513143521.png">
+</blockquote>
+<h4 id="完全格"><a href="#完全格" class="headerlink" title="完全格"></a>完全格</h4><p>对于一个格，如果它的所有元素构成的集合的 <strong>每个子集都有自己的最小上界和最大下界</strong>，则称为 <strong><em>完全格</em></strong>。完全格具有最小元 $\displaystyle{\bot = \sqcup\varnothing}$ 和最大元 $\displaystyle{\top = \sqcup D}$，其中 $\displaystyle{\sqcup X}$ 表示 $\displaystyle{X}$ 的最小上界，$\displaystyle{D}$ 是格的所有元素构成的集合。</p>
+<h3 id="链"><a href="#链" class="headerlink" title="链"></a>链</h3><p><strong><em>链</em></strong> 是偏序集的子集，其中任意两个元素应当可以进行比较。</p>
+<h3 id="完全偏序"><a href="#完全偏序" class="headerlink" title="完全偏序"></a>完全偏序</h3><p>如果偏序集满足：</p>
+<ul>
+<li>具有最小元 $\displaystyle{\bot_D}$</li>
+<li>任意一个链 $\displaystyle{S}$ 都具有最小上界 $\displaystyle{\sqcup S}$（这个最小上界不一定要在 $\displaystyle{S}$ 中，但我不确定）</li>
+</ul>
+<p>则这个偏序集为 <strong><em>完全偏序</em></strong>。</p>
+<blockquote>
+<p>偏序但不是完全偏序的例子是具有自然序的自然数。因为存在无穷长的链，这样的链中不存在最小上界。不过可以通过添加 $\displaystyle{\infty}$ 元素来让集合变成是完全偏序的。</p>
+</blockquote>
+<h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><h4 id="单调性"><a href="#单调性" class="headerlink" title="单调性"></a>单调性</h4><p>对于偏序集 $\displaystyle{(D, \sqsubseteq)}$ 和 $\displaystyle{(D&#39;, \sqsubseteq&#39;)}$，若函数 $\displaystyle{f: D\mapsto D&#39;}$ 满足 $\displaystyle{x\sqsubseteq y \rightarrow f(x)\sqsubseteq&#39;f(y)}$，称其为 <strong><em>单调的</em></strong>。</p>
+<h4 id="连续性"><a href="#连续性" class="headerlink" title="连续性"></a>连续性</h4><p>对于完全偏序的偏序集 $\displaystyle{(D, \sqsubseteq)}$ 和 $\displaystyle{(D&#39;, \sqsubseteq&#39;)}$，若函数 $\displaystyle{f: D\mapsto D&#39;}$ 满足：对于 $\displaystyle{D}$ 中的每条链 $\displaystyle{S}$，$\displaystyle{f}$ 操作和 $\displaystyle{\sqcup}$ 操作是可交换的（即 $\displaystyle{\sqcup f(S)}$ 存在且 $\displaystyle{\sqcup f(S) = f(\sqcup S)}$），则称其为 <strong><em>$\displaystyle{\sqcup}$-连续的</em></strong>。</p>
+<blockquote>
+<p>单调但是不连续的例子：$\displaystyle{f:\mathbf N\cup \{\infty\}\mapsto \{0, 1\}}$，$\displaystyle{f}$ 将 $\displaystyle{\infty}$ 映射为 $\displaystyle{1}$，其它映射为 $\displaystyle{0}$。</p>
+<p>单调同时连续的例子：修改上一个例子，将小于某个值的所有数映射为 $\displaystyle{0}$，其它映射为 $\displaystyle{1}$。</p>
+</blockquote>
 <a id="more"></a>
-<h3 id="ML-实现-Racket"><a href="#ML-实现-Racket" class="headerlink" title="ML 实现 Racket"></a>ML 实现 Racket</h3><p>在 ML 程序员看来，Racket 是 ML 的一个超集，一些在 ML 中无法通过编译的程序被 Racket 编译器接受，其中一些有 bug，另一些没有。</p>
-<p>但是有另外一种看法，可以在 ML 中模拟出 Racket 的类型系统来。在此观点下，Racket 的类型系统实际上是 ML 类型系统应用的某种 idiom。具体来说，Racket 中所有的类型都是某个 datatype 的一个类型，即</p>
-<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">datatype</span> theType = <span class="type">Int</span> <span class="keyword">of</span> <span class="built_in">int</span></span><br><span class="line">    | <span class="type">String</span> <span class="keyword">of</span> <span class="built_in">string</span></span><br><span class="line">    | <span class="type">Pair</span> <span class="keyword">of</span> theType * theType</span><br><span class="line">    | <span class="type">Fun</span> <span class="keyword">of</span> theType -&gt; theType</span><br><span class="line">    | ... <span class="comment">(* one constructor per built-in type *)</span></span><br></pre></td></tr></table></figure>
-<p>而各种函数实际上都有一个隐式的模式匹配，实现上可能是：</p>
-<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> car v = <span class="keyword">case</span> v <span class="keyword">of</span> <span class="type">Pair</span>(a,b) =&gt; a | _ =&gt; <span class="keyword">raise</span> ... <span class="comment">(* give some error *)</span></span><br><span class="line"><span class="keyword">fun</span> pair? v = <span class="keyword">case</span> v <span class="keyword">of</span> <span class="type">Pair</span> _ =&gt; <span class="literal">true</span> | _ =&gt; <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<p>这样就能模拟出来的。用 ML 模拟 Racket 时，Racket 中的各种类型实际是 ML 某个 datatype 下的构造函数。</p>
-<p>但是 Racket 中可以使用 <code>struct</code> 来动态地添加新类型，在 ML 中做到这一点比较麻烦，需要用到 <code>exn</code> 类型。ML 是不能实现一个能够动态添加构造函数的 datatype 的类型系统的，这会导致一些问题，例如模式匹配完备性的检查无法静态完成。</p>
-<h2 id="What-is-Static-Checking"><a href="#What-is-Static-Checking" class="headerlink" title="What is Static Checking?"></a>What is Static Checking?</h2><p>静态检查的定义：语法解析完成后、程序运行前的检查。静态检查可能是语言规范的一部分，但是也不一定是，有些静态检查工具，它们不属于语言定义本身。</p>
-<p>最常见的静态检查就是类型系统。类型系统是静态检查的一种手段，静态检查的目的是拒绝可能错误的程序。Racket 的动态类型系统在运行时需要维护每个变量的类型信息，而 ML 的静态类型系统则不需要在运行时维护，可以在编译时确定，这么做的代价是一部分本可以运行正确的程序也被拒绝了。</p>
-<p>检查可以发生在任何时候，以防止除以 0 为例，从早到晚有这些检查方式：</p>
+<h3 id="不动点"><a href="#不动点" class="headerlink" title="不动点"></a>不动点</h3><p>对于定义在偏序集 $\displaystyle{(D, \sqsubseteq)}$ 上的函数 $\displaystyle{f}$，以及元素 $\displaystyle{x}$：</p>
 <ul>
-<li>在文本编辑器中禁止用户输入 0；</li>
-<li>允许文本输入，但是编译阶段禁止除以 0；</li>
-<li>允许除以 0 的函数通过编译阶段，但是链接时，主函数不能调用这些函数；</li>
-<li>允许链接并运行这些函数，在即将计算前报错；</li>
-<li>计算时不报错，返回无穷大。</li>
+<li>若 $\displaystyle{f(x) = x}$，则 $\displaystyle{x}$ 为 <strong><em>不动点</em></strong></li>
+<li>若 $\displaystyle{x \sqsubseteq f(x)}$，则 $\displaystyle{x}$ 为 <strong><em>前不动点</em></strong></li>
+<li>若 $\displaystyle{f(x) \sqsubseteq x}$，则 $\displaystyle{x}$ 为 <strong><em>后不动点</em></strong></li>
 </ul>
-<p>最常用的是编译阶段时的检查和运行时的检查，对应静态检查和动态检查。</p>
-<h2 id="Soundness-and-Completeness"><a href="#Soundness-and-Completeness" class="headerlink" title="Soundness and Completeness"></a>Soundness and Completeness</h2><p>假设一个类型系统希望阻止所有有性质 X 的程序（性质 X 例如数组访问有可能越界）：</p>
+<p>$\displaystyle{x}$ 可以不是上述三种情况之一，因为 $\displaystyle{f(x)}$ 和 $\displaystyle{x}$ 不一定可以比较。</p>
+<h4 id="最小（大）不动点"><a href="#最小（大）不动点" class="headerlink" title="最小（大）不动点"></a>最小（大）不动点</h4><p>函数的所有不动点中，最小的和最大的分别称为 <strong><em>最小不动点</em></strong>（lfp） 和 <strong><em>最大不动点</em></strong>（gfp）。</p>
+<h3 id="不动点理论"><a href="#不动点理论" class="headerlink" title="不动点理论"></a>不动点理论</h3><h4 id="Tarski-不动点定理"><a href="#Tarski-不动点定理" class="headerlink" title="Tarski 不动点定理"></a>Tarski 不动点定理</h4><p>完全格上的单调函数的不动点构成了一个非空的完全格。此外，</p>
 <ul>
-<li>如果一个在某个输入下带有性质 X 的程序总是被类型系统拒绝，这样的类型系统称为 sound 的（可靠的）。可靠的类型系统不会产生 false negative，永远不会错误地接受可能带有性质 X 的程序（但是有 false positive，即有可能拒绝不会带有性质 X 的程序）。</li>
-<li>如果一个在所有的输入下都不会带有性质 X 的程序总是被类型系统接收，这样的类型系统称为是 complete 的（完备的）。完备的系统不会产生 false positive，永远不会错误地拒绝不会带有性质 X 的程序（但是有 false negative，即有可能接受带有性质 X 的程序）。</li>
+<li>该单调函数的最小不动点是函数所有后不动点的最大下界；</li>
+<li>该单调函数的最大不动点是函数所有前不动点的最小上界。</li>
 </ul>
-<p>这两个性质是 <strong>正确性的两方面</strong>。在阻止性质 X 的层面上，可靠性比完备性要靠谱。由于不可判定性，同时满足可靠、完备、以及在有限时间内停机的类型系统是不存在的（和停机问题类似）。一般的类型系统会放弃掉完备性，只做到可靠和在有限时间类停机。</p>
-<h2 id="Weak-Typing"><a href="#Weak-Typing" class="headerlink" title="Weak Typing"></a>Weak Typing</h2><p><strong>弱类型</strong> 是一个性质。弱类型的语言可能通过类型检查，但是如果类型本身依然存在错误的话，在运行阶段 <strong>可能发生任何事情</strong>，行为是未定义的。相反地，强类型语言不会允许这种事情发生。一个例子是数组越界，弱类型的语言往往不会处理数组越界，越界行为是未定义的；但是强类型语言可能会保证抛出异常。简单来说，弱类型出现错误无法预测结果，强类型出现错误可以预测结果。</p>
-<p>弱类型有这些好处：</p>
+<h4 id="Kleene-不动点定理"><a href="#Kleene-不动点定理" class="headerlink" title="Kleene 不动点定理"></a>Kleene 不动点定理</h4><p>对于完全偏序集 $\displaystyle{(D, \sqsubseteq)}$ 上的函数 $\displaystyle{f}$：</p>
 <ul>
-<li>语言实现更加简单（因为部分类型检查工作需要程序员完成而不是编译器）</li>
-<li>性能更好（运行时没有动态检查）</li>
-<li>语言更加底层（如果要处理数组越界就要为数组维护长度，不够底层）</li>
+<li>若 $\displaystyle{f}$ 是 $\displaystyle{\sqcup}$-连续的，则最小不动点可以通过求 $\displaystyle{f^{i}(\bot), i\in \mathbf N}$ 的最小上界求出；</li>
+<li>若 $\displaystyle{f}$ 是 $\displaystyle{\sqcap}$-连续的，则最大不动点可以通过求 $\displaystyle{f^{i}(\top), i\in \mathbf N}$ 的最大下界求出。</li>
 </ul>
-<p>人们引入弱类型是为了达到上述好处，但是随着代码量增大，强类型的用处逐渐体现出来了。</p>
-<p>Racket 是强类型的，因为它会在运行时进行动态的类型检查，这是语言定义的一部分。</p>
-<p>即时使用了强类型，也无法避免代码中的逻辑错误。</p>
+<p>（似乎在求 $\displaystyle{f^{i}(\bot), i\in\mathbf N}$ 时得到的序列是不断上升的？不知道这个性质是否始终成立。）</p>
+<h3 id="Galois-连接"><a href="#Galois-连接" class="headerlink" title="Galois 连接"></a>Galois 连接</h3><p>对于偏序集 $\displaystyle{(C, \le)}$ 和 $\displaystyle{(A, \sqsubseteq)}$，若函数 $\displaystyle{\alpha: C\mapsto A, \gamma: A\mapsto C}$ 满足：</p>
+<script type="math/tex; mode=display">
+\forall a \in A, c\in C, c\le \gamma(a)\Leftrightarrow \alpha(c)\sqsubseteq a</script><p>则称函数对 $\displaystyle{(\alpha, \gamma)}$ 是 $\displaystyle{C}$ 和 $\displaystyle{A}$ 之间的 Galois 连接。</p>
+<h4 id="Galois-连接的例子"><a href="#Galois-连接的例子" class="headerlink" title="Galois 连接的例子"></a>Galois 连接的例子</h4><p>在抽象解释中，$\displaystyle{C}$ 表示的是具体域（Concreate），$\displaystyle{A}$ 表示的是抽象域（Abstract）。$\displaystyle{\alpha}$ 可以进行 <strong>抽象化</strong>，而 $\displaystyle{\gamma}$ 可以进行 <strong>具体化</strong>。</p>
+<p>例如具体域 $\displaystyle{C}$ 是整数的集合的集合 $\displaystyle{\mathcal P(\mathbf Z)}$，抽象域是以整数为边界的区间的集合 $\displaystyle{I}$，可以定义：</p>
+<ul>
+<li>抽象化函数 $\displaystyle{\alpha(X) = [\min X, \max X]}$</li>
+<li>具体化函数 $\displaystyle{\gamma([a, b]) = \{n\ |\ n\in \mathbf Z\land a \le n \le b\}}$</li>
+</ul>
+<p>可以验证在合适的 $\displaystyle{\le}$ 以及 $\displaystyle{\sqsubseteq}$ 定义（自然定义即可，$\displaystyle{\le}$ 是自然数的比较关系，$\displaystyle{\sqsubseteq}$ 是区间包含关系）下，$\displaystyle{(\alpha, \gamma)}$ 符合 Galois 连接的定义条件，因此它们是 Galois 连接。</p>
 <hr>
-<p>经常与强类型、弱类型搞混的一个话题是关于原生类型可以执行的操作。不同语言对此处理不同：有的语言允许字符串相加（表示连接），有的语言还允许字符串和数字相加（会发生对应的转换）。这个话题和强弱类型容易搞混是因为它也涉及到及早发现 bug 和便利性之间的权衡。</p>
-<h2 id="Static-Versus-Dynamic-Typing-Part-One"><a href="#Static-Versus-Dynamic-Typing-Part-One" class="headerlink" title="Static Versus Dynamic Typing, Part One"></a>Static Versus Dynamic Typing, Part One</h2><p>大部分语言执行的检查都是混合了动态性和静态性的。部分检查动态进行、部分检查静态进行。</p>
-<h3 id="关于便利性"><a href="#关于便利性" class="headerlink" title="关于便利性"></a>关于便利性</h3><p>动态类型语言的便利性在于你可以混合不同的类型，例如创建一个返回不同类型的值的函数，然后让用户决定如何使用这个不确定类型的返回值。用户使用时可以使用类似 <code>string?</code> 的函数进行判断，而要在静态类型语言中做到这一点就要用模式匹配。</p>
-<p>静态类型语言的便利性在于函数的创建者知道用户传入的参数的类型，而不用为这个参数到底是什么类型作判断和处理。传入类型不符时会报错。</p>
-<h3 id="关于类型检查"><a href="#关于类型检查" class="headerlink" title="关于类型检查"></a>关于类型检查</h3><p>静态类型语言的检查会拒绝掉一部分没有问题的程序：</p>
-<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">fun</span> f g = (g <span class="number">7</span>, g <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">val</span> pair_of_pairs = f (<span class="keyword">fn</span> x =&gt; (x, x))</span><br></pre></td></tr></table></figure>
-<p>这段代码无法通过类型检查。这种拒绝会带来一定的麻烦，不过也避免了一些 bug。</p>
-<p>如果希望绕过这种类型检查可以使用前面提到的用 ML 模拟 Racket 类型系统的方式，将所有想要混用的类型创建为一个 datatype。这种方式尽管麻烦，但是给了程序员更加细粒度的控制。这种方式在平时几乎用不上。</p>
-<h3 id="关于错误检查"><a href="#关于错误检查" class="headerlink" title="关于错误检查"></a>关于错误检查</h3><p>静态类型语言能够在编译阶段就检查出一些 bug，这是比较有用的。但是它能够检查出的 bug 比较低级。</p>
-<p>不论是静态语言还是动态语言，很多逻辑上的 bug 都是类型系统无法检查出的。对于这种 bug，如果想要检查到它们的话，二者可以使用相同的策略。</p>
-<h2 id="Static-Versus-Dynamic-Typing-Part-Two"><a href="#Static-Versus-Dynamic-Typing-Part-Two" class="headerlink" title="Static Versus Dynamic Typing, Part Two"></a>Static Versus Dynamic Typing, Part Two</h2><h3 id="关于性能"><a href="#关于性能" class="headerlink" title="关于性能"></a>关于性能</h3><p>静态类型系统具有更好的性能，同时能够防止一些简单的 bug，这是因为动态类型语言中必须对每个值维护一个表明它是什么类型的 tag。</p>
-<p>对于动态语言来说，因为语言本身没有规定要进行所有的检查，所以编译器可以选择性地优化一部分动态类型检查。</p>
-<h3 id="关于代码重用性"><a href="#关于代码重用性" class="headerlink" title="关于代码重用性"></a>关于代码重用性</h3><p>动态类型语言可以在类型系统很简单的情况下重用代码，但是可能引入 bug。</p>
-<p>静态类型语言中可重用代码部分的类型可能很复杂，但是使用起来不一定复杂，并且可以检查出一些 bug。</p>
-<h3 id="关于写一个原型程序"><a href="#关于写一个原型程序" class="headerlink" title="关于写一个原型程序"></a>关于写一个原型程序</h3><p>动态类型语言可以快速地写出原型程序，而不用考虑到所有对可能情况。静态类型语言在写原型程序之前，为了能让程序跑通也要写一些和原型程序逻辑几乎无关的代码，比较麻烦。</p>
-<p>静态类型语言保证了可以使用类型系统作为一种约束，而那些需要额外考虑的其它所有情况可以通过抛异常、通配模式匹配等方式较容易地解决。</p>
-<h3 id="关于软件演化"><a href="#关于软件演化" class="headerlink" title="关于软件演化"></a>关于软件演化</h3><p>动态类型语言可以较容易地保持后向兼容性。如果一个函数总是接受 int 返回 int，要扩展一个接受 string 返回 string 的功能，使用动态类型语言时所有之前调用这个函数的用户都不会受到影响。而静态语言中则会破坏掉后向兼容。</p>
-<p>静态类型语言可以依赖类型系统来完成软件的演化。例如假设需要修改一个函数的返回值类型，通过类型系统可以轻易找到所有调用这个函数的地方，并且直到所有的修改都已完成程序才会跑通。用户自己对类型的定义越详细，受益于类型系统就越多。不过，这样就无法在修改了一部分的情况下运行程序查看结果了。</p>
-<h2 id="eval-and-quote"><a href="#eval-and-quote" class="headerlink" title="eval and quote"></a><code>eval</code> and <code>quote</code></h2><p><code>eval</code> 和 <code>quote</code> 是两个相反的概念。</p>
-<p><code>eval</code> 用于 <strong>将数据当作程序</strong>。在很多语言中 <code>eval</code> 接受的是符合当前程序语法的字符串，但是在 Racket 中由于数据的表示方式和程序表示方式相同，因此可以统一进行表示（实际上从外观上是不可能区分出程序与数据的）。Racket 中在函数前加一个 <code>&#39;</code> 可以将其转化为符号，因此可以构造出这样的 <strong>列表</strong>：</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> foo (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'begin</span> (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'print</span> <span class="string">"hi"</span>) (<span class="name"><span class="builtin-name">list</span></span> <span class="symbol">'+</span> <span class="number">4</span> <span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
-<p>注意 <code>foo</code> 是数据，它是一个列表，里面有三个元素（REPL 中显示的不一样，列表中的单引号都不会显示出来）：</p>
+<p>在这个例子中构造出来的抽象化函数和具体化函数有些比较“感性”的性质（下面这些叙述很不严谨）：</p>
 <ul>
-<li><code>&#39;begin</code></li>
-<li><code>(list &#39;print &quot;hi&quot;)</code></li>
-<li><code>(list &#39;+ 4 2)</code></li>
+<li>对于 $\displaystyle{\{0, 1, 4, 5\}\in C}$ 这个元素而言，将 $\displaystyle{\alpha}$ 作用在它上面时得到的是 $\displaystyle{[0, 5]}$，这是 <strong>最佳抽象</strong>（在 $\displaystyle{A}$ 中能够找到的最好的抽象）。如果修改 $\displaystyle{\alpha}$ 的定义后得到的是 $\displaystyle{[0, 10]}$，这个抽象是 <strong>可靠</strong> 的，但是没有之前那么精确。如果得到的是 $\displaystyle{[1, 4]}$，那么就是不可靠的抽象。</li>
+<li>如果最佳抽象是 $\displaystyle{a}$，那么 $\displaystyle{\gamma(a)}$ 是 $\displaystyle{C}$ 中能够被 $\displaystyle{a}$ 可靠近似的 <strong>最不精确</strong> 的元素（包含的信息量最少）。</li>
 </ul>
-<p>这一步中没有任何求值发生。随后可以对 <code>foo</code> 进行 <code>eval</code>：</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> bar (<span class="name"><span class="builtin-name">eval</span></span> foo))</span><br></pre></td></tr></table></figure>
-<p>屏幕会打印 &quot;hi&quot; 并且 <code>bar</code> 会绑定为 6，此时就运行了代码。</p>
-<p>对于函数都要写单引号比较麻烦，<code>quote</code> 可以 <strong>将程序当作数据</strong>，是 <code>eval</code> 的反过程：</p>
-<figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="name"><span class="builtin-name">define</span></span> foo (<span class="name"><span class="builtin-name">quote</span></span> begin (<span class="name">print</span> <span class="string">"hi"</span>) (<span class="name"><span class="builtin-name">+</span></span> <span class="number">4</span> <span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
-<p>这和上面的定义是等价的。这个过程中 <code>list</code> 被省去了。可以在 <code>quote</code> 中使用quasiquoting 概念来引入一个需要计算的表达式，有点类似其它接受字符串的语言中，对这个字符串本身进行插值。</p>
-<hr>
-<p>实现了 <code>eval</code> 函数的往往是解释性的工具，但这不意味着带有 <code>eval</code> 的语言必然以解释性的方式实现，实际上编译性的也是可以的。</p>
-<p>一个典型的需要用到 <code>eval</code> 的地方是使用语言 A 写语言 A 的 REPL，这里的 REPL 中的 E 就可以使用 <code>eval</code>。</p>
-<hr>
-<p>完。</p>
-
+<h3 id="函数抽象"><a href="#函数抽象" class="headerlink" title="函数抽象"></a>函数抽象</h3><p>在具体域 $\displaystyle{C}$ 和抽象域 $\displaystyle{A}$ 中有很多元素，两个域上可能有一些函数。抽象域上的函数可能是具体域上的函数的抽象。</p>
+<p>对于具体域上的函数 $\displaystyle{f}$ 和抽象域上的函数 $\displaystyle{f&#39;}$：</p>
+<ul>
+<li>如果 $\displaystyle{f&#39; = \alpha\circ f\circ \gamma}$，则称 $\displaystyle{f&#39;}$ 是 $\displaystyle{f}$ 的 <strong><em>最佳抽象</em></strong>。这是比较难得到的一种情况。</li>
+<li>如果 $\displaystyle{\forall a::(\alpha \circ f \circ\gamma)(a)\sqsubseteq f&#39;(a)}$，则称为 <strong><em>可靠抽象</em></strong>。一个等价的条件是 $\displaystyle{\forall a::(f\circ \gamma)(a)\le (\gamma\circ f&#39;)(a)}$。</li>
+<li>如果有 $\displaystyle{\gamma\circ f&#39; = f\circ \gamma}$，则称为 <strong><em>精确抽象</em></strong>，这是最不常见的一种情况。</li>
+</ul>
+<p>精确抽象要比最佳抽象更加严格，这是因为最佳抽象的定义要求的是两个 $\displaystyle{C\mapsto A}$ 函数相等，而精确抽象的定义要求的是两个 $\displaystyle{A\mapsto C}$ 函数相等。后者要更难一些。</p>
+<h4 id="函数抽象的例子"><a href="#函数抽象的例子" class="headerlink" title="函数抽象的例子"></a>函数抽象的例子</h4><p>对于函数 $\displaystyle{f = \lambda X.\{x + 1\ |\ x\in X\}}$，$\displaystyle{f&#39;([a, b]) = [-\infty, \infty]}$ 是它的一个可靠抽象，虽然这个抽象毫无意义；$\displaystyle{f&#39;([a, b]) = [a + 1, b + 1]}$ 则是它的精确抽象。</p>
+<p>对于函数 $\displaystyle{f(X) = \{2 \times x\ |\ x\in X\}}$ 而言，$\displaystyle{f&#39;([a, b]) = [2\times a, 2\times b]}$ 是它的最佳抽象，但是不是精确抽象。</p>
+<h3 id="抽象不动点"><a href="#抽象不动点" class="headerlink" title="抽象不动点"></a>抽象不动点</h3><p>类似 Tarski 不动点定理和 Kleene 不动点定理，函数抽象也有不动点定理。<em>但是我根本不知道这两个定理说了什么。</em></p>
+<h4 id="（Tarski）不动点抽象定理-1"><a href="#（Tarski）不动点抽象定理-1" class="headerlink" title="（Tarski）不动点抽象定理 1"></a>（Tarski）不动点抽象定理 1</h4><p>给定两个完全格 $\displaystyle{C}$ 和 $\displaystyle{A}$ 以及它们的 Galois 连接 $\displaystyle{(\alpha, \gamma)}$，$\displaystyle{f}$ 和 $\displaystyle{f&#39;}$ 是两个格上的 <strong>单调函数</strong>。如果 $\displaystyle{f&#39;}$ 是 $\displaystyle{f}$ 的 <strong>可靠抽象</strong>，则</p>
+<script type="math/tex; mode=display">
+\text{lfp}_\bot f\le \gamma(\text{lfp}_{\bot'}f') \\
+\alpha(\text{lfp}_\bot f)\sqsubseteq \text{lfp}_{\bot'}f'</script><p>两个式子是等价的。其中 $\displaystyle{\text{lfp}_x}$ 指的是比 $\displaystyle{x}$ 大的最小不动点，而 $\displaystyle{\text{gfp}_x}$ 表示比 $x$ 小的最大不动点。</p>
+<h4 id="（Kleene）不动点抽象定理-2"><a href="#（Kleene）不动点抽象定理-2" class="headerlink" title="（Kleene）不动点抽象定理 2"></a>（Kleene）不动点抽象定理 2</h4><p>给定两个完全偏序集 $\displaystyle{C}$ 和 $\displaystyle{A}$，$\displaystyle{f}$ 和 $\displaystyle{f&#39;}$ 分别是二者上面的单调函数，给定 <strong>单调的</strong> 具体化函数 $\displaystyle{\gamma}$，如果 $\displaystyle{f&#39;}$ 是 $\displaystyle{f}$ 的 <strong>可靠抽象</strong> 并且 $\displaystyle{\gamma(\bot&#39;)}$ 是 $\displaystyle{f}$ 的前不动点，则</p>
+<script type="math/tex; mode=display">
+\text{lfp}_\bot f \le \text{lfp}_{\gamma(\bot')}(f)\le \gamma(\text{lfp}_{\bot'}f')</script>
       
     </div>
 
@@ -551,9 +546,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/函数式编程/" rel="tag"># 函数式编程</a>
-          
-            <a href="/tags/编程语言理论/" rel="tag"># 编程语言理论</a>
+            <a href="/tags/形式化验证/" rel="tag"># 形式化验证</a>
           
         </div>
       
@@ -566,8 +559,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/17/Programming-Languages-Part-B-笔记-3-Section-6/" rel="next" title="Programming Languages (Part B) 笔记 3 Section 6">
-                <i class="fa fa-chevron-left"></i> Programming Languages (Part B) 笔记 3 Section 6
+              <a href="/2019/05/08/TaPL-读书笔记-1-Preparation/" rel="next" title="TaPL 读书笔记 1 Preparation">
+                <i class="fa fa-chevron-left"></i> TaPL 读书笔记 1 Preparation
               </a>
             
           </div>
@@ -575,10 +568,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/23/Programming-Languages-Part-C-笔记-1-Introduction/" rel="prev" title="Programming Languages (Part C) 笔记 1 Introduction">
-                Programming Languages (Part C) 笔记 1 Introduction <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -768,7 +757,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Section-7"><span class="nav-number">1.</span> <span class="nav-text">Section 7</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ML-Versus-Racket"><span class="nav-number">1.1.</span> <span class="nav-text">ML Versus Racket</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Racket-实现-ML"><span class="nav-number">1.1.1.</span> <span class="nav-text">Racket 实现 ML</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ML-实现-Racket"><span class="nav-number">1.1.2.</span> <span class="nav-text">ML 实现 Racket</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What-is-Static-Checking"><span class="nav-number">1.2.</span> <span class="nav-text">What is Static Checking?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Soundness-and-Completeness"><span class="nav-number">1.3.</span> <span class="nav-text">Soundness and Completeness</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Weak-Typing"><span class="nav-number">1.4.</span> <span class="nav-text">Weak Typing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Static-Versus-Dynamic-Typing-Part-One"><span class="nav-number">1.5.</span> <span class="nav-text">Static Versus Dynamic Typing, Part One</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于便利性"><span class="nav-number">1.5.1.</span> <span class="nav-text">关于便利性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于类型检查"><span class="nav-number">1.5.2.</span> <span class="nav-text">关于类型检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于错误检查"><span class="nav-number">1.5.3.</span> <span class="nav-text">关于错误检查</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Static-Versus-Dynamic-Typing-Part-Two"><span class="nav-number">1.6.</span> <span class="nav-text">Static Versus Dynamic Typing, Part Two</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于性能"><span class="nav-number">1.6.1.</span> <span class="nav-text">关于性能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于代码重用性"><span class="nav-number">1.6.2.</span> <span class="nav-text">关于代码重用性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于写一个原型程序"><span class="nav-number">1.6.3.</span> <span class="nav-text">关于写一个原型程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于软件演化"><span class="nav-number">1.6.4.</span> <span class="nav-text">关于软件演化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#eval-and-quote"><span class="nav-number">1.7.</span> <span class="nav-text">eval and quote</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第十二周"><span class="nav-number">1.</span> <span class="nav-text">第十二周</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象解释"><span class="nav-number">1.1.</span> <span class="nav-text">抽象解释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学基础"><span class="nav-number">1.2.</span> <span class="nav-text">数学基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#偏序"><span class="nav-number">1.2.1.</span> <span class="nav-text">偏序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#格"><span class="nav-number">1.2.2.</span> <span class="nav-text">格</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#完全格"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">完全格</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链"><span class="nav-number">1.2.3.</span> <span class="nav-text">链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全偏序"><span class="nav-number">1.2.4.</span> <span class="nav-text">完全偏序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数"><span class="nav-number">1.2.5.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单调性"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">单调性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#连续性"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">连续性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不动点"><span class="nav-number">1.2.6.</span> <span class="nav-text">不动点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最小（大）不动点"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">最小（大）不动点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不动点理论"><span class="nav-number">1.2.7.</span> <span class="nav-text">不动点理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tarski-不动点定理"><span class="nav-number">1.2.7.1.</span> <span class="nav-text">Tarski 不动点定理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kleene-不动点定理"><span class="nav-number">1.2.7.2.</span> <span class="nav-text">Kleene 不动点定理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Galois-连接"><span class="nav-number">1.2.8.</span> <span class="nav-text">Galois 连接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Galois-连接的例子"><span class="nav-number">1.2.8.1.</span> <span class="nav-text">Galois 连接的例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数抽象"><span class="nav-number">1.2.9.</span> <span class="nav-text">函数抽象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数抽象的例子"><span class="nav-number">1.2.9.1.</span> <span class="nav-text">函数抽象的例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象不动点"><span class="nav-number">1.2.10.</span> <span class="nav-text">抽象不动点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（Tarski）不动点抽象定理-1"><span class="nav-number">1.2.10.1.</span> <span class="nav-text">（Tarski）不动点抽象定理 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（Kleene）不动点抽象定理-2"><span class="nav-number">1.2.10.2.</span> <span class="nav-text">（Kleene）不动点抽象定理 2</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
