@@ -352,6 +352,347 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/09/手写汇编器-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/09/手写汇编器-2/" class="post-title-link" itemprop="url">汇编课程大作业博客——编码 x86 指令</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-09 10:50:13" itemprop="dateCreated datePublished" datetime="2018-10-09T10:50:13+08:00">2018-10-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:29" itemprop="dateModified" datetime="2019-03-11T15:30:29+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="汇编课程大作业博客——编码-x86-指令"><a href="#汇编课程大作业博客——编码-x86-指令" class="headerlink" title="汇编课程大作业博客——编码 x86 指令"></a>汇编课程大作业博客——编码 x86 指令</h1><p>在上一篇中我们研究了 PE 的结构，其中最麻烦的段是 .text 段。如果已经知道了汇编代码，如何构造这个 .text 段？这涉及到如何编码 x86 指令。</p>
+<p><a href="http://www.c-jump.com/CIS77/CPU/x86/lecture.html" target="_blank" rel="noopener">Encoding Real x86 Instructions</a> 这篇页面简单讲了一下如何对 x86 指令进行编码，对我们的任务来说应该够了。这篇博客是对该页面的学习记录。</p>
+<h2 id="x86-机器码的整体结构"><a href="#x86-机器码的整体结构" class="headerlink" title="x86 机器码的整体结构"></a>x86 机器码的整体结构</h2><p>一条 x86 的指令在编码后会有各种部分，如果将所有可选的部分写到一起，最高可以有十六字节。不过，并不是所有部分都是必要的，实际上 x86 不会有超过十五字节的指令。</p>
+<p>回到将所有可选部分写到一起那一步，这十六个字节的结构如下：</p>
+<ul>
+<li><strong>最高四个字节</strong>：Prefix Bytes，实际可能有零到四个字节，这些前缀会影响操作的结果。</li>
+<li><strong>次高四个字节</strong>：这四个字节编码了指令以及指令的工作方式（opcode + Mod-Reg-R/M + SIB，后面会写）。</li>
+<li><strong>次低四个字节</strong>：这四个字节编码了 displacement [<a href="https://stackoverflow.com/questions/13329611/x86-x64-add-displacement-addressing" target="_blank" rel="noopener">1</a>]，displacement 用于寻址。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+<li><strong>最低四个字节</strong>：这四个字节编码了 immediate data。这四个字节不会全部使用，可能会用到零个、一个、两个或四个字节。</li>
+</ul>
+<p>对于次高四个字节，还可以进一步细分：</p>
+<ul>
+<li>最高的两个字节，编码 opcode，可能会使用其中的一个或两个字节。</li>
+<li>接下来的一个字节称为 <em>Mod-Reg-R/M</em> 字节，这个字节指明了寻址模式和操作数的大小。只有指令需要寄存器或者内存的操作数的时候才会使用这个字节。</li>
+<li>接下来的一个字节称为 SIB（Scaled Indexed Byte）。如果指令使用了 scaled indexed memory addressing，就会用到这个字节。具体是什么后面会写。</li>
+</ul>
+<p>不是所有的字节都会被用到（实际上大部分字节都不会被用到）。我们会先了解次高四个字节。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/09/手写汇编器-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/08/软件工程课程项目博客-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/10/08/软件工程课程项目博客-2/" class="post-title-link" itemprop="url">软件工程课程大作业博客——数据传输方式的选取</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-08 10:01:49" itemprop="dateCreated datePublished" datetime="2018-10-08T10:01:49+08:00">2018-10-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-11 15:30:59" itemprop="dateModified" datetime="2019-03-11T15:30:59+08:00">2019-03-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="软件工程课程大作业博客——数据传输方式的选取"><a href="#软件工程课程大作业博客——数据传输方式的选取" class="headerlink" title="软件工程课程大作业博客——数据传输方式的选取"></a>软件工程课程大作业博客——数据传输方式的选取</h1><p><strong>一些考虑</strong>：前端打算使用 Vue 来做界面，所以后端不用进行模板渲染，只用向前端发送裸的数据就可以了。</p>
+<p>目前的打算是，前端渲染每个页面的时候会向后端发起两次请求，使用的是两个略有差异的 url。第一次请求的时候，服务器会发送一个类似模板的文件（而不管 url 的一些细节），这个文件会向服务器发起第二次请求，服务器会根据第二次的 url 中的参数返回数据，让客户端上的模板文件进行渲染。</p>
+<p>比如用户想要得到比赛 2 的评论 4，第一次的 url 可能是 /contests/2/comments/4，服务器会返回一个 comment_template.html，但是上面没有任何数据，这个文件中的 js 会根据当前的 url 发起第二次请求，url 可能为 /api/contests/2/comments/4，这次请求会返回实际数据。</p>
+<p>数据传输的方式可以采用某种应用层上的协议来简化开发。目前备选的方案有 REST、GraphQL 和 gRPC。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/10/08/软件工程课程项目博客-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/10/06/手写汇编器-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1872,335 +2213,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/22/CS184-1X-计算机图形学学习笔记-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (2)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-22 13:49:23" itemprop="dateCreated datePublished" datetime="2018-08-22T13:49:23+08:00">2018-08-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:45" itemprop="dateModified" datetime="2019-03-11T15:21:45+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-2"><a href="#CS184-1X-计算机图形学学习笔记-2" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (2)"></a>CS184.1X 计算机图形学学习笔记 (2)</h1><p>主要是 OpenGL 的一些概念。学习资料主要来自 <a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">LearnOpenGL CN</a>。</p>
-<h2 id="各种矩阵"><a href="#各种矩阵" class="headerlink" title="各种矩阵"></a>各种矩阵</h2><ul>
-<li><strong>模型（model）矩阵</strong>：比如一个模型是存放在文件中的，要描述这个模型，每个顶点的坐标应该是一个相对于某个中心的相对坐标。例如一个人体模型中，头的坐标可能是以相对于人体重心的形式给出的。当要将这个人体加载到世界中时需要使用一个矩阵左乘所有模型中的坐标得到世界坐标，这个矩阵就是模型矩阵。</li>
-<li><strong>观察（view）矩阵</strong>：世界空间中，所有的点都是相对于世界的原点给出坐标的；摄像机空间中所有的点都是相对摄像机给出坐标的，即摄像机是原点。OpenGL 中我们希望能通过移动世界的方式来实现移动画面的移动，故使用一个矩阵左乘世界中所有点的坐标得到摄像机空间中的坐标，这个矩阵就是观察矩阵。在 glm 中可以使用 <code>glm::lookAt</code> 生成一个观察矩阵。</li>
-<li><strong>投影（projection）矩阵</strong>：在摄像机空间中并不是所有的东西都会被显示出来，只有位于一个特定的空间体中的物体会被显示（例如，在透视投影中，是一个四棱台）。如果将这个空间体称为“可视区域”，则通过用一个矩阵左乘摄像机空间中的所有物体，可以将“可视区域”归一化成位于中心的所有棱的范围都是 -1 到 1 的小正方体，这个矩阵就是投影矩阵。此后便可以方便地进行显示。在 glm 中可以使用 <code>glm::perspective</code> 生成一个透视投影的投影矩阵，使用 <code>glm::ortho</code> 生成一个正交投影的投影矩阵。在使用了投影矩阵后可以生成与长宽比无关的符合直觉的图像。</li>
-</ul>
-<p>从描述中可以看到正确的应用顺序是：模型矩阵、观察矩阵、投影矩阵。只要使用矩阵乘法连乘起来即可，会得到 <strong>模型观察投影矩阵</strong>。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/22/CS184-1X-计算机图形学学习笔记-2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/08/21/CS184-1X-计算机图形学学习笔记-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/" class="post-title-link" itemprop="url">CS184.1X 计算机图形学学习笔记 (1)</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-08-21 00:07:12" itemprop="dateCreated datePublished" datetime="2018-08-21T00:07:12+08:00">2018-08-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:21:39" itemprop="dateModified" datetime="2019-03-11T15:21:39+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="CS184-1X-计算机图形学学习笔记-1"><a href="#CS184-1X-计算机图形学学习笔记-1" class="headerlink" title="CS184.1X 计算机图形学学习笔记 (1)"></a>CS184.1X 计算机图形学学习笔记 (1)</h1><h2 id="变换——数学基础"><a href="#变换——数学基础" class="headerlink" title="变换——数学基础"></a>变换——数学基础</h2><h3 id="基本变换"><a href="#基本变换" class="headerlink" title="基本变换"></a>基本变换</h3><h4 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h4><p>二维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x &amp; 0 \\<br> 0 &amp; s_y\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{cc}s_x^{-1} &amp; 0 \\<br> 0 &amp; s_y^{-1} \end{array}\right]}$，其中 $s_x, s_y$ 表示不同轴方向上的缩放系数。</p>
-<p>三维缩放变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}s_x &amp; 0 &amp; 0 \\<br> 0 &amp; s_y &amp; 0 \\<br> 0 &amp; 0 &amp; s_z\end{array}\right]}$，逆变换矩阵为 $\displaystyle{\left[\begin{array}{ccc}s_x^{-1} &amp; 0 &amp; 0 \\<br> 0 &amp; s_y^{-1} &amp; 0 \\<br> 0 &amp; 0 &amp; s_z^{-1} \end{array}\right]}$，其中 $s_x, s_y, s_z$ 表示不同轴方向上的缩放系数。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/08/21/CS184-1X-计算机图形学学习笔记-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2247,7 +2259,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-count">123</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2306,7 +2318,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

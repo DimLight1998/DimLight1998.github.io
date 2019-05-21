@@ -352,6 +352,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/20/形式化验证课程笔记-13/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/20/形式化验证课程笔记-13/" class="post-title-link" itemprop="url">形式化验证课程笔记 13</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-20 13:31:29" itemprop="dateCreated datePublished" datetime="2019-05-20T13:31:29+08:00">2019-05-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 17:16:14" itemprop="dateModified" datetime="2019-05-21T17:16:14+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="第十三周"><a href="#第十三周" class="headerlink" title="第十三周"></a>第十三周</h1><h2 id="抽象最小不动点的计算"><a href="#抽象最小不动点的计算" class="headerlink" title="抽象最小不动点的计算"></a>抽象最小不动点的计算</h2><p>如果完全偏序集 $A$ 上没有无穷递增链，$f&#39;$ 是 $A$ 上的单调函数，$a_0$ 是 $f&#39;$ 的前不动点，那么迭代 $a_{i + 1} = f&#39;(a_i)$ 即可在有限步骤内收敛到 $\text{lfp}_{a_0}f&#39;$。</p>
+<p>当 $A$ 上有无穷递增链的时候会比较麻烦，为此引入偏序集 $(A, \sqsubseteq)$ 上的 <strong>加宽算子</strong> $\triangledown: A\times A\rightarrow A$，它应当满足：</p>
+<ul>
+<li>$\forall x, y\in A, x\sqsubseteq x\triangledown y\land y\sqsubseteq x\triangledown y$</li>
+<li>对于任意的链 $(x_i)_{i\in \mathbb N}$，按照如下规则构造出来的链 $(y_i)_{i\in \mathbb N}$ 应当是递增的并且 $\exists k\in \mathbb N, y_{k + 1} = y_k$：<ul>
+<li>$y_0 = x_0$</li>
+<li>$y_{i + 1} = y_i\triangledown x_i$</li>
+</ul>
+</li>
+</ul>
+<p>现在，还是给定完全格 $A$ 和上面的单调函数 $f&#39;:A\rightarrow A$，那么下面的递增链：</p>
+<ul>
+<li>$y_0 = \bot&#39;$</li>
+<li>$y_{i + 1}=\begin{cases}y_i &amp;\text{if }f&#39;(y_i)\sqsubseteq y_i \\ y_i\triangledown f&#39;(y_i)&amp;\text{otherwise}\end{cases}$</li>
+</ul>
+<p>将会在有限步骤内收敛到某个 $y_k$，这个 $y_k$ 是 $\text{lfp}f&#39;$ 的上近似（$\text{lfp}f&#39;\sqsubseteq y_k$）（实际上它是 $f&#39;$ 的后不动点）。可以看到这个算法只是求出了不动点的近似。</p>
+<p>（下面的可靠性性质是干嘛的？可能是再从抽象域返回到具体域？）</p>
+<img src="/2019/05/20/形式化验证课程笔记-13/DeepinScreenshot_select-area_20190520141807.png">
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/20/形式化验证课程笔记-13/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/13/形式化验证课程笔记-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -530,6 +708,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-3-Simple-Types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/08/TaPL-读书笔记-3-Simple-Types/" class="post-title-link" itemprop="url">TaPL 读书笔记 3 Simple Types</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-08 15:40:17" itemprop="dateCreated datePublished" datetime="2019-05-08T15:40:17+08:00">2019-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-21 17:15:17" itemprop="dateModified" datetime="2019-05-21T17:15:17+08:00">2019-05-21</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>笔记对应原书 8-14 章。</p>
+</blockquote>
+<p>上一部分（Untyped Systems）的重点回顾：</p>
+<ul>
+<li><strong>term</strong> 是具有实际意义的合法程序单元</li>
+<li><strong>语法</strong> 是对 term 的定义；定义一般是递归的，方便用归纳法证明相关性质</li>
+<li><strong>语义</strong> 给出了对 term 的求值规则，小步操作语义给出了 term 之间的变换规则</li>
+<li><strong>value</strong> 是 term 的一个子集，value 不能继续求值</li>
+<li>如果找不到对 term 继续求值的规则，这个 term 是 <strong>normal form</strong>，但不一定是 value（如果确实不是 value，称为 stuck）</li>
+<li>即使找得到对 term 继续求值的规则，也有可能出现求值 <strong>无法终止</strong> 的情况</li>
+<li>书中使用的 lambda 演算是 call by value 的</li>
+<li>无类型 lambda 演算可以用来编码各种东西，也能表示递归；也可对其进行语法和语义的扩展</li>
+</ul>
+<h2 id="为什么需要类型"><a href="#为什么需要类型" class="headerlink" title="为什么需要类型"></a>为什么需要类型</h2><h3 id="类型系统是干嘛的"><a href="#类型系统是干嘛的" class="headerlink" title="类型系统是干嘛的"></a>类型系统是干嘛的</h3><p>回到最开始对类型系统的定义：</p>
+<blockquote>
+<p>类型系统本质上是一个轻量级的形式化方法，用来拒绝一部分可能存在错误的程序。它不会引入很多复杂性，因此是轻量级的。具体要拒绝具有哪些性质的程序由语言的定义者定夺取舍。</p>
+</blockquote>
+<p>在无类型 lambda 演算中，会出现以下两种情况：</p>
+<ol>
+<li>存在不是 value 的 norm form</li>
+<li>存在不能终止求值的 term</li>
+</ol>
+<p>当我们希望程序总是终止并且能够求出一个 value 时，我们不希望这两种情况出现。写了一个程序之后，我们想让某个东西告诉我们这个程序是否会 stuck。类型系统可以实现这一点。通过引入类型系统，我们能够“静态地”在实际运行程序前，就分析出这个程序是否可能存在上述两种情况，据此决定是否要拒绝它。</p>
+<p>简单的类型系统可以让以上两点被拒绝，如果类型系统更加复杂的话，第二点可能无法被拒绝。</p>
+<h3 id="类型的一些性质"><a href="#类型的一些性质" class="headerlink" title="类型的一些性质"></a>类型的一些性质</h3><p>在导出类型系统的性质之前有必要引入相应的符号和定义：</p>
+<ul>
+<li>term $t$ 具有类型 $T$ 记作 $t:T$</li>
+<li>如果存在类型 $T$ 使得 $t:T$，则称 term $t$ 是 well typed 的</li>
+</ul>
+<p>确实可以构造出符合语法规定的，但是不是 well typed 的 term，比如 <code>succ(true)</code>，这种 term 在求值时会 stuck。</p>
+<p>关于类型的规则在定义语言时就应当被给出，它作为 typing rules，是独立的一套规则。现在，语言的定义包括语法、语义、类型、类型规则这几个部分。语言的 typing rules 一般是以 inference 的形式给出的，长这样：</p>
+<img src="/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190519200316.png">
+<p>有了这些规则，就可以从语法树的叶子开始逐渐推导出整个 term 的类型。<strong>需要注意的是所有 well typed terms 的类型只能有 inference 规则得到，你不能凭空构造一个 <code>succ(true)</code> 然后强行定义它的类型就是 <code>Bool</code>，除非把 inference rules 给改了</strong>。实际中用得更多的是 inference rules 的等价形式，称作 inversion lemma，实际上就是把条件和结论换一下：</p>
+<img src="/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190519200616.png">
+<p>这么换的道理应该是每种 term 只有一条对应的 typing rule。用这些规则可以从语法树根部开始递归地计算出整个 term 的类型。</p>
+<p>在有类型系统的语言的相关性质的证明中，一个常用的套路是根据类型进行归纳。例如我们要证明 term $t$ 具有某个性质，首先分析 $t$ 可能的类型有哪些，然后对于每种类型，分析出它为什么会具有这种类型（通过哪一条 typing rule），完成这一步之后，$t$ 的形式就固定了（比如 $t$ 必然是 $\texttt{if }t_1\texttt{ then }t_2\texttt{ else }t_3$ 结构的），然后归纳证明即可。</p>
+<p>类型系统的一个性质是 <strong>每个 well typed term 只可能有一种类型，并且只有一棵推导出该类型的推导树</strong>。不过并非所有的类型系统都会满足这个性质（比如包括子类型的语言就不会）。这个性质称为 <strong>uniqueness</strong>。具有 uniqueness 性质的类型系统可以让编译器只扫描一遍 AST 就分析出各个 term 的类型，而不会有“猜测”的过程。</p>
+<p>类型系统的另一个性质是保证了每种类型对应的 value 一定会具有某种形式，就像 inversion lemma 给出的那样。这个性质称为 <strong>canonical forms</strong>。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/08/TaPL-读书笔记-3-Simple-Types/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-2-Untyped-Systems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -592,7 +969,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-15 15:01:54" itemprop="dateModified" datetime="2019-05-15T15:01:54+08:00">2019-05-15</time>
+                <time title="修改时间：2019-05-15 16:01:35" itemprop="dateModified" datetime="2019-05-15T16:01:35+08:00">2019-05-15</time>
               
             
           </span>
@@ -789,7 +1166,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-14 14:19:25" itemprop="dateModified" datetime="2019-05-14T14:19:25+08:00">2019-05-14</time>
+                <time title="修改时间：2019-05-15 16:02:00" itemprop="dateModified" datetime="2019-05-15T16:02:00+08:00">2019-05-15</time>
               
             
           </span>
@@ -1515,7 +1892,7 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-25 21:31:55" itemprop="dateModified" datetime="2019-04-25T21:31:55+08:00">2019-04-25</time>
+                <time title="修改时间：2019-05-21 11:05:21" itemprop="dateModified" datetime="2019-05-21T11:05:21+08:00">2019-05-21</time>
               
             
           </span>
@@ -1777,368 +2154,6 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/19/Functional-Program-Design-in-Scala-笔记-2-Lazy-Evaluation/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-2-Lazy-Evaluation/" class="post-title-link" itemprop="url">Functional Program Design in Scala 笔记 2 Lazy Evaluation</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-19 20:21:04" itemprop="dateCreated datePublished" datetime="2019-04-19T20:21:04+08:00">2019-04-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-24 20:05:36" itemprop="dateModified" datetime="2019-04-24T20:05:36+08:00">2019-04-24</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="关于树的性质的证明"><a href="#关于树的性质的证明" class="headerlink" title="关于树的性质的证明"></a>关于树的性质的证明</h2><p>如果要证明树上有性质 P 成立，套路是先证明所有叶子上都有性质 P 成立，然后证明对于一个结点，如果它的直接子结点上有性质 P 成立，则它自己也有性质 P 成立。</p>
-<h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p>Scala 中的流和 Programming Languages 中介绍的差不多，都是某种列表的惰性求值的策略。Scala 中的流用 <code>Stream</code> 表示，可以通过 <code>Stream.cons</code> 和 <code>Stream.empty</code> 等函数进行构造，它的方法和 <code>List</code> 几乎一致。</p>
-<p><code>Stream</code> 只会对第一个元素求值，随后的元素的求值是惰性的：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plusOne</span></span>(x: <span class="type">Int</span>) = &#123;</span><br><span class="line">    println(<span class="string">"hello"</span>)</span><br><span class="line">    x + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> stream = (<span class="number">1</span> to <span class="number">1000</span>).toStream</span><br><span class="line"><span class="keyword">val</span> mappedStream = stream map plusOne</span><br></pre></td></tr></table></figure>
-<p>使用 <code>#::</code> 来实现 <code>List</code> 中的 <code>::</code> 功能（或者用 <code>Stream.cons</code>）。</p>
-<h3 id="如何实现-Stream"><a href="#如何实现-Stream" class="headerlink" title="如何实现 Stream"></a>如何实现 <code>Stream</code></h3><p>由于 Scala 的 call by name 语法，实现一个 <code>Stream</code> 很容易：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Stream</span>[+<span class="type">T</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span></span>: <span class="type">Boolean</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">head</span></span>: <span class="type">T</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">tail</span></span>: <span class="type">Stream</span>[<span class="type">T</span>]</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">filter</span></span>(pred: <span class="type">T</span> =&gt; <span class="type">Boolean</span>): <span class="type">Stream</span>[<span class="type">T</span>] = &#123;</span><br><span class="line">    <span class="keyword">if</span> (isEmpty) <span class="keyword">this</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (pred(head)) <span class="type">Stream</span>.cons(head, tail filter pred)</span><br><span class="line">    <span class="keyword">else</span> tail filter pred</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">object</span> <span class="title">Stream</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">cons</span></span>[<span class="type">T</span>](hd: <span class="type">T</span>, tl: =&gt; <span class="type">Stream</span>[<span class="type">T</span>]): <span class="type">Stream</span>[<span class="type">T</span>] = <span class="keyword">new</span> <span class="type">Stream</span>[<span class="type">T</span>] &#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span> </span>= <span class="literal">false</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">head</span> </span>= hd</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tail</span> </span>= tl</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">empty</span></span>: <span class="type">Stream</span>[<span class="type">Nothing</span>] = <span class="keyword">new</span> <span class="type">Stream</span>[<span class="type">Nothing</span>] &#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span> </span>= <span class="literal">true</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">head</span> </span>= <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">Exception</span>(<span class="string">"Empty stream!"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">tail</span> </span>= <span class="keyword">throw</span> <span class="keyword">new</span> <span class="type">Exception</span>(<span class="string">"Empty stream!"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>其中 <code>Stream</code> object 的 <code>cons</code> 方法中 <code>tl</code> 参数是 call by name 的，流的特性就来源于此。</p>
-<h3 id="惰性求值"><a href="#惰性求值" class="headerlink" title="惰性求值"></a>惰性求值</h3><p>Scala 中允许使用关键字 <code>lazy val</code> 表明一个变量应当被惰性求值。</p>
-<p>现在我们有三种声明方式：</p>
-<ul>
-<li><code>val x = { ... }</code></li>
-<li><code>lazy val x = { ... }</code></li>
-<li><code>def x = { ... }</code></li>
-</ul>
-<p>其中，<code>val x</code> 会在执行到这一句的时候就求值，然后将值赋给 <code>x</code>；<code>lazy val x</code> 在执行这一句的时候先不求值，等第一次使用到 <code>x</code> 的时候对表达式求值，然后后续一直使用这个值；<code>def x</code> 则和函数类似，每次调用都会进行求值。</p>
-<hr>
-<p>其实上面的流的实现是有问题的，可以看到 <code>Stream.tail</code> 每次调用时都会对 <code>tl</code> 求值，因此可以改写成如下形式：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cons</span></span>[<span class="type">T</span>](hd: <span class="type">T</span>, tl: =&gt; <span class="type">Stream</span>[<span class="type">T</span>]): <span class="type">Stream</span>[<span class="type">T</span>] = <span class="keyword">new</span> <span class="type">Stream</span>[<span class="type">T</span>] &#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isEmpty</span> </span>= <span class="literal">false</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">head</span> </span>= hd</span><br><span class="line">  <span class="keyword">lazy</span> <span class="keyword">val</span> tail = tl</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-2-Lazy-Evaluation/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/19/Functional-Program-Design-in-Scala-笔记-1-For-Expressions-and-Monads/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-1-For-Expressions-and-Monads/" class="post-title-link" itemprop="url">Functional Program Design in Scala 笔记 1 For Expressions and Monads</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-19 20:20:50" itemprop="dateCreated datePublished" datetime="2019-04-19T20:20:50+08:00">2019-04-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-21 01:03:01" itemprop="dateModified" datetime="2019-04-21T01:03:01+08:00">2019-04-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="一些复习"><a href="#一些复习" class="headerlink" title="一些复习"></a>一些复习</h2><p><code>Map</code> 和 <code>Seq</code> 的本质都是函数。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Map</span>[<span class="type">K</span>, <span class="type">V</span>] <span class="keyword">extends</span> (<span class="params"><span class="type">K</span> =&gt; <span class="type">V</span></span>)</span></span><br><span class="line"><span class="class"><span class="title">trait</span> <span class="title">Seq</span>[<span class="type">E</span>] <span class="keyword">extends</span> (<span class="params"><span class="type">Int</span> =&gt; <span class="type">E</span></span>)</span></span><br></pre></td></tr></table></figure>
-<h2 id="Partial-Function"><a href="#Partial-Function" class="headerlink" title="Partial Function"></a>Partial Function</h2><p>这里的 partial function 的意思和 Python 中的偏函数意思不一样；此处指的是和 total function 对立的，对于参数的定义域不一定是完备定义的。</p>
-<p>不像 SML，Scala 的模式匹配在没有完全匹配的时候不会有警告，因此可以写出这样的函数：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span></span>: <span class="type">String</span> =&gt; <span class="type">String</span> = &#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">"ping"</span> =&gt; <span class="string">"pong"</span></span><br><span class="line">  <span class="keyword">case</span> <span class="string">"pong"</span> =&gt; <span class="string">"ping"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>显然 <code>f</code> 不是对所有的字符串都有定义。一个更好的类型是 <code>PartialFunction[String, String]</code>，它是 <code>Function1[String, String]</code> 的子类型。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">PartialFunction</span>[-<span class="type">A</span>, +<span class="type">R</span>] <span class="keyword">extends</span> <span class="title">Function1</span>[-<span class="type">A</span>, +<span class="type">R</span>] </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">A</span>): <span class="type">R</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">isDefinedAt</span></span>(x: <span class="type">A</span>): <span class="type">Boolean</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果一个 <code>PartialFunction</code> 和例子一样，函数体就是一个模式匹配的话，编译器会自动生成 <code>isDefinedAt</code> 的定义（只要将函数体模式匹配的结果换成 <code>true</code>，在最后加一个通配并且返回 <code>false</code> 即可）。<code>isDefinedAt</code> 可以用来在应用 partial function 前先看下它是不是在对应位置上有定义。</p>
-<p>Partial function 只能处理外层模式匹配的情况。嵌套在内层的模式匹配如果不是完备的，使用 partial function 也没有用。</p>
-<h2 id="For-Expression-与模式匹配"><a href="#For-Expression-与模式匹配" class="headerlink" title="For Expression 与模式匹配"></a>For Expression 与模式匹配</h2><p>For expression 中，箭头左边可以是一个模式。当模式匹配不上的时候，这个元素会被跳过：</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> a = <span class="type">Map</span>(<span class="number">1</span> -&gt; <span class="number">2</span>, <span class="number">3</span> -&gt; <span class="number">4</span>, <span class="number">5</span> -&gt; <span class="number">6</span>)</span><br><span class="line"><span class="keyword">for</span> &#123;(m, n) &lt;- a <span class="keyword">if</span> m &gt;= <span class="number">3</span>&#125; <span class="keyword">yield</span> (n, m)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> b = <span class="type">Map</span>(<span class="number">1</span> -&gt; <span class="literal">true</span>, <span class="number">2</span> -&gt; <span class="literal">false</span>, <span class="number">3</span> -&gt; <span class="literal">true</span>)</span><br><span class="line"><span class="keyword">for</span> &#123;(m, <span class="literal">true</span>) &lt;- b&#125; <span class="keyword">yield</span> m</span><br></pre></td></tr></table></figure>
-<p>For expression 返回的类型与被迭代的类型上使用 <code>map</code> 函数得到的类型一致。因此 <code>List</code> 上使用 for expression 得到的是 <code>List</code>，而 <code>Map</code> 上使用 for expression 得到的是 <code>Map</code>。</p>
-<p>For expression 可以写得比较复杂，可以在花括号中穿插 <code>if</code>，<code>&lt;-</code> 和 <code>=</code>。</p>
-<p>Scala 中的 for expression 和 SQL 语言很类似。用得好的话可以在各种数据结构上拥有像 SQL 一样的查询体验。</p>
-<h2 id="For-Expression-的处理"><a href="#For-Expression-的处理" class="headerlink" title="For Expression 的处理"></a>For Expression 的处理</h2><p>首先可以注意到 <code>map</code>、<code>filter</code> 以及 <code>flatMap</code> 都可以由 for expression 加以实现。</p>
-<p>Scala 编译器则会反过来将代码中的 for expression 翻译回 <code>map</code>、<code>filter</code> 和 <code>flatMap</code>：</p>
-<ul>
-<li><code>for (x &lt;- e1) yield e2</code> 会被翻译为 <code>e1.map(x =&gt; e2)</code>；</li>
-<li><code>for (x &lt;- e1 if f; s) yield e2</code> 会被翻译为 <code>for (x &lt;- e1.withFilter(x =&gt; f); s) yield e2</code>，<code>withFilter</code> 是 <code>filter</code> 的 lazy 版本，如果 <code>filter</code> 后面要跟 <code>map</code> 或者 <code>flatMap</code> 操作的话这样做可以加速；</li>
-<li><code>for (x &lt;- e1; y &lt;- e2; s) yield e3</code> 会被翻译成 <code>e1.flatMap(x =&gt; for (y &lt;- e2; s) yield e3)</code>。</li>
-</ul>
-<p>根据上面的规则，可以把任意复杂的 for expression 分解为几个基础高阶函数操作。</p>
-<p>另外，只要自己定义的结构具有 <code>map</code>、<code>withFilter</code> 和 <code>flatMap</code> 方法，就可以使用 for expression。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-1-For-Expressions-and-Monads/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2185,7 +2200,7 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">121</span>
+                    <span class="site-state-item-count">123</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2244,7 +2259,11 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
                     
                       
                     
-                    <span class="site-state-item-count">20</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
