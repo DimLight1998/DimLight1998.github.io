@@ -146,7 +146,7 @@
 <meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190521164841.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190521165105.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190521165733.png">
-<meta property="og:updated_time" content="2019-05-21T09:15:17.860Z">
+<meta property="og:updated_time" content="2019-05-24T07:51:18.076Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TaPL 读书笔记 3 Simple Types">
 <meta name="twitter:description" content="笔记对应原书 8-14 章。  上一部分（Untyped Systems）的重点回顾：  term 是具有实际意义的合法程序单元 语法 是对 term 的定义；定义一般是递归的，方便用归纳法证明相关性质 语义 给出了对 term 的求值规则，小步操作语义给出了 term 之间的变换规则 value 是 term 的一个子集，value 不能继续求值 如果找不到对 term 继续求值的规则，这个">
@@ -438,7 +438,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-21 17:15:17" itemprop="dateModified" datetime="2019-05-21T17:15:17+08:00">2019-05-21</time>
+                <time title="修改时间：2019-05-24 15:51:18" itemprop="dateModified" datetime="2019-05-24T15:51:18+08:00">2019-05-24</time>
               
             
           </span>
@@ -585,8 +585,8 @@
 <img src="/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190520003414.png">
 <h3 id="Variants-扩展"><a href="#Variants-扩展" class="headerlink" title="Variants 扩展"></a>Variants 扩展</h3><p>这个扩展类似于 ML 系语言中的 datatype，不过稍微有些不同。</p>
 <img src="/2019/05/08/TaPL-读书笔记-3-Simple-Types/DeepinScreenshot_select-area_20190520003909.png">
-<p>首先看新引入的类型，它的类型是 $&lt;{l_i:T_i}^{i\in 1..n}&gt;$，它的值的形式都是 $<l_j = t_j> \texttt{ as }&lt;{l_i:T_i}^{i\in 1..n}&gt;$，其中 $t_j$ 具有 $T_j$ 类型。本质上它就是一个 sum type。</l_j></p>
-<p>构造一个 variants 要用到 <code>as</code> 语句（这个过程叫做 tagging），解构一个 variants 要用到 <code>case ... of ...</code> 语句。为什么要引入 tagging 的过程呢？因为如果直接将 <code>&lt;l = t&gt;</code> 这个东西看做一个 variants 的话，你是没办法知道它的类型的，它可能是 <code>&lt;l:T&gt;</code> 或者 <code>&lt;l:T, m: U&gt;</code> 或者 <code>&lt;l:T, n:V&gt;</code> 或者什么东西，这个违背了 uniqueness 的性质，所以需要一个 tagging 的过程。</p>
+<p>首先看新引入的类型，它的类型是 $\langle{l_i:T_i}^{i\in 1..n}\rangle$，它的值的形式都是 $\langle l_j = t_j\rangle \texttt{ as }\langle{l_i:T_i}^{i\in 1..n}\rangle$，其中 $t_j$ 具有 $T_j$ 类型。本质上它就是一个 sum type。</p>
+<p>构造一个 variants 要用到 <code>as</code> 语句（这个过程叫做 tagging），解构一个 variants 要用到 <code>case ... of ...</code> 语句。为什么要引入 tagging 的过程呢？因为如果直接将 $\langle l = t\rangle$ 这个东西看做一个 variants 的话，你是没办法知道它的类型的，它可能是 $\langle l:T\rangle$ 或者 $\langle l:T, m: U\rangle$ 或者 $\langle l:T, n:V\rangle$ 或者什么东西，这个违背了 uniqueness 的性质，所以需要一个 tagging 的过程。</p>
 <p>而在 ML 系语言中没有这个问题，因为不同 datatype 的各个构造子名字不能相同。给出构造子的名字之后就知道了对应的 datatype 到底是什么。</p>
 <hr>
 <p>Variants 的一些有趣的用法：</p>
@@ -704,8 +704,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/13/形式化验证课程笔记-12/" rel="prev" title="形式化验证课程笔记 12">
-                形式化验证课程笔记 12 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/08/TaPL-读书笔记-4-Subtyping/" rel="prev" title="TaPL 读书笔记 4 Subtyping">
+                TaPL 读书笔记 4 Subtyping <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -775,7 +775,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">123</span>
+                    <span class="site-state-item-count">124</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

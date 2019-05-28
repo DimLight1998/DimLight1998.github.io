@@ -352,6 +352,205 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/09/Z3-学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/09/Z3-学习笔记/" class="post-title-link" itemprop="url">Z3 学习笔记</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-09 10:26:35" itemprop="dateCreated datePublished" datetime="2019-04-09T10:26:35+08:00">2019-04-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-16 10:43:01" itemprop="dateModified" datetime="2019-04-16T10:43:01+08:00">2019-04-16</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Z3-学习笔记"><a href="#Z3-学习笔记" class="headerlink" title="Z3 学习笔记"></a>Z3 学习笔记</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Z3 is a theorem prover which can be used to check the satisfiability of logical formulas over theories.</p>
+<h2 id="Basic-Commands"><a href="#Basic-Commands" class="headerlink" title="Basic Commands"></a>Basic Commands</h2><p>A Z3 script is a sequence of commands defined by SMT-LIB 2.0 standard.</p>
+<p>The syntax is like Racket.</p>
+<ul>
+<li><code>echo</code> to print something.</li>
+<li><code>declare-const</code> to declare a constant. (No value needed.)</li>
+<li><code>declare-fun</code> to declare a function. (No definition needed.)</li>
+<li><code>assert</code> to make assertions, which will be used to check satisfiability.</li>
+<li><code>check-sat</code> to check the satisfiability of all assertions.</li>
+<li><code>get-model</code> to get the assignment if all assertions are satisfiable.</li>
+</ul>
+<p>The result of <code>get-model</code> uses <code>define-fun</code> to define functions.</p>
+<p>An <code>ite</code> expression stands for an if-then-else branch.</p>
+<h3 id="Using-Scopes"><a href="#Using-Scopes" class="headerlink" title="Using Scopes"></a>Using Scopes</h3><p>Z3 uses a global stack to store all declarations. This is useful if you want to prove multiple independent theories using some common declarations.</p>
+<p>Use <code>push</code> to enter a new stack frame and use <code>pop</code> to exit the current stack frame.</p>
+<h3 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h3><p>Use <code>set-option</code> to configure Z3. Use <code>reset</code> to remove all configurations and assertions.</p>
+<p>Some parameters for <code>set-option</code>:</p>
+<ul>
+<li><code>:print-success</code> will toggle printing <code>success</code> for commands.</li>
+<li><code>:produce-unsat-cores</code> will toggle generation of unsat cores.</li>
+<li><code>:produce-models</code> will toggle model generation.</li>
+<li><code>:produce-proofs</code> will toggle proof generation.</li>
+</ul>
+<h3 id="Additional-Commands"><a href="#Additional-Commands" class="headerlink" title="Additional Commands"></a>Additional Commands</h3><ul>
+<li><code>display</code> to pretty print an expression.</li>
+<li><code>simplify</code> to simplify an expression. Many options are available.</li>
+<li><code>define-sort</code> to define a new type. The type can be parameterized.</li>
+</ul>
+<p>You may need <code>as</code> as something like type annotations when dealing with parameterized types.</p>
+<h2 id="Propositional-Logic"><a href="#Propositional-Logic" class="headerlink" title="Propositional Logic"></a>Propositional Logic</h2><p>Use <code>and</code>, <code>or</code>, <code>xor</code>, <code>not</code>, <code>=&gt;</code> (for $\rightarrow$) and <code>=</code> (for $\leftrightarrow$) for logical connectives.</p>
+<h3 id="Satisfiability-and-Validity"><a href="#Satisfiability-and-Validity" class="headerlink" title="Satisfiability and Validity"></a>Satisfiability and Validity</h3><p>If you want to prove $F$ is valid, you can ask Z3 to prove $\lnot F$ is unsatisfiable.</p>
+<h2 id="Uninterpreted-Functions-and-Constants"><a href="#Uninterpreted-Functions-and-Constants" class="headerlink" title="Uninterpreted Functions and Constants"></a>Uninterpreted Functions and Constants</h2><p><strong>Constants are function taking no parameters, so everything are functions.</strong></p>
+<p>Functions in first-order logic should be pure and total.</p>
+<p>Use <code>declare-sort</code> to declare a unspecified type.</p>
+<h2 id="Arithmetic"><a href="#Arithmetic" class="headerlink" title="Arithmetic"></a>Arithmetic</h2><p>Z3 supports integers and real numbers.</p>
+<h3 id="Nonlinear-Arithmetic"><a href="#Nonlinear-Arithmetic" class="headerlink" title="Nonlinear Arithmetic"></a>Nonlinear Arithmetic</h3><p>A formula with expression <code>* m n</code> where <code>m</code> and <code>n</code> are neither numbers is called <strong><em>nonlinear</em></strong>. Nonlinear integer arithmetic is <strong>undecidable</strong>.</p>
+<p>Z3 can only solve some of the nonlinear arithmetic problems.</p>
+<h3 id="Division"><a href="#Division" class="headerlink" title="Division"></a>Division</h3><p>Z3 support real number division <code>/</code>, integer division <code>div</code>, modulo <code>mod</code> and remainder <code>rem</code>.</p>
+<p>The result of division by zero is not specified due to all functions need to be total. It can be any result if Z3 wants. You may need a wrapper to avoid this.</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/04/09/Z3-学习笔记/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/08/形式化验证课程笔记-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1986,171 +2185,6 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/" class="post-title-link" itemprop="url">Convolutional Neural Networks 笔记 2 Deep convolutional models: case studies</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 15:50:23" itemprop="dateCreated datePublished" datetime="2019-03-14T15:50:23+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-19 21:34:58" itemprop="dateModified" datetime="2019-03-19T21:34:58+08:00">2019-03-19</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Deep-convolutional-models-case-studies"><a href="#Deep-convolutional-models-case-studies" class="headerlink" title="Deep convolutional models: case studies"></a>Deep convolutional models: case studies</h1><h2 id="Case-studies"><a href="#Case-studies" class="headerlink" title="Case studies"></a>Case studies</h2><h3 id="Why-look-at-case-studies"><a href="#Why-look-at-case-studies" class="headerlink" title="Why look at case studies?"></a>Why look at case studies?</h3><p>CNN 中很多东西都是模块化的，学习一些 case 有助于自己写出能用的网络。</p>
-<p>本讲会学习到 LeNet-5、AlexNet、VGG、ResNet 和 Inception。</p>
-<h3 id="Classic-Networks"><a href="#Classic-Networks" class="headerlink" title="Classic Networks"></a>Classic Networks</h3><p>LeNet-5 使用小卷积核（$\displaystyle{3\times 3}$），卷积层后面跟着平均池化层（当时流行平均池化）。卷积层后面跟着池化层是一个常见的模式，重复几次后变被压平，然后进入几层全连接的网络。</p>
-<p>AlexNet 比 LeNet-5 要大，但是整体结构基本相似。不同之处在于 AlexNet 中使用了较大的卷积核（$\displaystyle{11\times 11}$），但是随后几层中卷积核大小又慢慢变小了。</p>
-<p>VGG 又称 VGG-16，通过小卷积核（全部是 $\displaystyle{3\times3}$，使用 same 填充策略）和窗口大小与步长都为 2 的最大池化提取特征。每层会将高宽缩小一半，通道增加一倍；最后通过几个全连接层。VGG 是一个相对较大的网络，但是结构简单。一个变种是 VGG-19，它是一个更大的网络。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/Convolutional-Neural-Networks-笔记-2-Deep-convolutional-models-case-studies/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2197,7 +2231,7 @@ d(\vec x^{(1)}, \vec x^{(2)}) = ||f(\vec x^{(1)}) - f(\vec x^{(2)})||^2</script>
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">123</span>
+                    <span class="site-state-item-count">124</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
