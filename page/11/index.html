@@ -352,6 +352,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/23/编译原理慕课笔记-10/" class="post-title-link" itemprop="url">编译原理慕课笔记 10</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-11-23 16:19:54" itemprop="dateCreated datePublished" datetime="2018-11-23T16:19:54+08:00">2018-11-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-02-28 16:20:27" itemprop="dateModified" datetime="2019-02-28T16:20:27+08:00">2019-02-28</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="语法制导翻译-3"><a href="#语法制导翻译-3" class="headerlink" title="语法制导翻译-3"></a>语法制导翻译-3</h1><p>以下两节讨论的是如何实现 L-SDD 对应的翻译过程。</p>
+<h2 id="在递归的预测分析过程中进行翻译"><a href="#在递归的预测分析过程中进行翻译" class="headerlink" title="在递归的预测分析过程中进行翻译"></a>在递归的预测分析过程中进行翻译</h2><p>在之前使用递归对 LL 文法进行预测分析时，每个非终结符都对应一个过程，这个过程没有参数也没有返回值（实现上可能不是这样，但是逻辑上是这样的）。现在要实现 L-SDD 时，需要做一些修改：</p>
+<ul>
+<li><p>对于每个非终结符，它对应的过程现在会接收参数，参数为这个非终结符的继承属性。这个过程应该返回该终结符的综合属性。在之前的笔记中已经指出继承属性在非终结符分析前得出，综合属性在非终结符分析后得出，这么做是合理的。</p>
+</li>
+<li><p>在每个非终结符对应的过程内部，会以局部变量的形式维护要用到的所有属性（不管是不是自己的）。例如对于这个嵌入代码的产生式 $T\rightarrow F\{K.inh = F.val\}K\{T.val = K.syn\}$（其中 inh 表示继承属性，syn 表示综合属性，val 表示计算出的属性），转换为 $T$ 对应的过程就应该是</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">T(state) -&gt; Tval:</span><br><span class="line">    Fval = F(state)</span><br><span class="line">    Kinh = Fval</span><br><span class="line"></span><br><span class="line">    state_update(state)</span><br><span class="line"></span><br><span class="line">    Ksyn = K(state, Kinh)</span><br><span class="line">    Tval = Ksyn</span><br><span class="line"></span><br><span class="line">    state_update(state)</span><br><span class="line">    <span class="keyword">return</span> Tval</span><br></pre></td></tr></table></figure>
+<p><code>state</code> 中存放的是当前的解析进度，可以看到这种实现方式几乎是在翻译 SDT，很直观。</p>
+</li>
+<li><p>在主函数中，解析初始符号得到初始符号对应的综合属性即可。此时翻译过程完成。</p>
+</li>
+</ul>
+<p>这种实现方式还比较优雅。</p>
+<h2 id="L-属性定义的自底向上翻译"><a href="#L-属性定义的自底向上翻译" class="headerlink" title="L-属性定义的自底向上翻译"></a>L-属性定义的自底向上翻译</h2><p>这里涉及的是如何使用 LR 分析技术解决 LL 文法对应的语言，因为自底向上翻译一般处理的是 LR 文法。</p>
+<p>在 S-SDD 中使用自底向上翻译时，对应的状态栈和符号栈旁边会有一个属性栈。对于 L-SDD，也是如此。</p>
+<p>对于一个 L-SDD，可以通过如下的转换使得所有的语义动作都位于产生式的末尾，这个过程会改写文法。例如对于 $A\rightarrow \{a_1\}B\{a_2\}$，引入产生式 $M\rightarrow \epsilon \{a_1&#39;\}$ 即可将原来的产生式变换到 $A\rightarrow MB \{a_2\}$。这个产生式的语义动作实际上完成了它替换掉的那个语义动作要做的事情。这样引入的非终结符称为 <strong>标记非终结符</strong>。当然想想就知道变化完了之后肯定不是 S-SDD，这是因为 $a_1&#39;$ 能够处理的操作比 $a_1$ 要少，$a_1$ 要处理的可能是计算 $B$ 的某个继承属性，但是变化完成后 $a_1&#39;$ 逻辑上不能访问到 $B$，它只能计算出 $M$ 的综合属性。但是因为这个产生式被专用，所以实现上可以让 $a_1&#39;$ 能够访问到 $B$，只不过不太干净罢了。</p>
+<p>形式上来讲所有的语义动作都位于产生式的末尾了，就可以像 S-SDD 中那样操作，<strong>每次归约时执行语义动作</strong>。变换完成后，对于每个产生式都可以静态地（不依赖于具体的语言组成）写出每个产生式对应的执行过程（可以实际执行的对栈的操作）。需要注意的是，对于引入的标记非终结符，它对应的那个语义动作，会将该标记非终结符左边的那些符号的属性复制一下作为为自己的继承属性，并计算出一个综合属性。这个综合属性实际上就是标记非终结符右边的那个符号 $B$ 想要将计算的继承属性。因此如果后续的处理过程中需要用到 $B$ 的继承属性的话要找的是标记非终结符的综合属性。问题是每次是否都能找到呢？实际上 $M$ 就在 $B$ 的左边，因此实际实现和运行中这个综合属性一定能够轻松找到。</p>
+<p>由于引入的标记非终结符推导出空串，所以标记非终结符进行归约是每次都是往栈里面压入了一个新的元素。实际上可以将这个压入的元素看作是某种存放了它右边那个符号的继承属性的特殊元素容器，当后面的符号要引用前面的符号的属性时，不管是继承属性（此时是对应标记非终结符的综合属性）还是综合属性（此时就是对应符号的综合属性）都能够找到。这样说就比较说得通了。</p>
+<p>这一节因为没有看到代码实现，所以自己实际上只有概念和方法上的了解。一些细节的地方估计有疏漏。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/23/编译原理慕课笔记-9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2214,183 +2387,6 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2018/11/10/Rust-学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/10/Rust-学习笔记/" class="post-title-link" itemprop="url">Rust 学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-11-10 16:48:43" itemprop="dateCreated datePublished" datetime="2018-11-10T16:48:43+08:00">2018-11-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-03-11 15:29:09" itemprop="dateModified" datetime="2019-03-11T15:29:09+08:00">2019-03-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Rust-学习笔记"><a href="#Rust-学习笔记" class="headerlink" title="Rust 学习笔记"></a>Rust 学习笔记</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> rustc --version</span></span><br><span class="line">rustc 1.30.0 (da5f414c2 2018-10-24)</span><br></pre></td></tr></table></figure>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="工具链"><a href="#工具链" class="headerlink" title="工具链"></a>工具链</h3><p>Rust 使用 cargo 进行项目管理。</p>
-<ul>
-<li>使用 <code>cargo</code> 建立一个新项目：<code>cargo new project_name --bin</code>。</li>
-<li>使用 <code>cargo</code> 建立一个新模块：<code>cargo new module_name --lib</code>。</li>
-<li>编译并运行： <code>cargo run</code>。</li>
-<li>只编译：<code>cargo build</code>。</li>
-<li>只检查是否能够通过编译：<code>cargo check</code>。</li>
-<li>更新依赖：<code>cargo update</code>。</li>
-<li>运行测试：<code>cargo test</code>。</li>
-</ul>
-<h3 id="变量与可变性"><a href="#变量与可变性" class="headerlink" title="变量与可变性"></a>变量与可变性</h3><ul>
-<li>Rust 使用 <code>let</code> 声明变量，建议使用 <code>snake_case</code> 命名。</li>
-<li>Rust 使用 <code>const</code> 声明常量，建议使用 <code>SCREAMING_SNAKE_CASE</code> 命名。</li>
-<li>Rust 变量默认不可变，如果需要可变的话，需要加上 <code>mut</code>。</li>
-</ul>
-<p>Rust 具有 Shadowing 的特性，可以将声明一个与同作用域已经声明的变量名称相同的变量名。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2018/11/10/Rust-学习笔记/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2437,7 +2433,7 @@ symbol\rightarrow letter\_(digit|letter\_)^\star</script><p>可见使用正则�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">124</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

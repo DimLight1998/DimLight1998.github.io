@@ -131,7 +131,7 @@
 <meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-4-Subtyping/DeepinScreenshot_select-area_20190528200237.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-4-Subtyping/DeepinScreenshot_select-area_20190528200545.png">
 <meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-4-Subtyping/DeepinScreenshot_select-area_20190528201035.png">
-<meta property="og:updated_time" content="2019-05-28T12:29:32.738Z">
+<meta property="og:updated_time" content="2019-05-28T13:44:09.676Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TaPL 读书笔记 4 Subtyping">
 <meta name="twitter:description" content="笔记对应原书 15-19 章。  上一部分（Simple Types）的重点回顾：  使用 类型系统 可以 静态地 检查出一部分可能会出错的程序，而我们希望运行过程中会 stuck 的程序能够被拒绝。 语言的定义会包含一系列的 typing rules，根据这些 typing rules 能够推断出一些 terms 的类型，这些 terms 是 well typed terms。 类型系统依据">
@@ -423,7 +423,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-28 20:29:32" itemprop="dateModified" datetime="2019-05-28T20:29:32+08:00">2019-05-28</time>
+                <time title="修改时间：2019-05-28 21:44:09" itemprop="dateModified" datetime="2019-05-28T21:44:09+08:00">2019-05-28</time>
               
             
           </span>
@@ -507,7 +507,7 @@
 <img src="/2019/05/08/TaPL-读书笔记-4-Subtyping/DeepinScreenshot_select-area_20190528201035.png">
 <p>现在，尽管存在 subtyping，但是利用这些类型规则进行类型检查时每一步都是确定的，这就是 algorithmic subtyping 的好处。</p>
 <hr>
-<p>书中后面的内容介绍的是如何使用 lambda 演算实现 OOP（带有状态的对象；封装、继承、多态等特征的实现等），这个叫做 <strong><em>object encoding</em></strong>。当然为了实现状态，不可避免地要使用引用来对状态进行维护。实现中的一些关键思路（详细内容看书）：</p>
+<p>书中后面的内容介绍的是如何使用 lambda 演算实现 OOP（带有状态的对象；封装、继承、多态等特征的实现等），这个叫做 <strong><em>object encoding</em></strong>。当然为了实现状态，不可避免地要使用引用来对状态进行维护（然而可以用 recursive type 实现纯函数式的状态维护）。实现中的一些关键思路（详细内容看书）：</p>
 <ol>
 <li>使用一个记录存放所有的状态，不存放任何方法。这个记录叫做 <strong><em>representation record</em></strong>。</li>
 <li>搞一个函数，它接受一个 representation record，返回一个记录。这个记录中都是方法（叫它 <em>object record</em> 好了），并且访问了 representation record。现在原始的 representation record 就被 <strong>封装</strong> 起来没法访问了，只能访问对应的 object record。这一步实现了最简单的 OOP。</li>
@@ -566,8 +566,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/13/形式化验证课程笔记-12/" rel="prev" title="形式化验证课程笔记 12">
-                形式化验证课程笔记 12 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/" rel="prev" title="TaPL 读书笔记 5 Recursive Types">
+                TaPL 读书笔记 5 Recursive Types <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -628,7 +628,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">124</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

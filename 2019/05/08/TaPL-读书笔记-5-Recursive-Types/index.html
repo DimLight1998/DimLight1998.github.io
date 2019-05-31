@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="笔记对应原书 20-21 章。  上一部分（Subtyping）的重点回顾：  简单的类型系统表达能力不够，为了让类型之间能够“兼容”，需要引入类型之间的 subtyping 关系，让一种类型能够“替代”另一种类型出现。Subtyping 关系构成类型上的偏序关系。 引入 subtyping 后类型系统依然安全，表达能力没有增强，可以通过 coercion semantics 将带有 subty">
+<meta name="keywords" content="编程语言理论,类型论,TaPL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TaPL 读书笔记 5 Recursive Types">
+<meta property="og:url" content="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/index.html">
+<meta property="og:site_name" content="Computation &amp; Design">
+<meta property="og:description" content="笔记对应原书 20-21 章。  上一部分（Subtyping）的重点回顾：  简单的类型系统表达能力不够，为了让类型之间能够“兼容”，需要引入类型之间的 subtyping 关系，让一种类型能够“替代”另一种类型出现。Subtyping 关系构成类型上的偏序关系。 引入 subtyping 后类型系统依然安全，表达能力没有增强，可以通过 coercion semantics 将带有 subty">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184237.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184242.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531203828.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531205132.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531205415.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531210830.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531211500.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531211631.png">
+<meta property="og:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531211700.png">
+<meta property="og:updated_time" content="2019-05-31T13:20:54.264Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="TaPL 读书笔记 5 Recursive Types">
+<meta name="twitter:description" content="笔记对应原书 20-21 章。  上一部分（Subtyping）的重点回顾：  简单的类型系统表达能力不够，为了让类型之间能够“兼容”，需要引入类型之间的 subtyping 关系，让一种类型能够“替代”另一种类型出现。Subtyping 关系构成类型上的偏序关系。 引入 subtyping 后类型系统依然安全，表达能力没有增强，可以通过 coercion semantics 将带有 subty">
+<meta name="twitter:image" content="http://dimlight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184237.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>TaPL 读书笔记 5 Recursive Types | Computation & Design</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Computation & Design</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">TaPL 读书笔记 5 Recursive Types
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-08 15:42:38" itemprop="dateCreated datePublished" datetime="2019-05-08T15:42:38+08:00">2019-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-31 21:20:54" itemprop="dateModified" datetime="2019-05-31T21:20:54+08:00">2019-05-31</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>笔记对应原书 20-21 章。</p>
+</blockquote>
+<p>上一部分（Subtyping）的重点回顾：</p>
+<ul>
+<li>简单的类型系统表达能力不够，为了让类型之间能够“兼容”，需要引入类型之间的 <strong><em>subtyping</em></strong> 关系，让一种类型能够“替代”另一种类型出现。Subtyping 关系构成类型上的偏序关系。</li>
+<li>引入 subtyping 后类型系统依然安全，表达能力没有增强，可以通过 <strong><em>coercion semantics</em></strong> 将带有 subtyping 关系的语言翻译到简单类型语言。</li>
+<li>可以引入 <strong><em>所有类型的子类型</em></strong> <code>Bot</code> 和 <strong><em>所有类型的超类型</em></strong> <code>Top</code>，增强表达能力。<code>Top</code> 包括所有的值，<code>Bot</code> 不包括任何值，用来表示不可返回的计算。</li>
+<li>两个类型的 meet 是它们的 <strong><em>intersection type</em></strong>，两个类型的 join 是它们的 <strong><em>union type</em></strong>，这些类型的取值对应的是原来两个类型取值集合的交和并。</li>
+<li>引入了 subtyping 的类型系统会在语言中定义 subtyping rules，其中会包括 subtyping 关系的自反性和传递性，以及语言内建的一些 subtyping 关系（例如函数和记录）。在有自反性和传递性的情况下，两个类型的 subtyping 关系的判定不容易实现，因此引入了 <strong><em>algorithmic subtyping</em></strong> 讲自反性和传递性直接“集成”到语言内建 subtyping 关系中，这样 type checker 就容易实现了。</li>
+<li>使用 lambda 演算可以对 OOP 进行编码来证明其性质，但是研究 OOP 的类型系统时通常会搞个新的演算系统。</li>
+</ul>
+<hr>
+<p>在引入了 subtyping 后类型系统的表达能力得到了增强，但是还是有些事情搞不定：</p>
+<ul>
+<li>没法表达“列表”这种结构</li>
+<li>没法表达 <code>fix</code> 不动点组合子的类型</li>
+</ul>
+<p>这之前，我们通过扩展语言的核心语法完成了上面的事情。在不修改核心语法的情况下，需要引入 <strong><em>recursive types</em></strong>。比如自然数列表的类型实际上是 <code>NatList = &lt;Nil: Unit, Cons: {Nat, NatList}&gt;</code>，为了不用等式描述这个类型，它的另外一种写法和 lambda 演算中的函数抽象类似：$\mu X.\texttt{<nil: unit, cons: \{nat,} x\texttt{\}>}$。你可以将这个类型展开成一棵树，叶子结点都是 base type。这棵树的高度是无限的。</nil:></p>
+<p>引入了 recursive type 之后可以定义一些好玩的东西。比如 hungry function，比如这个类型是 <code>μX.Int -&gt; X</code> 的 hungry function <code>h = fix (λ hung:(Int -&gt; Hungry).λ n:Int.hung)</code>。然而在 Haskell 里面直接敲不能实现，估计是我太菜了，对应的 scala 代码是：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hungry</span>(<span class="params">fn: <span class="type">Int</span> =&gt; <span class="type">Hungry</span></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = &#123;</span><br><span class="line">        println(x)</span><br><span class="line">        fn(x)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> h:<span class="type">Hungry</span> = <span class="keyword">new</span> <span class="type">Hungry</span>(_ =&gt; h)</span><br><span class="line"></span><br><span class="line">h(<span class="number">0</span>)(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)(<span class="number">4</span>)(<span class="number">5</span>)(<span class="number">6</span>)(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<p>以及 stream 和 process。Process 和 stream 很接近，可以看做是一种带有状态的函数，就像在函数里面有 static 变量一样（照旧不会在 Haskell 里面实现）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NatStream</span>(<span class="params">x: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(): (<span class="type">Int</span>, <span class="type">NatStream</span>) = (x, <span class="keyword">new</span> <span class="type">NatStream</span>(x + <span class="number">1</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> s = <span class="keyword">new</span> <span class="type">NatStream</span>(<span class="number">0</span>)</span><br><span class="line">print(s()._2()._2()._2()._2()._2()._2()._2()._1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SumProcess</span>(<span class="params">s: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>): (<span class="type">Int</span>, <span class="type">SumProcess</span>) = (s + x, <span class="keyword">new</span> <span class="type">SumProcess</span>(s + x))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> p = <span class="keyword">new</span> <span class="type">SumProcess</span>(<span class="number">0</span>)</span><br><span class="line">print(p(<span class="number">1</span>)._2(<span class="number">2</span>)._2(<span class="number">3</span>)._2(<span class="number">4</span>)._2(<span class="number">5</span>)._2(<span class="number">6</span>)._2(<span class="number">7</span>)._2(<span class="number">8</span>)._2(<span class="number">9</span>)._2(<span class="number">10</span>)._1)</span><br></pre></td></tr></table></figure>
+<p>它们的类型分别是 <code>μX.Unit -&gt; {Int, X}</code> 和 <code>μX.Int -&gt; {Int, X}</code>（process 实际上是 stream 的推广）。有了这种东西之后实现 OOP 就不需要引用类型来保存状态了，可以用 process 来别扭地实现 OOP。</p>
+<p>另外不动点组合子现在可以直接在语言中被表达了：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184237.png">
+<p>带来的后果是这个类型系统中所有类型的 term 都不一定是 normalizable 的，因为对每个类型都可以构造这么一个不能终止的 term：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184242.png">
+<a id="more"></a>
+<p>引入了 recursive type 之后，一个说明 recursive type 有多强的例子是 <strong>所有的无类型 lambda 演算的 term，都可以编码为含有 recursive type 的 lambda 演算中的 <code>μX.X -&gt; X</code> 类型下的一个 term</strong>。</p>
+<p>对于两个 recursive type 是否相等，有两种定义：<strong><em>equi-recursive</em></strong> 和 <strong><em>iso-recursive</em></strong>。区别在于前者在比较时会自动“展开”一个 recursive type 进行比较，比如对于 <code>NatList</code> 的 term <code>t</code> 以及 <code>&lt;Nil: Unit, Cons: {Nat, NatList}&gt;</code> 的 term <code>s</code>，它认为 <code>t</code> 和 <code>s</code> 来自同一种类型，不需要其他条件；而对于 iso-recursive 就需要显式地用 <code>fold</code> 和 <code>unfold</code> 两个过程来折叠或者展开定义，它认为：</p>
+<ul>
+<li><code>t</code> 和 <code>s</code> 不是来自同一种类型</li>
+<li><code>unfold[NatList] t</code> 和 <code>s</code> 来自同一种类型</li>
+<li><code>t</code> 和 <code>fold[NatList] s</code> 来自同一种类型</li>
+</ul>
+<p>后面一种的 type checker 要容易写一些。</p>
+<p>最后一个问题就是含有 recursive type 的情况下 subtyping 如何进行判定？比如有两个 process，类型分别为 <code>μX.Nat -&gt; {Even, X}</code> 和 <code>μX.Even -&gt; {Nat, X}</code>，已知 <code>Even</code> 是 <code>Nat</code> 的子类型，应用一下元组和函数的子类型规则就知道前面的 process 的类型是后面的 process 的类型的子类型，但是要搞出一个通用的算法还是比较复杂（书中后面讲 recursive type 都是在证明这个算法）。</p>
+<hr>
+<p>以下是 recursive type（equi-recursive） 中 subtyping 的判定的一些理论。</p>
+<p>对于一个全集 $\mathcal U$，定义一个 <strong><em>generating function</em></strong> $F:P(\mathcal U)\mapsto P(\mathcal U)$。如果 $A\subseteq B\subseteq \mathcal U \Rightarrow F(A)\subseteq F(B)$，则称 $F$ 是 <strong><em>单调</em></strong> 的。下面所有的函数全部默认是单调的。</p>
+<p>对于集合 $X\subseteq \mathcal U$，如果：</p>
+<ul>
+<li>$F(X)\subseteq X$，则 $X$ 是 $F$-closed 的</li>
+<li>$X\subseteq F(X)$，则 $X$ 是 $F$-consistent 的</li>
+<li>$F(X) = X$，则 $X$ 是 $F$ 的不动点</li>
+</ul>
+<p><strong><em>Knaster–Tarski 定理</em></strong> 指出，$\mathcal U$ 的所有 $F$-closed 子集的交是 $F$ 的最小不动点，记作 $\mu F$；所有 $F$-consistent 子集的并是 $F$ 的最大不动点，记作 $\nu F$。</p>
+<p>由此得到两个显然的推论，分别是 <strong><em>induction</em></strong> 和 <strong><em>coinduction</em></strong> 背后的原理：</p>
+<ul>
+<li>（induction）如果 $X\subseteq\mathcal U$ 是 $F$-closed 的，则 $\mu F\subseteq X$</li>
+<li>（coinduction）如果 $X\subseteq\mathcal U$ 是 $F$-consistent 的，则 $X\subseteq\nu F$</li>
+</ul>
+<p>上面这些都是理论基础，和 recursive type 还没有关系。为了表示 recursive type 我们可以使用前面的 $\mu X.T$ 的表达方式，但是这里先用树状结构进行表达（即将类型展开为树，叶子为 base type，结点为各种类型的构造子，儿子之间有序），这样的类型叫做 tree types。</p>
+<p><strong>Tree types 上的 subtyping 关系是定义出来的</strong>，然后再验证它是偏序，以及符合 subtyping 的用法。对于只包含 pair 和函数的 lambda 演算，这个定义的过程是这样的：</p>
+<ol>
+<li>在上面的理论中，将 $\mathcal U$ 取作 $(\mathcal T, \mathcal T)$，其中 $\mathcal T$ 是所有有穷或者无穷的 tree type。</li>
+<li>定义 generating function $S$ 为：<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531203828.png"></li>
+<li>$\nu S$ 中的所有元素都是类型的二元组，它们就是 subtyping 关系</li>
+</ol>
+<p>可以看到 $S$ 实际上就是编码了所有 subtyping rules 的函数。现在 subtyping 关系已经定义出来了，但是给了两个类型后要知道它们是不是 subtyping 关系需要进一步的理论。</p>
+<p>Generating function 会将 $\mathcal U$ 中的子集映射到另一个子集。对于任意的 $x\in\mathcal U$，可以找到 $P(\mathcal U)$ 的子集 $G_x$，使得 $\forall s\in G_x, F(s)\ni x$。对任意 $x$，如果以下条件之一总是满足：</p>
+<ul>
+<li>$G_x$ 是空的（说明不存在任何 $\mathcal U$ 的子集 $X$ 使得 $x\in F(X)$）</li>
+<li>$G_x$ 中有个最小元素（这个元素可能是 $\varnothing$，表示 $x\in F(\varnothing)$）</li>
+</ul>
+<p>则称这个 generating function 是可逆的。对于可逆的 generating function 可以定义一个反过来的 partial function，叫做 support function：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531205132.png">
+<p>上箭头表示函数在这里没有定义，会发散。</p>
+<p>最后，对于一个 $\mathcal U$，可以将它的元素全部枚举出来按照 support 函数画成一张图，例如：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531205415.png">
+<p>图中斜杠圆圈表示 support function 在这个元素上没有定义，即这个元素无法被任何集合生成，这样的元素叫做 unsupported element。从 a 指向 b 的箭头的意思是 a 的 support function 结果中包含 b，即想要生成 a 的话，generating function 的自变量（是 $\mathcal U$ 的子集）必须包含 b。<strong>如果一个元素没有到任何 unsupported element 的路径，这个元素就在 generating function 的最大不动点中。</strong></p>
+<p>回到 recursive type，虽然我们没法枚举所有的类型二元组，但是按照我们的 generating function 的定义，support function 的定义是很显然的。如果希望检查 S 是不是 T 的子类型，就是检查 (S, T) 是不是在最大不动点中。有了 support function 相当于知道了有向图上，每个元素的后继元素怎么计算，从 (S, T) 这个点开始向外搜索，碰到了 unsupported element 就相当于知道了 S 不是 T 的子类型；如果搜索到没有其它选择都没碰到就说明了 S 是 T 的子类型。</p>
+<p>问题是，这个算法有可能不能终止。显然，要让算法终止，搜索能够搜到“闭包”应该是有限大的。如何保证这一点呢？其实 tree type 的表达能力要比 $\mu X.T$ 要强，比如它能够表示出</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531210830.png">
+<p>这种类型。对 tree types 的一个限制是让它是 <strong><em>regular</em></strong> 的。所谓的 regular 就是说，将这棵树的所有子树取出来放到一个集合中，这个集合应当具有有限的元素。如果限制所有的合法类型都是 regular tree type 的话，闭包就是有限大的。</p>
+<p>最后，我们表达类型用的是 $\mu X.T$ 的形式，如果不把它写成 $\mu X_1.\mu X_2.\dots.\mu X_n.X_1$ 这种形式的话，它实际上和 regular tree type 是一样的（我是这么认为的，书中并没有说）。套用 tree type 定义和判定 subtyping 那一套就可以了。需要修改的是 generating function 还要加入 folding 和 unfolding 的规则（因为 equi-recursive 会“自动”展开 $\mu$ 后进行判定，这个“自动”不是白来的），即：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531211500.png">
+<p>对应的 generating function 和 support function：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531211631.png">
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190531211700.png">
+<p>总结就是，最后我们得到了一个对 recursive types 的 subtyping 关系的定义，以及任给两个类型时判定它们是否是 subtyping 的算法，这个算法保证终止。</p>
+<p>我估计书中引入 regular tree type 只是方便理解，实际上可以直接从 $\mu$ type 入手。另外“$\mu$ type 的闭包是有限大的”这个性质有一整节的证明。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/编程语言理论/" rel="tag"># 编程语言理论</a>
+          
+            <a href="/tags/类型论/" rel="tag"># 类型论</a>
+          
+            <a href="/tags/TaPL/" rel="tag"># TaPL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/08/TaPL-读书笔记-4-Subtyping/" rel="next" title="TaPL 读书笔记 4 Subtyping">
+                <i class="fa fa-chevron-left"></i> TaPL 读书笔记 4 Subtyping
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/13/形式化验证课程笔记-12/" rel="prev" title="形式化验证课程笔记 12">
+                形式化验证课程笔记 12 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zhang Yang</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">125</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/dimlight1998" title="GitHub &rarr; https://github.com/dimlight1998" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:dimlight1998@gmail.com" title="E-Mail &rarr; mailto:dimlight1998@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhang Yang</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

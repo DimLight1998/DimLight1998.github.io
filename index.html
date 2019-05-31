@@ -708,6 +708,195 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-5-Recursive-Types/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhang Yang">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Computation & Design">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/" class="post-title-link" itemprop="url">TaPL 读书笔记 5 Recursive Types</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-08 15:42:38" itemprop="dateCreated datePublished" datetime="2019-05-08T15:42:38+08:00">2019-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-31 21:20:54" itemprop="dateModified" datetime="2019-05-31T21:20:54+08:00">2019-05-31</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>笔记对应原书 20-21 章。</p>
+</blockquote>
+<p>上一部分（Subtyping）的重点回顾：</p>
+<ul>
+<li>简单的类型系统表达能力不够，为了让类型之间能够“兼容”，需要引入类型之间的 <strong><em>subtyping</em></strong> 关系，让一种类型能够“替代”另一种类型出现。Subtyping 关系构成类型上的偏序关系。</li>
+<li>引入 subtyping 后类型系统依然安全，表达能力没有增强，可以通过 <strong><em>coercion semantics</em></strong> 将带有 subtyping 关系的语言翻译到简单类型语言。</li>
+<li>可以引入 <strong><em>所有类型的子类型</em></strong> <code>Bot</code> 和 <strong><em>所有类型的超类型</em></strong> <code>Top</code>，增强表达能力。<code>Top</code> 包括所有的值，<code>Bot</code> 不包括任何值，用来表示不可返回的计算。</li>
+<li>两个类型的 meet 是它们的 <strong><em>intersection type</em></strong>，两个类型的 join 是它们的 <strong><em>union type</em></strong>，这些类型的取值对应的是原来两个类型取值集合的交和并。</li>
+<li>引入了 subtyping 的类型系统会在语言中定义 subtyping rules，其中会包括 subtyping 关系的自反性和传递性，以及语言内建的一些 subtyping 关系（例如函数和记录）。在有自反性和传递性的情况下，两个类型的 subtyping 关系的判定不容易实现，因此引入了 <strong><em>algorithmic subtyping</em></strong> 讲自反性和传递性直接“集成”到语言内建 subtyping 关系中，这样 type checker 就容易实现了。</li>
+<li>使用 lambda 演算可以对 OOP 进行编码来证明其性质，但是研究 OOP 的类型系统时通常会搞个新的演算系统。</li>
+</ul>
+<hr>
+<p>在引入了 subtyping 后类型系统的表达能力得到了增强，但是还是有些事情搞不定：</p>
+<ul>
+<li>没法表达“列表”这种结构</li>
+<li>没法表达 <code>fix</code> 不动点组合子的类型</li>
+</ul>
+<p>这之前，我们通过扩展语言的核心语法完成了上面的事情。在不修改核心语法的情况下，需要引入 <strong><em>recursive types</em></strong>。比如自然数列表的类型实际上是 <code>NatList = &lt;Nil: Unit, Cons: {Nat, NatList}&gt;</code>，为了不用等式描述这个类型，它的另外一种写法和 lambda 演算中的函数抽象类似：$\mu X.\texttt{<nil: unit, cons: \{nat,} x\texttt{\}>}$。你可以将这个类型展开成一棵树，叶子结点都是 base type。这棵树的高度是无限的。</nil:></p>
+<p>引入了 recursive type 之后可以定义一些好玩的东西。比如 hungry function，比如这个类型是 <code>μX.Int -&gt; X</code> 的 hungry function <code>h = fix (λ hung:(Int -&gt; Hungry).λ n:Int.hung)</code>。然而在 Haskell 里面直接敲不能实现，估计是我太菜了，对应的 scala 代码是：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hungry</span>(<span class="params">fn: <span class="type">Int</span> =&gt; <span class="type">Hungry</span></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>) = &#123;</span><br><span class="line">        println(x)</span><br><span class="line">        fn(x)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> h:<span class="type">Hungry</span> = <span class="keyword">new</span> <span class="type">Hungry</span>(_ =&gt; h)</span><br><span class="line"></span><br><span class="line">h(<span class="number">0</span>)(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)(<span class="number">4</span>)(<span class="number">5</span>)(<span class="number">6</span>)(<span class="number">7</span>)</span><br></pre></td></tr></table></figure>
+<p>以及 stream 和 process。Process 和 stream 很接近，可以看做是一种带有状态的函数，就像在函数里面有 static 变量一样（照旧不会在 Haskell 里面实现）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NatStream</span>(<span class="params">x: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(): (<span class="type">Int</span>, <span class="type">NatStream</span>) = (x, <span class="keyword">new</span> <span class="type">NatStream</span>(x + <span class="number">1</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> s = <span class="keyword">new</span> <span class="type">NatStream</span>(<span class="number">0</span>)</span><br><span class="line">print(s()._2()._2()._2()._2()._2()._2()._2()._1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SumProcess</span>(<span class="params">s: <span class="type">Int</span></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">apply</span></span>(x: <span class="type">Int</span>): (<span class="type">Int</span>, <span class="type">SumProcess</span>) = (s + x, <span class="keyword">new</span> <span class="type">SumProcess</span>(s + x))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> p = <span class="keyword">new</span> <span class="type">SumProcess</span>(<span class="number">0</span>)</span><br><span class="line">print(p(<span class="number">1</span>)._2(<span class="number">2</span>)._2(<span class="number">3</span>)._2(<span class="number">4</span>)._2(<span class="number">5</span>)._2(<span class="number">6</span>)._2(<span class="number">7</span>)._2(<span class="number">8</span>)._2(<span class="number">9</span>)._2(<span class="number">10</span>)._1)</span><br></pre></td></tr></table></figure>
+<p>它们的类型分别是 <code>μX.Unit -&gt; {Int, X}</code> 和 <code>μX.Int -&gt; {Int, X}</code>（process 实际上是 stream 的推广）。有了这种东西之后实现 OOP 就不需要引用类型来保存状态了，可以用 process 来别扭地实现 OOP。</p>
+<p>另外不动点组合子现在可以直接在语言中被表达了：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184237.png">
+<p>带来的后果是这个类型系统中所有类型的 term 都不一定是 normalizable 的，因为对每个类型都可以构造这么一个不能终止的 term：</p>
+<img src="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/DeepinScreenshot_select-area_20190530184242.png">
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/08/TaPL-读书笔记-5-Recursive-Types/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/05/08/TaPL-读书笔记-4-Subtyping/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -770,7 +959,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-28 20:29:32" itemprop="dateModified" datetime="2019-05-28T20:29:32+08:00">2019-05-28</time>
+                <time title="修改时间：2019-05-28 21:44:09" itemprop="dateModified" datetime="2019-05-28T21:44:09+08:00">2019-05-28</time>
               
             
           </span>
@@ -2002,172 +2191,6 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://DimLight1998.github.io/2019/04/19/Functional-Program-Design-in-Scala-笔记-4-Timely-Effects/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Zhang Yang">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Computation & Design">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-4-Timely-Effects/" class="post-title-link" itemprop="url">Functional Program Design in Scala 笔记 4 Timely Effects</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-19 20:21:52" itemprop="dateCreated datePublished" datetime="2019-04-19T20:21:52+08:00">2019-04-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-05-21 11:05:21" itemprop="dateModified" datetime="2019-05-21T11:05:21+08:00">2019-05-21</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="事件处理系统"><a href="#事件处理系统" class="headerlink" title="事件处理系统"></a>事件处理系统</h2><h3 id="命令式事件处理-观察者模式"><a href="#命令式事件处理-观察者模式" class="headerlink" title="命令式事件处理-观察者模式"></a>命令式事件处理-观察者模式</h3><p>命令式风格中一般使用观察者模式处理事件。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Publisher</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> subscribers: <span class="type">Set</span>[<span class="type">Subscriber</span>] = <span class="type">Set</span>()</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">subscribe</span></span>(subscriber: <span class="type">Subscriber</span>) = subscribers += subscriber</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">unsubscribe</span></span>(subscriber: <span class="type">Subscriber</span>) = subscribers -= subscriber</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">publish</span></span>() = subscribers foreach (_.handle(<span class="keyword">this</span>))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Subscriber</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">handle</span></span>(publisher: <span class="type">Publisher</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="函数式事件处理-响应式编程"><a href="#函数式事件处理-响应式编程" class="headerlink" title="函数式事件处理-响应式编程"></a>函数式事件处理-响应式编程</h3><p>函数式风格中可以使用响应式编程（Functional Reactive Programming, FRP）的方式处理事件，替换掉命令式风格中的观察者模式。</p>
-<p>下面是一个不能跑的例子，用作示例。状态被一系列的 <code>Var</code> 来表示，<code>Var</code> 可以进行读取和更新（语法见 <a href="#Scala-中的-`update`-和-`apply`-调用">这里</a>）。课程中有个简单的 FRP 实现，没有笔记。</p>
-<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Number</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">val</span> v = <span class="keyword">new</span> <span class="type">Var</span>[<span class="type">Int</span>](<span class="number">0</span>)</span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">increase</span></span>(n: <span class="type">Int</span>) = &#123;</span><br><span class="line">    <span class="keyword">val</span> old = v()</span><br><span class="line">    v() = old + n</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SumOfNumbers</span>(<span class="params">numbers: <span class="type">List</span>[<span class="type">Number</span>]</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">val</span> sum = <span class="keyword">new</span> <span class="type">Var</span>((numbers map (_())).sum)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> a = <span class="keyword">new</span> <span class="type">Number</span></span><br><span class="line"><span class="keyword">val</span> b = <span class="keyword">new</span> <span class="type">Number</span></span><br><span class="line"><span class="keyword">val</span> s = <span class="keyword">new</span> <span class="type">SumOfNumbers</span>(<span class="type">List</span>(a, b))</span><br><span class="line"></span><br><span class="line">print(s.sum())</span><br><span class="line">a.increase(<span class="number">10</span>)</span><br><span class="line">print(s.sum())</span><br><span class="line">b.increase(<span class="number">20</span>)</span><br><span class="line">print(s.sum())</span><br></pre></td></tr></table></figure>
-<p><code>Var</code> 之间形成了某种依赖关系，当一个 <code>Var</code> 被更新后，所有依赖它的 <code>Var</code> 在读取时都会自动得到最新的值。这一点和观察者模式类似。因此上面的例子中，三次打印 <code>s.sum()</code> 的值是不一样的。FRP 框架会自动管理这中间的依赖关系。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/19/Functional-Program-Design-in-Scala-笔记-4-Timely-Effects/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2214,7 +2237,7 @@ wlp(\texttt{while }b\texttt{ do }\{I\}c, Q) = I</script><p>However $I$ may not b
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">124</span>
+                    <span class="site-state-item-count">125</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
