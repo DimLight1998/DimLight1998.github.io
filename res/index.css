@@ -1,0 +1,121 @@
+body {
+    font-family: 'Lato', 'Noto Sans CJK SC', arial, sans-serif;
+    color: #2E3440;
+    max-width: 1200px;
+    margin: auto;
+    padding: 1rem;
+    overflow-y: scroll;
+}
+
+p {
+    text-align: justify;
+}
+
+strong, b {
+    font-weight: 900;
+}
+
+hr {
+    background-color: #D8DEE9;
+    border: 0.2rem solid #D8DEE9;
+}
+
+blockquote {
+   border-left: 0.4rem solid #D8DEE9;
+   margin-left: 0;
+}
+
+blockquote > * {
+    margin-left: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Slab', serif;
+    padding-left: 0.5rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+
+h1 {
+    background: #4C566A;
+    color: #D8DEE9;
+}
+
+h2 {
+    background: #D8DEE9;
+}
+
+h3 {
+    background: #E5E9F0;
+}
+
+h4, h5, h6 {
+    background: #ECEFF4;
+}
+
+code {
+    font-family: 'Sarasa Fixed SC', 'Courier Prime', monospace;
+    color: #5E81AC;
+    background-color: #ECEFF4;
+    white-space: pre-wrap;
+}
+
+:not(pre) > code {
+    padding: 0 0.2em;
+}
+
+pre {
+    font-family: 'Sarasa Fixed SC', 'Courier Prime', monospace;
+    background-color: #ECEFF4;
+    padding: 0.5em;
+}
+
+a {
+    color: #5E81AC;
+    text-decoration: none;
+}
+
+ul {
+  padding-left: 1.5rem;
+  list-style-type: square;
+}
+
+ol {
+  padding-left: 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  border: 0.2em solid #4C566A;
+  border-top: none;
+}
+
+th {
+    color: #D8DEE9;
+    background: #4C566A;
+}
+
+th, td {
+    padding: 0.2em;
+}
+
+tr:nth-child(even) {background-color: #D8DEE9;}
+
+/* ---------- */
+
+div.note { border-left: 0.4rem solid rgb(180,142,173); background: rgba(180,142,173,0.25); }
+div.note > * { margin-left: 1rem; }
+
+div.hint { border-left: 0.4rem solid rgb(163,190,140); background: rgba(163,190,140,0.25); }
+div.hint > * { margin-left: 1rem; }
+
+div.info { border-left: 0.4rem solid rgb(235,203,139); background: rgba(235,203,139,0.25); }
+div.info > * { margin-left: 1rem; }
+
+div.warn { border-left: 0.4rem solid rgb(208,135,112); background: rgba(208,135,112,0.25); }
+div.warn > * { margin-left: 1rem; }
+
+div.danger { border-left: 0.4rem solid rgb(191,97,106); background: rgba(191,97,106,0.25); }
+div.danger > * { margin-left: 1rem; }
+
