@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <title>|Title|</title> -->
+  <link rel="stylesheet" href="/res/page.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Slab">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier Prime">
+</head>
+<body>
+<h1 id="ostep-book-notes---cpu-virtualization">OSTEP Book Notes - CPU Virtualization</h1>
+<h2 id="process-overview">Process Overview</h2>
+<h3 id="overview">Overview</h3>
+<ul>
+<li><strong>definition</strong>: a running program</li>
+<li><strong>crux</strong>: make illusion of many CPUs</li>
+<li><strong>mechanism</strong>: time sharing, context switch</li>
+<li><strong>policy</strong>: scheduling policy</li>
+</ul>
+<h3 id="information-about-a-process">Information About A Process</h3>
+<ul>
+<li>memory (address space)</li>
+<li>registers
+<ul>
+<li>data registers</li>
+<li>some special registers
+<ul>
+<li>program counter or instruction pointer</li>
+<li>stack pointer</li>
+<li>frame pointer</li>
+</ul></li>
+</ul></li>
+<li>I/O information (e.g. files opened)</li>
+</ul>
+<h3 id="process-api-overview">Process API Overview</h3>
+<ul>
+<li><strong><em>create</em></strong>
+<ol type="1">
+<li>load program to memory
+<ul>
+<li><strong>lazily load</strong>: load only when neccessary; requires techniques like paging and swapping</li>
+<li><strong>eagerly load</strong>: load the whole program at start; used in old systems</li>
+</ul></li>
+<li>initialize stack (run-time stack)</li>
+<li>initialize heap (for “malloc” and “free”)</li>
+<li>initialize I/O information</li>
+<li>transfer control to the program entry</li>
+</ol></li>
+<li><strong><em>destroy</em></strong></li>
+<li><strong><em>wait</em></strong>: wait for this process to finish</li>
+<li><strong><em>query status</em></strong>: get current status of the process</li>
+<li><strong><em>miscellaneous control</em></strong>
+<ul>
+<li>e.g. suspend and resume</li>
+</ul></li>
+</ul>
+<h3 id="process-states-and-transitions">Process States And Transitions</h3>
+<h4 id="process-states">Process States</h4>
+<table>
+<thead>
+<tr class="header">
+<th>State</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>running</td>
+<td>using physical CPU and executing instructions</td>
+</tr>
+<tr class="even">
+<td>ready (runable)</td>
+<td>can run but not running now (not its turn)</td>
+</tr>
+<tr class="odd">
+<td>blocked (sleeping)</td>
+<td>wating for something (e.g. I/O finishing)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="transitions-between-states">Transitions Between States</h4>
+<table>
+<thead>
+<tr class="header">
+<th>Transition Condition</th>
+<th>From</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>scheduled</td>
+<td>ready</td>
+<td>running</td>
+</tr>
+<tr class="even">
+<td>unscheduled</td>
+<td>running</td>
+<td>ready</td>
+</tr>
+<tr class="odd">
+<td>some event happens (<em>e.g.</em> I/O initiated)</td>
+<td>running</td>
+<td>blocked</td>
+</tr>
+<tr class="even">
+<td>some event happens (<em>e.g.</em> I/O initiated)</td>
+<td>blocked</td>
+<td>ready</td>
+</tr>
+</tbody>
+</table>
+<p>the ability to block a process enables better utilization of CPU and I/O devices</p>
+<h3 id="key-data-structures-in-an-os">Key Data Structures In An OS</h3>
+<ul>
+<li>uses <strong><em>process list</em></strong> to manage processes
+<ul>
+<li>process list tracks all processes in the OS</li>
+</ul></li>
+<li>uses <strong><em>Process Control Block</em></strong> (PCB) to manage each process; inside of it contains
+<ul>
+<li><strong>memory information</strong>, including pointer and size</li>
+<li><strong>process state</strong> information</li>
+<li><strong>register context</strong>, used for context switching</li>
+<li><strong>process ID</strong> and <strong>parent process ID</strong></li>
+<li><strong>I/O information</strong></li>
+</ul></li>
+</ul>
+<h2 id="some-apis-on-unix">Some APIs On UNIX</h2>
+<h3 id="api-fork">API: <code>fork</code></h3>
+<ul>
+<li><strong>function</strong>: create a (almost exact) copy of current process</li>
+<li><strong>behavior</strong>: child process starts from the “fork” call</li>
+<li>common <strong>return values</strong>:
+<ul>
+<li>0 in child process</li>
+<li>child process PID in parent process</li>
+</ul></li>
+</ul>
+<h3 id="api-wait">API: <code>wait</code></h3>
+<ul>
+<li><strong>function</strong>: wait for the child process to exit, then continue execution</li>
+<li><strong>behavior</strong>: parent process will be blocked, until child process exits</li>
+<li><strong>variations</strong>:
+<ul>
+<li><code>wait</code>: wait for the first child to die</li>
+<li><code>waitpid</code>: wait for the process with certain PID to die</li>
+</ul></li>
+</ul>
+<h3 id="api-exec">API: <code>exec</code></h3>
+<ul>
+<li><strong>function</strong>: run a differenct program after forking in child process</li>
+<li><strong>behavior</strong>:
+<ul>
+<li>replace program image with the new program (rewrite code segment and static data)</li>
+<li>re-initialize stack and heap</li>
+<li>pass in arguments</li>
+</ul></li>
+<li><strong>return value</strong>: since the program image has been replaced, a successful <code>exec</code> should never return</li>
+</ul>
+<p><code>exec</code> has many variations:</p>
+<ul>
+<li>variations for <strong>passing arguments</strong>
+<ul>
+<li><code>execl</code>: pass arguments as list
+<ul>
+<li><strong>syntax</strong>: <code>exec(PATH_TO_PROGRAM, ARG_0, ARG_1, ARG_2, ..., (char*) NULL)</code>, <code>ARG_0</code> should be provided explicitly</li>
+<li><strong><em>e.g.</em></strong> <code>execl("/bin/exa", "exa", "/home/zhang/Temp", "/tmp", (char*) NULL);</code></li>
+</ul></li>
+<li><code>execv</code>: pass arguments as vector
+<ul>
+<li><strong>syntax</strong>: <code>exec(PATH_TO_PROGRAM, ARGS)</code>, <code>ARG_0</code> should be provided explicitly</li>
+<li><strong><em>e.g.</em></strong> <code>char* args[] = {"exa", "/home/zhang/Temp", "/tmp", NULL}; execv("/bin/exa", args);</code></li>
+</ul></li>
+</ul></li>
+<li><strong>suffix</strong> for variations
+<ul>
+<li><code>l</code>: pass arguments as list</li>
+<li><code>v</code>: pass arguments as vector</li>
+<li><code>p</code>: search program in specified paths (like shell does)</li>
+<li><code>e</code>: user can provide environment (see <code>getenv</code>)</li>
+</ul></li>
+<li>all variations
+<ul>
+<li><code>execl</code></li>
+<li><code>execlp</code></li>
+<li><code>execle</code></li>
+<li><code>execv</code></li>
+<li><code>execvp</code></li>
+<li><code>execvpe</code></li>
+</ul></li>
+</ul>
+<h3 id="design-considerations">Design Considerations</h3>
+<p>why separate fork and exec?</p>
+<ul>
+<li>this separation allows the shell to do something after <code>fork</code> and before <code>exec</code></li>
+<li><strong><em>e.g.</em></strong> set up I/O redirection or piping</li>
+</ul>
+<h3 id="other-apis-related-to-processes">Other APIs Related To Processes</h3>
+<ul>
+<li><code>kill</code>: send signal to processes
+<ul>
+<li>can be used to stop, resume, terminate processes</li>
+<li>only user owning the process and and the superuser can send signal to the process</li>
+</ul></li>
+<li><code>signal</code>: catch signals and handle them</li>
+</ul>
+<h3 id="useful-tools">Useful Tools</h3>
+<ul>
+<li><code>ps</code>: list processes</li>
+<li><code>top</code>: list processes by resource usage</li>
+<li><code>kill</code>: send signal to processes</li>
+<li><code>killall</code>: send signal to processes by name</li>
+</ul>
+<h2 id="mechanisms-limited-direct-execution">Mechanisms: Limited Direct Execution</h2>
+<h3 id="overview-1">Overview</h3>
+<ul>
+<li><strong>crux</strong>: how to virtualize CPU with high performance with retaining control</li>
+<li><strong>require</strong>: support from hardware and OS</li>
+<li><strong>technique</strong>: limited direct execution
+<ul>
+<li><strong><em>direct execution</em></strong>: process’s instructions are directly and natively executed on CPU</li>
+<li><strong><em>limited execution</em></strong>: ensuring processes won’t do unexpected things and can stop them</li>
+</ul></li>
+</ul>
+<h3 id="restricted-operations">Restricted Operations</h3>
+<h4 id="crux-in-restricted-operations">Crux In Restricted Operations</h4>
+<p>how to allow processes to perform restricted operations while running natively</p>
+<h4 id="concepts">Concepts</h4>
+<ul>
+<li><strong><em>system-call</em></strong>: APIs provided by OS to allow process to perform restricted operations
+<ul>
+<li>examples
+<ul>
+<li>accessing the file system</li>
+<li>create or destroy processes</li>
+<li>communication with processes</li>
+<li>allocate more memory</li>
+</ul></li>
+</ul></li>
+<li><strong><em>system-call number</em></strong>: a number to specify which system-call to execute</li>
+<li><strong><em>trap</em></strong>: an instruction to enter “kernel-mode” when performing system-call</li>
+<li><strong><em>trap table</em></strong>: a table telling hardware which trap handler to execute when a system call is performed
+<ul>
+<li>set up by the kernel when booting, using a special priviledged instruction</li>
+<li>remembered by hardware until shutdown</li>
+</ul></li>
+<li><strong><em>trap handler</em></strong>: implementation of each system call
+<ul>
+<li>entry of trap table</li>
+</ul></li>
+</ul>
+<h4 id="support-from-processor">Support From Processor</h4>
+<h5 id="processor-mode">Processor Mode</h5>
+<ul>
+<li><strong><em>user-mode</em></strong>
+<ul>
+<li>code restructed</li>
+<li>priviledge instruction cause exception</li>
+<li>do not have full access to hardware</li>
+</ul></li>
+<li><strong><em>kernel-mode</em></strong>
+<ul>
+<li>all instructionos availale</li>
+</ul></li>
+</ul>
+<h5 id="instructions">Instructions</h5>
+<ul>
+<li><strong><em>trap</em></strong>: from user-mode to kernel-mode, raise priviledge level</li>
+<li><strong><em>return-from-trap</em></strong>: return user-mode from kernel-mode, reduce priviledge level</li>
+<li>instruction to tell processor <strong>where trap table is</strong></li>
+</ul>
+<h4 id="limited-execution-protocol">Limited Execution Protocol</h4>
+<p>there are four <strong>roles</strong> in this protocol</p>
+<ul>
+<li>kernel (kernel-mode, OS related)</li>
+<li>hardware (kernel-mode, OS independent)</li>
+<li>user code (user-mode, written by user)</li>
+<li>library code (user-mode)</li>
+</ul>
+<h5 id="machine-booting">Machine Booting</h5>
+<ol type="1">
+<li>kernel: initialize trap table</li>
+<li>kernel: tell hardware where trap table is</li>
+<li>hardware: remember where trap table is (address of trap handler)</li>
+</ol>
+<h5 id="program-starting">Program Starting</h5>
+<ol type="1">
+<li>kernel: create process in process list</li>
+<li>kernel: allocate memory for process</li>
+<li>kernel: load program to memory</li>
+<li>kernel: set up user stack (argv)</li>
+<li>kernel: setup kernel stack (register/PC)</li>
+<li>kernel: execute return-from-trap</li>
+<li>hardware: restore register/PC from kernel stack</li>
+<li>hardware: move to user-mode</li>
+<li>hardware: jump to main function</li>
+<li>user code: execute from main function</li>
+</ol>
+<h5 id="performing-system-call">Performing System-Call</h5>
+<ol type="1">
+<li>user code: call a library function wrapping a system call</li>
+<li>library code: put parameters on well-known locations (register/memory)</li>
+<li>library code: put system call number on well-known locations (register/memory)</li>
+<li>library code: execute trap instruction</li>
+<li>hardware: save register/PC to kernel stack</li>
+<li>hardware: move to kernel mode</li>
+<li>hardware: jump to trap handler</li>
+<li>kernel: execute trap handler</li>
+<li>kernel: put return value on well-know locations (register/memory)</li>
+<li>kernel: execute return-from-trap instruction</li>
+<li>hardware: restore register/PC from kernel stack</li>
+<li>hardware: move to user-mode</li>
+<li>hardware: jump to PC</li>
+<li>library code: returned from the trap</li>
+<li>library code: fetch return value from well-known locations (register/memory)</li>
+</ol>
+<h5 id="program-exiting">Program Exiting</h5>
+<ol type="1">
+<li>user code: return from main</li>
+<li>user code: exit (this is a trap instruction)</li>
+<li>hardware: move to kernel-mode</li>
+<li>kernel: free memory of processes</li>
+<li>kernel: remove from process list</li>
+</ol>
+<h3 id="switching-between-processes">Switching Between Processes</h3>
+<h4 id="crux-in-switching-between-processes">Crux In Switching Between Processes</h4>
+<p>how OS regain control when process is running to switch between processes</p>
+<h4 id="approaches">Approaches</h4>
+<h5 id="cooperative-approach">Cooperative Approach</h5>
+<p>OS trusts programs and waits for system-calls</p>
+<p><strong>time to switch process</strong>:</p>
+<ul>
+<li>regular system-call</li>
+<li>yield: system-call to explicitly transfer control</li>
+<li>illegal operation</li>
+</ul>
+<p><strong>drawbacks</strong>:</p>
+<ul>
+<li>the process may executes forever</li>
+<li>e.g. infinite loop without system-call (we can only reboot)</li>
+</ul>
+<h5 id="non-cooperative-approach">Non-Cooperative Approach</h5>
+<p>OS doesn’t trust programs and take control</p>
+<ul>
+<li>need support from hardware: <strong><em>timer</em></strong>
+<ul>
+<li>started by OS during booting (priviledged operation)</li>
+<li>turned off by OS under some conditions (priviledged operation)</li>
+</ul></li>
+<li><strong><em>timer interrupt</em></strong>
+<ul>
+<li>interrupt raised periodically by timer</li>
+<li>ensures OS can take over periodically</li>
+</ul></li>
+<li><strong><em>timer handler</em></strong>
+<ul>
+<li>code to execute when timer interrupt raises</li>
+<li>preconfigured</li>
+<li>OS tells this to hardware during booting</li>
+</ul></li>
+</ul>
+<h4 id="saving-and-restoring-context">Saving And Restoring Context</h4>
+<ul>
+<li><strong><em>scheduler</em></strong>: which process to execute next</li>
+<li><strong><em>context switch</em></strong>: code to perform process switching</li>
+<li>context
+<ul>
+<li>general purpose registers</li>
+<li>program counter (PC)</li>
+<li>kernel stack pointer</li>
+</ul></li>
+<li>context switching kernel behavior
+<ol type="1">
+<li>enter kernel in context of process A</li>
+<li>returned from kernel in context of process B</li>
+</ol></li>
+</ul>
+<h4 id="limited-direct-execution-protocol">Limited Direct Execution Protocol</h4>
+<p>with <strong>non-cooperative process switching approach</strong> (using timer interrupt)</p>
+<p>three <strong>roles</strong> in this protocol:</p>
+<ul>
+<li>kernel (OS)</li>
+<li>hardware</li>
+<li>program</li>
+</ul>
+<h5 id="user-and-kernel">User And Kernel</h5>
+<ul>
+<li>each process has <strong>two stack</strong>
+<ul>
+<li><strong><em>user stack</em></strong>: be used when executing user program</li>
+<li><strong><em>kernel stack</em></strong>: be used by the kernel during system call / context switching</li>
+</ul></li>
+<li>each process has <strong>two set of registers</strong>
+<ul>
+<li><strong><em>user registers</em></strong>: be used when executing user program</li>
+<li><strong><em>kernel registers</em></strong>: be used by the kernel during system call / contextx switching</li>
+</ul></li>
+<li><strong>processor hehavior</strong>
+<ul>
+<li>automatically <strong>save</strong> process’ user registers to its kernel stack when <strong>trapped / time interrupt</strong></li>
+<li>automatically <strong>restore</strong> process’ user registers from its kernel stack when <strong>return-from-trap</strong></li>
+</ul></li>
+</ul>
+<h5 id="events-during-booting">Events During Booting</h5>
+<ol type="1">
+<li>kernel: initialize trap table</li>
+<li>hardware: remember address of trap table and timer handler</li>
+<li>kernel: start timer handler</li>
+<li>hardware: start timer, interrupt CPU in X ms</li>
+</ol>
+<h5 id="events-during-context-switch">Events During Context Switch</h5>
+<ol type="1">
+<li>program: process A executing</li>
+<li>hardware: timer interrupt</li>
+<li>hardware: save A’s registers to A’s kernel stack (user registers are saved)</li>
+<li>hardware: move to kernel mode</li>
+<li>hardware: jump to timer handler</li>
+<li>kernel: handle the trap</li>
+<li>kernel: call switch routine</li>
+<li>kernel: save A’s registers to A’s process structure (kernel registers are saved)</li>
+<li>kernel: restore B’s registers from B’s process structure (kernel registers are restored)</li>
+<li>kernel: switch to B’s kernel stack</li>
+<li>kernel: execute return1.from1.trap</li>
+<li>hardware: restore B’s registers from B’s kernel stack (user registers are restored)</li>
+<li>hardware: move to user mode</li>
+<li>hardware: jump to B’s PC</li>
+<li>program: process B executing</li>
+</ol>
+<h5 id="notes">Notes</h5>
+<p>there are two types of registers saving when context switching:</p>
+<ul>
+<li><strong>user</strong> registers saving / restoring (performed by hardware)</li>
+<li><strong>kernel</strong> registers saving / restoring (performed by kernel)</li>
+</ul>
+<h3 id="issues-and-solutions-related-to-concurrency">Issues And Solutions Related To Concurrency</h3>
+<ul>
+<li><strong>issues</strong>
+<ul>
+<li>timer interrupt when handling system-call (handling trap)</li>
+<li>timer interrupt when handling timer interrupt</li>
+</ul></li>
+<li><strong>solutions</strong>
+<ul>
+<li>disable interrupt during handling trap or timer interrupt, so no more interrupt will be received</li>
+<li>use locking scheme to protect internal data structure (enabling multiple activities on-going on multiprocessor)</li>
+</ul></li>
+</ul>
+<h3 id="asides-trap-vs.-interrupt-vs.-exception">Asides: Trap Vs. Interrupt Vs. Exception</h3>
+<ul>
+<li><strong>trap</strong>
+<ul>
+<li>synchronous</li>
+<li>caused by exception or system-call</li>
+</ul></li>
+<li><strong>interrupt</strong>
+<ul>
+<li>asynchrounous</li>
+<li>caused by hardware (time interrupt)</li>
+</ul></li>
+<li><strong>exception</strong>
+<ul>
+<li>synchronous</li>
+<li>caused by illegal operaiton</li>
+</ul></li>
+</ul>
+<h2 id="policies-scheduling">Policies: Scheduling</h2>
+<h3 id="introduction">Introduction</h3>
+<h4 id="workload-and-assumptions">Workload And Assumptions</h4>
+<p><strong><em>workload</em></strong>: processes running in the system</p>
+<p>some workload assumptions</p>
+<ul>
+<li>each job runs for the same amount of time</li>
+<li>all jobs arrive at the same time</li>
+<li>once started, each job runs to completion</li>
+<li>all jobs only use the CPU</li>
+<li>the run-time of each job is known</li>
+</ul>
+<h4 id="metrics-of-scheduling-policies">Metrics Of Scheduling Policies</h4>
+<ul>
+<li><strong><em>turnaround time</em></strong>: completion time minus arrival time</li>
+<li><strong><em>response time</em></strong>: time for the first run minus arrival time</li>
+<li><strong><em>wait time</em></strong>: time spent in ready state but not running</li>
+</ul>
+<h4 id="scheduling-policy-classifications">Scheduling Policy Classifications</h4>
+<ul>
+<li>preemptive vs non-preemptive
+<ul>
+<li><strong><em>preemptive</em></strong>: a job may be stopped to run another one</li>
+<li><strong><em>non-preemptive</em></strong>: a job will be run until completion</li>
+</ul></li>
+<li>performance oriented vs fairness oriented
+<ul>
+<li><strong><em>performance oriented</em></strong>: focused on lowering turnaround time</li>
+<li><strong><em>fairness oriented</em></strong>: focused on lowering response time</li>
+</ul></li>
+</ul>
+<h4 id="common-scheduling-policies">Common Scheduling Policies</h4>
+<ul>
+<li><strong>FIFO</strong> (first in, first out) / <strong>FCFS</strong> (first come, first served)
+<ul>
+<li>always run the process arrived first</li>
+<li>non-preemptive</li>
+</ul></li>
+<li><strong>SJF</strong> (shortest job first)
+<ul>
+<li>always run the process which takes the shortest time to finish</li>
+<li>non-preemptive, performance oriented</li>
+<li>need many assumptions</li>
+</ul></li>
+<li><strong>STCF</strong> (shortest time-to-completion first) / PSJF (preemptive shortest job first)
+<ul>
+<li>always run the process which takes the shortest time to finish, reschedule when new process arrived</li>
+<li>preemptive, performance oriented</li>
+</ul></li>
+<li><strong>RR</strong> (round-robin) (time-slicing)
+<ul>
+<li>each process runs for a short while, then switch to another and so on</li>
+<li>preemptive, fairness oriented</li>
+</ul></li>
+</ul>
+<h4 id="scheduling-incorporating-io">Scheduling Incorporating I/O</h4>
+<ul>
+<li>if a process has many I/O operations, we can treat each CPU burst of the process as a single job</li>
+<li>when it is performing I/O, other processes can be “overlapped” to use CPU to utilize the processor</li>
+</ul>
+<h3 id="scheduling-policy-multi-level-feedback-queue">Scheduling Policy: Multi-Level Feedback Queue</h3>
+<h4 id="overview-2">Overview</h4>
+<ul>
+<li><strong>crux</strong>: minimize turnaround time and response time without priori knowledge</li>
+<li><strong>solution</strong>: learn from history (assuming process has phrase of behavior)</li>
+</ul>
+<h4 id="basic-rules">Basic Rules</h4>
+<ul>
+<li>multiple queues with different priority</li>
+<li>each process ready to run is in a queue</li>
+<li>if priority(A) &gt; priority(B), always run A first</li>
+<li>if priority(A) = priority(B), use round robin</li>
+<li>in summary: always use round robin on the queue with maximal priority if it’s not empty</li>
+<li>how to set priority: adjust process’ priority based on its behavior
+<ul>
+<li>CPU infrequent, IO frequent: interactive, higher priority</li>
+<li>CPU intensive: lower priority</li>
+</ul></li>
+</ul>
+<h4 id="priority-strategy-1-with-priority-lowering">Priority Strategy 1, With Priority Lowering</h4>
+<ul>
+<li><strong>strategy</strong>
+<ul>
+<li>put newly arrived process into the queue with maximal priority</li>
+<li>if initiate IO before one time slice used up, keep its priority (because it seems interactive)</li>
+<li>if use up one time slice, lower its priority (because it seems CPU intensive)</li>
+</ul></li>
+<li><strong>flaw</strong>
+<ul>
+<li>stavartion: a CPU intensive process may have no CPU time, if too many interactive processes</li>
+<li>security: user can monopolize CPU (always initiate IO before time slice used up)</li>
+<li>program behavior may change, cannot give low priority process higher priority</li>
+</ul></li>
+</ul>
+<h4 id="priority-strategy-2-with-priority-boosting">Priority Strategy 2, With Priority Boosting</h4>
+<ul>
+<li><strong>strategy</strong>
+<ul>
+<li>periodically move all process to the queue with maximal priority</li>
+</ul></li>
+<li><strong>what does it solves</strong>
+<ul>
+<li>starvation</li>
+<li>behavior-changing problem</li>
+</ul></li>
+</ul>
+<h4 id="priority-strategy-3-with-better-accounting">Priority Strategy 3, With Better Accounting</h4>
+<ul>
+<li><strong>strategy</strong>
+<ul>
+<li>regardless of whether a process initiate IO before time slice used up</li>
+<li>each priority has certain time allotment</li>
+<li>if a process uses up allotment, demote it to lower priority queue (regardless of a long burst of many small bursts)</li>
+</ul></li>
+<li><strong>what does it solves</strong>
+<ul>
+<li>security (user cannot monopolize the strategy)</li>
+</ul></li>
+</ul>
+<h4 id="priority-strategy-tuning">Priority Strategy Tuning</h4>
+<ul>
+<li>queue with lower priority may have longer time-slice length (varying time-slice length)</li>
+<li>use mathmatical formulae to calculate priority</li>
+<li>decay usage information over time to achieve priority boosting</li>
+<li>allow user to provide advice to adjust priority</li>
+</ul>
+<h3 id="scheduling-policy-proportional-share">Scheduling Policy: Proportional Share</h3>
+<h4 id="overview-3">Overview</h4>
+<p><strong>crux</strong>: share CPU time in a proportional manner</p>
+<h4 id="random-lottery-strategy">(Random) Lottery Strategy</h4>
+<ul>
+<li><strong>idea</strong>
+<ul>
+<li>use tickets and lottery</li>
+<li>processes with more tickets will get more CPU time</li>
+</ul></li>
+<li><strong>basic rules</strong>
+<ul>
+<li>each ticket has its number</li>
+<li>each process holds many tickets (numbers are continuous for simplicity)</li>
+<li>for each time slice, a lottery is held; a number is randomly choosen</li>
+<li>owner of the ticket having this number will use this time slice</li>
+</ul></li>
+<li><strong>implementation</strong>
+<ul>
+<li>put all processes into a list</li>
+<li>generate random number between 0 and the number of all tickets</li>
+<li>traverse the list, accumulate number of tickets each process has, until the number exceeds the random choosen value</li>
+<li>the process causing the exceeding will be choosen to run</li>
+<li>optimization: sort the list by number of tickets (descending) to reduce the number needed for visiting processes</li>
+</ul></li>
+<li><strong>tunning</strong>
+<ul>
+<li><strong>ticket currency</strong>: tickets can be assigned to users, user can assign tickets to his processes, in a currency defined by himself; OS will convert automatically</li>
+<li><strong>ticket transfer</strong>: processes can transfer tickets to each other to speed up some processes’ work (e.g. client transfer to server)</li>
+<li><strong>ticket inflation</strong>: in a group of mutally trusted processes, process can temporarily raise its number of tickets to boost performance</li>
+</ul></li>
+<li><strong>advantage</strong>: no need for maintaining global states</li>
+<li><strong>problem</strong>: how to assign tickets</li>
+</ul>
+<h4 id="deterministic-stride-strategy">(Deterministic) Stride Strategy</h4>
+<ul>
+<li><strong>idea</strong>
+<ul>
+<li>each process has a <strong><em>stride</em></strong>, which will be added to the counter owned by the process</li>
+<li>all processes’ counter should <strong>roughly equal</strong></li>
+</ul></li>
+<li><strong>basic rules</strong>
+<ul>
+<li>each process has a counter (initialized to 0) and a stride (smaller stride means higher priority)</li>
+<li>OS always picks the process with lowest counter to use next time slice</li>
+<li>after the time slice, increment the counter of the process by its stride</li>
+</ul></li>
+<li><strong>advantage</strong>: deterministic</li>
+<li>relation with lottery strategy: <em>stride</em> is the inverse of the <em>number of tickets</em></li>
+<li><strong>question</strong>: what value to assign to the counter of a new process</li>
+</ul>
+<h4 id="deterministic-completely-fair-scheduler-cfs">(Deterministic) Completely Fair Scheduler (CFS)</h4>
+<p>this is the application of <em>stride strategy</em>, which is used by Linux</p>
+<ul>
+<li><strong>aim</strong>: make scheduling decisions quickly</li>
+<li><strong>basic operation</strong>
+<ul>
+<li><strong><em>virtual runtime</em></strong>
+<ul>
+<li>each process has a counter named <strong><em>vruntime</em></strong> (like the counter in stride strategy)</li>
+<li>value of <em>vruntime</em> will increase with proportion with physical (real) time after each time slice</li>
+<li>process with lowest <em>vruntime</em> will be run next</li>
+<li>CFS uses timed interrupt; although time slice may not be the multiple of interrupt period, CFS tracks <em>vruntime</em> percisely</li>
+</ul></li>
+<li><strong><em>scheduling latency</em></strong>
+<ul>
+<li>OS has a value named <strong><em>sched_latency</em></strong>
+<ul>
+<li><em>sched_latency</em> is the time of how long a process should run before considering context switching</li>
+<li>it can be used to determine time slice dynamically</li>
+</ul></li>
+<li>time slice is dertermined by <em>sched_latency</em> divided by the number of processes
+<ul>
+<li>e.g. 48ms <em>sched_latency</em>, 4 processes, then time slice is 12ms (will change later)</li>
+</ul></li>
+<li>after each time slice, choose the process to run next</li>
+</ul></li>
+<li><strong>minimal granularity</strong>
+<ul>
+<li>OS has a value named <strong><em>min_granularity</em></strong>
+<ul>
+<li><em>min_granularity</em> is the minimal time a time slice should have</li>
+<li>designed to avoid too many process cauing time slice too short</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>weighting (niceness) mechanism</strong>
+<ul>
+<li><strong><em>nice level</em></strong>, from -20 to +19, default 0</li>
+<li><strong>priority and nice level</strong>:
+<ul>
+<li>positive nice level: low priority</li>
+<li>negative nice level: high priority</li>
+</ul></li>
+<li>each nice level has a corresponding constant weight in <code>prio_to_weight</code> table (e.g. <code>-20 -&gt; 88761</code>, <code>0 -&gt; 1024</code>, <code>10 -&gt; 110</code>)</li>
+<li>weight decreases nearly exponentially</li>
+<li>when calculating time slice for a process, considering weights of all processes:
+<ul>
+<li>timeSlice = currentProcessWeight / totalProcessWeights * sched_latency</li>
+<li>high priority process has longer time slice</li>
+</ul></li>
+<li>when accumulating <em>vruntime</em>, scale inversely:
+<ul>
+<li>actualVruntime += weightOfNice0 / currentProcessWeight * originalVruntime</li>
+<li>high priority process accumulates vruntime more slowly</li>
+</ul></li>
+</ul></li>
+<li><strong>implementation</strong>
+<ul>
+<li>use red-black tree to store ready processes
+<ul>
+<li>sleeping processes kept elsewhere</li>
+<li>finding process with minimal <em>vruntime</em> is fast</li>
+</ul></li>
+<li>when a process wakes up from IO or sleeping, its vruntime is set to the minimal value of all ready processes to avoid monopolizing</li>
+</ul></li>
+</ul>
+<h3 id="multiprocessor-scheduling">Multiprocessor Scheduling</h3>
+<p><strong><em>TODO</em></strong></p>
+
+</body>
+</html>
+

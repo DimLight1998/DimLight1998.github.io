@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!-- <title>|Title|</title> -->
+  <link rel="stylesheet" href="/res/page.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Slab">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courier Prime">
+</head>
+<body>
+<h1 id="ostep-book-notes---memory-virtualization">OSTEP Book Notes - Memory Virtualization</h1>
+<h2 id="memory-management-overview">Memory Management Overview</h2>
+<h3 id="memory-management-in-history">Memory Management In History</h3>
+<ul>
+<li>OS that <strong>loads one program at a time</strong>
+<ul>
+<li>OS use fixed part of physical memory (for code and data) (e.g. first 64KB)</li>
+<li>the rest of physical memory is left for user’s programs</li>
+</ul></li>
+<li>OS <strong>allowing multiprocess and time sharing</strong>
+<ul>
+<li>OS use fixed part of physical memory (for code and data) (e.g. first 64KB)</li>
+<li>the rest of physical memory is fragmented, ecah process use some fragments</li>
+<li>if a process uses all free memory, context switch can be expensive</li>
+</ul></li>
+</ul>
+<h3 id="address-space">Address Space</h3>
+<ul>
+<li>what does <strong><em>address space</em></strong> do
+<ul>
+<li>provide easy-to-use physical memory abstraction</li>
+<li>in processes’ view, its the physical memory</li>
+<li>provide the illusion that a process has a huge private memory</li>
+</ul></li>
+<li>what does address space contain (all the processes memory states)
+<ul>
+<li>code: program instructions</li>
+<li>stack: local variables, parameters and return values, call chain</li>
+<li>heap: user allocated memory (malloc), memory managed by language (new)</li>
+<li>other data (e.g. statically initialized variables)</li>
+</ul></li>
+<li>example layout of an address space
+<ul>
+<li>starts from 0</li>
+<li>from top to bottom, address grows</li>
+<li>code segment is placed at the top</li>
+<li>heap segment is placed right below code segment, it grows downwards</li>
+<li>stack segment is placed at the bottom, it grows upwards</li>
+</ul></li>
+</ul>
+<h3 id="cruxes-in-memory-management">Cruxes In Memory Management</h3>
+<ul>
+<li>how to create the illusion that a process has a huge private memory</li>
+<li>how to place many memory space into physical memory</li>
+<li>how to map virtual memory address to physical address</li>
+</ul>
+<h3 id="design-goal">Design Goal</h3>
+<ul>
+<li><strong>transparency</strong>: program should not realize the memory is virtualized, thinking it has the whole physical memory</li>
+<li><strong>efficiency</strong>
+<ul>
+<li>not slow down programs too much (need hardware support, e.g. TLB)</li>
+<li>not use too much extra memory to support virtualization</li>
+</ul></li>
+<li><strong>protection</strong>: memory operation should not affect memory content of other processes or OS itself, to achieve isolation</li>
+</ul>
+<h3 id="type-of-memory">Type Of Memory</h3>
+<ul>
+<li><strong><em>stack memory</em></strong> (aka. automatic memory)
+<ul>
+<li>handled by compiler implicitly</li>
+<li>allocated when declaring local variable</li>
+<li>deallocated when function returns</li>
+</ul></li>
+<li><strong><em>heap memory</em></strong>
+<ul>
+<li>handled by program explicitly</li>
+<li>allocated by functions like malloc</li>
+<li>deallocated by functions like free</li>
+</ul></li>
+</ul>
+<h2 id="some-apis-on-unix">Some APIs On UNIX</h2>
+<h3 id="system-call-wrappers-about-memory-management">System Call Wrappers About Memory Management</h3>
+<h4 id="api-malloc">API: <code>malloc</code></h4>
+<ul>
+<li><strong>function</strong>: allocate heap memory</li>
+<li><strong>typical usage</strong>
+<ul>
+<li>include <code>stdlib.h</code></li>
+<li><code>int *p = (int *)malloc(sizeof(int))</code></li>
+</ul></li>
+<li><strong>return value</strong>
+<ul>
+<li>on success: return pointer to allocated memory (with type <code>void*</code>)</li>
+<li>on failure: return <code>NULL</code></li>
+</ul></li>
+</ul>
+<h4 id="api-calloc">API: <code>calloc</code></h4>
+<ul>
+<li><strong>function</strong>: like malloc, but set the new memory to zeroes before returning</li>
+</ul>
+<h4 id="api-realloc">API: <code>realloc</code></h4>
+<ul>
+<li><strong>function</strong>: make a larger region, copy old region to it, then return</li>
+</ul>
+<h4 id="api-free">API: <code>free</code></h4>
+<ul>
+<li><strong>function</strong>: deallocate heap memory</li>
+<li><strong>typical usage</strong>
+<ul>
+<li>include <code>stdlib.h</code></li>
+<li><code>free(p)</code> where p is a pointer</li>
+</ul></li>
+<li>no need to pass the size of the memory, memory-allocation library will track it</li>
+</ul>
+<h3 id="system-calls-about-memory-management">System Calls About Memory Management</h3>
+<p>it’s <strong>not recommended</strong> to directly use them</p>
+<ul>
+<li><code>brk</code>
+<ul>
+<li>break: location of the end of the heap</li>
+<li>use brk to change the break of a process</li>
+<li>argument is the new break</li>
+<li>if new break is bigger than current break, memory is allocated</li>
+<li>if new break is smaller than current break, memory is deallocated</li>
+</ul></li>
+<li><code>sbrk</code>
+<ul>
+<li>like brk, but argument is the increase of break</li>
+</ul></li>
+<li><code>mmap</code>
+<ul>
+<li>create a anonymous region associated with swap space which can be managed</li>
+</ul></li>
+</ul>
+<h3 id="design-considerations">Design Considerations</h3>
+<ul>
+<li>there are two levels of memory management
+<ul>
+<li><code>OS level</code>
+<ul>
+<li>allocate memory before a program starts</li>
+<li>allocate/deallocate memory with system call</li>
+<li>deallocate memory after a program exits</li>
+</ul></li>
+<li><code>library level</code>
+<ul>
+<li>allocate memory by calls like malloc</li>
+<li>deallocate memory by calls like free</li>
+<li>track used memory</li>
+</ul></li>
+</ul></li>
+<li>even if not using free in program, memory will be deallocated by OS when it exits</li>
+</ul>
+<h3 id="common-errors-when-using-memory-management-apis">Common Errors When Using Memory Management APIs</h3>
+<ul>
+<li><strong>forget to allocate memory</strong>
+<ul>
+<li>use strcpy without allocting destination buffer (causes segmentation fault)</li>
+</ul></li>
+<li><strong>not allocating enough memory</strong>
+<ul>
+<li>use strcpy with destination buffer size equals to origianl string length (needs an extra char) (causes buffer overflow)</li>
+</ul></li>
+<li><strong>forgetting to initialize allocated memory</strong>
+<ul>
+<li>cause uninitialized read</li>
+</ul></li>
+<li><strong>forgetting to free memory</strong>
+<ul>
+<li>cause memory leak</li>
+</ul></li>
+<li><strong>freeing memory before done with it</strong>
+<ul>
+<li>cause dangling pointer</li>
+</ul></li>
+<li><strong>freeing memory multiple times</strong>
+<ul>
+<li>cause double free</li>
+</ul></li>
+<li><strong>use <code>free()</code> incorrectly</strong>
+<ul>
+<li>pass some strange parameter (causes invalid free)</li>
+</ul></li>
+</ul>
+<h2 id="basic-address-translation">Basic Address Translation</h2>
+<h3 id="overview-and-assumptions">Overview And Assumptions</h3>
+<ul>
+<li><strong>crux</strong>: how to effciently virtualize memory while providing flexibility</li>
+<li><strong>key points</strong>
+<ul>
+<li>effciency: use hardware, the virtualization should not use too much resource</li>
+<li>flexibility: processes should use memory space in whatever way they want</li>
+<li>control: the OS should remain control of the system</li>
+</ul></li>
+<li><strong>require</strong>: support from hardware and OS
+<ul>
+<li>support from hardware is MMU (memory management unit)</li>
+</ul></li>
+<li><strong>technique</strong>: hardware-based address translation
+<ul>
+<li>translate address in address space to physical space (relocate address space)</li>
+<li>hard ware only provides mechanism</li>
+<li>OS should use this mechanism</li>
+</ul></li>
+<li><strong>some assumptions</strong>
+<ul>
+<li>the physical address must be contiguous for one process</li>
+<li>the address space is not too big (can fit into physical memory)</li>
+<li>all address spaces are equal sized</li>
+</ul></li>
+</ul>
+<h3 id="hardware-based-dynamic-relocation">(Hardware-Based) Dynamic Relocation</h3>
+<h4 id="overview">Overview</h4>
+<ul>
+<li><strong>assumptions</strong>
+<ul>
+<li>contiguous physical address for one process</li>
+<li>address space can fit into physical memory</li>
+</ul></li>
+<li><strong>key idea</strong>
+<ul>
+<li>linear mapping</li>
+<li>each virtual address is added to a constant to get physical address</li>
+</ul></li>
+<li><strong>origin of the name</strong>
+<ul>
+<li>after loading the program, its base register can be changed, which is “dynamic”</li>
+</ul></li>
+<li><strong>flaw</strong>
+<ul>
+<li>each process uses a fixed size address space, causing “internal fragment” (unused space between heap and stack)</li>
+</ul></li>
+</ul>
+<h4 id="hardware-support-mmu">Hardware Support (MMU)</h4>
+<ul>
+<li>two registers on CPU
+<ul>
+<li><strong><em>base register</em></strong>
+<ul>
+<li>holds physical address of the start of address space</li>
+<li>for translating</li>
+</ul></li>
+<li><strong><em>bound register</em></strong>
+<ul>
+<li>holds the size of the address space</li>
+<li>alternatively (logically equal), holds physical address of the end of address space</li>
+<li>for protecting</li>
+</ul></li>
+</ul></li>
+<li>circuitry to add base register with an address</li>
+<li>circuitry to check if physical address is valid</li>
+<li>priviledged instruction to change base and bound registers</li>
+</ul>
+<h4 id="translation-steps">Translation Steps</h4>
+<ul>
+<li>each process has different values of base and bound registers</li>
+<li>before program starts, OS sets base register for it</li>
+<li>physical_addr = base_register + virtual_addr</li>
+<li>if <strong>bound register holds size</strong> (all is done by hardware)
+<ul>
+<li>check if virtual address is positive and smaller than bound register</li>
+<li>add virtual address with base register to get physical address</li>
+<li>access physical address calculated</li>
+</ul></li>
+<li>if <strong>bound register holds end</strong> (all is done by hardware)
+<ul>
+<li>add virtual address with base register to get physical address</li>
+<li>check if physical address is bigger than base register and smaller than bound register</li>
+<li>access physical address calculated</li>
+</ul></li>
+<li>if address invalid, triggers an exception (handled by OS’ exception handler)</li>
+<li><strong>note</strong>: unless the physical address is invalid, these steps do not need intervention of OS</li>
+</ul>
+<h3 id="software-based-static-relocation">(Software-Based) Static Relocation</h3>
+<h4 id="overview-1">Overview</h4>
+<ul>
+<li><strong>assumptions</strong> (just like dynamic relocation)
+<ul>
+<li>contiguous physical address for one process</li>
+<li>address space can fit into physical memory</li>
+</ul></li>
+<li><strong>key idea</strong> (just like dynamic relocation)
+<ul>
+<li>linear mapping</li>
+<li>each virtual address is added to a constant to get physical address</li>
+</ul></li>
+<li>no hardware support</li>
+<li><strong>flaws</strong>
+<ul>
+<li>no protection</li>
+<li>can not relocate after executing</li>
+</ul></li>
+</ul>
+<h4 id="translation-steps-1">Translation Steps</h4>
+<ul>
+<li>before program starts, OS decides which place to allocate by giving a base address</li>
+<li>a special program called loader will rewrite every address in the program about to run, adding these addresses with base address</li>
+<li>run the rewritten program</li>
+</ul>
+<h3 id="os-implementation-for-basic-address-translation">OS Implementation For Basic Address Translation</h3>
+<ul>
+<li><strong>slot management</strong>
+<ul>
+<li>each process uses a slot</li>
+<li>OS itself uses a slot</li>
+<li>view physical memory as a array of fragmented slots</li>
+<li>assuming all address space equally sized</li>
+<li>OS maintain all unused slots in a free list</li>
+</ul></li>
+<li><strong>free list</strong>
+<ul>
+<li>maintains all unsed slots</li>
+</ul></li>
+<li><strong>base/bound registers</strong> for each process
+<ul>
+<li>stores in PCB when sleeping</li>
+</ul></li>
+</ul>
+<h3 id="limited-execution-protocol-extended-with-dynamic-relocation">Limited Execution Protocol (Extended With Dynamic Relocation)</h3>
+<p>there are three roles in this section:</p>
+<ul>
+<li><strong>kernel</strong> (kernel-mode, OS related)</li>
+<li><strong>hardware</strong> (kernel-mode, OS independent)</li>
+<li><strong>program</strong> (user-mode)</li>
+</ul>
+<p>the following abbreviations will be used:</p>
+<ul>
+<li><strong><em>vaddr</em></strong>: virtual address</li>
+<li><strong><em>paddr</em></strong>: physical address</li>
+<li><strong><em>LEPvCPU</em></strong>: limited execution protocol discussed when virtualizing CPU</li>
+</ul>
+<h4 id="events-during-machine-booting">Events During Machine Booting</h4>
+<ol type="1">
+<li>kernel: install trap table, exception handler</li>
+<li>hardware: remember address of system-call handler, exception handler and timer handler</li>
+<li>kernel: start interrupt timer</li>
+<li>hardware: start timer, interrupt every Xms</li>
+<li>kernel: initialize process list and free list</li>
+</ol>
+<h4 id="events-during-process-starting">Events During Process Starting</h4>
+<ol type="1">
+<li>kernel: allocate entry in process list</li>
+<li>kernel: find memory slot from free list</li>
+<li>kernel: set base/bound register for process</li>
+<li>kernel: execute return-from-trap instruction</li>
+<li>hardware: restore registers of A (kernel stack)</li>
+<li>hardware: switch to user-mode</li>
+<li>hardware: jump to A’s entry</li>
+<li>program: start from the entry</li>
+</ol>
+<h4 id="events-during-executing-instruction">Events During Executing Instruction</h4>
+<ol type="1">
+<li>program: need to fetch instruction at vaddr</li>
+<li>hardware: translate vaddr to paddr and check</li>
+<li>hardware: fetch instruction from paddr</li>
+<li>program: execute instruction fetched</li>
+</ol>
+<h4 id="events-during-loadingstoring-data">Events During Loading/Storing Data</h4>
+<ol type="1">
+<li>program: need to load from/store to vaddr</li>
+<li>hardware: translate vaddr to paddr and check</li>
+<li>hardware: load from/store to paddr</li>
+</ol>
+<h4 id="events-during-timer-interrupt">Events During Timer Interrupt</h4>
+<ol type="1">
+<li>hardware: start an interrupt</li>
+<li>hardware: switch to kernel mode</li>
+<li>hardware: jump to timer interrupt handler</li>
+<li>kernel: call switch routine, which
+<ul>
+<li>save registers to PCB of process A (including base/bound registers)</li>
+<li>restore registers from PCB of process B (including base/bound registers)</li>
+</ul></li>
+<li>kernel: execute return-from-trap instruction</li>
+<li>kernel: restore registers of B (kernel stack)</li>
+<li>kernel: switch to user-mode</li>
+<li>kernel: jump to B’s program counter</li>
+</ol>
+<h4 id="events-during-bad-access-happens">Events During Bad Access Happens</h4>
+<ol type="1">
+<li>hardware: start an exception</li>
+<li>hardware: switch to kernel mode</li>
+<li>hardware: jump to exception handler</li>
+<li>kernel: decide to terminate the process</li>
+<li>kernel: deallocate memory, update free list</li>
+<li>kernel: remove it from process list</li>
+</ol>
+<h4 id="events-during-relocating-address-space">Events During Relocating Address Space</h4>
+<ol type="1">
+<li>kernel: dischedule the process (make it sleep)</li>
+<li>kernel: copy data from old physical addresses to new physical addresses</li>
+<li>kernel: update base and bound registers of this process (in PCB)</li>
+<li>kernel: schedule the process (make it ready)</li>
+</ol>
+<h4 id="events-during-process-terminating">Events During Process Terminating</h4>
+<ol type="1">
+<li>similar to LEPvCPU</li>
+<li>kernel: deallocate memory, update free list</li>
+</ol>
+<h2 id="segmentation">Segmentation</h2>
+<h3 id="overview-2">Overview</h3>
+<ul>
+<li><strong>problem in dynamic relocation</strong>
+<ul>
+<li>internal fragment</li>
+<li>address space needs to fit into physical memory</li>
+</ul></li>
+<li><strong>crux</strong>: how to support large address space with potentially large internal fragment</li>
+</ul>
+<h3 id="main-idea">Main Idea</h3>
+<ul>
+<li><strong>assumption</strong>: the address space is not too big (can fit into physical memory)</li>
+<li><strong><em>memory segment</em></strong>: contiguous portion of address space of a particular length</li>
+<li>three logical segments
+<ul>
+<li>code segment</li>
+<li>heap segment</li>
+<li>stack segment</li>
+</ul></li>
+<li>each logical segment has its own base/bound registers in MMU</li>
+<li>place different segment in different location of the physical memory independently</li>
+<li><strong>address translation</strong>
+<ol type="1">
+<li>get logical segment of the virtual address</li>
+<li>get offset of virtual address in the segment</li>
+<li>add offset to corresponding segment base to get physical address</li>
+<li>check validity during translation</li>
+</ol></li>
+<li>pros and cons
+<ul>
+<li><strong>pros</strong>: no internal fragments (no wasted space between heap and stack)</li>
+<li><strong>pros</strong>: better support sparse address space</li>
+<li><strong>cons</strong>: external fragments (wasted space between different segments)</li>
+</ul></li>
+</ul>
+<h3 id="getting-segment-of-the-virtual-address">Getting Segment Of The Virtual Address</h3>
+<p><strong>problem</strong>: given a virtual address, how to know which segment does it refer</p>
+<h4 id="explicit-approach">Explicit Approach</h4>
+<p><strong>idea</strong>:</p>
+<ul>
+<li>fragment the whole address space into multiple parts, each part used by a segment</li>
+<li>use the highest n bits of an address to locate its segment (use as segment indicator)</li>
+<li>different segments have different indicator (same segments have same indicator)</li>
+<li>virtual address can be divided to two parts
+<ul>
+<li>segment indicator (highest n bits)</li>
+<li>offset in the segment (remaining bits)</li>
+</ul></li>
+</ul>
+<p><strong>example rules</strong>:</p>
+<ul>
+<li>highest 2 bits is 00
+<ul>
+<li>code segment</li>
+</ul></li>
+<li>highest 2 bits is 01
+<ul>
+<li>heap segment</li>
+</ul></li>
+<li>highest 2 bits is 11
+<ul>
+<li>stack segment</li>
+</ul></li>
+<li>in this case, address space is equally fragmented into 4 parts
+<ul>
+<li>the first quarter is used for code</li>
+<li>the next quarter is used for heap</li>
+<li>the last quarter is used for stack</li>
+</ul></li>
+</ul>
+<p><strong>address translation steps</strong>:</p>
+<ul>
+<li>find segment by “segment indicator” (from highest n bits)</li>
+<li>check validity using “offset in the segment” (from bound register of the segment)</li>
+<li>get base address of the segment (from base register of the segment)</li>
+<li>get physical address (base address of segment + offset)</li>
+</ul>
+<h4 id="implicit-approach">Implicit Approach</h4>
+<p><strong>idea</strong>: observe how the address is formed</p>
+<p><strong>example rules</strong>:</p>
+<ul>
+<li>if generated from PC (e.g. instruction fetch), address is in code segment</li>
+<li>if generated based on stack/base pointer, address is in stack segment</li>
+<li>otherwise, address is in heap segment</li>
+</ul>
+<h3 id="extra-feature-negative-growth">Extra Feature: Negative Growth</h3>
+<ul>
+<li><strong>problem</strong>: for some segments (like stack), it grows backwards (i.e. from high to low)</li>
+<li><strong>need MMU support</strong>: for each segment, remember its growth direction</li>
+<li>base and bound
+<ul>
+<li><strong>base register</strong>: highest address of segment (e.g. bottom of the stack)</li>
+<li><strong>bound register</strong>: lowest address of segment</li>
+</ul></li>
+<li>address translation
+<ul>
+<li>“segment indicator” + “offset in segment”</li>
+<li><strong>find segment</strong> by “segment indicator”</li>
+<li><strong>find growth direction</strong> of that segment</li>
+<li><strong>get actual offset</strong>
+<ul>
+<li>if grow positively: actual offset = “offset in segment”</li>
+<li>if grow negatively: actual offset (should be negative) = “offset in segment” - maximal segment size</li>
+</ul></li>
+<li><strong>check validity</strong>
+<ul>
+<li>if grow positively: actual offset not exceeds bound</li>
+<li>if grow negatively: actual offset absolute value not exceeds bound</li>
+</ul></li>
+<li><strong>get base address</strong> of the segment</li>
+<li><strong>get physical address</strong> of the virtual address (base address + actual offset)</li>
+</ul></li>
+</ul>
+<p>why negative growth (my opinion):</p>
+<ul>
+<li>easier to change the size of a segment (only change bound if negative growth)</li>
+<li>make it possible to always keep the bound same size as the segment
+<ul>
+<li>push to stack, increase bound</li>
+<li>pop from stack, decrease bound</li>
+<li>bound always equals to size of the stack</li>
+<li>valid address always refers to valid element</li>
+</ul></li>
+</ul>
+<h3 id="extra-feature-memory-sharing">Extra Feature: Memory Sharing</h3>
+<ul>
+<li><strong>problem</strong>: some segments can be shared transparently across processes (e.g. code)</li>
+<li><strong>need MMU support</strong>: for each segment, add some protection bits
+<ul>
+<li>read/write protection bits</li>
+<li>execute/non-execute protection bits</li>
+</ul></li>
+<li>when performing validity checking, also check protection bits
+<ul>
+<li>write to read-only segments?</li>
+<li>execute non-execute sements?</li>
+</ul></li>
+<li>raise exception if access violates protection bits</li>
+</ul>
+<h3 id="alternative-implemantion-fine-grained-segmentation">Alternative Implemantion (Fine-Grained Segmentation)</h3>
+<ul>
+<li>grain of segmentation
+<ul>
+<li><strong>coarse-grained</strong> (few segments): segment into code, heap, stack</li>
+<li><strong>fine-grained</strong> (thousands of segments): segment into many more segments</li>
+</ul></li>
+<li><strong>hardware support</strong>: segmentation table (in memory)</li>
+<li>advatage
+<ul>
+<li>flexibility</li>
+<li>OS can manage memory more efficently</li>
+</ul></li>
+</ul>
+<h3 id="external-fragments">External Fragments</h3>
+<ul>
+<li><strong>external fragments</strong>: wasted space between different segments</li>
+<li>elimination by compacting
+<ul>
+<li>solution: rearrange all segments continugously periodically</li>
+<li>use much CPU resource</li>
+</ul></li>
+<li>elimination by free-list
+<ul>
+<li>free-list: list containing available memory</li>
+<li>algorithms
+<ul>
+<li>best-fit</li>
+<li>worst-fit</li>
+<li>first-fit</li>
+<li>buddy-algorithm</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="free-space-management">Free Space Management</h2>
+<h3 id="overview-and-assumptions-1">Overview And Assumptions</h3>
+<p><strong>crux</strong>: how to manage variable-sized free space and minimize external fragmentation</p>
+<p>based on following assumptions:</p>
+<ul>
+<li>focus on user-level memory-allocation libraries (manage heap of each process)</li>
+<li>interface assumption
+<ul>
+<li><code>malloc</code>
+<ul>
+<li>parameter: number specifying how many bytes should be allocated</li>
+<li>return: pointer to the allocated region</li>
+</ul></li>
+<li><code>free</code>
+<ul>
+<li>parameter: pointer to the region to be recycled (size not required)</li>
+<li>return: (none)</li>
+</ul></li>
+</ul></li>
+<li>only focus on external fragments</li>
+<li>no compaction (compaction can still be performed at OS level), allocated region cannot be moved until recycled</li>
+<li>the library manages a single fixed-size memory region</li>
+</ul>
+<h3 id="mechanisms">Mechanisms</h3>
+<h4 id="splitting-and-coalescing-of-free-list-node">Splitting And Coalescing Of Free List Node</h4>
+<ul>
+<li><strong>splitting</strong>
+<ul>
+<li><strong>triggered</strong>: program requests memory region smaller than a free chunk</li>
+<li><strong>action</strong>: split a free chunk into two parts
+<ul>
+<li>part 1 just meets need, allocated</li>
+<li>part 2 remains in free list</li>
+</ul></li>
+<li><strong>purpose</strong>: avoid internal fragment</li>
+</ul></li>
+<li><strong>coalescing</strong>
+<ul>
+<li><strong>triggered</strong>: program frees memory region which has adjacent free regions</li>
+<li><strong>action</strong>: merge the free chunk recycled with its adjacent free regions to form a larger one</li>
+<li><strong>purpose</strong>: compact the free list; ensure malloc requests can be handled properly; avoid fragmentation</li>
+</ul></li>
+</ul>
+<h4 id="tracking-size-of-allocated-region">Tracking Size Of Allocated Region</h4>
+<ul>
+<li><strong>crux</strong>
+<ul>
+<li><code>free(void*)</code> don’t need size parameter, how to implement this?</li>
+<li>memory management library need to figure out the size</li>
+</ul></li>
+<li><strong>solution</strong>
+<ul>
+<li>prepend a header to each allocated memory</li>
+<li>store body size and other information in this header</li>
+</ul></li>
+<li><strong>header information</strong>
+<ul>
+<li>(required) body size (e.g. in bytes)</li>
+<li>(optional) pointer to accelerate deallocation</li>
+<li>(optional) magic number to check integrity</li>
+</ul></li>
+<li><strong>on allocation</strong>
+<ul>
+<li>actual size = user request size + header size (body is user requested)</li>
+<li>hptr points to header, bptr points to body</li>
+<li>write information about body to header</li>
+<li>update free list (memory used has actual size)</li>
+<li>returns bptr to user</li>
+</ul></li>
+<li><strong>on deallocation</strong>
+<ul>
+<li>user provides bptr, get hptr from bptr (substract header size)</li>
+<li>use information in header to perform integrity checking, etc.</li>
+<li>deallocate memory (header + body)</li>
+</ul></li>
+</ul>
+<h4 id="embedding-free-list">Embedding Free List</h4>
+<ul>
+<li><strong>crux</strong>
+<ul>
+<li>memory management library needs to embed free list in free space it manages</li>
+</ul></li>
+<li><strong>solution</strong>
+<ul>
+<li>information about each free chunk is stored inside this chunk (at the beginning)</li>
+<li>multiple free chunks are linked, forming free list (maybe singly-linked table)</li>
+</ul></li>
+<li><strong>information fields</strong> (free chunk)
+<ul>
+<li>(required) size: size of this free chunk</li>
+<li>(required) next: next free chunk in the free list</li>
+</ul></li>
+<li><strong>on allocation</strong>
+<ul>
+<li>find an available free chunk in the free list</li>
+<li>split the chunk
+<ul>
+<li>first part: allocated, head + body</li>
+<li>second part: still free (with updated information)</li>
+</ul></li>
+<li>update the free list accordingly</li>
+</ul></li>
+<li><strong>on deallocation</strong>
+<ul>
+<li>get hptr from bptr, get free chunk location</li>
+<li>update information fields about this free chunk (size and next)</li>
+<li>add this free chunk to free list</li>
+<li>coalesce free list (note: address of each free chunk in the free list may not be monotonic)</li>
+</ul></li>
+</ul>
+<h4 id="growing-the-heap">Growing The Heap</h4>
+<ul>
+<li>crux: what to do if heap runs out</li>
+<li>solution
+<ul>
+<li>the “just to fail” way
+<ul>
+<li>return null on subsequent requests</li>
+</ul></li>
+<li>the “sbrk” way
+<ul>
+<li>start from a small heap</li>
+<li>when heap runs out, ask OS to allocate more memory for the heap</li>
+<li>on Unix, the system call is “sbrk”</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="strategies">Strategies</h3>
+<h4 id="best-fit-smallest-fit">Best Fit / Smallest Fit</h4>
+<ul>
+<li><strong>solution</strong>: find the smallest chunk whose size is larger or equal to requested size</li>
+<li><strong>pros</strong>: wasted space is reduced</li>
+<li><strong>cons</strong>: (naive implementation) need to go through the free list</li>
+</ul>
+<h4 id="worst-fit">Worst Fit</h4>
+<ul>
+<li><strong>solution</strong>: always use the largest chunk</li>
+<li><strong>cons</strong>
+<ul>
+<li>need to go through the free list</li>
+<li>performs badly, excess fragmentation</li>
+</ul></li>
+</ul>
+<h4 id="first-fit">First Fit</h4>
+<ul>
+<li><strong>solution</strong>: always return the first available chunk found in the free list</li>
+<li><strong>pros</strong>: fast (avoid exhaustive search)</li>
+<li><strong>cons</strong>
+<ul>
+<li>tend to pollute the beginning of free list with small chunks</li>
+<li>can be resolved by using address-based ordering (sort free list by address)</li>
+</ul></li>
+</ul>
+<h4 id="next-fit">Next Fit</h4>
+<ul>
+<li><strong>solution</strong>
+<ul>
+<li>keep a pointer in the free list where the last chunk is allocated</li>
+<li>when requested, search from the pointer</li>
+</ul></li>
+<li><strong>pros</strong>
+<ul>
+<li>fast (avoid exhaustive search)</li>
+<li>uniformly allocate chunks in the free list</li>
+</ul></li>
+</ul>
+<h3 id="other-tecnniques">Other Tecnniques</h3>
+<h4 id="segregated-list">Segregated List</h4>
+<ul>
+<li><strong>overview</strong>: there are two types of allocators, specialized allocator and general allocator</li>
+<li><strong>idea</strong>: if an application requests memory of the same size frequently, a dedicated free list can be used to allocate memory for it</li>
+<li><strong>pros</strong>: allocation and dealloction is fast; no searching, splitting or coalescing is needed</li>
+<li><strong>example</strong>: slab allocator
+<ul>
+<li>frequently requested objects: locks, file-system inodes, etc.</li>
+<li>when kernel boots up, initialize numbers of object cache as dedicated free list for each type of frequently requested objects</li>
+<li>allocation for object and deallocation of object can be fast</li>
+<li>when a object cache runs out, ask OS for a slab from general memory allocator</li>
+<li>when the reference count of a slab is zero, return it to the OS</li>
+</ul></li>
+</ul>
+<h4 id="buddy-allocation">Buddy Allocation</h4>
+<ul>
+<li><strong>overall idea</strong>: organize free space like a binary tree</li>
+<li><strong>pros</strong>: coalescing is fast</li>
+<li><strong>detailed idea</strong>
+<ul>
+<li>treat whole free space as the root of a binary tree
+<ul>
+<li>split node recursively</li>
+<li>the two sub-nodes are each other’s buddy</li>
+</ul></li>
+<li>when handling request, find the smallest leaf which meets the need
+<ul>
+<li>only power-of-two-sized blocks can be allocated</li>
+<li>have internal fragmentation</li>
+</ul></li>
+<li>when deallocation, check if the “buddy” of this free chunk is also free
+<ul>
+<li>if is free, merge them into a larger one, and recursively check its buddy</li>
+<li>stop until the buddy is in use</li>
+<li>address of the buddy can be determined quickly (only one bit is different, depending on depth in the binary tree)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="misc">Misc</h4>
+<ul>
+<li>use advanced data structure for performance (if free memory is large)</li>
+<li>make allocators work on multiprocessor-based systems</li>
+</ul>
+<h2 id="paging-i---introduction">Paging, I - Introduction</h2>
+<p>there are two ways to manage physical space:</p>
+<ul>
+<li><strong>segmentation</strong>: divide physical space into variable-sized chunks (cause fragmentation)</li>
+<li><strong>paging</strong>: divide physical space into fixed-sized chunks</li>
+</ul>
+<h3 id="basic-concepts">Basic Concepts</h3>
+<ul>
+<li><strong>page</strong>: process’s logical memory is divided into fixed-sized units, each one is a page</li>
+<li><strong>page frame / slot</strong>: physical memory is divided into fixed-sized units, each one is a page frame / slot</li>
+<li><strong>page table</strong>: a map owned by each process, mapping virtual page to physical page size (address translation)</li>
+</ul>
+<h3 id="advantages-of-paging">Advantages Of Paging</h3>
+<ul>
+<li><strong>flexibility</strong>
+<ul>
+<li>system can abstact the address space simply and effectively</li>
+<li>no assumption about how process uses the memory, e.g. direction of the heap grow</li>
+</ul></li>
+<li><strong>simplicity</strong>
+<ul>
+<li>size of pages and page frames are fixed and the same</li>
+<li>elements in the free list have equal right</li>
+</ul></li>
+<li>enable sparse memory address</li>
+</ul>
+<h3 id="address-translation">Address Translation</h3>
+<ul>
+<li><strong>virtual address</strong>
+<ul>
+<li>vaddr can be split into two parts
+<ul>
+<li>virtual page number (VPN): high part bits, the numebr of the pages in address space</li>
+<li>offset: low part bits, the offset in the page</li>
+</ul></li>
+<li>page-size = 2 ^ length-of-offset-part</li>
+</ul></li>
+<li><strong>physical address</strong>
+<ul>
+<li>paddr can be split into two parts
+<ul>
+<li>physical frame number (PFN) / physical page number (PPN): high part bits, the number of the frames in physical memory</li>
+<li>offset: low part bits, the offset in the frame</li>
+</ul></li>
+<li>frame-size = 2 ^ length-of-offset-part</li>
+<li>frame-size = page-size</li>
+</ul></li>
+<li><strong>address translation</strong>
+<ol type="1">
+<li>(use ++ as addr concatenation)</li>
+<li>split vaddr as VPN ++ offset</li>
+<li>lookup page table, get PFN of VPN</li>
+<li>paddr is PFN ++ offset</li>
+</ol></li>
+<li><strong>issues and solutions</strong>
+<ul>
+<li><strong>speed issue</strong>: every memory access may have an extra memory access (to get PFN fro page table) to perform address translation, which is slow</li>
+<li><strong>space issue</strong>: page table may be big</li>
+<li>can be avoided if designed carefully</li>
+</ul></li>
+</ul>
+<h3 id="page-table">Page Table</h3>
+<ul>
+<li><strong>store location</strong>
+<ul>
+<li>page table is large</li>
+<li>cannot be stored in hardware like MMU</li>
+<li>stored in memory managed by OS</li>
+</ul></li>
+<li><strong>data structure</strong>
+<ul>
+<li>the function is map VPN to PFN</li>
+<li>any mapping data structure can do</li>
+<li>each element is a page-table entry (PTE)</li>
+<li>simplest: linear page table
+<ul>
+<li>is an array</li>
+<li>VPN as index, PTE as data</li>
+<li>get PFN from PTE</li>
+</ul></li>
+</ul></li>
+<li><strong>page-table entry content</strong>
+<ul>
+<li><strong><em>PFN</em></strong>, physical frame number</li>
+<li><strong><em>valid bit</em></strong>
+<ul>
+<li>whether the translation for this page is valid</li>
+<li>some pages are invalid (such as pages between stack and heap)</li>
+<li>enable sparse address space (only actually used pages are allocated)</li>
+<li>access to invalid page cause a trap to OS</li>
+</ul></li>
+<li><strong><em>protection bits</em></strong>
+<ul>
+<li>whether the page can be read, write or executed</li>
+<li>illegal access will cause a trap to OS</li>
+</ul></li>
+<li><strong><em>present bit</em></strong>
+<ul>
+<li>whether the page is presented in memory</li>
+<li>page may be swapped out</li>
+</ul></li>
+<li><strong><em>dirty bit</em></strong>
+<ul>
+<li>whether the page is modified since it is brought to memory</li>
+<li>if clean and there is backup in disk, can skip writing back to the disk</li>
+</ul></li>
+<li><strong><em>reference bit / accessed bit</em></strong>
+<ul>
+<li>whether the page has been accessed (used to guide page replacement)</li>
+</ul></li>
+<li><strong><em>user / supervisor bit</em></strong>
+<ul>
+<li>whether this page can be accessed in user mode</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="paging-ii---faster-translation-with-tlb">Paging, II - Faster Translation With TLB</h2>
+<h3 id="overview-3">Overview</h3>
+<ul>
+<li><strong>crux</strong>: how to speed up address translation with support from hardware and OS</li>
+<li><strong>idea</strong>
+<ul>
+<li>use a cache for page table, TLB (translation lookaside buffer)</li>
+<li>TLB is part of MMU</li>
+<li>TLB stores frequently used translation entries</li>
+<li>based on premise that most translations can be found in the cache</li>
+<li>if most accesses lead to TLB hit, whole performance is as memory not virtualized</li>
+</ul></li>
+<li><strong>terms</strong>
+<ul>
+<li><strong>TLB hit rate</strong>: number of TLB hit / number of total translation (the higher, the better)</li>
+</ul></li>
+<li><strong>premises</strong>
+<ul>
+<li><strong>spatial locality</strong>: if an page is accessed, pages near to it are likely to be accessed</li>
+<li><strong>temporal locality</strong>: if an page is accessed, it is likely to be accessed ensuely</li>
+</ul></li>
+</ul>
+<h3 id="basic-algorithm">Basic Algorithm</h3>
+<ul>
+<li>when translate address, check TLB first</li>
+<li>hit or miss
+<ul>
+<li><strong>TLB hit</strong> (fast)
+<ul>
+<li>virtual address translated</li>
+</ul></li>
+<li><strong>TLB miss</strong> (costly)
+<ul>
+<li>look up in the page table</li>
+<li>update TLB</li>
+<li>retry with entry in the TLB</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="tlb-miss-handling">TLB Miss Handling</h3>
+<h4 id="hardware-managed-tlb">Hardware-Managed TLB</h4>
+<ul>
+<li>hardware has a “page table base register”</li>
+<li>hardware knows the format of the page table</li>
+<li>on TLB miss
+<ul>
+<li>hardware will access the page table to get the entry</li>
+<li>hardware then update TLB</li>
+<li>hardware then retries</li>
+</ul></li>
+</ul>
+<h4 id="software-managed-tlb">Software-Managed TLB</h4>
+<ul>
+<li>OS will handle TLB miss</li>
+<li>on TLB miss
+<ul>
+<li>hardware will raise an exception and OS goes to a trap handler</li>
+<li>OS will find the entry and update TLB</li>
+<li>hardware then retries</li>
+</ul></li>
+<li>implementation notes
+<ul>
+<li>the return-from-trap is different as syscall
+<ul>
+<li>syscall: return-from-trap will execute the instruction after the one causing the trap</li>
+<li>TLB miss: return-from-trap will reexecute the instruction causing the trap</li>
+<li>different PC should be saved</li>
+</ul></li>
+<li>avoid infinite chain of TLB miss
+<ul>
+<li>put trap handler somewhere in a unmapped physical memory region</li>
+<li>or, ensure there is always an entry in TLB that points to the trap handler</li>
+</ul></li>
+</ul></li>
+<li>advantages
+<ul>
+<li>flexibility</li>
+<li>simplicity</li>
+</ul></li>
+</ul>
+<h3 id="tlb-content">TLB Content</h3>
+<ul>
+<li>a TLB contains typically 32-128 entries</li>
+<li>TLB hardware searchs for entry parallelly</li>
+<li>each entry has three parts
+<ul>
+<li>VPN</li>
+<li>PFN</li>
+<li>other bits</li>
+</ul></li>
+<li>typical content of other bits
+<ul>
+<li>valid bit: is this translation valid</li>
+<li>protection bit: how the page table entry can be accessed in the page table</li>
+<li>address-space identifier (ASID)</li>
+<li>global bit: the translation is shared globally (when set, ASID ignored)</li>
+<li>dirty bit: set when the page is written</li>
+<li>coherence bit: indicates how the page is cached (used when number of processes more than the maximal number distinguishable by ASID)</li>
+</ul></li>
+</ul>
+<h3 id="issue-about-context-switch">Issue About Context Switch</h3>
+<p>crux: TLB entries become useless for the new process after context switch</p>
+<p>solutions:</p>
+<ul>
+<li>simple solution: flush all TLB entries when context switch (set all valid bits to 0)
+<ul>
+<li>software-based: use privileged instruction to flush TLB</li>
+<li>hardware-based: flush TLB if the page table register changed</li>
+</ul></li>
+<li>maintain TLB entries across different processes while context switching
+<ul>
+<li>each TLB entry has an address space identifier (ASID) field (like process ID)</li>
+<li>one ASID for each process to distinguish different address spaces</li>
+<li>hardware has a register saving the ASID of current process</li>
+<li>hardware supports instructions to change current ASID</li>
+<li>when translating, hardware only searchs entries matching with the current ASID</li>
+</ul></li>
+</ul>
+<h3 id="issue-about-replacing-policy">Issue About Replacing Policy</h3>
+<p>crux: which entry to replace when installing new TLB entry to minimize miss rate</p>
+<p>possible policies:</p>
+<ul>
+<li>evict least recent used entries
+<ul>
+<li>assuming temporal locality</li>
+</ul></li>
+<li>evict a random entry
+<ul>
+<li>it’s simple</li>
+<li>it avoids strange corner cases</li>
+</ul></li>
+</ul>
+<h3 id="example-instructions-related-to-tlb">Example Instructions Related To TLB</h3>
+<p>note that:</p>
+<ul>
+<li>these instructions are priviledged</li>
+<li>these instructions are from a real-world software-managed TLB system</li>
+</ul>
+<p>instructions related to TLB:</p>
+<ul>
+<li><code>TLBP</code>: check if a translation exists</li>
+<li><code>TLBR</code>: read a translation</li>
+<li><code>TLBWI</code>: replace a specific TLB entry (can implement LRU eviction)</li>
+<li><code>TLBWR</code>: replace a random TLB entry (can implement random eviction)</li>
+</ul>
+<h2 id="paging-iii---smaller-page-table">Paging, III - Smaller Page Table</h2>
+<h3 id="overview-4">Overview</h3>
+<p>cruxes in paging:</p>
+<ul>
+<li>linear page table needs to store entries for the whole address space</li>
+<li>linear page table (array based)is too big</li>
+<li>how to make page table smaller</li>
+</ul>
+<p>solutions:</p>
+<ul>
+<li>use bigger page</li>
+<li>allow multiple page sizes</li>
+<li>use paging and segmentation together</li>
+<li>use multi-level page tables</li>
+<li>use inverted page tables</li>
+<li>swap page table to disk</li>
+</ul>
+<h3 id="bigger-page">Bigger Page</h3>
+<ul>
+<li>reduce number of page table entries</li>
+<li>modern OSs use page with size 4KB or 8KB</li>
+<li>pros: simple</li>
+<li>cons: more internal fragmentation</li>
+</ul>
+<h3 id="multiple-page-sizes">Multiple Page Sizes</h3>
+<ul>
+<li>allow applications to use bigger pages together with small pages (hybrid page size)</li>
+<li>often used by database systems</li>
+<li>pros
+<ul>
+<li>reduce page table entries</li>
+<li>reduce TLB pressure; less TLB misses</li>
+</ul></li>
+<li>cons: make memory management complex</li>
+</ul>
+<h3 id="use-paging-and-segmentation-together">Use Paging And Segmentation Together</h3>
+<h4 id="solution">Solution</h4>
+<ul>
+<li>split address space into segmentations
+<ul>
+<li>code</li>
+<li>heap</li>
+<li>stack</li>
+</ul></li>
+<li>use a separated linear page table for each segment
+<ul>
+<li>a segment is much smaller than the whole address space</li>
+<li>the page table contains all page entries corresponding to the segment</li>
+<li>each process will have three page tables</li>
+</ul></li>
+<li>for each segment, use base register and bound (limit) register in MMU
+<ul>
+<li>base register: physical address of the beginning of the page table of this segment</li>
+<li>bound register: physical address of the end of the page table of this segment</li>
+<li>for each process, three pairs of base/bound registers should be used</li>
+<li>should refresh registers’ value when context switch</li>
+</ul></li>
+</ul>
+<h4 id="steps">Steps</h4>
+<ol type="1">
+<li>get the segment of the address, e.g. use segment bits (SN, highest two bits of addr)</li>
+<li>retrieve page VPN in that segment (e.g. by using a mask)</li>
+<li>check if the address is valid (by bound register)</li>
+<li>get PFN of the address (by the page table of that segment), add it with the offset to get physical address</li>
+</ol>
+<h4 id="pros-and-cons">Pros And Cons</h4>
+<ul>
+<li>pros
+<ul>
+<li>enable sparse address space and smaller page tables</li>
+<li>unused address space (doesn’t belong to any segment, e.g. space between code and heap) won’t be allocated</li>
+<li>unused address space won’t have page table entry in the any page table</li>
+</ul></li>
+<li>cons
+<ul>
+<li>involves segmentation, not flexible (assuming certain pattern of usage)</li>
+<li>segmentation may cause wasted allocated memory (e.g. unused part in heap segment)</li>
+<li>may have external fragment issue (page table can have arbitrary size and must be continuous), memory management is hard</li>
+</ul></li>
+</ul>
+<h3 id="multi-level-page-table">Multi-Level Page Table</h3>
+<h4 id="basic-idea">Basic Idea</h4>
+<ul>
+<li>linear structure needs to store a mapping for the whole address space</li>
+<li>many entries in the linear structure are not useful at all
+<ul>
+<li>these entries point to invalid page (with invalid bit)</li>
+<li>corresponding memory address not being allocated and be used</li>
+</ul></li>
+<li>can use <strong>tree structure</strong> instead of linear structure to get rid of empty memory region</li>
+<li>constructing tree structured page table
+<ul>
+<li>chop up the entire page table into page-sized units, each page will contain multiple <em>page table entries</em> (PTEs)</li>
+<li>use <strong><em>page directory</em></strong> to manage pages of <em>page table entries</em></li>
+<li>each entry in the <em>page directory</em> corresponds to one page of PTEs</li>
+<li>if PTEs in one <em>page directory entry</em> all all invalid, don’t allocate that page of PTEs at all</li>
+<li>the page directory can be used to tell whether a page of PTEs is valid</li>
+<li>the page directory can be used to tell where the page of PTEs is</li>
+</ul></li>
+</ul>
+<h4 id="two-level-page-table">Two-Level Page Table</h4>
+<ul>
+<li><strong><em>page directory</em></strong> and <strong><em>page directory entry</em></strong> (PDE)
+<ul>
+<li>a <em>page directory</em> contains multiple <em>page directory entries</em></li>
+<li>each <em>page directory entry</em> points to a page-sized unit of the page table</li>
+<li>each <em>page directory</em> contains a <strong><em>valid bit</em></strong> and a <strong><em>page frame number</em></strong>
+<ul>
+<li><em>recall</em> PTE contains valid bit and a physical frame number</li>
+</ul></li>
+<li>if <em>valid bit</em> is set to <strong>valid</strong>, at least one PTE pointed by this PDE is valid</li>
+<li>if <em>valid bit</em> is set to <strong>invalid</strong>, all PTEs pointed by this PDE is invalid, and the rest part of PDE is undefined</li>
+</ul></li>
+<li><strong>advantage</strong> of using multiple-level page table
+<ul>
+<li><strong>space advantanve</strong>: allocate page table proportion to the amount of address used; more compac; supports sparse address spaces</li>
+<li><strong>easier to manage</strong>: can use pages to directly manage the page table (since page tables are chopped into page-sized units); if not using multi-level page table, a continous physical memory is needed to manage the page table</li>
+</ul></li>
+<li><strong>disadvantages</strong> of using multi-level page table
+<ul>
+<li><strong>time cost</strong>: each address translation needs two address lookup, one for page directory and one for page directory entry; can be reduced by using TLB</li>
+<li><strong>complexity</strong>: on TLB miss, takes more effects (whether handled by OS or hardware)</li>
+</ul></li>
+<li><strong>address translation process</strong>
+<ul>
+<li>an virtual address can be split into two parts: high-bits <em>VPN</em> (virtual page number) and low-bits <em>offset</em></li>
+<li><em>VPN</em> can be further split into two parts: high-bits <strong><em>page-directory index</em></strong> and low-bits <strong><em>page-table index</em></strong></li>
+<li><em>page-directory index</em> can be used to locate the right <em>page directory entry</em> in <em>page directory</em>
+<ul>
+<li>if the valid bit of <em>page directory entry</em> is invalid, the address will be invalid</li>
+<li>otherwise, find the right page of the page table (pointed by <em>page directory entry</em>)</li>
+</ul></li>
+<li><em>page-table index</em> can be used to locate the right <em>page table entry</em>, then we get <em>page frame number</em> (PFN)</li>
+<li><em>offset</em> can be used to locate right address in the final physical page</li>
+</ul></li>
+</ul>
+<h4 id="more-than-two-level-page-table">More-Than-Two-Level Page Table</h4>
+<ul>
+<li>in some cases, page tables with more than 2 levels are possible and needed</li>
+<li>the <em>page directory</em> itself may become too large</li>
+<li>use a directory for the <em>page directory</em> to reduce spaces used by the <em>page directory</em></li>
+<li><strong>example</strong>, three-level page table, VPN (virtual page number) is splitted into three parts, <strong><em>page-directory index 1</em></strong>, <strong><em>page-directory index 2</em></strong>, and <strong><em>page-table index</em></strong></li>
+<li>each memory access will need three address lookup</li>
+</ul>
+<h3 id="inverted-page-table">Inverted Page Table</h3>
+<ul>
+<li><strong><em>inverted page table</em></strong> saves more space</li>
+<li><em>multi-level page table</em> maps virtual address to physical address; each process has its own page table</li>
+<li><em>inverted page table</em> maps physical address to virtual address; all processes share an inverted page table
+<ul>
+<li>which process is using this physical frame?</li>
+<li>which virtual page of the process is mapped to this frame?</li>
+</ul></li>
+<li>use <em>inverted page table</em>: <strong>linear scan</strong> is expensive; using <strong>hash table</strong> is more practical</li>
+</ul>
+<h3 id="swapping-page-table-to-disk">Swapping Page Table To Disk</h3>
+<ul>
+<li>page table may be too large to fit into memory (kernel-owned physical memory)</li>
+<li>some systems place page tables in <strong><em>kernel virtual memory</em></strong>
+<ul>
+<li>allowing system to <strong>swap</strong> part of page tables into disk</li>
+</ul></li>
+</ul>
+<h2 id="swapping">Swapping</h2>
+<h2 id="complete-virtual-memory-system">Complete Virtual Memory System</h2>
+
+</body>
+</html>
+
